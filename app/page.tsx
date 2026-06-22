@@ -218,9 +218,25 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="campaigns">
+        <div className="section-title">
+          <p>Campaign Hypotheses</p>
+          <h2>Six angles worth testing before we fall in love with one.</h2>
+        </div>
+        <div className="angle-list">
+          {offerAngles.map((angle) => (
+            <article key={angle.title}>
+              <h3>{angle.title}</h3>
+              <p>{angle.prompt}</p>
+              <span>{angle.proof}</span>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="system-map section-band" id="system">
         <div className="section-title">
-          <p>System Map</p>
+          <p>System Map.</p>
           <h2>Lead to booked consult</h2>
         </div>
         <div className="flow">
@@ -229,22 +245,6 @@ export default function Home() {
               <div className="step-index">{String(index + 1).padStart(2, "0")}</div>
               <h3>{step.title}</h3>
               <p>{step.detail}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="campaigns">
-        <div className="section-title">
-          <p>Campaign Hypotheses</p>
-          <h2>Five angles worth testing before we fall in love with one.</h2>
-        </div>
-        <div className="angle-list">
-          {offerAngles.map((angle) => (
-            <article key={angle.title}>
-              <h3>{angle.title}</h3>
-              <p>{angle.prompt}</p>
-              <span>{angle.proof}</span>
             </article>
           ))}
         </div>
