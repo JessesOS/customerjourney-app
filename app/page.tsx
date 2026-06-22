@@ -77,6 +77,11 @@ const offerAngles = [
     proof: "A secondary A/B route that may work as a practical savings hook.",
   },
   {
+    title: "Subsidies & Grants",
+    prompt: "Could a wage subsidy or regional business partner grant create enough reason to start the conversation?",
+    proof: "Chris sees this as weaker and less exciting, but it can remain a comparison angle against the stronger gap-analysis offer.",
+  },
+  {
     title: "Testimonial Proof",
     prompt: "Let clients describe the moment the gap became impossible to ignore.",
     proof: "Use anonymised interviews or category-safe proof where confidentiality matters.",

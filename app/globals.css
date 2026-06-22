@@ -486,7 +486,7 @@ nav a:hover {
 .angle-list {
   display: grid;
   gap: 1px;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   margin: 0 auto;
   max-width: 1360px;
 }
@@ -503,7 +503,8 @@ nav a:hover {
 }
 
 .angle-list article:nth-child(2),
-.angle-list article:nth-child(4) {
+.angle-list article:nth-child(4),
+.angle-list article:nth-child(6) {
   border-color: var(--gold);
 }
 
@@ -560,11 +561,6 @@ nav a:hover {
   .signals,
   .angle-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .angle-list article:last-child {
-    grid-column: 1 / -1;
-    min-height: 220px;
   }
 }
 
