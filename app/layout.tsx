@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "McBreen Growth System",
+  title: "Strategize Growth Workspace",
   description:
     "A private strategy workspace for the Canterbury campaign pilot, offer development, and lead-to-booking system map.",
   icons: {

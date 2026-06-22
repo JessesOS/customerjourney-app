@@ -117,9 +117,8 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="McBreen Growth System home">
-          <span className="brand-mark">M</span>
-          <span>McBreen Growth System</span>
+        <a className="brand" href="#top" aria-label="Strategize growth workspace home">
+          <img src="/strategize-logo-cropped.png" alt="Strategize" />
         </a>
         <nav aria-label="Workspace navigation">
           <a href="#brief">Brief</a>
@@ -131,12 +130,16 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <h1>McBreen Growth System</h1>
-          <p>
+          <img
+            className="hero-logo"
+            src="/strategize-logo-cropped.png"
+            alt="Strategize"
+          />
+          <h1>
             A shared strategy room for the Canterbury pilot: clarify the offer,
             shape the campaign, and map how qualified trade-business owners move
             from ad click to booked consult.
-          </p>
+          </h1>
           <div className="hero-actions" aria-label="Primary workspace actions">
             <a href="#offer">Open Offer Lab</a>
             <a href="#system">View System Map</a>

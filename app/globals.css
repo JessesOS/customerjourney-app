@@ -75,15 +75,11 @@ main {
   letter-spacing: 0;
 }
 
-.brand-mark {
-  align-items: center;
-  background: var(--ink);
-  border-radius: 6px;
-  color: var(--paper);
-  display: inline-flex;
-  height: 34px;
-  justify-content: center;
-  width: 34px;
+.brand img {
+  display: block;
+  height: 48px;
+  object-fit: contain;
+  width: auto;
 }
 
 nav {
@@ -120,13 +116,21 @@ nav a:hover {
   padding-top: clamp(52px, 8vw, 110px);
 }
 
+.hero-logo {
+  display: block;
+  height: auto;
+  margin-bottom: clamp(20px, 2.8vw, 32px);
+  max-width: min(190px, 52vw);
+  width: 100%;
+}
+
 .hero-copy h1 {
-  font-size: clamp(56px, 9vw, 132px);
+  font-size: clamp(32px, 3.55vw, 46px);
   font-weight: 760;
   letter-spacing: 0;
-  line-height: 0.9;
+  line-height: 1.12;
   margin: 0;
-  max-width: 890px;
+  max-width: 660px;
 }
 
 .hero-copy p {
@@ -581,7 +585,8 @@ nav a:hover {
   }
 
   .hero-copy h1 {
-    font-size: clamp(48px, 18vw, 72px);
+    font-size: clamp(29px, 8.6vw, 38px);
+    line-height: 1.12;
   }
 
   .hero-board,
