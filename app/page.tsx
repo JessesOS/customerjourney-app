@@ -1,4 +1,5 @@
 import { CollaborationHub } from "./components/CollaborationHub";
+import { ProjectChat } from "./components/ProjectChat";
 import { defaultChecklistItems, projectStages } from "@/lib/collaboration";
 
 const meetingSignals = [
@@ -125,6 +126,7 @@ export default function Home() {
         </a>
         <nav aria-label="Workspace navigation">
           <a href="#working-plan">Plan</a>
+          <a href="#project-chat">AI Chat</a>
           <a href="#brief">Brief</a>
           <a href="#offer">Offer Lab</a>
           <a href="#system">System Map</a>
@@ -141,6 +143,7 @@ export default function Home() {
           </h1>
           <div className="hero-actions" aria-label="Primary workspace actions">
             <a href="#working-plan">Open Working Plan</a>
+            <a href="#project-chat">Ask AI Chat</a>
             <a href="#offer">Open Offer Lab</a>
             <a href="#system">View System Map</a>
           </div>
@@ -171,6 +174,8 @@ export default function Home() {
         initialItems={defaultChecklistItems}
         stages={projectStages}
       />
+
+      <ProjectChat />
 
       <section className="meeting-brief section-band" id="brief">
         <div className="section-title">

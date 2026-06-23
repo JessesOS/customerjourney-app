@@ -1,0 +1,106 @@
+export type KnowledgeChunk = {
+  id: string;
+  title: string;
+  source: string;
+  text: string;
+};
+
+export const projectKnowledge: KnowledgeChunk[] = [
+  {
+    id: "project-purpose",
+    title: "Project purpose",
+    source: "Portal brief",
+    text: "This is a shared strategy room for the Canterbury pilot with Chris McBreen and Strategize. The purpose is to clarify the offer, shape the campaign, and map how qualified trade-business owners move from ad click to booked consult.",
+  },
+  {
+    id: "client-reality",
+    title: "Client reality and trust context",
+    source: "Chris meeting summary",
+    text: "Chris is not buying a generic AI campaign. He is testing whether a serious creative and automation partner can protect his reputation with high-value trade clients. He had a poor prior experience and needs hands-on strategic consistency.",
+  },
+  {
+    id: "business-model",
+    title: "Strategize business model",
+    source: "Chris meeting summary",
+    text: "Strategize sells high-ticket long-term strategy support, commonly around $2,000 to $3,000 per month, with long retention and relationships that can last around three years. Ideal clients are trade businesses with staff, not one-person operators.",
+  },
+  {
+    id: "target-market",
+    title: "Target market",
+    source: "Chris meeting summary",
+    text: "The first market focus is Christchurch and Canterbury. The campaign should target trade-business owners, often age 35+, with multiple staff and enough turnover or operational complexity to make strategy support meaningful.",
+  },
+  {
+    id: "lead-quality",
+    title: "Lead quality principle",
+    source: "Chris meeting summary",
+    text: "Lead quality matters more than lead volume. Telemarketing has produced qualified leads at about $66 each, so ads need to compete with or beat that quality benchmark. Volume without qualification is the failure mode.",
+  },
+  {
+    id: "core-offer",
+    title: "Core offer direction",
+    source: "Offer strategy",
+    text: "The strongest offer is a benchmark-led profit leakage story: a free Business Gap Analysis or Benchmarking Report, with an implied value around $875, that helps owners see hidden losses such as $100,000 to $200,000 or more.",
+  },
+  {
+    id: "creative-anchor",
+    title: "Creative anchor",
+    source: "Offer strategy",
+    text: "The creative should sell the size of the hidden gap. Chris already has a benchmark process that compares a business against its category and makes profit leakage tangible. The Meta creative job is to compress that moment without giving away proprietary numbers.",
+  },
+  {
+    id: "offer-angles",
+    title: "Six offer angles",
+    source: "Campaign hypotheses",
+    text: "The six offer angles are Productivity Gap, Margin and Pricing, Wage Leakage, Buying Group Savings, Subsidies and Grants, and Testimonial Proof. Subsidies and grants are considered weaker by Chris, but should remain in the option set for comparison.",
+  },
+  {
+    id: "subsidies-grants",
+    title: "Subsidies and grants angle",
+    source: "Transcript note",
+    text: "Chris mentioned wage subsidies and regional business partner grants in a marketing context, but described them as weaker and a bit boring. They can be tested as an offer angle, but the benchmark gap analysis is the stronger strategic lead.",
+  },
+  {
+    id: "system-map",
+    title: "System map: lead to booked consult",
+    source: "System walkthrough",
+    text: "The system map moves from Traffic to Lead Capture to TradeAI CRM to AI Nurture to Qualification to Booked Consult to Human Handoff. Meta cold and warm campaigns and Google search can generate leads, which enter forms or a GHL funnel, then CRM tags, nurture, qualification, calendar booking, and human review.",
+  },
+  {
+    id: "qualification",
+    title: "Qualification requirements",
+    source: "System walkthrough",
+    text: "Qualification should capture pain, motivation, service fit, address, timezone, phone, and email. Disqualifiers include one-person businesses, no staff, insufficient turnover, duplicate existing contacts, or low-fit categories.",
+  },
+  {
+    id: "ai-role",
+    title: "Role of AI",
+    source: "Chris meeting summary",
+    text: "AI is useful for speed-to-lead, follow-up, and qualification, but not the core acquisition idea. Automation is valuable after lead flow is proven. AI should protect the team from low-fit leads and improve conversion speed.",
+  },
+  {
+    id: "working-stage",
+    title: "Current project stage",
+    source: "Working plan",
+    text: "The current stage is Offer Lock. Trust Reset is complete. Next stages are Creative Build, Funnel Build, AI Qualification, and Launch plus Optimise.",
+  },
+  {
+    id: "chris-actions",
+    title: "Chris action items",
+    source: "Working plan",
+    text: "Chris action items are to send an anonymised benchmark or gap analysis sample, confirm compliant offer language, clarify ideal client filters, and identify testimonial or proof options.",
+  },
+  {
+    id: "jesse-actions",
+    title: "Jesse action items",
+    source: "Working plan",
+    text: "Jesse action items are to draft first creative angles, shape the A/B campaign structure with the ads team, explore calculator or teaser funnel feasibility, and prepare a structured 90-minute workshop agenda.",
+  },
+  {
+    id: "next-workshop",
+    title: "Next workshop agenda",
+    source: "Portal plan",
+    text: "The next workshop should confirm exact offer language, collect anonymised benchmark screenshots or a white-labelled sample report, choose the first three trade segments, define disqualifiers, and draft two video scripts.",
+  },
+];
+

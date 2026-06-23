@@ -102,7 +102,8 @@ nav a:hover {
 .section-band,
 .offer-lab,
 .campaigns,
-.collaboration-hub {
+.collaboration-hub,
+.project-chat {
   padding-left: clamp(20px, 5vw, 76px);
   padding-right: clamp(20px, 5vw, 76px);
 }
@@ -754,6 +755,134 @@ nav a:hover {
   font-weight: 900;
 }
 
+.project-chat {
+  background: #e9f0ed;
+}
+
+.chat-title {
+  align-items: flex-end;
+}
+
+.chat-title > span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+  max-width: 340px;
+}
+
+.chat-shell {
+  background: var(--paper);
+  border: 1px solid rgba(22, 23, 19, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgba(54, 46, 28, 0.1);
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: clamp(14px, 2.4vw, 24px);
+}
+
+.chat-messages {
+  display: grid;
+  gap: 10px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.chat-message {
+  border-radius: 8px;
+  max-width: 82%;
+  padding: 13px 14px;
+}
+
+.chat-message p {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.chat-assistant {
+  background: #f3eee3;
+  color: var(--ink);
+}
+
+.chat-user {
+  background: var(--ink);
+  color: var(--paper);
+  justify-self: end;
+}
+
+.chat-sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.chat-sources span {
+  background: rgba(31, 111, 104, 0.12);
+  border-radius: 999px;
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 5px 8px;
+}
+
+.starter-questions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.starter-questions button,
+.chat-form button {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 800;
+}
+
+.starter-questions button {
+  background: var(--teal-soft);
+  border-radius: 999px;
+  color: var(--teal);
+  font-size: 12px;
+  padding: 8px 10px;
+}
+
+.chat-form {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-top: 14px;
+}
+
+.chat-form input {
+  background: #f8f5ee;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--ink);
+  font: inherit;
+  min-height: 44px;
+  padding: 0 13px;
+}
+
+.chat-form button {
+  background: var(--ink);
+  border-radius: 7px;
+  color: var(--paper);
+  min-height: 44px;
+  padding: 0 18px;
+}
+
+.starter-questions button:disabled,
+.chat-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
 @media (max-width: 1120px) {
   .hero,
   .offer-lab {
@@ -766,7 +895,8 @@ nav a:hover {
 
   .signals,
   .angle-list,
-  .task-columns {
+  .task-columns,
+  .chat-form {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -800,12 +930,18 @@ nav a:hover {
   .board-grid,
   .signals,
   .angle-list,
-  .task-columns {
+  .task-columns,
+  .chat-form {
     grid-template-columns: 1fr;
+  }
+
+  .chat-message {
+    max-width: 100%;
   }
 
   .gap-card,
   .section-title,
+  .chat-title,
   .board-topline,
   .panel-header {
     align-items: flex-start;
