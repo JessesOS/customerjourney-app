@@ -134,11 +134,6 @@ export default function Home() {
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <img
-            className="hero-logo"
-            src="/strategize-logo-cropped.png"
-            alt="Strategize"
-          />
           <h1>
             A shared strategy room for the Canterbury pilot: clarify the offer,
             shape the campaign, and map how qualified trade-business owners move
