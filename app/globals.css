@@ -110,20 +110,20 @@ nav a:hover {
 .hero {
   align-items: center;
   display: grid;
-  gap: clamp(22px, 3.6vw, 52px);
-  grid-template-columns: minmax(0, 0.95fr) minmax(360px, 0.85fr);
-  min-height: min(48svh, 430px);
-  padding-bottom: clamp(24px, 4vw, 46px);
-  padding-top: clamp(28px, 4.6vw, 56px);
+  gap: clamp(16px, 2.4vw, 34px);
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.76fr);
+  min-height: 0;
+  padding-bottom: clamp(14px, 2.2vw, 26px);
+  padding-top: clamp(16px, 2.6vw, 32px);
 }
 
 .hero-copy h1 {
-  font-size: clamp(27px, 3vw, 38px);
+  font-size: clamp(24px, 2.45vw, 32px);
   font-weight: 760;
   letter-spacing: 0;
-  line-height: 1.08;
+  line-height: 1.06;
   margin: 0;
-  max-width: 710px;
+  max-width: 820px;
 }
 
 .hero-copy p {
@@ -137,8 +137,8 @@ nav a:hover {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 22px;
+  gap: 8px;
+  margin-top: 16px;
 }
 
 .hero-actions a {
@@ -146,10 +146,10 @@ nav a:hover {
   border: 1px solid var(--ink);
   border-radius: 7px;
   display: inline-flex;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
-  min-height: 40px;
-  padding: 0 15px;
+  min-height: 34px;
+  padding: 0 12px;
 }
 
 .hero-actions a:first-child {
@@ -160,8 +160,8 @@ nav a:hover {
 .collaboration-hub {
   background: #12130f;
   color: var(--paper);
-  padding-bottom: clamp(38px, 5.4vw, 64px);
-  padding-top: clamp(34px, 4.8vw, 58px);
+  padding-bottom: clamp(34px, 5vw, 58px);
+  padding-top: clamp(24px, 3.4vw, 38px);
 }
 
 .collaboration-title {
@@ -375,7 +375,7 @@ nav a:hover {
 }
 
 .hero-board {
-  padding: clamp(18px, 3vw, 30px);
+  padding: clamp(12px, 1.8vw, 18px);
 }
 
 .board-topline,
@@ -383,9 +383,9 @@ nav a:hover {
   align-items: flex-start;
   border-bottom: 1px solid var(--line);
   display: flex;
-  gap: 18px;
+  gap: 12px;
   justify-content: space-between;
-  padding-bottom: 18px;
+  padding-bottom: 10px;
 }
 
 .board-topline span,
@@ -393,7 +393,7 @@ nav a:hover {
 .section-title p,
 .offer-copy > p:first-child {
   color: var(--teal);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.12em;
   margin: 0;
@@ -403,28 +403,28 @@ nav a:hover {
 .board-topline strong,
 .panel-header strong {
   color: var(--ink);
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.35;
   text-align: right;
 }
 
 .board-grid {
   display: grid;
-  gap: 12px;
+  gap: 8px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: 18px;
+  margin-top: 10px;
 }
 
 .metric {
   background: var(--soft);
   border-radius: 7px;
-  min-height: 124px;
-  padding: 18px;
+  min-height: 74px;
+  padding: 12px;
 }
 
 .metric span {
   display: block;
-  font-size: clamp(30px, 4vw, 48px);
+  font-size: clamp(21px, 2.4vw, 30px);
   font-weight: 800;
   letter-spacing: 0;
   line-height: 1;
@@ -432,10 +432,10 @@ nav a:hover {
 
 .metric p {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
-  line-height: 1.4;
-  margin: 12px 0 0;
+  line-height: 1.25;
+  margin: 7px 0 0;
 }
 
 .metric-gold {
@@ -452,22 +452,22 @@ nav a:hover {
   border-radius: 7px;
   color: var(--paper);
   display: flex;
-  gap: 20px;
+  gap: 12px;
   justify-content: space-between;
-  margin-top: 12px;
-  min-height: 166px;
-  padding: 22px;
+  margin-top: 8px;
+  min-height: 92px;
+  padding: 14px;
 }
 
 .gap-card p {
   color: rgba(255, 253, 250, 0.68);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
-  margin: 0 0 12px;
+  margin: 0 0 6px;
 }
 
 .gap-card h2 {
-  font-size: clamp(28px, 3.5vw, 46px);
+  font-size: clamp(20px, 2.4vw, 30px);
   letter-spacing: 0;
   line-height: 0.98;
   margin: 0;
@@ -478,9 +478,9 @@ nav a:hover {
   border: 1px solid rgba(255, 253, 250, 0.25);
   border-radius: 999px;
   color: var(--gold-soft);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
-  padding: 9px 12px;
+  padding: 7px 10px;
   white-space: nowrap;
 }
 
