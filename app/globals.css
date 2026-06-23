@@ -101,7 +101,8 @@ nav a:hover {
 .hero,
 .section-band,
 .offer-lab,
-.campaigns {
+.campaigns,
+.collaboration-hub {
   padding-left: clamp(20px, 5vw, 76px);
   padding-right: clamp(20px, 5vw, 76px);
 }
@@ -162,6 +163,215 @@ nav a:hover {
 .hero-actions a:first-child {
   background: var(--ink);
   color: var(--paper);
+}
+
+.collaboration-hub {
+  background: #12130f;
+  color: var(--paper);
+  padding-bottom: clamp(56px, 8vw, 96px);
+  padding-top: clamp(56px, 8vw, 96px);
+}
+
+.collaboration-title {
+  align-items: flex-start;
+  color: var(--paper);
+}
+
+.collaboration-title h2 {
+  color: var(--paper);
+  max-width: 760px;
+}
+
+.sync-pill {
+  border: 1px solid rgba(255, 253, 250, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 253, 250, 0.72);
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 800;
+  margin-top: 8px;
+  padding: 9px 12px;
+}
+
+.sync-shared {
+  background: rgba(31, 111, 104, 0.28);
+}
+
+.sync-local {
+  background: rgba(185, 133, 43, 0.22);
+}
+
+.stage-rail {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(6, minmax(150px, 1fr));
+  margin: 0 auto 28px;
+  max-width: 1360px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.stage-card {
+  background: rgba(255, 253, 250, 0.08);
+  border: 1px solid rgba(255, 253, 250, 0.12);
+  border-radius: 8px;
+  min-height: 188px;
+  padding: 18px;
+}
+
+.stage-card span {
+  color: rgba(255, 253, 250, 0.48);
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+  margin-bottom: 34px;
+}
+
+.stage-card h3 {
+  color: var(--paper);
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 1.08;
+  margin: 0 0 12px;
+}
+
+.stage-card p {
+  color: rgba(255, 253, 250, 0.66);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.stage-done {
+  background: rgba(255, 253, 250, 0.14);
+}
+
+.stage-current {
+  background: var(--teal);
+  border-color: rgba(255, 253, 250, 0.3);
+}
+
+.stage-current p,
+.stage-current span {
+  color: rgba(255, 253, 250, 0.82);
+}
+
+.stage-next {
+  border-color: rgba(240, 223, 189, 0.5);
+}
+
+.task-columns {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 auto;
+  max-width: 1360px;
+}
+
+.task-column {
+  background: var(--paper);
+  border-radius: 8px;
+  color: var(--ink);
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.task-column-header {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  padding-bottom: 18px;
+}
+
+.task-column-header h3 {
+  font-size: clamp(24px, 3vw, 36px);
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+}
+
+.task-column-header span {
+  color: var(--teal);
+  flex: 0 0 auto;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.task-list {
+  display: grid;
+  gap: 1px;
+  margin-top: 18px;
+}
+
+.task-check {
+  align-items: flex-start;
+  background: #f3eee3;
+  cursor: pointer;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 26px minmax(0, 1fr);
+  padding: 16px;
+}
+
+.task-check input {
+  height: 1px;
+  opacity: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.checkmark {
+  align-items: center;
+  border: 2px solid #bdb6a7;
+  border-radius: 6px;
+  display: inline-flex;
+  height: 24px;
+  justify-content: center;
+  margin-top: 2px;
+  width: 24px;
+}
+
+.checkmark::after {
+  color: var(--paper);
+  content: "✓";
+  font-size: 15px;
+  font-weight: 900;
+  opacity: 0;
+}
+
+.task-check strong {
+  display: block;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.task-check small {
+  color: #67685e;
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+.task-check.is-complete {
+  background: #e4ede7;
+}
+
+.task-check.is-complete .checkmark {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.task-check.is-complete .checkmark::after {
+  opacity: 1;
+}
+
+.task-check.is-complete strong {
+  color: #526058;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
 }
 
 .hero-board,
@@ -563,7 +773,8 @@ nav a:hover {
   }
 
   .signals,
-  .angle-list {
+  .angle-list,
+  .task-columns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -596,7 +807,8 @@ nav a:hover {
 
   .board-grid,
   .signals,
-  .angle-list {
+  .angle-list,
+  .task-columns {
     grid-template-columns: 1fr;
   }
 

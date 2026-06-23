@@ -1,3 +1,6 @@
+import { CollaborationHub } from "./components/CollaborationHub";
+import { defaultChecklistItems, projectStages } from "@/lib/collaboration";
+
 const meetingSignals = [
   {
     label: "Client reality",
@@ -121,6 +124,7 @@ export default function Home() {
           <img src="/strategize-logo-cropped.png" alt="Strategize" />
         </a>
         <nav aria-label="Workspace navigation">
+          <a href="#working-plan">Plan</a>
           <a href="#brief">Brief</a>
           <a href="#offer">Offer Lab</a>
           <a href="#system">System Map</a>
@@ -141,6 +145,7 @@ export default function Home() {
             from ad click to booked consult.
           </h1>
           <div className="hero-actions" aria-label="Primary workspace actions">
+            <a href="#working-plan">Open Working Plan</a>
             <a href="#offer">Open Offer Lab</a>
             <a href="#system">View System Map</a>
           </div>
@@ -166,6 +171,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <CollaborationHub
+        initialItems={defaultChecklistItems}
+        stages={projectStages}
+      />
 
       <section className="meeting-brief section-band" id="brief">
         <div className="section-title">
