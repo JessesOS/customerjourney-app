@@ -756,10 +756,10 @@ nav a:hover {
 }
 
 .project-chat {
-  bottom: 24px;
+  left: 24px;
   padding: 0;
   position: fixed;
-  right: 24px;
+  top: 92px;
   width: min(460px, calc(100vw - 32px));
   z-index: 60;
 }
@@ -1018,8 +1018,8 @@ nav a:hover {
   }
 
   .project-chat {
-    bottom: 14px;
-    right: 14px;
+    left: 14px;
+    top: 14px;
     width: calc(100vw - 28px);
   }
 

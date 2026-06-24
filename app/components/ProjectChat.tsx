@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -16,7 +16,8 @@ const starterQuestions = [
 ];
 
 export function ProjectChat() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -26,6 +27,10 @@ export function ProjectChat() {
   ]);
   const [question, setQuestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) inputRef.current?.focus();
+  }, [isOpen]);
 
   async function askProjectBrain(nextQuestion: string) {
     const trimmed = nextQuestion.trim();
@@ -154,6 +159,7 @@ export function ProjectChat() {
             aria-label="Ask the project brain"
             onChange={(event) => setQuestion(event.target.value)}
             placeholder="Ask about the offer, contract, system, CRM, next steps..."
+            ref={inputRef}
             type="text"
             value={question}
           />
