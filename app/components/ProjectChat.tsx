@@ -16,6 +16,7 @@ const starterQuestions = [
 ];
 
 export function ProjectChat() {
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -79,16 +80,40 @@ export function ProjectChat() {
   }
 
   return (
-    <section className="project-chat section-band" id="project-chat">
-      <div className="section-title chat-title">
-        <div>
-          <p>AI Project Chat</p>
-          <h2>Ask the project brain.</h2>
-        </div>
-        <span>Seeded with the current meeting, offer, system, and working-plan context.</span>
-      </div>
+    <aside
+      aria-label="AI project chat"
+      className={`project-chat ${isOpen ? "chat-open" : ""}`}
+      id="project-chat"
+    >
+      <button
+        aria-expanded={isOpen}
+        className="chat-launcher"
+        onClick={() => setIsOpen((current) => !current)}
+        type="button"
+      >
+        <span className="chat-launcher-kicker">AI Project Chat</span>
+        <strong>Ask AI anything about this project, system, offer, contract, etc.</strong>
+        <small>Seeded with the meeting, offer, system map, and working plan.</small>
+      </button>
 
-      <div className="chat-shell">
+      <div className="chat-shell" hidden={!isOpen}>
+        <div className="chat-panel-header">
+          <div>
+            <p>AI Project Chat</p>
+            <h2>Ask the project brain.</h2>
+            <span>
+              Seeded with the current meeting, offer, system, and working-plan context.
+            </span>
+          </div>
+          <button
+            aria-label="Close AI project chat"
+            onClick={() => setIsOpen(false)}
+            type="button"
+          >
+            ×
+          </button>
+        </div>
+
         <div className="chat-messages" aria-live="polite">
           {messages.map((message, index) => (
             <article className={`chat-message chat-${message.role}`} key={`${message.role}-${index}`}>
@@ -137,7 +162,6 @@ export function ProjectChat() {
           </button>
         </form>
       </div>
-    </section>
+    </aside>
   );
 }
-
