@@ -756,11 +756,12 @@ nav a:hover {
 }
 
 .project-chat {
-  left: 24px;
+  left: 50%;
   padding: 0;
   position: fixed;
-  top: 92px;
-  width: min(460px, calc(100vw - 32px));
+  top: 14px;
+  transform: translateX(-50%);
+  width: min(720px, calc(100vw - 360px));
   z-index: 60;
 }
 
@@ -772,14 +773,13 @@ nav a:hover {
   border-radius: 8px;
   box-shadow: 0 24px 80px rgba(22, 23, 19, 0.34);
   color: var(--paper);
-  cursor: pointer;
   display: grid;
   font-family: inherit;
-  gap: 7px;
+  gap: 12px;
+  grid-template-columns: minmax(190px, 0.58fr) minmax(260px, 1fr);
   overflow: hidden;
-  padding: 15px 17px 16px;
+  padding: 10px;
   position: relative;
-  text-align: left;
   width: 100%;
 }
 
@@ -794,6 +794,18 @@ nav a:hover {
   width: 10px;
 }
 
+.chat-launcher-copy {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: grid;
+  font-family: inherit;
+  gap: 4px;
+  padding: 2px 4px 2px 6px;
+  text-align: left;
+}
+
 .chat-launcher-kicker {
   color: var(--gold-soft);
   font-size: 11px;
@@ -803,22 +815,47 @@ nav a:hover {
 }
 
 .chat-launcher strong {
-  font-size: 16px;
+  font-size: 13px;
   letter-spacing: 0;
-  line-height: 1.2;
-  max-width: 360px;
-}
-
-.chat-launcher small {
-  color: rgba(255, 253, 250, 0.7);
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.35;
-  max-width: 360px;
+  line-height: 1.18;
+  max-width: 280px;
 }
 
 .chat-open .chat-launcher {
   display: none;
+}
+
+.chat-mini-form {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  position: relative;
+  z-index: 1;
+}
+
+.chat-mini-form input {
+  background: rgba(255, 253, 250, 0.96);
+  border: 1px solid rgba(255, 253, 250, 0.32);
+  border-radius: 7px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  min-height: 38px;
+  padding: 0 12px;
+}
+
+.chat-mini-form button {
+  background: var(--gold-soft);
+  border: 0;
+  border-radius: 7px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  min-height: 38px;
+  padding: 0 14px;
 }
 
 .chat-shell {
@@ -827,6 +864,7 @@ nav a:hover {
   border-radius: 8px;
   box-shadow: 0 28px 100px rgba(22, 23, 19, 0.32);
   overflow: hidden;
+  width: min(520px, calc(100vw - 32px));
 }
 
 .chat-panel-header {
@@ -978,6 +1016,7 @@ nav a:hover {
 }
 
 .starter-questions button:disabled,
+.chat-mini-form button:disabled,
 .chat-form button:disabled {
   cursor: not-allowed;
   opacity: 0.52;
@@ -1020,7 +1059,12 @@ nav a:hover {
   .project-chat {
     left: 14px;
     top: 14px;
+    transform: none;
     width: calc(100vw - 28px);
+  }
+
+  .chat-launcher {
+    grid-template-columns: 1fr;
   }
 
   .hero-copy h1 {

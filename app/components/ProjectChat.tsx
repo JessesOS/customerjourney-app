@@ -16,7 +16,7 @@ const starterQuestions = [
 ];
 
 export function ProjectChat() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -29,8 +29,8 @@ export function ProjectChat() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (isOpen) inputRef.current?.focus();
-  }, [isOpen]);
+    inputRef.current?.focus();
+  }, []);
 
   async function askProjectBrain(nextQuestion: string) {
     const trimmed = nextQuestion.trim();
@@ -81,6 +81,7 @@ export function ProjectChat() {
 
   function submitQuestion(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setIsOpen(true);
     void askProjectBrain(question);
   }
 
@@ -90,16 +91,30 @@ export function ProjectChat() {
       className={`project-chat ${isOpen ? "chat-open" : ""}`}
       id="project-chat"
     >
-      <button
-        aria-expanded={isOpen}
-        className="chat-launcher"
-        onClick={() => setIsOpen((current) => !current)}
-        type="button"
-      >
-        <span className="chat-launcher-kicker">AI Project Chat</span>
-        <strong>Ask AI anything about this project, system, offer, contract, etc.</strong>
-        <small>Seeded with the meeting, offer, system map, and working plan.</small>
-      </button>
+      <div className="chat-launcher" hidden={isOpen}>
+        <button
+          aria-expanded={isOpen}
+          className="chat-launcher-copy"
+          onClick={() => setIsOpen(true)}
+          type="button"
+        >
+          <span className="chat-launcher-kicker">AI Project Chat</span>
+          <strong>Ask anything about this project, system, offer, contract, etc.</strong>
+        </button>
+        <form className="chat-mini-form" onSubmit={submitQuestion}>
+          <input
+            aria-label="Ask AI about this project"
+            onChange={(event) => setQuestion(event.target.value)}
+            placeholder="Ask about the offer, CRM, system, contract..."
+            ref={inputRef}
+            type="text"
+            value={question}
+          />
+          <button disabled={isLoading || !question.trim()} type="submit">
+            Ask
+          </button>
+        </form>
+      </div>
 
       <div className="chat-shell" hidden={!isOpen}>
         <div className="chat-panel-header">
