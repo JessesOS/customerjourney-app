@@ -987,6 +987,8 @@ nav a:hover {
   .hero,
   .offer-lab {
     grid-template-columns: 1fr;
+  }
+
   .hero {
     min-height: auto;
   }
@@ -1013,6 +1015,12 @@ nav a:hover {
 
   .hero {
     padding-top: 46px;
+  }
+
+  .project-chat {
+    bottom: 14px;
+    right: 14px;
+    width: calc(100vw - 28px);
   }
 
   .hero-copy h1 {
