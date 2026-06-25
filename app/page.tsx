@@ -194,7 +194,10 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <p>Current stage: Onboarding</p>
+        <div className="stage-cue-footer">
+          <span>Current stage</span>
+          <strong>Onboarding</strong>
+        </div>
       </section>
 
       <CollaborationHub
