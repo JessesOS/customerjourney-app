@@ -71,15 +71,26 @@ main {
   display: inline-flex;
   font-size: 14px;
   font-weight: 700;
-  gap: 12px;
+  gap: 18px;
   letter-spacing: 0;
 }
 
 .brand img {
   display: block;
-  height: 48px;
   object-fit: contain;
   width: auto;
+}
+
+.brand-lockup {
+  flex: 0 0 auto;
+}
+
+.strategize-mark {
+  height: 54px;
+}
+
+.rt-digital-mark {
+  height: 44px;
 }
 
 nav {

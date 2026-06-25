@@ -121,8 +121,9 @@ export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Strategize growth workspace home">
-          <img src="/strategize-logo-cropped.png" alt="Strategize" />
+        <a className="brand brand-lockup" href="#top" aria-label="Strategize and RT Digital growth workspace home">
+          <img className="strategize-mark" src="/strategize-transparent.png" alt="Strategize" />
+          <img className="rt-digital-mark" src="/rt-digital-transparent.png" alt="RT Digital" />
         </a>
         <nav aria-label="Workspace navigation">
           <a href="#working-plan">Plan</a>
