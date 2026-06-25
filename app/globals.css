@@ -300,12 +300,14 @@ nav a:hover {
   text-transform: uppercase;
 }
 
-.stage-cue-footer strong {
+.stage-cue-footer-pill {
   background: linear-gradient(180deg, #d49d34 0%, #b9852b 100%);
   border-radius: 999px;
   box-shadow:
     inset 0 0 0 1px rgba(255, 248, 224, 0.28),
     0 8px 18px rgba(185, 133, 43, 0.2);
+  display: inline-flex;
+  align-items: center;
   color: var(--ink);
   font-size: 12px;
   font-weight: 900;

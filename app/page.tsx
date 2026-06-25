@@ -202,7 +202,7 @@ export default function Home() {
         </div>
         <div className="stage-cue-footer">
           <span>Current stage</span>
-          <strong>Onboarding</strong>
+          <strong className="stage-cue-footer-pill">Onboarding</strong>
         </div>
       </section>
 
