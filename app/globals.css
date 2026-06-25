@@ -114,6 +114,7 @@ nav a:hover {
 .offer-lab,
 .campaigns,
 .collaboration-hub,
+.stage-cue,
 .project-chat {
   padding-left: clamp(20px, 5vw, 76px);
   padding-right: clamp(20px, 5vw, 76px);
@@ -167,6 +168,94 @@ nav a:hover {
 .hero-actions a:first-child {
   background: var(--ink);
   color: var(--paper);
+}
+
+.stage-cue {
+  background: rgba(255, 253, 250, 0.72);
+  border-top: 1px solid rgba(222, 217, 203, 0.7);
+  padding-bottom: 14px;
+  padding-top: 12px;
+}
+
+.stage-cue-track {
+  align-items: center;
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(7, minmax(108px, 1fr));
+  margin: 0 auto;
+  max-width: 1180px;
+  overflow-x: auto;
+}
+
+.stage-cue-step {
+  align-items: center;
+  color: var(--muted);
+  display: flex;
+  font-size: 11px;
+  font-weight: 900;
+  gap: 8px;
+  letter-spacing: 0.04em;
+  min-height: 28px;
+  position: relative;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.stage-cue-step::before {
+  background: var(--line);
+  border-radius: 999px;
+  content: "";
+  height: 7px;
+  width: 7px;
+}
+
+.stage-cue-step::after {
+  background: var(--line);
+  content: "";
+  height: 1px;
+  left: 20px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.stage-cue-step:last-child::after {
+  display: none;
+}
+
+.stage-cue-step span {
+  background: rgba(255, 253, 250, 0.92);
+  padding-right: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.stage-cue-complete,
+.stage-cue-current {
+  color: var(--ink);
+}
+
+.stage-cue-complete::before {
+  background: var(--teal);
+}
+
+.stage-cue-current::before {
+  background: var(--gold);
+  box-shadow: 0 0 0 5px rgba(185, 133, 43, 0.16);
+  height: 10px;
+  width: 10px;
+}
+
+.stage-cue p {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin: 6px auto 0;
+  max-width: 1180px;
+  text-transform: uppercase;
 }
 
 .collaboration-hub {

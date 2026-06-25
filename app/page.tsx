@@ -100,6 +100,16 @@ const nextWorkshop = [
   "Draft two video scripts: Chris on-screen gap analysis and testimonial-led proof.",
 ];
 
+const deliveryStages = [
+  "Pre-onboarding",
+  "Onboarding",
+  "Strategy",
+  "Creative",
+  "Build",
+  "Launch",
+  "Optimise",
+];
+
 function Metric({
   value,
   label,
@@ -169,6 +179,22 @@ export default function Home() {
             <span>Benchmark the gap</span>
           </div>
         </div>
+      </section>
+
+      <section className="stage-cue" aria-label="Current delivery stage">
+        <div className="stage-cue-track">
+          {deliveryStages.map((stage, index) => (
+            <div
+              className={`stage-cue-step ${
+                stage === "Onboarding" ? "stage-cue-current" : ""
+              } ${index < 1 ? "stage-cue-complete" : ""}`}
+              key={stage}
+            >
+              <span>{stage}</span>
+            </div>
+          ))}
+        </div>
+        <p>Current stage: Onboarding</p>
       </section>
 
       <CollaborationHub
