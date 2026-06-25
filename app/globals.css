@@ -171,59 +171,62 @@ nav a:hover {
 }
 
 .stage-cue {
-  background: rgba(255, 253, 250, 0.72);
-  border-top: 1px solid rgba(222, 217, 203, 0.7);
+  background: linear-gradient(180deg, rgba(244, 242, 236, 0.98) 0%, rgba(255, 253, 250, 0.98) 100%);
+  border-bottom: 1px solid rgba(212, 206, 192, 0.95);
+  border-top: 1px solid rgba(212, 206, 192, 0.95);
   padding-bottom: 18px;
   padding-top: 16px;
 }
 
 .stage-cue-track {
-  align-items: center;
-  display: grid;
-  gap: 0;
-  grid-template-columns: repeat(7, minmax(120px, 1fr));
+  display: flex;
+  gap: 10px;
   margin: 0 auto;
   max-width: 1180px;
   overflow-x: auto;
-  padding: 0 2px;
+  padding: 2px 2px 0;
 }
 
 .stage-cue-step {
   align-items: center;
-  border-bottom: 3px solid transparent;
-  color: var(--muted);
+  background: linear-gradient(180deg, #e8eef0 0%, #dfe8ea 100%);
+  color: #18323a;
   display: flex;
+  flex: 1 0 0;
   font-size: 11px;
   font-weight: 900;
   gap: 10px;
-  letter-spacing: 0.05em;
-  min-height: 42px;
-  padding: 8px 0 10px;
+  letter-spacing: 0.08em;
+  min-height: 66px;
+  padding: 12px 18px 12px 20px;
   position: relative;
   text-transform: uppercase;
   white-space: nowrap;
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%, 20px 50%);
+  box-shadow:
+    inset 0 0 0 1px rgba(22, 23, 19, 0.08),
+    0 8px 20px rgba(21, 25, 23, 0.08);
 }
 
 .stage-cue-step::before {
-  background: var(--paper);
-  border: 3px solid var(--line);
+  background: rgba(255, 255, 255, 0.92);
+  border: 3px solid rgba(22, 23, 19, 0.14);
   border-radius: 999px;
   content: "";
   flex: 0 0 auto;
-  height: 14px;
-  width: 14px;
+  height: 16px;
+  width: 16px;
   z-index: 1;
 }
 
 .stage-cue-step::after {
-  background: var(--line);
+  background: rgba(255, 255, 255, 0.16);
   content: "";
-  height: 3px;
-  left: 27px;
+  height: 100%;
+  left: 0;
   position: absolute;
-  right: -6px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 0;
+  top: 0;
   z-index: 0;
 }
 
@@ -232,29 +235,52 @@ nav a:hover {
 }
 
 .stage-cue-step span {
-  background: rgba(255, 253, 250, 0.96);
-  border-radius: 999px;
-  padding: 5px 9px 5px 0;
   position: relative;
   z-index: 1;
 }
 
-.stage-cue-complete,
-.stage-cue-current {
-  color: var(--ink);
-}
-
 .stage-cue-complete::before {
   background: var(--teal);
-  border-color: var(--teal);
+  border-color: rgba(255, 253, 250, 0.72);
+}
+
+.stage-cue-complete {
+  background: linear-gradient(180deg, #2d8e86 0%, #1f6f68 100%);
+  color: var(--paper);
 }
 
 .stage-cue-current::before {
   background: var(--gold);
-  box-shadow: 0 0 0 5px rgba(185, 133, 43, 0.16);
-  border-color: var(--gold);
-  height: 16px;
-  width: 16px;
+  box-shadow:
+    0 0 0 5px rgba(185, 133, 43, 0.2),
+    0 0 0 10px rgba(185, 133, 43, 0.08);
+  border-color: rgba(255, 253, 250, 0.9);
+  height: 18px;
+  width: 18px;
+}
+
+.stage-cue-current {
+  background: linear-gradient(180deg, #d49d34 0%, #b9852b 100%);
+  color: var(--ink);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 248, 224, 0.3),
+    0 10px 24px rgba(185, 133, 43, 0.28);
+}
+
+.stage-cue-first {
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+  clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%);
+}
+
+.stage-cue-last {
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.stage-cue-current::after {
+  background: rgba(255, 255, 255, 0.14);
 }
 
 .stage-cue-footer {
@@ -262,7 +288,7 @@ nav a:hover {
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin: 12px auto 0;
+  margin: 10px auto 0;
   max-width: 1180px;
 }
 

@@ -187,7 +187,13 @@ export default function Home() {
             <div
               className={`stage-cue-step ${
                 stage === "Onboarding" ? "stage-cue-current" : ""
-              } ${index < 1 ? "stage-cue-complete" : ""}`}
+              } ${
+                index < 1 ? "stage-cue-complete" : ""
+              } ${
+                index === 0 ? "stage-cue-first" : ""
+              } ${
+                index === deliveryStages.length - 1 ? "stage-cue-last" : ""
+              }`}
               key={stage}
             >
               <span>{stage}</span>
