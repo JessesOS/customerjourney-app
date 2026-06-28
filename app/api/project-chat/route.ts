@@ -17,6 +17,11 @@ type RetrievedChunk = KnowledgeSnapshot["chunks"][number] & {
   score: number;
 };
 
+type ContractRequest = {
+  asksAboutContract: boolean;
+  asksAboutFinancials: boolean;
+};
+
 const stopWords = new Set([
   "about",
   "after",
@@ -61,6 +66,33 @@ function keywords(input: string) {
     .filter((word) => word.length > 2 && !stopWords.has(word));
 }
 
+function detectContractRequest(input: string): ContractRequest {
+  const normalized = input.toLowerCase();
+  return {
+    asksAboutContract:
+      /\bcontract\b|\bagreement\b|\bterms\b|\bobligation\b|\bobligations\b|\bcancellation\b|\bnotice\b|\brefund\b/.test(
+        normalized
+      ),
+    asksAboutFinancials:
+      /\bfinancial\b|\bpayment\b|\bpayments\b|\bfee\b|\bfees\b|\bcost\b|\bcosts\b|\brefund\b|\bno refund\b|\bminimum term\b/.test(
+        normalized
+      ),
+  };
+}
+
+function isContractLikeChunk(chunk: KnowledgeSnapshot["chunks"][number]) {
+  const searchable = `${chunk.title} ${chunk.source} ${chunk.text} ${(chunk.aliases ?? []).join(" ")}`.toLowerCase();
+  return (
+    chunk.kind === "contract" ||
+    searchable.includes("contract") ||
+    searchable.includes("agreement") ||
+    searchable.includes("minimum term") ||
+    searchable.includes("notice period") ||
+    searchable.includes("refund") ||
+    searchable.includes("cancellation")
+  );
+}
+
 function latestMeetingSession(snapshot: KnowledgeSnapshot) {
   return snapshot.chunks.reduce((max, chunk) => {
     if (typeof chunk.session !== "number") return max;
@@ -71,9 +103,13 @@ function latestMeetingSession(snapshot: KnowledgeSnapshot) {
 function retrieveContext(question: string, snapshot: KnowledgeSnapshot) {
   const terms = keywords(question);
   const meetingRequest = detectMeetingRequest(question);
+  const contractRequest = detectContractRequest(question);
   const latestSession = latestMeetingSession(snapshot);
   const wantsTranscript = /\btranscript\b/.test(question.toLowerCase());
-  const scored = snapshot.chunks
+  const pool = contractRequest.asksAboutContract
+    ? snapshot.chunks.filter((chunk) => isContractLikeChunk(chunk))
+    : snapshot.chunks;
+  const scored = pool
     .map((chunk) => {
       const haystack = `${chunk.title} ${chunk.source} ${chunk.text}`.toLowerCase();
       const aliasText = (chunk.aliases ?? []).join(" ").toLowerCase();
@@ -106,6 +142,19 @@ function retrieveContext(question: string, snapshot: KnowledgeSnapshot) {
       }
       if (meetingRequest && searchable.includes(meetingRequest.raw ?? "")) {
         score += 8;
+      }
+      if (contractRequest.asksAboutContract) {
+        if (isContractLikeChunk(chunk)) score += 20;
+        if (contractRequest.asksAboutFinancials) {
+          if (
+            searchable.includes("minimum term") ||
+            searchable.includes("notice") ||
+            searchable.includes("refund") ||
+            searchable.includes("no-refund")
+          ) {
+            score += 15;
+          }
+        }
       }
       return { ...chunk, score };
     })
@@ -201,6 +250,7 @@ function directAnswer(question: string, matches: RetrievedChunk[]) {
 function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
   const matches = retrieveContext(question, snapshot) as RetrievedChunk[];
   const meetingRequest = detectMeetingRequest(question);
+  const contractRequest = detectContractRequest(question);
   const latestMeetingRequest = meetingRequest?.latest;
   if (meetingRequest?.number !== undefined && matches.length === 0) {
     return {
@@ -208,6 +258,30 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
       sources: [],
       mode: "project-search",
     };
+  }
+  if (contractRequest.asksAboutContract) {
+    const primary = matches[0];
+    if (!primary) {
+      return {
+        answer:
+          "I do not have the contract PDFs indexed yet, so I cannot answer contract obligations reliably from source text. Right now the contract files are present in the library but not ingested.",
+        sources: snapshot.sources
+          .filter((source) => source.kind === "contract")
+          .map((source) => ({ title: source.title, source: source.source })),
+        mode: "project-search",
+      };
+    }
+
+    if (contractRequest.asksAboutFinancials) {
+      return {
+        answer: `From the indexed contract-related material I currently have: ${primary.text}`,
+        sources: matches.map((chunk) => ({
+          title: chunk.title,
+          source: chunk.source,
+        })),
+        mode: "project-search",
+      };
+    }
   }
   const direct = isDirectQuestion(question) ? directAnswer(question, matches) : null;
   if (direct) return direct;
