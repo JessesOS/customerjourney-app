@@ -14,7 +14,8 @@ type KnowledgeStatus = {
   provider: string;
   lastSyncMessage: string;
   indexedSourceCount: number;
-  pendingSourceCount: number;
+  unsupportedSourceCount: number;
+  failedSourceCount: number;
   chunkCount: number;
 };
 
@@ -176,7 +177,7 @@ export function ProjectChat() {
           <strong>Ask anything about this project, system, offer, contract, etc.</strong>
           {knowledgeStatus ? (
             <span className="chat-launcher-meta">
-              {knowledgeStatus.indexedSourceCount} docs indexed • {knowledgeStatus.provider}
+              {knowledgeStatus.indexedSourceCount} indexed • {knowledgeStatus.unsupportedSourceCount} not searchable
             </span>
           ) : null}
         </button>
@@ -209,7 +210,7 @@ export function ProjectChat() {
                   {knowledgeStatus.indexedSourceCount} indexed docs / {knowledgeStatus.chunkCount} chunks
                 </strong>
                 <span>
-                  {knowledgeStatus.provider} • synced {knowledgeStatus.syncedAt}
+                  {knowledgeStatus.unsupportedSourceCount} not searchable • {knowledgeStatus.failedSourceCount} failed • synced {knowledgeStatus.syncedAt}
                 </span>
               </div>
             ) : null}

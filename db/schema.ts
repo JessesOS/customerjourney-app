@@ -21,6 +21,9 @@ export const knowledgeSources = sqliteTable("knowledge_sources", {
   date: text("date"),
   session: integer("session"),
   indexed: integer("indexed", { mode: "boolean" }).notNull().default(true),
+  status: text("status").notNull().default("indexed"),
+  mimeType: text("mime_type"),
+  note: text("note"),
 });
 
 export const knowledgeChunks = sqliteTable("knowledge_chunks", {

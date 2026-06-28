@@ -66,6 +66,23 @@ function keywords(input: string) {
     .filter((word) => word.length > 2 && !stopWords.has(word));
 }
 
+function retrieveRelevantSources(question: string, snapshot: KnowledgeSnapshot) {
+  const terms = keywords(question);
+  return snapshot.sources
+    .map((source) => {
+      const searchable = `${source.title} ${source.source} ${source.kind} ${source.note ?? ""}`.toLowerCase();
+      const score = terms.reduce((total, term) => {
+        const direct = searchable.includes(term) ? 3 : 0;
+        const partial = searchable.split(term).length - 1;
+        return total + direct + partial;
+      }, 0);
+      return { ...source, score };
+    })
+    .filter((source) => source.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+}
+
 function detectContractRequest(input: string): ContractRequest {
   const normalized = input.toLowerCase();
   return {
@@ -251,6 +268,7 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
   const matches = retrieveContext(question, snapshot) as RetrievedChunk[];
   const meetingRequest = detectMeetingRequest(question);
   const contractRequest = detectContractRequest(question);
+  const relevantSources = retrieveRelevantSources(question, snapshot);
   const latestMeetingRequest = meetingRequest?.latest;
   if (meetingRequest?.number !== undefined && matches.length === 0) {
     return {
@@ -262,12 +280,12 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
   if (contractRequest.asksAboutContract) {
     const primary = matches[0];
     if (!primary) {
+      const contractSources = relevantSources.filter((source) => source.kind === "contract");
       return {
-        answer:
-          "I do not have the contract PDFs indexed yet, so I cannot answer contract obligations reliably from source text. Right now the contract files are present in the library but not ingested.",
-        sources: snapshot.sources
-          .filter((source) => source.kind === "contract")
-          .map((source) => ({ title: source.title, source: source.source })),
+        answer: contractSources.length
+          ? "I found contract files in the library, but they are not indexed as searchable text yet, so I cannot answer contract obligations reliably from source text."
+          : "I do not have indexed contract material for that question yet.",
+        sources: contractSources.map((source) => ({ title: source.title, source: source.source })),
         mode: "project-search",
       };
     }
@@ -278,6 +296,20 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
         sources: matches.map((chunk) => ({
           title: chunk.title,
           source: chunk.source,
+        })),
+        mode: "project-search",
+      };
+    }
+  }
+  if (!matches.length && relevantSources.length) {
+    const unavailable = relevantSources.filter((source) => (source.status ?? "indexed") !== "indexed");
+    if (unavailable.length) {
+      return {
+        answer:
+          "I found relevant files in the library, but they are not currently indexed as searchable text. I can see the source exists, but I should not answer confidently from it yet.",
+        sources: unavailable.map((source) => ({
+          title: source.title,
+          source: source.source,
         })),
         mode: "project-search",
       };

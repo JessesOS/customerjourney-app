@@ -17,6 +17,9 @@ export type KnowledgeSource = {
   date?: string;
   session?: number;
   indexed: boolean;
+  status?: "indexed" | "unsupported" | "failed";
+  mimeType?: string;
+  note?: string;
 };
 
 export type KnowledgeChunk = {

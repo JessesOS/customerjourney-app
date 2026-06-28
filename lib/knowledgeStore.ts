@@ -42,6 +42,19 @@ const STATIC_PROVIDER = "static-file";
 const DB_SEED_PROVIDER = "db-seed";
 const GOOGLE_DRIVE_PROVIDER = "google-drive";
 
+function normalizeSourceStatus(source: KnowledgeSource): KnowledgeSource {
+  if (source.status) return source;
+  return {
+    ...source,
+    status: source.indexed ? "indexed" : "unsupported",
+    note:
+      source.note ??
+      (source.indexed
+        ? "Indexed and searchable."
+        : "Present in the library, but not currently indexed as searchable text."),
+  };
+}
+
 function staticSnapshot(): KnowledgeSnapshot {
   return {
     syncedAt: projectKnowledgeIndex.syncedAt,
@@ -49,7 +62,7 @@ function staticSnapshot(): KnowledgeSnapshot {
     sourceFolderLabel: projectKnowledgeIndex.sourceFolderLabel,
     provider: STATIC_PROVIDER,
     lastSyncMessage: "Using the bundled fallback project library.",
-    sources: projectKnowledgeIndex.sources,
+    sources: projectKnowledgeIndex.sources.map((source) => normalizeSourceStatus(source)),
     chunks: projectKnowledgeIndex.chunks,
   };
 }
@@ -117,6 +130,12 @@ function buildSourceRecord(file: DriveListedFile): KnowledgeSource {
     file.mimeType === "application/vnd.google-apps.document" ||
     file.mimeType === "text/plain" ||
     file.mimeType === "application/json";
+  const status = indexed ? "indexed" : "unsupported";
+  const note = indexed
+    ? "Indexed and searchable."
+    : file.mimeType === "application/pdf"
+      ? "Present in the library, but PDF text extraction is not enabled yet."
+      : `Present in the library, but ${file.mimeType} is not yet supported for indexing.`;
 
   return {
     id: sanitizeId(`${file.pathParts.join("-")}-${file.name}-${file.id}`),
@@ -127,6 +146,9 @@ function buildSourceRecord(file: DriveListedFile): KnowledgeSource {
     date: formatDriveDate(file.modifiedTime),
     session: detectSession(file.name),
     indexed,
+    status,
+    mimeType: file.mimeType,
+    note,
   };
 }
 
@@ -226,6 +248,8 @@ function coreLocalSources(snapshot: KnowledgeSnapshot) {
         date: chunk.date,
         session: chunk.session,
         indexed: true,
+        status: "indexed",
+        note: "Portal-native context.",
       });
     }
     snapshot.chunks.push({
@@ -259,7 +283,10 @@ async function readDbSnapshot() {
       date: source.date ?? undefined,
       session: source.session ?? undefined,
       indexed: source.indexed,
-    })),
+      status: (source.status as KnowledgeSource["status"]) ?? "indexed",
+      mimeType: source.mimeType ?? undefined,
+      note: source.note ?? undefined,
+    })).map((source) => normalizeSourceStatus(source)),
     chunks: chunks.map((chunk) => ({
       id: chunk.id,
       sourceId: chunk.sourceId,
@@ -292,6 +319,9 @@ async function writeSnapshot(snapshot: KnowledgeSnapshot) {
         date: source.date ?? null,
         session: source.session ?? null,
         indexed: source.indexed,
+        status: source.status ?? "indexed",
+        mimeType: source.mimeType ?? null,
+        note: source.note ?? null,
       }))
     );
   }
@@ -489,6 +519,15 @@ async function fetchDriveText(file: DriveListedFile, accessToken: string) {
   return "";
 }
 
+function markSourceFailed(source: KnowledgeSource, error: unknown): KnowledgeSource {
+  return {
+    ...source,
+    indexed: false,
+    status: "failed",
+    note: error instanceof Error ? error.message : "Sync failed while extracting text.",
+  };
+}
+
 async function buildGoogleDriveSnapshot() {
   const runtimeEnv = env as {
     GOOGLE_DRIVE_FOLDER_ID?: string;
@@ -504,11 +543,18 @@ async function buildGoogleDriveSnapshot() {
 
   for (const file of driveFiles) {
     const source = buildSourceRecord(file);
-    sources.push(source);
-    if (!source.indexed) continue;
+    if (!source.indexed) {
+      sources.push(source);
+      continue;
+    }
 
-    const text = await fetchDriveText(file, accessToken);
-    chunks.push(...buildChunksForSource(source, text));
+    try {
+      const text = await fetchDriveText(file, accessToken);
+      sources.push(source);
+      chunks.push(...buildChunksForSource(source, text));
+    } catch (error) {
+      sources.push(markSourceFailed(source, error));
+    }
   }
 
   const snapshot: KnowledgeSnapshot = {
@@ -565,8 +611,9 @@ export async function getKnowledgeSnapshot() {
 
 export async function getKnowledgeStatus() {
   const snapshot = await getKnowledgeSnapshot();
-  const indexedSources = snapshot.sources.filter((source) => source.indexed);
-  const pendingSources = snapshot.sources.filter((source) => !source.indexed);
+  const indexedSources = snapshot.sources.filter((source) => (source.status ?? "indexed") === "indexed");
+  const unsupportedSources = snapshot.sources.filter((source) => (source.status ?? "indexed") === "unsupported");
+  const failedSources = snapshot.sources.filter((source) => (source.status ?? "indexed") === "failed");
 
   return {
     syncedAt: snapshot.syncedAt,
@@ -575,9 +622,11 @@ export async function getKnowledgeStatus() {
     provider: snapshot.provider,
     lastSyncMessage: snapshot.lastSyncMessage,
     indexedSourceCount: indexedSources.length,
-    pendingSourceCount: pendingSources.length,
+    unsupportedSourceCount: unsupportedSources.length,
+    failedSourceCount: failedSources.length,
     chunkCount: snapshot.chunks.length,
     indexedSources,
-    pendingSources,
+    unsupportedSources,
+    failedSources,
   };
 }
