@@ -1,21 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b0c09;
-  --foreground: #fffdfa;
-  --ink: #fffdfa;
-  --muted: rgba(255, 253, 250, 0.56);
-  --line: rgba(255, 253, 250, 0.09);
-  --line-strong: rgba(255, 253, 250, 0.14);
+  --background: #f7f5ef;
+  --foreground: #161713;
+  --ink: #161713;
+  --muted: #6b6c61;
+  --line: #ded9cb;
   --paper: #fffdfa;
-  --soft: rgba(255, 253, 250, 0.04);
-  --panel: #111310;
-  --teal: #34c2b0;
-  --teal-soft: rgba(52, 194, 176, 0.14);
-  --gold: #e7b24c;
-  --gold-soft: rgba(231, 178, 76, 0.14);
-  --red: #ec6a5e;
-  --red-soft: rgba(236, 106, 94, 0.14);
+  --soft: #ece7dc;
+  --teal: #1f6f68;
+  --teal-soft: #d9e8e4;
+  --gold: #b9852b;
+  --gold-soft: #f0dfbd;
+  --red: #b94a3d;
+  --red-soft: #efd6cf;
 }
 
 @theme inline {
@@ -36,11 +34,11 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 18% 8%, rgba(52, 194, 176, 0.08), transparent 28%),
-    linear-gradient(180deg, rgba(11, 12, 9, 0.96), rgba(11, 12, 9, 0.99)),
+    linear-gradient(180deg, rgba(255, 253, 250, 0.88), rgba(247, 245, 239, 0.98)),
+    radial-gradient(circle at 18% 8%, rgba(31, 111, 104, 0.08), transparent 28%),
     var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -54,14 +52,14 @@ main {
 
 .site-header {
   align-items: center;
-  backdrop-filter: blur(20px);
-  background: rgba(11, 12, 9, 0.72);
-  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+  background: rgba(247, 245, 239, 0.82);
+  border-bottom: 1px solid rgba(222, 217, 203, 0.8);
   display: flex;
   justify-content: space-between;
   left: 0;
   min-height: 72px;
-  padding: 13px clamp(18px, 5vw, 72px);
+  padding: 16px clamp(20px, 4vw, 64px);
   position: sticky;
   right: 0;
   top: 0;
@@ -71,11 +69,10 @@ main {
 .brand {
   align-items: center;
   display: inline-flex;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 12px;
-  font-weight: 600;
-  gap: 13px;
-  letter-spacing: 0.14em;
+  font-size: 14px;
+  font-weight: 700;
+  gap: 18px;
+  letter-spacing: 0;
 }
 
 .brand img {
@@ -89,11 +86,11 @@ main {
 }
 
 .strategize-mark {
-  height: 30px;
+  height: 54px;
 }
 
 .rt-digital-mark {
-  height: 24px;
+  height: 44px;
 }
 
 nav {
@@ -104,10 +101,8 @@ nav {
 
 nav a {
   color: var(--muted);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 12.5px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 nav a:hover {
@@ -121,8 +116,8 @@ nav a:hover {
 .collaboration-hub,
 .stage-cue,
 .project-chat {
-  padding-left: clamp(18px, 5vw, 72px);
-  padding-right: clamp(18px, 5vw, 72px);
+  padding-left: clamp(20px, 5vw, 76px);
+  padding-right: clamp(20px, 5vw, 76px);
 }
 
 .hero {
@@ -131,21 +126,21 @@ nav a:hover {
   gap: clamp(16px, 2.4vw, 34px);
   grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.76fr);
   min-height: 0;
-  padding-bottom: clamp(18px, 3vw, 36px);
-  padding-top: clamp(28px, 4vw, 56px);
+  padding-bottom: clamp(14px, 2.2vw, 26px);
+  padding-top: clamp(16px, 2.6vw, 32px);
 }
 
 .hero-copy h1 {
-  font-size: clamp(34px, 5.2vw, 68px);
-  font-weight: 780;
-  letter-spacing: -0.03em;
-  line-height: 0.98;
+  font-size: clamp(24px, 2.45vw, 32px);
+  font-weight: 760;
+  letter-spacing: 0;
+  line-height: 1.06;
   margin: 0;
-  max-width: 860px;
+  max-width: 820px;
 }
 
 .hero-copy p {
-  color: rgba(255, 253, 250, 0.72);
+  color: #4e5048;
   font-size: clamp(18px, 2.1vw, 24px);
   line-height: 1.55;
   margin: 28px 0 0;
@@ -161,28 +156,25 @@ nav a:hover {
 
 .hero-actions a {
   align-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: 10px;
+  border: 1px solid var(--ink);
+  border-radius: 7px;
   display: inline-flex;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0.04em;
-  min-height: 38px;
-  padding: 0 14px;
+  min-height: 34px;
+  padding: 0 12px;
 }
 
 .hero-actions a:first-child {
-  background: var(--teal);
-  box-shadow: 0 0 26px rgba(52, 194, 176, 0.35);
-  color: var(--background);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .stage-cue {
-  background: linear-gradient(180deg, rgba(14, 15, 11, 0.98), rgba(11, 12, 9, 0.98));
-  border-bottom: 1px solid var(--line);
-  border-top: 1px solid var(--line);
-  padding-bottom: 16px;
+  background: linear-gradient(180deg, rgba(244, 242, 236, 0.98) 0%, rgba(255, 253, 250, 0.98) 100%);
+  border-bottom: 1px solid rgba(212, 206, 192, 0.95);
+  border-top: 1px solid rgba(212, 206, 192, 0.95);
+  padding-bottom: 18px;
   padding-top: 16px;
 }
 
@@ -197,8 +189,8 @@ nav a:hover {
 
 .stage-cue-step {
   align-items: center;
-  background: linear-gradient(180deg, rgba(255, 253, 250, 0.08), rgba(255, 253, 250, 0.05));
-  color: var(--paper);
+  background: linear-gradient(180deg, #e8eef0 0%, #dfe8ea 100%);
+  color: #18323a;
   display: flex;
   flex: 1 0 0;
   font-size: 11px;
@@ -212,8 +204,8 @@ nav a:hover {
   white-space: nowrap;
   clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 50%, calc(100% - 22px) 100%, 0 100%, 20px 50%);
   box-shadow:
-    inset 0 0 0 1px rgba(255, 253, 250, 0.08),
-    0 8px 20px rgba(0, 0, 0, 0.18);
+    inset 0 0 0 1px rgba(22, 23, 19, 0.08),
+    0 8px 20px rgba(21, 25, 23, 0.08);
 }
 
 .stage-cue-step::before {
@@ -268,7 +260,7 @@ nav a:hover {
 }
 
 .stage-cue-current {
-  background: linear-gradient(180deg, #ecb750 0%, #cf9a36 100%);
+  background: linear-gradient(180deg, #d49d34 0%, #b9852b 100%);
   color: var(--ink);
   box-shadow:
     inset 0 0 0 1px rgba(255, 248, 224, 0.3),
@@ -309,7 +301,7 @@ nav a:hover {
 }
 
 .stage-cue-footer-pill {
-  background: linear-gradient(180deg, #ecb750 0%, #cf9a36 100%);
+  background: linear-gradient(180deg, #d49d34 0%, #b9852b 100%);
   border-radius: 999px;
   box-shadow:
     inset 0 0 0 1px rgba(255, 248, 224, 0.28),
@@ -325,7 +317,7 @@ nav a:hover {
 }
 
 .collaboration-hub {
-  background: #111310;
+  background: #12130f;
   color: var(--paper);
   padding-bottom: clamp(34px, 5vw, 58px);
   padding-top: clamp(24px, 3.4vw, 38px);
@@ -371,9 +363,9 @@ nav a:hover {
 }
 
 .stage-card {
-  background: rgba(255, 253, 250, 0.05);
-  border: 1px solid rgba(255, 253, 250, 0.1);
-  border-radius: 16px;
+  background: rgba(255, 253, 250, 0.08);
+  border: 1px solid rgba(255, 253, 250, 0.12);
+  border-radius: 8px;
   min-height: 142px;
   padding: 14px;
 }
@@ -428,10 +420,9 @@ nav a:hover {
 }
 
 .task-column {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  color: var(--paper);
+  background: var(--paper);
+  border-radius: 8px;
+  color: var(--ink);
   padding: clamp(16px, 2.4vw, 22px);
 }
 
@@ -466,7 +457,7 @@ nav a:hover {
 
 .task-check {
   align-items: flex-start;
-  background: var(--soft);
+  background: #f3eee3;
   cursor: pointer;
   display: grid;
   gap: 14px;
@@ -483,7 +474,7 @@ nav a:hover {
 
 .checkmark {
   align-items: center;
-  border: 2px solid rgba(255, 253, 250, 0.28);
+  border: 2px solid #bdb6a7;
   border-radius: 6px;
   display: inline-flex;
   height: 24px;
@@ -493,7 +484,7 @@ nav a:hover {
 }
 
 .checkmark::after {
-  color: var(--background);
+  color: var(--paper);
   content: "✓";
   font-size: 15px;
   font-weight: 900;
@@ -508,7 +499,7 @@ nav a:hover {
 }
 
 .task-check small {
-  color: rgba(255, 253, 250, 0.62);
+  color: #67685e;
   display: block;
   font-size: 13px;
   line-height: 1.5;
@@ -516,7 +507,7 @@ nav a:hover {
 }
 
 .task-check.is-complete {
-  background: rgba(52, 194, 176, 0.08);
+  background: #e4ede7;
 }
 
 .task-check.is-complete .checkmark {
@@ -536,10 +527,10 @@ nav a:hover {
 
 .hero-board,
 .analysis-panel {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 253, 250, 0.94);
+  border: 1px solid rgba(22, 23, 19, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 28px 90px rgba(54, 46, 28, 0.12);
 }
 
 .hero-board {
@@ -653,7 +644,7 @@ nav a:hover {
 }
 
 .section-band {
-  background: #0e0f0b;
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
   border-top: 1px solid var(--line);
   padding-bottom: clamp(58px, 8vw, 104px);
@@ -671,10 +662,10 @@ nav a:hover {
 
 .section-title h2,
 .offer-copy h2 {
-  font-size: clamp(28px, 3.8vw, 48px);
+  font-size: clamp(34px, 5vw, 72px);
   font-weight: 760;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  letter-spacing: 0;
+  line-height: 0.98;
   margin: 0;
   max-width: 860px;
 }
@@ -688,7 +679,7 @@ nav a:hover {
 }
 
 .signals article {
-  background: var(--panel);
+  background: #f3eee3;
   min-height: 250px;
   padding: 24px;
 }
@@ -707,7 +698,7 @@ nav a:hover {
 .angle-list p,
 .angle-list span,
 .workshop li {
-  color: rgba(255, 253, 250, 0.64);
+  color: #505148;
   font-size: 16px;
   line-height: 1.65;
   margin: 0;
@@ -742,7 +733,7 @@ nav a:hover {
 }
 
 .variance-row span {
-  color: rgba(255, 253, 250, 0.72);
+  color: #4b4d45;
   font-size: 15px;
   font-weight: 700;
 }
@@ -793,9 +784,9 @@ nav a:hover {
 }
 
 .flow-step {
-  background: var(--panel);
+  background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 8px;
   min-height: 260px;
   padding: 18px;
   position: relative;
@@ -866,7 +857,7 @@ nav a:hover {
 }
 
 .angle-list article {
-  background: var(--panel);
+  background: rgba(255, 253, 250, 0.72);
   border-bottom: 3px solid var(--line);
   min-height: 315px;
   padding: 24px;
@@ -906,7 +897,7 @@ nav a:hover {
 }
 
 .workshop li {
-  background: var(--panel);
+  background: #f3eee3;
   counter-increment: agenda;
   display: grid;
   gap: 20px;
@@ -923,14 +914,12 @@ nav a:hover {
 }
 
 .project-chat {
-  bottom: 22px;
-  left: auto;
+  left: 50%;
   padding: 0;
   position: fixed;
-  right: 22px;
-  top: auto;
-  transform: none;
-  width: min(400px, calc(100vw - 32px));
+  top: 14px;
+  transform: translateX(-50%);
+  width: min(720px, calc(100vw - 360px));
   z-index: 60;
 }
 
@@ -1035,10 +1024,10 @@ nav a:hover {
 }
 
 .chat-shell {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+  background: var(--paper);
+  border: 1px solid rgba(22, 23, 19, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 28px 100px rgba(22, 23, 19, 0.32);
   overflow: hidden;
   width: min(520px, calc(100vw - 32px));
 }
@@ -1190,13 +1179,13 @@ nav a:hover {
 }
 
 .chat-assistant {
-  background: rgba(255, 253, 250, 0.06);
-  color: var(--paper);
+  background: #f3eee3;
+  color: var(--ink);
 }
 
 .chat-user {
-  background: var(--teal);
-  color: var(--background);
+  background: var(--ink);
+  color: var(--paper);
   justify-self: end;
 }
 
@@ -1208,7 +1197,7 @@ nav a:hover {
 }
 
 .chat-sources span {
-  background: rgba(52, 194, 176, 0.12);
+  background: rgba(31, 111, 104, 0.12);
   border-radius: 999px;
   color: var(--teal);
   font-size: 10px;
@@ -1232,7 +1221,7 @@ nav a:hover {
 }
 
 .starter-questions button {
-  background: rgba(52, 194, 176, 0.12);
+  background: var(--teal-soft);
   border-radius: 999px;
   color: var(--teal);
   font-size: 11px;
@@ -1248,10 +1237,10 @@ nav a:hover {
 }
 
 .chat-form input {
-  background: rgba(255, 253, 250, 0.04);
+  background: #f8f5ee;
   border: 1px solid var(--line);
-  border-radius: 10px;
-  color: var(--paper);
+  border-radius: 7px;
+  color: var(--ink);
   font: inherit;
   font-size: 13px;
   min-height: 40px;
@@ -1259,9 +1248,9 @@ nav a:hover {
 }
 
 .chat-form button {
-  background: var(--teal);
-  border-radius: 10px;
-  color: var(--background);
+  background: var(--ink);
+  border-radius: 7px;
+  color: var(--paper);
   min-height: 40px;
   padding: 0 15px;
 }
