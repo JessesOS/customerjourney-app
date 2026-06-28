@@ -323,39 +323,45 @@ async function writeSnapshot(snapshot: KnowledgeSnapshot) {
   await db.delete(knowledgeSources);
   await db.delete(knowledgeState);
 
+  const batchSize = 8;
+
   if (snapshot.sources.length) {
-    await db.insert(knowledgeSources).values(
-      snapshot.sources.map((source) => ({
-        id: source.id,
-        title: source.title,
-        source: source.source,
-        folder: source.folder,
-        kind: source.kind,
-        date: source.date ?? null,
-        session: source.session ?? null,
-        indexed: source.indexed,
-        status: source.status ?? "indexed",
-        mimeType: source.mimeType ?? null,
-        note: source.note ?? null,
-      }))
-    );
+    for (let index = 0; index < snapshot.sources.length; index += batchSize) {
+      await db.insert(knowledgeSources).values(
+        snapshot.sources.slice(index, index + batchSize).map((source) => ({
+          id: source.id,
+          title: source.title,
+          source: source.source,
+          folder: source.folder,
+          kind: source.kind,
+          date: source.date ?? null,
+          session: source.session ?? null,
+          indexed: source.indexed,
+          status: source.status ?? "indexed",
+          mimeType: source.mimeType ?? null,
+          note: source.note ?? null,
+        }))
+      );
+    }
   }
 
   if (snapshot.chunks.length) {
-    await db.insert(knowledgeChunks).values(
-      snapshot.chunks.map((chunk) => ({
-        id: chunk.id,
-        sourceId: chunk.sourceId,
-        title: chunk.title,
-        source: chunk.source,
-        text: chunk.text,
-        kind: chunk.kind,
-        folder: chunk.folder ?? null,
-        session: chunk.session ?? null,
-        date: chunk.date ?? null,
-        aliases: JSON.stringify(chunk.aliases ?? []),
-      }))
-    );
+    for (let index = 0; index < snapshot.chunks.length; index += batchSize) {
+      await db.insert(knowledgeChunks).values(
+        snapshot.chunks.slice(index, index + batchSize).map((chunk) => ({
+          id: chunk.id,
+          sourceId: chunk.sourceId,
+          title: chunk.title,
+          source: chunk.source,
+          text: chunk.text,
+          kind: chunk.kind,
+          folder: chunk.folder ?? null,
+          session: chunk.session ?? null,
+          date: chunk.date ?? null,
+          aliases: JSON.stringify(chunk.aliases ?? []),
+        }))
+      );
+    }
   }
 
   await db.insert(knowledgeState).values({
