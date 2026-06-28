@@ -9,6 +9,8 @@ type ChatMessage = {
 type MeetingRequest = {
   number?: number;
   raw?: string;
+  latest?: boolean;
+  wantsSummary?: boolean;
 };
 
 const stopWords = new Set([
@@ -34,8 +36,17 @@ const stopWords = new Set([
 function detectMeetingRequest(input: string): MeetingRequest | null {
   const normalized = input.toLowerCase();
   const match = normalized.match(/\bmeeting\s*(\d+)\b/);
-  if (!match) return null;
-  return { number: Number(match[1]), raw: match[0] };
+  const latest = /\b(last|latest|most recent)\s+meeting\b|\bour last meeting\b|\bquick summary\b|\bsummary of our last meeting\b/.test(
+    normalized
+  );
+  const wantsSummary = /\bsummary\b|\bsummarize\b|\bsummarise\b/.test(normalized);
+  if (!match && !latest) return null;
+  return {
+    number: match ? Number(match[1]) : undefined,
+    raw: match?.[0],
+    latest,
+    wantsSummary,
+  };
 }
 
 function keywords(input: string) {
@@ -49,6 +60,10 @@ function keywords(input: string) {
 function retrieveContext(question: string) {
   const terms = keywords(question);
   const meetingRequest = detectMeetingRequest(question);
+  const latestSession = projectKnowledge.reduce((max, chunk) => {
+    if (typeof chunk.session !== "number") return max;
+    return Math.max(max, chunk.session);
+  }, 0);
   const scored = projectKnowledge
     .map((chunk) => {
       const haystack = `${chunk.title} ${chunk.source} ${chunk.text}`.toLowerCase();
@@ -67,12 +82,31 @@ function retrieveContext(question: string) {
           score -= 10;
         }
       }
+      if (meetingRequest?.latest) {
+        if (chunk.session === latestSession) {
+          score += 30;
+        } else if (chunk.session !== undefined) {
+          score -= 12;
+        }
+        if (meetingRequest.wantsSummary && /summary/i.test(chunk.title)) {
+          score += 12;
+        }
+      }
       if (meetingRequest && searchable.includes(meetingRequest.raw ?? "")) {
         score += 8;
       }
       return { ...chunk, score };
     })
     .sort((a, b) => b.score - a.score);
+
+  if (meetingRequest?.latest) {
+    const latestMatches = scored.filter((chunk) => chunk.session === latestSession);
+    if (latestMatches.length) {
+      return meetingRequest.wantsSummary
+        ? latestMatches.sort((a, b) => Number(/summary/i.test(b.title)) - Number(/summary/i.test(a.title))).slice(0, 3)
+        : latestMatches.slice(0, 3);
+    }
+  }
 
   const matches = scored.filter((chunk) => chunk.score > 0).slice(0, 5);
   if (meetingRequest?.number !== undefined) {
@@ -86,10 +120,23 @@ function retrieveContext(question: string) {
 function fallbackAnswer(question: string) {
   const matches = retrieveContext(question);
   const meetingRequest = detectMeetingRequest(question);
+  const latestMeetingRequest = meetingRequest?.latest;
   if (meetingRequest?.number !== undefined && matches.length === 0) {
     return {
       answer: `I do not yet have a confirmed source for meeting ${meetingRequest.number}. I can stop matching to meeting 1 once you add or rename the real meeting ${meetingRequest.number} doc in Drive.`,
       sources: [],
+      mode: "project-search",
+    };
+  }
+  if (latestMeetingRequest && matches.length) {
+    const summaryChunk =
+      matches.find((chunk) => /summary/i.test(chunk.title)) ?? matches[0];
+    return {
+      answer: `${summaryChunk.title}:\n\n${summaryChunk.text}`,
+      sources: matches.map((chunk) => ({
+        title: chunk.title,
+        source: chunk.source,
+      })),
       mode: "project-search",
     };
   }
