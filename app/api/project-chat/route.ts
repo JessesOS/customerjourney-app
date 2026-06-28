@@ -57,13 +57,18 @@ function keywords(input: string) {
     .filter((word) => word.length > 2 && !stopWords.has(word));
 }
 
-function retrieveContext(question: string) {
-  const terms = keywords(question);
-  const meetingRequest = detectMeetingRequest(question);
-  const latestSession = projectKnowledge.reduce((max, chunk) => {
+function latestMeetingSession() {
+  return projectKnowledge.reduce((max, chunk) => {
     if (typeof chunk.session !== "number") return max;
     return Math.max(max, chunk.session);
   }, 0);
+}
+
+function retrieveContext(question: string) {
+  const terms = keywords(question);
+  const meetingRequest = detectMeetingRequest(question);
+  const latestSession = latestMeetingSession();
+  const wantsTranscript = /\btranscript\b/.test(question.toLowerCase());
   const scored = projectKnowledge
     .map((chunk) => {
       const haystack = `${chunk.title} ${chunk.source} ${chunk.text}`.toLowerCase();
@@ -88,7 +93,10 @@ function retrieveContext(question: string) {
         } else if (chunk.session !== undefined) {
           score -= 12;
         }
-        if (meetingRequest.wantsSummary && /summary/i.test(chunk.title)) {
+        if (meetingRequest.wantsSummary && chunk.kind === "meeting-summary") {
+          score += 12;
+        }
+        if (wantsTranscript && chunk.kind === "meeting-transcript") {
           score += 12;
         }
       }
@@ -102,9 +110,27 @@ function retrieveContext(question: string) {
   if (meetingRequest?.latest) {
     const latestMatches = scored.filter((chunk) => chunk.session === latestSession);
     if (latestMatches.length) {
-      return meetingRequest.wantsSummary
-        ? latestMatches.sort((a, b) => Number(/summary/i.test(b.title)) - Number(/summary/i.test(a.title))).slice(0, 3)
-        : latestMatches.slice(0, 3);
+      return latestMatches
+        .sort((a, b) => {
+          const aPriority =
+            meetingRequest.wantsSummary && a.kind === "meeting-summary"
+              ? 2
+              : wantsTranscript && a.kind === "meeting-transcript"
+                ? 2
+                : a.kind?.startsWith("meeting-")
+                  ? 1
+                  : 0;
+          const bPriority =
+            meetingRequest.wantsSummary && b.kind === "meeting-summary"
+              ? 2
+              : wantsTranscript && b.kind === "meeting-transcript"
+                ? 2
+                : b.kind?.startsWith("meeting-")
+                  ? 1
+                  : 0;
+          return bPriority - aPriority;
+        })
+        .slice(0, 3);
     }
   }
 
@@ -130,7 +156,7 @@ function fallbackAnswer(question: string) {
   }
   if (latestMeetingRequest && matches.length) {
     const summaryChunk =
-      matches.find((chunk) => /summary/i.test(chunk.title)) ?? matches[0];
+      matches.find((chunk) => chunk.kind === "meeting-summary") ?? matches[0];
     return {
       answer: `${summaryChunk.title}:\n\n${summaryChunk.text}`,
       sources: matches.map((chunk) => ({
@@ -160,6 +186,19 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
   if (!apiKey) return fallbackAnswer(question);
 
   const matches = retrieveContext(question);
+  const meetingRequest = detectMeetingRequest(question);
+  if (meetingRequest?.latest && matches.length) {
+    const summaryChunk =
+      matches.find((chunk) => chunk.kind === "meeting-summary") ?? matches[0];
+    return {
+      answer: summaryChunk.text,
+      sources: matches.map((chunk) => ({
+        title: chunk.title,
+        source: chunk.source,
+      })),
+      mode: "project-search",
+    };
+  }
   const context = matches
     .map((chunk) => `[${chunk.title} | ${chunk.source}]\n${chunk.text}`)
     .join("\n\n");
