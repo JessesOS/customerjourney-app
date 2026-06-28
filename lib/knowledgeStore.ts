@@ -1,4 +1,5 @@
 import { env } from "cloudflare:workers";
+import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
 import { getDb } from "@/db";
 import { knowledgeChunks, knowledgeSources, knowledgeState } from "@/db/schema";
 import {
@@ -129,13 +130,12 @@ function buildSourceRecord(file: DriveListedFile): KnowledgeSource {
   const indexed =
     file.mimeType === "application/vnd.google-apps.document" ||
     file.mimeType === "text/plain" ||
-    file.mimeType === "application/json";
+    file.mimeType === "application/json" ||
+    file.mimeType === "application/pdf";
   const status = indexed ? "indexed" : "unsupported";
   const note = indexed
     ? "Indexed and searchable."
-    : file.mimeType === "application/pdf"
-      ? "Present in the library, but PDF text extraction is not enabled yet."
-      : `Present in the library, but ${file.mimeType} is not yet supported for indexing.`;
+    : `Present in the library, but ${file.mimeType} is not yet supported for indexing.`;
 
   return {
     id: sanitizeId(`${file.pathParts.join("-")}-${file.name}-${file.id}`),
@@ -514,6 +514,46 @@ async function fetchDriveText(file: DriveListedFile, accessToken: string) {
       throw new Error(`Google media download failed for ${file.name} with ${response.status}.`);
     }
     return response.text();
+  }
+
+  if (file.mimeType === "application/pdf") {
+    const response = await fetch(
+      `https://www.googleapis.com/drive/v3/files/${file.id}?alt=media&supportsAllDrives=true`,
+      {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`Google PDF download failed for ${file.name} with ${response.status}.`);
+    }
+
+    const buffer = await response.arrayBuffer();
+    const pdf = await getDocument({
+      data: new Uint8Array(buffer),
+      disableWorker: true,
+      isEvalSupported: false,
+      useSystemFonts: false,
+    }).promise;
+
+    const pages: string[] = [];
+    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+      const page = await pdf.getPage(pageNumber);
+      const content = await page.getTextContent();
+      const text = content.items
+        .map((item) => ("str" in item ? item.str : ""))
+        .join(" ")
+        .replace(/\s+/g, " ")
+        .trim();
+      if (text) {
+        pages.push(text);
+      }
+    }
+
+    const extracted = pages.join("\n\n");
+    if (!extracted.trim()) {
+      throw new Error(`PDF text extraction found no selectable text in ${file.name}.`);
+    }
+    return extracted;
   }
 
   return "";
