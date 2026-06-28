@@ -1071,6 +1071,16 @@ nav a:hover {
   font-weight: 700;
 }
 
+.chat-sync-warning {
+  background: rgba(245, 231, 198, 0.12);
+  border: 1px solid rgba(245, 231, 198, 0.18);
+  border-radius: 12px;
+  color: #f5e7c6;
+  display: inline-block;
+  margin-top: 6px;
+  padding: 7px 10px;
+}
+
 .chat-refresh-button {
   background: rgba(255, 253, 250, 0.12);
   border: 1px solid rgba(255, 253, 250, 0.18);

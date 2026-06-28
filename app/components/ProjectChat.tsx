@@ -40,6 +40,7 @@ export function ProjectChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [knowledgeStatus, setKnowledgeStatus] = useState<KnowledgeStatus | null>(null);
+  const usingLiveDrive = knowledgeStatus?.provider === "google-drive";
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -212,6 +213,9 @@ export function ProjectChat() {
                 <span>
                   {knowledgeStatus.unsupportedSourceCount} not searchable • {knowledgeStatus.failedSourceCount} failed • synced {knowledgeStatus.syncedAt}
                 </span>
+                {!usingLiveDrive ? (
+                  <span className="chat-sync-warning">{knowledgeStatus.lastSyncMessage}</span>
+                ) : null}
               </div>
             ) : null}
           </div>

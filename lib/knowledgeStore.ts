@@ -99,6 +99,17 @@ function canUseGoogleDriveSync() {
   return Boolean(runtimeEnv.GOOGLE_DRIVE_FOLDER_ID && runtimeEnv.GOOGLE_SERVICE_ACCOUNT_JSON);
 }
 
+function missingGoogleDriveConfig() {
+  const runtimeEnv = env as {
+    GOOGLE_DRIVE_FOLDER_ID?: string;
+    GOOGLE_SERVICE_ACCOUNT_JSON?: string;
+  };
+  const missing: string[] = [];
+  if (!runtimeEnv.GOOGLE_DRIVE_FOLDER_ID) missing.push("GOOGLE_DRIVE_FOLDER_ID");
+  if (!runtimeEnv.GOOGLE_SERVICE_ACCOUNT_JSON) missing.push("GOOGLE_SERVICE_ACCOUNT_JSON");
+  return missing;
+}
+
 function formatDriveDate(value?: string) {
   return value ? value.slice(0, 10) : undefined;
 }
@@ -622,7 +633,13 @@ export async function syncKnowledgeLibrary() {
     }
   }
 
-  return seedStaticSnapshot();
+  const fallback = await seedStaticSnapshot();
+  const missing = missingGoogleDriveConfig();
+  fallback.lastSyncMessage = missing.length
+    ? `Drive sync is not configured yet. Missing ${missing.join(" and ")}. Using the seeded library instead.`
+    : "Drive sync is not configured yet. Using the seeded library instead.";
+  await writeSnapshot(fallback);
+  return fallback;
 }
 
 export async function getKnowledgeSnapshot() {
