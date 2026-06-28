@@ -6,6 +6,11 @@ type ChatMessage = {
   content: string;
 };
 
+type MeetingRequest = {
+  number?: number;
+  raw?: string;
+};
+
 const stopWords = new Set([
   "about",
   "after",
@@ -26,6 +31,13 @@ const stopWords = new Set([
   "please",
 ]);
 
+function detectMeetingRequest(input: string): MeetingRequest | null {
+  const normalized = input.toLowerCase();
+  const match = normalized.match(/\bmeeting\s*(\d+)\b/);
+  if (!match) return null;
+  return { number: Number(match[1]), raw: match[0] };
+}
+
 function keywords(input: string) {
   return input
     .toLowerCase()
@@ -36,24 +48,51 @@ function keywords(input: string) {
 
 function retrieveContext(question: string) {
   const terms = keywords(question);
+  const meetingRequest = detectMeetingRequest(question);
   const scored = projectKnowledge
     .map((chunk) => {
       const haystack = `${chunk.title} ${chunk.source} ${chunk.text}`.toLowerCase();
-      const score = terms.reduce((total, term) => {
+      const aliasText = (chunk.aliases ?? []).join(" ").toLowerCase();
+      const searchable = `${haystack} ${aliasText}`;
+      let score = terms.reduce((total, term) => {
         const direct = haystack.includes(term) ? 3 : 0;
-        const partial = haystack.split(term).length - 1;
-        return total + direct + partial;
+        const aliasDirect = aliasText.includes(term) ? 2 : 0;
+        const partial = searchable.split(term).length - 1;
+        return total + direct + aliasDirect + partial;
       }, 0);
+      if (meetingRequest?.number !== undefined) {
+        if (chunk.session === meetingRequest.number) {
+          score += 25;
+        } else if (chunk.session !== undefined) {
+          score -= 10;
+        }
+      }
+      if (meetingRequest && searchable.includes(meetingRequest.raw ?? "")) {
+        score += 8;
+      }
       return { ...chunk, score };
     })
     .sort((a, b) => b.score - a.score);
 
   const matches = scored.filter((chunk) => chunk.score > 0).slice(0, 5);
+  if (meetingRequest?.number !== undefined) {
+    const meetingMatches = scored.filter((chunk) => chunk.session === meetingRequest.number).slice(0, 3);
+    if (meetingMatches.length) return meetingMatches;
+    return [];
+  }
   return matches.length ? matches : projectKnowledge.slice(0, 5);
 }
 
 function fallbackAnswer(question: string) {
   const matches = retrieveContext(question);
+  const meetingRequest = detectMeetingRequest(question);
+  if (meetingRequest?.number !== undefined && matches.length === 0) {
+    return {
+      answer: `I do not yet have a confirmed source for meeting ${meetingRequest.number}. I can stop matching to meeting 1 once you add or rename the real meeting ${meetingRequest.number} doc in Drive.`,
+      sources: [],
+      mode: "project-search",
+    };
+  }
   const summary = matches
     .slice(0, 3)
     .map((chunk) => `${chunk.title}: ${chunk.text}`)
