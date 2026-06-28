@@ -8,6 +8,16 @@ type ChatMessage = {
   sources?: { title: string; source: string }[];
 };
 
+type KnowledgeStatus = {
+  syncedAt: string;
+  syncMode: string;
+  provider: string;
+  lastSyncMessage: string;
+  indexedSourceCount: number;
+  pendingSourceCount: number;
+  chunkCount: number;
+};
+
 const starterQuestions = [
   "What is the strongest offer direction?",
   "What are Chris's action items?",
@@ -27,10 +37,74 @@ export function ProjectChat() {
   ]);
   const [question, setQuestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [knowledgeStatus, setKnowledgeStatus] = useState<KnowledgeStatus | null>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadStatus() {
+      try {
+        const response = await fetch("/api/knowledge-status");
+        const payload = (await response.json()) as KnowledgeStatus;
+        if (!cancelled) setKnowledgeStatus(payload);
+      } catch {
+        if (!cancelled) setKnowledgeStatus(null);
+      }
+    }
+
+    void loadStatus();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  async function refreshKnowledgeLibrary() {
+    if (isRefreshing) return;
+    setIsRefreshing(true);
+    try {
+      const response = await fetch("/api/knowledge-sync", { method: "POST" });
+      const payload = (await response.json()) as
+        | (KnowledgeStatus & { ok?: boolean })
+        | { error?: string };
+
+      if ("error" in payload && payload.error) {
+        setMessages((current) => [
+          ...current,
+          {
+            role: "assistant",
+            content: `Knowledge sync failed: ${payload.error}`,
+          },
+        ]);
+        return;
+      }
+
+      const statusResponse = await fetch("/api/knowledge-status");
+      const statusPayload = (await statusResponse.json()) as KnowledgeStatus;
+      setKnowledgeStatus(statusPayload);
+      setMessages((current) => [
+        ...current,
+        {
+          role: "assistant",
+          content: `Library refreshed. ${statusPayload.lastSyncMessage}`,
+        },
+      ]);
+    } catch {
+      setMessages((current) => [
+        ...current,
+        {
+          role: "assistant",
+          content: "I could not refresh the knowledge library just now.",
+        },
+      ]);
+    } finally {
+      setIsRefreshing(false);
+    }
+  }
 
   async function askProjectBrain(nextQuestion: string) {
     const trimmed = nextQuestion.trim();
@@ -100,6 +174,11 @@ export function ProjectChat() {
         >
           <span className="chat-launcher-kicker">AI Project Chat</span>
           <strong>Ask anything about this project, system, offer, contract, etc.</strong>
+          {knowledgeStatus ? (
+            <span className="chat-launcher-meta">
+              {knowledgeStatus.indexedSourceCount} docs indexed • {knowledgeStatus.provider}
+            </span>
+          ) : null}
         </button>
         <form className="chat-mini-form" onSubmit={submitQuestion}>
           <input
@@ -122,16 +201,36 @@ export function ProjectChat() {
             <p>AI Project Chat</p>
             <h2>Ask the project brain.</h2>
             <span>
-              Seeded with the current meeting, offer, system, and working-plan context.
+              Ask across meetings, summaries, system docs, contracts, and the working plan.
             </span>
+            {knowledgeStatus ? (
+              <div className="chat-knowledge-status">
+                <strong>
+                  {knowledgeStatus.indexedSourceCount} indexed docs / {knowledgeStatus.chunkCount} chunks
+                </strong>
+                <span>
+                  {knowledgeStatus.provider} • synced {knowledgeStatus.syncedAt}
+                </span>
+              </div>
+            ) : null}
           </div>
-          <button
-            aria-label="Close AI project chat"
-            onClick={() => setIsOpen(false)}
-            type="button"
-          >
-            ×
-          </button>
+          <div className="chat-header-actions">
+            <button
+              className="chat-refresh-button"
+              disabled={isRefreshing}
+              onClick={() => void refreshKnowledgeLibrary()}
+              type="button"
+            >
+              {isRefreshing ? "Refreshing..." : "Refresh Library"}
+            </button>
+            <button
+              aria-label="Close AI project chat"
+              onClick={() => setIsOpen(false)}
+              type="button"
+            >
+              ×
+            </button>
+          </div>
         </div>
 
         <div className="chat-messages" aria-live="polite">

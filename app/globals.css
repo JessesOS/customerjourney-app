@@ -979,6 +979,13 @@ nav a:hover {
   max-width: 280px;
 }
 
+.chat-launcher-meta {
+  color: rgba(255, 253, 250, 0.74);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
 .chat-open .chat-launcher {
   display: none;
 }
@@ -1035,6 +1042,48 @@ nav a:hover {
   gap: 14px;
   justify-content: space-between;
   padding: 15px 16px;
+}
+
+.chat-header-actions {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.chat-knowledge-status {
+  display: grid;
+  gap: 2px;
+  margin-top: 10px;
+}
+
+.chat-knowledge-status strong {
+  color: #f5e7c6;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.chat-knowledge-status span {
+  color: rgba(255, 253, 250, 0.72);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.chat-refresh-button {
+  background: rgba(255, 253, 250, 0.12);
+  border: 1px solid rgba(255, 253, 250, 0.18);
+  border-radius: 999px;
+  color: var(--paper);
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  min-height: 34px;
+  padding: 0 12px;
+}
+
+.chat-refresh-button:disabled {
+  cursor: default;
+  opacity: 0.6;
 }
 
 .chat-panel-header p {

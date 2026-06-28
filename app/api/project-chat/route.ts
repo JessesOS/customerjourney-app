@@ -1,5 +1,5 @@
 import { env } from "cloudflare:workers";
-import { projectKnowledge } from "@/lib/projectKnowledge";
+import { getKnowledgeSnapshot, type KnowledgeSnapshot } from "@/lib/knowledgeStore";
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -57,19 +57,19 @@ function keywords(input: string) {
     .filter((word) => word.length > 2 && !stopWords.has(word));
 }
 
-function latestMeetingSession() {
-  return projectKnowledge.reduce((max, chunk) => {
+function latestMeetingSession(snapshot: KnowledgeSnapshot) {
+  return snapshot.chunks.reduce((max, chunk) => {
     if (typeof chunk.session !== "number") return max;
     return Math.max(max, chunk.session);
   }, 0);
 }
 
-function retrieveContext(question: string) {
+function retrieveContext(question: string, snapshot: KnowledgeSnapshot) {
   const terms = keywords(question);
   const meetingRequest = detectMeetingRequest(question);
-  const latestSession = latestMeetingSession();
+  const latestSession = latestMeetingSession(snapshot);
   const wantsTranscript = /\btranscript\b/.test(question.toLowerCase());
-  const scored = projectKnowledge
+  const scored = snapshot.chunks
     .map((chunk) => {
       const haystack = `${chunk.title} ${chunk.source} ${chunk.text}`.toLowerCase();
       const aliasText = (chunk.aliases ?? []).join(" ").toLowerCase();
@@ -140,11 +140,11 @@ function retrieveContext(question: string) {
     if (meetingMatches.length) return meetingMatches;
     return [];
   }
-  return matches.length ? matches : projectKnowledge.slice(0, 5);
+  return matches.length ? matches : snapshot.chunks.slice(0, 5);
 }
 
-function fallbackAnswer(question: string) {
-  const matches = retrieveContext(question);
+function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
+  const matches = retrieveContext(question, snapshot);
   const meetingRequest = detectMeetingRequest(question);
   const latestMeetingRequest = meetingRequest?.latest;
   if (meetingRequest?.number !== undefined && matches.length === 0) {
@@ -183,9 +183,10 @@ function fallbackAnswer(question: string) {
 
 async function openAiAnswer(question: string, messages: ChatMessage[]) {
   const apiKey = (env as { OPENAI_API_KEY?: string }).OPENAI_API_KEY;
-  if (!apiKey) return fallbackAnswer(question);
+  const snapshot = await getKnowledgeSnapshot();
+  if (!apiKey) return fallbackAnswer(question, snapshot);
 
-  const matches = retrieveContext(question);
+  const matches = retrieveContext(question, snapshot);
   const meetingRequest = detectMeetingRequest(question);
   if (meetingRequest?.latest && matches.length) {
     const summaryChunk =
@@ -228,14 +229,14 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
     }),
   });
 
-  if (!response.ok) return fallbackAnswer(question);
+  if (!response.ok) return fallbackAnswer(question, snapshot);
 
   const payload = (await response.json()) as {
     output_text?: string;
   };
 
   return {
-    answer: payload.output_text ?? fallbackAnswer(question).answer,
+    answer: payload.output_text ?? fallbackAnswer(question, snapshot).answer,
     sources: matches.map((chunk) => ({
       title: chunk.title,
       source: chunk.source,
