@@ -1,5 +1,5 @@
 import { env } from "cloudflare:workers";
-import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
+import { PDFParse } from "pdf-parse";
 import { getDb } from "@/db";
 import { knowledgeChunks, knowledgeSources, knowledgeState } from "@/db/schema";
 import {
@@ -528,28 +528,11 @@ async function fetchDriveText(file: DriveListedFile, accessToken: string) {
     }
 
     const buffer = await response.arrayBuffer();
-    const pdf = await getDocument({
-      data: new Uint8Array(buffer),
-      disableWorker: true,
-      isEvalSupported: false,
-      useSystemFonts: false,
-    }).promise;
+    const parser = new PDFParse({ data: buffer });
+    const result = await parser.getText();
+    await parser.destroy();
 
-    const pages: string[] = [];
-    for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
-      const page = await pdf.getPage(pageNumber);
-      const content = await page.getTextContent();
-      const text = content.items
-        .map((item) => ("str" in item ? item.str : ""))
-        .join(" ")
-        .replace(/\s+/g, " ")
-        .trim();
-      if (text) {
-        pages.push(text);
-      }
-    }
-
-    const extracted = pages.join("\n\n");
+    const extracted = result.text?.replace(/\s+\n/g, "\n").trim() ?? "";
     if (!extracted.trim()) {
       throw new Error(`PDF text extraction found no selectable text in ${file.name}.`);
     }
