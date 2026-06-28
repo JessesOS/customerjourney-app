@@ -28,6 +28,9 @@ export function sites(): Plugin {
       const outputDirectory = resolve(root, "dist", ".openai");
       const hostingConfig = resolve(root, ".openai", "hosting.json");
       const drizzleSource = resolve(root, "drizzle");
+      const serverAssetsDirectory = resolve(root, "dist", "server", "assets");
+      const pdfWorkerSource = resolve(root, "node_modules", "pdf-parse", "dist", "pdf-parse", "web", "pdf.worker.mjs");
+      const pdfWorkerMapSource = resolve(root, "node_modules", "pdf-parse", "dist", "pdf-parse", "web", "pdf.worker.mjs.map");
 
       await rm(outputDirectory, { recursive: true, force: true });
       await mkdir(outputDirectory, { recursive: true });
@@ -39,6 +42,13 @@ export function sites(): Plugin {
         await cp(drizzleSource, resolve(outputDirectory, "drizzle"), {
           recursive: true,
         });
+      }
+
+      if (await exists(serverAssetsDirectory) && await exists(pdfWorkerSource)) {
+        await cp(pdfWorkerSource, resolve(serverAssetsDirectory, "pdf.worker.mjs"));
+      }
+      if (await exists(serverAssetsDirectory) && await exists(pdfWorkerMapSource)) {
+        await cp(pdfWorkerMapSource, resolve(serverAssetsDirectory, "pdf.worker.mjs.map"));
       }
     },
   };
