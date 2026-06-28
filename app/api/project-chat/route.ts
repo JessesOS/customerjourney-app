@@ -85,15 +85,18 @@ function retrieveRelevantSources(question: string, snapshot: KnowledgeSnapshot) 
 
 function detectContractRequest(input: string): ContractRequest {
   const normalized = input.toLowerCase();
+  const asksAboutFinancials =
+    /\bfinancial\b|\bpayment\b|\bpayments\b|\bfee\b|\bfees\b|\bcost\b|\bcosts\b|\bprice\b|\bpricing\b|\bmonthly\b|\brefund\b|\bno refund\b|\bminimum term\b/.test(
+      normalized
+    );
+  const asksAboutContract =
+    /\bcontract\b|\bagreement\b|\bterms\b|\bobligation\b|\bobligations\b|\bcancellation\b|\bnotice\b|\brefund\b/.test(
+      normalized
+    ) || asksAboutFinancials;
+
   return {
-    asksAboutContract:
-      /\bcontract\b|\bagreement\b|\bterms\b|\bobligation\b|\bobligations\b|\bcancellation\b|\bnotice\b|\brefund\b/.test(
-        normalized
-      ),
-    asksAboutFinancials:
-      /\bfinancial\b|\bpayment\b|\bpayments\b|\bfee\b|\bfees\b|\bcost\b|\bcosts\b|\brefund\b|\bno refund\b|\bminimum term\b/.test(
-        normalized
-      ),
+    asksAboutContract,
+    asksAboutFinancials,
   };
 }
 
@@ -210,6 +213,9 @@ function retrieveContext(question: string, snapshot: KnowledgeSnapshot) {
     if (meetingMatches.length) return meetingMatches;
     return [];
   }
+  if (contractRequest.asksAboutContract) {
+    return matches;
+  }
   return matches.length ? matches : snapshot.chunks.slice(0, 5);
 }
 
@@ -283,8 +289,8 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
       const contractSources = relevantSources.filter((source) => source.kind === "contract");
       return {
         answer: contractSources.length
-          ? "I found contract files in the library, but they are not indexed as searchable text yet, so I cannot answer contract obligations reliably from source text."
-          : "I do not have indexed contract material for that question yet.",
+          ? "I found contract files in the library, but I do not yet have searchable text for the exact pricing answer you asked for. I should not guess the monthly fee from non-indexed contract files."
+          : "I do not have indexed contract or pricing material for that question yet.",
         sources: contractSources.map((source) => ({ title: source.title, source: source.source })),
         mode: "project-search",
       };
