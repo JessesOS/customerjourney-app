@@ -1,5 +1,9 @@
 import { env } from "cloudflare:workers";
-import { PDFParse } from "pdf-parse";
+import {
+  DOMMatrix as CanvasDOMMatrix,
+  DOMPoint as CanvasDOMPoint,
+  DOMRect as CanvasDOMRect,
+} from "@napi-rs/canvas/geometry.js";
 import { getDb } from "@/db";
 import { knowledgeChunks, knowledgeSources, knowledgeState } from "@/db/schema";
 import {
@@ -528,6 +532,10 @@ async function fetchDriveText(file: DriveListedFile, accessToken: string) {
     }
 
     const buffer = await response.arrayBuffer();
+    globalThis.DOMMatrix ??= CanvasDOMMatrix;
+    globalThis.DOMPoint ??= CanvasDOMPoint;
+    globalThis.DOMRect ??= CanvasDOMRect;
+    const { PDFParse } = await import("pdf-parse");
     const parser = new PDFParse({ data: buffer });
     const result = await parser.getText();
     await parser.destroy();
