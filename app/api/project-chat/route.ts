@@ -13,6 +13,10 @@ type MeetingRequest = {
   wantsSummary?: boolean;
 };
 
+type RetrievedChunk = KnowledgeSnapshot["chunks"][number] & {
+  score: number;
+};
+
 const stopWords = new Set([
   "about",
   "after",
@@ -143,8 +147,59 @@ function retrieveContext(question: string, snapshot: KnowledgeSnapshot) {
   return matches.length ? matches : snapshot.chunks.slice(0, 5);
 }
 
+function isDirectQuestion(question: string) {
+  const normalized = question.toLowerCase();
+  return (
+    /\bwhat\s+(was|is)\s+the\s+name\b/.test(normalized) ||
+    /\bwhat\s+did\b.*\bcall\b/.test(normalized) ||
+    /\bwhat\s+did\b.*\bmention\b/.test(normalized) ||
+    /\bwhich\s+calculator\b/.test(normalized)
+  );
+}
+
+function extractCalculatorName(text: string) {
+  const explicitMatch = text.match(
+    /\b(profit leakage calculator|score app|profit leakage calculator or score app)\b/i
+  );
+  if (explicitMatch) return explicitMatch[0];
+  return null;
+}
+
+function directAnswer(question: string, matches: RetrievedChunk[]) {
+  const normalized = question.toLowerCase();
+  const top = matches[0];
+  if (!top) return null;
+
+  if (normalized.includes("calculator") && /\bname\b|\bcall\b|\bmention\b/.test(normalized)) {
+    const names = matches
+      .map((chunk) => extractCalculatorName(chunk.text))
+      .filter((value): value is string => Boolean(value));
+    const uniqueNames = [...new Set(names.map((name) => name.toLowerCase()))];
+
+    if (uniqueNames.length) {
+      const preferred =
+        uniqueNames.find((name) => name.includes("profit leakage calculator")) ??
+        uniqueNames[0];
+      const answer =
+        preferred === "profit leakage calculator or score app"
+          ? "Chris referred to it as a profit leakage calculator, and also described it as a score app."
+          : `Chris referred to it as the ${preferred}.`;
+      return {
+        answer,
+        sources: matches.map((chunk) => ({
+          title: chunk.title,
+          source: chunk.source,
+        })),
+        mode: "project-search",
+      };
+    }
+  }
+
+  return null;
+}
+
 function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
-  const matches = retrieveContext(question, snapshot);
+  const matches = retrieveContext(question, snapshot) as RetrievedChunk[];
   const meetingRequest = detectMeetingRequest(question);
   const latestMeetingRequest = meetingRequest?.latest;
   if (meetingRequest?.number !== undefined && matches.length === 0) {
@@ -154,6 +209,8 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
       mode: "project-search",
     };
   }
+  const direct = isDirectQuestion(question) ? directAnswer(question, matches) : null;
+  if (direct) return direct;
   if (latestMeetingRequest && matches.length) {
     const summaryChunk =
       matches.find((chunk) => chunk.kind === "meeting-summary") ?? matches[0];
@@ -216,7 +273,7 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
         {
           role: "system",
           content:
-            "You are the AI project brain for the Strategize / Chris McBreen Canterbury pilot. Answer only from the supplied project context unless clearly labelling a recommendation as an inference. Be concise, useful, and cite the source titles you used.",
+            "You are the AI project brain for the Strategize / Chris McBreen Canterbury pilot. Answer only from the supplied project context unless clearly labelling a recommendation as an inference. Answer the current user question directly. Do not repeat or summarize the previous answer unless the new question clearly asks for it. For simple factual follow-ups, lead with the exact answer in one or two sentences.",
         },
         {
           role: "user",

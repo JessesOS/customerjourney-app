@@ -216,6 +216,7 @@ export function ProjectChat() {
           </div>
           <div className="chat-header-actions">
             <button
+              aria-label="Refresh project knowledge library"
               className="chat-refresh-button"
               disabled={isRefreshing}
               onClick={() => void refreshKnowledgeLibrary()}
@@ -224,6 +225,7 @@ export function ProjectChat() {
               {isRefreshing ? "Refreshing..." : "Refresh Library"}
             </button>
             <button
+              className="chat-close-button"
               aria-label="Close AI project chat"
               onClick={() => setIsOpen(false)}
               type="button"
