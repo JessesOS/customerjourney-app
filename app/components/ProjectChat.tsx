@@ -43,7 +43,20 @@ export function ProjectChat() {
   const usingLiveDrive = knowledgeStatus?.provider === "google-drive";
 
   useEffect(() => {
-    inputRef.current?.focus();
+    if (isOpen) {
+      inputRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    function handleOpen() {
+      setIsOpen(true);
+    }
+
+    window.addEventListener("open-project-chat", handleOpen);
+    return () => {
+      window.removeEventListener("open-project-chat", handleOpen);
+    };
   }, []);
 
   useEffect(() => {
@@ -174,27 +187,11 @@ export function ProjectChat() {
           onClick={() => setIsOpen(true)}
           type="button"
         >
-          <span className="chat-launcher-kicker">AI Project Chat</span>
-          <strong>Ask anything about this project, system, offer, contract, etc.</strong>
-          {knowledgeStatus ? (
-            <span className="chat-launcher-meta">
-              {knowledgeStatus.indexedSourceCount} indexed • {knowledgeStatus.unsupportedSourceCount} not searchable
-            </span>
-          ) : null}
+          <span className="chat-launcher-dot-wrap" aria-hidden="true">
+            <span className="chat-launcher-dot" />
+          </span>
+          <strong>Ask the project brain</strong>
         </button>
-        <form className="chat-mini-form" onSubmit={submitQuestion}>
-          <input
-            aria-label="Ask AI about this project"
-            onChange={(event) => setQuestion(event.target.value)}
-            placeholder="Ask about the offer, CRM, system, contract..."
-            ref={inputRef}
-            type="text"
-            value={question}
-          />
-          <button disabled={isLoading || !question.trim()} type="submit">
-            Ask
-          </button>
-        </form>
       </div>
 
       <div className="chat-shell" hidden={!isOpen}>
