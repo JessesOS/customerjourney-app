@@ -1997,6 +1997,10 @@ img {
   padding: 8px 12px;
 }
 
+.chat-scroll-anchor {
+  height: 1px;
+}
+
 .starter-questions {
   background: #f4f0e7;
   border-top: 1px solid rgba(9, 11, 9, 0.08);
@@ -2011,6 +2015,22 @@ img {
 
 .starter-questions button {
   border: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.starter-questions button:hover:not(:disabled),
+.starter-questions button:focus-visible {
+  background: #c4e6e1;
+  transform: translateY(-1px);
+}
+
+.starter-questions button:disabled {
+  cursor: wait;
+  opacity: 0.58;
 }
 
 .chat-form {

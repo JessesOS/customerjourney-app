@@ -29,6 +29,7 @@ const starterQuestions = [
 export function ProjectChat() {
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -47,6 +48,11 @@ export function ProjectChat() {
       inputRef.current?.focus();
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    messagesEndRef.current?.scrollIntoView({ block: "end", behavior: "smooth" });
+  }, [isOpen, messages, isLoading]);
 
   useEffect(() => {
     function handleOpen() {
@@ -174,6 +180,12 @@ export function ProjectChat() {
     void askProjectBrain(question);
   }
 
+  function askStarterQuestion(starter: string) {
+    setIsOpen(true);
+    setQuestion("");
+    void askProjectBrain(starter);
+  }
+
   return (
     <aside
       aria-label="AI project chat"
@@ -257,6 +269,7 @@ export function ProjectChat() {
               <p>Thinking through the project notes...</p>
             </article>
           ) : null}
+          <div className="chat-scroll-anchor" ref={messagesEndRef} />
         </div>
 
         <div className="starter-questions" aria-label="Suggested project questions">
@@ -264,7 +277,7 @@ export function ProjectChat() {
             <button
               disabled={isLoading}
               key={starter}
-              onClick={() => void askProjectBrain(starter)}
+              onClick={() => askStarterQuestion(starter)}
               type="button"
             >
               {starter}
