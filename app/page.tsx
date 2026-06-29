@@ -366,59 +366,6 @@ const latestMovement = [
   },
 ];
 
-const benchmarkFunnelStages = [
-  {
-    step: "01",
-    label: "Facebook Ads",
-    title: "Hook",
-    detail: "Meta traffic opens with the free $875 Benchmark Report offer.",
-    tone: "teal",
-  },
-  {
-    step: "02",
-    label: "Landing Page",
-    title: "Capture intent",
-    detail: "A dedicated page frames the report and pushes qualified owners into the diagnostic.",
-    tone: "teal",
-  },
-  {
-    step: "03",
-    label: "Revenue",
-    title: "Diagnostic gate",
-    detail: "Leads enter revenue and business scale inputs before report access.",
-    tone: "gold",
-  },
-  {
-    step: "04",
-    label: "Staff Data",
-    title: "Qualification",
-    detail: "Staff count and operating context reveal whether the owner matches the campaign sweet spot.",
-    tone: "gold",
-  },
-  {
-    step: "05",
-    label: "$92K Gap",
-    title: "Urgency trigger",
-    detail: "Show the immediate value-gap snapshot while holding back the full benchmark report.",
-    tone: "red",
-  },
-];
-
-const benchmarkNextSteps = [
-  {
-    title: "5-10 minute speed-to-lead",
-    detail:
-      "During business hours, the sales team calls immediately to capitalize on triggered urgency.",
-    tone: "purple",
-  },
-  {
-    title: "24/7 AI engagement",
-    detail:
-      "After hours, the AI agent nurtures the lead, answers questions, and books callbacks.",
-    tone: "gold",
-  },
-];
-
 export default function Home() {
   const [tasks, setTasks] = useState(initialTasks);
   const [liveBridge, setLiveBridge] = useState<LiveBridgePayload | null>(null);
@@ -827,6 +774,24 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="benchmark-funnel-section page-section" id="benchmark-funnel">
+        <div className="section-header section-header-split">
+          <div>
+            <p className="section-kicker">Benchmark Report Strategy</p>
+            <h2>Diagnosis to sales conversation.</h2>
+          </div>
+          <span className="section-pill">Embedded Funnel</span>
+        </div>
+
+        <div className="benchmark-funnel-embed-frame">
+          <iframe
+            src="/benchmark-funnel-embed.html"
+            title="Benchmark Report Funnel"
+            width="100%"
+          />
+        </div>
+      </section>
+
       <section className="offer-section page-section" id="offer">
         <div className="offer-layout">
           <article className="offer-copy">
@@ -864,111 +829,6 @@ export default function Home() {
               </p>
             </div>
           </article>
-        </div>
-      </section>
-
-      <section className="benchmark-funnel-section page-section" id="benchmark-funnel">
-        <div className="section-header section-header-split">
-          <div>
-            <p className="section-kicker">Benchmark Report Strategy</p>
-            <h2>Diagnosis to sales conversation.</h2>
-          </div>
-          <span className="section-pill">5-Step Conversion Funnel</span>
-        </div>
-
-        <div className="benchmark-funnel-map" aria-label="Benchmark report conversion funnel">
-          <div className="funnel-stage-group funnel-hook">
-            <div className="funnel-group-copy">
-              <p>Step 1 &amp; 2</p>
-              <h3>The hook &amp; landing page</h3>
-              <span>
-                Facebook Ads offer a free $875 Benchmark Report, driving traffic to a dedicated landing page.
-              </span>
-            </div>
-            <div className="funnel-stage-row">
-              {benchmarkFunnelStages.slice(0, 2).map((stage) => (
-                <article className={`funnel-stage-card funnel-${stage.tone}`} key={stage.step}>
-                  <span>{stage.step}</span>
-                  <strong>{stage.label}</strong>
-                  <p>{stage.detail}</p>
-                </article>
-              ))}
-              <div className="funnel-offer-token">Free $875 Benchmark Report</div>
-            </div>
-          </div>
-
-          <div className="funnel-stage-group funnel-diagnostic">
-            <div className="funnel-group-copy">
-              <p>Step 3 &amp; 4</p>
-              <h3>The diagnostic gate</h3>
-              <span>
-                Leads enter revenue and staff data via ScoreApp before providing contact details for report access.
-              </span>
-            </div>
-            <div className="funnel-stage-row">
-              {benchmarkFunnelStages.slice(2, 4).map((stage) => (
-                <article className={`funnel-stage-card funnel-${stage.tone}`} key={stage.step}>
-                  <span>{stage.step}</span>
-                  <strong>{stage.label}</strong>
-                  <p>{stage.detail}</p>
-                </article>
-              ))}
-              <div className="scoreapp-card">
-                <span>ScoreApp</span>
-                <div />
-                <div />
-                <div />
-              </div>
-            </div>
-          </div>
-
-          <div className="funnel-stage-group funnel-urgency">
-            <div className="funnel-group-copy">
-              <p>Step 5</p>
-              <h3>The urgency trigger</h3>
-              <span>
-                Deliver an immediate value-gap snapshot while holding the full report for the sales conversation.
-              </span>
-            </div>
-            <div className="funnel-stage-row">
-              <article className="funnel-stage-card funnel-red funnel-featured">
-                <span>{benchmarkFunnelStages[4].step}</span>
-                <strong>{benchmarkFunnelStages[4].label}</strong>
-                <p>{benchmarkFunnelStages[4].detail}</p>
-              </article>
-              <div className="value-gap-card">
-                <span>Full report</span>
-                <strong>VALUE GAP</strong>
-                <p>You&apos;re missing $92K</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="benchmark-actions">
-          <div className="section-header">
-            <p className="section-kicker section-kicker-gold">Operational Next Steps</p>
-            <h2>Diagnose, trigger urgency, start the conversation.</h2>
-          </div>
-
-          <div className="benchmark-action-grid">
-            {benchmarkNextSteps.map((step) => (
-              <article className={`benchmark-action-card action-${step.tone}`} key={step.title}>
-                <div className="action-icon" aria-hidden="true" />
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.detail}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="benchmark-outcome">
-            <strong>Diagnose - Urgency - Conversation</strong>
-            <span>
-              The core goal is to highlight a problem and start a sales conversation instantly.
-            </span>
-          </div>
         </div>
       </section>
 
