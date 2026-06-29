@@ -38,3 +38,14 @@ export const knowledgeChunks = sqliteTable("knowledge_chunks", {
   date: text("date"),
   aliases: text("aliases").notNull().default("[]"),
 });
+
+export const liveDashboardSnapshot = sqliteTable("live_dashboard_snapshot", {
+  id: integer("id").primaryKey(),
+  syncedAt: text("synced_at").notNull(),
+  provider: text("provider").notNull(),
+  sourceClientId: text("source_client_id").notNull(),
+  lastSyncMessage: text("last_sync_message").notNull().default(""),
+  payload: text("payload").notNull(),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});

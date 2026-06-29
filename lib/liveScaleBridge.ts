@@ -229,12 +229,82 @@ function presentTitle(task: BridgeTask) {
   return task.portalTitle || task.title;
 }
 
-function clientFacingTasks(tasks: BridgeTask[]) {
-  return tasks.filter((task) => task.status !== "complete" && (task.portalVisible || task.portalActionRequired));
+function normalizeText(value: string) {
+  return value.toLowerCase();
 }
 
-function internalTasks(tasks: BridgeTask[]) {
-  return tasks.filter((task) => task.status !== "complete" && !task.portalActionRequired);
+function dedupeTasks(tasks: BridgeTask[]) {
+  const seen = new Set<string>();
+  const deduped: BridgeTask[] = [];
+
+  for (const task of tasks) {
+    const key = presentTitle(task).trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(task);
+  }
+
+  return deduped;
+}
+
+function samePhaseTasks(tasks: BridgeTask[], phase: string) {
+  return tasks.filter((task) => task.phase === phase);
+}
+
+function isClientOwnedPrompt(task: BridgeTask) {
+  const haystack = normalizeText(`${presentTitle(task)} ${detailFromTask(task)}`);
+
+  if (task.portalActionRequired) return true;
+
+  if (
+    /\b(complete|review|approve|connect|upload|prepare|bookmark|download|attend|provide|confirm|submit|share)\b/.test(
+      haystack,
+    )
+  ) {
+    return true;
+  }
+
+  if (
+    /\b(walk the client through|ask the client|warn the client|post a recap|paste the read\.ai)\b/.test(
+      haystack,
+    )
+  ) {
+    return false;
+  }
+
+  return false;
+}
+
+function clientFacingTasks(tasks: BridgeTask[], currentPhase: string) {
+  const phaseTasks = samePhaseTasks(tasks, currentPhase).filter(
+    (task) => task.status !== "complete",
+  );
+
+  const explicitClientTasks = dedupeTasks(
+    sortTasks(phaseTasks.filter((task) => (task.portalVisible || task.portalActionRequired) && isClientOwnedPrompt(task))),
+  );
+
+  if (explicitClientTasks.length) return explicitClientTasks;
+
+  return dedupeTasks(
+    sortTasks(phaseTasks.filter((task) => task.portalVisible || task.portalActionRequired)),
+  );
+}
+
+function internalTasks(tasks: BridgeTask[], currentPhase: string) {
+  const phaseTasks = samePhaseTasks(tasks, currentPhase).filter(
+    (task) => task.status !== "complete",
+  );
+
+  return dedupeTasks(
+    sortTasks(
+      phaseTasks.filter(
+        (task) =>
+          !isClientOwnedPrompt(task) &&
+          ["blocked", "in_progress", "review"].includes(task.status),
+      ),
+    ),
+  );
 }
 
 function recentMovement(tasks: BridgeTask[]) {
@@ -263,15 +333,16 @@ export function buildLiveBridgePayload(
   dashboardBaseUrl: string
 ): LiveBridgePayload {
   const openTasks = tasks.filter((task) => task.status !== "complete");
-  const blocked = sortTasks(openTasks.filter((task) => task.status === "blocked"));
-  const clientOpen = sortTasks(clientFacingTasks(tasks));
-  const internalOpen = sortTasks(
-    internalTasks(tasks).filter((task) => task.status === "blocked" || task.status === "in_progress" || task.status === "review")
-  );
   const currentStageIndex = normalizePhaseToSequenceIndex(client.phase);
+  const currentPhaseTasks = samePhaseTasks(openTasks, client.phase);
+  const currentPhaseBlocked = sortTasks(
+    currentPhaseTasks.filter((task) => task.status === "blocked"),
+  );
+  const clientOpen = clientFacingTasks(tasks, client.phase);
+  const internalOpen = internalTasks(tasks, client.phase);
   const launchCountdown = daysToLaunch(client.goLiveDate);
   const completed = tasks.filter((task) => task.status === "complete").length;
-  const openCount = openTasks.length;
+  const curatedOpenCount = clientOpen.length + internalOpen.length;
   const currentStageLabel = phaseSequence[currentStageIndex] ?? titleCasePhase(client.phase);
   const nextStageLabel = phaseSequence[Math.min(currentStageIndex + 1, phaseSequence.length - 1)] ?? "Next phase";
 
@@ -280,18 +351,18 @@ export function buildLiveBridgePayload(
       label: "Project Health",
       title: labelForHealth(client.health),
       detail:
-        blocked.length > 0
-          ? `${blocked.length} item${blocked.length === 1 ? "" : "s"} currently blocking progress.`
-          : `${openCount} open implementation items remain in the live Scale checklist.`,
+        currentPhaseBlocked.length > 0
+          ? `${currentPhaseBlocked.length} item${currentPhaseBlocked.length === 1 ? "" : "s"} currently blocking ${currentStageLabel.toLowerCase()}.`
+          : `${currentPhaseTasks.length} active ${currentStageLabel.toLowerCase()} item${currentPhaseTasks.length === 1 ? "" : "s"} remain in the live checklist.`,
       tone: toneForHealth(client.health),
     },
     {
       label: "Blockers",
-      title: String(blocked.length),
-      meta: blocked.length ? "open - needs resolution" : "none active",
-      badge: blocked.length ? "Needs attention" : undefined,
-      bullets: blocked.slice(0, 3).map((task) => presentTitle(task)),
-      tone: blocked.length ? "red" : "teal",
+      title: String(currentPhaseBlocked.length),
+      meta: currentPhaseBlocked.length ? "open - needs resolution" : "none active",
+      badge: currentPhaseBlocked.length ? "Needs attention" : undefined,
+      bullets: currentPhaseBlocked.slice(0, 3).map((task) => presentTitle(task)),
+      tone: currentPhaseBlocked.length ? "red" : "teal",
     },
     {
       label: "Current Stage",
@@ -309,20 +380,20 @@ export function buildLiveBridgePayload(
   const summaryMetrics: SummaryMetric[] = [
     {
       label: "Awaiting Client",
-      value: String(clientOpen.length),
-      detail: "portal-facing items",
+      value: String(clientOpen.slice(0, 4).length),
+      detail: "priority client asks",
       tone: "gold",
     },
     {
       label: "Awaiting RT Digital",
-      value: String(internalOpen.length),
-      detail: "internal tasks in motion",
+      value: String(internalOpen.slice(0, 4).length),
+      detail: "priority internal items",
       tone: "teal",
     },
     {
       label: "Open Actions",
-      value: `${openCount}/${tasks.length}`,
-      detail: `${completed} done`,
+      value: `${curatedOpenCount}/${tasks.length}`,
+      detail: `${completed} done overall`,
       tone: "neutral",
     },
     {
@@ -348,9 +419,9 @@ export function buildLiveBridgePayload(
   const outstandingColumns: OutstandingColumn[] = [
     {
       title: "Blocking Now",
-      count: blocked.length,
+      count: currentPhaseBlocked.length,
       tone: "red",
-      items: blocked.slice(0, 3).map((task) => ({
+      items: currentPhaseBlocked.slice(0, 3).map((task) => ({
         title: presentTitle(task),
         detail: detailFromTask(task),
         owner: task.assignee,
@@ -392,12 +463,7 @@ export function buildLiveBridgePayload(
       detail: detailFromTask(task),
       completed: false,
     })),
-    ...sortTasks(
-      internalTasks(tasks).filter((task) =>
-        task.status === "blocked" || task.status === "in_progress" || task.status === "review" || task.phase === client.phase
-      )
-    )
-      .slice(0, 4)
+    ...internalOpen.slice(0, 4)
       .map((task) => ({
         id: task.id,
         owner: "jesse" as const,
@@ -407,7 +473,7 @@ export function buildLiveBridgePayload(
       })),
   ];
 
-  const topbarBadge = `${labelForHealth(client.health)} · ${blocked.length} BLOCKER${blocked.length === 1 ? "" : "S"}`;
+  const topbarBadge = `${labelForHealth(client.health)} · ${currentPhaseBlocked.length} BLOCKER${currentPhaseBlocked.length === 1 ? "" : "S"}`;
 
   return {
     syncedAt: new Date().toISOString(),

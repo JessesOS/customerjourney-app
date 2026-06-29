@@ -15,6 +15,13 @@
       "when": 1782622800000,
       "tag": "0001_knowledge_source_status",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1782725400000,
+      "tag": "0002_live_dashboard_snapshot",
+      "breakpoints": true
     }
   ]
 }
