@@ -413,6 +413,46 @@ function directAnswer(question: string, matches: RetrievedChunk[]) {
   const top = matches[0];
   if (!top) return null;
 
+  if (
+    /\bexplain\b.*\blead to booked consult\b|\blead to booked consult\b.*\bsystem\b|\bsystem map\b|\bbooked consult system\b/.test(
+      normalized
+    )
+  ) {
+    const primarySystem =
+      matches.find((chunk) => chunk.kind === "system") ??
+      matches.find((chunk) => chunk.title.toLowerCase().includes("meeting 2 summary")) ??
+      top;
+    return {
+      answer:
+        "The flow is ad click to lead capture to CRM entry to AI nurture and qualification, then booked consult and human handoff. In practice: Meta or Google traffic hits the calculator or landing page, the lead is captured into GHL, qualified on revenue, staff, coach status, and location, then strong-fit prospects are offered a booked consult.",
+      sources: [
+        {
+          title: primarySystem.title,
+          source: primarySystem.source,
+        },
+      ],
+      mode: "project-search",
+    };
+  }
+
+  if (/\bsubsid(?:y|ies)\b|\bgrants?\b|\bwage subsidies?\b|\bregional business partner\b/.test(normalized)) {
+    const subsidyChunk =
+      matches.find((chunk) => /subsid|grant|wage/i.test(chunk.text)) ??
+      matches.find((chunk) => chunk.title.toLowerCase().includes("meeting 2 summary")) ??
+      top;
+    return {
+      answer:
+        "Chris mentioned wage subsidies and regional business partner grants as possible offer angles, but said they felt weaker and more boring than the benchmark or profit-gap direction. He wanted them kept as secondary options, not the main lead offer.",
+      sources: [
+        {
+          title: subsidyChunk.title,
+          source: subsidyChunk.source,
+        },
+      ],
+      mode: "project-search",
+    };
+  }
+
   if (/\bwhat is scale\b|\bwhat's scale\b|\bdefine scale\b/.test(normalized)) {
     const overview =
       matches.find((chunk) => chunk.title.toLowerCase().includes("scale product overview")) ?? top;
@@ -476,6 +516,26 @@ function directAnswer(question: string, matches: RetrievedChunk[]) {
     }
   }
 
+  const meetingRequest = detectMeetingRequest(question);
+  if (meetingRequest?.number !== undefined && meetingRequest.wantsSummary) {
+    const summaryChunk =
+      matches.find(
+        (chunk) => chunk.session === meetingRequest.number && chunk.kind === "meeting-summary"
+      ) ??
+      matches.find((chunk) => chunk.session === meetingRequest.number) ??
+      top;
+    return {
+      answer: cleanAnswer(summaryChunk.text, true),
+      sources: [
+        {
+          title: summaryChunk.title,
+          source: summaryChunk.source,
+        },
+      ],
+      mode: "project-search",
+    };
+  }
+
   return null;
 }
 
@@ -532,6 +592,20 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
   }
   const direct = directAnswer(question, matches);
   if (direct) return direct;
+  if (meetingRequest?.number !== undefined && meetingRequest.wantsSummary && matches.length) {
+    const summaryChunk =
+      matches.find((chunk) => chunk.session === meetingRequest.number && chunk.kind === "meeting-summary") ??
+      matches.find((chunk) => chunk.session === meetingRequest.number) ??
+      matches[0];
+    return {
+      answer: cleanAnswer(summaryChunk.text, true),
+      sources: matches.map((chunk) => ({
+        title: chunk.title,
+        source: chunk.source,
+      })),
+      mode: "project-search",
+    };
+  }
   if (latestMeetingRequest && matches.length) {
     const summaryChunk =
       matches.find((chunk) => chunk.kind === "meeting-summary") ?? matches[0];
@@ -580,6 +654,20 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
   const terse = isShortQuestion(question) || isDirectQuestion(question);
   const direct = directAnswer(question, matches);
   if (direct) return direct;
+  if (meetingRequest?.number !== undefined && meetingRequest.wantsSummary && matches.length) {
+    const summaryChunk =
+      matches.find((chunk) => chunk.session === meetingRequest.number && chunk.kind === "meeting-summary") ??
+      matches.find((chunk) => chunk.session === meetingRequest.number) ??
+      matches[0];
+    return {
+      answer: cleanAnswer(summaryChunk.text, true),
+      sources: matches.map((chunk) => ({
+        title: chunk.title,
+        source: chunk.source,
+      })),
+      mode: "project-search",
+    };
+  }
   if (meetingRequest?.latest && matches.length) {
     const summaryChunk =
       matches.find((chunk) => chunk.kind === "meeting-summary") ?? matches[0];
