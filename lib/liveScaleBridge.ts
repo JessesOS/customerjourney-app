@@ -2,6 +2,7 @@ import {
   liveDashboardTaskOverrides,
   type ManualTaskOwner,
   type ManualTaskOverride,
+  type PersistedTaskOverride,
 } from "@/lib/liveDashboardOverrides";
 
 export type BridgeTaskStatus =
@@ -127,6 +128,26 @@ type CuratedTask = BridgeTask & {
   curatedVisible: boolean;
   curatedPinnedRank?: number;
   curatedBlocker?: boolean;
+};
+
+export type AdminTask = {
+  id: string;
+  sourceTitle: string;
+  sourceDetail: string;
+  phase: string;
+  status: BridgeTaskStatus;
+  assignee: string;
+  portalVisible: boolean;
+  portalActionRequired: boolean;
+  effective: {
+    visible: boolean;
+    owner: ManualTaskOwner | "auto";
+    title: string;
+    detail: string;
+    pinnedRank: number | null;
+    blocker: boolean;
+  };
+  persistedOverride: PersistedTaskOverride | null;
 };
 
 const phaseSequence = [
@@ -256,28 +277,45 @@ function normalizeText(value: string) {
   return value.toLowerCase();
 }
 
-function overrideForTask(task: BridgeTask) {
+function defaultOverrideForTask(task: BridgeTask) {
   const title = presentTitle(task);
   return liveDashboardTaskOverrides.find((override) =>
     normalizeText(title).includes(normalizeText(override.titleIncludes)),
   );
 }
 
-function applyOverride(task: BridgeTask, override?: ManualTaskOverride): CuratedTask {
+function persistedOverrideForTask(task: BridgeTask, persistedOverrides: PersistedTaskOverride[]) {
+  return persistedOverrides.find((override) => override.taskId === task.id) ?? null;
+}
+
+function mergeOverride(
+  task: BridgeTask,
+  defaultOverride: ManualTaskOverride | undefined,
+  persistedOverride: PersistedTaskOverride | null,
+): CuratedTask {
+  const title = persistedOverride?.title ?? defaultOverride?.title ?? presentTitle(task);
+  const detail = persistedOverride?.detail ?? defaultOverride?.detail ?? detailFromTask(task);
+
   return {
     ...task,
-    curatedTitle: override?.title ?? presentTitle(task),
-    curatedDetail: override?.detail ?? detailFromTask(task),
-    curatedOwner: override?.owner,
-    curatedVisible: override?.visible ?? true,
-    curatedPinnedRank: override?.pinnedRank,
-    curatedBlocker: override?.blocker,
+    curatedTitle: title,
+    curatedDetail: detail,
+    curatedOwner: persistedOverride?.owner ?? defaultOverride?.owner,
+    curatedVisible: persistedOverride?.visible ?? defaultOverride?.visible ?? true,
+    curatedPinnedRank: persistedOverride?.pinnedRank ?? defaultOverride?.pinnedRank,
+    curatedBlocker: persistedOverride?.blocker ?? defaultOverride?.blocker,
   };
 }
 
-function curateTasks(tasks: BridgeTask[]) {
+function curateTasks(tasks: BridgeTask[], persistedOverrides: PersistedTaskOverride[] = []) {
   return tasks
-    .map((task) => applyOverride(task, overrideForTask(task)))
+    .map((task) =>
+      mergeOverride(
+        task,
+        defaultOverrideForTask(task),
+        persistedOverrideForTask(task, persistedOverrides),
+      ),
+    )
     .filter((task) => task.curatedVisible);
 }
 
@@ -396,9 +434,10 @@ function recentMovement(tasks: CuratedTask[]) {
 export function buildLiveBridgePayload(
   client: BridgeClient,
   tasks: BridgeTask[],
-  dashboardBaseUrl: string
+  dashboardBaseUrl: string,
+  persistedOverrides: PersistedTaskOverride[] = [],
 ): LiveBridgePayload {
-  const curatedTasks = curateTasks(tasks);
+  const curatedTasks = curateTasks(tasks, persistedOverrides);
   const openTasks = curatedTasks.filter((task) => task.status !== "complete");
   const currentStageIndex = normalizePhaseToSequenceIndex(client.phase);
   const currentPhaseTasks = samePhaseTasks(openTasks, client.phase);
@@ -558,4 +597,45 @@ export function buildLiveBridgePayload(
     },
     portalUrl: client.portalToken ? `${dashboardBaseUrl.replace(/\/$/, "")}/portal/${client.portalToken}` : undefined,
   };
+}
+
+export function buildAdminTasks(
+  tasks: BridgeTask[],
+  persistedOverrides: PersistedTaskOverride[] = [],
+) {
+  return tasks
+    .map((task) => {
+      const defaultOverride = defaultOverrideForTask(task);
+      const persistedOverride = persistedOverrideForTask(task, persistedOverrides);
+      const curatedTask = mergeOverride(task, defaultOverride, persistedOverride);
+
+      return {
+        id: task.id,
+        sourceTitle: presentTitle(task),
+        sourceDetail: detailFromTask(task),
+        phase: task.phase,
+        status: task.status,
+        assignee: task.assignee,
+        portalVisible: task.portalVisible,
+        portalActionRequired: task.portalActionRequired,
+        effective: {
+          visible: curatedTask.curatedVisible,
+          owner: curatedTask.curatedOwner ?? "auto",
+          title: curatedTask.curatedTitle,
+          detail: curatedTask.curatedDetail,
+          pinnedRank: curatedTask.curatedPinnedRank ?? null,
+          blocker: Boolean(curatedTask.curatedBlocker),
+        },
+        persistedOverride,
+      } satisfies AdminTask;
+    })
+    .sort((left, right) => {
+      if (left.phase !== right.phase) return left.phase.localeCompare(right.phase);
+      if (left.effective.pinnedRank !== right.effective.pinnedRank) {
+        const leftRank = left.effective.pinnedRank ?? Number.MAX_SAFE_INTEGER;
+        const rightRank = right.effective.pinnedRank ?? Number.MAX_SAFE_INTEGER;
+        return leftRank - rightRank;
+      }
+      return left.sourceTitle.localeCompare(right.sourceTitle);
+    });
 }

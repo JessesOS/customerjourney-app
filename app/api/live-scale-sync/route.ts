@@ -8,6 +8,7 @@ import {
   getLiveDashboardStatus,
   writeLiveDashboardSnapshot,
 } from "@/lib/liveDashboardStore";
+import { readLiveDashboardOverrides } from "@/lib/liveDashboardOverrideStore";
 
 type SyncRequestBody = {
   client?: BridgeClient;
@@ -76,10 +77,12 @@ export async function POST(request: Request) {
       );
     }
 
+    const persistedOverrides = await readLiveDashboardOverrides();
     const bridge = buildLiveBridgePayload(
       client,
       tasks,
       body.dashboardUrl ?? runtimeValue("LIVE_SCALE_DASHBOARD_URL") ?? "",
+      persistedOverrides,
     );
 
     const syncedAt = new Date().toISOString();
@@ -90,10 +93,12 @@ export async function POST(request: Request) {
       lastSyncMessage:
         body.lastSyncMessage ??
         `Curated sync imported from live Scale source for ${client.name}.`,
+      sourceClient: client,
       bridge: {
         ...bridge,
         syncedAt,
       },
+      sourceTasks: tasks,
     });
 
     return Response.json({

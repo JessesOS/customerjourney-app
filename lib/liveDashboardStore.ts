@@ -1,18 +1,33 @@
 import { getDb } from "@/db";
 import { liveDashboardSnapshot } from "@/db/schema";
-import type { LiveBridgePayload } from "@/lib/liveScaleBridge";
+import type { BridgeClient, BridgeTask, LiveBridgePayload } from "@/lib/liveScaleBridge";
 
 export type PersistedDashboardSnapshot = {
   syncedAt: string;
   provider: string;
   sourceClientId: string;
   lastSyncMessage: string;
+  sourceClient: BridgeClient;
   bridge: LiveBridgePayload;
+  sourceTasks: BridgeTask[];
 };
 
-function safeParsePayload(value: string): LiveBridgePayload | null {
+function safeParsePayload(value: string): PersistedDashboardSnapshot | null {
   try {
-    return JSON.parse(value) as LiveBridgePayload;
+    const parsed = JSON.parse(value) as unknown;
+
+    if (
+      typeof parsed === "object" &&
+      parsed !== null &&
+      "bridge" in parsed &&
+      "sourceClient" in parsed &&
+      "sourceTasks" in parsed &&
+      Array.isArray(parsed.sourceTasks)
+    ) {
+      return parsed as PersistedDashboardSnapshot;
+    }
+
+    return null;
   } catch {
     return null;
   }
@@ -25,15 +40,17 @@ export async function readLiveDashboardSnapshot() {
 
   if (!row) return null;
 
-  const bridge = safeParsePayload(row.payload);
-  if (!bridge) return null;
+  const payload = safeParsePayload(row.payload);
+  if (!payload) return null;
 
   return {
     syncedAt: row.syncedAt,
     provider: row.provider,
     sourceClientId: row.sourceClientId,
     lastSyncMessage: row.lastSyncMessage,
-    bridge,
+    sourceClient: payload.sourceClient,
+    bridge: payload.bridge,
+    sourceTasks: payload.sourceTasks,
   } satisfies PersistedDashboardSnapshot;
 }
 
@@ -47,7 +64,11 @@ export async function writeLiveDashboardSnapshot(snapshot: PersistedDashboardSna
     provider: snapshot.provider,
     sourceClientId: snapshot.sourceClientId,
     lastSyncMessage: snapshot.lastSyncMessage,
-    payload: JSON.stringify(snapshot.bridge),
+    payload: JSON.stringify({
+      sourceClient: snapshot.sourceClient,
+      bridge: snapshot.bridge,
+      sourceTasks: snapshot.sourceTasks,
+    }),
   });
 }
 

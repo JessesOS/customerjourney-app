@@ -1,13 +1,20 @@
 export type ManualTaskOwner = "chris" | "jesse";
 
-export type ManualTaskOverride = {
-  titleIncludes: string;
+export type TaskOverrideFields = {
   visible?: boolean;
   owner?: ManualTaskOwner;
   title?: string;
   detail?: string;
   pinnedRank?: number;
   blocker?: boolean;
+};
+
+export type ManualTaskOverride = TaskOverrideFields & {
+  titleIncludes: string;
+};
+
+export type PersistedTaskOverride = TaskOverrideFields & {
+  taskId: string;
 };
 
 export const liveDashboardTaskOverrides: ManualTaskOverride[] = [

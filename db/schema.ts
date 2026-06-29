@@ -49,3 +49,9 @@ export const liveDashboardSnapshot = sqliteTable("live_dashboard_snapshot", {
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
+
+export const liveDashboardOverrideState = sqliteTable("live_dashboard_override_state", {
+  id: integer("id").primaryKey(),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  payload: text("payload").notNull(),
+});

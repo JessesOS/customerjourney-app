@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { ProjectChat } from "./components/ProjectChat";
+import { AdminPanel } from "./components/AdminPanel";
 import type { LiveBridgePayload } from "@/lib/liveScaleBridge";
 
 type TaskOwner = "chris" | "jesse";
@@ -435,10 +436,23 @@ export default function Home() {
     jesse: "Jesse action items",
   };
 
+  async function loadLiveBridge() {
+    try {
+      const response = await fetch("/api/live-scale-bridge", { cache: "no-store" });
+      if (!response.ok) return;
+      const payload = (await response.json()) as { ok?: boolean; bridge?: LiveBridgePayload };
+      if (payload.ok && payload.bridge) {
+        setLiveBridge(payload.bridge);
+      }
+    } catch {
+      // Keep the handcrafted fallback UI when the live bridge is unavailable.
+    }
+  }
+
   useEffect(() => {
     let isMounted = true;
 
-    async function loadLiveBridge() {
+    async function load() {
       try {
         const response = await fetch("/api/live-scale-bridge", { cache: "no-store" });
         if (!response.ok) return;
@@ -451,7 +465,7 @@ export default function Home() {
       }
     }
 
-    void loadLiveBridge();
+    void load();
     return () => {
       isMounted = false;
     };
@@ -499,6 +513,7 @@ export default function Home() {
         </nav>
 
         <div className="topbar-actions">
+          <AdminPanel onSaved={loadLiveBridge} />
           <button
             className="nav-pill nav-pill-teal nav-pill-button"
             onClick={openProjectChat}

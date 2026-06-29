@@ -234,6 +234,184 @@ img {
   box-shadow: 0 0 18px rgba(229, 179, 74, 0.45);
 }
 
+.nav-pill-admin {
+  color: var(--paper);
+}
+
+.admin-panel-shell {
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 120;
+}
+
+.admin-panel-backdrop {
+  background: rgba(4, 8, 7, 0.72);
+  inset: 0;
+  pointer-events: auto;
+  position: absolute;
+}
+
+.admin-panel {
+  background: #0c1110;
+  border-left: 1px solid rgba(255, 253, 250, 0.08);
+  box-shadow: -18px 0 80px rgba(0, 0, 0, 0.36);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: min(760px, 92vw);
+  pointer-events: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.admin-panel-head {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 253, 250, 0.08);
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  padding: 22px 24px 18px;
+}
+
+.admin-panel-head p,
+.admin-phase-head span,
+.admin-task-meta span {
+  color: var(--muted);
+  font-family: var(--font-ibm-plex-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.admin-panel-head h3,
+.admin-phase-head h4 {
+  font-size: 24px;
+  margin: 6px 0 0;
+}
+
+.admin-panel-actions {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.admin-close {
+  align-items: center;
+  appearance: none;
+  -webkit-appearance: none;
+  background: rgba(255, 253, 250, 0.02);
+  border: 1px solid rgba(255, 253, 250, 0.12);
+  border-radius: 12px;
+  color: var(--paper);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--font-ibm-plex-mono), monospace;
+  font-size: 13px;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 14px;
+}
+
+.admin-save {
+  min-height: 42px;
+}
+
+.admin-panel-body {
+  display: grid;
+  gap: 18px;
+  overflow-y: auto;
+  padding: 18px 24px 28px;
+}
+
+.admin-phase {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-phase-head {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-task-list {
+  display: grid;
+  gap: 14px;
+}
+
+.admin-task-card {
+  background: rgba(255, 253, 250, 0.03);
+  border: 1px solid rgba(255, 253, 250, 0.08);
+  border-radius: 18px;
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.admin-task-meta {
+  display: grid;
+  gap: 6px;
+}
+
+.admin-task-meta strong {
+  font-size: 16px;
+}
+
+.admin-toggle-row {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.admin-toggle-row label,
+.admin-field {
+  color: var(--muted-strong);
+  display: grid;
+  font-size: 12px;
+  gap: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.admin-toggle-row label:first-child,
+.admin-toggle-row label:last-child {
+  align-items: center;
+  background: rgba(255, 253, 250, 0.02);
+  border: 1px solid rgba(255, 253, 250, 0.08);
+  border-radius: 12px;
+  gap: 8px;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.admin-toggle-row input[type="checkbox"] {
+  accent-color: var(--teal);
+}
+
+.admin-toggle-row input[type="number"],
+.admin-toggle-row select,
+.admin-field input,
+.admin-field textarea {
+  background: rgba(8, 13, 12, 0.96);
+  border: 1px solid rgba(255, 253, 250, 0.1);
+  border-radius: 12px;
+  color: var(--paper);
+  font: inherit;
+  min-height: 44px;
+  padding: 10px 12px;
+}
+
+.admin-field textarea {
+  min-height: 86px;
+  resize: vertical;
+}
+
 .hero-panel {
   align-items: center;
   display: grid;
