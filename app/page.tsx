@@ -1,314 +1,217 @@
-import { CollaborationHub } from "./components/CollaborationHub";
-import { ProjectChat } from "./components/ProjectChat";
-import { defaultChecklistItems, projectStages } from "@/lib/collaboration";
+"use client";
 
-const meetingSignals = [
-  {
-    label: "Client reality",
-    text: "Chris is not buying a generic AI campaign. He is testing whether a serious creative and automation partner can protect his reputation with high-value trade clients.",
-  },
-  {
-    label: "Market focus",
-    text: "Start in Christchurch / Canterbury, where eight strategists can service demand and where proof will determine whether the model expands nationally.",
-  },
-  {
-    label: "Lead quality",
-    text: "The campaign must filter for owners with staff, turnover, and real strategic pain. Volume without qualification is the failure mode.",
-  },
-  {
-    label: "Creative anchor",
-    text: "The strongest offer is not a subsidy. It is a benchmark-led profit leakage story that makes an owner feel the size of the hidden gap.",
-  },
+import { useMemo, useState } from "react";
+import Image from "next/image";
+
+const revenueBands = [
+  { label: "Under $500K", value: "under-500", score: 0, note: "Low priority fit" },
+  { label: "$500K-$1M", value: "500-1m", score: 1, note: "Worth checking" },
+  { label: "$1M-$2M", value: "1m-2m", score: 3, note: "Core fit" },
+  { label: "$2M+", value: "2m-plus", score: 4, note: "Ideal fit" },
 ];
 
-const systemSteps = [
-  {
-    title: "Traffic",
-    detail: "Meta cold/warm campaigns and Google high-intent search routes.",
-    accent: "teal",
-  },
-  {
-    title: "Lead Capture",
-    detail: "Native lead forms or a focused two-step GHL landing funnel.",
-    accent: "gold",
-  },
-  {
-    title: "TradeAI CRM",
-    detail: "Source tags, opportunity card, pipeline entry, first SMS and email.",
-    accent: "ink",
-  },
-  {
-    title: "AI Nurture",
-    detail: "Polite follow-up cadence across SMS and email until engagement.",
-    accent: "teal",
-  },
-  {
-    title: "Qualification",
-    detail: "Pain, motivation, service fit, address, timezone, phone and email.",
-    accent: "red",
-  },
-  {
-    title: "Booked Consult",
-    detail: "Calendar read, specific time slots offered, appointment locked in.",
-    accent: "gold",
-  },
-  {
-    title: "Human Handoff",
-    detail: "AI shuts down, CRM moves to booked, rep reviews notes and calls.",
-    accent: "ink",
-  },
+const staffBands = [
+  { label: "1-2", value: "1-2", score: 0 },
+  { label: "3-4", value: "3-4", score: 1 },
+  { label: "5-10", value: "5-10", score: 3 },
+  { label: "11+", value: "11-plus", score: 4 },
 ];
 
-const offerAngles = [
-  {
-    title: "Productivity Gap",
-    prompt: "Are your people producing what the top performers in your trade produce?",
-    proof: "A benchmark snapshot can turn revenue-per-person into a visible missing-dollar figure.",
-  },
-  {
-    title: "Margin & Pricing",
-    prompt: "If your gross margin is off by a few points, how much profit is leaking every year?",
-    proof: "Use red-line variance moments from anonymised reports, not abstract coaching language.",
-  },
-  {
-    title: "Wage Leakage",
-    prompt: "Are staff costs quietly sitting above the industry line?",
-    proof: "Chris called out wage overspend as a common red item and a strong emotional trigger.",
-  },
-  {
-    title: "Buying Group Savings",
-    prompt: "Are you missing $15K-$25K because you are outside the right buying group?",
-    proof: "A secondary A/B route that may work as a practical savings hook.",
-  },
-  {
-    title: "Subsidies & Grants",
-    prompt: "Could a wage subsidy or regional business partner grant create enough reason to start the conversation?",
-    proof: "Chris sees this as weaker and less exciting, but it can remain a comparison angle against the stronger gap-analysis offer.",
-  },
-  {
-    title: "Testimonial Proof",
-    prompt: "Let clients describe the moment the gap became impossible to ignore.",
-    proof: "Use anonymised interviews or category-safe proof where confidentiality matters.",
-  },
-];
+function getResult(revenue: string, staff: string, hasCoach: string) {
+  const revenueScore = revenueBands.find((band) => band.value === revenue)?.score ?? 0;
+  const staffScore = staffBands.find((band) => band.value === staff)?.score ?? 0;
 
-const nextWorkshop = [
-  "Confirm the exact offer language Chris is comfortable putting in market.",
-  "Collect anonymised benchmark screenshots or a white-labelled sample report.",
-  "Choose the first three trade segments to test: electricians, plumbers, flooring, tyres, or other transactional trades.",
-  "Define disqualifiers up front: one-person businesses, no staff, insufficient turnover, duplicate existing contacts.",
-  "Draft two video scripts: Chris on-screen gap analysis and testimonial-led proof.",
-];
+  if (hasCoach === "yes") {
+    return {
+      label: "Not the right fit right now",
+      detail:
+        "If you already have a business coach, Strategize usually recommends taking this conversation back to your current advisor.",
+      score: "Review",
+    };
+  }
 
-const deliveryStages = [
-  "Pre-onboarding",
-  "Onboarding",
-  "Strategy",
-  "Creative",
-  "Build",
-  "Launch",
-  "Optimise",
-];
+  if (revenueScore + staffScore >= 6) {
+    return {
+      label: "Strong fit for a savings review",
+      detail:
+        "You look like the type of established business where revenue leakage, staffing costs, and missed buying-group savings can add up quickly.",
+      score: "High fit",
+    };
+  }
 
-function Metric({
-  value,
-  label,
-  tone,
-}: {
-  value: string;
-  label: string;
-  tone?: "red" | "gold";
-}) {
-  return (
-    <div className={`metric ${tone ? `metric-${tone}` : ""}`}>
-      <span>{value}</span>
-      <p>{label}</p>
-    </div>
-  );
+  if (revenueScore + staffScore >= 3) {
+    return {
+      label: "Possible fit",
+      detail:
+        "There may still be useful savings or missed revenue to uncover. A strategist can check whether the numbers justify a deeper review.",
+      score: "Medium fit",
+    };
+  }
+
+  return {
+    label: "Early stage",
+    detail:
+      "The review may be less valuable until the business has more revenue, staff, or operating complexity.",
+    score: "Low fit",
+  };
 }
 
 export default function Home() {
+  const [revenue, setRevenue] = useState("1m-2m");
+  const [staff, setStaff] = useState("5-10");
+  const [hasCoach, setHasCoach] = useState("no");
+
+  const result = useMemo(
+    () => getResult(revenue, staff, hasCoach),
+    [revenue, staff, hasCoach],
+  );
+
   return (
-    <main>
-      <header className="site-header">
-        <a className="brand brand-lockup" href="#top" aria-label="Strategize and RT Digital growth workspace home">
-          <img className="strategize-mark" src="/strategize-transparent.png" alt="Strategize" />
-          <img className="rt-digital-mark" src="/rt-digital-transparent.png" alt="RT Digital" />
-        </a>
-        <nav aria-label="Workspace navigation">
-          <a href="#working-plan">Plan</a>
-          <a href="#project-chat">AI Chat</a>
-          <a href="#brief">Brief</a>
-          <a href="#offer">Offer Lab</a>
-          <a href="#system">System Map</a>
-          <a href="#workshop">Next</a>
-        </nav>
+    <main className="funnel-page">
+      <header className="landing-header">
+        <Image
+          alt="Strategize"
+          height={96}
+          priority
+          src="/strategize-transparent.png"
+          width={300}
+        />
+        <a href="#check">Check my numbers</a>
       </header>
 
-      <section className="hero" id="top">
+      <section className="hero-section">
         <div className="hero-copy">
-          <h1>
-            A shared strategy room for the Canterbury pilot: clarify the offer,
-            shape the campaign, and map how qualified trade-business owners move
-            from ad click to booked consult.
-          </h1>
-          <div className="hero-actions" aria-label="Primary workspace actions">
-            <a href="#working-plan">Open Working Plan</a>
-            <a href="#project-chat">Ask AI Chat</a>
-            <a href="#offer">Open Offer Lab</a>
-            <a href="#system">View System Map</a>
-          </div>
-        </div>
-
-        <div className="hero-board" aria-label="Pilot snapshot">
-          <div className="board-topline">
-            <span>Canterbury pilot</span>
-            <strong>Offer workshop + lead engine</strong>
-          </div>
-          <div className="board-grid">
-            <Metric value="5-25" label="staff sweet spot" />
-            <Metric value="$875" label="benchmark value signal" tone="gold" />
-            <Metric value="$100K+" label="gap story potential" tone="red" />
-            <Metric value="1 in 5" label="known conversion benchmark" />
-          </div>
-          <div className="gap-card">
-            <div>
-              <p>Lead magnet thesis</p>
-              <h2>Free Business Gap Analysis</h2>
-            </div>
-            <span>Benchmark the gap</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="stage-cue" aria-label="Current delivery stage">
-        <div className="stage-cue-track">
-          {deliveryStages.map((stage, index) => (
-            <div
-              className={`stage-cue-step ${
-                stage === "Onboarding" ? "stage-cue-current" : ""
-              } ${
-                index < 1 ? "stage-cue-complete" : ""
-              } ${
-                index === 0 ? "stage-cue-first" : ""
-              } ${
-                index === deliveryStages.length - 1 ? "stage-cue-last" : ""
-              }`}
-              key={stage}
-            >
-              <span>{stage}</span>
-            </div>
-          ))}
-        </div>
-        <div className="stage-cue-footer">
-          <span>Current stage</span>
-          <strong className="stage-cue-footer-pill">Onboarding</strong>
-        </div>
-      </section>
-
-      <CollaborationHub
-        initialItems={defaultChecklistItems}
-        stages={projectStages}
-      />
-
-      <ProjectChat />
-
-      <section className="meeting-brief section-band" id="brief">
-        <div className="section-title">
-          <p>Meeting Brief</p>
-          <h2>What mattered most in the call</h2>
-        </div>
-        <div className="signals">
-          {meetingSignals.map((signal) => (
-            <article key={signal.label}>
-              <span>{signal.label}</span>
-              <p>{signal.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="offer-lab" id="offer">
-        <div className="offer-copy">
-          <p>Offer Lab</p>
-          <h2>The campaign should sell the size of the hidden gap.</h2>
-          <p>
-            Chris already has a conversion asset: a benchmark process that
-            compares a business against its category and makes profit leakage
-            tangible. The creative job is to compress that moment for Meta
-            without giving away the proprietary numbers.
+          <p className="eyebrow">Free business savings check</p>
+          <h1>Could your business be missing revenue or overpaying quietly?</h1>
+          <p className="hero-intro">
+            Answer three quick questions to see whether a Strategize advisor should review
+            your revenue, staffing, and savings opportunities.
           </p>
+          <div className="hero-actions">
+            <a className="primary-action" href="#check">Start the check</a>
+            <span>Takes less than 60 seconds</span>
+          </div>
         </div>
 
-        <div className="analysis-panel">
-          <div className="panel-header">
-            <span>Creative territory</span>
-            <strong>Gap Analysis Teaser</strong>
+        <div className="result-preview" aria-label="Savings review preview">
+          <span>Common review areas</span>
+          <div>
+            <strong>Revenue leakage</strong>
+            <p>Underpriced work, weak conversion, or low output per person.</p>
           </div>
-          <div className="variance-row high">
-            <span>Productivity per person</span>
-            <b>$200K missing</b>
+          <div>
+            <strong>Cost pressure</strong>
+            <p>Wage ratios, supplier terms, and missed buying-group savings.</p>
           </div>
-          <div className="variance-row">
-            <span>Wage ratio</span>
-            <b>$116K over line</b>
-          </div>
-          <div className="variance-row">
-            <span>Marketing spend</span>
-            <b>$64K above benchmark</b>
-          </div>
-          <div className="teaser-script">
-            <p>
-              “Most owners know they are busy. Fewer know whether they are
-              first, last, or in the middle. A simple benchmark can show the
-              gap in dollars.”
-            </p>
+          <div>
+            <strong>Follow-up plan</strong>
+            <p>Qualified businesses are passed to a local strategist.</p>
           </div>
         </div>
       </section>
 
-      <section className="campaigns">
-        <div className="section-title">
-          <p>Campaign Hypotheses</p>
-          <h2>Six angles worth testing before we fall in love with one.</h2>
+      <section className="calculator-section" id="check">
+        <div className="section-heading">
+          <p>Quick calculator</p>
+          <h2>Find out if a savings review is worth a conversation.</h2>
         </div>
-        <div className="angle-list">
-          {offerAngles.map((angle) => (
-            <article key={angle.title}>
-              <h3>{angle.title}</h3>
-              <p>{angle.prompt}</p>
-              <span>{angle.proof}</span>
-            </article>
-          ))}
+
+        <div className="calculator-grid">
+          <form className="calculator-card">
+            <fieldset>
+              <legend>Annual revenue</legend>
+              <div className="option-grid">
+                {revenueBands.map((band) => (
+                  <label key={band.value} className={revenue === band.value ? "selected" : ""}>
+                    <input
+                      checked={revenue === band.value}
+                      name="revenue"
+                      onChange={() => setRevenue(band.value)}
+                      type="radio"
+                    />
+                    <span>{band.label}</span>
+                    <small>{band.note}</small>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>How many staff do you have?</legend>
+              <div className="segmented">
+                {staffBands.map((band) => (
+                  <button
+                    className={staff === band.value ? "active" : ""}
+                    key={band.value}
+                    onClick={() => setStaff(band.value)}
+                    type="button"
+                  >
+                    {band.label}
+                  </button>
+                ))}
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Are you currently working with a business coach?</legend>
+              <div className="coach-toggle">
+                <button
+                  className={hasCoach === "no" ? "active" : ""}
+                  onClick={() => setHasCoach("no")}
+                  type="button"
+                >
+                  No
+                </button>
+                <button
+                  className={hasCoach === "yes" ? "active" : ""}
+                  onClick={() => setHasCoach("yes")}
+                  type="button"
+                >
+                  Yes
+                </button>
+              </div>
+            </fieldset>
+          </form>
+
+          <aside className="score-card">
+            <p>Your result</p>
+            <strong>{result.score}</strong>
+            <h3>{result.label}</h3>
+            <span>{result.detail}</span>
+
+            <div className="lead-form" aria-label="Lead details">
+              <label>
+                Name
+                <input placeholder="Your name" />
+              </label>
+              <label>
+                Phone
+                <input placeholder="Best contact number" />
+              </label>
+              <label>
+                Email
+                <input placeholder="you@example.co.nz" />
+              </label>
+              <label>
+                Location
+                <input placeholder="City or region" />
+              </label>
+              <button type="button">Request my review</button>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <section className="system-map section-band" id="system">
-        <div className="section-title">
-          <p>System Map.</p>
-          <h2>Lead to booked consult</h2>
+      <section className="trust-section">
+        <div>
+          <p>What happens next</p>
+          <h2>No long questionnaire. No generic report.</h2>
         </div>
-        <div className="flow">
-          {systemSteps.map((step, index) => (
-            <article className={`flow-step flow-${step.accent}`} key={step.title}>
-              <div className="step-index">{String(index + 1).padStart(2, "0")}</div>
-              <h3>{step.title}</h3>
-              <p>{step.detail}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="workshop section-band" id="workshop">
-        <div className="section-title">
-          <p>Next Workshop</p>
-          <h2>Use the next 90 minutes to make the campaign concrete.</h2>
-        </div>
-        <ol>
-          {nextWorkshop.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ol>
+        <ul>
+          <li>A local strategist checks whether you meet the review criteria.</li>
+          <li>Qualified businesses are contacted by phone or email for follow-up.</li>
+          <li>If you already have a coach, you will not be pushed into a duplicate process.</li>
+        </ul>
       </section>
     </main>
   );

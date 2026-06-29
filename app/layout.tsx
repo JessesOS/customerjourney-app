@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Strategize Growth Workspace",
+  title: "Strategize Savings Review",
   description:
-    "A private strategy workspace for the Canterbury campaign pilot, offer development, and lead-to-booking system map.",
+    "A simple savings and revenue leakage check for established New Zealand businesses.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
