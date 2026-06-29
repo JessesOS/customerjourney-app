@@ -1,3 +1,9 @@
+import {
+  liveDashboardTaskOverrides,
+  type ManualTaskOwner,
+  type ManualTaskOverride,
+} from "@/lib/liveDashboardOverrides";
+
 export type BridgeTaskStatus =
   | "queued"
   | "in_progress"
@@ -112,6 +118,15 @@ export type LiveBridgePayload = {
     jesse: string;
   };
   portalUrl?: string;
+};
+
+type CuratedTask = BridgeTask & {
+  curatedTitle: string;
+  curatedDetail: string;
+  curatedOwner?: ManualTaskOwner;
+  curatedVisible: boolean;
+  curatedPinnedRank?: number;
+  curatedBlocker?: boolean;
 };
 
 const phaseSequence = [
@@ -229,16 +244,49 @@ function presentTitle(task: BridgeTask) {
   return task.portalTitle || task.title;
 }
 
+function presentCuratedTitle(task: CuratedTask) {
+  return task.curatedTitle;
+}
+
+function presentCuratedDetail(task: CuratedTask) {
+  return task.curatedDetail;
+}
+
 function normalizeText(value: string) {
   return value.toLowerCase();
 }
 
-function dedupeTasks(tasks: BridgeTask[]) {
+function overrideForTask(task: BridgeTask) {
+  const title = presentTitle(task);
+  return liveDashboardTaskOverrides.find((override) =>
+    normalizeText(title).includes(normalizeText(override.titleIncludes)),
+  );
+}
+
+function applyOverride(task: BridgeTask, override?: ManualTaskOverride): CuratedTask {
+  return {
+    ...task,
+    curatedTitle: override?.title ?? presentTitle(task),
+    curatedDetail: override?.detail ?? detailFromTask(task),
+    curatedOwner: override?.owner,
+    curatedVisible: override?.visible ?? true,
+    curatedPinnedRank: override?.pinnedRank,
+    curatedBlocker: override?.blocker,
+  };
+}
+
+function curateTasks(tasks: BridgeTask[]) {
+  return tasks
+    .map((task) => applyOverride(task, overrideForTask(task)))
+    .filter((task) => task.curatedVisible);
+}
+
+function dedupeTasks(tasks: CuratedTask[]) {
   const seen = new Set<string>();
-  const deduped: BridgeTask[] = [];
+  const deduped: CuratedTask[] = [];
 
   for (const task of tasks) {
-    const key = presentTitle(task).trim().toLowerCase();
+    const key = presentCuratedTitle(task).trim().toLowerCase();
     if (!key || seen.has(key)) continue;
     seen.add(key);
     deduped.push(task);
@@ -247,12 +295,15 @@ function dedupeTasks(tasks: BridgeTask[]) {
   return deduped;
 }
 
-function samePhaseTasks(tasks: BridgeTask[], phase: string) {
+function samePhaseTasks(tasks: CuratedTask[], phase: string) {
   return tasks.filter((task) => task.phase === phase);
 }
 
-function isClientOwnedPrompt(task: BridgeTask) {
-  const haystack = normalizeText(`${presentTitle(task)} ${detailFromTask(task)}`);
+function isClientOwnedPrompt(task: CuratedTask) {
+  if (task.curatedOwner === "chris") return true;
+  if (task.curatedOwner === "jesse") return false;
+
+  const haystack = normalizeText(`${presentCuratedTitle(task)} ${presentCuratedDetail(task)}`);
 
   if (task.portalActionRequired) return true;
 
@@ -275,29 +326,44 @@ function isClientOwnedPrompt(task: BridgeTask) {
   return false;
 }
 
-function clientFacingTasks(tasks: BridgeTask[], currentPhase: string) {
+function sortCuratedTasks(tasks: CuratedTask[]) {
+  return [...tasks].sort((left, right) => {
+    const leftPinned = left.curatedPinnedRank ?? Number.MAX_SAFE_INTEGER;
+    const rightPinned = right.curatedPinnedRank ?? Number.MAX_SAFE_INTEGER;
+
+    if (leftPinned !== rightPinned) return leftPinned - rightPinned;
+
+    return sortTasks([left, right])[0] === left ? -1 : 1;
+  });
+}
+
+function clientFacingTasks(tasks: CuratedTask[], currentPhase: string) {
   const phaseTasks = samePhaseTasks(tasks, currentPhase).filter(
     (task) => task.status !== "complete",
   );
 
   const explicitClientTasks = dedupeTasks(
-    sortTasks(phaseTasks.filter((task) => (task.portalVisible || task.portalActionRequired) && isClientOwnedPrompt(task))),
+    sortCuratedTasks(
+      phaseTasks.filter(
+        (task) => (task.portalVisible || task.portalActionRequired) && isClientOwnedPrompt(task),
+      ),
+    ),
   );
 
   if (explicitClientTasks.length) return explicitClientTasks;
 
   return dedupeTasks(
-    sortTasks(phaseTasks.filter((task) => task.portalVisible || task.portalActionRequired)),
+    sortCuratedTasks(phaseTasks.filter((task) => task.portalVisible || task.portalActionRequired)),
   );
 }
 
-function internalTasks(tasks: BridgeTask[], currentPhase: string) {
+function internalTasks(tasks: CuratedTask[], currentPhase: string) {
   const phaseTasks = samePhaseTasks(tasks, currentPhase).filter(
     (task) => task.status !== "complete",
   );
 
   return dedupeTasks(
-    sortTasks(
+    sortCuratedTasks(
       phaseTasks.filter(
         (task) =>
           !isClientOwnedPrompt(task) &&
@@ -307,19 +373,19 @@ function internalTasks(tasks: BridgeTask[], currentPhase: string) {
   );
 }
 
-function recentMovement(tasks: BridgeTask[]) {
+function recentMovement(tasks: CuratedTask[]) {
   return [...tasks]
     .sort((left, right) => new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime())
     .slice(0, 4)
     .map((task) => ({
       text:
         task.status === "complete"
-          ? `${presentTitle(task)} marked complete.`
-          : task.status === "blocked"
-            ? `${presentTitle(task)} is blocked.`
-            : `${presentTitle(task)} is ${task.status.replace("_", " ")}.`,
+          ? `${presentCuratedTitle(task)} marked complete.`
+          : task.status === "blocked" || task.curatedBlocker
+            ? `${presentCuratedTitle(task)} is blocked.`
+            : `${presentCuratedTitle(task)} is ${task.status.replace("_", " ")}.`,
       tone:
-        task.status === "blocked"
+        task.status === "blocked" || task.curatedBlocker
           ? "red"
           : task.status === "complete"
             ? "teal"
@@ -332,17 +398,18 @@ export function buildLiveBridgePayload(
   tasks: BridgeTask[],
   dashboardBaseUrl: string
 ): LiveBridgePayload {
-  const openTasks = tasks.filter((task) => task.status !== "complete");
+  const curatedTasks = curateTasks(tasks);
+  const openTasks = curatedTasks.filter((task) => task.status !== "complete");
   const currentStageIndex = normalizePhaseToSequenceIndex(client.phase);
   const currentPhaseTasks = samePhaseTasks(openTasks, client.phase);
-  const currentPhaseBlocked = sortTasks(
-    currentPhaseTasks.filter((task) => task.status === "blocked"),
+  const currentPhaseBlocked = sortCuratedTasks(
+    currentPhaseTasks.filter((task) => task.status === "blocked" || task.curatedBlocker),
   );
-  const clientOpen = clientFacingTasks(tasks, client.phase);
-  const internalOpen = internalTasks(tasks, client.phase);
+  const clientOpen = clientFacingTasks(curatedTasks, client.phase);
+  const internalOpen = internalTasks(curatedTasks, client.phase);
   const launchCountdown = daysToLaunch(client.goLiveDate);
-  const completed = tasks.filter((task) => task.status === "complete").length;
-  const curatedOpenCount = clientOpen.length + internalOpen.length;
+  const completed = curatedTasks.filter((task) => task.status === "complete").length;
+  const curatedOpenCount = dedupeTasks([...clientOpen, ...internalOpen]).length;
   const currentStageLabel = phaseSequence[currentStageIndex] ?? titleCasePhase(client.phase);
   const nextStageLabel = phaseSequence[Math.min(currentStageIndex + 1, phaseSequence.length - 1)] ?? "Next phase";
 
@@ -361,7 +428,7 @@ export function buildLiveBridgePayload(
       title: String(currentPhaseBlocked.length),
       meta: currentPhaseBlocked.length ? "open - needs resolution" : "none active",
       badge: currentPhaseBlocked.length ? "Needs attention" : undefined,
-      bullets: currentPhaseBlocked.slice(0, 3).map((task) => presentTitle(task)),
+      bullets: currentPhaseBlocked.slice(0, 3).map((task) => presentCuratedTitle(task)),
       tone: currentPhaseBlocked.length ? "red" : "teal",
     },
     {
@@ -392,7 +459,7 @@ export function buildLiveBridgePayload(
     },
     {
       label: "Open Actions",
-      value: `${curatedOpenCount}/${tasks.length}`,
+      value: `${curatedOpenCount}/${curatedTasks.length}`,
       detail: `${completed} done overall`,
       tone: "neutral",
     },
@@ -422,8 +489,8 @@ export function buildLiveBridgePayload(
       count: currentPhaseBlocked.length,
       tone: "red",
       items: currentPhaseBlocked.slice(0, 3).map((task) => ({
-        title: presentTitle(task),
-        detail: detailFromTask(task),
+        title: presentCuratedTitle(task),
+        detail: presentCuratedDetail(task),
         owner: task.assignee,
         initials: initialsFromOwner(task.assignee),
         age: ageFromUpdatedAt(task.updatedAt),
@@ -434,8 +501,8 @@ export function buildLiveBridgePayload(
       count: clientOpen.length,
       tone: "gold",
       items: clientOpen.slice(0, 3).map((task) => ({
-        title: presentTitle(task),
-        detail: detailFromTask(task),
+        title: presentCuratedTitle(task),
+        detail: presentCuratedDetail(task),
         owner: client.name,
         initials: initialsFromOwner(client.name),
         age: ageFromUpdatedAt(task.updatedAt),
@@ -446,8 +513,8 @@ export function buildLiveBridgePayload(
       count: internalOpen.length,
       tone: "teal",
       items: internalOpen.slice(0, 3).map((task) => ({
-        title: presentTitle(task),
-        detail: detailFromTask(task),
+        title: presentCuratedTitle(task),
+        detail: presentCuratedDetail(task),
         owner: task.assignee,
         initials: initialsFromOwner(task.assignee),
         age: ageFromUpdatedAt(task.updatedAt),
@@ -459,16 +526,16 @@ export function buildLiveBridgePayload(
     ...clientOpen.slice(0, 4).map((task) => ({
       id: task.id,
       owner: "chris" as const,
-      title: presentTitle(task),
-      detail: detailFromTask(task),
+      title: presentCuratedTitle(task),
+      detail: presentCuratedDetail(task),
       completed: false,
     })),
     ...internalOpen.slice(0, 4)
       .map((task) => ({
         id: task.id,
         owner: "jesse" as const,
-        title: presentTitle(task),
-        detail: `${task.assignee} · ${detailFromTask(task)}`,
+        title: presentCuratedTitle(task),
+        detail: `${task.assignee} · ${presentCuratedDetail(task)}`,
         completed: false,
       })),
   ];
@@ -484,7 +551,7 @@ export function buildLiveBridgePayload(
     deliveryPipeline,
     outstandingColumns,
     workingPlanItems,
-    latestMovement: recentMovement(tasks),
+    latestMovement: recentMovement(curatedTasks),
     ownerLabels: {
       chris: "Client action items",
       jesse: "RT Digital action items",
