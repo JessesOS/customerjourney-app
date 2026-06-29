@@ -46,6 +46,7 @@ type DriveListedFile = DriveFile & {
 const STATIC_PROVIDER = "static-file";
 const DB_SEED_PROVIDER = "db-seed";
 const GOOGLE_DRIVE_PROVIDER = "google-drive";
+let knowledgeSchemaEnsured = false;
 
 function normalizeSourceStatus(source: KnowledgeSource): KnowledgeSource {
   if (source.status) return source;
@@ -74,6 +75,75 @@ function staticSnapshot(): KnowledgeSnapshot {
 
 function hasDbBinding() {
   return Boolean((env as { DB?: D1Database }).DB);
+}
+
+async function runStatement(statement: string) {
+  const runtimeEnv = env as { DB?: D1Database };
+  if (!runtimeEnv.DB) {
+    throw new Error("Cloudflare D1 binding `DB` is unavailable.");
+  }
+  await runtimeEnv.DB.prepare(statement).run();
+}
+
+async function addColumnIfMissing(statement: string) {
+  try {
+    await runStatement(statement);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (
+      message.includes("duplicate column name") ||
+      message.includes("already exists") ||
+      message.includes("SQLITE_ERROR: duplicate column name")
+    ) {
+      return;
+    }
+    throw error;
+  }
+}
+
+async function ensureKnowledgeSchema() {
+  if (!hasDbBinding() || knowledgeSchemaEnsured) return;
+
+  await runStatement(`CREATE TABLE IF NOT EXISTS knowledge_state (
+    id integer PRIMARY KEY NOT NULL,
+    synced_at text NOT NULL,
+    sync_mode text NOT NULL,
+    source_folder_label text NOT NULL,
+    provider text NOT NULL,
+    last_sync_message text DEFAULT '' NOT NULL,
+    created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
+  )`);
+
+  await runStatement(`CREATE TABLE IF NOT EXISTS knowledge_sources (
+    id text PRIMARY KEY NOT NULL,
+    title text NOT NULL,
+    source text NOT NULL,
+    folder text NOT NULL,
+    kind text NOT NULL,
+    date text,
+    session integer,
+    indexed integer DEFAULT true NOT NULL
+  )`);
+
+  await addColumnIfMissing(`ALTER TABLE knowledge_sources ADD COLUMN status text DEFAULT 'indexed' NOT NULL`);
+  await addColumnIfMissing(`ALTER TABLE knowledge_sources ADD COLUMN mime_type text`);
+  await addColumnIfMissing(`ALTER TABLE knowledge_sources ADD COLUMN note text`);
+
+  await runStatement(`CREATE TABLE IF NOT EXISTS knowledge_chunks (
+    id text PRIMARY KEY NOT NULL,
+    source_id text NOT NULL,
+    title text NOT NULL,
+    source text NOT NULL,
+    text text NOT NULL,
+    kind text NOT NULL,
+    folder text,
+    session integer,
+    date text,
+    aliases text DEFAULT '[]' NOT NULL
+  )`);
+
+  knowledgeSchemaEnsured = true;
 }
 
 function parseAliases(value: string | null | undefined) {
@@ -275,6 +345,7 @@ function coreLocalSources(snapshot: KnowledgeSnapshot) {
 }
 
 async function readDbSnapshot() {
+  await ensureKnowledgeSchema();
   const db = getDb();
   const stateRows = await db.select().from(knowledgeState).limit(1);
   const state = stateRows[0];
@@ -318,6 +389,7 @@ async function readDbSnapshot() {
 }
 
 async function writeSnapshot(snapshot: KnowledgeSnapshot) {
+  await ensureKnowledgeSchema();
   const db = getDb();
   await db.delete(knowledgeChunks);
   await db.delete(knowledgeSources);
@@ -621,6 +693,7 @@ async function buildGoogleDriveSnapshot() {
 
 export async function syncKnowledgeLibrary() {
   if (!hasDbBinding()) return staticSnapshot();
+  await ensureKnowledgeSchema();
 
   if (canUseGoogleDriveSync()) {
     try {
@@ -650,6 +723,7 @@ export async function syncKnowledgeLibrary() {
 
 export async function getKnowledgeSnapshot() {
   if (!hasDbBinding()) return staticSnapshot();
+  await ensureKnowledgeSchema();
 
   try {
     const existing = await readDbSnapshot();
