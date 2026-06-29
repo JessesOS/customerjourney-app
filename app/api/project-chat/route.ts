@@ -414,6 +414,12 @@ function extractCalculatorName(text: string) {
   return null;
 }
 
+function isNoisySummaryText(text: string) {
+  return /\bsummary draft structured for your new document\b|\bcopy and paste this content directly into your file\b|\bstrategy summary\b|\bexecutive overview\b/i.test(
+    text
+  );
+}
+
 function directAnswer(question: string, matches: RetrievedChunk[]) {
   const normalized = question.toLowerCase();
   const top = matches[0];
@@ -530,6 +536,9 @@ function directAnswer(question: string, matches: RetrievedChunk[]) {
       ) ??
       matches.find((chunk) => chunk.session === meetingRequest.number) ??
       top;
+    if (isNoisySummaryText(summaryChunk.text)) {
+      return null;
+    }
     return {
       answer: cleanAnswer(summaryChunk.text, true),
       sources: [
@@ -603,6 +612,20 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
       matches.find((chunk) => chunk.session === meetingRequest.number && chunk.kind === "meeting-summary") ??
       matches.find((chunk) => chunk.session === meetingRequest.number) ??
       matches[0];
+    if (isNoisySummaryText(summaryChunk.text)) {
+      const transcriptChunk =
+        matches.find(
+          (chunk) => chunk.session === meetingRequest.number && chunk.kind === "meeting-transcript"
+        ) ?? matches[0];
+      return {
+        answer: cleanAnswer(transcriptChunk.text, true),
+        sources: matches.map((chunk) => ({
+          title: chunk.title,
+          source: chunk.source,
+        })),
+        mode: "project-search",
+      };
+    }
     return {
       answer: cleanAnswer(summaryChunk.text, true),
       sources: matches.map((chunk) => ({
@@ -665,6 +688,9 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
       matches.find((chunk) => chunk.session === meetingRequest.number && chunk.kind === "meeting-summary") ??
       matches.find((chunk) => chunk.session === meetingRequest.number) ??
       matches[0];
+    if (isNoisySummaryText(summaryChunk.text)) {
+      // Let the model summarize the broader meeting context instead of parroting a dirty wrapper chunk.
+    } else {
     return {
       answer: cleanAnswer(summaryChunk.text, true),
       sources: matches.map((chunk) => ({
@@ -673,6 +699,7 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
       })),
       mode: "project-search",
     };
+    }
   }
   if (meetingRequest?.latest && matches.length) {
     const summaryChunk =
