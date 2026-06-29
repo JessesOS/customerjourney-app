@@ -1224,9 +1224,15 @@ img {
 
 .project-chat {
   bottom: 20px;
+  padding: 0;
   position: fixed;
   right: 18px;
   z-index: 60;
+}
+
+.project-chat.chat-open {
+  bottom: 16px;
+  right: 16px;
 }
 
 .chat-launcher {
@@ -1329,45 +1335,66 @@ img {
 }
 
 .chat-shell {
-  max-height: min(78vh, 820px);
+  display: flex;
+  flex-direction: column;
+  height: min(720px, calc(100vh - 32px));
+  max-height: calc(100vh - 32px);
   overflow: hidden;
-  width: min(500px, calc(100vw - 40px));
+  width: min(520px, calc(100vw - 32px));
 }
 
 .chat-panel-header {
   background: linear-gradient(180deg, rgba(17, 51, 46, 0.96), rgba(12, 18, 15, 0.96));
   border-bottom: 1px solid rgba(255, 253, 250, 0.08);
   display: flex;
-  gap: 20px;
+  flex: 0 0 auto;
+  gap: 14px;
   justify-content: space-between;
-  padding: 24px;
+  padding: 18px 20px;
+}
+
+.chat-panel-header p {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .chat-panel-header h2 {
-  font-size: 38px;
+  font-size: 30px;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  max-width: 300px;
+  margin-top: 6px;
 }
 
 .chat-panel-header span {
   display: block;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-top: 10px;
-  max-width: 360px;
+  font-size: 13px;
+  line-height: 1.42;
+  margin-top: 8px;
+  max-width: 310px;
 }
 
 .chat-knowledge-status {
-  margin-top: 20px;
+  margin-top: 12px;
 }
 
 .chat-knowledge-status strong {
   color: #fff0d1;
   display: block;
-  font-size: 18px;
+  font-size: 14px;
+}
+
+.chat-knowledge-status span {
+  font-size: 12px;
+  line-height: 1.35;
 }
 
 .chat-header-actions {
   display: flex;
-  gap: 10px;
+  flex: 0 0 auto;
+  gap: 8px;
 }
 
 .chat-refresh-button,
@@ -1375,36 +1402,39 @@ img {
   align-items: center;
   background: rgba(255, 253, 250, 0.06);
   display: inline-flex;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
-  height: 44px;
+  height: 38px;
   justify-content: center;
-  min-width: 44px;
-  padding: 0 14px;
+  min-width: 38px;
+  padding: 0 12px;
 }
 
 .chat-close-button {
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1;
-  width: 44px;
+  width: 38px;
 }
 
 .chat-messages {
   background: #f4f0e7;
   display: grid;
-  gap: 18px;
-  max-height: 42vh;
+  flex: 1 1 auto;
+  gap: 14px;
+  min-height: 0;
   overflow: auto;
-  padding: 24px 24px 12px;
+  padding: 18px 20px 12px;
 }
 
 .chat-message {
-  border-radius: 18px;
+  border-radius: 16px;
   max-width: 90%;
-  padding: 16px 18px;
+  padding: 14px 16px;
 }
 
 .chat-message p {
+  font-size: 15px;
+  line-height: 1.42;
   margin: 0;
 }
 
@@ -1449,9 +1479,12 @@ img {
   background: #f4f0e7;
   border-top: 1px solid rgba(9, 11, 9, 0.08);
   display: flex;
+  flex: 0 0 auto;
   flex-wrap: wrap;
-  gap: 10px;
-  padding: 0 24px 18px;
+  gap: 8px;
+  max-height: 110px;
+  overflow: auto;
+  padding: 12px 20px;
 }
 
 .starter-questions button {
@@ -1461,16 +1494,18 @@ img {
 .chat-form {
   background: #f4f0e7;
   border-top: 1px solid rgba(9, 11, 9, 0.12);
-  padding: 20px 24px 24px;
+  flex: 0 0 auto;
+  padding: 14px 20px 18px;
 }
 
 .chat-form input {
   background: #fcfaf6;
   border: 1px solid rgba(9, 11, 9, 0.12);
-  border-radius: 16px;
+  border-radius: 14px;
   color: #181815;
-  min-height: 56px;
-  padding: 0 16px;
+  font-size: 15px;
+  min-height: 48px;
+  padding: 0 14px;
   width: 100%;
 }
 
@@ -1478,10 +1513,10 @@ img {
   background: #8d8a83;
   border-color: #8d8a83;
   flex: 0 0 auto;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  min-height: 56px;
-  width: 94px;
+  min-height: 48px;
+  width: 76px;
 }
 
 @media (max-width: 1280px) {
@@ -1537,7 +1572,14 @@ img {
   }
 
   .chat-shell {
-    width: min(100vw - 24px, 560px);
+    height: calc(100vh - 24px);
+    max-height: calc(100vh - 24px);
+    width: calc(100vw - 24px);
+  }
+
+  .project-chat.chat-open {
+    bottom: 12px;
+    right: 12px;
   }
 }
 
@@ -1587,11 +1629,11 @@ img {
   }
 
   .chat-panel-header {
-    padding: 22px;
+    padding: 16px;
   }
 
   .chat-panel-header h2 {
-    font-size: 38px;
+    font-size: 28px;
   }
 
   .chat-header-actions {
