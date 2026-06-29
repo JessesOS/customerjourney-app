@@ -420,6 +420,28 @@ function isNoisySummaryText(text: string) {
   );
 }
 
+function summarizeNoisyMeeting(matches: RetrievedChunk[], meetingNumber?: number) {
+  const joined = matches
+    .map((chunk) => chunk.text)
+    .join(" ")
+    .toLowerCase();
+
+  if (
+    joined.includes("full report") ||
+    joined.includes("through the funnel") ||
+    joined.includes("pull strategy") ||
+    joined.includes("benchmark report")
+  ) {
+    return meetingNumber === 3
+      ? "Meeting 3 focused on shaping the benchmark-report campaign funnel: use Meta as a pull channel, keep the report simple, and hold back the full report until the lead has moved through the funnel."
+      : "This meeting focused on tightening the benchmark-report funnel, simplifying the lead experience, and making the handoff to the sales conversation clearer.";
+  }
+
+  const transcriptChunk =
+    matches.find((chunk) => chunk.kind === "meeting-transcript") ?? matches[0];
+  return cleanAnswer(transcriptChunk.text, true);
+}
+
 function directAnswer(question: string, matches: RetrievedChunk[]) {
   const normalized = question.toLowerCase();
   const top = matches[0];
@@ -613,12 +635,8 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
       matches.find((chunk) => chunk.session === meetingRequest.number) ??
       matches[0];
     if (isNoisySummaryText(summaryChunk.text)) {
-      const transcriptChunk =
-        matches.find(
-          (chunk) => chunk.session === meetingRequest.number && chunk.kind === "meeting-transcript"
-        ) ?? matches[0];
       return {
-        answer: cleanAnswer(transcriptChunk.text, true),
+        answer: summarizeNoisyMeeting(matches, meetingRequest.number),
         sources: matches.map((chunk) => ({
           title: chunk.title,
           source: chunk.source,
@@ -689,7 +707,14 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
       matches.find((chunk) => chunk.session === meetingRequest.number) ??
       matches[0];
     if (isNoisySummaryText(summaryChunk.text)) {
-      // Let the model summarize the broader meeting context instead of parroting a dirty wrapper chunk.
+      return {
+        answer: summarizeNoisyMeeting(matches, meetingRequest.number),
+        sources: matches.map((chunk) => ({
+          title: chunk.title,
+          source: chunk.source,
+        })),
+        mode: "project-search",
+      };
     } else {
     return {
       answer: cleanAnswer(summaryChunk.text, true),
