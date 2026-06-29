@@ -1244,10 +1244,10 @@ img {
     0 16px 30px rgba(0, 0, 0, 0.28);
   cursor: pointer;
   display: inline-flex;
-  gap: 14px;
-  min-height: 64px;
-  min-width: 420px;
-  padding: 0 24px 0 18px;
+  gap: 10px;
+  min-height: 48px;
+  min-width: 286px;
+  padding: 0 18px 0 14px;
   color: var(--paper);
   transition:
     transform 180ms ease,
@@ -1268,9 +1268,9 @@ img {
   background: rgba(52, 207, 195, 0.12);
   border-radius: 999px;
   display: inline-flex;
-  height: 36px;
+  height: 28px;
   justify-content: center;
-  width: 36px;
+  width: 28px;
 }
 
 .chat-launcher-dot {
@@ -1278,16 +1278,16 @@ img {
   border-radius: 999px;
   box-shadow: 0 0 18px rgba(52, 207, 195, 0.5);
   display: inline-flex;
-  height: 17px;
-  width: 17px;
+  height: 11px;
+  width: 11px;
 }
 
 .chat-launcher-copy strong {
   color: var(--paper);
   font-family: var(--font-ibm-plex-mono), monospace;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   line-height: 1;
   text-transform: uppercase;
   -webkit-text-fill-color: currentColor;
@@ -1329,9 +1329,9 @@ img {
 }
 
 .chat-shell {
-  max-height: min(78vh, 920px);
+  max-height: min(78vh, 820px);
   overflow: hidden;
-  width: min(560px, calc(100vw - 40px));
+  width: min(500px, calc(100vw - 40px));
 }
 
 .chat-panel-header {
@@ -1340,18 +1340,18 @@ img {
   display: flex;
   gap: 20px;
   justify-content: space-between;
-  padding: 28px;
+  padding: 24px;
 }
 
 .chat-panel-header h2 {
-  font-size: 52px;
+  font-size: 38px;
 }
 
 .chat-panel-header span {
   display: block;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
-  margin-top: 14px;
+  margin-top: 10px;
   max-width: 360px;
 }
 
@@ -1399,9 +1399,9 @@ img {
 }
 
 .chat-message {
-  border-radius: 22px;
+  border-radius: 18px;
   max-width: 90%;
-  padding: 18px 20px;
+  padding: 16px 18px;
 }
 
 .chat-message p {
@@ -1414,10 +1414,18 @@ img {
   justify-self: start;
 }
 
+.chat-assistant p {
+  color: #181815;
+}
+
 .chat-user {
   background: #121212;
   color: var(--paper);
   justify-self: end;
+}
+
+.chat-user p {
+  color: var(--paper);
 }
 
 .chat-sources {
@@ -1569,13 +1577,13 @@ img {
   }
 
   .chat-launcher-copy {
-    min-height: 58px;
-    min-width: min(100vw - 40px, 380px);
-    padding: 0 18px 0 16px;
+    min-height: 46px;
+    min-width: min(100vw - 40px, 284px);
+    padding: 0 16px 0 12px;
   }
 
   .chat-launcher-copy strong {
-    font-size: 15px;
+    font-size: 12px;
   }
 
   .chat-panel-header {

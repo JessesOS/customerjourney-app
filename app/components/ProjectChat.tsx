@@ -33,7 +33,7 @@ export function ProjectChat() {
     {
       role: "assistant",
       content:
-        "Ask me anything about the Strategize / McBreen pilot: offer, system map, working plan, campaign angles, qualification, or next actions.",
+        "Ask me anything about the Strategize / McBreen client dashboard: offer, system map, working plan, campaign angles, qualification, or next actions.",
     },
   ]);
   const [question, setQuestion] = useState("");
