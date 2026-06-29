@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ProjectChat } from "./components/ProjectChat";
+import type { LiveBridgePayload } from "@/lib/liveScaleBridge";
 
 type TaskOwner = "chris" | "jesse";
 
@@ -419,13 +420,49 @@ const benchmarkNextSteps = [
 
 export default function Home() {
   const [tasks, setTasks] = useState(initialTasks);
+  const [liveBridge, setLiveBridge] = useState<LiveBridgePayload | null>(null);
+
+  const activeTasks = liveBridge?.workingPlanItems ?? tasks;
+  const statusCardsActive = liveBridge?.statusCards ?? statusCards;
+  const summaryMetricsActive = liveBridge?.summaryMetrics ?? summaryMetrics;
+  const deliveryPipelineActive = liveBridge?.deliveryPipeline ?? deliveryPipeline;
+  const outstandingColumnsActive = liveBridge?.outstandingColumns ?? outstandingColumns;
+  const latestMovementActive = liveBridge?.latestMovement ?? latestMovement;
+  const updatedStampActive = liveBridge?.updatedStamp ?? "Updated today · 28 Jun 2026";
+  const topbarBadgeActive = liveBridge?.topbarBadge ?? "AT RISK · 3 BLOCKERS";
+  const ownerLabels = liveBridge?.ownerLabels ?? {
+    chris: "Chris action items",
+    jesse: "Jesse action items",
+  };
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadLiveBridge() {
+      try {
+        const response = await fetch("/api/live-scale-bridge", { cache: "no-store" });
+        if (!response.ok) return;
+        const payload = (await response.json()) as { ok?: boolean; bridge?: LiveBridgePayload };
+        if (payload.ok && payload.bridge && isMounted) {
+          setLiveBridge(payload.bridge);
+        }
+      } catch {
+        // Keep the handcrafted fallback UI when the live bridge is unavailable.
+      }
+    }
+
+    void loadLiveBridge();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const taskGroups = useMemo(
     () => ({
-      chris: tasks.filter((task) => task.owner === "chris"),
-      jesse: tasks.filter((task) => task.owner === "jesse"),
+      chris: activeTasks.filter((task) => task.owner === "chris"),
+      jesse: activeTasks.filter((task) => task.owner === "jesse"),
     }),
-    [tasks],
+    [activeTasks],
   );
 
   function toggleTask(id: string) {
@@ -472,7 +509,7 @@ export default function Home() {
           </button>
           <a className="nav-pill nav-pill-gold" href="#status">
             <span className="pill-dot" />
-            At Risk · 3 Blockers
+            {topbarBadgeActive}
           </a>
         </div>
       </header>
@@ -482,11 +519,11 @@ export default function Home() {
             <p className="section-kicker">Live Status · Client Dashboard</p>
             <h2>Where the project stands, right now.</h2>
           </div>
-          <span className="updated-stamp">Updated today · 28 Jun 2026</span>
+          <span className="updated-stamp">{updatedStampActive}</span>
         </div>
 
         <div className="status-grid">
-          {statusCards.map((card) => (
+          {statusCardsActive.map((card) => (
             <article className={`status-card status-${card.tone}`} key={card.label}>
               <div className="status-card-top">
                 <p>{card.label}</p>
@@ -535,7 +572,7 @@ export default function Home() {
         </div>
 
         <div className="summary-metric-grid">
-          {summaryMetrics.map((metric) => (
+          {summaryMetricsActive.map((metric) => (
             <article className={`summary-card summary-${metric.tone}`} key={metric.label}>
               <p>{metric.label}</p>
               <strong>{metric.value}</strong>
@@ -547,7 +584,7 @@ export default function Home() {
         <div className="pipeline-wrap">
           <p className="pipeline-label">Delivery Pipeline</p>
           <div className="pipeline-row">
-            {deliveryPipeline.map((stage) => (
+            {deliveryPipelineActive.map((stage) => (
               <div className={`pipeline-step pipeline-${stage.status}`} key={stage.label}>
                 <span className="pipeline-bullet" />
                 <span>{stage.label}</span>
@@ -627,7 +664,7 @@ export default function Home() {
         </div>
 
         <div className="outstanding-grid">
-          {outstandingColumns.map((column) => (
+          {outstandingColumnsActive.map((column) => (
             <article className={`outstanding-column tone-${column.tone}`} key={column.title}>
               <div className="outstanding-column-head">
                 <h3>{column.title}</h3>
@@ -669,7 +706,7 @@ export default function Home() {
             return (
               <article className="task-panel" key={owner}>
                 <div className="task-panel-head">
-                  <h3>{owner === "chris" ? "Chris action items" : "Jesse action items"}</h3>
+                  <h3>{owner === "chris" ? ownerLabels.chris : ownerLabels.jesse}</h3>
                   <span>
                     {complete}/{items.length} complete
                   </span>
@@ -683,6 +720,7 @@ export default function Home() {
                     >
                       <input
                         checked={item.completed}
+                        disabled={Boolean(liveBridge)}
                         onChange={() => toggleTask(item.id)}
                         type="checkbox"
                       />
@@ -746,7 +784,7 @@ export default function Home() {
             </div>
 
             <div className="movement-list">
-              {latestMovement.map((item) => (
+              {latestMovementActive.map((item) => (
                 <article className={`movement-card movement-${item.tone}`} key={item.text}>
                   <span className="movement-dot" />
                   <p>{item.text}</p>

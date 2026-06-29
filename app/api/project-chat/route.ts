@@ -23,10 +23,50 @@ type ContractRequest = {
 };
 
 const stopWords = new Set([
+  "a",
+  "an",
   "about",
+  "all",
+  "am",
+  "and",
+  "any",
   "after",
   "again",
   "anything",
+  "are",
+  "at",
+  "be",
+  "both",
+  "can",
+  "client",
+  "dashboard",
+  "for",
+  "give",
+  "got",
+  "how",
+  "i",
+  "if",
+  "in",
+  "into",
+  "it",
+  "its",
+  "just",
+  "last",
+  "latest",
+  "main",
+  "me",
+  "my",
+  "of",
+  "on",
+  "or",
+  "our",
+  "please",
+  "points",
+  "quick",
+  "question",
+  "right",
+  "so",
+  "summary",
   "what",
   "when",
   "where",
@@ -39,8 +79,18 @@ const stopWords = new Set([
   "there",
   "their",
   "project",
-  "please",
+  "those",
+  "to",
+  "us",
+  "was",
+  "we",
+  "will",
+  "you",
 ]);
+
+function normalizeText(input: string) {
+  return input.toLowerCase().replace(/[^a-z0-9$]+/g, " ").trim();
+}
 
 function detectMeetingRequest(input: string): MeetingRequest | null {
   const normalized = input.toLowerCase();
@@ -59,11 +109,48 @@ function detectMeetingRequest(input: string): MeetingRequest | null {
 }
 
 function keywords(input: string) {
-  return input
-    .toLowerCase()
-    .replace(/[^a-z0-9$]+/g, " ")
+  return normalizeText(input)
     .split(/\s+/)
     .filter((word) => word.length > 2 && !stopWords.has(word));
+}
+
+function countOccurrences(haystack: string, needle: string) {
+  if (!needle) return 0;
+  const matches = haystack.match(new RegExp(needle.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"));
+  return matches?.length ?? 0;
+}
+
+function unique<T>(items: T[]) {
+  return [...new Set(items)];
+}
+
+function detectTopicIntent(input: string) {
+  const normalized = input.toLowerCase();
+  return {
+    asksAboutOffer: /\boffer\b|\bhook\b|\bangle\b|\bstrongest direction\b/.test(normalized),
+    asksAboutActions: /\baction items\b|\bnext steps\b|\bwhat happens next\b|\bto do\b/.test(normalized),
+    asksAboutSystem:
+      /\bsystem\b|\bfunnel\b|\blead to booked consult\b|\bbooked consult\b|\bqualification\b/.test(normalized),
+    asksAboutContract:
+      /\bcontract\b|\bagreement\b|\bterms\b|\bobligation\b|\bobligations\b|\bcancellation\b|\bnotice\b|\brefund\b/.test(
+        normalized
+      ),
+  };
+}
+
+function trimMatches(matches: RetrievedChunk[], limit = 4) {
+  const bySource = new Map<string, number>();
+  const result: RetrievedChunk[] = [];
+
+  for (const match of matches) {
+    const seen = bySource.get(match.sourceId) ?? 0;
+    if (seen >= 2) continue;
+    bySource.set(match.sourceId, seen + 1);
+    result.push(match);
+    if (result.length >= limit) break;
+  }
+
+  return result;
 }
 
 function retrieveRelevantSources(question: string, snapshot: KnowledgeSnapshot) {
@@ -124,6 +211,7 @@ function retrieveContext(question: string, snapshot: KnowledgeSnapshot) {
   const terms = keywords(question);
   const meetingRequest = detectMeetingRequest(question);
   const contractRequest = detectContractRequest(question);
+  const topicIntent = detectTopicIntent(question);
   const latestSession = latestMeetingSession(snapshot);
   const wantsTranscript = /\btranscript\b/.test(question.toLowerCase());
   const pool = contractRequest.asksAboutContract
@@ -131,15 +219,23 @@ function retrieveContext(question: string, snapshot: KnowledgeSnapshot) {
     : snapshot.chunks;
   const scored = pool
     .map((chunk) => {
-      const haystack = `${chunk.title} ${chunk.source} ${chunk.text}`.toLowerCase();
-      const aliasText = (chunk.aliases ?? []).join(" ").toLowerCase();
-      const searchable = `${haystack} ${aliasText}`;
+      const titleText = normalizeText(chunk.title);
+      const sourceText = normalizeText(chunk.source);
+      const bodyText = normalizeText(chunk.text);
+      const aliasText = normalizeText((chunk.aliases ?? []).join(" "));
+      const searchable = `${titleText} ${sourceText} ${bodyText} ${aliasText}`;
       let score = terms.reduce((total, term) => {
-        const direct = haystack.includes(term) ? 3 : 0;
-        const aliasDirect = aliasText.includes(term) ? 2 : 0;
-        const partial = searchable.split(term).length - 1;
-        return total + direct + aliasDirect + partial;
+        const titleHits = countOccurrences(titleText, term) * 8;
+        const sourceHits = countOccurrences(sourceText, term) * 6;
+        const aliasHits = countOccurrences(aliasText, term) * 10;
+        const bodyHits = countOccurrences(bodyText, term) * 3;
+        const exactTitle = titleText.includes(term) ? 4 : 0;
+        const exactAlias = aliasText.includes(term) ? 5 : 0;
+        return total + titleHits + sourceHits + aliasHits + bodyHits + exactTitle + exactAlias;
       }, 0);
+      const matchedTerms = unique(terms.filter((term) => searchable.includes(term))).length;
+      score += matchedTerms * 4;
+
       if (meetingRequest?.number !== undefined) {
         if (chunk.session === meetingRequest.number) {
           score += 25;
@@ -163,14 +259,38 @@ function retrieveContext(question: string, snapshot: KnowledgeSnapshot) {
       if (meetingRequest && searchable.includes(meetingRequest.raw ?? "")) {
         score += 8;
       }
+      if (topicIntent.asksAboutActions) {
+        if (chunk.kind === "working-plan") score += 30;
+        if (chunk.kind === "meeting-summary") score += 10;
+        if (aliasText.includes("action items") || titleText.includes("action")) score += 15;
+      }
+      if (topicIntent.asksAboutSystem) {
+        if (chunk.kind === "system") score += 24;
+        if (aliasText.includes("lead to booked consult") || aliasText.includes("system map")) score += 16;
+      }
+      if (topicIntent.asksAboutOffer) {
+        if (chunk.kind === "meeting-summary" || chunk.kind === "meeting-transcript") score += 18;
+        if (
+          aliasText.includes("offer") ||
+          aliasText.includes("hook") ||
+          bodyText.includes("benchmark report") ||
+          bodyText.includes("profit leakage")
+        ) {
+          score += 14;
+        }
+      }
       if (contractRequest.asksAboutContract) {
         if (isContractLikeChunk(chunk)) score += 20;
         if (contractRequest.asksAboutFinancials) {
           if (
+            searchable.includes("monthly fee") ||
+            searchable.includes("setup pricing") ||
+            searchable.includes("full setup price") ||
             searchable.includes("minimum term") ||
             searchable.includes("notice") ||
             searchable.includes("refund") ||
-            searchable.includes("no-refund")
+            searchable.includes("no refund") ||
+            searchable.includes("gst")
           ) {
             score += 15;
           }
@@ -203,20 +323,23 @@ function retrieveContext(question: string, snapshot: KnowledgeSnapshot) {
                   : 0;
           return bPriority - aPriority;
         })
-        .slice(0, 3);
+        .slice(0, 5);
     }
   }
 
-  const matches = scored.filter((chunk) => chunk.score > 0).slice(0, 5);
+  const matches = trimMatches(scored.filter((chunk) => chunk.score >= 8), 5);
   if (meetingRequest?.number !== undefined) {
-    const meetingMatches = scored.filter((chunk) => chunk.session === meetingRequest.number).slice(0, 3);
+    const meetingMatches = trimMatches(
+      scored.filter((chunk) => chunk.session === meetingRequest.number && chunk.score >= 4),
+      4
+    );
     if (meetingMatches.length) return meetingMatches;
     return [];
   }
   if (contractRequest.asksAboutContract) {
     return matches;
   }
-  return matches.length ? matches : snapshot.chunks.slice(0, 5);
+  return matches;
 }
 
 function isDirectQuestion(question: string) {
@@ -340,6 +463,18 @@ function fallbackAnswer(question: string, snapshot: KnowledgeSnapshot) {
     .map((chunk) => `${chunk.title}: ${chunk.text}`)
     .join("\n\n");
 
+  if (!summary) {
+    return {
+      answer:
+        "I do not have a strong enough indexed match for that yet. I would rather not guess. Try asking with the meeting number, document type, or topic more explicitly.",
+      sources: relevantSources.map((source) => ({
+        title: source.title,
+        source: source.source,
+      })),
+      mode: "project-search",
+    };
+  }
+
   return {
     answer: `Based on the project knowledge I have so far:\n\n${summary}\n\nAdd more source notes or documents and I can answer with a deeper project memory.`,
     sources: matches.map((chunk) => ({
@@ -373,6 +508,10 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
     .map((chunk) => `[${chunk.title} | ${chunk.source}]\n${chunk.text}`)
     .join("\n\n");
 
+  if (!context) {
+    return fallbackAnswer(question, snapshot);
+  }
+
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
     headers: {
@@ -385,12 +524,12 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
         {
           role: "system",
           content:
-            "You are the AI project brain for the Strategize / Chris McBreen Canterbury pilot. Answer only from the supplied project context unless clearly labelling a recommendation as an inference. Answer the current user question directly. Do not repeat or summarize the previous answer unless the new question clearly asks for it. For simple factual follow-ups, lead with the exact answer in one or two sentences.",
+            "You are the AI project brain for the Strategize / Chris McBreen client dashboard. Answer only from the supplied project context unless clearly labelling a recommendation as an inference. Answer the current user question directly, using the fewest words needed. Do not repeat previous answers. Do not quote raw chunk labels like 'Part 3' unless the user asks for sources. If the context is insufficient, say so plainly instead of guessing. For factual follow-ups, lead with the exact answer in one or two sentences, then add at most three short bullets if helpful.",
         },
         {
           role: "user",
           content: `Project context:\n${context}\n\nRecent chat:\n${messages
-            .slice(-6)
+            .slice(-4)
             .map((message) => `${message.role}: ${message.content}`)
             .join("\n")}\n\nQuestion: ${question}`,
         },

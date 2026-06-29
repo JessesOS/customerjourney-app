@@ -1328,6 +1328,11 @@ img {
   box-shadow: 0 0 18px rgba(52, 207, 195, 0.45);
 }
 
+.movement-gold .movement-dot {
+  background: var(--gold);
+  box-shadow: 0 0 18px rgba(241, 188, 69, 0.35);
+}
+
 .movement-red .movement-dot {
   background: var(--red);
   box-shadow: 0 0 18px rgba(255, 110, 96, 0.38);
