@@ -67,6 +67,50 @@ const deliveryPipeline = [
   { label: "Optimise", status: "later" },
 ];
 
+const qualifierQuestions = [
+  {
+    label: "Revenue",
+    question: "What's your rough annual revenue?",
+    options: ["Under $200K", "$200K-$500K", "$500K-$1M", "$1M-$2M", "$2M+"],
+  },
+  {
+    label: "Team Size",
+    question: "How many staff do you currently have, including yourself?",
+    options: ["Solo operator", "2 staff", "3-5 staff", "6-10 staff", "10+ staff"],
+  },
+  {
+    label: "Location",
+    question: "Where's the business based?",
+    options: ["Christchurch", "Canterbury", "Other NZ region"],
+  },
+  {
+    label: "Existing Coach",
+    question: "Are you currently working with a business coach or advisor?",
+    options: ["Yes", "No"],
+  },
+];
+
+const qualificationRoutes = [
+  {
+    label: "High Quality",
+    detail: "$1M+ revenue and 3+ staff",
+    action: "Priority callback in 5-10 minutes",
+    tone: "teal",
+  },
+  {
+    label: "Mid Tier",
+    detail: "$500K-$1M revenue",
+    action: "Standard pipeline and strategy-session path",
+    tone: "gold",
+  },
+  {
+    label: "Low Quality",
+    detail: "Under $500K or solo operator",
+    action: "Nurture sequence, resources, later retargeting",
+    tone: "red",
+  },
+];
+
 const outstandingColumns = [
   {
     title: "Blocking Now",
@@ -510,6 +554,40 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          <aside className="qualifier-drop" aria-label="Onboarding qualification questions">
+            <div className="qualifier-drop-head">
+              <div>
+                <p>Onboarding Qualifier</p>
+                <h3>Clear questions before a booked consult.</h3>
+              </div>
+              <span>AI qualification layer</span>
+            </div>
+
+            <div className="qualifier-grid">
+              {qualifierQuestions.map((item) => (
+                <article className="qualifier-card" key={item.label}>
+                  <span>{item.label}</span>
+                  <strong>{item.question}</strong>
+                  <div className="qualifier-options">
+                    {item.options.map((option) => (
+                      <em key={option}>{option}</em>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="qualification-routes">
+              {qualificationRoutes.map((route) => (
+                <article className={`route-card route-${route.tone}`} key={route.label}>
+                  <span>{route.label}</span>
+                  <strong>{route.detail}</strong>
+                  <p>{route.action}</p>
+                </article>
+              ))}
+            </div>
+          </aside>
         </div>
       </section>
 

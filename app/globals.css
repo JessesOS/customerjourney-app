@@ -635,6 +635,7 @@ img {
 
 .pipeline-wrap {
   margin-top: 24px;
+  position: relative;
 }
 
 .pipeline-label {
@@ -703,6 +704,188 @@ img {
 .pipeline-later {
   border: 1px solid rgba(255, 253, 250, 0.08);
   color: rgba(255, 253, 250, 0.52);
+}
+
+.qualifier-drop {
+  background:
+    linear-gradient(180deg, rgba(18, 39, 35, 0.96), rgba(15, 17, 14, 0.94)),
+    rgba(20, 22, 18, 0.9);
+  border: 1px solid rgba(52, 207, 195, 0.24);
+  border-radius: 22px;
+  box-shadow:
+    inset 0 0 0 1px rgba(52, 207, 195, 0.08),
+    0 24px 52px rgba(0, 0, 0, 0.26);
+  margin-left: calc((100% / 7) + 8px);
+  margin-top: 18px;
+  max-width: calc((100% / 7) * 5.9);
+  padding: 22px;
+  position: relative;
+}
+
+.qualifier-drop::before {
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-bottom: 14px solid rgba(52, 207, 195, 0.24);
+  content: "";
+  left: 12%;
+  position: absolute;
+  top: -14px;
+}
+
+.qualifier-drop::after {
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 12px solid rgba(18, 39, 35, 0.96);
+  content: "";
+  left: calc(12% + 2px);
+  position: absolute;
+  top: -11px;
+}
+
+.qualifier-drop-head {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.qualifier-drop-head p,
+.qualifier-drop-head span,
+.qualifier-card span,
+.route-card span {
+  font-family: var(--font-ibm-plex-mono), monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.qualifier-drop-head p {
+  color: var(--teal);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  margin: 0 0 8px;
+}
+
+.qualifier-drop-head h3 {
+  font-size: 28px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0;
+}
+
+.qualifier-drop-head span {
+  border: 1px solid rgba(52, 207, 195, 0.28);
+  border-radius: 999px;
+  color: #bdeae4;
+  font-size: 12px;
+  padding: 8px 12px;
+  white-space: nowrap;
+}
+
+.qualifier-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.qualifier-card {
+  background: rgba(255, 253, 250, 0.04);
+  border: 1px solid rgba(255, 253, 250, 0.09);
+  border-radius: 16px;
+  min-height: 168px;
+  padding: 16px;
+}
+
+.qualifier-card span {
+  color: var(--gold);
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+}
+
+.qualifier-card strong {
+  color: var(--paper);
+  display: block;
+  font-size: 16px;
+  line-height: 1.22;
+}
+
+.qualifier-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.qualifier-options em {
+  background: rgba(252, 250, 246, 0.07);
+  border: 1px solid rgba(252, 250, 246, 0.08);
+  border-radius: 999px;
+  color: var(--muted-strong);
+  font-size: 11px;
+  font-style: normal;
+  line-height: 1;
+  padding: 7px 8px;
+}
+
+.qualification-routes {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 14px;
+}
+
+.route-card {
+  background: rgba(255, 253, 250, 0.035);
+  border: 1px solid rgba(255, 253, 250, 0.09);
+  border-radius: 16px;
+  padding: 14px 16px;
+}
+
+.route-card span {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  margin-bottom: 8px;
+}
+
+.route-card strong {
+  color: var(--paper);
+  display: block;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.route-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.42;
+  margin: 8px 0 0;
+}
+
+.route-teal {
+  border-color: rgba(52, 207, 195, 0.26);
+}
+
+.route-teal span {
+  color: var(--teal);
+}
+
+.route-gold {
+  border-color: rgba(229, 179, 74, 0.3);
+}
+
+.route-gold span {
+  color: var(--gold);
+}
+
+.route-red {
+  border-color: rgba(255, 110, 96, 0.26);
+}
+
+.route-red span {
+  color: var(--red);
 }
 
 .outstanding-grid,
@@ -1880,6 +2063,25 @@ img {
   .funnel-stage-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .qualifier-drop {
+    margin-left: 0;
+    max-width: none;
+  }
+
+  .qualifier-drop::before,
+  .qualifier-drop::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .qualifier-drop::after {
+    left: calc(50% + 2px);
+  }
+
+  .qualifier-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 960px) {
@@ -1909,6 +2111,20 @@ img {
     clip-path: none;
     border-radius: 18px;
     min-height: 60px;
+  }
+
+  .qualifier-drop {
+    padding: 18px;
+  }
+
+  .qualifier-drop-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .qualifier-grid,
+  .qualification-routes {
+    grid-template-columns: 1fr;
   }
 
   .section-header-inline,
