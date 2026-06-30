@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Strategize Savings Score</title>
+    <meta
+      name="description"
+      content="A simple guided scorecard for established New Zealand businesses to check revenue leakage and savings opportunities."
+    />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="score-shell">
+      <section class="intro-screen is-active" data-screen="intro">
+        <header class="brand-row">
+          <img src="./strategize-transparent.png" alt="Strategize" />
+          <span>Business Savings Score</span>
+        </header>
+
+        <div class="intro-layout">
+          <div class="intro-copy">
+            <p class="small-label">Free 60-second check</p>
+            <h1>Are you leaving profit on the table?</h1>
+            <p>
+              Answer a few quick questions and see whether your business looks
+              like a strong fit for a Strategize savings and revenue review.
+            </p>
+            <button class="primary-button" type="button" data-start>
+              Start the scorecard
+            </button>
+          </div>
+
+          <aside class="score-preview" aria-label="Scorecard preview">
+            <div class="dial">
+              <span>Fit</span>
+              <strong>?</strong>
+            </div>
+            <ul>
+              <li>Revenue leakage</li>
+              <li>Staff cost pressure</li>
+              <li>Buying group savings</li>
+              <li>Coach-fit check</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="quiz-screen" data-screen="quiz" aria-live="polite">
+        <header class="quiz-header">
+          <button class="ghost-button" type="button" data-back>Back</button>
+          <div class="progress-wrap" aria-label="Scorecard progress">
+            <div class="progress-meta">
+              <span id="step-label">Question 1 of 5</span>
+              <strong id="progress-percent">20%</strong>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar" id="progress-bar"></div>
+            </div>
+          </div>
+        </header>
+
+        <div class="question-panel">
+          <p class="small-label" id="question-kicker">Revenue</p>
+          <h2 id="question-title">How much revenue are you doing each year?</h2>
+          <p id="question-help">
+            This gives a quick read on whether there is enough operating scale
+            for a useful review.
+          </p>
+          <div class="answer-list" id="answer-list"></div>
+        </div>
+      </section>
+
+      <section class="result-screen" data-screen="result">
+        <header class="brand-row compact">
+          <img src="./strategize-transparent.png" alt="Strategize" />
+          <span>Your Savings Score</span>
+        </header>
+
+        <div class="result-layout">
+          <div class="result-summary">
+            <div class="result-meter">
+              <span id="result-score">82</span>
+              <small>/100</small>
+            </div>
+            <p class="small-label" id="result-band">Strong fit</p>
+            <h2 id="result-title">You look like a strong fit for a review.</h2>
+            <p id="result-copy">
+              Your answers suggest there may be meaningful savings or missed
+              revenue worth checking with a strategist.
+            </p>
+            <button class="ghost-button dark" type="button" data-restart>
+              Retake scorecard
+            </button>
+          </div>
+
+          <form class="lead-card">
+            <h3>Get the next step</h3>
+            <p>
+              Leave your details and the team can route you to the right local
+              strategist for follow-up.
+            </p>
+            <label>
+              Name
+              <input autocomplete="name" name="name" placeholder="Your name" />
+            </label>
+            <label>
+              Phone
+              <input autocomplete="tel" name="phone" placeholder="Best number" />
+            </label>
+            <label>
+              Email
+              <input
+                autocomplete="email"
+                name="email"
+                placeholder="you@example.co.nz"
+                type="email"
+              />
+            </label>
+            <label>
+              Location
+              <input name="location" placeholder="City or region" />
+            </label>
+            <button class="primary-button" type="button">Request my review</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
