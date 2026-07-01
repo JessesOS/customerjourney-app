@@ -1,6 +1,7 @@
 "use client";
 
 import type { BridgeClient, LiveBridgePayload, PipelineStage, StatusCard } from "@/lib/liveScaleBridge";
+import { OnboardingJourney } from "@/app/components/OnboardingJourney";
 
 const toneColor: Record<string, string> = {
   teal: "#00b8a0",
@@ -168,8 +169,6 @@ export function PortalView({ client, bridge }: { client: BridgeClient; bridge: L
   const clientItems = bridge.workingPlanItems.filter((t) => t.owner === "chris");
   const internalItems = bridge.workingPlanItems.filter((t) => t.owner === "jesse");
   const healthCard = bridge.statusCards.find((c) => c.label === "Project Health");
-  const blockerCard = bridge.statusCards.find((c) => c.label === "Blockers");
-  const stageCard = bridge.statusCards.find((c) => c.label === "Current Stage");
 
   return (
     <div style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif", background: "#f9fafb", minHeight: "100vh" }}>
@@ -187,40 +186,19 @@ export function PortalView({ client, bridge }: { client: BridgeClient; bridge: L
       </div>
 
       <div style={{ maxWidth: 900, margin: "0 auto", padding: "32px 24px" }}>
-        {/* Status cards */}
-        <div style={{ display: "flex", gap: 16, marginBottom: 32, flexWrap: "wrap" }}>
-          {[healthCard, blockerCard, stageCard].filter(Boolean).map((card) => (
-            <StatCard key={card!.label} card={card!} />
-          ))}
-        </div>
+        {/* 30-day onboarding journey — primary content */}
+        <OnboardingJourney />
 
-        {/* Pipeline */}
-        <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 8, padding: "24px 28px", marginBottom: 32 }}>
-          <h2 style={{ fontSize: 13, fontWeight: 700, color: "#6b7280", letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 20px" }}>
-            Delivery Pipeline
-          </h2>
-          <Pipeline stages={bridge.deliveryPipeline} />
-        </div>
-
-        {/* Action items */}
+        {/* What RT Digital is building (secondary, collapsed by default in future pass) */}
         {clientItems.length > 0 && (
           <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: 8, padding: "24px 28px", marginBottom: 24 }}>
             <h2 style={{ fontSize: 13, fontWeight: 700, color: "#f5a623", letterSpacing: "0.08em", textTransform: "uppercase", margin: "0 0 4px" }}>
               Action Required
             </h2>
             <p style={{ fontSize: 13, color: "#6b7280", margin: "0 0 16px" }}>These items are waiting on you.</p>
-            {clientItems.map((item) => {
-              const sourceTask = bridge.outstandingColumns
-                .flatMap((c) => c.items)
-                .find((i) => i.title === item.title);
-              return (
-                <ActionItem
-                  key={item.id}
-                  title={item.title}
-                  detail={item.detail}
-                />
-              );
-            })}
+            {clientItems.map((item) => (
+              <ActionItem key={item.id} title={item.title} detail={item.detail} />
+            ))}
           </div>
         )}
 
