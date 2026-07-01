@@ -78,6 +78,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
   const [heroMounted, setHeroMounted] = useState(true);
   const [view, setView] = useState<View>("home");
   const [milestone, setMilestone] = useState(defaultMilestoneIndex);
+  const [viewingStageId, setViewingStageId] = useState<string>(defaultStage?.id ?? journeyStages[0].id);
   const [rtOpen, setRtOpen] = useState(false);
   const [showUnmute, setShowUnmute] = useState(false);
   const [showPlay, setShowPlay] = useState(false);
@@ -95,6 +96,8 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
   const firstOpenMilestoneIndex = currentStage
     ? Math.max(0, currentStage.milestones.findIndex((m) => m.status !== "done"))
     : 0;
+  const viewingStageIndex = journeyStages.findIndex((s) => s.id === viewingStageId);
+  const viewingStage = viewingStageIndex >= 0 ? journeyStages[viewingStageIndex] : undefined;
 
   useEffect(() => {
     let seen = false;
@@ -188,8 +191,9 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
     timers.current.push(t1);
   }
 
-  function openM(m: number) {
+  function openM(stageId: string, m: number) {
     setView("stage");
+    setViewingStageId(stageId);
     setMilestone(m);
     window.scrollTo(0, 0);
   }
@@ -456,7 +460,10 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
                           <CheckIcon />
                         </div>
                       </div>
-                      <div style={{ flex: 1, borderRadius: 16, padding: "16px 22px", background: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 18 }}>
+                      <div
+                        onClick={() => openM(stage.id, 1)}
+                        style={{ flex: 1, borderRadius: 16, padding: "16px 22px", background: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 18, cursor: "pointer" }}
+                      >
                         <div style={{ flex: 1 }}>
                           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: teal, letterSpacing: "0.14em" }}>STAGE {num}</div>
                           <div style={{ fontWeight: 600, fontSize: 19, marginTop: 5 }}>{stage.name}</div>
@@ -504,7 +511,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
                           {stage.milestones.map((m, mi) => (
                             <div
                               key={m.id}
-                              onClick={() => openM(mi + 1)}
+                              onClick={() => openM(stage.id, mi + 1)}
                               style={{ display: "flex", alignItems: "center", gap: 13, cursor: "pointer", margin: "-6px -10px", padding: "6px 10px", borderRadius: 10 }}
                             >
                               {m.status === "done" ? (
@@ -541,7 +548,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
 
                         <div style={{ marginTop: 26, display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
                           <button
-                            onClick={() => openM(firstOpenMilestoneIndex + 1)}
+                            onClick={() => openM(stage.id, firstOpenMilestoneIndex + 1)}
                             style={{ background: gold, color: "#1c1300", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
                           >
                             Continue Stage {idx + 1} <span style={{ fontSize: 17 }}>→</span>
@@ -550,7 +557,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
                             {doneCount} of {stage.milestones.length} milestones done · {stage.milestones.length - doneCount} to go
                           </span>
                           <button
-                            onClick={() => openM(stage.milestones.length)}
+                            onClick={() => openM(stage.id, stage.milestones.length)}
                             title="If you've already finished this stage's work"
                             style={{ marginLeft: "auto", background: "transparent", border: "1px solid rgba(245,166,35,0.4)", color: gold, fontFamily: "'JetBrains Mono', monospace", fontSize: 12, borderRadius: 99, padding: "8px 14px", cursor: "pointer", display: "flex", alignItems: "center", gap: 7 }}
                           >
@@ -569,7 +576,10 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
                         <LockIcon />
                       </div>
                     </div>
-                    <div style={{ flex: 1, borderRadius: 16, padding: "16px 22px", background: "rgba(255,255,255,0.012)", border: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 18, opacity: 0.62 }}>
+                    <div
+                      onClick={() => openM(stage.id, 1)}
+                      style={{ flex: 1, borderRadius: 16, padding: "16px 22px", background: "rgba(255,255,255,0.012)", border: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 18, opacity: 0.62, cursor: "pointer" }}
+                    >
                       <div style={{ flex: 1 }}>
                         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.35)", letterSpacing: "0.14em" }}>STAGE {num}</div>
                         <div style={{ fontWeight: 600, fontSize: 18, color: "rgba(238,241,246,0.62)", marginTop: 5 }}>{stage.name}</div>
@@ -577,7 +587,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
                       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.3)" }}>{dayLabel}</div>
                       <div style={{ display: "flex", alignItems: "center", gap: 7, fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.4)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 99, padding: "6px 11px" }}>
                         <LockIcon />
-                        Unlocks Day {stage.dayStart}
+                        Preview
                       </div>
                     </div>
                   </div>
@@ -632,7 +642,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
       )}
 
       {/* STAGE DETAIL */}
-      {resolved && view === "stage" && currentStage && (
+      {resolved && view === "stage" && viewingStage && (
         <section style={{ maxWidth: 1080, margin: "0 auto", padding: "36px 32px 130px", animation: "viewIn 0.5s cubic-bezier(0.2,0.7,0.2,1)" }}>
           <button
             onClick={backToJourney}
@@ -645,27 +655,37 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
           </button>
 
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14 }}>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: gold, letterSpacing: "0.14em" }}>
-              STAGE {String(currentStageIndex + 1).padStart(2, "0")}
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: viewingStage.status === "done" ? teal : gold, letterSpacing: "0.14em" }}>
+              STAGE {String(viewingStageIndex + 1).padStart(2, "0")}
             </span>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: gold, textTransform: "uppercase", background: "rgba(245,166,35,0.14)", border: "1px solid rgba(245,166,35,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
-              In progress
-            </span>
+            {viewingStage.status === "done" ? (
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: teal, textTransform: "uppercase", background: "rgba(0,184,160,0.14)", border: "1px solid rgba(0,184,160,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
+                Completed
+              </span>
+            ) : viewingStage.status === "current" ? (
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: gold, textTransform: "uppercase", background: "rgba(245,166,35,0.14)", border: "1px solid rgba(245,166,35,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
+                In progress
+              </span>
+            ) : (
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "rgba(238,241,246,0.5)", textTransform: "uppercase", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
+                Preview
+              </span>
+            )}
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
-              {currentStage.dayStart === currentStage.dayEnd ? `Day ${currentStage.dayStart}` : `Days ${currentStage.dayStart}–${currentStage.dayEnd}`}
+              {viewingStage.dayStart === viewingStage.dayEnd ? `Day ${viewingStage.dayStart}` : `Days ${viewingStage.dayStart}–${viewingStage.dayEnd}`}
             </span>
           </div>
-          <h2 style={{ fontWeight: 700, fontSize: 38, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.05 }}>{currentStage.name}</h2>
+          <h2 style={{ fontWeight: 700, fontSize: 38, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.05 }}>{viewingStage.name}</h2>
           <p style={{ fontWeight: 400, fontSize: 18, color: "rgba(238,241,246,0.58)", marginTop: 14, maxWidth: 620, lineHeight: 1.5 }}>
-            {currentStage.blurb} Work through each step below — we&apos;ll save as you go.
+            {viewingStage.blurb}
           </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "270px 1fr", gap: 34, marginTop: 40, alignItems: "start" }}>
             <aside style={{ position: "sticky", top: 84, display: "flex", flexDirection: "column", gap: 6 }}>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.45)", letterSpacing: "0.16em", textTransform: "uppercase", margin: "0 0 10px 4px" }}>
-                {currentStage.milestones.length} milestones
+                {viewingStage.milestones.length} milestones
               </div>
-              {currentStage.milestones.map((m, i) => {
+              {viewingStage.milestones.map((m, i) => {
                 const active = milestone === i + 1;
                 return (
                   <button
@@ -700,9 +720,9 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
 
             <main style={{ minHeight: 420 }}>
               {(() => {
-                const m: JourneyMilestone | undefined = currentStage.milestones[milestone - 1];
+                const m: JourneyMilestone | undefined = viewingStage.milestones[milestone - 1];
                 if (!m) return null;
-                const isLast = milestone === currentStage.milestones.length;
+                const isLast = milestone === viewingStage.milestones.length;
                 const isFirst = milestone === 1;
                 const label = m.status === "done" ? "Reviewed & approved" : "Review & approve";
 
