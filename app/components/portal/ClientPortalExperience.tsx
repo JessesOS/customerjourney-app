@@ -8,18 +8,22 @@ import {
   journeyProgressPercent,
   journeyStages,
   journeyTotalDays,
-  qualificationQuestions,
+  type JourneyMilestone,
 } from "@/lib/onboardingJourney";
 
 const teal = "#00b8a0";
 const gold = "#f5a623";
 const blue = "#6aa6f5";
-const purple = "#9d8bf2";
 const ink = "#08090c";
 const text = "#eef1f6";
 
 type Phase = "intro" | "resolved";
 type View = "home" | "stage";
+
+const defaultStage = journeyStages.find((s) => s.status === "current");
+const defaultMilestoneIndex = defaultStage
+  ? Math.max(0, defaultStage.milestones.findIndex((m) => m.status !== "done")) + 1
+  : 1;
 
 function useDayTicks(currentDay: number) {
   const days = [];
@@ -73,7 +77,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
   const [phase, setPhase] = useState<Phase>("intro");
   const [heroMounted, setHeroMounted] = useState(true);
   const [view, setView] = useState<View>("home");
-  const [milestone, setMilestone] = useState(2);
+  const [milestone, setMilestone] = useState(defaultMilestoneIndex);
   const [rtOpen, setRtOpen] = useState(false);
   const [showUnmute, setShowUnmute] = useState(false);
   const [showPlay, setShowPlay] = useState(false);
@@ -86,7 +90,11 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
   const days = useDayTicks(journeyCurrentDay);
   const progress = journeyProgressPercent();
   const stagesDone = completedStageCount();
-  const currentStage = journeyStages.find((s) => s.status === "current");
+  const currentStageIndex = journeyStages.findIndex((s) => s.status === "current");
+  const currentStage = currentStageIndex >= 0 ? journeyStages[currentStageIndex] : undefined;
+  const firstOpenMilestoneIndex = currentStage
+    ? Math.max(0, currentStage.milestones.findIndex((m) => m.status !== "done"))
+    : 0;
 
   useEffect(() => {
     let seen = false;
@@ -358,7 +366,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
             You&apos;re on your way, {name}.
           </h2>
           <p style={{ fontWeight: 400, fontSize: 19, color: "rgba(238,241,246,0.58)", marginTop: 16, maxWidth: 600, lineHeight: 1.5 }}>
-            Two stages down. Here&apos;s everything between you and going live — one milestone at a time.
+            {stagesDone} stage{stagesDone === 1 ? "" : "s"} down. Here&apos;s everything between you and going live — one milestone at a time.
           </p>
 
           {/* progress card */}
@@ -517,26 +525,23 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
                               >
                                 {m.title}
                               </span>
-                              {mi === 1 && m.status === "current" && (
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    openVideo("How to approve your 6 questions");
-                                  }}
-                                  title="Watch: how to approve your questions"
-                                  style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 7, background: "transparent", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "5px 12px 5px 6px", color: "rgba(238,241,246,0.72)", fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: "pointer", flexShrink: 0 }}
-                                >
-                                  <PlayIcon color="rgba(245,166,35,0.92)" />
-                                  Help
-                                </button>
-                              )}
                             </div>
                           ))}
                         </div>
 
+                        {stage.statusNotes.length > 0 && (
+                          <div style={{ marginTop: 20, padding: "12px 16px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12 }}>
+                            {stage.statusNotes.map((note) => (
+                              <div key={note} style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13, color: "rgba(238,241,246,0.5)", marginBottom: 4 }}>
+                                <span style={{ color: teal, marginTop: 2 }}>●</span> {note}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
                         <div style={{ marginTop: 26, display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
                           <button
-                            onClick={() => openM(2)}
+                            onClick={() => openM(firstOpenMilestoneIndex + 1)}
                             style={{ background: gold, color: "#1c1300", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
                           >
                             Continue Stage {idx + 1} <span style={{ fontSize: 17 }}>→</span>
@@ -545,7 +550,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
                             {doneCount} of {stage.milestones.length} milestones done · {stage.milestones.length - doneCount} to go
                           </span>
                           <button
-                            onClick={() => openM(3)}
+                            onClick={() => openM(stage.milestones.length)}
                             title="If you've already finished this stage's work"
                             style={{ marginLeft: "auto", background: "transparent", border: "1px solid rgba(245,166,35,0.4)", color: gold, fontFamily: "'JetBrains Mono', monospace", fontSize: 12, borderRadius: 99, padding: "8px 14px", cursor: "pointer", display: "flex", alignItems: "center", gap: 7 }}
                           >
@@ -640,11 +645,15 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
           </button>
 
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14 }}>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: gold, letterSpacing: "0.14em" }}>STAGE 03</span>
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: gold, letterSpacing: "0.14em" }}>
+              STAGE {String(currentStageIndex + 1).padStart(2, "0")}
+            </span>
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: gold, textTransform: "uppercase", background: "rgba(245,166,35,0.14)", border: "1px solid rgba(245,166,35,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
               In progress
             </span>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>Days 8–12</span>
+            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
+              {currentStage.dayStart === currentStage.dayEnd ? `Day ${currentStage.dayStart}` : `Days ${currentStage.dayStart}–${currentStage.dayEnd}`}
+            </span>
           </div>
           <h2 style={{ fontWeight: 700, fontSize: 38, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.05 }}>{currentStage.name}</h2>
           <p style={{ fontWeight: 400, fontSize: 18, color: "rgba(238,241,246,0.58)", marginTop: 14, maxWidth: 620, lineHeight: 1.5 }}>
@@ -690,159 +699,60 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
             </aside>
 
             <main style={{ minHeight: 420 }}>
-              {milestone === 1 && (
-                <div style={{ animation: "viewIn 0.35s ease" }}>
-                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.45)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                    Milestone 1 · Review & approve
-                  </div>
-                  <h3 style={{ fontWeight: 700, fontSize: 26, margin: "10px 0 0", letterSpacing: "-0.02em" }}>Review Sophie&apos;s intro script</h3>
-                  <p style={{ fontWeight: 400, fontSize: 15, color: "rgba(238,241,246,0.6)", marginTop: 8, maxWidth: 560, lineHeight: 1.55 }}>
-                    This is the first thing Sophie says when a new lead replies. Make sure it sounds like you.
-                  </p>
+              {(() => {
+                const m: JourneyMilestone | undefined = currentStage.milestones[milestone - 1];
+                if (!m) return null;
+                const isLast = milestone === currentStage.milestones.length;
+                const isFirst = milestone === 1;
+                const label = m.status === "done" ? "Reviewed & approved" : "Review & approve";
 
-                  <div style={{ marginTop: 26, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 11, marginBottom: 16 }}>
-                      <div style={{ width: 38, height: 38, borderRadius: 99, background: `linear-gradient(135deg, ${blue}, ${purple})`, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, color: "#0a1020" }}>
-                        S
-                      </div>
-                      <div>
-                        <div style={{ fontWeight: 600, fontSize: 15 }}>Sophie · AI assistant</div>
-                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: teal }}>● replies in seconds</div>
-                      </div>
+                return (
+                  <div style={{ animation: "viewIn 0.35s ease" }}>
+                    <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: m.status === "done" ? "rgba(238,241,246,0.45)" : gold, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                      Milestone {milestone} · {label}
                     </div>
-                    <div style={{ maxWidth: "82%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 16, borderBottomLeftRadius: 4, padding: "14px 16px", fontSize: 15, lineHeight: 1.5, color: text }}>
-                      Hi {name} 👋 thanks for reaching out about your project! I&apos;m Sophie from the team. Mind if I ask a couple of quick questions so we can get you sorted?
-                    </div>
-                  </div>
+                    <h3 style={{ fontWeight: 700, fontSize: 26, margin: "10px 0 0", letterSpacing: "-0.02em" }}>{m.title}</h3>
+                    <p style={{ fontWeight: 400, fontSize: 15, color: "rgba(238,241,246,0.6)", marginTop: 8, maxWidth: 580, lineHeight: 1.55 }}>
+                      {m.detail}
+                    </p>
 
-                  <div style={{ marginTop: 20, display: "flex", alignItems: "center", gap: 12, borderRadius: 14, border: "1px solid rgba(0,184,160,0.35)", background: "rgba(0,184,160,0.07)", padding: "16px 18px" }}>
-                    <div style={{ width: 24, height: 24, borderRadius: 99, background: teal, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                      <CheckIcon size={12} />
-                    </div>
-                    <div style={{ flex: 1, fontSize: 14, color: text }}>
-                      You approved this script <span style={{ color: "rgba(238,241,246,0.5)" }}>on Day 9</span>.
-                    </div>
-                    <button style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, borderRadius: 99, padding: "8px 14px", cursor: "pointer" }}>
-                      Request a change
-                    </button>
-                  </div>
-
-                  <div style={{ marginTop: 30, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 14, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 22 }}>
-                    <button
-                      onClick={() => setMilestone(2)}
-                      style={{ background: gold, color: "#1c1300", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
-                    >
-                      Next: approve questions <span style={{ fontSize: 17 }}>→</span>
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {milestone === 2 && (
-                <div style={{ animation: "viewIn 0.35s ease" }}>
-                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                    Milestone 2 · Review & approve
-                  </div>
-                  <h3 style={{ fontWeight: 700, fontSize: 26, margin: "10px 0 0", letterSpacing: "-0.02em" }}>Approve your 6 pre-qualification questions</h3>
-                  <p style={{ fontWeight: 400, fontSize: 15, color: "rgba(238,241,246,0.6)", marginTop: 8, maxWidth: 580, lineHeight: 1.55 }}>
-                    These are the questions Sophie asks — one at a time — to qualify a lead before it ever reaches you. Edit anything that doesn&apos;t fit your business.
-                  </p>
-
-                  <div style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 10 }}>
-                    {qualificationQuestions.map((q, i) => (
-                      <div key={q} style={{ display: "flex", alignItems: "center", gap: 14, borderRadius: 12, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: "14px 16px" }}>
-                        <div style={{ width: 26, height: 26, borderRadius: 8, background: "rgba(245,166,35,0.14)", border: "1px solid rgba(245,166,35,0.3)", color: gold, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, fontWeight: 600, flexShrink: 0 }}>
-                          {i + 1}
+                    {m.status === "done" ? (
+                      <div style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 12, borderRadius: 14, border: "1px solid rgba(0,184,160,0.35)", background: "rgba(0,184,160,0.07)", padding: "16px 18px" }}>
+                        <div style={{ width: 24, height: 24, borderRadius: 99, background: teal, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                          <CheckIcon size={12} />
                         </div>
-                        <div style={{ flex: 1, fontSize: 15, color: text }}>{q}</div>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(238,241,246,0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M12 20h9" /><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
-                        </svg>
+                        <div style={{ flex: 1, fontSize: 14, color: text }}>You&apos;ve completed this milestone.</div>
                       </div>
-                    ))}
-                    <button style={{ display: "flex", alignItems: "center", gap: 10, borderRadius: 12, border: "1px dashed rgba(255,255,255,0.14)", background: "transparent", padding: "13px 16px", color: "rgba(238,241,246,0.55)", fontFamily: "'Sora', sans-serif", fontSize: 14, cursor: "pointer" }}>
-                      <span style={{ fontSize: 18, lineHeight: 1 }}>+</span> Add a question
-                    </button>
-                  </div>
-
-                  <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 22 }}>
-                    <button onClick={() => setMilestone(1)} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}>
-                      ← Previous
-                    </button>
-                    <span style={{ marginLeft: "auto", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.45)" }}>Saved as draft</span>
-                    <button
-                      onClick={() => setMilestone(3)}
-                      style={{ background: gold, color: "#1c1300", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
-                    >
-                      Approve 6 questions <span style={{ fontSize: 17 }}>→</span>
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {milestone === 3 && (
-                <div style={{ animation: "viewIn 0.35s ease" }}>
-                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.45)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                    Milestone 3 · Record & upload
-                  </div>
-                  <h3 style={{ fontWeight: 700, fontSize: 26, margin: "10px 0 0", letterSpacing: "-0.02em" }}>Record a 2-min Loom on your ideal customer</h3>
-                  <p style={{ fontWeight: 400, fontSize: 15, color: "rgba(238,241,246,0.6)", marginTop: 8, maxWidth: 580, lineHeight: 1.55 }}>
-                    A quick, casual video so Sophie learns exactly who you want to win. No script needed — just talk to the camera.
-                  </p>
-
-                  <div style={{ marginTop: 24, borderRadius: 16, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: "20px 22px" }}>
-                    <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: blue, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 16 }}>
-                      Cover these 3 things
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-                      {[
-                        { n: 1, text: "Who's your dream customer?", note: "Job type, budget, location." },
-                        { n: 2, text: "Which jobs are most profitable for you?" },
-                        { n: 3, text: "Who should Sophie politely turn away?" },
-                      ].map((item) => (
-                        <div key={item.n} style={{ display: "flex", alignItems: "flex-start", gap: 13 }}>
-                          <div style={{ width: 22, height: 22, borderRadius: 99, background: "rgba(106,166,245,0.15)", border: "1px solid rgba(106,166,245,0.4)", color: blue, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono', monospace", fontSize: 11, fontWeight: 600, flexShrink: 0 }}>
-                            {item.n}
-                          </div>
-                          <div style={{ fontSize: 15, color: text, lineHeight: 1.5 }}>
-                            {item.text} {item.note && <span style={{ color: "rgba(238,241,246,0.5)" }}>{item.note}</span>}
-                          </div>
+                    ) : (
+                      <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
+                          What we need from you
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                        <p style={{ fontSize: 15, color: text, lineHeight: 1.6, margin: 0 }}>{m.detail}</p>
+                      </div>
+                    )}
 
-                  <div style={{ marginTop: 18, borderRadius: 16, border: "1.5px dashed rgba(255,255,255,0.16)", background: "rgba(255,255,255,0.015)", padding: 40, display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 16 }}>
-                    <div style={{ width: 56, height: 56, borderRadius: 16, background: "rgba(106,166,245,0.12)", border: "1px solid rgba(106,166,245,0.3)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke={blue} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M23 7l-7 5 7 5V7z" /><rect x="1" y="5" width="15" height="14" rx="2" />
-                      </svg>
-                    </div>
-                    <div>
-                      <div style={{ fontWeight: 600, fontSize: 17 }}>Record or upload your video</div>
-                      <div style={{ fontSize: 14, color: "rgba(238,241,246,0.5)", marginTop: 6 }}>Up to 5 minutes · MP4, MOV or a screen recording</div>
-                    </div>
-                    <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
-                      <button style={{ background: blue, color: "#061226", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 14, border: "none", borderRadius: 10, padding: "11px 18px", display: "flex", alignItems: "center", gap: 8, cursor: "pointer" }}>
-                        <span style={{ width: 8, height: 8, borderRadius: 99, background: "#061226", display: "inline-block" }} /> Record with Loom
-                      </button>
-                      <button style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.16)", color: "rgba(238,241,246,0.8)", fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 10, padding: "11px 18px", cursor: "pointer" }}>
-                        Upload a file
-                      </button>
+                    <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 22 }}>
+                      {!isFirst && (
+                        <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}>
+                          ← Previous
+                        </button>
+                      )}
+                      <span style={{ marginLeft: isFirst ? 0 : "auto", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.45)" }}>
+                        {m.status === "done" ? "Completed" : "Awaiting your approval"}
+                      </span>
+                      {!m.status.includes("done") && (
+                        <button
+                          onClick={() => !isLast && setMilestone(milestone + 1)}
+                          style={{ marginLeft: isFirst ? "auto" : 0, background: gold, color: "#1c1300", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
+                        >
+                          {isLast ? "Approve" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
+                        </button>
+                      )}
                     </div>
                   </div>
-
-                  <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 22 }}>
-                    <button onClick={() => setMilestone(2)} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}>
-                      ← Previous
-                    </button>
-                    <span style={{ marginLeft: "auto", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.45)" }}>Waiting for your recording</span>
-                    <button disabled style={{ background: "rgba(245,166,35,0.4)", color: "rgba(28,19,0,0.7)", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, cursor: "not-allowed" }}>
-                      Submit recording <span style={{ fontSize: 17 }}>→</span>
-                    </button>
-                  </div>
-                </div>
-              )}
+                );
+              })()}
             </main>
           </div>
         </section>
