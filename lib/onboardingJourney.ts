@@ -15,83 +15,113 @@ export type JourneyStage = {
   dayStart: number;
   dayEnd: number;
   status: StageStatus;
+  blurb?: string;
   milestones: JourneyMilestone[];
-  statusNotes: string[];
 };
 
 export const journeyStages: JourneyStage[] = [
   {
-    id: "onboarding",
-    name: "Onboarding",
+    id: "kickoff",
+    name: "Kickoff & Access",
     dayStart: 1,
     dayEnd: 2,
     status: "done",
-    milestones: [
-      { id: "ob-1", title: "Complete your onboarding form", detail: "Business info, proof of address, domain & website access, branding.", status: "done" },
-      { id: "ob-2", title: "Attend your Welcome Call & portal walkthrough", detail: "Live walkthrough of your portal, milestones, and messaging center.", status: "done" },
-      { id: "ob-3", title: "Review & approve your AI receptionist's questions", detail: "Confirm the qualification questions your AI will ask incoming leads.", status: "done" },
-      { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead.", status: "done" },
-      { id: "ob-5", title: "Review your SMS/Email message copy", detail: "Approve the messaging your AI will send on your behalf.", status: "done" },
-      { id: "ob-6", title: "Connect your calendar, social accounts & payment method", detail: "Needed so your AI can book appointments and take payments.", status: "done" },
-      { id: "ob-7", title: "Upload your past leads (CSV)", detail: "Helps train your AI on what a good lead looks like for you.", status: "done" },
-      { id: "ob-8", title: "Grant access to your accounts", detail: "Google My Business, domain, and website builder access.", status: "done" },
-    ],
-    statusNotes: ["Your subscription fees begin 14-30 days from purchase."],
+    milestones: [],
   },
   {
-    id: "build",
-    name: "Build",
-    dayStart: 2,
-    dayEnd: 13,
+    id: "connect",
+    name: "Connect Meta & CRM",
+    dayStart: 3,
+    dayEnd: 7,
+    status: "done",
+    milestones: [],
+  },
+  {
+    id: "qualification",
+    name: "Refine AI Qualification",
+    dayStart: 8,
+    dayEnd: 12,
     status: "current",
+    blurb: "Dial in how Sophie qualifies your leads before they ever reach your team.",
     milestones: [
-      { id: "bd-1", title: "Review & approve your eBook lead magnet content", detail: "We've drafted your lead magnet — take a look and approve it.", status: "done" },
-      { id: "bd-2", title: "Approve your Meta ad campaigns & creative assets", detail: "Your ad strategy and creatives are ready for sign-off.", status: "current" },
-      { id: "bd-3", title: "Grant RT Digital partner access to your Meta Business Suite", detail: "Add us as a Partner so we can launch your campaigns.", status: "upcoming" },
-      { id: "bd-4", title: "Watch your ad campaign walkthrough video", detail: "A short video showing exactly what's going live.", status: "upcoming" },
+      {
+        id: "m1",
+        title: "Review Sophie's intro script",
+        detail: "This is the first thing Sophie says when a new lead replies. Make sure it sounds like you.",
+        status: "done",
+      },
+      {
+        id: "m2",
+        title: "Approve your 6 pre-qualification questions",
+        detail:
+          "These are the questions Sophie asks — one at a time — to qualify a lead before it ever reaches you.",
+        status: "current",
+      },
+      {
+        id: "m3",
+        title: "Record a 2-min Loom on your ideal customer",
+        detail: "A quick, casual video so Sophie learns exactly who you want to win.",
+        status: "upcoming",
+      },
     ],
-    statusNotes: ["Your AI receptionist is being configured.", "Your CRM access is being set up."],
   },
   {
-    id: "testing",
-    name: "Testing",
-    dayStart: 14,
-    dayEnd: 14,
+    id: "launch",
+    name: "Launch Campaigns",
+    dayStart: 13,
+    dayEnd: 16,
     status: "locked",
-    milestones: [
-      { id: "ts-1", title: "Confirm your connections are working", detail: "Quick check that your app, calendar & social accounts are linked.", status: "upcoming" },
-      { id: "ts-2", title: "Test your AI receptionist live", detail: "Try to stump it — this is how we make it better.", status: "upcoming" },
-      { id: "ts-3", title: "Your Go-Live Call is scheduled", detail: "We'll lock in your Day 30 walkthrough.", status: "upcoming" },
-    ],
-    statusNotes: ["We'll fine-tune your AI based on your test feedback."],
+    milestones: [],
+  },
+  {
+    id: "nurture",
+    name: "Nurture & Cadence Setup",
+    dayStart: 17,
+    dayEnd: 20,
+    status: "locked",
+    milestones: [],
+  },
+  {
+    id: "booking",
+    name: "Booking & Calendar Sync",
+    dayStart: 21,
+    dayEnd: 24,
+    status: "locked",
+    milestones: [],
+  },
+  {
+    id: "handoff",
+    name: "Team Handoff Training",
+    dayStart: 25,
+    dayEnd: 28,
+    status: "locked",
+    milestones: [],
   },
   {
     id: "go-live",
-    name: "Go-Live",
-    dayStart: 30,
+    name: "Go Live & Optimize",
+    dayStart: 29,
     dayEnd: 30,
     status: "locked",
-    milestones: [
-      { id: "gl-1", title: "Attend your Go-Live walkthrough call", detail: "We'll get your team confident using the live system.", status: "upcoming" },
-      { id: "gl-2", title: "Learn your live system", detail: "Calls, texts, missed-call handling — all in one app.", status: "upcoming" },
-      { id: "gl-3", title: "See your AI in action", detail: "Live call summaries, coaching notes, and lead handling.", status: "upcoming" },
-      { id: "gl-4", title: "Set your team's usage standards", detail: "How your team should use the app day-to-day.", status: "upcoming" },
-      { id: "gl-5", title: "You're live — access your recording & support links", detail: "Everything you need, in one message.", status: "upcoming" },
-    ],
-    statusNotes: [],
+    milestones: [],
   },
-  {
-    id: "post-launch",
-    name: "Post-Launch",
-    dayStart: 31,
-    dayEnd: 30,
-    status: "locked",
-    milestones: [
-      { id: "pl-1", title: "Your Week 1 & Week 2 check-in calls", detail: "We'll check in to make sure everything's running smoothly.", status: "upcoming" },
-      { id: "pl-2", title: "Send us a testimonial", detail: "We'd love to hear how it's going.", status: "upcoming" },
-    ],
-    statusNotes: ["Your account is being actively monitored — performance reports available monthly."],
-  },
+];
+
+export const qualificationQuestions = [
+  "What's the project you're looking to get done?",
+  "Whereabouts are you based?",
+  "What's your rough budget range?",
+  "When are you hoping to get started?",
+  "Is this for your home or a business?",
+  "Have you got other quotes yet?",
+];
+
+export const behindTheScenesItems = [
+  { label: "Meta ad campaigns", detail: "benchmark + consult-offer angles", state: "Live" as const },
+  { label: "TradeAI CRM & pipeline", detail: "instant lead routing & tagging", state: "Live" as const },
+  { label: "Sophie · your AI agent", detail: "qualification & nurture", state: "Building" as const },
+  { label: "Nurture cadences", detail: "SMS + email follow-up", state: "Building" as const },
+  { label: "Booking & calendar sync", detail: "direct appointment booking", state: "Queued" as const },
 ];
 
 export const journeyCurrentDay = 12;
@@ -99,4 +129,8 @@ export const journeyTotalDays = 30;
 
 export function journeyProgressPercent(): number {
   return Math.round((journeyCurrentDay / journeyTotalDays) * 100);
+}
+
+export function completedStageCount(): number {
+  return journeyStages.filter((s) => s.status === "done").length;
 }
