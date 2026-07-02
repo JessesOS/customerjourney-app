@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   behindTheScenesItems,
+  buildJourneyStages,
   completedStageCount,
-  journeyCurrentDay,
+  defaultCompletedMilestoneIds,
+  defaultCurrentDay,
   journeyProgressPercent,
-  journeyStages,
   journeyTotalDays,
   type JourneyMilestone,
 } from "@/lib/onboardingJourney";
@@ -20,10 +21,12 @@ const text = "#eef1f6";
 type Phase = "intro" | "resolved";
 type View = "home" | "stage";
 
-const defaultStage = journeyStages.find((s) => s.status === "current");
-const defaultMilestoneIndex = defaultStage
-  ? Math.max(0, defaultStage.milestones.findIndex((m) => m.status !== "done")) + 1
-  : 1;
+export type ClientPortalExperienceProps = {
+  name?: string;
+  currentDay?: number;
+  initialCompletedMilestoneIds?: string[];
+  portalToken?: string;
+};
 
 function useDayTicks(currentDay: number) {
   const days = [];
@@ -73,10 +76,24 @@ function PlayIcon({ color = "#f5a623", fill }: { color?: string; fill?: string }
   );
 }
 
-export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
+export function ClientPortalExperience({
+  name = "Chris",
+  currentDay = defaultCurrentDay,
+  initialCompletedMilestoneIds = defaultCompletedMilestoneIds,
+  portalToken,
+}: ClientPortalExperienceProps) {
   const [phase, setPhase] = useState<Phase>("intro");
   const [heroMounted, setHeroMounted] = useState(true);
   const [view, setView] = useState<View>("home");
+  const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set(initialCompletedMilestoneIds));
+
+  const journeyStages = useMemo(() => buildJourneyStages(completedIds, currentDay), [completedIds, currentDay]);
+
+  const defaultStage = useMemo(() => journeyStages.find((s) => s.status === "current"), [journeyStages]);
+  const defaultMilestoneIndex = defaultStage
+    ? Math.max(0, defaultStage.milestones.findIndex((m) => m.status !== "done")) + 1
+    : 1;
+
   const [milestone, setMilestone] = useState(defaultMilestoneIndex);
   const [viewingStageId, setViewingStageId] = useState<string>(defaultStage?.id ?? journeyStages[0].id);
   const [rtOpen, setRtOpen] = useState(false);
@@ -88,9 +105,9 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const days = useDayTicks(journeyCurrentDay);
-  const progress = journeyProgressPercent();
-  const stagesDone = completedStageCount();
+  const days = useDayTicks(currentDay);
+  const progress = journeyProgressPercent(currentDay);
+  const stagesDone = completedStageCount(journeyStages);
   const currentStageIndex = journeyStages.findIndex((s) => s.status === "current");
   const currentStage = currentStageIndex >= 0 ? journeyStages[currentStageIndex] : undefined;
   const firstOpenMilestoneIndex = currentStage
@@ -98,6 +115,21 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
     : 0;
   const viewingStageIndex = journeyStages.findIndex((s) => s.id === viewingStageId);
   const viewingStage = viewingStageIndex >= 0 ? journeyStages[viewingStageIndex] : undefined;
+
+  function approveMilestone(milestoneId: string) {
+    setCompletedIds((prev) => {
+      const next = new Set(prev);
+      next.add(milestoneId);
+      return next;
+    });
+    if (portalToken) {
+      fetch(`/api/portal/${portalToken}/complete`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ milestoneId }),
+      }).catch(() => {});
+    }
+  }
 
   useEffect(() => {
     let seen = false;
@@ -338,7 +370,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
               On track
             </span>
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
-              Day {journeyCurrentDay} / {journeyTotalDays}
+              Day {currentDay} / {journeyTotalDays}
             </span>
             <button
               onClick={replay}
@@ -388,7 +420,7 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
                 </div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 10 }}>
                   <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 15, color: "rgba(238,241,246,0.5)" }}>Day</span>
-                  <span style={{ fontWeight: 800, fontSize: 66, lineHeight: 0.85, letterSpacing: "-0.03em" }}>{journeyCurrentDay}</span>
+                  <span style={{ fontWeight: 800, fontSize: 66, lineHeight: 0.85, letterSpacing: "-0.03em" }}>{currentDay}</span>
                   <span style={{ fontWeight: 500, fontSize: 28, color: "rgba(238,241,246,0.45)" }}>/ {journeyTotalDays}</span>
                 </div>
               </div>
@@ -761,9 +793,12 @@ export function ClientPortalExperience({ name = "Chris" }: { name?: string }) {
                       <span style={{ marginLeft: isFirst ? 0 : "auto", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.45)" }}>
                         {m.status === "done" ? "Completed" : "Awaiting your approval"}
                       </span>
-                      {!m.status.includes("done") && (
+                      {m.status !== "done" && (
                         <button
-                          onClick={() => !isLast && setMilestone(milestone + 1)}
+                          onClick={() => {
+                            approveMilestone(m.id);
+                            if (!isLast) setMilestone(milestone + 1);
+                          }}
                           style={{ marginLeft: isFirst ? "auto" : 0, background: gold, color: "#1c1300", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
                         >
                           {isLast ? "Approve" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>

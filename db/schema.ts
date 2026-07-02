@@ -55,3 +55,21 @@ export const liveDashboardOverrideState = sqliteTable("live_dashboard_override_s
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   payload: text("payload").notNull(),
 });
+
+export const portalClients = sqliteTable("portal_clients", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  companyName: text("company_name").notNull().default(""),
+  portalToken: text("portal_token").notNull().unique(),
+  startDate: text("start_date").notNull(),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
+
+export const portalMilestoneProgress = sqliteTable("portal_milestone_progress", {
+  id: integer("id").primaryKey(),
+  clientId: text("client_id").notNull(),
+  milestoneId: text("milestone_id").notNull(),
+  completedAt: text("completed_at"),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});

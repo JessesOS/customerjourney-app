@@ -1,6 +1,6 @@
-import { readLiveDashboardSnapshot } from "@/lib/liveDashboardStore";
-import { PortalView } from "@/app/components/PortalView";
 import { notFound } from "next/navigation";
+import { ClientPortalExperience } from "@/app/components/portal/ClientPortalExperience";
+import { computeCurrentDay, getCompletedMilestoneIds, getPortalClientByToken } from "@/lib/portalClientStore";
 
 export default async function PortalPage({
   params,
@@ -8,11 +8,23 @@ export default async function PortalPage({
   params: Promise<{ token: string }>;
 }) {
   const { token } = await params;
-  const snapshot = await readLiveDashboardSnapshot();
+  const client = await getPortalClientByToken(token);
 
-  if (!snapshot || snapshot.sourceClient.portalToken !== token) {
+  if (!client) {
     notFound();
   }
 
-  return <PortalView client={snapshot.sourceClient} bridge={snapshot.bridge} />;
+  const [completedIds, currentDay] = await Promise.all([
+    getCompletedMilestoneIds(client.id),
+    Promise.resolve(computeCurrentDay(client.startDate)),
+  ]);
+
+  return (
+    <ClientPortalExperience
+      name={client.name}
+      currentDay={currentDay}
+      initialCompletedMilestoneIds={[...completedIds]}
+      portalToken={token}
+    />
+  );
 }
