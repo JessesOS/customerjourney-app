@@ -17,7 +17,57 @@ type PortalClient = {
 type ListResponse = { ok: boolean; clients?: PortalClient[]; error?: string };
 type CreateResponse = { ok: boolean; id?: string; portalToken?: string; error?: string };
 type ClientForm = { formId: string; responses: PortalFormResponses | null; completedAt: string | null };
-type FormsResponse = { ok: boolean; forms?: ClientForm[]; error?: string };
+type MilestoneNote = { milestoneId: string; title: string; note: string };
+type EditableContent = { milestoneId: string; title: string; content: string };
+type ClientDetail = { forms: ClientForm[]; milestoneNotes: MilestoneNote[]; editableContent: EditableContent[] };
+type FormsResponse = { ok: boolean; forms?: ClientForm[]; milestoneNotes?: MilestoneNote[]; editableContent?: EditableContent[]; error?: string };
+
+function MilestoneContentEditor({ clientId, milestoneId, title, initialContent }: { clientId: string; milestoneId: string; title: string; initialContent: string }) {
+  const [value, setValue] = useState(initialContent);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  async function save() {
+    setSaving(true);
+    setSaved(false);
+    try {
+      const res = await fetch(`/api/admin/portal-clients/${clientId}/milestone-content/${milestoneId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: value }),
+      });
+      const payload = (await res.json()) as { ok: boolean };
+      if (payload.ok) {
+        setSaved(true);
+        setTimeout(() => setSaved(false), 1800);
+      }
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <div style={{ marginBottom: 16 }}>
+      <div style={{ fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(252,250,246,0.4)", marginBottom: 8 }}>
+        {title} — team content
+      </div>
+      <textarea
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="One question or line per row — this is what the client sees."
+        rows={5}
+        style={{ width: "100%", padding: "10px 12px", borderRadius: 8, border: "1px solid #333", background: "#151713", color: "#fcfaf6", fontSize: 13, fontFamily: "inherit", resize: "vertical" }}
+      />
+      <button
+        onClick={save}
+        disabled={saving}
+        style={{ marginTop: 8, padding: "7px 14px", borderRadius: 7, border: "1px solid #444", background: saved ? "#00b8a0" : "#fcfaf6", color: "#111", cursor: saving ? "default" : "pointer", fontSize: 13, fontWeight: 500 }}
+      >
+        {saving ? "Saving…" : saved ? "Saved ✓" : "Save for client"}
+      </button>
+    </div>
+  );
+}
 
 function todayIso() {
   return new Date().toISOString().slice(0, 10);
@@ -35,7 +85,7 @@ export function AdminClientsPanel() {
   const [startDate, setStartDate] = useState(todayIso());
 
   const [expandedId, setExpandedId] = useState<string | null>(null);
-  const [formsByClient, setFormsByClient] = useState<Record<string, ClientForm[] | "loading" | "error">>({});
+  const [detailByClient, setDetailByClient] = useState<Record<string, ClientDetail | "loading" | "error">>({});
 
   async function loadClients() {
     setLoading(true);
@@ -109,15 +159,20 @@ export function AdminClientsPanel() {
       return;
     }
     setExpandedId(client.id);
-    if (formsByClient[client.id]) return;
+    if (detailByClient[client.id]) return;
 
-    setFormsByClient((prev) => ({ ...prev, [client.id]: "loading" }));
+    setDetailByClient((prev) => ({ ...prev, [client.id]: "loading" }));
     try {
       const res = await fetch(`/api/admin/portal-clients/${client.id}/forms`, { cache: "no-store" });
       const payload = (await res.json()) as FormsResponse;
-      setFormsByClient((prev) => ({ ...prev, [client.id]: payload.ok && payload.forms ? payload.forms : "error" }));
+      setDetailByClient((prev) => ({
+        ...prev,
+        [client.id]: payload.ok
+          ? { forms: payload.forms ?? [], milestoneNotes: payload.milestoneNotes ?? [], editableContent: payload.editableContent ?? [] }
+          : "error",
+      }));
     } catch {
-      setFormsByClient((prev) => ({ ...prev, [client.id]: "error" }));
+      setDetailByClient((prev) => ({ ...prev, [client.id]: "error" }));
     }
   }
 
@@ -197,7 +252,7 @@ export function AdminClientsPanel() {
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           {clients.map((client) => {
             const isExpanded = expandedId === client.id;
-            const forms = formsByClient[client.id];
+            const detail = detailByClient[client.id];
 
             return (
               <div key={client.id} style={{ border: "1px solid #2a2c27", borderRadius: 10, background: "#111310" }}>
@@ -232,10 +287,33 @@ export function AdminClientsPanel() {
 
                 {isExpanded && (
                   <div style={{ borderTop: "1px solid #2a2c27", padding: "16px 18px" }}>
-                    {forms === "loading" && <p style={{ color: "rgba(252,250,246,0.5)", fontSize: 13 }}>Loading answers…</p>}
-                    {forms === "error" && <p style={{ color: "#ff9a90", fontSize: 13 }}>Could not load form answers.</p>}
-                    {Array.isArray(forms) &&
-                      forms.map((clientForm) => {
+                    {detail === "loading" && <p style={{ color: "rgba(252,250,246,0.5)", fontSize: 13 }}>Loading answers…</p>}
+                    {detail === "error" && <p style={{ color: "#ff9a90", fontSize: 13 }}>Could not load form answers.</p>}
+                    {detail && typeof detail === "object" && detail.editableContent.map((item) => (
+                      <MilestoneContentEditor
+                        key={item.milestoneId}
+                        clientId={client.id}
+                        milestoneId={item.milestoneId}
+                        title={item.title}
+                        initialContent={item.content}
+                      />
+                    ))}
+                    {detail && typeof detail === "object" && detail.milestoneNotes.length > 0 && (
+                      <div style={{ marginBottom: 16 }}>
+                        <div style={{ fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(252,250,246,0.4)", marginBottom: 8 }}>
+                          Client notes
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          {detail.milestoneNotes.map((n) => (
+                            <div key={n.milestoneId} style={{ fontSize: 13 }}>
+                              <span style={{ color: "rgba(252,250,246,0.6)" }}>{n.title}:</span> <span style={{ color: "#fcfaf6" }}>{n.note}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {detail && typeof detail === "object" &&
+                      detail.forms.map((clientForm) => {
                         const form = onboardingFormById(clientForm.formId);
                         if (!form) return null;
 

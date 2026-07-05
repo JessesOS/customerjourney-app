@@ -1,6 +1,6 @@
 import { and, eq } from "drizzle-orm";
 import { getDb } from "@/db";
-import { portalClients, portalFormResponses, portalMilestoneProgress } from "@/db/schema";
+import { portalClients, portalFormResponses, portalMilestoneContent, portalMilestoneProgress } from "@/db/schema";
 import { journeyTemplate, journeyTotalDays } from "@/lib/onboardingJourney";
 import type { PortalFormResponses } from "@/lib/onboardingForm";
 
@@ -55,6 +55,8 @@ export async function createPortalClient(input: { name: string; companyName: str
 export async function deletePortalClient(id: string) {
   const db = getDb();
   await db.delete(portalMilestoneProgress).where(eq(portalMilestoneProgress.clientId, id));
+  await db.delete(portalFormResponses).where(eq(portalFormResponses.clientId, id));
+  await db.delete(portalMilestoneContent).where(eq(portalMilestoneContent.clientId, id));
   await db.delete(portalClients).where(eq(portalClients.id, id));
 }
 
@@ -68,7 +70,7 @@ export async function getCompletedMilestoneIds(clientId: string): Promise<Set<st
   return new Set(rows.filter((r) => r.completedAt).map((r) => r.milestoneId));
 }
 
-export async function markMilestoneComplete(clientId: string, milestoneId: string) {
+export async function markMilestoneComplete(clientId: string, milestoneId: string, note?: string) {
   const db = getDb();
   const existing = await db
     .select()
@@ -81,15 +83,61 @@ export async function markMilestoneComplete(clientId: string, milestoneId: strin
   if (row) {
     await db
       .update(portalMilestoneProgress)
-      .set({ completedAt: now, updatedAt: now })
+      .set({ completedAt: now, updatedAt: now, ...(note !== undefined ? { note } : {}) })
       .where(eq(portalMilestoneProgress.id, row.id));
   } else {
     await db.insert(portalMilestoneProgress).values({
       clientId,
       milestoneId,
       completedAt: now,
+      note: note ?? null,
       updatedAt: now,
     });
+  }
+}
+
+export async function getMilestoneNotes(clientId: string): Promise<Record<string, string>> {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalMilestoneProgress)
+    .where(eq(portalMilestoneProgress.clientId, clientId));
+
+  return Object.fromEntries(rows.filter((r) => r.note).map((r) => [r.milestoneId, r.note as string]));
+}
+
+export async function getMilestoneContent(clientId: string, milestoneId: string): Promise<string> {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalMilestoneContent)
+    .where(and(eq(portalMilestoneContent.clientId, clientId), eq(portalMilestoneContent.milestoneId, milestoneId)))
+    .limit(1);
+
+  return rows[0]?.content ?? "";
+}
+
+export async function getAllMilestoneContent(clientId: string): Promise<Record<string, string>> {
+  const db = getDb();
+  const rows = await db.select().from(portalMilestoneContent).where(eq(portalMilestoneContent.clientId, clientId));
+  return Object.fromEntries(rows.map((r) => [r.milestoneId, r.content]));
+}
+
+export async function setMilestoneContent(clientId: string, milestoneId: string, content: string) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalMilestoneContent)
+    .where(and(eq(portalMilestoneContent.clientId, clientId), eq(portalMilestoneContent.milestoneId, milestoneId)))
+    .limit(1);
+
+  const now = new Date().toISOString();
+  const existing = rows[0];
+
+  if (existing) {
+    await db.update(portalMilestoneContent).set({ content, updatedAt: now }).where(eq(portalMilestoneContent.id, existing.id));
+  } else {
+    await db.insert(portalMilestoneContent).values({ clientId, milestoneId, content, updatedAt: now });
   }
 }
 

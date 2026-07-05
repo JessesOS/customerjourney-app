@@ -27,6 +27,8 @@ export type ClientPortalExperienceProps = {
   name?: string;
   currentDay?: number;
   initialCompletedMilestoneIds?: string[];
+  initialMilestoneNotes?: Record<string, string>;
+  milestoneContent?: Record<string, string>;
   portalToken?: string;
 };
 
@@ -90,12 +92,16 @@ export function ClientPortalExperience({
   name = "Chris",
   currentDay = defaultCurrentDay,
   initialCompletedMilestoneIds = defaultCompletedMilestoneIds,
+  initialMilestoneNotes = {},
+  milestoneContent = {},
   portalToken,
 }: ClientPortalExperienceProps) {
   const [phase, setPhase] = useState<Phase>("intro");
   const [heroMounted, setHeroMounted] = useState(true);
   const [view, setView] = useState<View>("home");
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set(initialCompletedMilestoneIds));
+  const [notes, setNotes] = useState<Record<string, string>>(initialMilestoneNotes);
+  const [noteDrafts, setNoteDrafts] = useState<Record<string, string>>({});
 
   const journeyStages = useMemo(() => buildJourneyStages(completedIds, currentDay), [completedIds, currentDay]);
 
@@ -126,17 +132,20 @@ export function ClientPortalExperience({
   const viewingStageIndex = journeyStages.findIndex((s) => s.id === viewingStageId);
   const viewingStage = viewingStageIndex >= 0 ? journeyStages[viewingStageIndex] : undefined;
 
-  function approveMilestone(milestoneId: string) {
+  function approveMilestone(milestoneId: string, note?: string) {
     setCompletedIds((prev) => {
       const next = new Set(prev);
       next.add(milestoneId);
       return next;
     });
+    if (note !== undefined) {
+      setNotes((prev) => ({ ...prev, [milestoneId]: note }));
+    }
     if (portalToken) {
       fetch(`/api/portal/${portalToken}/complete`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ milestoneId }),
+        body: JSON.stringify({ milestoneId, note }),
       }).catch(() => {});
     }
   }
@@ -781,6 +790,8 @@ export function ClientPortalExperience({
                 const isFirst = milestone === 1;
                 const label = m.status === "done" ? "Reviewed & approved" : "Review & approve";
                 const inlineForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
+                const savedContent = milestoneContent[m.id];
+                const noteValue = noteDrafts[m.id] ?? notes[m.id] ?? "";
 
                 return (
                   <div style={{ animation: "viewIn 0.35s ease" }}>
@@ -793,11 +804,25 @@ export function ClientPortalExperience({
                     </p>
 
                     {m.status === "done" ? (
-                      <div style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 12, borderRadius: 14, border: "1px solid rgba(0,184,160,0.35)", background: "rgba(0,184,160,0.07)", padding: "16px 18px" }}>
-                        <div style={{ width: 24, height: 24, borderRadius: 99, background: teal, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                          <CheckIcon size={12} />
+                      <div style={{ marginTop: 24 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 12, borderRadius: 14, border: "1px solid rgba(0,184,160,0.35)", background: "rgba(0,184,160,0.07)", padding: "16px 18px" }}>
+                          <div style={{ width: 24, height: 24, borderRadius: 99, background: teal, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                            <CheckIcon size={12} />
+                          </div>
+                          <div style={{ flex: 1, fontSize: 14, color: text }}>You&apos;ve completed this milestone.</div>
                         </div>
-                        <div style={{ flex: 1, fontSize: 14, color: text }}>You&apos;ve completed this milestone.</div>
+                        {savedContent && (
+                          <div style={{ marginTop: 14, borderRadius: 14, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: "16px 18px" }}>
+                            {savedContent.split("\n").filter(Boolean).map((line, i) => (
+                              <p key={i} style={{ fontSize: 14, color: text, margin: i === 0 ? 0 : "8px 0 0", lineHeight: 1.6 }}>{line}</p>
+                            ))}
+                          </div>
+                        )}
+                        {notes[m.id] && (
+                          <div style={{ marginTop: 14, fontSize: 13, color: "rgba(238,241,246,0.55)" }}>
+                            <span style={{ color: gold }}>Your note:</span> {notes[m.id]}
+                          </div>
+                        )}
                       </div>
                     ) : inlineForm ? (
                       <OnboardingFormStepper
@@ -809,11 +834,40 @@ export function ClientPortalExperience({
                         }}
                       />
                     ) : (
-                      <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
-                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
-                          What we need from you
+                      <div>
+                        <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
+                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
+                            {m.hasEditableContent ? "For your review" : "What we need from you"}
+                          </div>
+                          {m.hasEditableContent ? (
+                            savedContent ? (
+                              savedContent.split("\n").filter(Boolean).map((line, i) => (
+                                <p key={i} style={{ fontSize: 15, color: text, lineHeight: 1.6, margin: i === 0 ? 0 : "10px 0 0" }}>{line}</p>
+                              ))
+                            ) : (
+                              <p style={{ fontSize: 15, color: "rgba(238,241,246,0.5)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
+                                Your account team is finalizing these — check back soon.
+                              </p>
+                            )
+                          ) : (
+                            <p style={{ fontSize: 15, color: text, lineHeight: 1.6, margin: 0 }}>{m.detail}</p>
+                          )}
                         </div>
-                        <p style={{ fontSize: 15, color: text, lineHeight: 1.6, margin: 0 }}>{m.detail}</p>
+
+                        {m.notePrompt && (
+                          <div style={{ marginTop: 16 }}>
+                            <label style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.5)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                              {m.notePrompt}
+                            </label>
+                            <textarea
+                              value={noteValue}
+                              onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [m.id]: e.target.value }))}
+                              placeholder="Optional — leave blank if it looks good."
+                              rows={3}
+                              style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.14)", background: "rgba(255,255,255,0.03)", color: text, fontFamily: "'Sora', system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
+                            />
+                          </div>
+                        )}
                       </div>
                     )}
 
@@ -830,7 +884,7 @@ export function ClientPortalExperience({
                       {m.status !== "done" && (
                         <button
                           onClick={() => {
-                            approveMilestone(m.id);
+                            approveMilestone(m.id, m.notePrompt ? noteValue : undefined);
                             if (!isLast) setMilestone(milestone + 1);
                           }}
                           style={{ marginLeft: isFirst ? "auto" : 0, background: gold, color: "#1c1300", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}

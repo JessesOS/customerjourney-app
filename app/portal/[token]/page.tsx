@@ -1,6 +1,12 @@
 import { notFound } from "next/navigation";
 import { ClientPortalExperience } from "@/app/components/portal/ClientPortalExperience";
-import { computeCurrentDay, getCompletedMilestoneIds, getPortalClientByToken } from "@/lib/portalClientStore";
+import {
+  computeCurrentDay,
+  getAllMilestoneContent,
+  getCompletedMilestoneIds,
+  getMilestoneNotes,
+  getPortalClientByToken,
+} from "@/lib/portalClientStore";
 
 export default async function PortalPage({
   params,
@@ -14,9 +20,11 @@ export default async function PortalPage({
     notFound();
   }
 
-  const [completedIds, currentDay] = await Promise.all([
+  const [completedIds, currentDay, milestoneNotes, milestoneContent] = await Promise.all([
     getCompletedMilestoneIds(client.id),
     Promise.resolve(computeCurrentDay(client.startDate)),
+    getMilestoneNotes(client.id),
+    getAllMilestoneContent(client.id),
   ]);
 
   return (
@@ -24,6 +32,8 @@ export default async function PortalPage({
       name={client.name}
       currentDay={currentDay}
       initialCompletedMilestoneIds={[...completedIds]}
+      initialMilestoneNotes={milestoneNotes}
+      milestoneContent={milestoneContent}
       portalToken={token}
     />
   );

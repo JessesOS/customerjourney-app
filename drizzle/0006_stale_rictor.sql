@@ -1,0 +1,1 @@
+ALTER TABLE `portal_milestone_progress` ADD `note` text;

@@ -1,6 +1,6 @@
 import { isAdminEmail, isLocalDevelopmentHost } from "@/lib/adminAuth";
 import { journeyTemplate } from "@/lib/onboardingJourney";
-import { getFormResponses } from "@/lib/portalClientStore";
+import { getAllMilestoneContent, getFormResponses, getMilestoneNotes } from "@/lib/portalClientStore";
 
 function requestCanAdmin(request: Request) {
   const email = request.headers.get("oai-authenticated-user-email");
@@ -12,9 +12,9 @@ function requestCanAdmin(request: Request) {
   return false;
 }
 
-const formIdsInJourney = Array.from(
-  new Set(journeyTemplate.flatMap((stage) => stage.milestones).map((m) => m.formId).filter((id): id is string => Boolean(id))),
-);
+const allMilestones = journeyTemplate.flatMap((stage) => stage.milestones);
+const formIdsInJourney = Array.from(new Set(allMilestones.map((m) => m.formId).filter((id): id is string => Boolean(id))));
+const editableMilestones = allMilestones.filter((m) => m.hasEditableContent);
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!requestCanAdmin(request)) {
@@ -23,14 +23,28 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
 
   try {
     const { id } = await params;
-    const forms = await Promise.all(
-      formIdsInJourney.map(async (formId) => {
-        const saved = await getFormResponses(id, formId);
-        return { formId, responses: saved?.responses ?? null, completedAt: saved?.completedAt ?? null };
-      }),
-    );
+    const [forms, notes, content] = await Promise.all([
+      Promise.all(
+        formIdsInJourney.map(async (formId) => {
+          const saved = await getFormResponses(id, formId);
+          return { formId, responses: saved?.responses ?? null, completedAt: saved?.completedAt ?? null };
+        }),
+      ),
+      getMilestoneNotes(id),
+      getAllMilestoneContent(id),
+    ]);
 
-    return Response.json({ ok: true, forms });
+    const milestoneNotes = allMilestones
+      .filter((m) => notes[m.id])
+      .map((m) => ({ milestoneId: m.id, title: m.title, note: notes[m.id] }));
+
+    const editableContent = editableMilestones.map((m) => ({
+      milestoneId: m.id,
+      title: m.title,
+      content: content[m.id] ?? "",
+    }));
+
+    return Response.json({ ok: true, forms, milestoneNotes, editableContent });
   } catch (error) {
     return Response.json(
       { ok: false, error: error instanceof Error ? error.message : "Could not load form responses." },

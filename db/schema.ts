@@ -71,6 +71,7 @@ export const portalMilestoneProgress = sqliteTable("portal_milestone_progress", 
   clientId: text("client_id").notNull(),
   milestoneId: text("milestone_id").notNull(),
   completedAt: text("completed_at"),
+  note: text("note"),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 
@@ -80,5 +81,15 @@ export const portalFormResponses = sqliteTable("portal_form_responses", {
   formId: text("form_id").notNull(),
   responses: text("responses").notNull().default("{}"),
   completedAt: text("completed_at"),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
+
+// Team-authored content that's specific to one client (e.g. their drafted AI
+// qualification questions), set by an admin and shown read-only in the portal.
+export const portalMilestoneContent = sqliteTable("portal_milestone_content", {
+  id: integer("id").primaryKey(),
+  clientId: text("client_id").notNull(),
+  milestoneId: text("milestone_id").notNull(),
+  content: text("content").notNull().default(""),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });

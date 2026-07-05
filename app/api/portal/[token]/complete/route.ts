@@ -12,14 +12,15 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
       return Response.json({ ok: false, error: "Unknown portal token." }, { status: 404 });
     }
 
-    const body = (await request.json()) as { milestoneId?: string };
+    const body = (await request.json()) as { milestoneId?: string; note?: string };
     const milestoneId = body.milestoneId;
 
     if (!milestoneId || !validMilestoneIds.has(milestoneId)) {
       return Response.json({ ok: false, error: "Unknown milestone id." }, { status: 400 });
     }
 
-    await markMilestoneComplete(client.id, milestoneId);
+    const note = typeof body.note === "string" ? body.note.trim().slice(0, 2000) : undefined;
+    await markMilestoneComplete(client.id, milestoneId, note);
 
     return Response.json({ ok: true });
   } catch (error) {
