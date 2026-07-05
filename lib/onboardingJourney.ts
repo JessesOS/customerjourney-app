@@ -5,6 +5,7 @@ export type JourneyMilestone = {
   title: string;
   detail: string;
   status: MilestoneStatus;
+  formId?: string;
 };
 
 export type StageStatus = "done" | "current" | "locked";
@@ -24,6 +25,7 @@ type MilestoneTemplate = {
   id: string;
   title: string;
   detail: string;
+  formId?: string;
 };
 
 type StageTemplate = {
@@ -46,7 +48,7 @@ export const journeyTemplate: StageTemplate[] = [
     dayStart: 1,
     dayEnd: 2,
     milestones: [
-      { id: "ob-1", title: "Complete your onboarding form", detail: "Business info, proof of address, domain & website access, branding." },
+      { id: "ob-1", title: "Complete your onboarding form", detail: "Business info, proof of address, domain & website access, branding.", formId: "scale-onboarding-intake-v1" },
       { id: "ob-2", title: "Attend your Welcome Call & portal walkthrough", detail: "A live walkthrough of your portal, milestones, and messaging center." },
       { id: "ob-3", title: "Review & approve your AI receptionist's qualification questions", detail: "Confirm the qualification questions your AI will ask incoming leads." },
       { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead." },
@@ -164,6 +166,7 @@ export function buildJourneyStages(completedIds: Set<string>, currentDay: number
       id: m.id,
       title: m.title,
       detail: m.detail,
+      formId: m.formId,
       status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
     }));
 

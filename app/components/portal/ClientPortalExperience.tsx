@@ -11,6 +11,8 @@ import {
   journeyTotalDays,
   type JourneyMilestone,
 } from "@/lib/onboardingJourney";
+import { onboardingFormById } from "@/lib/onboardingForm";
+import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 
 const teal = "#00b8a0";
 const gold = "#f5a623";
@@ -53,6 +55,14 @@ function CheckIcon({ color = "#04130e", size = 13 }: { color?: string; size?: nu
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round">
       <path d="M5 13l4 4 10-12" />
+    </svg>
+  );
+}
+
+function FormIcon({ color = gold, size = 12 }: { color?: string; size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
     </svg>
   );
 }
@@ -753,7 +763,10 @@ export function ClientPortalExperience({
                       <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: m.status === "done" ? "rgba(238,241,246,0.45)" : active ? gold : "rgba(238,241,246,0.4)", letterSpacing: "0.1em" }}>
                         STEP {i + 1} {m.status === "done" ? "· DONE" : active ? "· NOW" : ""}
                       </div>
-                      <div style={{ fontWeight: 600, fontSize: 15, marginTop: 2, color: m.status === "upcoming" && !active ? "rgba(238,241,246,0.75)" : text }}>{m.title}</div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 7, fontWeight: 600, fontSize: 15, marginTop: 2, color: m.status === "upcoming" && !active ? "rgba(238,241,246,0.75)" : text }}>
+                        {m.title}
+                        {m.formId && m.status !== "done" && <FormIcon color={active ? gold : "rgba(238,241,246,0.4)"} />}
+                      </div>
                     </div>
                   </button>
                 );
@@ -767,6 +780,7 @@ export function ClientPortalExperience({
                 const isLast = milestone === viewingStage.milestones.length;
                 const isFirst = milestone === 1;
                 const label = m.status === "done" ? "Reviewed & approved" : "Review & approve";
+                const inlineForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
 
                 return (
                   <div style={{ animation: "viewIn 0.35s ease" }}>
@@ -785,6 +799,15 @@ export function ClientPortalExperience({
                         </div>
                         <div style={{ flex: 1, fontSize: 14, color: text }}>You&apos;ve completed this milestone.</div>
                       </div>
+                    ) : inlineForm ? (
+                      <OnboardingFormStepper
+                        form={inlineForm}
+                        portalToken={portalToken}
+                        onComplete={() => {
+                          approveMilestone(m.id);
+                          if (!isLast) setMilestone(milestone + 1);
+                        }}
+                      />
                     ) : (
                       <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
                         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
@@ -794,6 +817,7 @@ export function ClientPortalExperience({
                       </div>
                     )}
 
+                    {!inlineForm && (
                     <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 22 }}>
                       {!isFirst && (
                         <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}>
@@ -815,6 +839,7 @@ export function ClientPortalExperience({
                         </button>
                       )}
                     </div>
+                    )}
                   </div>
                 );
               })()}

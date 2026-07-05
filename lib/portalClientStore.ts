@@ -1,7 +1,8 @@
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { getDb } from "@/db";
-import { portalClients, portalMilestoneProgress } from "@/db/schema";
+import { portalClients, portalFormResponses, portalMilestoneProgress } from "@/db/schema";
 import { journeyTemplate, journeyTotalDays } from "@/lib/onboardingJourney";
+import type { PortalFormResponses } from "@/lib/onboardingForm";
 
 const totalMilestoneCount = journeyTemplate.reduce((sum, stage) => sum + stage.milestones.length, 0);
 
@@ -87,6 +88,56 @@ export async function markMilestoneComplete(clientId: string, milestoneId: strin
       clientId,
       milestoneId,
       completedAt: now,
+      updatedAt: now,
+    });
+  }
+}
+
+export async function getFormResponses(clientId: string, formId: string) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalFormResponses)
+    .where(and(eq(portalFormResponses.clientId, clientId), eq(portalFormResponses.formId, formId)))
+    .limit(1);
+
+  const row = rows[0];
+  if (!row) return null;
+
+  return {
+    responses: JSON.parse(row.responses) as PortalFormResponses,
+    completedAt: row.completedAt,
+  };
+}
+
+export async function saveFormResponses(
+  clientId: string,
+  formId: string,
+  responses: PortalFormResponses,
+  completed: boolean,
+) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalFormResponses)
+    .where(and(eq(portalFormResponses.clientId, clientId), eq(portalFormResponses.formId, formId)))
+    .limit(1);
+
+  const now = new Date().toISOString();
+  const serialized = JSON.stringify(responses);
+  const existing = rows[0];
+
+  if (existing) {
+    await db
+      .update(portalFormResponses)
+      .set({ responses: serialized, completedAt: completed ? now : existing.completedAt, updatedAt: now })
+      .where(eq(portalFormResponses.id, existing.id));
+  } else {
+    await db.insert(portalFormResponses).values({
+      clientId,
+      formId,
+      responses: serialized,
+      completedAt: completed ? now : null,
       updatedAt: now,
     });
   }

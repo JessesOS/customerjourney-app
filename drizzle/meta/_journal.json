@@ -36,6 +36,13 @@
       "when": 1782961479096,
       "tag": "0004_purple_hardball",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1783247523583,
+      "tag": "0005_flashy_black_panther",
+      "breakpoints": true
     }
   ]
 }

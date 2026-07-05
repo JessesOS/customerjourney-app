@@ -73,3 +73,12 @@ export const portalMilestoneProgress = sqliteTable("portal_milestone_progress", 
   completedAt: text("completed_at"),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
+
+export const portalFormResponses = sqliteTable("portal_form_responses", {
+  id: integer("id").primaryKey(),
+  clientId: text("client_id").notNull(),
+  formId: text("form_id").notNull(),
+  responses: text("responses").notNull().default("{}"),
+  completedAt: text("completed_at"),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
