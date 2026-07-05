@@ -80,7 +80,7 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "bd-1", title: "Review & approve your eBook lead magnet content", detail: "We've drafted your lead magnet — take a look at the doc below and approve it, or leave a note if you'd like any revisions, before we build the landing page.", notePrompt: "Any revisions or amendments you'd like?", hasEditableContent: true },
       { id: "bd-2", title: "Approve your Meta ad campaigns & creative assets", detail: "Your ad strategy doc and creatives are ready below for final sign-off. Take a look and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to the strategy or creative?", hasEditableContent: true },
       { id: "bd-3", title: "Grant RT Digital partner access to your Meta Business Suite", detail: "Add us as a Partner in Meta Business Suite so we can launch your campaigns. Watch the walkthrough below, then use our Business ID and step-by-step guide.", videoUrl: "/portal/meta-partner-access-walkthrough.mp4", hasEditableContent: true },
-      { id: "bd-4", title: "Watch your ad campaign walkthrough video", detail: "A short recorded walkthrough showing exactly what's going live and how leads will flow in." },
+      { id: "bd-4", title: "Watch your ad campaign walkthrough video", detail: "A short recorded walkthrough showing exactly what's going live and how leads will flow in.", videoUrl: "/portal/ad-campaign-walkthrough.mp4" },
     ],
     statusNotes: [
       "Your AI receptionist is being configured — no action needed from you yet.",
