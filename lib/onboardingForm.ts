@@ -250,3 +250,23 @@ export function formMissingRequired(responses: PortalFormResponses, form: Portal
     })
     .map((field) => field.label);
 }
+
+/** Renders a raw stored value as display text, e.g. resolving option values to their labels. */
+export function formatFieldValue(field: PortalFormField, value: PortalFormValue | undefined): string {
+  if (value === undefined || value === null || value === "" || (Array.isArray(value) && value.length === 0)) {
+    return "—";
+  }
+
+  const labelFor = (raw: string) => field.options?.find((opt) => opt.value === raw)?.label ?? raw;
+
+  if (field.type === "checkboxes" && Array.isArray(value)) {
+    return value.map(labelFor).join(", ");
+  }
+  if (field.type === "checkbox") {
+    return value === "accepted" ? "Yes" : "No";
+  }
+  if (field.type === "radio" || field.type === "select") {
+    return labelFor(value as string);
+  }
+  return String(value);
+}
