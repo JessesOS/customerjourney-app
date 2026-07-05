@@ -64,6 +64,23 @@ function CheckIcon({ color = "#04130e", size = 13 }: { color?: string; size?: nu
   );
 }
 
+function LinkifiedLine({ line }: { line: string }) {
+  const parts = line.split(/(https?:\/\/[^\s]+)/g);
+  return (
+    <>
+      {parts.map((part, i) =>
+        /^https?:\/\//.test(part) ? (
+          <a key={i} href={part} target="_blank" rel="noreferrer" style={{ color: "#6aa6f5", textDecoration: "underline" }}>
+            {part}
+          </a>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </>
+  );
+}
+
 function FormIcon({ color = gold, size = 12 }: { color?: string; size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -881,7 +898,7 @@ export function ClientPortalExperience({
                         {savedContent && (
                           <div style={{ marginTop: 14, borderRadius: 14, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: "16px 18px" }}>
                             {savedContent.split("\n").filter(Boolean).map((line, i) => (
-                              <p key={i} style={{ fontSize: 14, color: text, margin: i === 0 ? 0 : "8px 0 0", lineHeight: 1.6 }}>{line}</p>
+                              <p key={i} style={{ fontSize: 14, color: text, margin: i === 0 ? 0 : "8px 0 0", lineHeight: 1.6 }}><LinkifiedLine line={line} /></p>
                             ))}
                           </div>
                         )}
@@ -942,7 +959,7 @@ export function ClientPortalExperience({
                           {m.hasEditableContent ? (
                             savedContent ? (
                               savedContent.split("\n").filter(Boolean).map((line, i) => (
-                                <p key={i} style={{ fontSize: 15, color: text, lineHeight: 1.6, margin: i === 0 ? 0 : "10px 0 0" }}>{line}</p>
+                                <p key={i} style={{ fontSize: 15, color: text, lineHeight: 1.6, margin: i === 0 ? 0 : "10px 0 0" }}><LinkifiedLine line={line} /></p>
                               ))
                             ) : (
                               <p style={{ fontSize: 15, color: "rgba(238,241,246,0.5)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
