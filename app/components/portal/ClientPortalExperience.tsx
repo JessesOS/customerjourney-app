@@ -23,12 +23,15 @@ const text = "#eef1f6";
 type Phase = "intro" | "resolved";
 type View = "home" | "stage";
 
+export type UploadMeta = { fileName: string; uploadedAt: string };
+
 export type ClientPortalExperienceProps = {
   name?: string;
   currentDay?: number;
   initialCompletedMilestoneIds?: string[];
   initialMilestoneNotes?: Record<string, string>;
   milestoneContent?: Record<string, string>;
+  milestoneUploads?: Record<string, UploadMeta>;
   portalToken?: string;
 };
 
@@ -94,6 +97,7 @@ export function ClientPortalExperience({
   initialCompletedMilestoneIds = defaultCompletedMilestoneIds,
   initialMilestoneNotes = {},
   milestoneContent = {},
+  milestoneUploads = {},
   portalToken,
 }: ClientPortalExperienceProps) {
   const [phase, setPhase] = useState<Phase>("intro");
@@ -102,6 +106,9 @@ export function ClientPortalExperience({
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set(initialCompletedMilestoneIds));
   const [notes, setNotes] = useState<Record<string, string>>(initialMilestoneNotes);
   const [noteDrafts, setNoteDrafts] = useState<Record<string, string>>({});
+  const [uploads, setUploads] = useState<Record<string, UploadMeta>>(milestoneUploads);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [uploadingId, setUploadingId] = useState<string | null>(null);
 
   const journeyStages = useMemo(() => buildJourneyStages(completedIds, currentDay), [completedIds, currentDay]);
 
@@ -149,6 +156,51 @@ export function ClientPortalExperience({
         body: JSON.stringify({ milestoneId, note }),
       }).catch(() => {});
     }
+  }
+
+  function uploadFile(milestoneId: string, file: File) {
+    setUploadError(null);
+    if (!file.name.toLowerCase().endsWith(".csv")) {
+      setUploadError("Please choose a .csv file.");
+      return;
+    }
+    if (file.size > 1_000_000) {
+      setUploadError("That file is too large — please keep it under 1MB.");
+      return;
+    }
+
+    setUploadingId(milestoneId);
+    const reader = new FileReader();
+    reader.onload = () => {
+      const content = String(reader.result ?? "");
+      if (!portalToken) {
+        setUploadingId(null);
+        setUploads((prev) => ({ ...prev, [milestoneId]: { fileName: file.name, uploadedAt: new Date().toISOString() } }));
+        approveMilestone(milestoneId);
+        return;
+      }
+      fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fileName: file.name, content }),
+      })
+        .then((res) => res.json())
+        .then((payload: { ok: boolean; error?: string }) => {
+          if (!payload.ok) {
+            setUploadError(payload.error ?? "Could not upload the file.");
+            return;
+          }
+          setUploads((prev) => ({ ...prev, [milestoneId]: { fileName: file.name, uploadedAt: new Date().toISOString() } }));
+          approveMilestone(milestoneId);
+        })
+        .catch(() => setUploadError("Could not reach the server."))
+        .finally(() => setUploadingId(null));
+    };
+    reader.onerror = () => {
+      setUploadError("Could not read that file.");
+      setUploadingId(null);
+    };
+    reader.readAsText(file);
   }
 
   useEffect(() => {
@@ -794,6 +846,9 @@ export function ClientPortalExperience({
                 const inlineForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
                 const savedContent = milestoneContent[m.id];
                 const noteValue = noteDrafts[m.id] ?? notes[m.id] ?? "";
+                const uploadMeta = uploads[m.id];
+                const showUploadWidget = m.status !== "done" && m.hasUpload;
+                const hasCustomFlow = Boolean(inlineForm) || showUploadWidget;
 
                 return (
                   <div style={{ animation: "viewIn 0.35s ease" }}>
@@ -835,6 +890,11 @@ export function ClientPortalExperience({
                             <span style={{ color: gold }}>Your note:</span> {notes[m.id]}
                           </div>
                         )}
+                        {uploadMeta && (
+                          <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "rgba(238,241,246,0.55)" }}>
+                            <span style={{ color: gold }}>Uploaded:</span> {uploadMeta.fileName}
+                          </div>
+                        )}
                       </div>
                     ) : inlineForm ? (
                       <OnboardingFormStepper
@@ -845,6 +905,34 @@ export function ClientPortalExperience({
                           if (!isLast) setMilestone(milestone + 1);
                         }}
                       />
+                    ) : showUploadWidget ? (
+                      <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
+                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
+                          Upload your file
+                        </div>
+                        <label
+                          style={{
+                            display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+                            border: "1.5px dashed rgba(255,255,255,0.2)", borderRadius: 14, padding: "28px 20px",
+                            cursor: uploadingId === m.id ? "default" : "pointer", color: "rgba(238,241,246,0.7)",
+                            fontFamily: "'Sora', sans-serif", fontSize: 14,
+                          }}
+                        >
+                          <input
+                            type="file"
+                            accept=".csv"
+                            disabled={uploadingId === m.id}
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) uploadFile(m.id, file);
+                              e.target.value = "";
+                            }}
+                            style={{ display: "none" }}
+                          />
+                          {uploadingId === m.id ? "Uploading…" : "Click to choose a .csv file"}
+                        </label>
+                        {uploadError && <div style={{ marginTop: 12, fontSize: 13, color: "#ff9a90" }}>{uploadError}</div>}
+                      </div>
                     ) : (
                       <div>
                         <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
@@ -883,7 +971,7 @@ export function ClientPortalExperience({
                       </div>
                     )}
 
-                    {!inlineForm && (
+                    {!hasCustomFlow && (
                     <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 22 }}>
                       {!isFirst && (
                         <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}>

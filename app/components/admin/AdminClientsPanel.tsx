@@ -19,8 +19,16 @@ type CreateResponse = { ok: boolean; id?: string; portalToken?: string; error?: 
 type ClientForm = { formId: string; responses: PortalFormResponses | null; completedAt: string | null };
 type MilestoneNote = { milestoneId: string; title: string; note: string };
 type EditableContent = { milestoneId: string; title: string; content: string };
-type ClientDetail = { forms: ClientForm[]; milestoneNotes: MilestoneNote[]; editableContent: EditableContent[] };
-type FormsResponse = { ok: boolean; forms?: ClientForm[]; milestoneNotes?: MilestoneNote[]; editableContent?: EditableContent[]; error?: string };
+type ClientUpload = { milestoneId: string; title: string; fileName: string; uploadedAt: string };
+type ClientDetail = { forms: ClientForm[]; milestoneNotes: MilestoneNote[]; editableContent: EditableContent[]; uploads: ClientUpload[] };
+type FormsResponse = {
+  ok: boolean;
+  forms?: ClientForm[];
+  milestoneNotes?: MilestoneNote[];
+  editableContent?: EditableContent[];
+  uploads?: ClientUpload[];
+  error?: string;
+};
 
 function MilestoneContentEditor({ clientId, milestoneId, title, initialContent }: { clientId: string; milestoneId: string; title: string; initialContent: string }) {
   const [value, setValue] = useState(initialContent);
@@ -168,7 +176,12 @@ export function AdminClientsPanel() {
       setDetailByClient((prev) => ({
         ...prev,
         [client.id]: payload.ok
-          ? { forms: payload.forms ?? [], milestoneNotes: payload.milestoneNotes ?? [], editableContent: payload.editableContent ?? [] }
+          ? {
+              forms: payload.forms ?? [],
+              milestoneNotes: payload.milestoneNotes ?? [],
+              editableContent: payload.editableContent ?? [],
+              uploads: payload.uploads ?? [],
+            }
           : "error",
       }));
     } catch {
@@ -307,6 +320,27 @@ export function AdminClientsPanel() {
                           {detail.milestoneNotes.map((n) => (
                             <div key={n.milestoneId} style={{ fontSize: 13 }}>
                               <span style={{ color: "rgba(252,250,246,0.6)" }}>{n.title}:</span> <span style={{ color: "#fcfaf6" }}>{n.note}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {detail && typeof detail === "object" && detail.uploads.length > 0 && (
+                      <div style={{ marginBottom: 16 }}>
+                        <div style={{ fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(252,250,246,0.4)", marginBottom: 8 }}>
+                          Uploaded files
+                        </div>
+                        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                          {detail.uploads.map((u) => (
+                            <div key={u.milestoneId} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13 }}>
+                              <span style={{ color: "rgba(252,250,246,0.6)" }}>{u.title}:</span>
+                              <span style={{ color: "#fcfaf6" }}>{u.fileName}</span>
+                              <a
+                                href={`/api/admin/portal-clients/${client.id}/uploads/${u.milestoneId}`}
+                                style={{ color: "#00b8a0", textDecoration: "underline", fontSize: 12 }}
+                              >
+                                Download
+                              </a>
                             </div>
                           ))}
                         </div>

@@ -93,3 +93,14 @@ export const portalMilestoneContent = sqliteTable("portal_milestone_content", {
   content: text("content").notNull().default(""),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
+
+// Client-uploaded files (e.g. a CSV of past leads). Stored inline as text --
+// there's no R2 bucket provisioned for this app, and these files are small.
+export const portalMilestoneUploads = sqliteTable("portal_milestone_uploads", {
+  id: integer("id").primaryKey(),
+  clientId: text("client_id").notNull(),
+  milestoneId: text("milestone_id").notNull(),
+  fileName: text("file_name").notNull(),
+  content: text("content").notNull(),
+  uploadedAt: text("uploaded_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});

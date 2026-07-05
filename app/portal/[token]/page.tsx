@@ -3,6 +3,7 @@ import { ClientPortalExperience } from "@/app/components/portal/ClientPortalExpe
 import {
   computeCurrentDay,
   getAllMilestoneContent,
+  getAllMilestoneUploadsMeta,
   getCompletedMilestoneIds,
   getMilestoneNotes,
   getPortalClientByToken,
@@ -20,11 +21,12 @@ export default async function PortalPage({
     notFound();
   }
 
-  const [completedIds, currentDay, milestoneNotes, milestoneContent] = await Promise.all([
+  const [completedIds, currentDay, milestoneNotes, milestoneContent, milestoneUploads] = await Promise.all([
     getCompletedMilestoneIds(client.id),
     Promise.resolve(computeCurrentDay(client.startDate)),
     getMilestoneNotes(client.id),
     getAllMilestoneContent(client.id),
+    getAllMilestoneUploadsMeta(client.id),
   ]);
 
   return (
@@ -34,6 +36,7 @@ export default async function PortalPage({
       initialCompletedMilestoneIds={[...completedIds]}
       initialMilestoneNotes={milestoneNotes}
       milestoneContent={milestoneContent}
+      milestoneUploads={milestoneUploads}
       portalToken={token}
     />
   );

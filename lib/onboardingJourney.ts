@@ -9,6 +9,7 @@ export type JourneyMilestone = {
   notePrompt?: string;
   hasEditableContent?: boolean;
   videoUrl?: string;
+  hasUpload?: boolean;
 };
 
 export type StageStatus = "done" | "current" | "locked";
@@ -32,6 +33,7 @@ type MilestoneTemplate = {
   notePrompt?: string;
   hasEditableContent?: boolean;
   videoUrl?: string;
+  hasUpload?: boolean;
 };
 
 type StageTemplate = {
@@ -60,8 +62,8 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.", videoUrl: "/portal/download-app-walkthrough.mp4" },
       { id: "ob-5", title: "Review your SMS/Email message copy", detail: "Our team has drafted the SMS and email messages your AI will send on your behalf. Take a look below and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to this messaging?", hasEditableContent: true },
       { id: "ob-6", title: "Connect your calendar, social accounts & payment method", detail: "Needed so your AI can book appointments and take payments.", videoUrl: "/portal/connect-accounts-walkthrough.mp4" },
-      { id: "ob-7", title: "Upload your past leads (CSV)", detail: "Helps train your AI on what a good lead looks like for you." },
-      { id: "ob-8", title: "Grant access to your accounts", detail: "Google My Business, domain, and website builder access." },
+      { id: "ob-7", title: "Upload your past leads (CSV)", detail: "Helps train your AI on what a good lead looks like for you.", hasUpload: true },
+      { id: "ob-8", title: "Grant access to your accounts", detail: "Google My Business, domain, and website builder access.", videoUrl: "/portal/grant-access-walkthrough.mp4" },
     ],
     statusNotes: [
       "Your project timeline: Days 2-13 Build, Day 14 AI Test, Day 30 Go-Live.",
@@ -176,6 +178,7 @@ export function buildJourneyStages(completedIds: Set<string>, currentDay: number
       notePrompt: m.notePrompt,
       hasEditableContent: m.hasEditableContent,
       videoUrl: m.videoUrl,
+      hasUpload: m.hasUpload,
       status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
     }));
 

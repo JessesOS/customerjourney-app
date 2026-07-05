@@ -57,6 +57,13 @@
       "when": 1783253327772,
       "tag": "0007_small_skin",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1783258005080,
+      "tag": "0008_stale_invaders",
+      "breakpoints": true
     }
   ]
 }

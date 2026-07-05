@@ -1,6 +1,6 @@
 import { isAdminEmail, isLocalDevelopmentHost } from "@/lib/adminAuth";
 import { journeyTemplate } from "@/lib/onboardingJourney";
-import { getAllMilestoneContent, getFormResponses, getMilestoneNotes } from "@/lib/portalClientStore";
+import { getAllMilestoneContent, getAllMilestoneUploadsMeta, getFormResponses, getMilestoneNotes } from "@/lib/portalClientStore";
 
 function requestCanAdmin(request: Request) {
   const email = request.headers.get("oai-authenticated-user-email");
@@ -23,7 +23,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
 
   try {
     const { id } = await params;
-    const [forms, notes, content] = await Promise.all([
+    const [forms, notes, content, uploadsMeta] = await Promise.all([
       Promise.all(
         formIdsInJourney.map(async (formId) => {
           const saved = await getFormResponses(id, formId);
@@ -32,6 +32,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       ),
       getMilestoneNotes(id),
       getAllMilestoneContent(id),
+      getAllMilestoneUploadsMeta(id),
     ]);
 
     const milestoneNotes = allMilestones
@@ -44,7 +45,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       content: content[m.id] ?? "",
     }));
 
-    return Response.json({ ok: true, forms, milestoneNotes, editableContent });
+    const uploads = allMilestones
+      .filter((m) => uploadsMeta[m.id])
+      .map((m) => ({ milestoneId: m.id, title: m.title, fileName: uploadsMeta[m.id].fileName, uploadedAt: uploadsMeta[m.id].uploadedAt }));
+
+    return Response.json({ ok: true, forms, milestoneNotes, editableContent, uploads });
   } catch (error) {
     return Response.json(
       { ok: false, error: error instanceof Error ? error.message : "Could not load form responses." },

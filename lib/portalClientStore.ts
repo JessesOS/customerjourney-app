@@ -1,6 +1,12 @@
 import { and, eq } from "drizzle-orm";
 import { getDb } from "@/db";
-import { portalClients, portalFormResponses, portalMilestoneContent, portalMilestoneProgress } from "@/db/schema";
+import {
+  portalClients,
+  portalFormResponses,
+  portalMilestoneContent,
+  portalMilestoneProgress,
+  portalMilestoneUploads,
+} from "@/db/schema";
 import { journeyTemplate, journeyTotalDays } from "@/lib/onboardingJourney";
 import type { PortalFormResponses } from "@/lib/onboardingForm";
 
@@ -57,6 +63,7 @@ export async function deletePortalClient(id: string) {
   await db.delete(portalMilestoneProgress).where(eq(portalMilestoneProgress.clientId, id));
   await db.delete(portalFormResponses).where(eq(portalFormResponses.clientId, id));
   await db.delete(portalMilestoneContent).where(eq(portalMilestoneContent.clientId, id));
+  await db.delete(portalMilestoneUploads).where(eq(portalMilestoneUploads.clientId, id));
   await db.delete(portalClients).where(eq(portalClients.id, id));
 }
 
@@ -189,6 +196,44 @@ export async function saveFormResponses(
       updatedAt: now,
     });
   }
+}
+
+export async function saveMilestoneUpload(clientId: string, milestoneId: string, fileName: string, content: string) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalMilestoneUploads)
+    .where(and(eq(portalMilestoneUploads.clientId, clientId), eq(portalMilestoneUploads.milestoneId, milestoneId)))
+    .limit(1);
+
+  const now = new Date().toISOString();
+  const existing = rows[0];
+
+  if (existing) {
+    await db
+      .update(portalMilestoneUploads)
+      .set({ fileName, content, uploadedAt: now })
+      .where(eq(portalMilestoneUploads.id, existing.id));
+  } else {
+    await db.insert(portalMilestoneUploads).values({ clientId, milestoneId, fileName, content, uploadedAt: now });
+  }
+}
+
+export async function getMilestoneUpload(clientId: string, milestoneId: string) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalMilestoneUploads)
+    .where(and(eq(portalMilestoneUploads.clientId, clientId), eq(portalMilestoneUploads.milestoneId, milestoneId)))
+    .limit(1);
+
+  return rows[0] ?? null;
+}
+
+export async function getAllMilestoneUploadsMeta(clientId: string): Promise<Record<string, { fileName: string; uploadedAt: string }>> {
+  const db = getDb();
+  const rows = await db.select().from(portalMilestoneUploads).where(eq(portalMilestoneUploads.clientId, clientId));
+  return Object.fromEntries(rows.map((r) => [r.milestoneId, { fileName: r.fileName, uploadedAt: r.uploadedAt }]));
 }
 
 /** Day 1 = the client's start date. Clamped to the 30-day journey length. */
