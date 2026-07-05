@@ -712,6 +712,16 @@ export function ClientPortalExperience({
             {viewingStage.blurb}
           </p>
 
+          {viewingStage.statusNotes.length > 0 && (
+            <div style={{ marginTop: 20, maxWidth: 620, padding: "12px 16px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12 }}>
+              {viewingStage.statusNotes.map((note) => (
+                <div key={note} style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13, color: "rgba(238,241,246,0.5)", marginBottom: 4 }}>
+                  <span style={{ color: teal, marginTop: 2 }}>●</span> {note}
+                </div>
+              ))}
+            </div>
+          )}
+
           <div style={{ display: "grid", gridTemplateColumns: "270px 1fr", gap: 34, marginTop: 40, alignItems: "start" }}>
             <aside style={{ position: "sticky", top: 84, display: "flex", flexDirection: "column", gap: 6 }}>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.45)", letterSpacing: "0.16em", textTransform: "uppercase", margin: "0 0 10px 4px" }}>

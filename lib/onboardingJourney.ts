@@ -48,14 +48,17 @@ export const journeyTemplate: StageTemplate[] = [
     milestones: [
       { id: "ob-1", title: "Complete your onboarding form", detail: "Business info, proof of address, domain & website access, branding." },
       { id: "ob-2", title: "Attend your Welcome Call & portal walkthrough", detail: "A live walkthrough of your portal, milestones, and messaging center." },
-      { id: "ob-3", title: "Review & approve your AI receptionist's questions", detail: "Confirm the qualification questions your AI will ask incoming leads." },
+      { id: "ob-3", title: "Review & approve your AI receptionist's qualification questions", detail: "Confirm the qualification questions your AI will ask incoming leads." },
       { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead." },
       { id: "ob-5", title: "Review your SMS/Email message copy", detail: "Approve the messaging your AI will send on your behalf." },
       { id: "ob-6", title: "Connect your calendar, social accounts & payment method", detail: "Needed so your AI can book appointments and take payments." },
       { id: "ob-7", title: "Upload your past leads (CSV)", detail: "Helps train your AI on what a good lead looks like for you." },
       { id: "ob-8", title: "Grant access to your accounts", detail: "Google My Business, domain, and website builder access." },
     ],
-    statusNotes: ["Your subscription fees begin 14-30 days from purchase."],
+    statusNotes: [
+      "Your project timeline: Days 2-13 Build, Day 14 AI Test, Day 30 Go-Live.",
+      "Your subscription fees begin 14-30 days from purchase.",
+    ],
   },
   {
     id: "build",
@@ -83,7 +86,7 @@ export const journeyTemplate: StageTemplate[] = [
     milestones: [
       { id: "ts-1", title: "Confirm your app, calendar & social accounts are connected", detail: "A quick check that everything is linked correctly before the test." },
       { id: "ts-2", title: "Test your AI receptionist live", detail: "Try to stump it with different scenarios — this is how we make it better for you." },
-      { id: "ts-3", title: "Your Go-Live Call gets scheduled", detail: "We'll lock in your Day 30 walkthrough based on today's results." },
+      { id: "ts-3", title: "Your Go-Live Call is scheduled", detail: "We'll lock in your Day 30 walkthrough based on today's results." },
     ],
     statusNotes: ["We'll fine-tune your AI based on your test feedback — no action needed from you."],
   },
@@ -100,7 +103,7 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "gl-4", title: "Set your team's usage standards", detail: "How your team should use the app day-to-day, so nothing falls through the cracks." },
       { id: "gl-5", title: "You're live — access your recording & support links", detail: "Everything you need in one message: call recording, user manual, and support contact." },
     ],
-    statusNotes: [],
+    statusNotes: ["Your subscription fees have now officially commenced."],
   },
   {
     id: "post-launch",
