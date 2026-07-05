@@ -12,3 +12,9 @@ export function isAdminEmail(email: string | null) {
 export function isLocalDevelopmentHost(host: string | null) {
   return Boolean(host && /localhost|127\.0\.0\.1/.test(host));
 }
+
+/** Fallback admin check for deploys without the ChatGPT-injected auth header (e.g. a raw Cloudflare Workers URL). */
+export function isAdminToken(token: string | null) {
+  const configured = process.env.ADMIN_ACCESS_TOKEN;
+  return Boolean(configured && token && token === configured);
+}

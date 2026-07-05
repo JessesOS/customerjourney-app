@@ -1,4 +1,4 @@
-import { isAdminEmail, isLocalDevelopmentHost } from "@/lib/adminAuth";
+import { isAdminEmail, isAdminToken, isLocalDevelopmentHost } from "@/lib/adminAuth";
 import { deletePortalClient } from "@/lib/portalClientStore";
 
 function requestCanAdmin(request: Request) {
@@ -7,6 +7,9 @@ function requestCanAdmin(request: Request) {
 
   const host = request.headers.get("host");
   if (isLocalDevelopmentHost(host)) return true;
+
+  const token = new URL(request.url).searchParams.get("token") ?? request.headers.get("x-admin-token");
+  if (isAdminToken(token)) return true;
 
   return false;
 }

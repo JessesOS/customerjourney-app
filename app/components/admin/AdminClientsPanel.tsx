@@ -30,7 +30,7 @@ type FormsResponse = {
   error?: string;
 };
 
-function MilestoneContentEditor({ clientId, milestoneId, title, initialContent }: { clientId: string; milestoneId: string; title: string; initialContent: string }) {
+function MilestoneContentEditor({ clientId, milestoneId, title, initialContent, adminToken }: { clientId: string; milestoneId: string; title: string; initialContent: string; adminToken?: string }) {
   const [value, setValue] = useState(initialContent);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -41,7 +41,7 @@ function MilestoneContentEditor({ clientId, milestoneId, title, initialContent }
     try {
       const res = await fetch(`/api/admin/portal-clients/${clientId}/milestone-content/${milestoneId}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...(adminToken ? { "x-admin-token": adminToken } : {}) },
         body: JSON.stringify({ content: value }),
       });
       const payload = (await res.json()) as { ok: boolean };
@@ -82,8 +82,11 @@ function todayIso() {
 }
 
 export function AdminClientsPanel() {
+  const [adminToken, setAdminToken] = useState<string | undefined>(undefined);
+  const authHeaders: HeadersInit = adminToken ? { "x-admin-token": adminToken } : {};
   const [clients, setClients] = useState<PortalClient[]>([]);
   const [loading, setLoading] = useState(true);
+  const [forbidden, setForbidden] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -95,16 +98,22 @@ export function AdminClientsPanel() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [detailByClient, setDetailByClient] = useState<Record<string, ClientDetail | "loading" | "error">>({});
 
-  async function loadClients() {
+  async function loadClients(token?: string) {
     setLoading(true);
     setError(null);
+    const headers: HeadersInit = token ? { "x-admin-token": token } : {};
     try {
-      const res = await fetch("/api/admin/portal-clients", { cache: "no-store" });
+      const res = await fetch("/api/admin/portal-clients", { cache: "no-store", headers });
+      if (res.status === 403) {
+        setForbidden(true);
+        return;
+      }
       const payload = (await res.json()) as ListResponse;
       if (!payload.ok || !payload.clients) {
         setError(payload.error ?? "Could not load clients.");
         return;
       }
+      setForbidden(false);
       setClients(payload.clients);
     } catch {
       setError("Could not reach the server.");
@@ -114,7 +123,9 @@ export function AdminClientsPanel() {
   }
 
   useEffect(() => {
-    loadClients();
+    const token = new URLSearchParams(window.location.search).get("token") ?? undefined;
+    setAdminToken(token);
+    loadClients(token);
   }, []);
 
   async function handleCreate(e: React.FormEvent) {
@@ -126,7 +137,7 @@ export function AdminClientsPanel() {
     try {
       const res = await fetch("/api/admin/portal-clients", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...authHeaders },
         body: JSON.stringify({ name, companyName, startDate }),
       });
       const payload = (await res.json()) as CreateResponse;
@@ -149,7 +160,7 @@ export function AdminClientsPanel() {
     if (!confirm(`Delete ${clientName}'s portal? This removes all their progress and cannot be undone.`)) return;
 
     try {
-      const res = await fetch(`/api/admin/portal-clients/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/admin/portal-clients/${id}`, { method: "DELETE", headers: authHeaders });
       const payload = (await res.json()) as { ok: boolean; error?: string };
       if (!payload.ok) {
         setError(payload.error ?? "Could not delete client.");
@@ -171,7 +182,7 @@ export function AdminClientsPanel() {
 
     setDetailByClient((prev) => ({ ...prev, [client.id]: "loading" }));
     try {
-      const res = await fetch(`/api/admin/portal-clients/${client.id}/forms`, { cache: "no-store" });
+      const res = await fetch(`/api/admin/portal-clients/${client.id}/forms`, { cache: "no-store", headers: authHeaders });
       const payload = (await res.json()) as FormsResponse;
       setDetailByClient((prev) => ({
         ...prev,
@@ -205,6 +216,17 @@ export function AdminClientsPanel() {
     background: "#151713",
     color: "#fcfaf6",
   };
+
+  if (forbidden) {
+    return (
+      <div style={{ maxWidth: 520, margin: "80px auto", padding: "48px 32px", fontFamily: "system-ui, sans-serif", color: "#fcfaf6", textAlign: "center" }}>
+        <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>Admin access required</h1>
+        <p style={{ color: "rgba(252,250,246,0.6)", lineHeight: 1.6 }}>
+          This page needs an admin access token. Add <code style={{ color: "#f5a623" }}>?token=…</code> to the URL, or sign in as an authorized admin.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div style={{ maxWidth: 960, margin: "0 auto", padding: "48px 32px", fontFamily: "system-ui, sans-serif", color: "#fcfaf6" }}>
@@ -309,6 +331,7 @@ export function AdminClientsPanel() {
                         milestoneId={item.milestoneId}
                         title={item.title}
                         initialContent={item.content}
+                        adminToken={adminToken}
                       />
                     ))}
                     {detail && typeof detail === "object" && detail.milestoneNotes.length > 0 && (
@@ -336,7 +359,7 @@ export function AdminClientsPanel() {
                               <span style={{ color: "rgba(252,250,246,0.6)" }}>{u.title}:</span>
                               <span style={{ color: "#fcfaf6" }}>{u.fileName}</span>
                               <a
-                                href={`/api/admin/portal-clients/${client.id}/uploads/${u.milestoneId}`}
+                                href={`/api/admin/portal-clients/${client.id}/uploads/${u.milestoneId}${adminToken ? `?token=${encodeURIComponent(adminToken)}` : ""}`}
                                 style={{ color: "#00b8a0", textDecoration: "underline", fontSize: 12 }}
                               >
                                 Download

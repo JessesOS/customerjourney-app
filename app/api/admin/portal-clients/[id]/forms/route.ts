@@ -1,4 +1,4 @@
-import { isAdminEmail, isLocalDevelopmentHost } from "@/lib/adminAuth";
+import { isAdminEmail, isAdminToken, isLocalDevelopmentHost } from "@/lib/adminAuth";
 import { journeyTemplate } from "@/lib/onboardingJourney";
 import { getAllMilestoneContent, getAllMilestoneUploadsMeta, getFormResponses, getMilestoneNotes } from "@/lib/portalClientStore";
 
@@ -8,6 +8,9 @@ function requestCanAdmin(request: Request) {
 
   const host = request.headers.get("host");
   if (isLocalDevelopmentHost(host)) return true;
+
+  const token = new URL(request.url).searchParams.get("token") ?? request.headers.get("x-admin-token");
+  if (isAdminToken(token)) return true;
 
   return false;
 }
