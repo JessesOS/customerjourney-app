@@ -8,6 +8,7 @@ export type JourneyMilestone = {
   formId?: string;
   notePrompt?: string;
   hasEditableContent?: boolean;
+  videoUrl?: string;
 };
 
 export type StageStatus = "done" | "current" | "locked";
@@ -30,6 +31,7 @@ type MilestoneTemplate = {
   formId?: string;
   notePrompt?: string;
   hasEditableContent?: boolean;
+  videoUrl?: string;
 };
 
 type StageTemplate = {
@@ -55,7 +57,7 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "ob-1", title: "Complete your onboarding form", detail: "Business info, proof of address, domain & website access, branding.", formId: "scale-onboarding-intake-v1" },
       { id: "ob-2", title: "Attend your Welcome Call & portal walkthrough", detail: "A live walkthrough of your portal, milestones, and messaging center. We'll reach out shortly to lock in a time — keep an eye on your calendar invite or portal messages for the details." },
       { id: "ob-3", title: "Review & approve your AI receptionist's qualification questions", detail: "Our team has drafted the qualification questions your AI will ask incoming leads, based on how you'd train a new team member. Take a look below and approve, or leave a note if you'd like anything adjusted.", notePrompt: "Any adjustments or requests for these questions?", hasEditableContent: true },
-      { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead." },
+      { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.", videoUrl: "/portal/download-app-walkthrough.mp4" },
       { id: "ob-5", title: "Review your SMS/Email message copy", detail: "Approve the messaging your AI will send on your behalf." },
       { id: "ob-6", title: "Connect your calendar, social accounts & payment method", detail: "Needed so your AI can book appointments and take payments." },
       { id: "ob-7", title: "Upload your past leads (CSV)", detail: "Helps train your AI on what a good lead looks like for you." },
@@ -173,6 +175,7 @@ export function buildJourneyStages(completedIds: Set<string>, currentDay: number
       formId: m.formId,
       notePrompt: m.notePrompt,
       hasEditableContent: m.hasEditableContent,
+      videoUrl: m.videoUrl,
       status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
     }));
 

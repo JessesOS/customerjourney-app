@@ -116,6 +116,7 @@ export function ClientPortalExperience({
   const [showUnmute, setShowUnmute] = useState(false);
   const [showPlay, setShowPlay] = useState(false);
   const [videoTitle, setVideoTitle] = useState<string | null>(null);
+  const [videoSrc, setVideoSrc] = useState<string>("/portal/welcome-to-scale.mp4");
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -254,8 +255,9 @@ export function ClientPortalExperience({
     window.scrollTo(0, 0);
   }
 
-  function openVideo(title: string) {
+  function openVideo(title: string, src: string = "/portal/welcome-to-scale.mp4") {
     setVideoTitle(title);
+    setVideoSrc(src);
     const t = setTimeout(() => {
       const v = modalVideoRef.current;
       if (v) {
@@ -803,6 +805,16 @@ export function ClientPortalExperience({
                       {m.detail}
                     </p>
 
+                    {m.videoUrl && (
+                      <button
+                        onClick={() => openVideo(m.title, m.videoUrl)}
+                        style={{ marginTop: 14, display: "inline-flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "7px 16px 7px 7px", color: text, fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 13, cursor: "pointer" }}
+                      >
+                        <PlayIcon />
+                        Watch how it works
+                      </button>
+                    )}
+
                     {m.status === "done" ? (
                       <div style={{ marginTop: 24 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 12, borderRadius: 14, border: "1px solid rgba(0,184,160,0.35)", background: "rgba(0,184,160,0.07)", padding: "16px 18px" }}>
@@ -921,7 +933,7 @@ export function ClientPortalExperience({
                 </svg>
               </button>
             </div>
-            <video ref={modalVideoRef} src="/portal/welcome-to-scale.mp4" controls playsInline style={{ display: "block", width: "100%", aspectRatio: "16 / 9", background: "#000" }} />
+            <video ref={modalVideoRef} src={videoSrc} controls playsInline style={{ display: "block", width: "100%", aspectRatio: "16 / 9", background: "#000" }} />
           </div>
         </div>
       )}
