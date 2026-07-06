@@ -123,7 +123,19 @@ export function AdminClientsPanel() {
   }
 
   useEffect(() => {
-    const token = new URLSearchParams(window.location.search).get("token") ?? undefined;
+    // Prefer a ?token= in the URL; otherwise fall back to one saved on this
+    // device from a previous visit, so a bare /admin/clients keeps working.
+    const urlToken = new URLSearchParams(window.location.search).get("token") ?? undefined;
+    let token = urlToken;
+    try {
+      if (urlToken) {
+        localStorage.setItem("scaleAdminToken", urlToken);
+        // Tidy the token out of the visible URL bar once it's remembered.
+        window.history.replaceState({}, "", window.location.pathname);
+      } else {
+        token = localStorage.getItem("scaleAdminToken") ?? undefined;
+      }
+    } catch {}
     setAdminToken(token);
     loadClients(token);
   }, []);
