@@ -1,5 +1,11 @@
 # Customer Journey Codebase Audit
 
+> **Point-in-time snapshot (July 5, 2026) — partially outdated.** Since this audit: the admin
+> client-management UI was built (`/admin/clients` with token auth), the publish process is
+> documented (`deploying.md`), and the app is live on Cloudflare Workers. Remaining gaps from the
+> "next steps" below: **real CSM content for stages 1, 4, 5** and optional automation/notification
+> wiring. See `project_context.md` for current status. *(Note added 2026-07-12.)*
+
 **Date:** July 5, 2026  
 **Auditor:** Claude Code  
 **Status:** Working tree clean, main branch, origin/main up-to-date
