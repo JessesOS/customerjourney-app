@@ -23,12 +23,26 @@ From the repo root (`~/Master/AI/customerjourney-app`):
    ```bash
    npm run build
    ```
-3. **Patch the generated `wrangler.json`** with the real production D1 `database_id`
-   (the build emits a config that doesn't know the production database — the id lives in the
-   Cloudflare dashboard under D1, or in the dedicated Customer Journey session's notes).
+3. **Patch the generated `wrangler.json`** — the build emits a config with placeholder values
+   that must be corrected before deploying:
+   ```bash
+   python3 -c "
+   import json, pathlib
+   cfg = pathlib.Path('dist/server/wrangler.json')
+   data = json.loads(cfg.read_text())
+   data['name'] = 'scale-onboarding-portal'
+   for b in data.get('d1_databases', []):
+       b['database_id'] = 'e9ff232a-b1dc-41f4-b22e-d80551dc1f9b'
+   cfg.write_text(json.dumps(data, indent=2))
+   print('patched')
+   "
+   ```
+   - `name` defaults to `site-creator-vinext-starter` — must be `scale-onboarding-portal` or it deploys to the wrong worker
+   - `database_id` defaults to a zeroed placeholder — must be `e9ff232a-b1dc-41f4-b22e-d80551dc1f9b` (the `scale-onboarding-portal-prod` D1 database)
+
 4. **Deploy:**
    ```bash
-   wrangler deploy
+   npx wrangler deploy --config dist/server/wrangler.json
    ```
 
 ## After deploying — smoke test
