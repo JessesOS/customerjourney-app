@@ -40,8 +40,30 @@ JesseOS ecosystem. It should align with:
 
 Functionally complete portal, live in production, with admin client management.
 Outstanding work:
-1. **Stages 1, 4, 5 need real CSM content** (stage 3 done) — the main remaining task
-2. Automation/notification wiring (optional, post-MVP)
+1. **UI/UX overhaul — see below, this is today's priority.**
+2. Stages 1, 4, 5 need real CSM content (stage 3 done)
+3. Automation/notification wiring (optional, post-MVP)
+
+## Planned: UI/UX overhaul (2026-07-12)
+
+Jesse's brief: "beautiful, but not quite right." **Content and tasking stay exactly as they
+are — this is visual/UX only.**
+
+**Scope boundary — state this explicitly at the start of the session so nothing outside it
+gets touched:** no changes to admin logic, the milestone data model, or the token auth flow.
+Pure visual/UX redesign, functional behavior locked.
+
+**Before starting design work:**
+1. Get 2-3 concrete complaints about the current look, not just "make it prettier" — too
+   generic? too corporate? inconsistent spacing? Something specific to aim at.
+2. Ask for a design reference or two if Jesse has one in mind ("more like X, less like Y").
+3. Screenshot the current live portal first (both `/admin/clients` and a real `/portal/[token]`
+   view) as the "before" — for diffing against and for Jesse to compare once done.
+
+**Tooling:** try the built-in `design:design-critique` and `design:design-system` skills before
+reaching for anything custom — they're already shaped for "here's a UI, make it better, keep it
+consistent." Only build a bespoke skill if the same custom instructions end up repeating across
+multiple redesign sessions — not before.
 
 ## Historical note
 
