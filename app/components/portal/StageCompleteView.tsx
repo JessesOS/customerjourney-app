@@ -119,7 +119,7 @@ export function StageCompleteView({
             borderRadius: "var(--pj-radius-pill)",
             padding: "12px 24px",
             cursor: "pointer",
-            boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)",
+            boxShadow: "0 8px 20px -10px rgba(38,32,25,.26)",
             fontFamily: "var(--font-body), sans-serif",
           }}
         >

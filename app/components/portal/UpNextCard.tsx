@@ -62,7 +62,7 @@ export function UpNextCard({
               padding: "11px 22px",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)",
+              boxShadow: "0 8px 20px -10px rgba(38,32,25,.26)",
               fontFamily: "var(--font-body), sans-serif",
             }}
           >

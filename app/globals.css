@@ -32,9 +32,9 @@
   --pj-line: #e7dfd2;
   --pj-line-soft: #f0eae0;
 
-  --pj-act: #c75038;         /* terracotta — the one action colour */
-  --pj-act-fill: #f8e4dc;
-  --pj-act-ink: #fff8f3;     /* text on terracotta */
+  --pj-act: #262019;         /* ink / charcoal — the one action colour */
+  --pj-act-fill: #e7e1d6;    /* soft stone tint for chips / active states */
+  --pj-act-ink: #fbf8f2;     /* light text on the dark action colour */
   --pj-done: #5f7a4e;        /* sage — completed */
   --pj-done-fill: #e5ead7;
   --pj-withus: #8a5b72;      /* plum — team is working on it */

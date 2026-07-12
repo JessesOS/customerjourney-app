@@ -62,7 +62,7 @@ export function TaskRow({
         alignItems: "center",
         gap: 14,
         padding: "14px 20px",
-        background: isTurn ? "#fbf3ec" : "transparent",
+        background: isTurn ? "#f3efe6" : "transparent",
       }}
     >
       <StatusDot status={status} />
