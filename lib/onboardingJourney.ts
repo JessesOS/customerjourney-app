@@ -14,6 +14,9 @@ export type JourneyMilestone = {
   awaitingTeam?: boolean;
   /** Scheduling link (Cal.com / Calendly). Renders a "Book your call" CTA. */
   bookingUrl?: string;
+  /** Step-by-step guide link (e.g. Scribe). Renders a guide button on the task. */
+  guideUrl?: string;
+  guideLabel?: string;
 };
 
 export type StageStatus = "done" | "current" | "locked";
@@ -40,6 +43,8 @@ type MilestoneTemplate = {
   hasUpload?: boolean;
   awaitingTeam?: boolean;
   bookingUrl?: string;
+  guideUrl?: string;
+  guideLabel?: string;
 };
 
 type StageTemplate = {
@@ -67,7 +72,9 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "ob-3", title: "Review & approve your AI receptionist's qualification questions", detail: "Our team has drafted the qualification questions your AI will ask incoming leads, based on how you'd train a new team member. Take a look below and approve, or leave a note if you'd like anything adjusted.", notePrompt: "Any adjustments or requests for these questions?", hasEditableContent: true },
       { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.", videoUrl: "/portal/download-app-walkthrough.mp4" },
       { id: "ob-5", title: "Review your SMS/Email message copy", detail: "Our team has drafted the SMS and email messages your AI will send on your behalf. Take a look below and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to this messaging?", hasEditableContent: true },
-      { id: "ob-6", title: "Connect your calendar, social accounts & payment method", detail: "Needed so your AI can book appointments and take payments.", videoUrl: "/portal/connect-accounts-walkthrough.mp4" },
+      { id: "ob-6", title: "Connect your calendar", detail: "Connect your calendar so your AI can see your availability and book appointments straight into it. Follow the step-by-step guide below.", videoUrl: "/portal/connect-accounts-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Set_Up_Calendars_and_Availability_in_your_CRM__7GRN6aWmSHSHoV8rVvqyzw", guideLabel: "Step-by-step guide" },
+      // ob-6b: split from the old combined task. Add its own Scribe guideUrl when ready.
+      { id: "ob-6b", title: "Connect your social accounts & payment method", detail: "Connect your social accounts and payment method so your AI can respond across your channels and take payments on your behalf.", videoUrl: "/portal/connect-accounts-walkthrough.mp4" },
       { id: "ob-7", title: "Upload your past leads (CSV)", detail: "Helps train your AI on what a good lead looks like for you.", hasUpload: true },
       { id: "ob-8", title: "Grant access to your accounts", detail: "Google My Business, domain, and website builder access.", videoUrl: "/portal/grant-access-walkthrough.mp4" },
     ],
@@ -188,6 +195,8 @@ export function buildJourneyStages(completedIds: Set<string>, currentDay: number
       hasUpload: m.hasUpload,
       awaitingTeam: m.awaitingTeam,
       bookingUrl: m.bookingUrl,
+      guideUrl: m.guideUrl,
+      guideLabel: m.guideLabel,
       status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
     }));
 
