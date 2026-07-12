@@ -251,6 +251,17 @@ function FieldPrompt({
         </div>
       )}
 
+      {field.document && (
+        <div style={{ marginTop: 16, border: "1px solid var(--pj-line)", borderRadius: 14, background: "#faf7f2", overflow: "hidden" }}>
+          <div style={{ maxHeight: 340, overflowY: "auto", padding: "20px 22px" }}>
+            <TermsDocument text={field.document} />
+          </div>
+          <div style={{ borderTop: "1px solid var(--pj-line)", padding: "9px 20px", fontSize: 11.5, color: "var(--pj-faint)", background: "var(--pj-card)" }}>
+            Scroll to read the full terms, then accept below.
+          </div>
+        </div>
+      )}
+
       <div style={{ marginTop: 18 }}>
         {(field.type === "text" || field.type === "email" || field.type === "url" || field.type === "tel") && (
           <input
@@ -414,4 +425,47 @@ function CopyEmail({ email }: { email: string }) {
       </span>
     </button>
   );
+}
+
+// Renders the light-markdown terms document (see lib/termsText.ts) into styled,
+// readable blocks. Consecutive "* " lines are grouped into a single list.
+function TermsDocument({ text }: { text: string }) {
+  const lines = text.split("\n");
+  const blocks: React.ReactNode[] = [];
+  let bullets: string[] = [];
+  const flushBullets = () => {
+    if (bullets.length === 0) return;
+    blocks.push(
+      <ul key={`ul-${blocks.length}`} style={{ margin: "6px 0 12px", paddingLeft: 20, display: "flex", flexDirection: "column", gap: 4 }}>
+        {bullets.map((b, i) => (
+          <li key={i} style={{ fontSize: 13, color: "var(--pj-ink)", lineHeight: 1.55 }}>{b}</li>
+        ))}
+      </ul>,
+    );
+    bullets = [];
+  };
+
+  lines.forEach((raw, i) => {
+    const line = raw.trimEnd();
+    if (line.startsWith("* ")) {
+      bullets.push(line.slice(2));
+      return;
+    }
+    flushBullets();
+    if (line.trim() === "") return;
+    if (line === "---") {
+      blocks.push(<hr key={i} style={{ border: "none", borderTop: "1px solid var(--pj-line)", margin: "18px 0" }} />);
+    } else if (line.startsWith("### ")) {
+      blocks.push(<div key={i} style={{ fontSize: 13.5, fontWeight: 700, color: "var(--pj-ink)", margin: "16px 0 6px" }}>{line.slice(4)}</div>);
+    } else if (line.startsWith("## ")) {
+      blocks.push(<div key={i} style={{ fontSize: 16, fontWeight: 700, color: "var(--pj-ink)", margin: "22px 0 8px" }}>{line.slice(3)}</div>);
+    } else if (line.startsWith("# ")) {
+      blocks.push(<div key={i} style={{ fontSize: 17, fontWeight: 700, color: "var(--pj-ink)", lineHeight: 1.25, margin: "0 0 2px" }}>{line.slice(2)}</div>);
+    } else {
+      blocks.push(<p key={i} style={{ fontSize: 13, color: "var(--pj-ink)", lineHeight: 1.6, margin: "0 0 10px" }}>{line}</p>);
+    }
+  });
+  flushBullets();
+
+  return <div>{blocks}</div>;
 }

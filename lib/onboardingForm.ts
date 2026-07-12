@@ -1,3 +1,5 @@
+import { cmsTermsText } from "./termsText";
+
 export type PortalFormFieldType =
   | "text"
   | "email"
@@ -31,6 +33,8 @@ export interface PortalFormField {
   steps?: string[];
   guideUrl?: string;
   guideLabel?: string;
+  /** Long-form text (light markdown) shown in a scrollable frame above the input. */
+  document?: string;
 }
 
 export interface PortalFormSection {
@@ -182,8 +186,14 @@ export const scaleOnboardingForm: PortalFormDefinition = {
       id: "terms",
       title: "Terms",
       fields: [
-        { id: "terms_document_link", label: "Terms & Conditions document link", type: "url" },
-        { id: "terms_acceptance", label: "I accept the Terms & Conditions", type: "checkbox", required: true },
+        {
+          id: "terms_acceptance",
+          label: "Terms & Conditions",
+          type: "checkbox",
+          required: true,
+          helper: "Please read the RT Digital Program Terms & Conditions below, then accept to finish.",
+          document: cmsTermsText,
+        },
       ],
     },
   ],
