@@ -42,6 +42,17 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "ob-3", title: "Review & approve your AI receptionist's qualification questions", detail: "Our team has drafted the qualification questions your AI will ask incoming leads, based on how you'd train a new team member. Take a look below and approve, or leave a note if you'd like anything adjusted.", notePrompt: "Any adjustments or requests for these questions?", hasEditableContent: true },
       { id: "ob-5", title: "Review your SMS/Email message copy", detail: "Our team has drafted the SMS and email messages your AI will send on your behalf. Take a look below and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to this messaging?", hasEditableContent: true },
       { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.", videoUrl: "/portal/download-app-walkthrough.mp4" },
+      {
+        id: "ob-crm",
+        title: "Log into your TradeAI CRM",
+        detail: "Before you can complete your Build-Phase action steps, you need to successfully log into your new CRM dashboard.",
+        steps: [
+          "Check your inbox — look for a welcome email from RT Digital containing your login details.",
+          "Go to https://crm.rtdigital.agency/ — that's your desktop CRM login page.",
+          "Log in with your email address and the password you chose.",
+        ],
+        important: "Forgot your password? Click \"Forgot password\" on the login page to reset it. Still stuck? Ask for help in your dedicated Slack channel, or right here in the messaging center.",
+      },
       { id: "ob-6", title: "Connect your calendar", detail: "Connect your calendar so your AI can see your availability and book appointments straight into it. Follow the step-by-step guide below.", videoUrl: "/portal/connect-accounts-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Set_Up_Calendars_and_Availability_in_your_CRM__7GRN6aWmSHSHoV8rVvqyzw", guideLabel: "Step-by-step guide" },
       { id: "ob-6b", title: "Connect your social accounts", detail: "Connect your social accounts so your AI can respond to messages and comments across your channels. Follow the step-by-step guide below.", videoUrl: "/portal/connect-accounts-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Connecting_Facebook_in_your_CRM__W7guqe5_Sy6-nMadYtAPyw", guideLabel: "Step-by-step guide" },
       { id: "ob-6c", title: "Set up a payment mechanism", detail: "Go to Settings → Billing to connect your preferred payment mechanism for seamless transactions.", important: "Without this we can't send SMS or emails, which will stall your build progress." },

@@ -38,6 +38,9 @@ export type JourneyMilestone = {
   guideUrl?: string;
   guideLabel?: string;
   important?: string;
+  /** Numbered action steps shown in a card, e.g. "1. Check your inbox, 2. Go
+      to the login page, 3. Log in." */
+  steps?: string[];
   /** Shows a "copy your portal link" card instead of the usual content — for
       tasks that just ask the client to bookmark where they already are. */
   showPortalLink?: boolean;
@@ -70,6 +73,7 @@ export type MilestoneTemplate = {
   guideUrl?: string;
   guideLabel?: string;
   important?: string;
+  steps?: string[];
   showPortalLink?: boolean;
   /** Hidden from the client flow entirely (not rendered, not counted). Flip to
       re-enable a task without deleting it. */
@@ -144,6 +148,7 @@ export function buildStagesFromTemplate(
       guideUrl: m.guideUrl,
       guideLabel: m.guideLabel,
       important: m.important,
+      steps: m.steps,
       showPortalLink: m.showPortalLink,
       status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
     }));

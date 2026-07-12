@@ -523,6 +523,24 @@ export function ClientPortalExperience({
                   </a>
                 )}
 
+                {m.steps && m.steps.length > 0 && (
+                  <div style={{ marginTop: 20, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
+                    <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 14 }}>
+                      How to do it
+                    </div>
+                    <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 14 }}>
+                      {m.steps.map((s, i) => (
+                        <li key={i} style={{ display: "flex", gap: 13, alignItems: "flex-start" }}>
+                          <span style={{ flexShrink: 0, width: 22, height: 22, borderRadius: 99, background: "var(--pj-act-fill)", color: "var(--pj-act)", fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 1 }}>
+                            {i + 1}
+                          </span>
+                          <span style={{ fontSize: 14, color: "var(--pj-ink)", lineHeight: 1.55 }}><LinkifiedLine line={s} /></span>
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+
                 {m.important && (
                   <div style={{ marginTop: 18, display: "flex", gap: 11, borderRadius: "var(--pj-radius-sm)", border: "1px solid rgba(217,119,87,0.4)", background: "var(--pj-act-fill)", padding: "13px 16px" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pj-act)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
