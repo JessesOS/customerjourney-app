@@ -178,6 +178,7 @@ export function ClientPortalExperience({
         setUploadingId(null);
         setUploads((prev) => ({ ...prev, [milestoneId]: { fileName: file.name, uploadedAt: new Date().toISOString() } }));
         approveMilestone(milestoneId);
+        advanceAfterComplete(milestoneId);
         return;
       }
       fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, {
@@ -193,6 +194,7 @@ export function ClientPortalExperience({
           }
           setUploads((prev) => ({ ...prev, [milestoneId]: { fileName: file.name, uploadedAt: new Date().toISOString() } }));
           approveMilestone(milestoneId);
+          advanceAfterComplete(milestoneId);
         })
         .catch(() => setUploadError("Could not reach the server."))
         .finally(() => setUploadingId(null));
@@ -220,6 +222,27 @@ export function ClientPortalExperience({
   function backToJourney() {
     setView("home");
     window.scrollTo(0, 0);
+  }
+
+  // After a task auto-completes (upload / form submit), move the client onward:
+  // fire the stage-completion payoff if it finished the stage, else advance to
+  // the next task, else return to the journey.
+  function advanceAfterComplete(milestoneId: string) {
+    const completedStageId = stageCompletedBy(milestoneId);
+    if (completedStageId) {
+      setJustCompletedStageId(completedStageId);
+      setView("complete");
+      window.scrollTo(0, 0);
+      return;
+    }
+    const stage = viewingStage;
+    const idx = stage ? stage.milestones.findIndex((mm) => mm.id === milestoneId) : -1;
+    if (stage && idx >= 0 && idx < stage.milestones.length - 1) {
+      setMilestone(idx + 2);
+      window.scrollTo(0, 0);
+    } else {
+      backToJourney();
+    }
   }
 
   function openVideo(title: string, src: string = "/portal/welcome-to-scale.mp4") {
@@ -465,7 +488,7 @@ export function ClientPortalExperience({
                     portalToken={portalToken}
                     onComplete={() => {
                       approveMilestone(m.id);
-                      if (!isLast) setMilestone(milestone + 1);
+                      advanceAfterComplete(m.id);
                     }}
                   />
                 ) : showUploadWidget ? (
@@ -544,7 +567,7 @@ export function ClientPortalExperience({
                     <span style={{ marginLeft: isFirst ? 0 : "auto", fontSize: 12.5, color: "var(--pj-faint)" }}>
                       {m.status === "done" ? "Completed" : "Awaiting your approval"}
                     </span>
-                    {m.status !== "done" && (
+                    {m.status !== "done" ? (
                       <button
                         onClick={() => {
                           const completedStageId = stageCompletedBy(m.id);
@@ -562,6 +585,13 @@ export function ClientPortalExperience({
                         style={{ marginLeft: isFirst ? "auto" : 0, background: "var(--pj-act)", color: "var(--pj-act-ink)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer", boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)" }}
                       >
                         {isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => (isLast ? backToJourney() : setMilestone(milestone + 1))}
+                        style={{ marginLeft: isFirst ? "auto" : 0, background: "transparent", border: "1px solid var(--pj-act)", color: "var(--pj-act)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 650, fontSize: 15, borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
+                      >
+                        {isLast ? "Back to journey" : "Next task"} <span style={{ fontSize: 17 }}>→</span>
                       </button>
                     )}
                   </div>
