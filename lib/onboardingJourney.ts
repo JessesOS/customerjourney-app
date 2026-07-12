@@ -59,7 +59,11 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "ob-6b", title: "Connect your social accounts", detail: "Connect your social accounts so your AI can respond to messages and comments across your channels. Follow the step-by-step guide below.", videoUrl: "/portal/connect-accounts-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Connecting_Facebook_in_your_CRM__W7guqe5_Sy6-nMadYtAPyw", guideLabel: "Step-by-step guide" },
       { id: "ob-6c", title: "Set up a payment mechanism", detail: "Go to Settings → Billing to connect your preferred payment mechanism for seamless transactions.", important: "Without this we can't send SMS or emails, which will stall your build progress." },
       { id: "ob-7", title: "Upload your past leads (CSV)", detail: "Helps train your AI on what a good lead looks like for you.", hasUpload: true },
-      { id: "ob-8", title: "Grant access to your accounts", detail: "Google My Business, domain, and website builder access.", videoUrl: "/portal/grant-access-walkthrough.mp4" },
+      // MUTED per Jesse (2026-07-12) — redundant: domain + website builder access
+      // are already collected in the onboarding form, and GBP access is no longer
+      // needed (reviews pulled via an embedded app; rare phone-number changes
+      // handled ad hoc). Delete `hidden: true` to bring it back.
+      { id: "ob-8", title: "Grant access to your accounts", detail: "Google My Business, domain, and website builder access.", videoUrl: "/portal/grant-access-walkthrough.mp4", hidden: true },
     ],
     statusNotes: [
       "Your project timeline: Days 2-13 Build, Day 14 AI Test, Day 30 Go-Live.",
