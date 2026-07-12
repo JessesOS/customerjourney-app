@@ -342,7 +342,7 @@ export function AdminClientsPanel() {
                     </div>
                     <div style={{ fontSize: 13, color: "rgba(252,250,246,0.5)", marginTop: 2 }}>
                       <span style={{ color: "#e5b34a" }}>{clientTypeLabel(client.clientType)}</span>
-                      {" · "}Day {client.currentDay} / 30 · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
+                      {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
                     </div>
                   </div>
                   <button
