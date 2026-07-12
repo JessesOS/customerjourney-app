@@ -258,23 +258,30 @@ export function ClientPortalExperience({
           position: "sticky",
           top: 0,
           zIndex: 30,
-          display: "flex",
-          alignItems: "center",
-          gap: 14,
           background: "var(--pj-bg)",
           borderBottom: "1px solid var(--pj-line)",
-          padding: "15px 28px",
         }}
       >
-        <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)" }}>scale</span>
-        <span style={{ width: 1, height: 18, background: "var(--pj-line)" }} />
-        <span style={{ fontSize: 13, color: "var(--pj-muted)" }}>Client Portal{name ? ` · ${name}` : ""}</span>
-        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16 }}>
-          <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
-            Day {currentDay} / {journeyTotalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>
-          </span>
-          <div style={{ width: 30, height: 30, borderRadius: 99, background: "var(--pj-act)", color: "var(--pj-act-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13 }}>
-            {name.charAt(0)}
+        <div
+          style={{
+            maxWidth: 1180,
+            margin: "0 auto",
+            display: "flex",
+            alignItems: "center",
+            gap: 14,
+            padding: "15px 24px",
+          }}
+        >
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)" }}>scale</span>
+          <span style={{ width: 1, height: 18, background: "var(--pj-line)" }} />
+          <span style={{ fontSize: 13, color: "var(--pj-muted)" }}>Client Portal{name ? ` · ${name}` : ""}</span>
+          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16 }}>
+            <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
+              Day {currentDay} / {journeyTotalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>
+            </span>
+            <div style={{ width: 30, height: 30, borderRadius: 99, background: "var(--pj-act)", color: "var(--pj-act-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13 }}>
+              {name.charAt(0)}
+            </div>
           </div>
         </div>
       </div>

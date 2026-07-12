@@ -52,6 +52,8 @@
   display: flex;
   align-items: stretch;
   min-height: calc(100vh - 61px);
+  max-width: 1180px;
+  margin: 0 auto;
 }
 .pj-rail-desktop {
   flex: 0 0 auto;
@@ -62,8 +64,7 @@
 .pj-pane {
   flex: 1 1 auto;
   min-width: 0;
-  padding: 36px 44px 80px;
-  max-width: 860px;
+  padding: 36px clamp(32px, 4vw, 64px) 80px;
 }
 @media (max-width: 820px) {
   .pj-home {
