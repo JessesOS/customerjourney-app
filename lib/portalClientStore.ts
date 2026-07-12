@@ -7,10 +7,15 @@ import {
   portalMilestoneProgress,
   portalMilestoneUploads,
 } from "@/db/schema";
-import { journeyTemplate, journeyTotalDays } from "@/lib/onboardingJourney";
+import { journeyTemplate, journeyTotalDays, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
 import type { PortalFormResponses } from "@/lib/onboardingForm";
 
-const totalMilestoneCount = journeyTemplate.reduce((sum, stage) => sum + stage.milestones.length, 0);
+function totalMilestoneCountFor(clientType: ClientType): number {
+  return journeyTemplate.reduce(
+    (sum, stage) => sum + stage.milestones.filter((m) => milestoneVisibleFor(m, clientType)).length,
+    0,
+  );
+}
 
 export async function getPortalClientByToken(token: string) {
   const db = getDb();
@@ -36,13 +41,18 @@ export async function listPortalClients() {
         ...client,
         currentDay: computeCurrentDay(client.startDate),
         completedMilestoneCount: completedCount,
-        totalMilestoneCount,
+        totalMilestoneCount: totalMilestoneCountFor((client.clientType as ClientType) ?? "meta-google"),
       };
     })
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
-export async function createPortalClient(input: { name: string; companyName: string; startDate: string }) {
+export async function createPortalClient(input: {
+  name: string;
+  companyName: string;
+  startDate: string;
+  clientType?: ClientType;
+}) {
   const db = getDb();
   const id = crypto.randomUUID();
   const token = generatePortalToken();
@@ -53,6 +63,7 @@ export async function createPortalClient(input: { name: string; companyName: str
     companyName: input.companyName,
     portalToken: token,
     startDate: input.startDate,
+    clientType: input.clientType ?? "meta-google",
   });
 
   return { id, portalToken: token };

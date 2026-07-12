@@ -62,6 +62,9 @@ export const portalClients = sqliteTable("portal_clients", {
   companyName: text("company_name").notNull().default(""),
   portalToken: text("portal_token").notNull().unique(),
   startDate: text("start_date").notNull(),
+  // Which ad channels this client is on: "meta" | "google" | "meta-google".
+  // Drives which journey tasks they see. Existing clients default to both.
+  clientType: text("client_type").notNull().default("meta-google"),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });

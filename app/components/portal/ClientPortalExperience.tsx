@@ -8,6 +8,8 @@ import {
   journeyProgressPercent,
   journeyTemplate,
   journeyTotalDays,
+  milestoneVisibleFor,
+  type ClientType,
   type JourneyMilestone,
 } from "@/lib/onboardingJourney";
 import { onboardingFormById } from "@/lib/onboardingForm";
@@ -29,6 +31,7 @@ export type UploadMeta = { fileName: string; uploadedAt: string };
 
 export type ClientPortalExperienceProps = {
   name?: string;
+  clientType?: ClientType;
   currentDay?: number;
   initialCompletedMilestoneIds?: string[];
   initialMilestoneNotes?: Record<string, string>;
@@ -74,6 +77,7 @@ function PlayIcon({ color = "#f5a623", fill }: { color?: string; fill?: string }
 
 export function ClientPortalExperience({
   name = "Chris",
+  clientType = "meta-google",
   currentDay = defaultCurrentDay,
   initialCompletedMilestoneIds = defaultCompletedMilestoneIds,
   initialMilestoneNotes = {},
@@ -90,7 +94,10 @@ export function ClientPortalExperience({
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [uploadingId, setUploadingId] = useState<string | null>(null);
 
-  const journeyStages = useMemo(() => buildJourneyStages(completedIds, currentDay), [completedIds, currentDay]);
+  const journeyStages = useMemo(
+    () => buildJourneyStages(completedIds, currentDay, clientType),
+    [completedIds, currentDay, clientType],
+  );
 
   const defaultStage = useMemo(() => journeyStages.find((s) => s.status === "current"), [journeyStages]);
   const defaultMilestoneIndex = defaultStage
@@ -138,7 +145,7 @@ export function ClientPortalExperience({
     const stage = journeyTemplate.find((s) => s.milestones.some((mm) => mm.id === milestoneId));
     if (!stage) return null;
     const willAllBeDone = stage.milestones
-      .filter((mm) => !mm.hidden)
+      .filter((mm) => milestoneVisibleFor(mm, clientType))
       .every((mm) => mm.id === milestoneId || completedIds.has(mm.id));
     return willAllBeDone ? stage.id : null;
   }

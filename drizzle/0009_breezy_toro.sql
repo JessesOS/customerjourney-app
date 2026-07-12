@@ -1,0 +1,1 @@
+ALTER TABLE `portal_clients` ADD `client_type` text DEFAULT 'meta-google' NOT NULL;

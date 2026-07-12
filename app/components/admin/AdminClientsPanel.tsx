@@ -9,10 +9,21 @@ type PortalClient = {
   companyName: string;
   portalToken: string;
   startDate: string;
+  clientType?: string;
   currentDay: number;
   completedMilestoneCount: number;
   totalMilestoneCount: number;
 };
+
+const clientTypeOptions = [
+  { value: "meta-google", label: "Meta + Google Ads" },
+  { value: "meta", label: "Meta ads only" },
+  { value: "google", label: "Google Ads only" },
+];
+
+function clientTypeLabel(value?: string) {
+  return clientTypeOptions.find((o) => o.value === value)?.label ?? "Meta + Google Ads";
+}
 
 type ListResponse = { ok: boolean; clients?: PortalClient[]; error?: string };
 type CreateResponse = { ok: boolean; id?: string; portalToken?: string; error?: string };
@@ -94,6 +105,7 @@ export function AdminClientsPanel() {
   const [name, setName] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [startDate, setStartDate] = useState(todayIso());
+  const [clientType, setClientType] = useState("meta-google");
 
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [detailByClient, setDetailByClient] = useState<Record<string, ClientDetail | "loading" | "error">>({});
@@ -159,7 +171,7 @@ export function AdminClientsPanel() {
       const res = await fetch("/api/admin/portal-clients", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...authHeaders },
-        body: JSON.stringify({ name, companyName, startDate }),
+        body: JSON.stringify({ name, companyName, startDate, clientType }),
       });
       const payload = (await res.json()) as CreateResponse;
       if (!payload.ok) {
@@ -287,6 +299,16 @@ export function AdminClientsPanel() {
             style={inputStyle}
           />
         </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <label style={{ fontSize: 12, color: "rgba(252,250,246,0.6)" }}>Client type</label>
+          <select value={clientType} onChange={(e) => setClientType(e.target.value)} style={{ ...inputStyle, cursor: "pointer" }}>
+            {clientTypeOptions.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </div>
         <button
           type="submit"
           disabled={creating}
@@ -318,7 +340,8 @@ export function AdminClientsPanel() {
                       {client.name} {client.companyName && <span style={{ color: "rgba(252,250,246,0.5)", fontWeight: 400 }}>· {client.companyName}</span>}
                     </div>
                     <div style={{ fontSize: 13, color: "rgba(252,250,246,0.5)", marginTop: 2 }}>
-                      Day {client.currentDay} / 30 · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
+                      <span style={{ color: "#e5b34a" }}>{clientTypeLabel(client.clientType)}</span>
+                      {" · "}Day {client.currentDay} / 30 · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
                     </div>
                   </div>
                   <button

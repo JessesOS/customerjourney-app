@@ -32,6 +32,7 @@ export default async function PortalPage({
   return (
     <ClientPortalExperience
       name={client.name}
+      clientType={(client.clientType as "meta" | "google" | "meta-google") ?? "meta-google"}
       currentDay={currentDay}
       initialCompletedMilestoneIds={[...completedIds]}
       initialMilestoneNotes={milestoneNotes}

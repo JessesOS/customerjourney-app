@@ -1,5 +1,15 @@
 export type MilestoneStatus = "done" | "current" | "upcoming";
 
+/** Which ad channel(s) a client is on. Stored per client; chosen in admin. */
+export type ClientType = "meta" | "google" | "meta-google";
+export type ClientChannel = "meta" | "google";
+
+export const clientTypeLabels: Record<ClientType, string> = {
+  meta: "Meta ads",
+  google: "Google Ads",
+  "meta-google": "Meta + Google Ads",
+};
+
 export type JourneyMilestone = {
   id: string;
   title: string;
@@ -51,7 +61,23 @@ type MilestoneTemplate = {
   /** Hidden from the client flow entirely (not rendered, not counted). Flip to
       re-enable a task without deleting it. */
   hidden?: boolean;
+  /** Restrict a task to specific ad channels. Omit = shown to every client.
+      ["meta"] = Meta clients (and Meta+Google); ["google"] = Google clients
+      (and Meta+Google). */
+  channels?: ClientChannel[];
 };
+
+/** True when a milestone should appear for a client of the given type.
+    Applies both the hidden flag and the channel restriction. */
+export function milestoneVisibleFor(
+  m: { hidden?: boolean; channels?: ClientChannel[] },
+  clientType: ClientType,
+): boolean {
+  if (m.hidden) return false;
+  if (!m.channels || m.channels.length === 0) return true;
+  if (clientType === "meta-google") return true;
+  return m.channels.includes(clientType);
+}
 
 type StageTemplate = {
   id: string;
@@ -94,11 +120,19 @@ export const journeyTemplate: StageTemplate[] = [
     name: "Build",
     dayStart: 2,
     dayEnd: 13,
-    blurb: "We're building your eBook, ad campaigns, and AI receptionist — a few approvals needed along the way.",
+    blurb: "We're building your campaigns, assets, and AI receptionist — a few approvals needed along the way.",
     milestones: [
-      { id: "bd-1", title: "Review & approve your eBook lead magnet content", detail: "We've drafted your lead magnet — take a look at the doc below and approve it, or leave a note if you'd like any revisions, before we build the landing page.", notePrompt: "Any revisions or amendments you'd like?", hasEditableContent: true },
-      { id: "bd-2", title: "Approve your Meta ad campaigns & creative assets", detail: "Your ad strategy doc and creatives are ready below for final sign-off. Take a look and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to the strategy or creative?", hasEditableContent: true },
-      { id: "bd-3", title: "Grant RT Digital partner access to your Meta Business Suite", detail: "Add us as a Partner in Meta Business Suite so we can launch your campaigns. Watch the walkthrough below, then use our Business ID and step-by-step guide.", videoUrl: "/portal/meta-partner-access-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/How_to_Add_RT_Digital_as_a_Partner_on_Meta_Business_Suite__9EIRy1GpRLSzuofqDb0XYQ", guideLabel: "Step-by-step guide", hasEditableContent: true },
+      // -- Meta-channel tasks (shown to Meta and Meta+Google clients) --
+      { id: "bd-1", title: "Review & approve your eBook lead magnet content", detail: "We've drafted your lead magnet — take a look at the doc below and approve it, or leave a note if you'd like any revisions, before we build the landing page.", notePrompt: "Any revisions or amendments you'd like?", hasEditableContent: true, channels: ["meta"] },
+      { id: "bd-2", title: "Approve your Meta ad campaigns & creative assets", detail: "Your ad strategy doc and creatives are ready below for final sign-off. Take a look and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to the strategy or creative?", hasEditableContent: true, channels: ["meta"] },
+      { id: "bd-3", title: "Grant RT Digital partner access to your Meta Business Suite", detail: "Add us as a Partner in Meta Business Suite so we can launch your campaigns. Watch the walkthrough below, then use our Business ID and step-by-step guide.", videoUrl: "/portal/meta-partner-access-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/How_to_Add_RT_Digital_as_a_Partner_on_Meta_Business_Suite__9EIRy1GpRLSzuofqDb0XYQ", guideLabel: "Step-by-step guide", hasEditableContent: true, channels: ["meta"] },
+      // -- Google-channel tasks (shown to Google and Meta+Google clients) --
+      // No creative/campaign approval on the Google side by design — Google runs
+      // high-intent traffic to the GHL landing page, so the client approves the
+      // landing page copy and grants Ads-account access. Add a Scribe guideUrl
+      // to bd-g1 when one exists.
+      { id: "bd-g1", title: "Grant RT Digital access to your Google Ads account", detail: "Add us as a manager on your Google Ads account so we can build and run your campaigns. Use the details below — and if you don't have a Google Ads account yet, just leave a note and we'll set one up with you.", hasEditableContent: true, notePrompt: "Any questions, or need a hand with access?", channels: ["google"] },
+      { id: "bd-g2", title: "Review & approve your Google Ads landing page copy", detail: "We've drafted the landing page your Google ads will send visitors to. Read it through below and approve, or leave a note if you'd like anything changed before we build the page.", hasEditableContent: true, notePrompt: "Any changes you'd like to the landing page copy?", channels: ["google"] },
       // HIDDEN for now — the CSM records this walkthrough Loom only once the ad
       // campaigns are actually loaded and ready, which is often well after the
       // client reaches this point. An empty "watch a video" task confused
@@ -109,7 +143,7 @@ export const journeyTemplate: StageTemplate[] = [
       //   2. The lead form (native Meta form / GHL landing page) — exact fields.
       //   3. The CRM lead flow — form submit → TradeAI CRM → pipeline → auto SMS + email.
       //   Record a 3–4 min Loom and paste it into the client's messaging center; they watch, then tick it off.
-      { id: "bd-4", title: "Watch your ad campaign walkthrough video", detail: "A short recorded walkthrough showing exactly what's going live and how leads will flow in.", videoUrl: "/portal/ad-campaign-walkthrough.mp4", hidden: true },
+      { id: "bd-4", title: "Watch your ad campaign walkthrough video", detail: "A short recorded walkthrough showing exactly what's going live and how leads will flow in.", videoUrl: "/portal/ad-campaign-walkthrough.mp4", hidden: true, channels: ["meta"] },
     ],
     statusNotes: [
       "Your AI receptionist is being configured — no action needed from you yet.",
@@ -186,13 +220,17 @@ export const defaultCurrentDay = 12;
  * milestone in it is completed; the first stage with any incomplete
  * milestone is "current"; everything after that is "locked".
  */
-export function buildJourneyStages(completedIds: Set<string>, currentDay: number): JourneyStage[] {
+export function buildJourneyStages(
+  completedIds: Set<string>,
+  currentDay: number,
+  clientType: ClientType = "meta-google",
+): JourneyStage[] {
   let currentAssigned = false;
 
   return journeyTemplate.map((stageTemplate) => {
-    // Hidden milestones are dropped entirely — they don't render and don't count
-    // toward the stage's task total or completion.
-    const visible = stageTemplate.milestones.filter((m) => !m.hidden);
+    // Hidden and off-channel milestones are dropped entirely — they don't render
+    // and don't count toward the stage's task total or completion.
+    const visible = stageTemplate.milestones.filter((m) => milestoneVisibleFor(m, clientType));
     const allDone = visible.every((m) => completedIds.has(m.id));
     const isCurrent = !allDone && !currentAssigned;
     if (isCurrent) currentAssigned = true;

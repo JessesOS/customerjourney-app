@@ -36,10 +36,11 @@ export async function POST(request: Request) {
   }
 
   try {
-    const body = (await request.json()) as { name?: string; companyName?: string; startDate?: string };
+    const body = (await request.json()) as { name?: string; companyName?: string; startDate?: string; clientType?: string };
     const name = body.name?.trim();
     const companyName = body.companyName?.trim() ?? "";
     const startDate = body.startDate?.trim();
+    const clientType = body.clientType?.trim() ?? "meta-google";
 
     if (!name) {
       return Response.json({ ok: false, error: "Client name is required." }, { status: 400 });
@@ -47,8 +48,11 @@ export async function POST(request: Request) {
     if (!startDate || Number.isNaN(new Date(startDate).getTime())) {
       return Response.json({ ok: false, error: "A valid start date is required." }, { status: 400 });
     }
+    if (!["meta", "google", "meta-google"].includes(clientType)) {
+      return Response.json({ ok: false, error: "Client type must be meta, google, or meta-google." }, { status: 400 });
+    }
 
-    const created = await createPortalClient({ name, companyName, startDate });
+    const created = await createPortalClient({ name, companyName, startDate, clientType: clientType as "meta" | "google" | "meta-google" });
     return Response.json({ ok: true, ...created });
   } catch (error) {
     return Response.json(
