@@ -7,7 +7,9 @@ import { emptyFormResponses } from "@/lib/onboardingForm";
 type FlatField = { field: PortalFormField; sectionTitle: string };
 
 function flattenFields(form: PortalFormDefinition): FlatField[] {
-  return form.sections.flatMap((section) => section.fields.map((field) => ({ field, sectionTitle: section.title })));
+  return form.sections.flatMap((section) =>
+    section.fields.filter((field) => !field.hidden).map((field) => ({ field, sectionTitle: section.title })),
+  );
 }
 
 function isAnswered(field: PortalFormField, value: PortalFormResponses[string] | undefined) {

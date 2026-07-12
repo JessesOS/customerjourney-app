@@ -35,6 +35,9 @@ export interface PortalFormField {
   guideLabel?: string;
   /** Long-form text (light markdown) shown in a scrollable frame above the input. */
   document?: string;
+  /** Muted from the form entirely (not rendered, not counted, not required).
+      Flip to re-enable without deleting the field. */
+  hidden?: boolean;
 }
 
 export interface PortalFormSection {
@@ -159,10 +162,13 @@ export const scaleOnboardingForm: PortalFormDefinition = {
           helper: "Share the CMS URL and username. For passwords, use your approved secure handoff method or paste a secure one-time link.",
           placeholder: "Example: WordPress URL, username, secure handoff link",
         },
+        // MUTED per Jesse (2026-07-12) — likely not needed; delete `hidden: true`
+        // to bring it back exactly as it was (emails, steps, Scribe guide intact).
         {
           id: "gbp_manager_access",
           label: "Google Business Profile manager access",
           type: "radio",
+          hidden: true,
           helper: "You don't need to share any login details. Instead, invite our two RT Digital emails as Managers of your Google Business Profile so we can manage it and pull your live Google reviews.",
           inviteEmails: ["projects@richtraining.com.au", "developers@richtraining.com.au"],
           steps: [
@@ -303,7 +309,7 @@ function sanitizeFieldValue(field: PortalFormField, value: unknown): PortalFormV
 }
 
 export function formFields(form: PortalFormDefinition): PortalFormField[] {
-  return form.sections.flatMap((section) => section.fields);
+  return form.sections.flatMap((section) => section.fields).filter((field) => !field.hidden);
 }
 
 export function emptyFormResponses(form: PortalFormDefinition): PortalFormResponses {
