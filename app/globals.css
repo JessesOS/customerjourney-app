@@ -47,6 +47,43 @@
   --pj-radius-pill: 999px;
 }
 
+/* Client-portal home layout — desktop rail, mobile segmented bar. */
+.pj-home {
+  display: flex;
+  align-items: stretch;
+  min-height: calc(100vh - 61px);
+}
+.pj-rail-desktop {
+  flex: 0 0 auto;
+}
+.pj-segbar {
+  display: none;
+}
+.pj-pane {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 36px 44px 80px;
+  max-width: 860px;
+}
+@media (max-width: 820px) {
+  .pj-home {
+    flex-direction: column;
+  }
+  .pj-rail-desktop {
+    display: none;
+  }
+  .pj-segbar {
+    display: block;
+    position: sticky;
+    top: 61px;
+    z-index: 20;
+  }
+  .pj-pane {
+    padding: 20px 18px 64px;
+    max-width: none;
+  }
+}
+
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--text);

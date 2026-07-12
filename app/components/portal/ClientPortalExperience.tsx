@@ -323,9 +323,36 @@ export function ClientPortalExperience({
 
       {/* JOURNEY — home view */}
       {view === "home" && (
-        <div style={{ display: "flex", alignItems: "stretch", minHeight: "calc(100vh - 61px)" }}>
-          <StageRail stages={journeyStages} overallPercent={progress} onSelectStage={(stageId) => openM(stageId, 1)} />
-          <section style={{ flex: 1, minWidth: 0, padding: "36px 44px 80px", maxWidth: 860 }}>
+        <div className="pj-home">
+          <div className="pj-rail-desktop">
+            <StageRail stages={journeyStages} overallPercent={progress} onSelectStage={(stageId) => openM(stageId, 1)} />
+          </div>
+          {currentStage && (
+            <div className="pj-segbar" style={{ padding: "14px 18px", borderBottom: "1px solid var(--pj-line)", background: "var(--pj-rail)" }}>
+              <div style={{ display: "flex", gap: 5 }}>
+                {journeyStages.map((s) => (
+                  <span
+                    key={s.id}
+                    style={{
+                      flex: 1,
+                      height: 5,
+                      borderRadius: 5,
+                      background: s.status === "done" ? "var(--pj-done)" : s.status === "current" ? "var(--pj-act)" : "#e7dccb",
+                    }}
+                  />
+                ))}
+              </div>
+              <div style={{ display: "flex", alignItems: "baseline", marginTop: 10 }}>
+                <b style={{ fontSize: 13.5, fontWeight: 650 }}>
+                  Stage {currentStageIndex + 1} · {currentStage.name}
+                </b>
+                <span style={{ marginLeft: "auto", fontSize: 10.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
+                  {stageDoneCount} / {currentStage.milestones.length} done
+                </span>
+              </div>
+            </div>
+          )}
+          <section className="pj-pane">
             <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-act)", marginBottom: 10 }}>
               Stage {currentStageIndex + 1} of {journeyStages.length}{currentStage ? ` · ${dayLabelOf(currentStage)}` : ""}
             </div>
@@ -338,8 +365,8 @@ export function ClientPortalExperience({
 
             {currentStage && (
               <>
-                <div style={{ display: "flex", alignItems: "center", gap: 14, margin: "18px 0 26px" }}>
-                  <div style={{ flex: "0 0 220px", height: 6, borderRadius: 6, background: "#e7dccb", overflow: "hidden" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 14, margin: "18px 0 26px", flexWrap: "wrap" }}>
+                  <div style={{ flex: "1 1 160px", maxWidth: 220, height: 6, borderRadius: 6, background: "#e7dccb", overflow: "hidden" }}>
                     <span style={{ display: "block", height: "100%", width: `${stagePct}%`, background: "var(--pj-done)", borderRadius: 6 }} />
                   </div>
                   <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
