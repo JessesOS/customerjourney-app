@@ -101,7 +101,16 @@ export function AdminClientsPanel() {
   async function loadClients(token?: string) {
     setLoading(true);
     setError(null);
-    const headers: HeadersInit = token ? { "x-admin-token": token } : {};
+    // Fall back to the token held in state (or the one saved on this device) so
+    // refreshes triggered after create/delete — which pass no argument — stay
+    // authenticated instead of tripping the "Admin access required" screen.
+    let resolved = token ?? adminToken;
+    if (!resolved) {
+      try {
+        resolved = localStorage.getItem("scaleAdminToken") ?? undefined;
+      } catch {}
+    }
+    const headers: HeadersInit = resolved ? { "x-admin-token": resolved } : {};
     try {
       const res = await fetch("/api/admin/portal-clients", { cache: "no-store", headers });
       if (res.status === 403) {
