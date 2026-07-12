@@ -4,10 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import type { PortalFormDefinition, PortalFormField, PortalFormResponses } from "@/lib/onboardingForm";
 import { emptyFormResponses } from "@/lib/onboardingForm";
 
-const teal = "#00b8a0";
-const gold = "#f5a623";
-const text = "#eef1f6";
-
 type FlatField = { field: PortalFormField; sectionTitle: string };
 
 function flattenFields(form: PortalFormDefinition): FlatField[] {
@@ -23,9 +19,9 @@ const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "13px 15px",
   borderRadius: 12,
-  border: "1px solid rgba(255,255,255,0.14)",
-  background: "rgba(255,255,255,0.03)",
-  color: text,
+  border: "1px solid var(--pj-line)",
+  background: "#faf7f2",
+  color: "var(--pj-ink)",
   fontFamily: "var(--font-space-grotesk), system-ui, sans-serif",
   fontSize: 15,
   outline: "none",
@@ -92,14 +88,14 @@ export function OnboardingFormStepper({
   }
 
   if (loading) {
-    return <div style={{ padding: 22, color: "rgba(238,241,246,0.5)", fontSize: 14 }}>Loading your form…</div>;
+    return <div style={{ padding: 22, color: "var(--pj-muted)", fontSize: 14 }}>Loading your form…</div>;
   }
 
   if (alreadySubmitted) {
     return (
-      <div style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 12, borderRadius: 14, border: "1px solid rgba(0,184,160,0.35)", background: "rgba(0,184,160,0.07)", padding: "16px 18px" }}>
-        <div style={{ width: 24, height: 24, borderRadius: 99, background: teal, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#04130e", fontSize: 13 }}>✓</div>
-        <div style={{ flex: 1, fontSize: 14, color: text }}>Your onboarding form has been submitted. Thank you!</div>
+      <div style={{ marginTop: 24, display: "flex", alignItems: "center", gap: 12, borderRadius: 14, border: "1px solid var(--pj-done)", background: "var(--pj-done-fill)", padding: "16px 18px" }}>
+        <div style={{ width: 24, height: 24, borderRadius: 99, background: "var(--pj-done)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: "#fff", fontSize: 13 }}>✓</div>
+        <div style={{ flex: 1, fontSize: 14, color: "var(--pj-ink)" }}>Your onboarding form has been submitted. Thank you!</div>
       </div>
     );
   }
@@ -136,29 +132,29 @@ export function OnboardingFormStepper({
   }
 
   return (
-    <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 24, animation: "viewIn 0.25s ease" }}>
+    <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 24, animation: "viewIn 0.25s ease" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
-        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "var(--pj-act)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
           {current.sectionTitle}
         </div>
-        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.4)" }}>
+        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "var(--pj-faint)" }}>
           {index + 1} / {total}
         </div>
       </div>
 
-      <div style={{ height: 3, borderRadius: 99, background: "rgba(255,255,255,0.08)", marginBottom: 24, overflow: "hidden" }}>
-        <div style={{ height: "100%", width: `${((index + 1) / total) * 100}%`, background: gold, borderRadius: 99, transition: "width 0.3s ease" }} />
+      <div style={{ height: 3, borderRadius: 99, background: "#e7dccb", marginBottom: 24, overflow: "hidden" }}>
+        <div style={{ height: "100%", width: `${((index + 1) / total) * 100}%`, background: "var(--pj-act)", borderRadius: 99, transition: "width 0.3s ease" }} />
       </div>
 
       <FieldPrompt field={current.field} value={value} onChange={(next) => updateValue(current.field.id, next)} onEnter={goNext} />
 
-      {error && <div style={{ marginTop: 14, fontSize: 13, color: "#ff9a90" }}>{error}</div>}
+      {error && <div style={{ marginTop: 14, fontSize: 13, color: "#b23b2e" }}>{error}</div>}
 
       <div style={{ marginTop: 26, display: "flex", alignItems: "center", gap: 14 }}>
         {!isFirst && (
           <button
             onClick={goBack}
-            style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}
+            style={{ background: "transparent", border: "1px solid var(--pj-line)", color: "var(--pj-muted)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 550, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}
           >
             ← Back
           </button>
@@ -168,14 +164,14 @@ export function OnboardingFormStepper({
           disabled={!answered || submitting}
           style={{
             marginLeft: isFirst ? 0 : "auto",
-            background: !answered || submitting ? "rgba(245,166,35,0.35)" : gold,
-            color: "#1c1300",
+            background: !answered || submitting ? "var(--pj-act-fill)" : "var(--pj-act)",
+            color: !answered || submitting ? "var(--pj-act)" : "var(--pj-act-ink)",
             fontFamily: "var(--font-space-grotesk), sans-serif",
-            fontWeight: 600,
+            fontWeight: 650,
             fontSize: 15,
             border: "none",
-            borderRadius: 12,
-            padding: "13px 22px",
+            borderRadius: 999,
+            padding: "13px 24px",
             display: "flex",
             alignItems: "center",
             gap: 9,
@@ -205,10 +201,10 @@ function FieldPrompt({
 
   return (
     <div>
-      <h3 style={{ fontWeight: 700, fontSize: 22, margin: 0, letterSpacing: "-0.015em", lineHeight: 1.3 }}>
-        {field.label} {field.required && <span style={{ color: gold }}>*</span>}
+      <h3 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontWeight: 600, fontSize: 22, margin: 0, letterSpacing: "-0.01em", lineHeight: 1.3, color: "var(--pj-ink)" }}>
+        {field.label} {field.required && <span style={{ color: "var(--pj-act)" }}>*</span>}
       </h3>
-      {field.helper && <p style={{ fontSize: 13, color: "rgba(238,241,246,0.5)", marginTop: 8, lineHeight: 1.5 }}>{field.helper}</p>}
+      {field.helper && <p style={{ fontSize: 13, color: "var(--pj-muted)", marginTop: 8, lineHeight: 1.5 }}>{field.helper}</p>}
 
       <div style={{ marginTop: 18 }}>
         {(field.type === "text" || field.type === "email" || field.type === "url" || field.type === "tel") && (
@@ -259,15 +255,15 @@ function FieldPrompt({
                     textAlign: "left",
                     padding: "14px 16px",
                     borderRadius: 12,
-                    border: active ? `1.5px solid ${gold}` : "1px solid rgba(255,255,255,0.12)",
-                    background: active ? "rgba(245,166,35,0.08)" : "rgba(255,255,255,0.02)",
-                    color: text,
+                    border: active ? "1.5px solid var(--pj-act)" : "1px solid var(--pj-line)",
+                    background: active ? "var(--pj-act-fill)" : "transparent",
+                    color: "var(--pj-ink)",
                     cursor: "pointer",
                     fontFamily: "var(--font-space-grotesk), sans-serif",
                   }}
                 >
                   <div style={{ fontWeight: 600, fontSize: 14 }}>{opt.label}</div>
-                  {opt.description && <div style={{ fontSize: 12.5, color: "rgba(238,241,246,0.55)", marginTop: 3 }}>{opt.description}</div>}
+                  {opt.description && <div style={{ fontSize: 12.5, color: "var(--pj-muted)", marginTop: 3 }}>{opt.description}</div>}
                 </button>
               );
             })}
@@ -289,16 +285,16 @@ function FieldPrompt({
                     textAlign: "left",
                     padding: "12px 16px",
                     borderRadius: 12,
-                    border: active ? `1.5px solid ${teal}` : "1px solid rgba(255,255,255,0.12)",
-                    background: active ? "rgba(0,184,160,0.08)" : "rgba(255,255,255,0.02)",
-                    color: text,
+                    border: active ? "1.5px solid var(--pj-done)" : "1px solid var(--pj-line)",
+                    background: active ? "var(--pj-done-fill)" : "transparent",
+                    color: "var(--pj-ink)",
                     cursor: "pointer",
                     fontFamily: "var(--font-space-grotesk), sans-serif",
                     fontSize: 14,
                     fontWeight: 500,
                   }}
                 >
-                  <span style={{ width: 18, height: 18, borderRadius: 5, border: active ? "none" : "1px solid rgba(255,255,255,0.3)", background: active ? teal : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#04130e" }}>
+                  <span style={{ width: 18, height: 18, borderRadius: 5, border: active ? "none" : "1px solid var(--pj-line)", background: active ? "var(--pj-done)" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, color: "#fff" }}>
                     {active ? "✓" : ""}
                   </span>
                   {opt.label}
@@ -318,9 +314,9 @@ function FieldPrompt({
               textAlign: "left",
               padding: "14px 16px",
               borderRadius: 12,
-              border: value === "accepted" ? `1.5px solid ${teal}` : "1px solid rgba(255,255,255,0.12)",
-              background: value === "accepted" ? "rgba(0,184,160,0.08)" : "rgba(255,255,255,0.02)",
-              color: text,
+              border: value === "accepted" ? "1.5px solid var(--pj-done)" : "1px solid var(--pj-line)",
+              background: value === "accepted" ? "var(--pj-done-fill)" : "transparent",
+              color: "var(--pj-ink)",
               cursor: "pointer",
               fontFamily: "var(--font-space-grotesk), sans-serif",
               fontSize: 14,
@@ -328,7 +324,7 @@ function FieldPrompt({
               width: "100%",
             }}
           >
-            <span style={{ width: 20, height: 20, borderRadius: 6, border: value === "accepted" ? "none" : "1px solid rgba(255,255,255,0.3)", background: value === "accepted" ? teal : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, color: "#04130e" }}>
+            <span style={{ width: 20, height: 20, borderRadius: 6, border: value === "accepted" ? "none" : "1px solid var(--pj-line)", background: value === "accepted" ? "var(--pj-done)" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, color: "#fff" }}>
               {value === "accepted" ? "✓" : ""}
             </span>
             I accept
