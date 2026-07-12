@@ -2,21 +2,21 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
-  behindTheScenesItems,
   buildJourneyStages,
   completedStageCount,
   defaultCompletedMilestoneIds,
   defaultCurrentDay,
   journeyProgressPercent,
+  journeyTemplate,
   journeyTotalDays,
   type JourneyMilestone,
 } from "@/lib/onboardingJourney";
 import { onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
-import { PortalButton } from "@/app/components/portal/PortalButton";
 import { StageRail } from "@/app/components/portal/StageRail";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
+import { StageCompleteView } from "@/app/components/portal/StageCompleteView";
 import { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 
 const teal = "#00b8a0";
@@ -25,7 +25,7 @@ const blue = "#6aa6f5";
 const ink = "#08090c";
 const text = "#eef1f6";
 
-type View = "home" | "stage";
+type View = "home" | "stage" | "complete";
 
 export type UploadMeta = { fileName: string; uploadedAt: string };
 
@@ -122,6 +122,7 @@ export function ClientPortalExperience({
   portalToken,
 }: ClientPortalExperienceProps) {
   const [view, setView] = useState<View>("home");
+  const [justCompletedStageId, setJustCompletedStageId] = useState<string | null>(null);
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set(initialCompletedMilestoneIds));
   const [notes, setNotes] = useState<Record<string, string>>(initialMilestoneNotes);
   const [noteDrafts, setNoteDrafts] = useState<Record<string, string>>({});
@@ -173,6 +174,14 @@ export function ClientPortalExperience({
       : 0;
   const upNextCandidate = currentStage ? currentStage.milestones[firstOpenMilestoneIndex] : undefined;
   const upNext = upNextCandidate && taskDisplayStatus(upNextCandidate) === "your-turn" ? upNextCandidate : null;
+
+  // Returns the stage id if approving `milestoneId` completes its whole stage.
+  function stageCompletedBy(milestoneId: string): string | null {
+    const stage = journeyTemplate.find((s) => s.milestones.some((mm) => mm.id === milestoneId));
+    if (!stage) return null;
+    const willAllBeDone = stage.milestones.every((mm) => mm.id === milestoneId || completedIds.has(mm.id));
+    return willAllBeDone ? stage.id : null;
+  }
 
   function approveMilestone(milestoneId: string, note?: string) {
     setCompletedIds((prev) => {
@@ -546,9 +555,17 @@ export function ClientPortalExperience({
                     {m.status !== "done" && (
                       <button
                         onClick={() => {
+                          const completedStageId = stageCompletedBy(m.id);
                           approveMilestone(m.id, m.notePrompt ? noteValue : undefined);
-                          if (!isLast) setMilestone(milestone + 1);
-                          else backToJourney();
+                          if (completedStageId) {
+                            setJustCompletedStageId(completedStageId);
+                            setView("complete");
+                            window.scrollTo(0, 0);
+                          } else if (!isLast) {
+                            setMilestone(milestone + 1);
+                          } else {
+                            backToJourney();
+                          }
                         }}
                         style={{ marginLeft: isFirst ? "auto" : 0, background: "var(--pj-act)", color: "var(--pj-act-ink)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer", boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)" }}
                       >
@@ -562,6 +579,24 @@ export function ClientPortalExperience({
           })()}
         </section>
       )}
+
+      {view === "complete" && justCompletedStageId && (() => {
+        const idx = journeyStages.findIndex((s) => s.id === justCompletedStageId);
+        const completed = journeyStages[idx];
+        const next = idx >= 0 ? journeyStages[idx + 1] : undefined;
+        if (!completed) return null;
+        return (
+          <StageCompleteView
+            stageName={completed.name}
+            totalTasks={completed.milestones.length}
+            nextStage={next}
+            nextIndex={idx + 2}
+            totalStages={journeyStages.length}
+            onContinue={backToJourney}
+            onBackToJourney={backToJourney}
+          />
+        );
+      })()}
 
       {/* walkthrough video modal */}
       {videoTitle && (
