@@ -17,6 +17,10 @@ export type JourneyMilestone = {
   status: MilestoneStatus;
   formId?: string;
   notePrompt?: string;
+  /** Placeholder for the note field; and whether a note must be entered before
+      the task can be approved (e.g. collecting a Customer ID). */
+  notePlaceholder?: string;
+  noteRequired?: boolean;
   hasEditableContent?: boolean;
   videoUrl?: string;
   hasUpload?: boolean;
@@ -50,6 +54,8 @@ type MilestoneTemplate = {
   detail: string;
   formId?: string;
   notePrompt?: string;
+  notePlaceholder?: string;
+  noteRequired?: boolean;
   hasEditableContent?: boolean;
   videoUrl?: string;
   hasUpload?: boolean;
@@ -131,7 +137,10 @@ export const journeyTemplate: StageTemplate[] = [
       // high-intent traffic to the GHL landing page, so the client approves the
       // landing page copy and grants Ads-account access. Add a Scribe guideUrl
       // to bd-g1 when one exists.
-      { id: "bd-g1", title: "Grant RT Digital access to your Google Ads account", detail: "Add us as a manager on your Google Ads account so we can build and run your campaigns. Follow the step-by-step guide below — and if you don't have a Google Ads account yet, just leave a note and we'll set one up with you.", hasEditableContent: true, notePrompt: "Any questions, or need a hand with access?", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Link_a_Clients_Google_Ads_Account_to_the_RT_Digital_Manager_Account__RrcQwfvGS8iG7_efKEmJRQ", guideLabel: "Step-by-step guide", channels: ["google"] },
+      // Flow: client shares their Google Ads Customer ID here → RT Digital sends
+      // a link request from the manager account → Google emails the client →
+      // client accepts. No passwords change hands.
+      { id: "bd-g1", title: "Link your Google Ads account to RT Digital", detail: "We connect your Google Ads account to RT Digital's manager account so we can build and run your campaigns — no passwords needed. Share your Google Ads Customer ID below (you'll find it in the top-right corner of your Google Ads account) and we'll send the link request. Don't have a Google Ads account yet? Just tell us in the same box and we'll set one up with you.", notePrompt: "Your Google Ads Customer ID", notePlaceholder: "e.g. 123-456-7890 — from the top-right of your Google Ads account", noteRequired: true, important: "After we send the request, Google will email you to approve it. Keep an eye on your inbox and click Accept — we can't start building until the link is approved.", channels: ["google"] },
       { id: "bd-g2", title: "Review & approve your Google Ads landing page copy", detail: "We've drafted the landing page your Google ads will send visitors to. Read it through below and approve, or leave a note if you'd like anything changed before we build the page.", hasEditableContent: true, notePrompt: "Any changes you'd like to the landing page copy?", channels: ["google"] },
       // HIDDEN for now — the CSM records this walkthrough Loom only once the ad
       // campaigns are actually loaded and ready, which is often well after the
@@ -247,6 +256,8 @@ export function buildJourneyStages(
       detail: m.detail,
       formId: m.formId,
       notePrompt: m.notePrompt,
+      notePlaceholder: m.notePlaceholder,
+      noteRequired: m.noteRequired,
       hasEditableContent: m.hasEditableContent,
       videoUrl: m.videoUrl,
       hasUpload: m.hasUpload,

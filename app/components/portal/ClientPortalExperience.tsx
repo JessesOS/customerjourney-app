@@ -606,7 +606,7 @@ export function ClientPortalExperience({
                         <textarea
                           value={noteValue}
                           onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [m.id]: e.target.value }))}
-                          placeholder="Optional — leave blank if it looks good."
+                          placeholder={m.notePlaceholder ?? "Optional — leave blank if it looks good."}
                           rows={3}
                           style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
                         />
@@ -623,11 +623,20 @@ export function ClientPortalExperience({
                       </button>
                     )}
                     <span style={{ marginLeft: isFirst ? 0 : "auto", fontSize: 12.5, color: "var(--pj-faint)" }}>
-                      {m.status === "done" ? "Completed" : "Awaiting your approval"}
+                      {m.status === "done"
+                        ? "Completed"
+                        : m.noteRequired && !noteValue.trim()
+                          ? "Fill in the field above to continue"
+                          : "Awaiting your approval"}
                     </span>
                     {m.status !== "done" ? (
+                      (() => {
+                        const noteMissing = Boolean(m.noteRequired) && !noteValue.trim();
+                        return (
                       <button
+                        disabled={noteMissing}
                         onClick={() => {
+                          if (noteMissing) return;
                           const completedStageId = stageCompletedBy(m.id);
                           approveMilestone(m.id, m.notePrompt ? noteValue : undefined);
                           if (completedStageId) {
@@ -640,10 +649,12 @@ export function ClientPortalExperience({
                             backToJourney();
                           }
                         }}
-                        style={{ marginLeft: isFirst ? "auto" : 0, background: "var(--pj-act)", color: "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer", boxShadow: "0 8px 20px -10px rgba(217,119,87,.5)" }}
+                        style={{ marginLeft: isFirst ? "auto" : 0, background: noteMissing ? "var(--pj-act-fill)" : "var(--pj-act)", color: noteMissing ? "var(--pj-act)" : "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: noteMissing ? "default" : "pointer", boxShadow: noteMissing ? "none" : "0 8px 20px -10px rgba(217,119,87,.5)" }}
                       >
                         {isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
                       </button>
+                        );
+                      })()
                     ) : (
                       <button
                         onClick={() => (isLast ? backToJourney() : setMilestone(milestone + 1))}
