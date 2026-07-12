@@ -36,17 +36,39 @@ JesseOS ecosystem. It should align with:
 - Review Queue / Knowledge Packets
 - AI agent model and shared dashboard principles
 
-## Current Status (as of 2026-07-12, end of day)
+## Current Status (as of 2026-07-12, late night)
 
-Functionally complete portal, live in production, with admin client management.
-**The UI/UX overhaul is DONE and shipped** (see below).
+Live in production with admin client management, **four client types, and two
+products** — all sharing one rendering engine and one warm visual identity:
+
+- **Products/types** (admin dropdown; `portal_clients.client_type`): Scale —
+  Meta+Google / Meta only / Google only (channel-tagged tasks in
+  `lib/onboardingJourney.ts`) and **Respond** (own template in
+  `lib/respondJourney.ts`, 12 tasks, 4 stages, 10-day timeline, "respond"
+  wordmark). Shared generic engine: `lib/journeyEngine.ts`;
+  `lib/allJourneys.ts` = cross-product milestone union for API validation.
+- **Content shipped today:** Scale onboarding at 10 tasks (SMS copy before app
+  download; new "Log into your TradeAI CRM" task with steps card + login pill;
+  GBP form field and ob-8 "Grant access" both **muted** via `hidden: true` —
+  reasons in code comments). Booking embed (Google scheduler iframe, ob-2 +
+  rsp-014, link `go.rt-d.com/jesse30`). Scribe guides on calendar/social/Meta
+  partner tasks. Google Ads task collects Customer ID (required note). Full
+  T&Cs in a scrollable frame on the form's final step (`lib/termsText.ts`).
+  First walkthrough video live (`download-app-walkthrough.mp4`, ffmpeg'd
+  27MB→5.4MB — Cloudflare caps assets at 25MB).
+- **Milestone feature flags** (all in the templates): `hidden`, `channels`,
+  `steps`, `important`, `guideUrl/Label`, `bookingUrl`, `notePlaceholder` +
+  `noteRequired` (gates approve), `showPortalLink` (copy-link card),
+  `awaitingTeam` (exists, none tagged yet).
+
 Outstanding work:
-1. Upload the walkthrough `.mp4` files (buttons exist, files missing): `download-app-`,
-   `connect-accounts-`, `grant-access-`, `meta-partner-access-`, `ad-campaign-walkthrough.mp4`.
-2. Tag which milestones are team-side (`awaitingTeam: true` in `lib/onboardingJourney.ts`) so
-   the "With us" chip appears — the flag exists but no milestone is tagged yet.
-3. Stages 1, 4, 5 need real CSM content (stage 3 done).
-4. Automation/notification wiring (optional, post-MVP).
+1. Remaining walkthrough `.mp4`s: `connect-accounts-`, `meta-partner-access-`
+   (drop in `public/portal/`, compress under 25MB, deploy).
+2. Respond: 1–2 extra tasks Jesse may add; per-task guides/videos.
+3. Stages 4, 5 CSM content depth; `awaitingTeam` tagging.
+4. Automation/notification wiring (post-MVP). PWA install layer (discussed,
+   agreed as the mobile path — not started).
+5. Cleanup: assorted test clients in production admin (Jesse deletes as he goes).
 
 ## Completed: UI/UX overhaul (shipped 2026-07-12)
 
