@@ -169,7 +169,7 @@ export const scaleOnboardingForm: PortalFormDefinition = {
           ],
           guideUrl:
             "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/How_to_Invite_RT_Digital_to_Manage_Your_Google_Business_Profile__bifUWmdPRpWSk2_UN6uBhA",
-          guideLabel: "Watch the step-by-step guide",
+          guideLabel: "Step-by-step guide",
           options: [
             { label: "Done — invitations sent", value: "done" },
             { label: "Need help", value: "need-help" },
