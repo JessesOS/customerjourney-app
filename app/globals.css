@@ -32,13 +32,13 @@
   --pj-line: #e7dfd2;
   --pj-line-soft: #f0eae0;
 
-  --pj-act: #262019;         /* ink / charcoal — the one action colour */
-  --pj-act-fill: #e7e1d6;    /* soft stone tint for chips / active states */
-  --pj-act-ink: #fbf8f2;     /* light text on the dark action colour */
+  --pj-act: #c75038;         /* terracotta — the one action colour */
+  --pj-act-fill: #f8e4dc;
+  --pj-act-ink: #fff8f3;     /* text on terracotta */
   --pj-done: #5f7a4e;        /* sage — completed */
   --pj-done-fill: #e5ead7;
-  --pj-withus: #8a5b72;      /* plum — team is working on it */
-  --pj-withus-fill: #f1e3ea;
+  --pj-withus: #2f5069;      /* navy — team is working on it */
+  --pj-withus-fill: #e4ebf1;
   --pj-upnext: #9a8f80;      /* stone — not started */
   --pj-upnext-fill: #efe9df;
 
