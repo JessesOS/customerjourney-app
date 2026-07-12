@@ -1,103 +1,35 @@
-export type MilestoneStatus = "done" | "current" | "upcoming";
+import {
+  buildStagesFromTemplate,
+  clientTypeLabels,
+  completedStageCount,
+  journeyProgressPercent,
+  milestoneVisibleFor,
+  type ClientChannel,
+  type ClientType,
+  type JourneyMilestone,
+  type JourneyStage,
+  type MilestoneStatus,
+  type StageStatus,
+  type StageTemplate,
+} from "./journeyEngine";
 
-/** Which ad channel(s) a client is on. Stored per client; chosen in admin. */
-export type ClientType = "meta" | "google" | "meta-google";
-export type ClientChannel = "meta" | "google";
-
-export const clientTypeLabels: Record<ClientType, string> = {
-  meta: "Meta ads",
-  google: "Google Ads",
-  "meta-google": "Meta + Google Ads",
-};
-
-export type JourneyMilestone = {
-  id: string;
-  title: string;
-  detail: string;
-  status: MilestoneStatus;
-  formId?: string;
-  notePrompt?: string;
-  /** Placeholder for the note field; and whether a note must be entered before
-      the task can be approved (e.g. collecting a Customer ID). */
-  notePlaceholder?: string;
-  noteRequired?: boolean;
-  hasEditableContent?: boolean;
-  videoUrl?: string;
-  hasUpload?: boolean;
-  /** Team-side work in progress — the client sees a "With us" chip, no action. */
-  awaitingTeam?: boolean;
-  /** Scheduling link (Cal.com / Calendly). Renders a "Book your call" CTA. */
-  bookingUrl?: string;
-  /** Step-by-step guide link (e.g. Scribe). Renders a guide button on the task. */
-  guideUrl?: string;
-  guideLabel?: string;
-  /** A highlighted warning/callout shown prominently on the task. */
-  important?: string;
-};
-
-export type StageStatus = "done" | "current" | "locked";
-
-export type JourneyStage = {
-  id: string;
-  name: string;
-  dayStart: number;
-  dayEnd: number;
-  status: StageStatus;
-  blurb?: string;
-  milestones: JourneyMilestone[];
-  statusNotes: string[];
-};
-
-type MilestoneTemplate = {
-  id: string;
-  title: string;
-  detail: string;
-  formId?: string;
-  notePrompt?: string;
-  notePlaceholder?: string;
-  noteRequired?: boolean;
-  hasEditableContent?: boolean;
-  videoUrl?: string;
-  hasUpload?: boolean;
-  awaitingTeam?: boolean;
-  bookingUrl?: string;
-  guideUrl?: string;
-  guideLabel?: string;
-  important?: string;
-  /** Hidden from the client flow entirely (not rendered, not counted). Flip to
-      re-enable a task without deleting it. */
-  hidden?: boolean;
-  /** Restrict a task to specific ad channels. Omit = shown to every client.
-      ["meta"] = Meta clients (and Meta+Google); ["google"] = Google clients
-      (and Meta+Google). */
-  channels?: ClientChannel[];
-};
-
-/** True when a milestone should appear for a client of the given type.
-    Applies both the hidden flag and the channel restriction. */
-export function milestoneVisibleFor(
-  m: { hidden?: boolean; channels?: ClientChannel[] },
-  clientType: ClientType,
-): boolean {
-  if (m.hidden) return false;
-  if (!m.channels || m.channels.length === 0) return true;
-  if (clientType === "meta-google") return true;
-  return m.channels.includes(clientType);
-}
-
-type StageTemplate = {
-  id: string;
-  name: string;
-  dayStart: number;
-  dayEnd: number;
-  blurb?: string;
-  milestones: MilestoneTemplate[];
-  statusNotes: string[];
+// Re-exported so existing imports of `from "@/lib/onboardingJourney"` keep working.
+export {
+  clientTypeLabels,
+  completedStageCount,
+  journeyProgressPercent,
+  milestoneVisibleFor,
+  type ClientChannel,
+  type ClientType,
+  type JourneyMilestone,
+  type JourneyStage,
+  type MilestoneStatus,
+  type StageStatus,
 };
 
 // Content only -- no completion state. Condensed from the real CSM task data
 // (see docs/client-portal-task-condensation-report.md in respond-csm-dashboard).
-// Meta-only variant.
+// Meta/Google variant-filtered — see the `channels` field on each milestone.
 export const journeyTemplate: StageTemplate[] = [
   {
     id: "onboarding",
@@ -135,8 +67,7 @@ export const journeyTemplate: StageTemplate[] = [
       // -- Google-channel tasks (shown to Google and Meta+Google clients) --
       // No creative/campaign approval on the Google side by design — Google runs
       // high-intent traffic to the GHL landing page, so the client approves the
-      // landing page copy and grants Ads-account access. Add a Scribe guideUrl
-      // to bd-g1 when one exists.
+      // landing page copy and grants Ads-account access.
       // Flow: client shares their Google Ads Customer ID here → RT Digital sends
       // a link request from the manager account → Google emails the client →
       // client accepts. No passwords change hands.
@@ -223,69 +154,10 @@ export const defaultCompletedMilestoneIds: string[] = [
 
 export const defaultCurrentDay = 12;
 
-/**
- * Builds the full stage/milestone status tree from a set of completed
- * milestone ids and the client's current day. A stage is "done" once every
- * milestone in it is completed; the first stage with any incomplete
- * milestone is "current"; everything after that is "locked".
- */
 export function buildJourneyStages(
   completedIds: Set<string>,
   currentDay: number,
   clientType: ClientType = "meta-google",
 ): JourneyStage[] {
-  let currentAssigned = false;
-
-  return journeyTemplate.map((stageTemplate) => {
-    // Hidden and off-channel milestones are dropped entirely — they don't render
-    // and don't count toward the stage's task total or completion.
-    const visible = stageTemplate.milestones.filter((m) => milestoneVisibleFor(m, clientType));
-    const allDone = visible.every((m) => completedIds.has(m.id));
-    const isCurrent = !allDone && !currentAssigned;
-    if (isCurrent) currentAssigned = true;
-
-    const status: StageStatus = allDone ? "done" : isCurrent ? "current" : "locked";
-    const firstOpenIndex = Math.max(
-      0,
-      visible.findIndex((m) => !completedIds.has(m.id)),
-    );
-
-    const milestones: JourneyMilestone[] = visible.map((m, i) => ({
-      id: m.id,
-      title: m.title,
-      detail: m.detail,
-      formId: m.formId,
-      notePrompt: m.notePrompt,
-      notePlaceholder: m.notePlaceholder,
-      noteRequired: m.noteRequired,
-      hasEditableContent: m.hasEditableContent,
-      videoUrl: m.videoUrl,
-      hasUpload: m.hasUpload,
-      awaitingTeam: m.awaitingTeam,
-      bookingUrl: m.bookingUrl,
-      guideUrl: m.guideUrl,
-      guideLabel: m.guideLabel,
-      important: m.important,
-      status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
-    }));
-
-    return {
-      id: stageTemplate.id,
-      name: stageTemplate.name,
-      dayStart: stageTemplate.dayStart,
-      dayEnd: stageTemplate.dayEnd,
-      blurb: stageTemplate.blurb,
-      statusNotes: stageTemplate.statusNotes,
-      status,
-      milestones,
-    };
-  });
-}
-
-export function journeyProgressPercent(currentDay: number, totalDays: number = journeyTotalDays): number {
-  return Math.round((Math.min(currentDay, totalDays) / totalDays) * 100);
-}
-
-export function completedStageCount(stages: JourneyStage[]): number {
-  return stages.filter((s) => s.status === "done").length;
+  return buildStagesFromTemplate(journeyTemplate, completedIds, currentDay, clientType);
 }

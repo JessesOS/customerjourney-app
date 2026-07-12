@@ -1,9 +1,9 @@
-import { journeyTemplate } from "@/lib/onboardingJourney";
+import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { formMissingRequired, onboardingFormById, sanitizeFormResponses } from "@/lib/onboardingForm";
 import { getFormResponses, getPortalClientByToken, markMilestoneComplete, saveFormResponses } from "@/lib/portalClientStore";
 
 const milestoneIdByFormId = new Map(
-  journeyTemplate.flatMap((stage) => stage.milestones).filter((m) => m.formId).map((m) => [m.formId!, m.id]),
+  allMilestoneTemplates.filter((m) => m.formId).map((m) => [m.formId!, m.id]),
 );
 
 export async function GET(request: Request, { params }: { params: Promise<{ token: string; formId: string }> }) {

@@ -1,9 +1,7 @@
-import { journeyTemplate } from "@/lib/onboardingJourney";
+import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { getPortalClientByToken, markMilestoneComplete, saveMilestoneUpload } from "@/lib/portalClientStore";
 
-const uploadMilestoneIds = new Set(
-  journeyTemplate.flatMap((stage) => stage.milestones).filter((m) => m.hasUpload).map((m) => m.id),
-);
+const uploadMilestoneIds = new Set(allMilestoneTemplates.filter((m) => m.hasUpload).map((m) => m.id));
 
 const MAX_CONTENT_LENGTH = 1_000_000; // ~1MB of CSV text
 

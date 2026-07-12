@@ -1,5 +1,5 @@
 import { isAdminEmail, isAdminToken, isLocalDevelopmentHost } from "@/lib/adminAuth";
-import { journeyTemplate } from "@/lib/onboardingJourney";
+import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { getMilestoneContent, setMilestoneContent } from "@/lib/portalClientStore";
 
 function requestCanAdmin(request: Request) {
@@ -15,7 +15,7 @@ function requestCanAdmin(request: Request) {
   return false;
 }
 
-const validMilestoneIds = new Set(journeyTemplate.flatMap((stage) => stage.milestones).map((m) => m.id));
+const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string; milestoneId: string }> }) {
   if (!requestCanAdmin(request)) {

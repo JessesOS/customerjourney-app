@@ -199,8 +199,61 @@ export const scaleOnboardingForm: PortalFormDefinition = {
   ],
 };
 
+// Respond is a single, simpler product — no ad accounts, no domain/website
+// takeover, no proof-of-address. Just what the AI receptionist needs to sound
+// like the business, plus how to reach them.
+export const respondOnboardingForm: PortalFormDefinition = {
+  id: "respond-onboarding-intake-v1",
+  title: "Respond onboarding intake",
+  introTitle: "Complete this once so we can set up your AI receptionist correctly.",
+  introDescription: "For passwords, use your approved secure handoff method or paste a secure one-time link instead of raw credentials.",
+  sections: [
+    {
+      id: "business-basics",
+      title: "Business basics",
+      fields: [
+        { id: "legal_business_name", label: "Business name", type: "text", required: true },
+        { id: "website_url", label: "Website URL", type: "url", placeholder: "https://example.com" },
+        { id: "email_address", label: "Primary email address", type: "email", required: true, placeholder: "name@example.com" },
+        { id: "business_phone", label: "Business phone number", type: "tel", required: true },
+      ],
+    },
+    {
+      id: "about-customers",
+      title: "About your customers",
+      description: "This shapes how your AI receptionist talks to callers and qualifies leads.",
+      fields: [
+        { id: "services_offered", label: "What services or products do you offer?", type: "textarea", required: true },
+        { id: "ideal_customer_profile", label: "Who is your ideal customer?", type: "textarea" },
+        { id: "qualifying_questions", label: "What should your AI ask a caller to qualify them as a good lead?", type: "textarea", helper: "We'll go through this together on your Welcome Call too — jot down anything you already know." },
+      ],
+    },
+    {
+      id: "branding",
+      title: "Branding & assets",
+      fields: [
+        { id: "brand_assets_link", label: "Shared folder link for your logo and brand images (optional)", type: "url", placeholder: "Google Drive, Dropbox, or shared folder link" },
+      ],
+    },
+    {
+      id: "terms",
+      title: "Terms",
+      fields: [
+        {
+          id: "terms_acceptance",
+          label: "Terms & Conditions",
+          type: "checkbox",
+          required: true,
+          helper: "Please read the RT Digital Program Terms & Conditions below, then accept to finish.",
+          document: cmsTermsText,
+        },
+      ],
+    },
+  ],
+};
+
 export function onboardingFormById(formId: string): PortalFormDefinition | undefined {
-  return [scaleOnboardingForm].find((form) => form.id === formId);
+  return [scaleOnboardingForm, respondOnboardingForm].find((form) => form.id === formId);
 }
 
 const maxLengths: Partial<Record<PortalFormFieldType, number>> = {

@@ -1,7 +1,7 @@
 import { getPortalClientByToken, markMilestoneComplete } from "@/lib/portalClientStore";
-import { journeyTemplate } from "@/lib/onboardingJourney";
+import { allMilestoneTemplates } from "@/lib/allJourneys";
 
-const validMilestoneIds = new Set(journeyTemplate.flatMap((stage) => stage.milestones.map((m) => m.id)));
+const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
 
 export async function POST(request: Request, { params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;

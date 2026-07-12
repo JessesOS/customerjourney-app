@@ -1,5 +1,8 @@
 import { isAdminEmail, isAdminToken, isLocalDevelopmentHost } from "@/lib/adminAuth";
 import { createPortalClient, listPortalClients } from "@/lib/portalClientStore";
+import type { ClientType } from "@/lib/journeyEngine";
+
+const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond"];
 
 function requestCanAdmin(request: Request) {
   const email = request.headers.get("oai-authenticated-user-email");
@@ -48,11 +51,11 @@ export async function POST(request: Request) {
     if (!startDate || Number.isNaN(new Date(startDate).getTime())) {
       return Response.json({ ok: false, error: "A valid start date is required." }, { status: 400 });
     }
-    if (!["meta", "google", "meta-google"].includes(clientType)) {
-      return Response.json({ ok: false, error: "Client type must be meta, google, or meta-google." }, { status: 400 });
+    if (!validClientTypes.includes(clientType as ClientType)) {
+      return Response.json({ ok: false, error: "Client type must be meta, google, meta-google, or respond." }, { status: 400 });
     }
 
-    const created = await createPortalClient({ name, companyName, startDate, clientType: clientType as "meta" | "google" | "meta-google" });
+    const created = await createPortalClient({ name, companyName, startDate, clientType: clientType as ClientType });
     return Response.json({ ok: true, ...created });
   } catch (error) {
     return Response.json(

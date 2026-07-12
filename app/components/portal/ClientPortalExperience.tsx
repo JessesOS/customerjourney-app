@@ -12,6 +12,7 @@ import {
   type ClientType,
   type JourneyMilestone,
 } from "@/lib/onboardingJourney";
+import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
 import { onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { StageRail } from "@/app/components/portal/StageRail";
@@ -75,6 +76,44 @@ function PlayIcon({ color = "#f5a623", fill }: { color?: string; fill?: string }
   );
 }
 
+// "Bookmark your portal link" — shows the client's own portal URL with a
+// one-tap copy, so they always know where to find their journey again.
+function PortalLinkCard({ portalToken }: { portalToken?: string }) {
+  const [url, setUrl] = useState("");
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") setUrl(window.location.origin + (portalToken ? `/portal/${portalToken}` : window.location.pathname));
+  }, [portalToken]);
+
+  return (
+    <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
+      <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 12 }}>
+        Your portal link
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#faf7f2", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: "12px 14px" }}>
+        <span style={{ flex: 1, fontSize: 13.5, color: "var(--pj-ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{url || "…"}</span>
+        <button
+          type="button"
+          onClick={() => {
+            if (!url || !navigator.clipboard) return;
+            navigator.clipboard.writeText(url).then(() => {
+              setCopied(true);
+              setTimeout(() => setCopied(false), 1500);
+            });
+          }}
+          style={{ flexShrink: 0, background: copied ? "var(--pj-done)" : "var(--pj-act)", color: "#fff", border: "none", borderRadius: 999, padding: "8px 16px", fontSize: 13, fontWeight: 650, cursor: "pointer", fontFamily: "var(--font-body), sans-serif" }}
+        >
+          {copied ? "Copied ✓" : "Copy link"}
+        </button>
+      </div>
+      <p style={{ fontSize: 12.5, color: "var(--pj-faint)", margin: "14px 0 0" }}>
+        Save it to your bookmarks, or add it to your phone&apos;s home screen for one-tap access.
+      </p>
+    </div>
+  );
+}
+
 export function ClientPortalExperience({
   name = "Chris",
   clientType = "meta-google",
@@ -94,9 +133,13 @@ export function ClientPortalExperience({
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [uploadingId, setUploadingId] = useState<string | null>(null);
 
+  const isRespond = clientType === "respond";
+  const activeJourneyTemplate = isRespond ? respondJourneyTemplate : journeyTemplate;
+  const activeJourneyTotalDays = isRespond ? respondJourneyTotalDays : journeyTotalDays;
+
   const journeyStages = useMemo(
-    () => buildJourneyStages(completedIds, currentDay, clientType),
-    [completedIds, currentDay, clientType],
+    () => (isRespond ? buildRespondJourneyStages(completedIds, currentDay) : buildJourneyStages(completedIds, currentDay, clientType)),
+    [completedIds, currentDay, clientType, isRespond],
   );
 
   const defaultStage = useMemo(() => journeyStages.find((s) => s.status === "current"), [journeyStages]);
@@ -112,7 +155,7 @@ export function ClientPortalExperience({
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const progress = journeyProgressPercent(currentDay);
+  const progress = journeyProgressPercent(currentDay, activeJourneyTotalDays);
   const currentStageIndex = journeyStages.findIndex((s) => s.status === "current");
   const currentStage = currentStageIndex >= 0 ? journeyStages[currentStageIndex] : undefined;
   const firstOpenMilestoneIndex = currentStage
@@ -142,7 +185,7 @@ export function ClientPortalExperience({
 
   // Returns the stage id if approving `milestoneId` completes its whole stage.
   function stageCompletedBy(milestoneId: string): string | null {
-    const stage = journeyTemplate.find((s) => s.milestones.some((mm) => mm.id === milestoneId));
+    const stage = activeJourneyTemplate.find((s) => s.milestones.some((mm) => mm.id === milestoneId));
     if (!stage) return null;
     const willAllBeDone = stage.milestones
       .filter((mm) => milestoneVisibleFor(mm, clientType))
@@ -304,12 +347,12 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)" }}>scale</span>
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)" }}>{isRespond ? "respond" : "scale"}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)" }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16 }}>
             <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
-              Day {currentDay} / {journeyTotalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>
+              Day {currentDay} / {activeJourneyTotalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>
             </span>
             <div style={{ width: 30, height: 30, borderRadius: 99, background: "var(--pj-act)", color: "var(--pj-act-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13 }}>
               {name.charAt(0)}
@@ -554,6 +597,8 @@ export function ClientPortalExperience({
                     </label>
                     {uploadError && <div style={{ marginTop: 12, fontSize: 13, color: "var(--pj-act)" }}>{uploadError}</div>}
                   </div>
+                ) : m.showPortalLink ? (
+                  <PortalLinkCard portalToken={portalToken} />
                 ) : m.bookingUrl ? (
                   <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 20 }}>
                     <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>

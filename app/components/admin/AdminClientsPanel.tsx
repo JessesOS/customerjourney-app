@@ -16,13 +16,14 @@ type PortalClient = {
 };
 
 const clientTypeOptions = [
-  { value: "meta-google", label: "Meta + Google Ads" },
-  { value: "meta", label: "Meta ads only" },
-  { value: "google", label: "Google Ads only" },
+  { value: "meta-google", label: "Scale — Meta + Google Ads" },
+  { value: "meta", label: "Scale — Meta ads only" },
+  { value: "google", label: "Scale — Google Ads only" },
+  { value: "respond", label: "Respond" },
 ];
 
 function clientTypeLabel(value?: string) {
-  return clientTypeOptions.find((o) => o.value === value)?.label ?? "Meta + Google Ads";
+  return clientTypeOptions.find((o) => o.value === value)?.label ?? "Scale — Meta + Google Ads";
 }
 
 type ListResponse = { ok: boolean; clients?: PortalClient[]; error?: string };

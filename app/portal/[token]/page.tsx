@@ -8,6 +8,8 @@ import {
   getMilestoneNotes,
   getPortalClientByToken,
 } from "@/lib/portalClientStore";
+import type { ClientType } from "@/lib/journeyEngine";
+import { respondJourneyTotalDays } from "@/lib/respondJourney";
 
 export default async function PortalPage({
   params,
@@ -21,9 +23,12 @@ export default async function PortalPage({
     notFound();
   }
 
+  const clientType: ClientType = (client.clientType as ClientType) ?? "meta-google";
+  const totalDaysForClient = clientType === "respond" ? respondJourneyTotalDays : undefined;
+
   const [completedIds, currentDay, milestoneNotes, milestoneContent, milestoneUploads] = await Promise.all([
     getCompletedMilestoneIds(client.id),
-    Promise.resolve(computeCurrentDay(client.startDate)),
+    Promise.resolve(computeCurrentDay(client.startDate, totalDaysForClient)),
     getMilestoneNotes(client.id),
     getAllMilestoneContent(client.id),
     getAllMilestoneUploadsMeta(client.id),
@@ -32,7 +37,7 @@ export default async function PortalPage({
   return (
     <ClientPortalExperience
       name={client.name}
-      clientType={(client.clientType as "meta" | "google" | "meta-google") ?? "meta-google"}
+      clientType={clientType}
       currentDay={currentDay}
       initialCompletedMilestoneIds={[...completedIds]}
       initialMilestoneNotes={milestoneNotes}

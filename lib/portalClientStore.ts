@@ -8,9 +8,13 @@ import {
   portalMilestoneUploads,
 } from "@/db/schema";
 import { journeyTemplate, journeyTotalDays, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
+import { respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
 import type { PortalFormResponses } from "@/lib/onboardingForm";
 
 function totalMilestoneCountFor(clientType: ClientType): number {
+  if (clientType === "respond") {
+    return respondJourneyTemplate.reduce((sum, stage) => sum + stage.milestones.length, 0);
+  }
   return journeyTemplate.reduce(
     (sum, stage) => sum + stage.milestones.filter((m) => milestoneVisibleFor(m, clientType)).length,
     0,
@@ -37,9 +41,10 @@ export async function listPortalClients() {
   return clients
     .map((client) => {
       const completedCount = progress.filter((p) => p.clientId === client.id && p.completedAt).length;
+      const type = (client.clientType as ClientType) ?? "meta-google";
       return {
         ...client,
-        currentDay: computeCurrentDay(client.startDate),
+        currentDay: computeCurrentDay(client.startDate, type === "respond" ? respondJourneyTotalDays : undefined),
         completedMilestoneCount: completedCount,
         totalMilestoneCount: totalMilestoneCountFor((client.clientType as ClientType) ?? "meta-google"),
       };

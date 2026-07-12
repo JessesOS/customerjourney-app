@@ -1,5 +1,5 @@
 import { isAdminEmail, isAdminToken, isLocalDevelopmentHost } from "@/lib/adminAuth";
-import { journeyTemplate } from "@/lib/onboardingJourney";
+import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { getAllMilestoneContent, getAllMilestoneUploadsMeta, getFormResponses, getMilestoneNotes } from "@/lib/portalClientStore";
 
 function requestCanAdmin(request: Request) {
@@ -15,7 +15,7 @@ function requestCanAdmin(request: Request) {
   return false;
 }
 
-const allMilestones = journeyTemplate.flatMap((stage) => stage.milestones);
+const allMilestones = allMilestoneTemplates;
 const formIdsInJourney = Array.from(new Set(allMilestones.map((m) => m.formId).filter((id): id is string => Boolean(id))));
 const editableMilestones = allMilestones.filter((m) => m.hasEditableContent);
 
