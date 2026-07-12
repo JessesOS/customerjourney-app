@@ -26,7 +26,7 @@ const inputStyle: React.CSSProperties = {
   border: "1px solid rgba(255,255,255,0.14)",
   background: "rgba(255,255,255,0.03)",
   color: text,
-  fontFamily: "'Sora', system-ui, sans-serif",
+  fontFamily: "var(--font-space-grotesk), system-ui, sans-serif",
   fontSize: 15,
   outline: "none",
 };
@@ -138,10 +138,10 @@ export function OnboardingFormStepper({
   return (
     <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 24, animation: "viewIn 0.25s ease" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 18 }}>
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase" }}>
           {current.sectionTitle}
         </div>
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.4)" }}>
+        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.4)" }}>
           {index + 1} / {total}
         </div>
       </div>
@@ -158,7 +158,7 @@ export function OnboardingFormStepper({
         {!isFirst && (
           <button
             onClick={goBack}
-            style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}
+            style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}
           >
             ← Back
           </button>
@@ -170,7 +170,7 @@ export function OnboardingFormStepper({
             marginLeft: isFirst ? 0 : "auto",
             background: !answered || submitting ? "rgba(245,166,35,0.35)" : gold,
             color: "#1c1300",
-            fontFamily: "'Sora', sans-serif",
+            fontFamily: "var(--font-space-grotesk), sans-serif",
             fontWeight: 600,
             fontSize: 15,
             border: "none",
@@ -230,7 +230,7 @@ function FieldPrompt({
             autoFocus
             rows={4}
             onChange={(e) => onChange(e.target.value)}
-            style={{ ...inputStyle, resize: "vertical", fontFamily: "'Sora', system-ui, sans-serif" }}
+            style={{ ...inputStyle, resize: "vertical", fontFamily: "var(--font-space-grotesk), system-ui, sans-serif" }}
           />
         )}
 
@@ -263,7 +263,7 @@ function FieldPrompt({
                     background: active ? "rgba(245,166,35,0.08)" : "rgba(255,255,255,0.02)",
                     color: text,
                     cursor: "pointer",
-                    fontFamily: "'Sora', sans-serif",
+                    fontFamily: "var(--font-space-grotesk), sans-serif",
                   }}
                 >
                   <div style={{ fontWeight: 600, fontSize: 14 }}>{opt.label}</div>
@@ -293,7 +293,7 @@ function FieldPrompt({
                     background: active ? "rgba(0,184,160,0.08)" : "rgba(255,255,255,0.02)",
                     color: text,
                     cursor: "pointer",
-                    fontFamily: "'Sora', sans-serif",
+                    fontFamily: "var(--font-space-grotesk), sans-serif",
                     fontSize: 14,
                     fontWeight: 500,
                   }}
@@ -322,7 +322,7 @@ function FieldPrompt({
               background: value === "accepted" ? "rgba(0,184,160,0.08)" : "rgba(255,255,255,0.02)",
               color: text,
               cursor: "pointer",
-              fontFamily: "'Sora', sans-serif",
+              fontFamily: "var(--font-space-grotesk), sans-serif",
               fontSize: 14,
               fontWeight: 500,
               width: "100%",

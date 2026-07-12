@@ -350,13 +350,7 @@ export function ClientPortalExperience({
   const resolved = phase === "resolved";
 
   return (
-    <div style={{ background: ink, color: text, fontFamily: "'Sora', system-ui, sans-serif", minHeight: "100vh" }}>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
+    <div style={{ background: ink, color: text, fontFamily: "var(--font-space-grotesk), system-ui, sans-serif", minHeight: "100vh" }}>
       <style>{`
         @keyframes portalPulse { 0% { transform: scale(1); opacity: 0.65; } 70% { transform: scale(2.2); opacity: 0; } 100% { opacity: 0; } }
         @keyframes viewIn { from { transform: translateY(18px); opacity: 0.4; } to { transform: translateY(0); opacity: 1; } }
@@ -396,7 +390,7 @@ export function ClientPortalExperience({
                 style={{
                   position: "absolute", left: "50%", bottom: 84, zIndex: 6, display: "flex", alignItems: "center", gap: 10,
                   background: "rgba(8,9,12,0.7)", border: "1px solid rgba(255,255,255,0.22)", borderRadius: 99, padding: "12px 22px",
-                  color: text, fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, cursor: "pointer",
+                  color: text, fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 600, fontSize: 15, cursor: "pointer",
                   boxShadow: "0 12px 44px rgba(0,0,0,0.55)", animation: "soundPulse 2.2s ease-in-out infinite", transform: "translateX(-50%)",
                 }}
               >
@@ -418,7 +412,7 @@ export function ClientPortalExperience({
                 <div style={{ width: 92, height: 92, borderRadius: 99, background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.28)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
                   <svg width="36" height="36" viewBox="0 0 24 24" fill={text}><path d="M8 5v14l11-7z" /></svg>
                 </div>
-                <span style={{ fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 18 }}>Play your welcome</span>
+                <span style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 600, fontSize: 18 }}>Play your welcome</span>
               </button>
             )}
           </div>
@@ -430,7 +424,7 @@ export function ClientPortalExperience({
             style={{
               position: "absolute", top: 24, right: 28, zIndex: 7, display: "flex", alignItems: "center", gap: 8,
               background: "rgba(8,9,12,0.5)", border: "1px solid rgba(255,255,255,0.16)", borderRadius: 99, padding: "8px 16px",
-              color: "rgba(238,241,246,0.75)", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, cursor: "pointer",
+              color: "rgba(238,241,246,0.75)", fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, cursor: "pointer",
             }}
           >
             Skip intro
@@ -450,22 +444,22 @@ export function ClientPortalExperience({
           <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
             <span style={{ fontWeight: 700, fontSize: 18, letterSpacing: "-0.02em" }}>scale</span>
             <span style={{ width: 1, height: 18, background: "rgba(255,255,255,0.14)" }} />
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.5)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
+            <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.5)", letterSpacing: "0.14em", textTransform: "uppercase" }}>
               Onboarding
             </span>
           </div>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 14 }}>
-            <span style={{ display: "flex", alignItems: "center", gap: 7, fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: teal, border: "1px solid rgba(0,184,160,0.4)", borderRadius: 99, padding: "5px 12px" }}>
+            <span style={{ display: "flex", alignItems: "center", gap: 7, fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: teal, border: "1px solid rgba(0,184,160,0.4)", borderRadius: 99, padding: "5px 12px" }}>
               <span style={{ width: 7, height: 7, borderRadius: 99, background: teal, boxShadow: `0 0 8px ${teal}` }} />
               On track
             </span>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
+            <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
               Day {currentDay} / {journeyTotalDays}
             </span>
             <button
               onClick={replay}
               title="Replay the welcome"
-              style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 99, padding: "6px 12px", color: "rgba(238,241,246,0.7)", fontFamily: "'JetBrains Mono', monospace", fontSize: 11, cursor: "pointer" }}
+              style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 99, padding: "6px 12px", color: "rgba(238,241,246,0.7)", fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, cursor: "pointer" }}
             >
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12a9 9 0 1 1-3-6.7L21 8" /><path d="M21 3v5h-5" />
@@ -485,7 +479,7 @@ export function ClientPortalExperience({
       {/* JOURNEY — home view */}
       {resolved && view === "home" && (
         <section style={{ maxWidth: 880, margin: "0 auto", padding: "56px 32px 130px" }}>
-          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: teal, letterSpacing: "0.24em", textTransform: "uppercase", marginBottom: 16 }}>
+          <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: teal, letterSpacing: "0.24em", textTransform: "uppercase", marginBottom: 16 }}>
             Your 30-day onboarding
           </div>
           <h2 style={{ fontWeight: 700, fontSize: 44, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.05 }}>
@@ -505,18 +499,18 @@ export function ClientPortalExperience({
           >
             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
               <div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.5)", letterSpacing: "0.18em", textTransform: "uppercase" }}>
+                <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.5)", letterSpacing: "0.18em", textTransform: "uppercase" }}>
                   Progress
                 </div>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 10, marginTop: 10 }}>
-                  <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 15, color: "rgba(238,241,246,0.5)" }}>Day</span>
+                  <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 15, color: "rgba(238,241,246,0.5)" }}>Day</span>
                   <span style={{ fontWeight: 800, fontSize: 66, lineHeight: 0.85, letterSpacing: "-0.03em" }}>{currentDay}</span>
                   <span style={{ fontWeight: 500, fontSize: 28, color: "rgba(238,241,246,0.45)" }}>/ {journeyTotalDays}</span>
                 </div>
               </div>
               <div style={{ textAlign: "right" }}>
                 <div style={{ fontWeight: 800, fontSize: 42, lineHeight: 1, color: teal }}>{progress}%</div>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)", marginTop: 8 }}>
+                <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.5)", marginTop: 8 }}>
                   {stagesDone} of {journeyStages.length} stages complete
                 </div>
               </div>
@@ -541,21 +535,21 @@ export function ClientPortalExperience({
                 <div style={{ display: "flex", alignItems: "flex-end", gap: 0 }}>
                   {days.map((d) => (
                     <div key={d.n} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
-                      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, lineHeight: "12px", height: 12, color: d.labelColor, fontWeight: d.labelWeight }}>
+                      <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, lineHeight: "12px", height: 12, color: d.labelColor, fontWeight: d.labelWeight }}>
                         {d.label}
                       </div>
                       <div style={{ width: d.tickWidth, height: d.tickHeight, borderRadius: 2, background: d.tickColor, boxShadow: d.glow }} />
                     </div>
                   ))}
                 </div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10, fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: "0.16em", color: "rgba(238,241,246,0.32)", textTransform: "uppercase" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 10, fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, letterSpacing: "0.16em", color: "rgba(238,241,246,0.32)", textTransform: "uppercase" }}>
                   <span>Day 1 · Kickoff</span>
                   <span>Day 30 · Go live</span>
                 </div>
               </div>
             </div>
 
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: "rgba(238,241,246,0.5)", marginTop: 20, display: "flex", alignItems: "center", gap: 9 }}>
+            <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 13, color: "rgba(238,241,246,0.5)", marginTop: 20, display: "flex", alignItems: "center", gap: 9 }}>
               <span style={{ width: 7, height: 7, borderRadius: 99, background: teal }} />
               You&apos;re right on pace — keep the momentum going.
             </div>
@@ -563,7 +557,7 @@ export function ClientPortalExperience({
 
           {/* stage list */}
           <div style={{ marginTop: 48 }}>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 24 }}>
+            <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.5)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 24 }}>
               The journey · {journeyStages.length} stages
             </div>
 
@@ -587,11 +581,11 @@ export function ClientPortalExperience({
                         style={{ flex: 1, borderRadius: 16, padding: "16px 22px", background: "rgba(255,255,255,0.022)", border: "1px solid rgba(255,255,255,0.07)", display: "flex", alignItems: "center", gap: 18, cursor: "pointer" }}
                       >
                         <div style={{ flex: 1 }}>
-                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: teal, letterSpacing: "0.14em" }}>STAGE {num}</div>
+                          <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: teal, letterSpacing: "0.14em" }}>STAGE {num}</div>
                           <div style={{ fontWeight: 600, fontSize: 19, marginTop: 5 }}>{stage.name}</div>
                         </div>
-                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>{dayLabel}</div>
-                        <div style={{ display: "flex", alignItems: "center", gap: 7, fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: teal, border: "1px solid rgba(0,184,160,0.35)", borderRadius: 99, padding: "6px 12px" }}>
+                        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>{dayLabel}</div>
+                        <div style={{ display: "flex", alignItems: "center", gap: 7, fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: teal, border: "1px solid rgba(0,184,160,0.35)", borderRadius: 99, padding: "6px 12px" }}>
                           <CheckIcon color={teal} size={11} />
                           Completed
                         </div>
@@ -612,18 +606,18 @@ export function ClientPortalExperience({
                       </div>
                       <div style={{ flex: 1, borderRadius: 22, padding: "28px 30px", background: "linear-gradient(180deg, rgba(245,166,35,0.10), rgba(245,166,35,0.02))", border: "1px solid rgba(245,166,35,0.5)", boxShadow: "0 0 70px -18px rgba(245,166,35,0.55)" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em" }}>STAGE {num}</span>
-                          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: gold, textTransform: "uppercase", background: "rgba(245,166,35,0.14)", border: "1px solid rgba(245,166,35,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
+                          <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: gold, letterSpacing: "0.14em" }}>STAGE {num}</span>
+                          <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: gold, textTransform: "uppercase", background: "rgba(245,166,35,0.14)", border: "1px solid rgba(245,166,35,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
                             In progress
                           </span>
-                          <span style={{ marginLeft: "auto", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>{dayLabel}</span>
+                          <span style={{ marginLeft: "auto", fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>{dayLabel}</span>
                         </div>
                         <div style={{ fontWeight: 700, fontSize: 27, marginTop: 14, letterSpacing: "-0.015em" }}>{stage.name}</div>
                         <div style={{ fontWeight: 400, fontSize: 15, color: "rgba(238,241,246,0.6)", marginTop: 8, maxWidth: 540, lineHeight: 1.5 }}>{stage.blurb}</div>
 
                         <button
                           onClick={() => openVideo(`${stage.name} — full walkthrough`)}
-                          style={{ marginTop: 18, display: "inline-flex", alignItems: "center", gap: 11, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "8px 18px 8px 8px", color: text, fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, cursor: "pointer" }}
+                          style={{ marginTop: 18, display: "inline-flex", alignItems: "center", gap: 11, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "8px 18px 8px 8px", color: text, fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 500, fontSize: 14, cursor: "pointer" }}
                         >
                           <PlayIcon />
                           Watch the 2-min walkthrough
@@ -671,17 +665,17 @@ export function ClientPortalExperience({
                         <div style={{ marginTop: 26, display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
                           <button
                             onClick={() => openM(stage.id, firstOpenMilestoneIndex + 1)}
-                            style={{ background: gold, color: "#1c1300", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
+                            style={{ background: gold, color: "#1c1300", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
                           >
                             Continue Stage {idx + 1} <span style={{ fontSize: 17 }}>→</span>
                           </button>
-                          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
+                          <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
                             {doneCount} of {stage.milestones.length} milestones done · {stage.milestones.length - doneCount} to go
                           </span>
                           <button
                             onClick={() => openM(stage.id, stage.milestones.length)}
                             title="If you've already finished this stage's work"
-                            style={{ marginLeft: "auto", background: "transparent", border: "1px solid rgba(245,166,35,0.4)", color: gold, fontFamily: "'JetBrains Mono', monospace", fontSize: 12, borderRadius: 99, padding: "8px 14px", cursor: "pointer", display: "flex", alignItems: "center", gap: 7 }}
+                            style={{ marginLeft: "auto", background: "transparent", border: "1px solid rgba(245,166,35,0.4)", color: gold, fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, borderRadius: 99, padding: "8px 14px", cursor: "pointer", display: "flex", alignItems: "center", gap: 7 }}
                           >
                             Done early? Skip ahead <span style={{ fontSize: 14 }}>→</span>
                           </button>
@@ -703,11 +697,11 @@ export function ClientPortalExperience({
                       style={{ flex: 1, borderRadius: 16, padding: "16px 22px", background: "rgba(255,255,255,0.012)", border: "1px solid rgba(255,255,255,0.05)", display: "flex", alignItems: "center", gap: 18, opacity: 0.62, cursor: "pointer" }}
                     >
                       <div style={{ flex: 1 }}>
-                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.35)", letterSpacing: "0.14em" }}>STAGE {num}</div>
+                        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.35)", letterSpacing: "0.14em" }}>STAGE {num}</div>
                         <div style={{ fontWeight: 600, fontSize: 18, color: "rgba(238,241,246,0.62)", marginTop: 5 }}>{stage.name}</div>
                       </div>
-                      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.3)" }}>{dayLabel}</div>
-                      <div style={{ display: "flex", alignItems: "center", gap: 7, fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.4)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 99, padding: "6px 11px" }}>
+                      <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.3)" }}>{dayLabel}</div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 7, fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.4)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 99, padding: "6px 11px" }}>
                         <LockIcon />
                         Preview
                       </div>
@@ -725,7 +719,7 @@ export function ClientPortalExperience({
               style={{ width: "100%", display: "flex", alignItems: "center", gap: 16, padding: "24px 28px", background: "transparent", border: "none", cursor: "pointer", textAlign: "left", color: text }}
             >
               <div style={{ flex: 1 }}>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: teal, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 7 }}>
+                <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: teal, letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: 7 }}>
                   Behind the scenes
                 </div>
                 <div style={{ fontWeight: 600, fontSize: 21, letterSpacing: "-0.01em" }}>What RT Digital is building for you</div>
@@ -750,7 +744,7 @@ export function ClientPortalExperience({
                         <div style={{ flex: 1, fontWeight: 500, fontSize: 16, color: item.state === "Queued" ? "rgba(238,241,246,0.7)" : text }}>
                           {item.label} <span style={{ color: "rgba(238,241,246,0.45)", fontWeight: 400 }}>— {item.detail}</span>
                         </div>
-                        <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color, border: `1px solid ${color}66`, borderRadius: 99, padding: "5px 11px" }}>
+                        <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color, border: `1px solid ${color}66`, borderRadius: 99, padding: "5px 11px" }}>
                           {item.state}
                         </span>
                       </div>
@@ -768,7 +762,7 @@ export function ClientPortalExperience({
         <section style={{ maxWidth: 1080, margin: "0 auto", padding: "36px 32px 130px", animation: "viewIn 0.5s cubic-bezier(0.2,0.7,0.2,1)" }}>
           <button
             onClick={backToJourney}
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", border: "none", color: "rgba(238,241,246,0.55)", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: "0.06em", cursor: "pointer", padding: 0, marginBottom: 28 }}
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", border: "none", color: "rgba(238,241,246,0.55)", fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, letterSpacing: "0.06em", cursor: "pointer", padding: 0, marginBottom: 28 }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M11 18l-6-6 6-6" />
@@ -777,23 +771,23 @@ export function ClientPortalExperience({
           </button>
 
           <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14 }}>
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: viewingStage.status === "done" ? teal : gold, letterSpacing: "0.14em" }}>
+            <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: viewingStage.status === "done" ? teal : gold, letterSpacing: "0.14em" }}>
               STAGE {String(viewingStageIndex + 1).padStart(2, "0")}
             </span>
             {viewingStage.status === "done" ? (
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: teal, textTransform: "uppercase", background: "rgba(0,184,160,0.14)", border: "1px solid rgba(0,184,160,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
+              <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: teal, textTransform: "uppercase", background: "rgba(0,184,160,0.14)", border: "1px solid rgba(0,184,160,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
                 Completed
               </span>
             ) : viewingStage.status === "current" ? (
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: gold, textTransform: "uppercase", background: "rgba(245,166,35,0.14)", border: "1px solid rgba(245,166,35,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
+              <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: gold, textTransform: "uppercase", background: "rgba(245,166,35,0.14)", border: "1px solid rgba(245,166,35,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
                 In progress
               </span>
             ) : (
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: "rgba(238,241,246,0.5)", textTransform: "uppercase", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
+              <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: "rgba(238,241,246,0.5)", textTransform: "uppercase", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
                 Preview
               </span>
             )}
-            <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
+            <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
               {viewingStage.dayStart === viewingStage.dayEnd ? `Day ${viewingStage.dayStart}` : `Days ${viewingStage.dayStart}–${viewingStage.dayEnd}`}
             </span>
           </div>
@@ -814,7 +808,7 @@ export function ClientPortalExperience({
 
           <div style={{ display: "grid", gridTemplateColumns: "270px 1fr", gap: 34, marginTop: 40, alignItems: "start" }}>
             <aside style={{ position: "sticky", top: 84, display: "flex", flexDirection: "column", gap: 6 }}>
-              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.45)", letterSpacing: "0.16em", textTransform: "uppercase", margin: "0 0 10px 4px" }}>
+              <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.45)", letterSpacing: "0.16em", textTransform: "uppercase", margin: "0 0 10px 4px" }}>
                 {viewingStage.milestones.length} milestones
               </div>
               {viewingStage.milestones.map((m, i) => {
@@ -825,7 +819,7 @@ export function ClientPortalExperience({
                     onClick={() => setMilestone(i + 1)}
                     style={{
                       display: "flex", alignItems: "center", gap: 12, width: "100%", padding: "13px 14px", borderRadius: 12,
-                      cursor: "pointer", textAlign: "left", color: text, fontFamily: "'Sora', system-ui, sans-serif",
+                      cursor: "pointer", textAlign: "left", color: text, fontFamily: "var(--font-space-grotesk), system-ui, sans-serif",
                       background: active ? "rgba(245,166,35,0.10)" : "transparent",
                       border: active ? "1px solid rgba(245,166,35,0.45)" : "1px solid rgba(255,255,255,0.06)",
                     }}
@@ -835,12 +829,12 @@ export function ClientPortalExperience({
                         <CheckIcon />
                       </div>
                     ) : (
-                      <div style={{ width: 26, height: 26, borderRadius: 99, border: active ? `2px solid ${gold}` : "1px solid rgba(255,255,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: active ? gold : "rgba(238,241,246,0.5)", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, fontWeight: active ? 600 : 400 }}>
+                      <div style={{ width: 26, height: 26, borderRadius: 99, border: active ? `2px solid ${gold}` : "1px solid rgba(255,255,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: active ? gold : "rgba(238,241,246,0.5)", fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, fontWeight: active ? 600 : 400 }}>
                         {i + 1}
                       </div>
                     )}
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: m.status === "done" ? "rgba(238,241,246,0.45)" : active ? gold : "rgba(238,241,246,0.4)", letterSpacing: "0.1em" }}>
+                      <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: m.status === "done" ? "rgba(238,241,246,0.45)" : active ? gold : "rgba(238,241,246,0.4)", letterSpacing: "0.1em" }}>
                         STEP {i + 1} {m.status === "done" ? "· DONE" : active ? "· NOW" : ""}
                       </div>
                       <div style={{ display: "flex", alignItems: "center", gap: 7, fontWeight: 600, fontSize: 15, marginTop: 2, color: m.status === "upcoming" && !active ? "rgba(238,241,246,0.75)" : text }}>
@@ -869,7 +863,7 @@ export function ClientPortalExperience({
 
                 return (
                   <div style={{ animation: "viewIn 0.35s ease" }}>
-                    <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: m.status === "done" ? "rgba(238,241,246,0.45)" : gold, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+                    <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: m.status === "done" ? "rgba(238,241,246,0.45)" : gold, letterSpacing: "0.14em", textTransform: "uppercase" }}>
                       Milestone {milestone} · {label}
                     </div>
                     <h3 style={{ fontWeight: 700, fontSize: 26, margin: "10px 0 0", letterSpacing: "-0.02em" }}>{m.title}</h3>
@@ -880,7 +874,7 @@ export function ClientPortalExperience({
                     {m.videoUrl && (
                       <button
                         onClick={() => openVideo(m.title, m.videoUrl)}
-                        style={{ marginTop: 14, display: "inline-flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "7px 16px 7px 7px", color: text, fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 13, cursor: "pointer" }}
+                        style={{ marginTop: 14, display: "inline-flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "7px 16px 7px 7px", color: text, fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 500, fontSize: 13, cursor: "pointer" }}
                       >
                         <PlayIcon />
                         Watch how it works
@@ -924,7 +918,7 @@ export function ClientPortalExperience({
                       />
                     ) : showUploadWidget ? (
                       <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
-                        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
+                        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
                           Upload your file
                         </div>
                         <label
@@ -932,7 +926,7 @@ export function ClientPortalExperience({
                             display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
                             border: "1.5px dashed rgba(255,255,255,0.2)", borderRadius: 14, padding: "28px 20px",
                             cursor: uploadingId === m.id ? "default" : "pointer", color: "rgba(238,241,246,0.7)",
-                            fontFamily: "'Sora', sans-serif", fontSize: 14,
+                            fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: 14,
                           }}
                         >
                           <input
@@ -953,7 +947,7 @@ export function ClientPortalExperience({
                     ) : (
                       <div>
                         <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
-                          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
+                          <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
                             {m.hasEditableContent ? "For your review" : "What we need from you"}
                           </div>
                           {m.hasEditableContent ? (
@@ -973,7 +967,7 @@ export function ClientPortalExperience({
 
                         {m.notePrompt && (
                           <div style={{ marginTop: 16 }}>
-                            <label style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: "rgba(238,241,246,0.5)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                            <label style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.5)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
                               {m.notePrompt}
                             </label>
                             <textarea
@@ -981,7 +975,7 @@ export function ClientPortalExperience({
                               onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [m.id]: e.target.value }))}
                               placeholder="Optional — leave blank if it looks good."
                               rows={3}
-                              style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.14)", background: "rgba(255,255,255,0.03)", color: text, fontFamily: "'Sora', system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
+                              style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.14)", background: "rgba(255,255,255,0.03)", color: text, fontFamily: "var(--font-space-grotesk), system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
                             />
                           </div>
                         )}
@@ -991,11 +985,11 @@ export function ClientPortalExperience({
                     {!hasCustomFlow && (
                     <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 22 }}>
                       {!isFirst && (
-                        <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "'Sora', sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}>
+                        <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}>
                           ← Previous
                         </button>
                       )}
-                      <span style={{ marginLeft: isFirst ? 0 : "auto", fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: "rgba(238,241,246,0.45)" }}>
+                      <span style={{ marginLeft: isFirst ? 0 : "auto", fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.45)" }}>
                         {m.status === "done" ? "Completed" : "Awaiting your approval"}
                       </span>
                       {m.status !== "done" && (
@@ -1004,7 +998,7 @@ export function ClientPortalExperience({
                             approveMilestone(m.id, m.notePrompt ? noteValue : undefined);
                             if (!isLast) setMilestone(milestone + 1);
                           }}
-                          style={{ marginLeft: isFirst ? "auto" : 0, background: gold, color: "#1c1300", fontFamily: "'Sora', sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
+                          style={{ marginLeft: isFirst ? "auto" : 0, background: gold, color: "#1c1300", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
                         >
                           {isLast ? "Approve" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
                         </button>
@@ -1026,7 +1020,7 @@ export function ClientPortalExperience({
             <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px 22px", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
               <PlayIcon />
               <div style={{ flex: 1 }}>
-                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: gold, letterSpacing: "0.16em", textTransform: "uppercase" }}>Walkthrough</div>
+                <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: gold, letterSpacing: "0.16em", textTransform: "uppercase" }}>Walkthrough</div>
                 <div style={{ fontWeight: 600, fontSize: 16, marginTop: 3 }}>{videoTitle}</div>
               </div>
               <button
