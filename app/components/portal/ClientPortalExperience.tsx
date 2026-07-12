@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   buildJourneyStages,
-  completedStageCount,
   defaultCompletedMilestoneIds,
   defaultCurrentDay,
   journeyProgressPercent,
@@ -21,7 +20,6 @@ import { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 
 const teal = "#00b8a0";
 const gold = "#f5a623";
-const blue = "#6aa6f5";
 const ink = "#08090c";
 const text = "#eef1f6";
 
@@ -38,27 +36,6 @@ export type ClientPortalExperienceProps = {
   milestoneUploads?: Record<string, UploadMeta>;
   portalToken?: string;
 };
-
-function useDayTicks(currentDay: number) {
-  const days = [];
-  for (let i = 1; i <= 30; i++) {
-    const major = i === 1 || i % 5 === 0;
-    const current = i === currentDay;
-    const past = i <= currentDay;
-    const tickColor = current ? gold : past ? teal : "rgba(255,255,255,0.18)";
-    days.push({
-      n: i,
-      label: major ? String(i) : "",
-      labelColor: current ? gold : past ? "rgba(0,184,160,0.85)" : "rgba(238,241,246,0.3)",
-      labelWeight: current ? 700 : 400,
-      tickWidth: current ? 3 : major ? 2 : 1,
-      tickHeight: current ? 17 : major ? 12 : 7,
-      tickColor,
-      glow: current ? "0 0 10px rgba(245,166,35,0.85)" : "none",
-    });
-  }
-  return days;
-}
 
 function CheckIcon({ color = "#04130e", size = 13 }: { color?: string; size?: number }) {
   return (
@@ -82,23 +59,6 @@ function LinkifiedLine({ line }: { line: string }) {
         ),
       )}
     </>
-  );
-}
-
-function FormIcon({ color = gold, size = 12 }: { color?: string; size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" />
-    </svg>
-  );
-}
-
-function LockIcon({ color = "rgba(238,241,246,0.4)", size = 10 }: { color?: string; size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="5" y="11" width="14" height="9" rx="2" />
-      <path d="M8 11V8a4 4 0 0 1 8 0v3" />
-    </svg>
   );
 }
 
@@ -145,9 +105,7 @@ export function ClientPortalExperience({
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const days = useDayTicks(currentDay);
   const progress = journeyProgressPercent(currentDay);
-  const stagesDone = completedStageCount(journeyStages);
   const currentStageIndex = journeyStages.findIndex((s) => s.status === "current");
   const currentStage = currentStageIndex >= 0 ? journeyStages[currentStageIndex] : undefined;
   const firstOpenMilestoneIndex = currentStage
