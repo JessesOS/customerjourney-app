@@ -569,12 +569,15 @@ export function ClientPortalExperience({
                   </div>
                 ) : (
                   <div>
-                    <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
-                      <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 12 }}>
-                        {m.hasEditableContent ? "For your review" : "What we need from you"}
-                      </div>
-                      {m.hasEditableContent ? (
-                        savedContent ? (
+                    {/* Only show a content card when it adds something beyond the
+                        description above — i.e. team-pasted review content. For a
+                        plain task the detail at the top already says it all. */}
+                    {m.hasEditableContent && (
+                      <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
+                        <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 12 }}>
+                          For your review
+                        </div>
+                        {savedContent ? (
                           savedContent.split("\n").filter(Boolean).map((line, i) => (
                             <p key={i} style={{ fontSize: 15, color: "var(--pj-ink)", lineHeight: 1.6, margin: i === 0 ? 0 : "10px 0 0" }}><LinkifiedLine line={line} /></p>
                           ))
@@ -582,11 +585,9 @@ export function ClientPortalExperience({
                           <p style={{ fontSize: 15, color: "var(--pj-muted)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
                             Your account team is finalizing these — check back soon.
                           </p>
-                        )
-                      ) : (
-                        <p style={{ fontSize: 15, color: "var(--pj-ink)", lineHeight: 1.6, margin: 0 }}>{m.detail}</p>
-                      )}
-                    </div>
+                        )}
+                      </div>
+                    )}
 
                     {m.notePrompt && (
                       <div style={{ marginTop: 16 }}>
