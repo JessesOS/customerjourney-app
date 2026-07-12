@@ -10,6 +10,8 @@ export type JourneyMilestone = {
   hasEditableContent?: boolean;
   videoUrl?: string;
   hasUpload?: boolean;
+  /** Team-side work in progress — the client sees a "With us" chip, no action. */
+  awaitingTeam?: boolean;
 };
 
 export type StageStatus = "done" | "current" | "locked";
@@ -34,6 +36,7 @@ type MilestoneTemplate = {
   hasEditableContent?: boolean;
   videoUrl?: string;
   hasUpload?: boolean;
+  awaitingTeam?: boolean;
 };
 
 type StageTemplate = {
@@ -180,6 +183,7 @@ export function buildJourneyStages(completedIds: Set<string>, currentDay: number
       hasEditableContent: m.hasEditableContent,
       videoUrl: m.videoUrl,
       hasUpload: m.hasUpload,
+      awaitingTeam: m.awaitingTeam,
       status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
     }));
 

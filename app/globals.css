@@ -17,6 +17,34 @@
   --red: #ff6e60;
   --red-soft: rgba(255, 110, 96, 0.14);
   --paper: #f6f3ed;
+
+  /* ---- Client portal ("journey") — warm/editorial redesign ----
+     Namespaced --pj-* so they never collide with the dark strategy-room
+     tokens above. The portal is a deliberate single-theme (warm light)
+     surface, so there is no dark inversion here by design. Values come
+     from the approved "Journey Redesign — Strawman" mockup. */
+  --pj-bg: #f6f2ea;          /* warm cream canvas */
+  --pj-rail: #f1eae0;        /* sidebar, one step deeper */
+  --pj-card: #ffffff;
+  --pj-ink: #2c2620;
+  --pj-muted: #877c6e;
+  --pj-faint: #afa394;
+  --pj-line: #e7dfd2;
+  --pj-line-soft: #f0eae0;
+
+  --pj-act: #c75038;         /* terracotta — the one action colour */
+  --pj-act-fill: #f8e4dc;
+  --pj-act-ink: #fff8f3;     /* text on terracotta */
+  --pj-done: #5f7a4e;        /* sage — completed */
+  --pj-done-fill: #e5ead7;
+  --pj-withus: #8a5b72;      /* plum — team is working on it */
+  --pj-withus-fill: #f1e3ea;
+  --pj-upnext: #9a8f80;      /* stone — not started */
+  --pj-upnext-fill: #efe9df;
+
+  --pj-radius-card: 16px;
+  --pj-radius-sm: 12px;
+  --pj-radius-pill: 999px;
 }
 
 @theme inline {
