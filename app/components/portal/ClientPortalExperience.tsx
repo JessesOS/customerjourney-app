@@ -520,27 +520,25 @@ export function ClientPortalExperience({
                     {uploadError && <div style={{ marginTop: 12, fontSize: 13, color: "var(--pj-act)" }}>{uploadError}</div>}
                   </div>
                 ) : m.bookingUrl ? (
-                  <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 24 }}>
-                    <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 10 }}>
-                      Book your call
+                  <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 20 }}>
+                    <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
+                      <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
+                        Book your call
+                      </div>
+                      <a href={m.bookingUrl} target="_blank" rel="noreferrer" style={{ fontSize: 12.5, fontWeight: 600, color: "var(--pj-act)", textDecoration: "none", whiteSpace: "nowrap" }}>
+                        Open in a new tab ↗
+                      </a>
                     </div>
-                    <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: "0 0 18px", lineHeight: 1.55, maxWidth: "52ch" }}>
-                      Choose a time that works for you and we&apos;ll send the calendar invite. Takes about 30 minutes, over video.
-                    </p>
-                    <a
-                      href={m.bookingUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-act)", color: "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", textDecoration: "none", boxShadow: "0 8px 20px -10px rgba(217,119,87,.5)" }}
-                    >
-                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="4" width="18" height="18" rx="2" />
-                        <path d="M16 2v4M8 2v4M3 10h18" />
-                      </svg>
-                      Book your welcome call →
-                    </a>
-                    <p style={{ fontSize: 12.5, color: "var(--pj-faint)", margin: "16px 0 0" }}>
-                      Once your call is booked, mark this task complete below.
+                    <div style={{ borderRadius: "var(--pj-radius-sm)", overflow: "hidden", border: "1px solid var(--pj-line)", background: "#faf7f2" }}>
+                      <iframe
+                        src={m.bookingUrl}
+                        title="Book your welcome call"
+                        style={{ display: "block", width: "100%", height: 680, border: 0 }}
+                        loading="lazy"
+                      />
+                    </div>
+                    <p style={{ fontSize: 12.5, color: "var(--pj-faint)", margin: "14px 0 0" }}>
+                      Pick a time above — we&apos;ll send the calendar invite. Once it&apos;s booked, mark this task complete below.
                     </p>
                   </div>
                 ) : (
