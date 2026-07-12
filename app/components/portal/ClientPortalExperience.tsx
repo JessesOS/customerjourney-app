@@ -391,257 +391,175 @@ export function ClientPortalExperience({
 
       {/* STAGE DETAIL */}
       {view === "stage" && viewingStage && (
-        <section style={{ maxWidth: 1080, margin: "0 auto", padding: "36px 32px 130px", animation: "viewIn 0.5s cubic-bezier(0.2,0.7,0.2,1)" }}>
+        <section style={{ maxWidth: 680, margin: "0 auto", padding: "40px 32px 96px", animation: "viewIn 0.4s cubic-bezier(0.2,0.7,0.2,1)" }}>
           <button
             onClick={backToJourney}
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", border: "none", color: "rgba(238,241,246,0.55)", fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, letterSpacing: "0.06em", cursor: "pointer", padding: 0, marginBottom: 28 }}
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", border: "none", color: "var(--pj-muted)", fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: 13, cursor: "pointer", padding: 0, marginBottom: 26 }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M11 18l-6-6 6-6" />
             </svg>
-            Back to journey
+            Back to {viewingStage.name}
           </button>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 14 }}>
-            <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: viewingStage.status === "done" ? teal : gold, letterSpacing: "0.14em" }}>
-              STAGE {String(viewingStageIndex + 1).padStart(2, "0")}
-            </span>
-            {viewingStage.status === "done" ? (
-              <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: teal, textTransform: "uppercase", background: "rgba(0,184,160,0.14)", border: "1px solid rgba(0,184,160,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
-                Completed
-              </span>
-            ) : viewingStage.status === "current" ? (
-              <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: gold, textTransform: "uppercase", background: "rgba(245,166,35,0.14)", border: "1px solid rgba(245,166,35,0.45)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
-                In progress
-              </span>
-            ) : (
-              <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: "rgba(238,241,246,0.5)", textTransform: "uppercase", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "5px 10px", letterSpacing: "0.1em" }}>
-                Preview
-              </span>
-            )}
-            <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
-              {viewingStage.dayStart === viewingStage.dayEnd ? `Day ${viewingStage.dayStart}` : `Days ${viewingStage.dayStart}–${viewingStage.dayEnd}`}
-            </span>
-          </div>
-          <h2 style={{ fontWeight: 700, fontSize: 38, letterSpacing: "-0.025em", margin: 0, lineHeight: 1.05 }}>{viewingStage.name}</h2>
-          <p style={{ fontWeight: 400, fontSize: 18, color: "rgba(238,241,246,0.58)", marginTop: 14, maxWidth: 620, lineHeight: 1.5 }}>
-            {viewingStage.blurb}
-          </p>
+          {(() => {
+            const m: JourneyMilestone | undefined = viewingStage.milestones[milestone - 1];
+            if (!m) return null;
+            const isLast = milestone === viewingStage.milestones.length;
+            const isFirst = milestone === 1;
+            const inlineForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
+            const savedContent = milestoneContent[m.id];
+            const noteValue = noteDrafts[m.id] ?? notes[m.id] ?? "";
+            const uploadMeta = uploads[m.id];
+            const showUploadWidget = m.status !== "done" && m.hasUpload;
+            const hasCustomFlow = Boolean(inlineForm) || showUploadWidget;
 
-          {viewingStage.statusNotes.length > 0 && (
-            <div style={{ marginTop: 20, maxWidth: 620, padding: "12px 16px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12 }}>
-              {viewingStage.statusNotes.map((note) => (
-                <div key={note} style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13, color: "rgba(238,241,246,0.5)", marginBottom: 4 }}>
-                  <span style={{ color: teal, marginTop: 2 }}>●</span> {note}
+            return (
+              <div>
+                <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-act)", marginBottom: 12 }}>
+                  {viewingStage.name} · Task {milestone} of {viewingStage.milestones.length}
                 </div>
-              ))}
-            </div>
-          )}
+                <h3 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontSize: 30, fontWeight: 600, letterSpacing: "-0.01em", margin: "0 0 10px" }}>{m.title}</h3>
+                <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: 0, maxWidth: "54ch", lineHeight: 1.55 }}>{m.detail}</p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "270px 1fr", gap: 34, marginTop: 40, alignItems: "start" }}>
-            <aside style={{ position: "sticky", top: 84, display: "flex", flexDirection: "column", gap: 6 }}>
-              <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.45)", letterSpacing: "0.16em", textTransform: "uppercase", margin: "0 0 10px 4px" }}>
-                {viewingStage.milestones.length} milestones
-              </div>
-              {viewingStage.milestones.map((m, i) => {
-                const active = milestone === i + 1;
-                return (
+                {m.videoUrl && (
                   <button
-                    key={m.id}
-                    onClick={() => setMilestone(i + 1)}
-                    style={{
-                      display: "flex", alignItems: "center", gap: 12, width: "100%", padding: "13px 14px", borderRadius: 12,
-                      cursor: "pointer", textAlign: "left", color: text, fontFamily: "var(--font-space-grotesk), system-ui, sans-serif",
-                      background: active ? "rgba(245,166,35,0.10)" : "transparent",
-                      border: active ? "1px solid rgba(245,166,35,0.45)" : "1px solid rgba(255,255,255,0.06)",
-                    }}
+                    onClick={() => openVideo(m.title, m.videoUrl)}
+                    style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-pill)", padding: "7px 16px 7px 7px", color: "var(--pj-ink)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 550, fontSize: 13, cursor: "pointer" }}
                   >
-                    {m.status === "done" ? (
-                      <div style={{ width: 26, height: 26, borderRadius: 99, background: teal, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <CheckIcon />
-                      </div>
-                    ) : (
-                      <div style={{ width: 26, height: 26, borderRadius: 99, border: active ? `2px solid ${gold}` : "1px solid rgba(255,255,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: active ? gold : "rgba(238,241,246,0.5)", fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, fontWeight: active ? 600 : 400 }}>
-                        {i + 1}
-                      </div>
-                    )}
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: m.status === "done" ? "rgba(238,241,246,0.45)" : active ? gold : "rgba(238,241,246,0.4)", letterSpacing: "0.1em" }}>
-                        STEP {i + 1} {m.status === "done" ? "· DONE" : active ? "· NOW" : ""}
-                      </div>
-                      <div style={{ display: "flex", alignItems: "center", gap: 7, fontWeight: 600, fontSize: 15, marginTop: 2, color: m.status === "upcoming" && !active ? "rgba(238,241,246,0.75)" : text }}>
-                        {m.title}
-                        {m.formId && m.status !== "done" && <FormIcon color={active ? gold : "rgba(238,241,246,0.4)"} />}
-                      </div>
-                    </div>
+                    <PlayIcon color="#c75038" />
+                    Watch how it works
                   </button>
-                );
-              })}
-            </aside>
+                )}
 
-            <main style={{ minHeight: 420 }}>
-              {(() => {
-                const m: JourneyMilestone | undefined = viewingStage.milestones[milestone - 1];
-                if (!m) return null;
-                const isLast = milestone === viewingStage.milestones.length;
-                const isFirst = milestone === 1;
-                const label = m.status === "done" ? "Reviewed & approved" : "Review & approve";
-                const inlineForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
-                const savedContent = milestoneContent[m.id];
-                const noteValue = noteDrafts[m.id] ?? notes[m.id] ?? "";
-                const uploadMeta = uploads[m.id];
-                const showUploadWidget = m.status !== "done" && m.hasUpload;
-                const hasCustomFlow = Boolean(inlineForm) || showUploadWidget;
-
-                return (
-                  <div style={{ animation: "viewIn 0.35s ease" }}>
-                    <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: m.status === "done" ? "rgba(238,241,246,0.45)" : gold, letterSpacing: "0.14em", textTransform: "uppercase" }}>
-                      Milestone {milestone} · {label}
+                {m.status === "done" ? (
+                  <div style={{ marginTop: 24 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12, borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-done)", background: "var(--pj-done-fill)", padding: "16px 18px" }}>
+                      <div style={{ width: 24, height: 24, borderRadius: 99, background: "var(--pj-done)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <CheckIcon size={12} color="#fff" />
+                      </div>
+                      <div style={{ flex: 1, fontSize: 14, color: "var(--pj-ink)" }}>You&apos;ve completed this task.</div>
                     </div>
-                    <h3 style={{ fontWeight: 700, fontSize: 26, margin: "10px 0 0", letterSpacing: "-0.02em" }}>{m.title}</h3>
-                    <p style={{ fontWeight: 400, fontSize: 15, color: "rgba(238,241,246,0.6)", marginTop: 8, maxWidth: 580, lineHeight: 1.55 }}>
-                      {m.detail}
-                    </p>
-
-                    {m.videoUrl && (
-                      <button
-                        onClick={() => openVideo(m.title, m.videoUrl)}
-                        style={{ marginTop: 14, display: "inline-flex", alignItems: "center", gap: 10, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "7px 16px 7px 7px", color: text, fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 500, fontSize: 13, cursor: "pointer" }}
-                      >
-                        <PlayIcon />
-                        Watch how it works
-                      </button>
-                    )}
-
-                    {m.status === "done" ? (
-                      <div style={{ marginTop: 24 }}>
-                        <div style={{ display: "flex", alignItems: "center", gap: 12, borderRadius: 14, border: "1px solid rgba(0,184,160,0.35)", background: "rgba(0,184,160,0.07)", padding: "16px 18px" }}>
-                          <div style={{ width: 24, height: 24, borderRadius: 99, background: teal, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                            <CheckIcon size={12} />
-                          </div>
-                          <div style={{ flex: 1, fontSize: 14, color: text }}>You&apos;ve completed this milestone.</div>
-                        </div>
-                        {savedContent && (
-                          <div style={{ marginTop: 14, borderRadius: 14, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: "16px 18px" }}>
-                            {savedContent.split("\n").filter(Boolean).map((line, i) => (
-                              <p key={i} style={{ fontSize: 14, color: text, margin: i === 0 ? 0 : "8px 0 0", lineHeight: 1.6 }}><LinkifiedLine line={line} /></p>
-                            ))}
-                          </div>
-                        )}
-                        {notes[m.id] && (
-                          <div style={{ marginTop: 14, fontSize: 13, color: "rgba(238,241,246,0.55)" }}>
-                            <span style={{ color: gold }}>Your note:</span> {notes[m.id]}
-                          </div>
-                        )}
-                        {uploadMeta && (
-                          <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "rgba(238,241,246,0.55)" }}>
-                            <span style={{ color: gold }}>Uploaded:</span> {uploadMeta.fileName}
-                          </div>
-                        )}
-                      </div>
-                    ) : inlineForm ? (
-                      <OnboardingFormStepper
-                        form={inlineForm}
-                        portalToken={portalToken}
-                        onComplete={() => {
-                          approveMilestone(m.id);
-                          if (!isLast) setMilestone(milestone + 1);
-                        }}
-                      />
-                    ) : showUploadWidget ? (
-                      <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
-                        <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
-                          Upload your file
-                        </div>
-                        <label
-                          style={{
-                            display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-                            border: "1.5px dashed rgba(255,255,255,0.2)", borderRadius: 14, padding: "28px 20px",
-                            cursor: uploadingId === m.id ? "default" : "pointer", color: "rgba(238,241,246,0.7)",
-                            fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: 14,
-                          }}
-                        >
-                          <input
-                            type="file"
-                            accept=".csv"
-                            disabled={uploadingId === m.id}
-                            onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) uploadFile(m.id, file);
-                              e.target.value = "";
-                            }}
-                            style={{ display: "none" }}
-                          />
-                          {uploadingId === m.id ? "Uploading…" : "Click to choose a .csv file"}
-                        </label>
-                        {uploadError && <div style={{ marginTop: 12, fontSize: 13, color: "#ff9a90" }}>{uploadError}</div>}
-                      </div>
-                    ) : (
-                      <div>
-                        <div style={{ marginTop: 24, borderRadius: 18, border: "1px solid rgba(255,255,255,0.08)", background: "rgba(255,255,255,0.02)", padding: 22 }}>
-                          <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: gold, letterSpacing: "0.14em", textTransform: "uppercase", marginBottom: 12 }}>
-                            {m.hasEditableContent ? "For your review" : "What we need from you"}
-                          </div>
-                          {m.hasEditableContent ? (
-                            savedContent ? (
-                              savedContent.split("\n").filter(Boolean).map((line, i) => (
-                                <p key={i} style={{ fontSize: 15, color: text, lineHeight: 1.6, margin: i === 0 ? 0 : "10px 0 0" }}><LinkifiedLine line={line} /></p>
-                              ))
-                            ) : (
-                              <p style={{ fontSize: 15, color: "rgba(238,241,246,0.5)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
-                                Your account team is finalizing these — check back soon.
-                              </p>
-                            )
-                          ) : (
-                            <p style={{ fontSize: 15, color: text, lineHeight: 1.6, margin: 0 }}>{m.detail}</p>
-                          )}
-                        </div>
-
-                        {m.notePrompt && (
-                          <div style={{ marginTop: 16 }}>
-                            <label style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 11, color: "rgba(238,241,246,0.5)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                              {m.notePrompt}
-                            </label>
-                            <textarea
-                              value={noteValue}
-                              onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [m.id]: e.target.value }))}
-                              placeholder="Optional — leave blank if it looks good."
-                              rows={3}
-                              style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: 12, border: "1px solid rgba(255,255,255,0.14)", background: "rgba(255,255,255,0.03)", color: text, fontFamily: "var(--font-space-grotesk), system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
-                            />
-                          </div>
-                        )}
+                    {savedContent && (
+                      <div style={{ marginTop: 14, borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: "16px 18px" }}>
+                        {savedContent.split("\n").filter(Boolean).map((line, i) => (
+                          <p key={i} style={{ fontSize: 14, color: "var(--pj-ink)", margin: i === 0 ? 0 : "8px 0 0", lineHeight: 1.6 }}><LinkifiedLine line={line} /></p>
+                        ))}
                       </div>
                     )}
-
-                    {!hasCustomFlow && (
-                    <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 22 }}>
-                      {!isFirst && (
-                        <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.14)", color: "rgba(238,241,246,0.7)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 500, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}>
-                          ← Previous
-                        </button>
-                      )}
-                      <span style={{ marginLeft: isFirst ? 0 : "auto", fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.45)" }}>
-                        {m.status === "done" ? "Completed" : "Awaiting your approval"}
-                      </span>
-                      {m.status !== "done" && (
-                        <button
-                          onClick={() => {
-                            approveMilestone(m.id, m.notePrompt ? noteValue : undefined);
-                            if (!isLast) setMilestone(milestone + 1);
-                          }}
-                          style={{ marginLeft: isFirst ? "auto" : 0, background: gold, color: "#1c1300", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
-                        >
-                          {isLast ? "Approve" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
-                        </button>
-                      )}
-                    </div>
+                    {notes[m.id] && (
+                      <div style={{ marginTop: 14, fontSize: 13, color: "var(--pj-muted)" }}>
+                        <span style={{ color: "var(--pj-act)", fontWeight: 600 }}>Your note:</span> {notes[m.id]}
+                      </div>
+                    )}
+                    {uploadMeta && (
+                      <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--pj-muted)" }}>
+                        <span style={{ color: "var(--pj-act)", fontWeight: 600 }}>Uploaded:</span> {uploadMeta.fileName}
+                      </div>
                     )}
                   </div>
-                );
-              })()}
-            </main>
-          </div>
+                ) : inlineForm ? (
+                  <OnboardingFormStepper
+                    form={inlineForm}
+                    portalToken={portalToken}
+                    onComplete={() => {
+                      approveMilestone(m.id);
+                      if (!isLast) setMilestone(milestone + 1);
+                    }}
+                  />
+                ) : showUploadWidget ? (
+                  <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
+                    <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 12 }}>
+                      Upload your file
+                    </div>
+                    <label
+                      style={{
+                        display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+                        border: "1.5px dashed var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: "28px 20px",
+                        cursor: uploadingId === m.id ? "default" : "pointer", color: "var(--pj-muted)",
+                        fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: 14,
+                      }}
+                    >
+                      <input
+                        type="file"
+                        accept=".csv"
+                        disabled={uploadingId === m.id}
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) uploadFile(m.id, file);
+                          e.target.value = "";
+                        }}
+                        style={{ display: "none" }}
+                      />
+                      {uploadingId === m.id ? "Uploading…" : "Click to choose a .csv file"}
+                    </label>
+                    {uploadError && <div style={{ marginTop: 12, fontSize: 13, color: "var(--pj-act)" }}>{uploadError}</div>}
+                  </div>
+                ) : (
+                  <div>
+                    <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
+                      <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 12 }}>
+                        {m.hasEditableContent ? "For your review" : "What we need from you"}
+                      </div>
+                      {m.hasEditableContent ? (
+                        savedContent ? (
+                          savedContent.split("\n").filter(Boolean).map((line, i) => (
+                            <p key={i} style={{ fontSize: 15, color: "var(--pj-ink)", lineHeight: 1.6, margin: i === 0 ? 0 : "10px 0 0" }}><LinkifiedLine line={line} /></p>
+                          ))
+                        ) : (
+                          <p style={{ fontSize: 15, color: "var(--pj-muted)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
+                            Your account team is finalizing these — check back soon.
+                          </p>
+                        )
+                      ) : (
+                        <p style={{ fontSize: 15, color: "var(--pj-ink)", lineHeight: 1.6, margin: 0 }}>{m.detail}</p>
+                      )}
+                    </div>
+
+                    {m.notePrompt && (
+                      <div style={{ marginTop: 16 }}>
+                        <label style={{ fontSize: 10.5, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
+                          {m.notePrompt}
+                        </label>
+                        <textarea
+                          value={noteValue}
+                          onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [m.id]: e.target.value }))}
+                          placeholder="Optional — leave blank if it looks good."
+                          rows={3}
+                          style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", color: "var(--pj-ink)", fontFamily: "var(--font-space-grotesk), system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {!hasCustomFlow && (
+                  <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid var(--pj-line)", paddingTop: 22 }}>
+                    {!isFirst && (
+                      <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid var(--pj-line)", color: "var(--pj-muted)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 550, fontSize: 14, borderRadius: "var(--pj-radius-sm)", padding: "12px 18px", cursor: "pointer" }}>
+                        ← Previous
+                      </button>
+                    )}
+                    <span style={{ marginLeft: isFirst ? 0 : "auto", fontSize: 12.5, color: "var(--pj-faint)" }}>
+                      {m.status === "done" ? "Completed" : "Awaiting your approval"}
+                    </span>
+                    {m.status !== "done" && (
+                      <button
+                        onClick={() => {
+                          approveMilestone(m.id, m.notePrompt ? noteValue : undefined);
+                          if (!isLast) setMilestone(milestone + 1);
+                          else backToJourney();
+                        }}
+                        style={{ marginLeft: isFirst ? "auto" : 0, background: "var(--pj-act)", color: "var(--pj-act-ink)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer", boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)" }}
+                      >
+                        {isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
+                      </button>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })()}
         </section>
       )}
 
