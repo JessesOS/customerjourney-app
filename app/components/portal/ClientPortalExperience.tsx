@@ -137,7 +137,9 @@ export function ClientPortalExperience({
   function stageCompletedBy(milestoneId: string): string | null {
     const stage = journeyTemplate.find((s) => s.milestones.some((mm) => mm.id === milestoneId));
     if (!stage) return null;
-    const willAllBeDone = stage.milestones.every((mm) => mm.id === milestoneId || completedIds.has(mm.id));
+    const willAllBeDone = stage.milestones
+      .filter((mm) => !mm.hidden)
+      .every((mm) => mm.id === milestoneId || completedIds.has(mm.id));
     return willAllBeDone ? stage.id : null;
   }
 

@@ -48,6 +48,9 @@ type MilestoneTemplate = {
   guideUrl?: string;
   guideLabel?: string;
   important?: string;
+  /** Hidden from the client flow entirely (not rendered, not counted). Flip to
+      re-enable a task without deleting it. */
+  hidden?: boolean;
 };
 
 type StageTemplate = {
@@ -96,7 +99,17 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "bd-1", title: "Review & approve your eBook lead magnet content", detail: "We've drafted your lead magnet — take a look at the doc below and approve it, or leave a note if you'd like any revisions, before we build the landing page.", notePrompt: "Any revisions or amendments you'd like?", hasEditableContent: true },
       { id: "bd-2", title: "Approve your Meta ad campaigns & creative assets", detail: "Your ad strategy doc and creatives are ready below for final sign-off. Take a look and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to the strategy or creative?", hasEditableContent: true },
       { id: "bd-3", title: "Grant RT Digital partner access to your Meta Business Suite", detail: "Add us as a Partner in Meta Business Suite so we can launch your campaigns. Watch the walkthrough below, then use our Business ID and step-by-step guide.", videoUrl: "/portal/meta-partner-access-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/How_to_Add_RT_Digital_as_a_Partner_on_Meta_Business_Suite__9EIRy1GpRLSzuofqDb0XYQ", guideLabel: "Step-by-step guide", hasEditableContent: true },
-      { id: "bd-4", title: "Watch your ad campaign walkthrough video", detail: "A short recorded walkthrough showing exactly what's going live and how leads will flow in.", videoUrl: "/portal/ad-campaign-walkthrough.mp4" },
+      // HIDDEN for now — the CSM records this walkthrough Loom only once the ad
+      // campaigns are actually loaded and ready, which is often well after the
+      // client reaches this point. An empty "watch a video" task confused
+      // clients, so it's hidden until the flow is reworked. To re-enable, delete
+      // `hidden: true` (and set videoUrl to the recorded Loom, or add a bookingUrl/note).
+      // What the walkthrough should cover (from Regine's handover + Scale SOPs):
+      //   1. The live campaigns in Ads Manager — approved creatives & copy.
+      //   2. The lead form (native Meta form / GHL landing page) — exact fields.
+      //   3. The CRM lead flow — form submit → TradeAI CRM → pipeline → auto SMS + email.
+      //   Record a 3–4 min Loom and paste it into the client's messaging center; they watch, then tick it off.
+      { id: "bd-4", title: "Watch your ad campaign walkthrough video", detail: "A short recorded walkthrough showing exactly what's going live and how leads will flow in.", videoUrl: "/portal/ad-campaign-walkthrough.mp4", hidden: true },
     ],
     statusNotes: [
       "Your AI receptionist is being configured — no action needed from you yet.",
@@ -177,17 +190,20 @@ export function buildJourneyStages(completedIds: Set<string>, currentDay: number
   let currentAssigned = false;
 
   return journeyTemplate.map((stageTemplate) => {
-    const allDone = stageTemplate.milestones.every((m) => completedIds.has(m.id));
+    // Hidden milestones are dropped entirely — they don't render and don't count
+    // toward the stage's task total or completion.
+    const visible = stageTemplate.milestones.filter((m) => !m.hidden);
+    const allDone = visible.every((m) => completedIds.has(m.id));
     const isCurrent = !allDone && !currentAssigned;
     if (isCurrent) currentAssigned = true;
 
     const status: StageStatus = allDone ? "done" : isCurrent ? "current" : "locked";
     const firstOpenIndex = Math.max(
       0,
-      stageTemplate.milestones.findIndex((m) => !completedIds.has(m.id)),
+      visible.findIndex((m) => !completedIds.has(m.id)),
     );
 
-    const milestones: JourneyMilestone[] = stageTemplate.milestones.map((m, i) => ({
+    const milestones: JourneyMilestone[] = visible.map((m, i) => ({
       id: m.id,
       title: m.title,
       detail: m.detail,
