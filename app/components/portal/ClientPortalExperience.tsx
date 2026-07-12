@@ -13,6 +13,7 @@ import {
 } from "@/lib/onboardingJourney";
 import { onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
+import { PortalButton } from "@/app/components/portal/PortalButton";
 
 const teal = "#00b8a0";
 const gold = "#f5a623";
@@ -615,13 +616,14 @@ export function ClientPortalExperience({
                         <div style={{ fontWeight: 700, fontSize: 27, marginTop: 14, letterSpacing: "-0.015em" }}>{stage.name}</div>
                         <div style={{ fontWeight: 400, fontSize: 15, color: "rgba(238,241,246,0.6)", marginTop: 8, maxWidth: 540, lineHeight: 1.5 }}>{stage.blurb}</div>
 
-                        <button
+                        <PortalButton
+                          variant="ghost"
                           onClick={() => openVideo(`${stage.name} — full walkthrough`)}
-                          style={{ marginTop: 18, display: "inline-flex", alignItems: "center", gap: 11, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.14)", borderRadius: 99, padding: "8px 18px 8px 8px", color: text, fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 500, fontSize: 14, cursor: "pointer" }}
+                          style={{ marginTop: 18, gap: 11, paddingLeft: 8 }}
                         >
                           <PlayIcon />
                           Watch the 2-min walkthrough
-                        </button>
+                        </PortalButton>
 
                         <div style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 13 }}>
                           {stage.milestones.map((m, mi) => (
@@ -663,22 +665,23 @@ export function ClientPortalExperience({
                         )}
 
                         <div style={{ marginTop: 26, display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
-                          <button
+                          <PortalButton
+                            variant="primary"
                             onClick={() => openM(stage.id, firstOpenMilestoneIndex + 1)}
-                            style={{ background: gold, color: "#1c1300", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 600, fontSize: 15, border: "none", borderRadius: 12, padding: "13px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
                           >
                             Continue Stage {idx + 1} <span style={{ fontSize: 17 }}>→</span>
-                          </button>
+                          </PortalButton>
                           <span style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, color: "rgba(238,241,246,0.5)" }}>
                             {doneCount} of {stage.milestones.length} milestones done · {stage.milestones.length - doneCount} to go
                           </span>
-                          <button
+                          <PortalButton
+                            variant="outline"
                             onClick={() => openM(stage.id, stage.milestones.length)}
                             title="If you've already finished this stage's work"
-                            style={{ marginLeft: "auto", background: "transparent", border: "1px solid rgba(245,166,35,0.4)", color: gold, fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 12, borderRadius: 99, padding: "8px 14px", cursor: "pointer", display: "flex", alignItems: "center", gap: 7 }}
+                            style={{ marginLeft: "auto", gap: 7 }}
                           >
                             Done early? Skip ahead <span style={{ fontSize: 14 }}>→</span>
-                          </button>
+                          </PortalButton>
                         </div>
                       </div>
                     </div>
