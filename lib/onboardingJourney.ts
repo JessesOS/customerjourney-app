@@ -17,6 +17,8 @@ export type JourneyMilestone = {
   /** Step-by-step guide link (e.g. Scribe). Renders a guide button on the task. */
   guideUrl?: string;
   guideLabel?: string;
+  /** A highlighted warning/callout shown prominently on the task. */
+  important?: string;
 };
 
 export type StageStatus = "done" | "current" | "locked";
@@ -45,6 +47,7 @@ type MilestoneTemplate = {
   bookingUrl?: string;
   guideUrl?: string;
   guideLabel?: string;
+  important?: string;
 };
 
 type StageTemplate = {
@@ -74,8 +77,7 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "ob-5", title: "Review your SMS/Email message copy", detail: "Our team has drafted the SMS and email messages your AI will send on your behalf. Take a look below and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to this messaging?", hasEditableContent: true },
       { id: "ob-6", title: "Connect your calendar", detail: "Connect your calendar so your AI can see your availability and book appointments straight into it. Follow the step-by-step guide below.", videoUrl: "/portal/connect-accounts-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Set_Up_Calendars_and_Availability_in_your_CRM__7GRN6aWmSHSHoV8rVvqyzw", guideLabel: "Step-by-step guide" },
       { id: "ob-6b", title: "Connect your social accounts", detail: "Connect your social accounts so your AI can respond to messages and comments across your channels. Follow the step-by-step guide below.", videoUrl: "/portal/connect-accounts-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Connecting_Facebook_in_your_CRM__W7guqe5_Sy6-nMadYtAPyw", guideLabel: "Step-by-step guide" },
-      // ob-6c: Connect your payment method. Add its own Scribe guideUrl when ready.
-      { id: "ob-6c", title: "Connect your payment method", detail: "Connect your payment method so your AI can take payments and deposits on your behalf.", videoUrl: "/portal/connect-accounts-walkthrough.mp4" },
+      { id: "ob-6c", title: "Set up a payment mechanism", detail: "Go to Settings → Billing to connect your preferred payment mechanism for seamless transactions.", important: "Without this we can't send SMS or emails, which will stall your build progress." },
       { id: "ob-7", title: "Upload your past leads (CSV)", detail: "Helps train your AI on what a good lead looks like for you.", hasUpload: true },
       { id: "ob-8", title: "Grant access to your accounts", detail: "Google My Business, domain, and website builder access.", videoUrl: "/portal/grant-access-walkthrough.mp4" },
     ],
@@ -198,6 +200,7 @@ export function buildJourneyStages(completedIds: Set<string>, currentDay: number
       bookingUrl: m.bookingUrl,
       guideUrl: m.guideUrl,
       guideLabel: m.guideLabel,
+      important: m.important,
       status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
     }));
 

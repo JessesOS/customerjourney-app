@@ -471,6 +471,17 @@ export function ClientPortalExperience({
                   </a>
                 )}
 
+                {m.important && (
+                  <div style={{ marginTop: 18, display: "flex", gap: 11, borderRadius: "var(--pj-radius-sm)", border: "1px solid rgba(217,119,87,0.4)", background: "var(--pj-act-fill)", padding: "13px 16px" }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pj-act)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
+                      <path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+                    </svg>
+                    <div style={{ fontSize: 13.5, color: "var(--pj-ink)", lineHeight: 1.5 }}>
+                      <b>Important — </b>{m.important}
+                    </div>
+                  </div>
+                )}
+
                 {m.status === "done" ? (
                   <div style={{ marginTop: 24 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 12, borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-done)", background: "var(--pj-done-fill)", padding: "16px 18px" }}>
