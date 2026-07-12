@@ -51,7 +51,7 @@ function LinkifiedLine({ line }: { line: string }) {
     <>
       {parts.map((part, i) =>
         /^https?:\/\//.test(part) ? (
-          <a key={i} href={part} target="_blank" rel="noreferrer" style={{ color: "#6aa6f5", textDecoration: "underline" }}>
+          <a key={i} href={part} target="_blank" rel="noreferrer" style={{ color: "var(--pj-withus)", textDecoration: "underline" }}>
             {part}
           </a>
         ) : (
@@ -394,10 +394,10 @@ export function ClientPortalExperience({
 
                 {currentStage.statusNotes.length > 0 && (
                   <div style={{ marginTop: 22 }}>
-                    <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", margin: "0 0 10px" }}>
+                    <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-withus)", margin: "0 0 10px" }}>
                       Happening with us
                     </div>
-                    <div style={{ background: "var(--pj-withus-fill)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: "14px 18px", display: "flex", flexDirection: "column", gap: 8 }}>
+                    <div style={{ background: "var(--pj-withus-fill)", border: "1px solid rgba(47,80,105,0.22)", borderLeft: "3px solid var(--pj-withus)", borderRadius: "var(--pj-radius-sm)", padding: "14px 18px", display: "flex", flexDirection: "column", gap: 8 }}>
                       {currentStage.statusNotes.map((note) => (
                         <div key={note} style={{ display: "flex", alignItems: "flex-start", gap: 9, fontSize: 13, color: "var(--pj-ink)" }}>
                           <span style={{ color: "var(--pj-withus)", marginTop: 1 }}>●</span>
