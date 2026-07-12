@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk, IBM_Plex_Mono, Newsreader, Space_Grotesk } from "next/font/google";
+import { Hanken_Grotesk, IBM_Plex_Mono, Instrument_Serif, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -16,10 +16,10 @@ const ibmPlexMono = IBM_Plex_Mono({
 // Client-portal typography: an elegant editorial serif for headings paired with
 // a refined humanist sans for everything else. Exposed as semantic --font-heading
 // / --font-body so the whole scheme can be re-pointed from this one file.
-const newsreader = Newsreader({
+const instrumentSerif = Instrument_Serif({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400"],
   style: ["normal", "italic"],
 });
 
@@ -47,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${newsreader.variable} ${hankenGrotesk.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${instrumentSerif.variable} ${hankenGrotesk.variable} antialiased`}
       >
         {children}
       </body>
