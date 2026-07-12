@@ -36,34 +36,42 @@ JesseOS ecosystem. It should align with:
 - Review Queue / Knowledge Packets
 - AI agent model and shared dashboard principles
 
-## Current Status (as of 2026-07-12)
+## Current Status (as of 2026-07-12, end of day)
 
 Functionally complete portal, live in production, with admin client management.
+**The UI/UX overhaul is DONE and shipped** (see below).
 Outstanding work:
-1. **UI/UX overhaul — see below, this is today's priority.**
-2. Stages 1, 4, 5 need real CSM content (stage 3 done)
-3. Automation/notification wiring (optional, post-MVP)
+1. Upload the walkthrough `.mp4` files (buttons exist, files missing): `download-app-`,
+   `connect-accounts-`, `grant-access-`, `meta-partner-access-`, `ad-campaign-walkthrough.mp4`.
+2. Tag which milestones are team-side (`awaitingTeam: true` in `lib/onboardingJourney.ts`) so
+   the "With us" chip appears — the flag exists but no milestone is tagged yet.
+3. Stages 1, 4, 5 need real CSM content (stage 3 done).
+4. Automation/notification wiring (optional, post-MVP).
 
-## Planned: UI/UX overhaul (2026-07-12)
+## Completed: UI/UX overhaul (shipped 2026-07-12)
 
-Jesse's brief: "beautiful, but not quite right." **Content and tasking stay exactly as they
-are — this is visual/UX only.**
+Redesigned the client portal from a dark cinematic layout to a **warm, editorial direction**
+(reference: attn:os) with far clearer task orientation. Content and tasking unchanged; this was
+visual/UX + structure only. Validated via mockups first, then built in 7 phases behind an
+approved plan. Live on production.
 
-**Scope boundary — state this explicitly at the start of the session so nothing outside it
-gets touched:** no changes to admin logic, the milestone data model, or the token auth flow.
-Pure visual/UX redesign, functional behavior locked.
+- **Direction:** cream ground, white cards, terracotta = the one action colour, sage = done,
+  plum = "with us". Headings use **Fraunces** (Google Fonts, bundled at build). Namespaced
+  `--pj-*` tokens in `globals.css` (single-theme by design; never collide with the dark
+  strategy-room tokens).
+- **Structure:** persistent left **stage rail** (all 5 stages always visible) + focused content
+  pane; **one-thing-per-page** task view; four-status vocabulary (Done / Your turn / With us /
+  Up next / Locked); **stage-completion payoff screen** with next-stage preview. Retired the
+  cinematic welcome-video intro (video still on-demand via the walkthrough button). Responsive:
+  rail collapses to a segmented stage bar under 820px. Layout centred (1180px) on wide screens.
+- **Key files:** `app/components/portal/` — `ClientPortalExperience.tsx` (home + task +
+  complete views), `StageRail.tsx`, `TaskRow.tsx`, `StatusChip.tsx`, `UpNextCard.tsx`,
+  `StageCompleteView.tsx`, `PortalButton.tsx`, `OnboardingFormStepper.tsx` (reskinned).
+  `lib/onboardingJourney.ts` gained the `awaitingTeam` flag.
 
-**Before starting design work:**
-1. Get 2-3 concrete complaints about the current look, not just "make it prettier" — too
-   generic? too corporate? inconsistent spacing? Something specific to aim at.
-2. Ask for a design reference or two if Jesse has one in mind ("more like X, less like Y").
-3. Screenshot the current live portal first (both `/admin/clients` and a real `/portal/[token]`
-   view) as the "before" — for diffing against and for Jesse to compare once done.
-
-**Tooling:** try the built-in `design:design-critique` and `design:design-system` skills before
-reaching for anything custom — they're already shaped for "here's a UI, make it better, keep it
-consistent." Only build a bespoke skill if the same custom instructions end up repeating across
-multiple redesign sessions — not before.
+**Lesson worth keeping:** `npm run build` (vinext) passes even with runtime `ReferenceError`s —
+it only does static analysis. Always load `/portal/demo` on the running server after a change;
+a green build is not proof the page renders.
 
 ## Historical note
 
