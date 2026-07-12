@@ -268,7 +268,7 @@ export function ClientPortalExperience({
   }
 
   return (
-    <div style={{ background: "var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-space-grotesk), system-ui, sans-serif", minHeight: "100vh" }}>
+    <div style={{ background: "var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
       <style>{`
         @keyframes portalPulse { 0% { transform: scale(1); opacity: 0.65; } 70% { transform: scale(2.2); opacity: 0; } 100% { opacity: 0; } }
         @keyframes viewIn { from { transform: translateY(18px); opacity: 0.4; } to { transform: translateY(0); opacity: 1; } }
@@ -344,7 +344,7 @@ export function ClientPortalExperience({
             <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-act)", marginBottom: 10 }}>
               Stage {currentStageIndex + 1} of {journeyStages.length}{currentStage ? ` · ${dayLabelOf(currentStage)}` : ""}
             </div>
-            <h2 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontSize: 32, fontWeight: 600, letterSpacing: "-0.01em", margin: "0 0 8px" }}>
+            <h2 style={{ fontFamily: "var(--font-heading), Georgia, serif", fontSize: 32, fontWeight: 600, letterSpacing: "-0.01em", margin: "0 0 8px" }}>
               {currentStage ? currentStage.name : "You’re all caught up"}
             </h2>
             <p style={{ color: "var(--pj-muted)", fontSize: 14.5, maxWidth: "56ch", margin: 0 }}>
@@ -360,7 +360,7 @@ export function ClientPortalExperience({
                   <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
                     {stageDoneCount} / {currentStage.milestones.length} done
                   </span>
-                  <button type="button" onClick={() => openVideo(`${currentStage.name} — full walkthrough`)} style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", fontSize: 13, color: "var(--pj-act)", fontWeight: 650, fontFamily: "var(--font-space-grotesk), sans-serif" }}>
+                  <button type="button" onClick={() => openVideo(`${currentStage.name} — full walkthrough`)} style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", fontSize: 13, color: "var(--pj-act)", fontWeight: 650, fontFamily: "var(--font-body), sans-serif" }}>
                     ▸ Watch the walkthrough
                   </button>
                 </div>
@@ -418,7 +418,7 @@ export function ClientPortalExperience({
         <section style={{ maxWidth: 680, margin: "0 auto", padding: "40px 32px 96px", animation: "viewIn 0.4s cubic-bezier(0.2,0.7,0.2,1)" }}>
           <button
             onClick={backToJourney}
-            style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", border: "none", color: "var(--pj-muted)", fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: 13, cursor: "pointer", padding: 0, marginBottom: 26 }}
+            style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", border: "none", color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif", fontSize: 13, cursor: "pointer", padding: 0, marginBottom: 26 }}
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M11 18l-6-6 6-6" />
@@ -443,13 +443,13 @@ export function ClientPortalExperience({
                 <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-act)", marginBottom: 12 }}>
                   {viewingStage.name} · Task {milestone} of {viewingStage.milestones.length}
                 </div>
-                <h3 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontSize: 30, fontWeight: 600, letterSpacing: "-0.01em", margin: "0 0 10px" }}>{m.title}</h3>
+                <h3 style={{ fontFamily: "var(--font-heading), Georgia, serif", fontSize: 30, fontWeight: 600, letterSpacing: "-0.01em", margin: "0 0 10px" }}>{m.title}</h3>
                 <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: 0, maxWidth: "54ch", lineHeight: 1.55 }}>{m.detail}</p>
 
                 {m.videoUrl && (
                   <button
                     onClick={() => openVideo(m.title, m.videoUrl)}
-                    style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-pill)", padding: "7px 16px 7px 7px", color: "var(--pj-ink)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 550, fontSize: 13, cursor: "pointer" }}
+                    style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-pill)", padding: "7px 16px 7px 7px", color: "var(--pj-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 13, cursor: "pointer" }}
                   >
                     <PlayIcon color="#c75038" />
                     Watch how it works
@@ -501,7 +501,7 @@ export function ClientPortalExperience({
                         display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
                         border: "1.5px dashed var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: "28px 20px",
                         cursor: uploadingId === m.id ? "default" : "pointer", color: "var(--pj-muted)",
-                        fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: 14,
+                        fontFamily: "var(--font-body), sans-serif", fontSize: 14,
                       }}
                     >
                       <input
@@ -531,7 +531,7 @@ export function ClientPortalExperience({
                       href={m.bookingUrl}
                       target="_blank"
                       rel="noreferrer"
-                      style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-act)", color: "var(--pj-act-ink)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 650, fontSize: 15, borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", textDecoration: "none", boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)" }}
+                      style={{ display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-act)", color: "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", textDecoration: "none", boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)" }}
                     >
                       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -574,7 +574,7 @@ export function ClientPortalExperience({
                           onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [m.id]: e.target.value }))}
                           placeholder="Optional — leave blank if it looks good."
                           rows={3}
-                          style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", color: "var(--pj-ink)", fontFamily: "var(--font-space-grotesk), system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
+                          style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
                         />
                       </div>
                     )}
@@ -584,7 +584,7 @@ export function ClientPortalExperience({
                 {!hasCustomFlow && (
                   <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid var(--pj-line)", paddingTop: 22 }}>
                     {!isFirst && (
-                      <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid var(--pj-line)", color: "var(--pj-muted)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 550, fontSize: 14, borderRadius: "var(--pj-radius-sm)", padding: "12px 18px", cursor: "pointer" }}>
+                      <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid var(--pj-line)", color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 14, borderRadius: "var(--pj-radius-sm)", padding: "12px 18px", cursor: "pointer" }}>
                         ← Previous
                       </button>
                     )}
@@ -606,14 +606,14 @@ export function ClientPortalExperience({
                             backToJourney();
                           }
                         }}
-                        style={{ marginLeft: isFirst ? "auto" : 0, background: "var(--pj-act)", color: "var(--pj-act-ink)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer", boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)" }}
+                        style={{ marginLeft: isFirst ? "auto" : 0, background: "var(--pj-act)", color: "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer", boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)" }}
                       >
                         {isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
                       </button>
                     ) : (
                       <button
                         onClick={() => (isLast ? backToJourney() : setMilestone(milestone + 1))}
-                        style={{ marginLeft: isFirst ? "auto" : 0, background: "transparent", border: "1px solid var(--pj-act)", color: "var(--pj-act)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 650, fontSize: 15, borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
+                        style={{ marginLeft: isFirst ? "auto" : 0, background: "transparent", border: "1px solid var(--pj-act)", color: "var(--pj-act)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
                       >
                         {isLast ? "Back to journey" : "Next task"} <span style={{ fontSize: 17 }}>→</span>
                       </button>

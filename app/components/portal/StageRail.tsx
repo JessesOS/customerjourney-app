@@ -96,7 +96,7 @@ export function StageRail({
               position: "relative",
               border: "none",
               background: isActive ? "var(--pj-act-fill)" : "transparent",
-              fontFamily: "var(--font-space-grotesk), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
             }}
           >
             {isActive ? (

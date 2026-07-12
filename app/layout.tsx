@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { Hanken_Grotesk, IBM_Plex_Mono, Newsreader, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -13,11 +13,20 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
-// Editorial serif for the warm client-portal redesign — headings only.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+// Client-portal typography: an elegant editorial serif for headings paired with
+// a refined humanist sans for everything else. Exposed as semantic --font-heading
+// / --font-body so the whole scheme can be re-pointed from this one file.
+const newsreader = Newsreader({
+  variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+});
+
+const hankenGrotesk = Hanken_Grotesk({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -38,7 +47,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${fraunces.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${newsreader.variable} ${hankenGrotesk.variable} antialiased`}
       >
         {children}
       </body>

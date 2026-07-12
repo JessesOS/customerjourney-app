@@ -22,7 +22,7 @@ const inputStyle: React.CSSProperties = {
   border: "1px solid var(--pj-line)",
   background: "#faf7f2",
   color: "var(--pj-ink)",
-  fontFamily: "var(--font-space-grotesk), system-ui, sans-serif",
+  fontFamily: "var(--font-body), system-ui, sans-serif",
   fontSize: 15,
   outline: "none",
 };
@@ -154,7 +154,7 @@ export function OnboardingFormStepper({
         {!isFirst && (
           <button
             onClick={goBack}
-            style={{ background: "transparent", border: "1px solid var(--pj-line)", color: "var(--pj-muted)", fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 550, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}
+            style={{ background: "transparent", border: "1px solid var(--pj-line)", color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 14, borderRadius: 12, padding: "12px 18px", cursor: "pointer" }}
           >
             ← Back
           </button>
@@ -166,7 +166,7 @@ export function OnboardingFormStepper({
             marginLeft: isFirst ? 0 : "auto",
             background: !answered || submitting ? "var(--pj-act-fill)" : "var(--pj-act)",
             color: !answered || submitting ? "var(--pj-act)" : "var(--pj-act-ink)",
-            fontFamily: "var(--font-space-grotesk), sans-serif",
+            fontFamily: "var(--font-body), sans-serif",
             fontWeight: 650,
             fontSize: 15,
             border: "none",
@@ -201,7 +201,7 @@ function FieldPrompt({
 
   return (
     <div>
-      <h3 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontWeight: 600, fontSize: 22, margin: 0, letterSpacing: "-0.01em", lineHeight: 1.3, color: "var(--pj-ink)" }}>
+      <h3 style={{ fontFamily: "var(--font-heading), Georgia, serif", fontWeight: 600, fontSize: 22, margin: 0, letterSpacing: "-0.01em", lineHeight: 1.3, color: "var(--pj-ink)" }}>
         {field.label} {field.required && <span style={{ color: "var(--pj-act)" }}>*</span>}
       </h3>
       {field.helper && <p style={{ fontSize: 13, color: "var(--pj-muted)", marginTop: 8, lineHeight: 1.5 }}>{field.helper}</p>}
@@ -226,7 +226,7 @@ function FieldPrompt({
             autoFocus
             rows={4}
             onChange={(e) => onChange(e.target.value)}
-            style={{ ...inputStyle, resize: "vertical", fontFamily: "var(--font-space-grotesk), system-ui, sans-serif" }}
+            style={{ ...inputStyle, resize: "vertical", fontFamily: "var(--font-body), system-ui, sans-serif" }}
           />
         )}
 
@@ -259,7 +259,7 @@ function FieldPrompt({
                     background: active ? "var(--pj-act-fill)" : "transparent",
                     color: "var(--pj-ink)",
                     cursor: "pointer",
-                    fontFamily: "var(--font-space-grotesk), sans-serif",
+                    fontFamily: "var(--font-body), sans-serif",
                   }}
                 >
                   <div style={{ fontWeight: 600, fontSize: 14 }}>{opt.label}</div>
@@ -289,7 +289,7 @@ function FieldPrompt({
                     background: active ? "var(--pj-done-fill)" : "transparent",
                     color: "var(--pj-ink)",
                     cursor: "pointer",
-                    fontFamily: "var(--font-space-grotesk), sans-serif",
+                    fontFamily: "var(--font-body), sans-serif",
                     fontSize: 14,
                     fontWeight: 500,
                   }}
@@ -318,7 +318,7 @@ function FieldPrompt({
               background: value === "accepted" ? "var(--pj-done-fill)" : "transparent",
               color: "var(--pj-ink)",
               cursor: "pointer",
-              fontFamily: "var(--font-space-grotesk), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               fontSize: 14,
               fontWeight: 500,
               width: "100%",

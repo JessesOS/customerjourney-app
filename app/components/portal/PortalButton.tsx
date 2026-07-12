@@ -12,7 +12,7 @@ const base: CSSProperties = {
   alignItems: "center",
   gap: 9,
   cursor: "pointer",
-  fontFamily: "var(--font-space-grotesk), sans-serif",
+  fontFamily: "var(--font-body), sans-serif",
   transition:
     "background 140ms ease, border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease",
 };

@@ -95,7 +95,7 @@ export function TaskRow({
                 fontSize: 12.5,
                 fontWeight: 550,
                 color: "var(--pj-faint)",
-                fontFamily: "var(--font-space-grotesk), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
                 padding: 0,
               }}
             >
@@ -118,7 +118,7 @@ export function TaskRow({
                 padding: "7px 16px",
                 cursor: "pointer",
                 whiteSpace: "nowrap",
-                fontFamily: "var(--font-space-grotesk), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
               }}
             >
               Start

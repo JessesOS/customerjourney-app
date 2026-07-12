@@ -52,7 +52,7 @@ export function StageCompleteView({
           <path d="M5 13l4 4 10-12" />
         </svg>
       </div>
-      <h3 style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontSize: 34, fontWeight: 600, letterSpacing: "-0.01em", margin: "0 0 10px" }}>
+      <h3 style={{ fontFamily: "var(--font-heading), Georgia, serif", fontSize: 34, fontWeight: 600, letterSpacing: "-0.01em", margin: "0 0 10px" }}>
         {stageName} complete.
       </h3>
       <p style={{ color: "var(--pj-muted)", fontSize: 15, margin: "0 0 30px" }}>
@@ -73,7 +73,7 @@ export function StageCompleteView({
           <div style={{ fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", fontWeight: 700, color: "var(--pj-act)", marginBottom: 10 }}>
             Up next · Stage {nextIndex} of {totalStages}{dayLabel ? ` · ${dayLabel}` : ""}
           </div>
-          <div style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontSize: 22, fontWeight: 600, margin: "0 0 6px" }}>{nextStage.name}</div>
+          <div style={{ fontFamily: "var(--font-heading), Georgia, serif", fontSize: 22, fontWeight: 600, margin: "0 0 6px" }}>{nextStage.name}</div>
           {nextStage.blurb ? <p style={{ fontSize: 13.5, color: "var(--pj-muted)", margin: "0 0 16px" }}>{nextStage.blurb}</p> : null}
 
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap" }}>
@@ -101,7 +101,7 @@ export function StageCompleteView({
         </div>
       ) : (
         <div style={{ background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-card)", padding: "24px 26px" }}>
-          <div style={{ fontFamily: "var(--font-fraunces), Georgia, serif", fontSize: 20, fontWeight: 600 }}>You&apos;re all the way through. 🎉</div>
+          <div style={{ fontFamily: "var(--font-heading), Georgia, serif", fontSize: 20, fontWeight: 600 }}>You&apos;re all the way through. 🎉</div>
           <p style={{ fontSize: 13.5, color: "var(--pj-muted)", margin: "8px 0 0" }}>Every stage of your onboarding journey is complete.</p>
         </div>
       )}
@@ -120,7 +120,7 @@ export function StageCompleteView({
             padding: "12px 24px",
             cursor: "pointer",
             boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)",
-            fontFamily: "var(--font-space-grotesk), sans-serif",
+            fontFamily: "var(--font-body), sans-serif",
           }}
         >
           {nextStage ? `Continue to ${nextStage.name} →` : "Back to your journey →"}
@@ -129,7 +129,7 @@ export function StageCompleteView({
           <button
             type="button"
             onClick={onBackToJourney}
-            style={{ background: "none", border: "none", cursor: "pointer", fontSize: 13, color: "var(--pj-muted)", fontFamily: "var(--font-space-grotesk), sans-serif" }}
+            style={{ background: "none", border: "none", cursor: "pointer", fontSize: 13, color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif" }}
           >
             Back to your journey
           </button>

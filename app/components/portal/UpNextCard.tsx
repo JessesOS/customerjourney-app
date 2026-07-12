@@ -63,7 +63,7 @@ export function UpNextCard({
               cursor: "pointer",
               whiteSpace: "nowrap",
               boxShadow: "0 8px 20px -10px rgba(199,80,56,.5)",
-              fontFamily: "var(--font-space-grotesk), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
             }}
           >
             Start this task →
