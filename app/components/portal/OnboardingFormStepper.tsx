@@ -206,6 +206,51 @@ function FieldPrompt({
       </h3>
       {field.helper && <p style={{ fontSize: 13, color: "var(--pj-muted)", marginTop: 8, lineHeight: 1.5 }}>{field.helper}</p>}
 
+      {(field.inviteEmails || field.steps || field.guideUrl) && (
+        <div style={{ marginTop: 16, borderRadius: 14, border: "1px solid var(--pj-line)", background: "#faf7f2", padding: 20 }}>
+          {field.inviteEmails && field.inviteEmails.length > 0 && (
+            <div>
+              <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 10 }}>
+                Invite these two emails as Managers
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {field.inviteEmails.map((email) => (
+                  <CopyEmail key={email} email={email} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {field.steps && field.steps.length > 0 && (
+            <div style={{ marginTop: field.inviteEmails ? 18 : 0 }}>
+              <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 10 }}>
+                How to do it
+              </div>
+              <ol style={{ margin: 0, paddingLeft: 20, display: "flex", flexDirection: "column", gap: 7 }}>
+                {field.steps.map((s, i) => (
+                  <li key={i} style={{ fontSize: 13.5, color: "var(--pj-ink)", lineHeight: 1.5 }}>{s}</li>
+                ))}
+              </ol>
+            </div>
+          )}
+
+          {field.guideUrl && (
+            <a
+              href={field.guideUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{ marginTop: 18, display: "inline-flex", alignItems: "center", gap: 9, background: "var(--pj-card)", border: "1px solid var(--pj-ink)", borderRadius: 999, padding: "9px 18px", color: "var(--pj-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 600, fontSize: 13.5, textDecoration: "none" }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+              </svg>
+              {field.guideLabel ?? "Watch the guide"}
+            </a>
+          )}
+        </div>
+      )}
+
       <div style={{ marginTop: 18 }}>
         {(field.type === "text" || field.type === "email" || field.type === "url" || field.type === "tel") && (
           <input
@@ -332,5 +377,41 @@ function FieldPrompt({
         )}
       </div>
     </div>
+  );
+}
+
+function CopyEmail({ email }: { email: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        navigator.clipboard
+          ?.writeText(email)
+          .then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          })
+          .catch(() => {});
+      }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        width: "100%",
+        textAlign: "left",
+        background: "var(--pj-card)",
+        border: "1px solid var(--pj-line)",
+        borderRadius: 10,
+        padding: "11px 14px",
+        cursor: "pointer",
+        fontFamily: "var(--font-body), sans-serif",
+      }}
+    >
+      <span style={{ flex: 1, fontSize: 14, fontWeight: 550, color: "var(--pj-ink)", wordBreak: "break-all" }}>{email}</span>
+      <span style={{ flexShrink: 0, fontSize: 12, fontWeight: 600, color: copied ? "var(--pj-done)" : "var(--pj-muted)" }}>
+        {copied ? "Copied ✓" : "Copy"}
+      </span>
+    </button>
   );
 }

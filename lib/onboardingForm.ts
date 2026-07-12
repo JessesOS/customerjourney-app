@@ -26,6 +26,11 @@ export interface PortalFormField {
   helper?: string;
   placeholder?: string;
   options?: PortalFormOption[];
+  /** Optional instructional extras rendered in a card above the input. */
+  inviteEmails?: string[];
+  steps?: string[];
+  guideUrl?: string;
+  guideLabel?: string;
 }
 
 export interface PortalFormSection {
@@ -154,9 +159,19 @@ export const scaleOnboardingForm: PortalFormDefinition = {
           id: "gbp_manager_access",
           label: "Google Business Profile manager access",
           type: "radio",
-          helper: "Add the nominated agency email as a Manager of the profile.",
+          helper: "You don't need to share any login details. Instead, invite our two RT Digital emails as Managers of your Google Business Profile so we can manage it and pull your live Google reviews.",
+          inviteEmails: ["projects@richtraining.com.au", "developers@richtraining.com.au"],
+          steps: [
+            "Log into your Google Business Profile.",
+            "Open Business Profile settings → People and access.",
+            "Click Add, then choose the Manager role.",
+            "Enter both email addresses above and hit Invite.",
+          ],
+          guideUrl:
+            "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/How_to_Invite_RT_Digital_to_Manage_Your_Google_Business_Profile__bifUWmdPRpWSk2_UN6uBhA",
+          guideLabel: "Watch the step-by-step guide",
           options: [
-            { label: "Done", value: "done" },
+            { label: "Done — invitations sent", value: "done" },
             { label: "Need help", value: "need-help" },
             { label: "Not applicable", value: "not-applicable" },
           ],
