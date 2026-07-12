@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk, IBM_Plex_Mono, Instrument_Serif, Space_Grotesk } from "next/font/google";
+import { Hanken_Grotesk, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -16,11 +16,13 @@ const ibmPlexMono = IBM_Plex_Mono({
 // Client-portal typography: an elegant editorial serif for headings paired with
 // a refined humanist sans for everything else. Exposed as semantic --font-heading
 // / --font-body so the whole scheme can be re-pointed from this one file.
-const instrumentSerif = Instrument_Serif({
+// One refined humanist sans across the whole portal — headings and body both
+// draw from Hanken Grotesk (headings simply run heavier). Simple, cohesive,
+// professional. Re-point --font-heading here to reintroduce a display face later.
+const hankenHeading = Hanken_Grotesk({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
+  weight: ["600", "700", "800"],
 });
 
 const hankenGrotesk = Hanken_Grotesk({
@@ -47,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${instrumentSerif.variable} ${hankenGrotesk.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${hankenHeading.variable} ${hankenGrotesk.variable} antialiased`}
       >
         {children}
       </body>
