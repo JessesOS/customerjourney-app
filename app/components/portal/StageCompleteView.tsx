@@ -39,13 +39,13 @@ export function StageCompleteView({
           width: 64,
           height: 64,
           borderRadius: "50%",
-          background: "var(--pj-done)",
+          background: "radial-gradient(circle at 32% 28%, #7f9163 0%, var(--pj-done) 72%)",
           color: "#fff",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           margin: "0 auto 22px",
-          boxShadow: "0 14px 34px -16px rgba(86,99,63,.5)",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,.35), 0 14px 34px -16px rgba(86,99,63,.5)",
         }}
       >
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -62,12 +62,12 @@ export function StageCompleteView({
       {nextStage ? (
         <div
           style={{
-            background: "var(--pj-card)",
-            border: "1px solid var(--pj-line)",
-            borderRadius: "var(--pj-radius-card)",
+            background: "var(--pj-card-grad)",
+            border: "1px solid #efe5d4",
+            borderRadius: 24,
             padding: "24px 26px",
             textAlign: "left",
-            boxShadow: "0 14px 36px -26px rgba(46,43,37,.42)",
+            boxShadow: "var(--pj-shadow-card)",
           }}
         >
           <div style={{ fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", fontWeight: 700, color: "var(--pj-act)", marginBottom: 10 }}>
@@ -111,7 +111,7 @@ export function StageCompleteView({
           type="button"
           onClick={onContinue}
           style={{
-            background: "var(--pj-act)",
+            background: "var(--pj-btn-grad)",
             color: "var(--pj-act-ink)",
             fontWeight: 650,
             fontSize: 14,
@@ -119,7 +119,7 @@ export function StageCompleteView({
             borderRadius: "var(--pj-radius-pill)",
             padding: "12px 24px",
             cursor: "pointer",
-            boxShadow: "0 8px 20px -10px rgba(198,113,57,.5)",
+            boxShadow: "var(--pj-shadow-btn)",
             fontFamily: "var(--font-body), sans-serif",
           }}
         >

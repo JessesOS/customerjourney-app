@@ -17,9 +17,10 @@ function StageIcon({ status, index }: { status: JourneyStage["status"]; index: n
     );
   }
   if (status === "current") {
-    return <span style={{ ...iconBase, border: "2px solid var(--pj-act)", color: "var(--pj-act)", fontWeight: 700, fontSize: 10 }}>{index}</span>;
+    return <span style={{ ...iconBase, border: "2px solid var(--pj-act)", color: "var(--pj-act)", fontWeight: 700, fontSize: 10, background: "var(--pj-act-fill)" }}>{index}</span>;
   }
-  return <span style={{ ...iconBase, border: "1.5px solid #c0b6a5", color: "var(--pj-upnext)", fontSize: 11 }}>{index}</span>;
+  // Solid rail-coloured fill so the dotted journey path doesn't run through the ring.
+  return <span style={{ ...iconBase, border: "1.5px solid #c0b6a5", color: "var(--pj-upnext)", fontSize: 11, background: "var(--pj-rail)" }}>{index}</span>;
 }
 
 const iconBase: React.CSSProperties = {
@@ -51,8 +52,23 @@ export function StageRail({
         borderRight: "1px solid var(--pj-line)",
         background: "var(--pj-rail)",
         padding: "24px 18px",
+        position: "relative",
       }}
     >
+      {/* Dotted journey path connecting the stage markers (reference: the
+          winding Customer Journey map). Sits behind the stage buttons; the
+          markers carry solid fills so the path never crosses a ring. */}
+      <span
+        aria-hidden
+        style={{
+          position: "absolute",
+          left: 40,
+          top: 72,
+          bottom: 100,
+          width: 0,
+          borderLeft: "2px dotted #cbbc9f",
+        }}
+      />
       <div
         style={{
           fontSize: 10,

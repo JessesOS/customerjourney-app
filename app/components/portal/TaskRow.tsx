@@ -109,7 +109,7 @@ export function TaskRow({
               type="button"
               onClick={onStart}
               style={{
-                background: "var(--pj-act)",
+                background: "var(--pj-btn-grad)",
                 color: "var(--pj-act-ink)",
                 fontWeight: 650,
                 fontSize: 12.5,
@@ -119,6 +119,7 @@ export function TaskRow({
                 cursor: "pointer",
                 whiteSpace: "nowrap",
                 fontFamily: "var(--font-body), sans-serif",
+                boxShadow: "var(--pj-shadow-btn)",
               }}
             >
               Start

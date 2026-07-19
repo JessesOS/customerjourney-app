@@ -21,11 +21,11 @@ export function UpNextCard({
   return (
     <div
       style={{
-        background: "var(--pj-card)",
-        border: "1px solid var(--pj-line)",
-        borderRadius: "var(--pj-radius-card)",
-        padding: "22px 24px",
-        boxShadow: "0 14px 36px -26px rgba(46,43,37,.42)",
+        background: "var(--pj-card-grad)",
+        border: "1px solid #efe5d4",
+        borderRadius: 24,
+        padding: "24px 26px",
+        boxShadow: "var(--pj-shadow-card)",
         marginBottom: 30,
       }}
     >
@@ -53,16 +53,16 @@ export function UpNextCard({
             onClick={onStart}
             style={{
               marginLeft: "auto",
-              background: "var(--pj-act)",
+              background: "var(--pj-btn-grad)",
               color: "var(--pj-act-ink)",
               fontWeight: 650,
               fontSize: 14,
               border: "none",
               borderRadius: "var(--pj-radius-pill)",
-              padding: "11px 22px",
+              padding: "12px 24px",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              boxShadow: "0 8px 20px -10px rgba(198,113,57,.5)",
+              boxShadow: "var(--pj-shadow-btn)",
               fontFamily: "var(--font-body), sans-serif",
             }}
           >

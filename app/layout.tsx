@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { Figtree, Fraunces, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -15,13 +15,13 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 // Client-portal typography, exposed as semantic --font-heading / --font-body so
 // the whole scheme can be re-pointed from this one file.
-// One warm humanist sans across the whole portal — headings and body both draw
-// from Figtree (headings simply run heavier), per the Organic reskin handoff.
-// Re-point --font-heading here to reintroduce a display face later.
-const figtreeHeading = Figtree({
+// Editorial serif display (Fraunces, per the attn:os reference) over a warm
+// humanist sans body (Figtree) — the "bold pass" direction from Jesse's
+// reference set (2026-07-19).
+const frauncesHeading = Fraunces({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: ["500", "600", "700"],
 });
 
 const figtreeBody = Figtree({
@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${figtreeHeading.variable} ${figtreeBody.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${frauncesHeading.variable} ${figtreeBody.variable} antialiased`}
       >
         {children}
       </body>

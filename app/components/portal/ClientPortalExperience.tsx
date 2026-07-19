@@ -146,6 +146,9 @@ export function ClientPortalExperience({
   const [viewingStageId, setViewingStageId] = useState<string>(defaultStage?.id ?? journeyStages[0].id);
   const [videoTitle, setVideoTitle] = useState<string | null>(null);
   const [videoSrc, setVideoSrc] = useState<string>("");
+  // Stage task list is collapsed by default — the hero card is the one action
+  // on the page; the list is orientation detail, one click away.
+  const [tasksOpen, setTasksOpen] = useState(false);
 
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -315,7 +318,7 @@ export function ClientPortalExperience({
   }
 
   return (
-    <div style={{ background: "var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
+    <div style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
       <style>{`
         @keyframes portalPulse { 0% { transform: scale(1); opacity: 0.65; } 70% { transform: scale(2.2); opacity: 0; } 100% { opacity: 0; } }
         @keyframes viewIn { from { transform: translateY(18px); opacity: 0.4; } to { transform: translateY(0); opacity: 1; } }
@@ -416,24 +419,51 @@ export function ClientPortalExperience({
                   onStart={upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
                 />
 
-                <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", margin: "0 0 10px" }}>
-                  All tasks in this stage
-                </div>
                 <div style={{ background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-card)", overflow: "hidden" }}>
-                  {currentStage.milestones.map((m, mi) => {
-                    const ds = taskDisplayStatus(m);
-                    return (
-                      <div key={m.id} style={{ borderTop: mi === 0 ? "none" : "1px solid var(--pj-line-soft)" }}>
-                        <TaskRow
-                          title={m.title}
-                          subtitle={ds === "your-turn" ? "Approve, or request changes" : undefined}
-                          status={ds}
-                          onStart={() => openM(currentStage.id, mi + 1)}
-                          onView={() => openM(currentStage.id, mi + 1)}
-                        />
-                      </div>
-                    );
-                  })}
+                  <button
+                    type="button"
+                    onClick={() => setTasksOpen(!tasksOpen)}
+                    aria-expanded={tasksOpen}
+                    style={{ width: "100%", display: "flex", alignItems: "center", gap: 14, padding: "15px 20px", background: "transparent", border: "none", cursor: "pointer", fontFamily: "var(--font-body), sans-serif", textAlign: "left" }}
+                  >
+                    <span style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
+                      All tasks in this stage
+                    </span>
+                    {/* One dot per task — the whole stage scannable at a glance. */}
+                    <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                      {currentStage.milestones.map((m) => {
+                        const ds = taskDisplayStatus(m);
+                        const solid = ds === "done" ? "var(--pj-done)" : ds === "your-turn" ? "var(--pj-act)" : ds === "with-us" ? "var(--pj-withus)" : null;
+                        return (
+                          <span
+                            key={m.id}
+                            style={{ width: 8, height: 8, borderRadius: "50%", flexShrink: 0, background: solid ?? "transparent", border: solid ? "none" : "1.5px solid #c0b6a5" }}
+                          />
+                        );
+                      })}
+                    </span>
+                    <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8, fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
+                      {stageDoneCount} / {currentStage.milestones.length} done
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ transform: tasksOpen ? "rotate(180deg)" : "none", transition: "transform 160ms ease" }}>
+                        <path d="M6 9l6 6 6-6" />
+                      </svg>
+                    </span>
+                  </button>
+                  {tasksOpen &&
+                    currentStage.milestones.map((m, mi) => {
+                      const ds = taskDisplayStatus(m);
+                      return (
+                        <div key={m.id} style={{ borderTop: "1px solid var(--pj-line-soft)" }}>
+                          <TaskRow
+                            title={m.title}
+                            subtitle={ds === "your-turn" ? "Approve, or request changes" : undefined}
+                            status={ds}
+                            onStart={() => openM(currentStage.id, mi + 1)}
+                            onView={() => openM(currentStage.id, mi + 1)}
+                          />
+                        </div>
+                      );
+                    })}
                 </div>
 
                 {currentStage.statusNotes.length > 0 && (
@@ -704,7 +734,7 @@ export function ClientPortalExperience({
                             backToJourney();
                           }
                         }}
-                        style={{ marginLeft: isFirst ? "auto" : 0, background: noteMissing ? "var(--pj-act-fill)" : "var(--pj-act)", color: noteMissing ? "var(--pj-act)" : "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: noteMissing ? "default" : "pointer", boxShadow: noteMissing ? "none" : "0 8px 20px -10px rgba(198,113,57,.5)" }}
+                        style={{ marginLeft: isFirst ? "auto" : 0, background: noteMissing ? "var(--pj-act-fill)" : "var(--pj-btn-grad)", color: noteMissing ? "var(--pj-act)" : "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: noteMissing ? "default" : "pointer", boxShadow: noteMissing ? "none" : "var(--pj-shadow-btn)" }}
                       >
                         {isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
                       </button>

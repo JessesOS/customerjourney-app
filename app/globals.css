@@ -45,6 +45,16 @@
   --pj-radius-card: 16px;
   --pj-radius-sm: 12px;
   --pj-radius-pill: 999px;
+
+  /* Bold pass (2026-07-19): soft clay-3D treatment from Jesse's reference set.
+     Cards get an inset top highlight + warm deep shadow (extruded look);
+     primary buttons get a pressed-clay gradient. The glow is the warm radial
+     wash behind the whole portal (AgencyOS-hero style). */
+  --pj-glow: radial-gradient(1100px 480px at 50% -120px, #fcf3e2 0%, rgba(252, 243, 226, 0) 65%);
+  --pj-card-grad: linear-gradient(180deg, #fdfaf3 0%, #f8f1e6 100%);
+  --pj-shadow-card: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 22px 44px -22px rgba(126, 94, 60, 0.38), 0 2px 8px rgba(126, 94, 60, 0.06);
+  --pj-btn-grad: linear-gradient(180deg, #d3823f 0%, #bd6830 100%);
+  --pj-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 22px -10px rgba(166, 86, 38, 0.55);
 }
 
 /* Client-portal home layout — desktop rail, mobile segmented bar. */
