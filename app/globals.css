@@ -96,14 +96,28 @@
     display: none;
   }
   .pj-segbar {
+    /* Static inside the frame — sticky would pin against the overflow-hidden
+       frame's box (not the viewport), leaving a dead band and covering the
+       stage heading. */
     display: block;
-    position: sticky;
-    top: 61px;
-    z-index: 20;
+    position: static;
   }
   .pj-pane {
     padding: 20px 18px 64px;
     max-width: none;
+  }
+  /* The segbar already carries stage progress on mobile — hide the pane's
+     duplicate progress row (!important beats its inline flex), and keep a
+     breathing gap between the blurb and the hero card in its place. */
+  .pj-stage-progress {
+    display: none !important;
+  }
+  .pj-pane > p {
+    margin-bottom: 22px !important;
+  }
+  /* Shorten the collapsed task bar's label on small screens. */
+  .pj-bar-ext {
+    display: none;
   }
 }
 

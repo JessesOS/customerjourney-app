@@ -345,11 +345,11 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)" }}>{isRespond ? "respond" : "scale"}</span>
-          <span style={{ width: 1, height: 18, background: "var(--pj-line)" }} />
-          <span style={{ fontSize: 13, color: "var(--pj-muted)" }}>Client Portal{name ? ` · ${name}` : ""}</span>
-          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16 }}>
-            <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{isRespond ? "respond" : "scale"}</span>
+          <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
+          <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
+          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
+            <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
               Day {currentDay} / {activeJourneyTotalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>
             </span>
             <div style={{ width: 30, height: 30, borderRadius: 99, background: "var(--pj-act)", color: "var(--pj-act-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13 }}>
@@ -403,7 +403,7 @@ export function ClientPortalExperience({
 
             {currentStage && (
               <>
-                <div style={{ display: "flex", alignItems: "center", gap: 14, margin: "18px 0 26px", flexWrap: "wrap" }}>
+                <div className="pj-stage-progress" style={{ display: "flex", alignItems: "center", gap: 14, margin: "18px 0 26px", flexWrap: "wrap" }}>
                   <div style={{ flex: "1 1 160px", maxWidth: 220, height: 6, borderRadius: 6, background: "#e7dccb", overflow: "hidden" }}>
                     <span style={{ display: "block", height: "100%", width: `${stagePct}%`, background: "var(--pj-done)", borderRadius: 6 }} />
                   </div>
@@ -426,8 +426,8 @@ export function ClientPortalExperience({
                     aria-expanded={tasksOpen}
                     style={{ width: "100%", display: "flex", alignItems: "center", gap: 14, padding: "15px 20px", background: "transparent", border: "none", cursor: "pointer", fontFamily: "var(--font-body), sans-serif", textAlign: "left" }}
                   >
-                    <span style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
-                      All tasks in this stage
+                    <span style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", whiteSpace: "nowrap" }}>
+                      All tasks<span className="pj-bar-ext"> in this stage</span>
                     </span>
                     {/* One dot per task — the whole stage scannable at a glance. */}
                     <span style={{ display: "flex", alignItems: "center", gap: 5 }}>
@@ -442,7 +442,7 @@ export function ClientPortalExperience({
                         );
                       })}
                     </span>
-                    <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8, fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
+                    <span style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 8, fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap", flexShrink: 0 }}>
                       {stageDoneCount} / {currentStage.milestones.length} done
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" style={{ transform: tasksOpen ? "rotate(180deg)" : "none", transition: "transform 160ms ease" }}>
                         <path d="M6 9l6 6 6-6" />
