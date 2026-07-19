@@ -19,8 +19,8 @@ function StageIcon({ status, index }: { status: JourneyStage["status"]; index: n
   if (status === "current") {
     return <span style={{ ...iconBase, border: "2px solid var(--pj-act)", color: "var(--pj-act)", fontWeight: 700, fontSize: 10, background: "var(--pj-act-fill)" }}>{index}</span>;
   }
-  // Solid rail-coloured fill so the dotted journey path doesn't run through the ring.
-  return <span style={{ ...iconBase, border: "1.5px solid #c0b6a5", color: "var(--pj-upnext)", fontSize: 11, background: "var(--pj-rail)" }}>{index}</span>;
+  // Solid card-coloured fill so the dotted journey path doesn't run through the ring.
+  return <span style={{ ...iconBase, border: "1.5px solid #c0b6a5", color: "var(--pj-upnext)", fontSize: 11, background: "#fbf6ee" }}>{index}</span>;
 }
 
 const iconBase: React.CSSProperties = {
@@ -49,10 +49,15 @@ export function StageRail({
       style={{
         width: 292,
         flexShrink: 0,
-        borderRight: "1px solid var(--pj-line)",
-        background: "var(--pj-rail)",
+        background: "var(--pj-card-grad)",
+        border: "1px solid #efe5d4",
+        borderRadius: 24,
+        boxShadow: "var(--pj-shadow-card)",
         padding: "24px 18px",
-        position: "relative",
+        position: "sticky",
+        top: 85,
+        alignSelf: "flex-start",
+        margin: "28px 0 40px 20px",
       }}
     >
       {/* Dotted journey path connecting the stage markers (reference: the
@@ -75,7 +80,7 @@ export function StageRail({
           letterSpacing: "0.16em",
           textTransform: "uppercase",
           fontWeight: 650,
-          color: "var(--pj-faint)",
+          color: "var(--pj-act)",
           margin: "2px 10px 14px",
         }}
       >
