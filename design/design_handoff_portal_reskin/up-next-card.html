@@ -1,0 +1,58 @@
+<!-- @dsCard group="Organic Reskin" name="UpNextCard — hero" subtitle="Actionable (Start this task) and waiting (In progress) variants — from UpNextCard.tsx" viewport="640x420" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Organic Reskin — UpNextCard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --pj-bg:#f5ead8;--pj-card:#f9f4ed;--pj-ink:#201e1d;--pj-muted:#82796a;--pj-faint:#a19786;
+    --pj-line:#dcd3c4;
+    --pj-act:#c67139;--pj-act-fill:#ffe1d0;--pj-act-ink:#fff2eb;
+    --pj-withus:#7d5468;--pj-withus-fill:#efdfe6;
+    --font-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+    --font-body:'Figtree','Segoe UI',system-ui,sans-serif;
+  }
+  body{margin:0;background:var(--pj-bg);color:var(--pj-ink);font-family:var(--font-body);}
+  .wrap{max-width:600px;margin:0 auto;padding:28px 24px;display:grid;gap:20px;}
+  /* Exact UpNextCard.tsx inline styles */
+  .card{background:var(--pj-card);border:1px solid var(--pj-line);border-radius:16px;padding:22px 24px;box-shadow:0 14px 36px -26px rgba(46,43,37,.42);}
+  .kicker{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:650;color:var(--pj-faint);margin-bottom:10px;font-family:var(--font-mono);}
+  .body{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;border-radius:999px;padding:4px 11px;}
+  .ttl{font-size:17px;font-weight:650;letter-spacing:-0.01em;margin-top:8px;}
+  .desc{font-size:13.5px;color:var(--pj-muted);margin-top:3px;max-width:52ch;}
+  .start{margin-left:auto;background:var(--pj-act);color:var(--pj-act-ink);font-weight:650;font-size:14px;border:none;border-radius:999px;padding:11px 22px;cursor:pointer;white-space:nowrap;box-shadow:0 8px 20px -10px rgba(198,113,57,.5);font-family:var(--font-body);}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <!-- actionable -->
+  <div class="card">
+    <div class="kicker">Up next for you</div>
+    <div class="body">
+      <div>
+        <span class="chip" style="background:var(--pj-act-fill);color:var(--pj-act)">● Your turn</span>
+        <div class="ttl">Download the app &amp; log in</div>
+        <div class="desc">Grab the app from the link we texted you, then sign in with the details in your welcome email.</div>
+      </div>
+      <button class="start">Start this task →</button>
+    </div>
+  </div>
+  <!-- waiting on team -->
+  <div class="card">
+    <div class="kicker">In progress</div>
+    <div class="body">
+      <div>
+        <span class="chip" style="background:var(--pj-withus-fill);color:var(--pj-withus)">● With us</span>
+        <div class="ttl">We’re setting up your ad account</div>
+        <div class="desc">Nothing needed from you right now — we’ll let you know the moment it’s ready for your review.</div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

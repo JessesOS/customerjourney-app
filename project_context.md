@@ -78,7 +78,8 @@ visual/UX + structure only. Validated via mockups first, then built in 7 phases 
 approved plan. Live on production.
 
 - **Direction:** cream ground, white cards, terracotta = the one action colour, sage = done,
-  plum = "with us". Headings use **Fraunces** (Google Fonts, bundled at build). Namespaced
+  plum = "with us". Type ended up **Hanken Grotesk** throughout (headings heavier) — the doc
+  previously said Fraunces, which was dropped during the build. Namespaced
   `--pj-*` tokens in `globals.css` (single-theme by design; never collide with the dark
   strategy-room tokens).
 - **Structure:** persistent left **stage rail** (all 5 stages always visible) + focused content
@@ -94,6 +95,28 @@ approved plan. Live on production.
 **Lesson worth keeping:** `npm run build` (vinext) passes even with runtime `ReferenceError`s —
 it only does static analysis. Always load `/portal/demo` on the running server after a change;
 a green build is not proof the page renders.
+
+## Completed: Organic reskin (2026-07-19)
+
+Token-level visual reskin from a Claude Design handoff (design-system project "Organic",
+handoff bundle preserved in `design/`). **Zero UX/flow/markup/API changes** — values only:
+
+- **Tokens** (`globals.css --pj-*`): warmer sand ground `#f5ead8`, off-white cards `#f9f4ed`,
+  action clay→terracotta `#c67139`, status inks deepened to 700-steps (done `#56633f`,
+  with-us plum `#7d5468` OKLCH-derived, up next `#a19786`), fills to 200-steps.
+- **Type:** Hanken Grotesk → **Figtree** (both heading/body slots, headings heavier);
+  IBM Plex Mono unchanged (chips/kickers — deliberate portal signature).
+- **Inline hardcodes** updated to match in TaskRow, StageRail, UpNextCard,
+  StageCompleteView, ClientPortalExperience (incl. two act-orange rgba stragglers the
+  handoff table missed). PlayIcon defaults now token-based.
+- **Walkthrough video modal** warmed to match (was the last dark/gold surface): card
+  surface on warm-ink scrim per Organic's dialog pattern. Dead dark-theme consts
+  (`teal`/`gold`/`ink`/`text`) removed from ClientPortalExperience.
+- **Design round-trip that worked:** components pushed to the Claude Design project as
+  static previews (`code-build/` in the DS project + `design/code-build/` here); Design
+  returned `design_handoff_portal_reskin.zip` (token delta + restyled previews) — kept
+  under `design/`. Note: the Design chat's uploads and the DS project file store are
+  **separate** — files must be attached into the chat, sync only reaches the project store.
 
 ## Historical note
 

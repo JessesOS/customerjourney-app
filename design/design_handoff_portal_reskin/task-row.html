@@ -1,0 +1,76 @@
+<!-- @dsCard group="Organic Reskin" name="TaskRow — list states" subtitle="Done, Your turn (highlighted + Start), With us, Up next, Locked — from TaskRow.tsx" viewport="620x420" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Organic Reskin — TaskRow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300..900&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --pj-bg:#f5ead8;--pj-card:#f9f4ed;--pj-ink:#201e1d;--pj-muted:#82796a;--pj-faint:#a19786;
+    --pj-line:#dcd3c4;
+    --pj-act:#c67139;--pj-act-fill:#ffe1d0;--pj-act-ink:#fff2eb;
+    --pj-done:#56633f;--pj-done-fill:#e1eecc;
+    --pj-withus:#7d5468;--pj-withus-fill:#efdfe6;
+    --pj-upnext:#a19786;--pj-upnext-fill:#eee7db;
+    --font-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+    --font-body:'Figtree','Segoe UI',system-ui,sans-serif;
+  }
+  body{margin:0;background:var(--pj-bg);color:var(--pj-ink);font-family:var(--font-body);}
+  .wrap{max-width:580px;margin:0 auto;padding:28px 24px;}
+  .card{background:var(--pj-card);border:1px solid var(--pj-line);border-radius:16px;overflow:hidden;box-shadow:0 14px 36px -26px rgba(46,43,37,.42);}
+  /* Exact TaskRow.tsx inline styles */
+  .trow{display:flex;align-items:center;gap:14px;padding:14px 20px;}
+  .trow + .trow{border-top:1px solid var(--pj-line);}
+  .trow.turn{background:#fff2eb;}
+  .dot{width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .ttl{font-size:14px;}
+  .sub{font-size:12px;color:var(--pj-muted);margin-top:1px;}
+  .right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;border-radius:999px;padding:4px 11px;white-space:nowrap;}
+  .start{background:var(--pj-act);color:var(--pj-act-ink);font-weight:650;font-size:12.5px;border:none;border-radius:999px;padding:7px 16px;cursor:pointer;font-family:var(--font-body);}
+  .view{background:transparent;border:none;cursor:pointer;font-size:12.5px;font-weight:550;color:var(--pj-faint);font-family:var(--font-body);}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="card">
+    <!-- done -->
+    <div class="trow">
+      <span class="dot" style="background:var(--pj-done)"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-12"/></svg></span>
+      <div><div class="ttl" style="font-weight:450;color:var(--pj-faint);text-decoration:line-through;text-decoration-color:#d8cdbc">Review your SMS &amp; email copy</div></div>
+      <div class="right"><button class="view">View</button></div>
+    </div>
+    <!-- your turn -->
+    <div class="trow turn">
+      <span class="dot" style="border:2px solid var(--pj-act)"></span>
+      <div><div class="ttl" style="font-weight:550;color:var(--pj-ink)">Download the app</div><div class="sub">Takes about 2 minutes</div></div>
+      <div class="right">
+        <span class="chip" style="background:var(--pj-act-fill);color:var(--pj-act)">● Your turn</span>
+        <button class="start">Start</button>
+      </div>
+    </div>
+    <!-- with us -->
+    <div class="trow">
+      <span class="dot" style="border:2px solid var(--pj-withus)"></span>
+      <div><div class="ttl" style="font-weight:550;color:var(--pj-ink)">We’re building your ad campaign</div></div>
+      <div class="right"><span class="chip" style="background:var(--pj-withus-fill);color:var(--pj-withus)">● With us</span></div>
+    </div>
+    <!-- up next -->
+    <div class="trow">
+      <span class="dot" style="border:1.5px solid #c0b6a5"></span>
+      <div><div class="ttl" style="font-weight:550;color:var(--pj-ink)">Log into your TradeAI CRM</div></div>
+      <div class="right"><span class="chip" style="background:var(--pj-upnext-fill);color:var(--pj-upnext)">○ Up next</span></div>
+    </div>
+    <!-- locked -->
+    <div class="trow">
+      <span class="dot" style="border:1.5px solid #c0b6a5"></span>
+      <div><div class="ttl" style="font-weight:550;color:var(--pj-ink)">Set up a payment mechanism</div></div>
+      <div class="right"><span class="chip" style="background:var(--pj-upnext-fill);color:var(--pj-upnext)"><span style="font-size:9px">🔒</span>Locked</span></div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

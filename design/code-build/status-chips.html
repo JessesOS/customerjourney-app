@@ -1,0 +1,43 @@
+<!-- @dsCard group="Code Build" name="StatusChip — 5 states" subtitle="Done / Your turn / With us / Up next / Locked — from StatusChip.tsx" viewport="560x300" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Code Build — StatusChip</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --pj-bg:#f6f2ea;--pj-ink:#2c2620;--pj-faint:#afa394;
+    --pj-act:#d97757;--pj-act-fill:#f9e7dd;
+    --pj-done:#5f7a4e;--pj-done-fill:#e5ead7;
+    --pj-withus:#8a5b72;--pj-withus-fill:#f1e3ea;
+    --pj-upnext:#9a8f80;--pj-upnext-fill:#efe9df;
+    --font-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+    --font-body:'Hanken Grotesk','Segoe UI',system-ui,sans-serif;
+  }
+  body{margin:0;background:var(--pj-bg);color:var(--pj-ink);font-family:var(--font-body);}
+  .wrap{padding:30px 28px;}
+  .head{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--pj-faint);font-weight:600;margin:0 0 16px;}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  /* Exact StatusChip.tsx inline styles */
+  .chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;border-radius:999px;padding:4px 11px;white-space:nowrap;}
+  .chip .dot{font-size:10px;}
+  .note{font-size:12px;color:#877c6e;margin-top:18px;max-width:56ch;}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="head">StatusChip · the four-status vocabulary (+ locked)</div>
+  <div class="row">
+    <span class="chip" style="background:var(--pj-done-fill);color:var(--pj-done)"><span class="dot">✓</span>Done</span>
+    <span class="chip" style="background:var(--pj-act-fill);color:var(--pj-act)"><span class="dot">●</span>Your turn</span>
+    <span class="chip" style="background:var(--pj-withus-fill);color:var(--pj-withus)"><span class="dot">●</span>With us</span>
+    <span class="chip" style="background:var(--pj-upnext-fill);color:var(--pj-upnext)"><span class="dot">○</span>Up next</span>
+    <span class="chip" style="background:var(--pj-upnext-fill);color:var(--pj-upnext)"><span class="dot" style="font-size:9px">🔒</span>Locked</span>
+  </div>
+  <p class="note">Rendered from <code>StatusChip.tsx</code> — IBM Plex Mono, 10px, .1em tracking, pill. Each status pairs a tint fill with its ink colour. “Locked” reuses the Up next tokens with a lock glyph.</p>
+</main>
+</body>
+</html>

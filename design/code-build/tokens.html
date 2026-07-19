@@ -1,0 +1,68 @@
+<!-- @dsCard group="Code Build" name="Portal tokens & type" subtitle="The live --pj-* palette, radii and Hanken/IBM Plex type from production" viewport="680x620" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Code Build — Portal tokens &amp; type</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* Real production tokens — app/globals.css :root (--pj-* namespace).
+     Self-contained on purpose: this mirrors the live client portal, which is a
+     single warm theme and does NOT use the Organic styles.css. */
+  :root {
+    --pj-bg:#f6f2ea; --pj-rail:#f1eae0; --pj-card:#ffffff;
+    --pj-ink:#2c2620; --pj-muted:#877c6e; --pj-faint:#afa394;
+    --pj-line:#e7dfd2; --pj-line-soft:#f0eae0;
+    --pj-act:#d97757; --pj-act-fill:#f9e7dd; --pj-act-ink:#fff8f3;
+    --pj-done:#5f7a4e; --pj-done-fill:#e5ead7;
+    --pj-withus:#8a5b72; --pj-withus-fill:#f1e3ea;
+    --pj-upnext:#9a8f80; --pj-upnext-fill:#efe9df;
+    --font-body:'Hanken Grotesk','Segoe UI',system-ui,sans-serif;
+    --font-heading:'Hanken Grotesk','Segoe UI',system-ui,sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  }
+  body{margin:0;background:var(--pj-bg);color:var(--pj-ink);font-family:var(--font-body);}
+  .wrap{max-width:640px;margin:0 auto;padding:28px 24px 40px;}
+  .head{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--pj-faint);font-weight:600;margin:26px 0 12px;}
+  .head:first-child{margin-top:0;}
+  .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .swc .sw{height:44px;border-radius:10px;border:1px solid rgba(44,38,32,.10);}
+  .swc .swl{font-size:11px;color:var(--pj-muted);margin-top:5px;}
+  .pairs{display:flex;gap:10px;flex-wrap:wrap;}
+  .pair{display:inline-flex;align-items:center;gap:7px;padding:6px 12px 6px 8px;border-radius:999px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+  .type-h{font-family:var(--font-heading);font-size:34px;font-weight:600;letter-spacing:-0.01em;margin:0;}
+  .type-b{font-size:15px;color:var(--pj-muted);margin:6px 0 0;max-width:52ch;}
+  .type-m{font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--pj-act);font-weight:700;margin-top:14px;}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="head">Surface roles</div>
+  <div class="swatches">
+    <div class="swc"><div class="sw" style="background:var(--pj-bg)"></div><div class="swl">bg</div></div>
+    <div class="swc"><div class="sw" style="background:var(--pj-rail)"></div><div class="swl">rail</div></div>
+    <div class="swc"><div class="sw" style="background:var(--pj-card)"></div><div class="swl">card</div></div>
+    <div class="swc"><div class="sw" style="background:var(--pj-ink)"></div><div class="swl">ink</div></div>
+  </div>
+  <div class="head">Status colours — the four-status vocabulary</div>
+  <div class="pairs">
+    <span class="pair" style="background:var(--pj-act-fill);color:var(--pj-act)">● Your turn</span>
+    <span class="pair" style="background:var(--pj-done-fill);color:var(--pj-done)">✓ Done</span>
+    <span class="pair" style="background:var(--pj-withus-fill);color:var(--pj-withus)">● With us</span>
+    <span class="pair" style="background:var(--pj-upnext-fill);color:var(--pj-upnext)">○ Up next</span>
+  </div>
+  <div class="head">Radii</div>
+  <div style="display:flex;gap:12px;align-items:center;">
+    <span style="background:var(--pj-card);border:1px solid var(--pj-line);border-radius:16px;padding:14px 18px;font-size:12px;color:var(--pj-muted)">card · 16px</span>
+    <span style="background:var(--pj-card);border:1px solid var(--pj-line);border-radius:12px;padding:14px 18px;font-size:12px;color:var(--pj-muted)">sm · 12px</span>
+    <span style="background:var(--pj-card);border:1px solid var(--pj-line);border-radius:999px;padding:14px 18px;font-size:12px;color:var(--pj-muted)">pill · 999px</span>
+  </div>
+  <div class="head">Type — Hanken Grotesk / IBM Plex Mono</div>
+  <div class="type-m">Up next for you</div>
+  <h2 class="type-h">Let’s get your accounts connected.</h2>
+  <p class="type-b">Body copy is Hanken Grotesk. Headings are the same family run heavier (600–800); the mono is IBM Plex Mono, reserved for status chips and kickers. Fraunces was retired — this is the current production type.</p>
+</main>
+</body>
+</html>
