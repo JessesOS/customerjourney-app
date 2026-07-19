@@ -203,7 +203,7 @@ function FieldPrompt({
 
   return (
     <div>
-      <h3 style={{ fontFamily: "var(--font-heading), Georgia, serif", fontWeight: 600, fontSize: 22, margin: 0, letterSpacing: "-0.01em", lineHeight: 1.3, color: "var(--pj-ink)" }}>
+      <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontWeight: 800, fontSize: 22, margin: 0, letterSpacing: "-0.01em", lineHeight: 1.3, color: "var(--pj-ink)" }}>
         {field.label} {field.required && <span style={{ color: "var(--pj-act)" }}>*</span>}
       </h3>
       {field.helper && <p style={{ fontSize: 13, color: "var(--pj-muted)", marginTop: 8, lineHeight: 1.5 }}>{field.helper}</p>}

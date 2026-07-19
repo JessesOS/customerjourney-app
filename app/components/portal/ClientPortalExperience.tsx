@@ -394,7 +394,7 @@ export function ClientPortalExperience({
             <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-act)", marginBottom: 10 }}>
               Stage {currentStageIndex + 1} of {journeyStages.length}{currentStage ? ` · ${dayLabelOf(currentStage)}` : ""}
             </div>
-            <h2 style={{ fontFamily: "var(--font-heading), Georgia, serif", fontSize: 32, fontWeight: 600, letterSpacing: "-0.01em", margin: "0 0 8px" }}>
+            <h2 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 34, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 8px" }}>
               {currentStage ? currentStage.name : "You’re all caught up"}
             </h2>
             <p style={{ color: "var(--pj-muted)", fontSize: 14.5, maxWidth: "56ch", margin: 0 }}>
@@ -489,7 +489,7 @@ export function ClientPortalExperience({
 
       {/* STAGE DETAIL */}
       {view === "stage" && viewingStage && (
-        <section style={{ maxWidth: 680, margin: "0 auto", padding: "40px 32px 96px", animation: "viewIn 0.4s cubic-bezier(0.2,0.7,0.2,1)" }}>
+        <section style={{ width: "min(760px, calc(100% - 48px))", margin: "28px auto 56px", padding: "40px clamp(28px, 5vw, 56px) 72px", background: "#faf4ea", border: "1px solid #eee3d0", borderRadius: 28, boxShadow: "0 2px 6px rgba(126,94,60,.06), 0 30px 70px -30px rgba(126,94,60,.35)", animation: "viewIn 0.4s cubic-bezier(0.2,0.7,0.2,1)" }}>
           <button
             onClick={backToJourney}
             style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", border: "none", color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif", fontSize: 13, cursor: "pointer", padding: 0, marginBottom: 26 }}
@@ -517,7 +517,7 @@ export function ClientPortalExperience({
                 <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-act)", marginBottom: 12 }}>
                   {viewingStage.name} · Task {milestone} of {viewingStage.milestones.length}
                 </div>
-                <h3 style={{ fontFamily: "var(--font-heading), Georgia, serif", fontSize: 30, fontWeight: 600, letterSpacing: "-0.01em", margin: "0 0 10px" }}>{m.title}</h3>
+                <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 10px" }}>{m.title}</h3>
                 <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: 0, maxWidth: "54ch", lineHeight: 1.55 }}>{m.detail}</p>
 
                 {m.videoUrl && (

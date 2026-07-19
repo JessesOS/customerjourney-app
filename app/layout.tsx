@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree, Fraunces, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { Figtree, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -15,13 +15,14 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 // Client-portal typography, exposed as semantic --font-heading / --font-body so
 // the whole scheme can be re-pointed from this one file.
-// Editorial serif display (Fraunces, per the attn:os reference) over a warm
-// humanist sans body (Figtree) — the "bold pass" direction from Jesse's
-// reference set (2026-07-19).
-const frauncesHeading = Fraunces({
+// One family, two voices: Figtree black (800/900) for display headings —
+// per the Claude Design task-view mockup Jesse picked (2026-07-19) — over
+// regular Figtree body. Fraunces (serif) was tried for a few hours and retired
+// the same day in favour of this heavier single-family look.
+const figtreeHeading = Figtree({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["800", "900"],
 });
 
 const figtreeBody = Figtree({
@@ -48,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${frauncesHeading.variable} ${figtreeBody.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${figtreeHeading.variable} ${figtreeBody.variable} antialiased`}
       >
         {children}
       </body>

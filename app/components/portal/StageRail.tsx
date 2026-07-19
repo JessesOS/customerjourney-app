@@ -54,10 +54,9 @@ export function StageRail({
         borderRadius: 24,
         boxShadow: "var(--pj-shadow-card)",
         padding: "24px 18px",
-        position: "sticky",
-        top: 85,
+        position: "relative",
         alignSelf: "flex-start",
-        margin: "28px 0 40px 20px",
+        margin: "24px 0 32px 24px",
       }}
     >
       {/* Dotted journey path connecting the stage markers (reference: the
