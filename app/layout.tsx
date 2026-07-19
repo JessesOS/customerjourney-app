@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { Figtree, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -13,19 +13,18 @@ const ibmPlexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
-// Client-portal typography: an elegant editorial serif for headings paired with
-// a refined humanist sans for everything else. Exposed as semantic --font-heading
-// / --font-body so the whole scheme can be re-pointed from this one file.
-// One refined humanist sans across the whole portal — headings and body both
-// draw from Hanken Grotesk (headings simply run heavier). Simple, cohesive,
-// professional. Re-point --font-heading here to reintroduce a display face later.
-const hankenHeading = Hanken_Grotesk({
+// Client-portal typography, exposed as semantic --font-heading / --font-body so
+// the whole scheme can be re-pointed from this one file.
+// One warm humanist sans across the whole portal — headings and body both draw
+// from Figtree (headings simply run heavier), per the Organic reskin handoff.
+// Re-point --font-heading here to reintroduce a display face later.
+const figtreeHeading = Figtree({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
 });
 
-const hankenGrotesk = Hanken_Grotesk({
+const figtreeBody = Figtree({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -49,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${hankenHeading.variable} ${hankenGrotesk.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${figtreeHeading.variable} ${figtreeBody.variable} antialiased`}
       >
         {children}
       </body>

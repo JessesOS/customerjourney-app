@@ -23,24 +23,24 @@
      tokens above. The portal is a deliberate single-theme (warm light)
      surface, so there is no dark inversion here by design. Values come
      from the approved "Journey Redesign — Strawman" mockup. */
-  --pj-bg: #f6f2ea;          /* warm cream canvas */
-  --pj-rail: #f1eae0;        /* sidebar, one step deeper */
-  --pj-card: #ffffff;
-  --pj-ink: #2c2620;
-  --pj-muted: #877c6e;
-  --pj-faint: #afa394;
-  --pj-line: #e7dfd2;
-  --pj-line-soft: #f0eae0;
+  --pj-bg: #f5ead8;          /* warm sand canvas (Organic --color-bg) */
+  --pj-rail: #eee7db;        /* sidebar, one step deeper (neutral-200) */
+  --pj-card: #f9f4ed;        /* off-white — pure white is too stark on the sand */
+  --pj-ink: #201e1d;
+  --pj-muted: #82796a;
+  --pj-faint: #a19786;
+  --pj-line: #dcd3c4;
+  --pj-line-soft: #eee7db;
 
-  --pj-act: #d97757;         /* Claude clay-orange — the one action colour */
-  --pj-act-fill: #f9e7dd;
-  --pj-act-ink: #fff8f3;     /* text on the orange */
-  --pj-done: #5f7a4e;        /* sage — completed */
-  --pj-done-fill: #e5ead7;
-  --pj-withus: #8a5b72;      /* plum — team is working on it */
-  --pj-withus-fill: #f1e3ea;
-  --pj-upnext: #9a8f80;      /* stone — not started */
-  --pj-upnext-fill: #efe9df;
+  --pj-act: #c67139;         /* terracotta (Organic accent) — the one action colour */
+  --pj-act-fill: #ffe1d0;
+  --pj-act-ink: #fff2eb;     /* text on the terracotta */
+  --pj-done: #56633f;        /* sage, 700 step — completed */
+  --pj-done-fill: #e1eecc;
+  --pj-withus: #7d5468;      /* plum, OKLCH-matched to the 700 steps — team is working on it */
+  --pj-withus-fill: #efdfe6;
+  --pj-upnext: #a19786;      /* stone (neutral-500) — not started */
+  --pj-upnext-fill: #eee7db;
 
   --pj-radius-card: 16px;
   --pj-radius-sm: 12px;

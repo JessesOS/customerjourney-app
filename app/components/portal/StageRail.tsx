@@ -19,7 +19,7 @@ function StageIcon({ status, index }: { status: JourneyStage["status"]; index: n
   if (status === "current") {
     return <span style={{ ...iconBase, border: "2px solid var(--pj-act)", color: "var(--pj-act)", fontWeight: 700, fontSize: 10 }}>{index}</span>;
   }
-  return <span style={{ ...iconBase, border: "1.5px solid #dbd2c2", color: "var(--pj-upnext)", fontSize: 11 }}>{index}</span>;
+  return <span style={{ ...iconBase, border: "1.5px solid #c0b6a5", color: "var(--pj-upnext)", fontSize: 11 }}>{index}</span>;
 }
 
 const iconBase: React.CSSProperties = {
@@ -127,7 +127,7 @@ export function StageRail({
               </div>
               <div style={{ fontSize: 12, color: isLocked ? "var(--pj-faint)" : "var(--pj-muted)", marginTop: 2 }}>{sub}</div>
               {isActive ? (
-                <div style={{ marginTop: 8, height: 4, width: 150, borderRadius: 4, background: "#e2d5c6", overflow: "hidden" }}>
+                <div style={{ marginTop: 8, height: 4, width: 150, borderRadius: 4, background: "#dcd3c4", overflow: "hidden" }}>
                   <span style={{ display: "block", height: "100%", width: `${pct}%`, background: "var(--pj-act)", borderRadius: 4 }} />
                 </div>
               ) : null}

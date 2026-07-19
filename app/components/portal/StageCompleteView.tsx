@@ -45,7 +45,7 @@ export function StageCompleteView({
           alignItems: "center",
           justifyContent: "center",
           margin: "0 auto 22px",
-          boxShadow: "0 14px 34px -16px rgba(95,122,78,.55)",
+          boxShadow: "0 14px 34px -16px rgba(86,99,63,.5)",
         }}
       >
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -67,7 +67,7 @@ export function StageCompleteView({
             borderRadius: "var(--pj-radius-card)",
             padding: "24px 26px",
             textAlign: "left",
-            boxShadow: "0 14px 36px -26px rgba(60,46,32,.45)",
+            boxShadow: "0 14px 36px -26px rgba(46,43,37,.42)",
           }}
         >
           <div style={{ fontSize: 10, letterSpacing: ".16em", textTransform: "uppercase", fontWeight: 700, color: "var(--pj-act)", marginBottom: 10 }}>
@@ -119,7 +119,7 @@ export function StageCompleteView({
             borderRadius: "var(--pj-radius-pill)",
             padding: "12px 24px",
             cursor: "pointer",
-            boxShadow: "0 8px 20px -10px rgba(217,119,87,.5)",
+            boxShadow: "0 8px 20px -10px rgba(198,113,57,.5)",
             fontFamily: "var(--font-body), sans-serif",
           }}
         >

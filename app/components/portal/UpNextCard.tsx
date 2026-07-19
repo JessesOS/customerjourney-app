@@ -25,7 +25,7 @@ export function UpNextCard({
         border: "1px solid var(--pj-line)",
         borderRadius: "var(--pj-radius-card)",
         padding: "22px 24px",
-        boxShadow: "0 14px 36px -26px rgba(60,46,32,.45)",
+        boxShadow: "0 14px 36px -26px rgba(46,43,37,.42)",
         marginBottom: 30,
       }}
     >
@@ -62,7 +62,7 @@ export function UpNextCard({
               padding: "11px 22px",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              boxShadow: "0 8px 20px -10px rgba(217,119,87,.5)",
+              boxShadow: "0 8px 20px -10px rgba(198,113,57,.5)",
               fontFamily: "var(--font-body), sans-serif",
             }}
           >

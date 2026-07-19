@@ -25,7 +25,7 @@ function StatusDot({ status }: { status: TaskDisplayStatus }) {
     );
   }
   const ring =
-    status === "your-turn" ? "var(--pj-act)" : status === "with-us" ? "var(--pj-withus)" : "#dbd2c2";
+    status === "your-turn" ? "var(--pj-act)" : status === "with-us" ? "var(--pj-withus)" : "#c0b6a5";
   const width = status === "up-next" || status === "locked" ? 1.5 : 2;
   return (
     <span
@@ -62,7 +62,7 @@ export function TaskRow({
         alignItems: "center",
         gap: 14,
         padding: "14px 20px",
-        background: isTurn ? "#fbf3ec" : "transparent",
+        background: isTurn ? "#fff2eb" : "transparent",
       }}
     >
       <StatusDot status={status} />
