@@ -118,6 +118,16 @@ handoff bundle preserved in `design/`). **Zero UX/flow/markup/API changes** — 
   under `design/`. Note: the Design chat's uploads and the DS project file store are
   **separate** — files must be attached into the chat, sync only reaches the project store.
 
+**Bold pass (same day, after Jesse shared his reference set directly):** the token handoff
+alone read as near-identical, so a second pass built from the references (attn:os serif
+editorial, AgentOS soft-3D clay, winding journey-map path): headings → **Fraunces**
+(display serif; Figtree stays body), new clay-3D tokens in `globals.css`
+(`--pj-glow`, `--pj-card-grad`, `--pj-shadow-card`, `--pj-btn-grad`, `--pj-shadow-btn`),
+warm radial glow ground, extruded primary buttons, dotted journey path in the StageRail,
+and the stage task list collapsed to a status-dot summary bar (expand on click; hero card
+is the page's one large object). Welcome video (`welcome-to-scale.mp4`) fully removed —
+button + asset; per-task videos unchanged.
+
 ## Historical note
 
 An earlier phase of this project deployed via OpenAI Codex Sites (`.openai/hosting.json` is a
