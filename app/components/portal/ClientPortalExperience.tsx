@@ -21,11 +21,6 @@ import { UpNextCard } from "@/app/components/portal/UpNextCard";
 import { StageCompleteView } from "@/app/components/portal/StageCompleteView";
 import { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 
-const teal = "#00b8a0";
-const gold = "#f5a623";
-const ink = "#08090c";
-const text = "#eef1f6";
-
 type View = "home" | "stage" | "complete";
 
 export type UploadMeta = { fileName: string; uploadedAt: string };
@@ -66,10 +61,10 @@ function LinkifiedLine({ line }: { line: string }) {
   );
 }
 
-function PlayIcon({ color = "#f5a623", fill }: { color?: string; fill?: string }) {
+function PlayIcon({ color = "var(--pj-act)", fill }: { color?: string; fill?: string }) {
   return (
     <span style={{ width: 30, height: 30, borderRadius: 99, background: color, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-      <svg width="13" height="13" viewBox="0 0 24 24" fill={fill ?? "#1c1300"}>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill={fill ?? "var(--pj-act-ink)"}>
         <path d="M8 5v14l11-7z" />
       </svg>
     </span>
@@ -503,7 +498,7 @@ export function ClientPortalExperience({
                     onClick={() => openVideo(m.title, m.videoUrl)}
                     style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-pill)", padding: "7px 16px 7px 7px", color: "var(--pj-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 13, cursor: "pointer" }}
                   >
-                    <PlayIcon color="#d97757" />
+                    <PlayIcon color="var(--pj-act)" />
                     Watch how it works
                   </button>
                 )}
@@ -542,7 +537,7 @@ export function ClientPortalExperience({
                 )}
 
                 {m.important && (
-                  <div style={{ marginTop: 18, display: "flex", gap: 11, borderRadius: "var(--pj-radius-sm)", border: "1px solid rgba(217,119,87,0.4)", background: "var(--pj-act-fill)", padding: "13px 16px" }}>
+                  <div style={{ marginTop: 18, display: "flex", gap: 11, borderRadius: "var(--pj-radius-sm)", border: "1px solid rgba(198,113,57,0.4)", background: "var(--pj-act-fill)", padding: "13px 16px" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pj-act)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
                       <path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
                     </svg>
@@ -712,7 +707,7 @@ export function ClientPortalExperience({
                             backToJourney();
                           }
                         }}
-                        style={{ marginLeft: isFirst ? "auto" : 0, background: noteMissing ? "var(--pj-act-fill)" : "var(--pj-act)", color: noteMissing ? "var(--pj-act)" : "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: noteMissing ? "default" : "pointer", boxShadow: noteMissing ? "none" : "0 8px 20px -10px rgba(217,119,87,.5)" }}
+                        style={{ marginLeft: isFirst ? "auto" : 0, background: noteMissing ? "var(--pj-act-fill)" : "var(--pj-act)", color: noteMissing ? "var(--pj-act)" : "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: noteMissing ? "default" : "pointer", boxShadow: noteMissing ? "none" : "0 8px 20px -10px rgba(198,113,57,.5)" }}
                       >
                         {isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
                       </button>
@@ -754,17 +749,17 @@ export function ClientPortalExperience({
 
       {/* walkthrough video modal */}
       {videoTitle && (
-        <div onClick={closeVideo} style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", alignItems: "center", justifyContent: "center", padding: 40, background: "rgba(4,5,8,0.82)" }}>
-          <div onClick={(e) => e.stopPropagation()} style={{ width: "100%", maxWidth: 920, borderRadius: 20, overflow: "hidden", background: "#0d1016", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 40px 120px rgba(0,0,0,0.7)" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px 22px", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+        <div onClick={closeVideo} style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", alignItems: "center", justifyContent: "center", padding: 40, background: "rgba(32,30,29,0.6)" }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ width: "100%", maxWidth: 920, borderRadius: 20, overflow: "hidden", background: "var(--pj-card)", border: "1px solid var(--pj-line)", boxShadow: "0 40px 120px rgba(46,43,37,0.45)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px 22px", borderBottom: "1px solid var(--pj-line-soft)" }}>
               <PlayIcon />
               <div style={{ flex: 1 }}>
-                <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: gold, letterSpacing: "0.16em", textTransform: "uppercase" }}>Walkthrough</div>
+                <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, color: "var(--pj-act)", letterSpacing: "0.16em", textTransform: "uppercase" }}>Walkthrough</div>
                 <div style={{ fontWeight: 600, fontSize: 16, marginTop: 3 }}>{videoTitle}</div>
               </div>
               <button
                 onClick={closeVideo}
-                style={{ width: 34, height: 34, borderRadius: 99, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", color: text, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}
+                style={{ width: 34, height: 34, borderRadius: 99, background: "var(--pj-rail)", border: "1px solid var(--pj-line)", color: "var(--pj-ink)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                   <path d="M6 6l12 12M18 6L6 18" />
