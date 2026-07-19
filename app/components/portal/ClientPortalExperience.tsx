@@ -145,7 +145,7 @@ export function ClientPortalExperience({
   const [milestone, setMilestone] = useState(defaultMilestoneIndex);
   const [viewingStageId, setViewingStageId] = useState<string>(defaultStage?.id ?? journeyStages[0].id);
   const [videoTitle, setVideoTitle] = useState<string | null>(null);
-  const [videoSrc, setVideoSrc] = useState<string>("/portal/welcome-to-scale.mp4");
+  const [videoSrc, setVideoSrc] = useState<string>("");
 
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -292,7 +292,7 @@ export function ClientPortalExperience({
     }
   }
 
-  function openVideo(title: string, src: string = "/portal/welcome-to-scale.mp4") {
+  function openVideo(title: string, src: string) {
     setVideoTitle(title);
     setVideoSrc(src);
     const t = setTimeout(() => {
@@ -407,9 +407,6 @@ export function ClientPortalExperience({
                   <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
                     {stageDoneCount} / {currentStage.milestones.length} done
                   </span>
-                  <button type="button" onClick={() => openVideo(`${currentStage.name} — full walkthrough`)} style={{ marginLeft: "auto", background: "none", border: "none", cursor: "pointer", fontSize: 13, color: "var(--pj-act)", fontWeight: 650, fontFamily: "var(--font-body), sans-serif" }}>
-                    ▸ Watch the walkthrough
-                  </button>
                 </div>
 
                 <UpNextCard
