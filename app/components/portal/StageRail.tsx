@@ -20,7 +20,7 @@ function StageIcon({ status, index }: { status: JourneyStage["status"]; index: n
     return <span style={{ ...iconBase, border: "2px solid var(--pj-act)", color: "var(--pj-act)", fontWeight: 700, fontSize: 10, background: "var(--pj-act-fill)" }}>{index}</span>;
   }
   // Solid card-coloured fill so the dotted journey path doesn't run through the ring.
-  return <span style={{ ...iconBase, border: "1.5px solid #c0b6a5", color: "var(--pj-upnext)", fontSize: 11, background: "#fbf6ee" }}>{index}</span>;
+  return <span style={{ ...iconBase, border: "1.5px solid #c0b6a5", color: "var(--pj-upnext)", fontSize: 11, background: "#fdf9f1" }}>{index}</span>;
 }
 
 const iconBase: React.CSSProperties = {
@@ -49,10 +49,10 @@ export function StageRail({
       style={{
         width: 292,
         flexShrink: 0,
-        background: "var(--pj-card-grad)",
-        border: "1px solid #efe5d4",
+        background: "linear-gradient(180deg, #fffdf8 0%, #fbf5ea 100%)",
+        border: "1px solid #e7dac4",
         borderRadius: 24,
-        boxShadow: "var(--pj-shadow-card)",
+        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.9), 0 26px 48px -22px rgba(126,94,60,0.45), 0 3px 10px rgba(126,94,60,0.08)",
         padding: "24px 18px",
         position: "relative",
         alignSelf: "flex-start",
