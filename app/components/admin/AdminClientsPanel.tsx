@@ -102,6 +102,12 @@ export function AdminClientsPanel() {
   const [error, setError] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  // Access-gate UX: paste-the-code unlock (same token, same server check — the
+  // code is stored exactly like a ?token= visit) + a share affordance so a
+  // colleague gets a link that actually carries the token.
+  const [unlockCode, setUnlockCode] = useState("");
+  const [unlockTried, setUnlockTried] = useState(false);
+  const [inviteCopied, setInviteCopied] = useState(false);
 
   const [name, setName] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -251,20 +257,83 @@ export function AdminClientsPanel() {
     color: "#fcfaf6",
   };
 
+  async function handleUnlock(e: React.FormEvent) {
+    e.preventDefault();
+    const code = unlockCode.trim();
+    if (!code) return;
+    setUnlockTried(true);
+    // Store exactly as a ?token= visit would, then retry the list call — the
+    // server (x-admin-token header) remains the only judge of validity.
+    try {
+      localStorage.setItem("scaleAdminToken", code);
+    } catch {}
+    setAdminToken(code);
+    await loadClients(code);
+  }
+
+  function copyAdminInvite() {
+    if (!adminToken) return;
+    const url = `${window.location.origin}/admin/clients?token=${encodeURIComponent(adminToken)}`;
+    navigator.clipboard.writeText(url).then(() => {
+      setInviteCopied(true);
+      setTimeout(() => setInviteCopied(false), 1800);
+    });
+  }
+
   if (forbidden) {
+    // Warm-themed access gate: paste-the-code instead of hand-editing URLs.
+    // Anyone landing here without a remembered token (new device, incognito,
+    // link shared without ?token=) gets a humane way in.
     return (
-      <div style={{ maxWidth: 520, margin: "80px auto", padding: "48px 32px", fontFamily: "system-ui, sans-serif", color: "#fcfaf6", textAlign: "center" }}>
-        <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12 }}>Admin access required</h1>
-        <p style={{ color: "rgba(252,250,246,0.6)", lineHeight: 1.6 }}>
-          This page needs an admin access token. Add <code style={{ color: "#f5a623" }}>?token=…</code> to the URL, or sign in as an authorized admin.
-        </p>
+      <div style={{ minHeight: "100vh", background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
+        <div style={{ maxWidth: 460, width: "100%", background: "var(--pj-card-grad)", border: "1px solid #efe5d4", borderRadius: 24, boxShadow: "var(--pj-shadow-card)", padding: "36px 32px", textAlign: "center" }}>
+          <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700, color: "var(--pj-act)", marginBottom: 10 }}>
+            Scale · Admin
+          </div>
+          <h1 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 26, fontWeight: 800, letterSpacing: "-0.01em", margin: "0 0 10px" }}>Enter your access code</h1>
+          <p style={{ color: "var(--pj-muted)", fontSize: 14, lineHeight: 1.6, margin: "0 0 22px" }}>
+            This is the RT Digital client-management area. Paste the access code you were given and this browser will remember it.
+          </p>
+          <form onSubmit={handleUnlock} style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
+            <input
+              value={unlockCode}
+              onChange={(e) => setUnlockCode(e.target.value)}
+              placeholder="Paste access code"
+              autoFocus
+              style={{ flex: "1 1 200px", padding: "12px 16px", borderRadius: 999, border: "1px solid var(--pj-line)", background: "#fff", color: "var(--pj-ink)", fontFamily: "var(--font-body), sans-serif", fontSize: 14, outline: "none", textAlign: "center" }}
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              style={{ background: "var(--pj-btn-grad)", color: "var(--pj-act-ink)", fontWeight: 650, fontSize: 14, border: "none", borderRadius: 999, padding: "12px 24px", cursor: "pointer", boxShadow: "var(--pj-shadow-btn)", fontFamily: "var(--font-body), sans-serif" }}
+            >
+              {loading ? "Checking…" : "Unlock"}
+            </button>
+          </form>
+          {unlockTried && !loading ? (
+            <p style={{ color: "var(--pj-act)", fontSize: 13, margin: "14px 0 0", fontWeight: 550 }}>
+              That code didn&apos;t work — double-check it and try again, or ask Jesse for a fresh invite link.
+            </p>
+          ) : null}
+        </div>
       </div>
     );
   }
 
   return (
     <div style={{ maxWidth: 960, margin: "0 auto", padding: "48px 32px", fontFamily: "system-ui, sans-serif", color: "#fcfaf6" }}>
-      <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>Portal Clients</h1>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap", marginBottom: 8 }}>
+        <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0 }}>Portal Clients</h1>
+        {adminToken ? (
+          <button
+            onClick={copyAdminInvite}
+            title="Copies an admin link that includes the access code — safe to send to a teammate you trust"
+            style={{ background: "#151713", color: "#fcfaf6", border: "1px solid #333", borderRadius: 8, padding: "8px 14px", fontSize: 13, cursor: "pointer" }}
+          >
+            {inviteCopied ? "Copied ✓" : "Copy admin invite link"}
+          </button>
+        ) : null}
+      </div>
       <p style={{ color: "rgba(252,250,246,0.6)", marginBottom: 32 }}>Create client portal accounts and copy their unique links.</p>
 
       <form
