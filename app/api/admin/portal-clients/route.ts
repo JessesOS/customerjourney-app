@@ -1,21 +1,8 @@
-import { isAdminEmail, isAdminToken, isLocalDevelopmentHost } from "@/lib/adminAuth";
+import { requestCanAdmin } from "@/lib/adminAuth";
 import { createPortalClient, listPortalClients } from "@/lib/portalClientStore";
 import type { ClientType } from "@/lib/journeyEngine";
 
 const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond"];
-
-function requestCanAdmin(request: Request) {
-  const email = request.headers.get("oai-authenticated-user-email");
-  if (isAdminEmail(email)) return true;
-
-  const host = request.headers.get("host");
-  if (isLocalDevelopmentHost(host)) return true;
-
-  const token = new URL(request.url).searchParams.get("token") ?? request.headers.get("x-admin-token");
-  if (isAdminToken(token)) return true;
-
-  return false;
-}
 
 export async function GET(request: Request) {
   if (!requestCanAdmin(request)) {

@@ -1,5 +1,7 @@
-import { getKnowledgeStatus } from "@/lib/knowledgeStore";
+import { requestCanAdmin } from "@/lib/adminAuth";
+import { getKnowledgeStatus, summarizeKnowledgeStatus } from "@/lib/knowledgeStore";
 
-export async function GET() {
-  return Response.json(await getKnowledgeStatus());
+export async function GET(request: Request) {
+  const status = await getKnowledgeStatus();
+  return Response.json(requestCanAdmin(request) ? status : summarizeKnowledgeStatus(status));
 }

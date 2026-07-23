@@ -1,19 +1,6 @@
-import { isAdminEmail, isAdminToken, isLocalDevelopmentHost } from "@/lib/adminAuth";
+import { requestCanAdmin } from "@/lib/adminAuth";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { getMilestoneContent, setMilestoneContent } from "@/lib/portalClientStore";
-
-function requestCanAdmin(request: Request) {
-  const email = request.headers.get("oai-authenticated-user-email");
-  if (isAdminEmail(email)) return true;
-
-  const host = request.headers.get("host");
-  if (isLocalDevelopmentHost(host)) return true;
-
-  const token = new URL(request.url).searchParams.get("token") ?? request.headers.get("x-admin-token");
-  if (isAdminToken(token)) return true;
-
-  return false;
-}
 
 const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
 

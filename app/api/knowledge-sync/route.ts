@@ -1,6 +1,16 @@
-import { getKnowledgeStatus, syncKnowledgeLibrary } from "@/lib/knowledgeStore";
+import { requestCanAdmin } from "@/lib/adminAuth";
+import { getKnowledgeStatus, summarizeKnowledgeStatus, syncKnowledgeLibrary } from "@/lib/knowledgeStore";
 
-export async function POST() {
+export async function POST(request: Request) {
+  // Re-syncing walks the whole Drive folder with service-account credentials
+  // and rewrites the D1 snapshot — team only.
+  if (!requestCanAdmin(request)) {
+    return Response.json(
+      { ok: false, error: "Refreshing the library is limited to the RT Digital team." },
+      { status: 403 },
+    );
+  }
+
   try {
     const snapshot = await syncKnowledgeLibrary();
     return Response.json({
@@ -22,6 +32,7 @@ export async function POST() {
   }
 }
 
-export async function GET() {
-  return Response.json(await getKnowledgeStatus());
+export async function GET(request: Request) {
+  const status = await getKnowledgeStatus();
+  return Response.json(requestCanAdmin(request) ? status : summarizeKnowledgeStatus(status));
 }

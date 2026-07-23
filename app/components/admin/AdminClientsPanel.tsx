@@ -240,6 +240,28 @@ export function AdminClientsPanel() {
     }
   }
 
+  async function downloadUpload(clientId: string, milestoneId: string, fileName: string) {
+    // Fetch with the x-admin-token header instead of linking with ?token= so
+    // the admin secret never lands in browser history or server logs.
+    try {
+      const res = await fetch(`/api/admin/portal-clients/${clientId}/uploads/${milestoneId}`, { headers: authHeaders });
+      if (!res.ok) {
+        setError("Could not download the file.");
+        return;
+      }
+      const blobUrl = URL.createObjectURL(await res.blob());
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(blobUrl);
+    } catch {
+      setError("Could not reach the server.");
+    }
+  }
+
   function copyLink(client: PortalClient) {
     const url = `${window.location.origin}/portal/${client.portalToken}`;
     navigator.clipboard.writeText(url).then(() => {
@@ -472,12 +494,13 @@ export function AdminClientsPanel() {
                             <div key={u.milestoneId} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13 }}>
                               <span style={{ color: "rgba(252,250,246,0.6)" }}>{u.title}:</span>
                               <span style={{ color: "#fcfaf6" }}>{u.fileName}</span>
-                              <a
-                                href={`/api/admin/portal-clients/${client.id}/uploads/${u.milestoneId}${adminToken ? `?token=${encodeURIComponent(adminToken)}` : ""}`}
-                                style={{ color: "#00b8a0", textDecoration: "underline", fontSize: 12 }}
+                              <button
+                                type="button"
+                                onClick={() => void downloadUpload(client.id, u.milestoneId, u.fileName)}
+                                style={{ background: "none", border: "none", padding: 0, color: "#00b8a0", textDecoration: "underline", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}
                               >
                                 Download
-                              </a>
+                              </button>
                             </div>
                           ))}
                         </div>

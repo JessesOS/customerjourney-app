@@ -88,7 +88,16 @@ export function ProjectChat() {
     if (isRefreshing) return;
     setIsRefreshing(true);
     try {
-      const response = await fetch("/api/knowledge-sync", { method: "POST" });
+      // The sync endpoint is team-only; reuse the admin token remembered by
+      // /admin/clients so the team's refresh works on the deployed worker.
+      let adminToken: string | null = null;
+      try {
+        adminToken = localStorage.getItem("scaleAdminToken");
+      } catch {}
+      const response = await fetch("/api/knowledge-sync", {
+        method: "POST",
+        headers: adminToken ? { "x-admin-token": adminToken } : {},
+      });
       const payload = (await response.json()) as
         | (KnowledgeStatus & { ok?: boolean })
         | { error?: string };

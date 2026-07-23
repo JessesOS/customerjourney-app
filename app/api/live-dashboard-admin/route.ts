@@ -11,17 +11,12 @@ import {
   readLiveDashboardOverrides,
   writeLiveDashboardOverrides,
 } from "@/lib/liveDashboardOverrideStore";
-import { isAdminEmail, isLocalDevelopmentHost } from "@/lib/adminAuth";
+import { requestCanAdmin as sharedRequestCanAdmin } from "@/lib/adminAuth";
 import type { PersistedTaskOverride } from "@/lib/liveDashboardOverrides";
 
+// This route deliberately does not accept the shared ADMIN_ACCESS_TOKEN.
 function requestCanAdmin(request: Request) {
-  const email = request.headers.get("oai-authenticated-user-email");
-  if (isAdminEmail(email)) return true;
-
-  const host = request.headers.get("host");
-  if (isLocalDevelopmentHost(host)) return true;
-
-  return false;
+  return sharedRequestCanAdmin(request, { allowToken: false });
 }
 
 function sanitizeOverrides(input: unknown) {

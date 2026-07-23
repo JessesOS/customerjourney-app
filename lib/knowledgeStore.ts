@@ -737,6 +737,21 @@ export async function getKnowledgeSnapshot() {
   }
 }
 
+/** Public view of the knowledge status: summary counts only — the per-file Drive inventory stays team-only. */
+export function summarizeKnowledgeStatus(status: Awaited<ReturnType<typeof getKnowledgeStatus>>) {
+  return {
+    syncedAt: status.syncedAt,
+    syncMode: status.syncMode,
+    sourceFolderLabel: status.sourceFolderLabel,
+    provider: status.provider,
+    lastSyncMessage: status.lastSyncMessage,
+    indexedSourceCount: status.indexedSourceCount,
+    unsupportedSourceCount: status.unsupportedSourceCount,
+    failedSourceCount: status.failedSourceCount,
+    chunkCount: status.chunkCount,
+  };
+}
+
 export async function getKnowledgeStatus() {
   const snapshot = await getKnowledgeSnapshot();
   const indexedSources = snapshot.sources.filter((source) => (source.status ?? "indexed") === "indexed");

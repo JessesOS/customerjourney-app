@@ -1,18 +1,5 @@
-import { isAdminEmail, isAdminToken, isLocalDevelopmentHost } from "@/lib/adminAuth";
+import { requestCanAdmin } from "@/lib/adminAuth";
 import { deletePortalClient } from "@/lib/portalClientStore";
-
-function requestCanAdmin(request: Request) {
-  const email = request.headers.get("oai-authenticated-user-email");
-  if (isAdminEmail(email)) return true;
-
-  const host = request.headers.get("host");
-  if (isLocalDevelopmentHost(host)) return true;
-
-  const token = new URL(request.url).searchParams.get("token") ?? request.headers.get("x-admin-token");
-  if (isAdminToken(token)) return true;
-
-  return false;
-}
 
 export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!requestCanAdmin(request)) {
