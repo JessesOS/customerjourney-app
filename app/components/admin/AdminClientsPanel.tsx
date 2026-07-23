@@ -290,9 +290,9 @@ export function AdminClientsPanel() {
           <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 700, color: "var(--pj-act)", marginBottom: 10 }}>
             Scale · Admin
           </div>
-          <h1 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 26, fontWeight: 800, letterSpacing: "-0.01em", margin: "0 0 10px" }}>Enter your access code</h1>
+          <h1 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 26, fontWeight: 800, letterSpacing: "-0.01em", margin: "0 0 10px" }}>Team access only</h1>
           <p style={{ color: "var(--pj-muted)", fontSize: 14, lineHeight: 1.6, margin: "0 0 22px" }}>
-            This is the RT Digital client-management area. Paste the access code you were given and this browser will remember it.
+            This is the RT Digital client-management area. Ask a teammate who already has access to send you an <b style={{ color: "var(--pj-ink)", fontWeight: 650 }}>invite link</b> — opening it unlocks this browser automatically. Been given an access code instead? Paste it below.
           </p>
           <form onSubmit={handleUnlock} style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
             <input
