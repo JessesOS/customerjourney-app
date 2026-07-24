@@ -128,6 +128,27 @@ and the stage task list collapsed to a status-dot summary bar (expand on click; 
 is the page's one large object). Welcome video (`welcome-to-scale.mp4`) fully removed —
 button + asset; per-task videos unchanged.
 
+## Completed: Two-theme portal (2026-07-24)
+
+The portal now has two looks sharing one structure — **Warm** (organic sand/terracotta,
+default) and **Cool** ("slate workshop": slate ground, petrol steel-blue action, cool moss
+done, steel shadows). Architecture:
+
+- Every theme-varying value is a `--pj-*` token; `[data-pj-theme="cool"]` in `globals.css`
+  is the entire cool skin. Warm token values are byte-identical to the old hardcodes.
+- `portal_clients.theme_variant` ("warm"/"cool", migration 0010) — the portal link never
+  changes. Admin sets it at creation ("Portal look" select) or later (per-row Warm/Cool
+  select → `PATCH /api/admin/portal-clients/[id]`). Clients flip it themselves via two
+  swatch dots in the portal topbar → `POST /api/portal/[token]/theme` (token-authed).
+- Admin surfaces + access gate always render warm (they never set the data attribute).
+- Demo (`/portal/demo`): dots work locally only; the warm rail-variant review toggle
+  (Deep frame / 3D card / Flat panel / Baseline, bottom-right) is still there and hides
+  while cool is active. Jesse hasn't finalised the warm rail treatment yet.
+- Same day, separate session: admin auth hygiene (shared `requestCanAdmin` in
+  `lib/adminAuth.ts`, header-based upload downloads, knowledge endpoints locked).
+  Gendered theme framing was explicitly rejected — the split is warm/cool, not
+  feminine/masculine.
+
 ## Historical note
 
 An earlier phase of this project deployed via OpenAI Codex Sites (`.openai/hosting.json` is a
