@@ -52,11 +52,18 @@ export async function listPortalClients() {
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
+export type PortalThemeVariant = "warm" | "cool";
+
+export function isPortalThemeVariant(value: unknown): value is PortalThemeVariant {
+  return value === "warm" || value === "cool";
+}
+
 export async function createPortalClient(input: {
   name: string;
   companyName: string;
   startDate: string;
   clientType?: ClientType;
+  themeVariant?: PortalThemeVariant;
 }) {
   const db = getDb();
   const id = crypto.randomUUID();
@@ -69,9 +76,18 @@ export async function createPortalClient(input: {
     portalToken: token,
     startDate: input.startDate,
     clientType: input.clientType ?? "meta-google",
+    themeVariant: input.themeVariant ?? "warm",
   });
 
   return { id, portalToken: token };
+}
+
+export async function setPortalClientTheme(clientId: string, themeVariant: PortalThemeVariant) {
+  const db = getDb();
+  await db
+    .update(portalClients)
+    .set({ themeVariant, updatedAt: new Date().toISOString() })
+    .where(eq(portalClients.id, clientId));
 }
 
 export async function deletePortalClient(id: string) {

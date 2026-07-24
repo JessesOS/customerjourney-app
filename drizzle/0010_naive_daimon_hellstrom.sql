@@ -1,0 +1,1 @@
+ALTER TABLE `portal_clients` ADD `theme_variant` text DEFAULT 'warm' NOT NULL;

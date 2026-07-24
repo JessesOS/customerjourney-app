@@ -39,13 +39,13 @@ export function StageCompleteView({
           width: 64,
           height: 64,
           borderRadius: "50%",
-          background: "radial-gradient(circle at 32% 28%, #7f9163 0%, var(--pj-done) 72%)",
+          background: "radial-gradient(circle at 32% 28%, var(--pj-done-hi) 0%, var(--pj-done) 72%)",
           color: "#fff",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           margin: "0 auto 22px",
-          boxShadow: "inset 0 1px 0 rgba(255,255,255,.35), 0 14px 34px -16px rgba(86,99,63,.5)",
+          boxShadow: "var(--pj-shadow-badge)",
         }}
       >
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -63,7 +63,7 @@ export function StageCompleteView({
         <div
           style={{
             background: "var(--pj-card-grad)",
-            border: "1px solid #efe5d4",
+            border: "1px solid var(--pj-card-line)",
             borderRadius: 24,
             padding: "24px 26px",
             textAlign: "left",

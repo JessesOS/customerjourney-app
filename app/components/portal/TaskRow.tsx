@@ -25,7 +25,7 @@ function StatusDot({ status }: { status: TaskDisplayStatus }) {
     );
   }
   const ring =
-    status === "your-turn" ? "var(--pj-act)" : status === "with-us" ? "var(--pj-withus)" : "#c0b6a5";
+    status === "your-turn" ? "var(--pj-act)" : status === "with-us" ? "var(--pj-withus)" : "var(--pj-ring)";
   const width = status === "up-next" || status === "locked" ? 1.5 : 2;
   return (
     <span
@@ -62,7 +62,7 @@ export function TaskRow({
         alignItems: "center",
         gap: 14,
         padding: "14px 20px",
-        background: isTurn ? "#fff2eb" : "transparent",
+        background: isTurn ? "var(--pj-turn-tint)" : "transparent",
       }}
     >
       <StatusDot status={status} />
@@ -73,7 +73,7 @@ export function TaskRow({
             fontWeight: isDone ? 450 : 550,
             color: isDone ? "var(--pj-faint)" : "var(--pj-ink)",
             textDecoration: isDone ? "line-through" : "none",
-            textDecorationColor: "#d8cdbc",
+            textDecorationColor: "var(--pj-strike)",
           }}
         >
           {title}

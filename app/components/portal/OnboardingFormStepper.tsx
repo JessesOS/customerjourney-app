@@ -22,7 +22,7 @@ const inputStyle: React.CSSProperties = {
   padding: "13px 15px",
   borderRadius: 12,
   border: "1px solid var(--pj-line)",
-  background: "#faf7f2",
+  background: "var(--pj-well)",
   color: "var(--pj-ink)",
   fontFamily: "var(--font-body), system-ui, sans-serif",
   fontSize: 15,
@@ -144,13 +144,13 @@ export function OnboardingFormStepper({
         </div>
       </div>
 
-      <div style={{ height: 3, borderRadius: 99, background: "#e7dccb", marginBottom: 24, overflow: "hidden" }}>
+      <div style={{ height: 3, borderRadius: 99, background: "var(--pj-track)", marginBottom: 24, overflow: "hidden" }}>
         <div style={{ height: "100%", width: `${((index + 1) / total) * 100}%`, background: "var(--pj-act)", borderRadius: 99, transition: "width 0.3s ease" }} />
       </div>
 
       <FieldPrompt field={current.field} value={value} onChange={(next) => updateValue(current.field.id, next)} onEnter={goNext} />
 
-      {error && <div style={{ marginTop: 14, fontSize: 13, color: "#b23b2e" }}>{error}</div>}
+      {error && <div style={{ marginTop: 14, fontSize: 13, color: "var(--pj-error)" }}>{error}</div>}
 
       <div style={{ marginTop: 26, display: "flex", alignItems: "center", gap: 14 }}>
         {!isFirst && (
@@ -209,7 +209,7 @@ function FieldPrompt({
       {field.helper && <p style={{ fontSize: 13, color: "var(--pj-muted)", marginTop: 8, lineHeight: 1.5 }}>{field.helper}</p>}
 
       {(field.inviteEmails || field.steps || field.guideUrl) && (
-        <div style={{ marginTop: 16, borderRadius: 14, border: "1px solid var(--pj-line)", background: "#faf7f2", padding: 20 }}>
+        <div style={{ marginTop: 16, borderRadius: 14, border: "1px solid var(--pj-line)", background: "var(--pj-well)", padding: 20 }}>
           {field.inviteEmails && field.inviteEmails.length > 0 && (
             <div>
               <div style={{ fontFamily: "var(--font-ibm-plex-mono), monospace", fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 10 }}>
@@ -254,7 +254,7 @@ function FieldPrompt({
       )}
 
       {field.document && (
-        <div style={{ marginTop: 16, border: "1px solid var(--pj-line)", borderRadius: 14, background: "#faf7f2", overflow: "hidden" }}>
+        <div style={{ marginTop: 16, border: "1px solid var(--pj-line)", borderRadius: 14, background: "var(--pj-well)", overflow: "hidden" }}>
           <div style={{ maxHeight: 340, overflowY: "auto", padding: "20px 22px" }}>
             <TermsDocument text={field.document} />
           </div>

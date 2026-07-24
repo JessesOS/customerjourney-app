@@ -10,6 +10,7 @@ type PortalClient = {
   portalToken: string;
   startDate: string;
   clientType?: string;
+  themeVariant?: string;
   currentDay: number;
   completedMilestoneCount: number;
   totalMilestoneCount: number;
@@ -20,6 +21,11 @@ const clientTypeOptions = [
   { value: "meta", label: "Scale — Meta ads only" },
   { value: "google", label: "Scale — Google Ads only" },
   { value: "respond", label: "Respond" },
+];
+
+const themeOptions = [
+  { value: "warm", label: "Warm — organic (default)" },
+  { value: "cool", label: "Cool — slate" },
 ];
 
 function clientTypeLabel(value?: string) {
@@ -113,6 +119,7 @@ export function AdminClientsPanel() {
   const [companyName, setCompanyName] = useState("");
   const [startDate, setStartDate] = useState(todayIso());
   const [clientType, setClientType] = useState("meta-google");
+  const [themeVariant, setThemeVariant] = useState("warm");
 
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [detailByClient, setDetailByClient] = useState<Record<string, ClientDetail | "loading" | "error">>({});
@@ -178,7 +185,7 @@ export function AdminClientsPanel() {
       const res = await fetch("/api/admin/portal-clients", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...authHeaders },
-        body: JSON.stringify({ name, companyName, startDate, clientType }),
+        body: JSON.stringify({ name, companyName, startDate, clientType, themeVariant }),
       });
       const payload = (await res.json()) as CreateResponse;
       if (!payload.ok) {
@@ -257,6 +264,24 @@ export function AdminClientsPanel() {
       link.click();
       link.remove();
       URL.revokeObjectURL(blobUrl);
+    } catch {
+      setError("Could not reach the server.");
+    }
+  }
+
+  async function handleThemeChange(clientId: string, nextTheme: string) {
+    try {
+      const res = await fetch(`/api/admin/portal-clients/${clientId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", ...authHeaders },
+        body: JSON.stringify({ themeVariant: nextTheme }),
+      });
+      const payload = (await res.json()) as { ok: boolean; error?: string };
+      if (!payload.ok) {
+        setError(payload.error ?? "Could not update portal look.");
+        return;
+      }
+      await loadClients();
     } catch {
       setError("Could not reach the server.");
     }
@@ -401,6 +426,16 @@ export function AdminClientsPanel() {
             ))}
           </select>
         </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <label style={{ fontSize: 12, color: "rgba(252,250,246,0.6)" }}>Portal look</label>
+          <select value={themeVariant} onChange={(e) => setThemeVariant(e.target.value)} style={{ ...inputStyle, cursor: "pointer" }}>
+            {themeOptions.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </div>
         <button
           type="submit"
           disabled={creating}
@@ -436,6 +471,15 @@ export function AdminClientsPanel() {
                       {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
                     </div>
                   </div>
+                  <select
+                    value={client.themeVariant === "cool" ? "cool" : "warm"}
+                    onChange={(e) => handleThemeChange(client.id, e.target.value)}
+                    title="Portal look — changes what this client sees on their next load; their link stays the same"
+                    style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid #444", background: "transparent", color: "#fcfaf6", cursor: "pointer", fontSize: 13 }}
+                  >
+                    <option value="warm">Warm</option>
+                    <option value="cool">Cool</option>
+                  </select>
                   <button
                     onClick={() => toggleExpanded(client)}
                     style={{ padding: "7px 14px", borderRadius: 7, border: "1px solid #444", background: "transparent", color: "#fcfaf6", cursor: "pointer", fontSize: 13 }}

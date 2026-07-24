@@ -65,6 +65,10 @@ export const portalClients = sqliteTable("portal_clients", {
   // Which ad channels this client is on: "meta" | "google" | "meta-google".
   // Drives which journey tasks they see. Existing clients default to both.
   clientType: text("client_type").notNull().default("meta-google"),
+  // Portal look: "warm" (organic sand/terracotta, default) | "cool" (slate
+  // workshop). Admin picks at creation and can change later; the client can
+  // also flip it from their portal — same link either way.
+  themeVariant: text("theme_variant").notNull().default("warm"),
   createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });

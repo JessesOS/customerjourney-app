@@ -22,7 +22,7 @@ export function UpNextCard({
     <div
       style={{
         background: "var(--pj-card-grad)",
-        border: "1px solid #efe5d4",
+        border: "1px solid var(--pj-card-line)",
         borderRadius: 24,
         padding: "24px 26px",
         boxShadow: "var(--pj-shadow-card)",

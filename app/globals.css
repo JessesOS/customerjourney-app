@@ -55,6 +55,90 @@
   --pj-shadow-card: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 22px 44px -22px rgba(126, 94, 60, 0.38), 0 2px 8px rgba(126, 94, 60, 0.06);
   --pj-btn-grad: linear-gradient(180deg, #d3823f 0%, #bd6830 100%);
   --pj-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 22px -10px rgba(166, 86, 38, 0.55);
+
+  /* Theme pass (2026-07-24): every remaining theme-varying value, tokenized so
+     the whole portal re-skins from one block. Warm values below are byte-equal
+     to the hardcodes they replaced — zero visual change on the default look. */
+  --pj-frame: #faf4ea;             /* floating home/task frame surface */
+  --pj-frame-line: #eee3d0;
+  --pj-shadow-frame: 0 2px 6px rgba(126, 94, 60, 0.06), 0 30px 70px -30px rgba(126, 94, 60, 0.35);
+  --pj-frame-deep: #f5ecdd;        /* deepframe variant: frame behind the journey card */
+  --pj-frame-deep-line: #eae0cb;
+  --pj-card-line: #efe5d4;         /* border that pairs with --pj-card-grad */
+  --pj-well: #faf7f2;              /* inner wells: inputs, info boxes, link field, iframe */
+  --pj-track: #e7dccb;             /* progress/segment track */
+  --pj-ring: #c0b6a5;              /* hollow status-ring border */
+  --pj-strike: #d8cdbc;            /* done-task strikethrough */
+  --pj-path: #cbbc9f;              /* dotted journey path */
+  --pj-turn-tint: #fff2eb;         /* your-turn row highlight */
+  --pj-done-hi: #7f9163;           /* success-badge radial highlight over --pj-done */
+  --pj-shadow-badge: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 14px 34px -16px rgba(86, 99, 63, 0.5);
+  --pj-error: #b23b2e;
+  --pj-link: #6aa6f5;
+  --pj-scrim: rgba(32, 30, 29, 0.6);
+  --pj-shadow-modal: 0 40px 120px rgba(46, 43, 37, 0.45);
+  /* Journey rail card (single treatment used by the Cool theme; the Warm look's
+     A/B/C/D review variants keep their inline values in StageRail). */
+  --pj-rail-card-grad: linear-gradient(180deg, #fffdf8 0%, #fbf5ea 100%);
+  --pj-rail-card-line: #e7dac4;
+  --pj-rail-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 26px 48px -22px rgba(126, 94, 60, 0.45), 0 3px 10px rgba(126, 94, 60, 0.08);
+  --pj-rail-ring-fill: #fdf9f1;
+}
+
+/* ---- Cool theme: "slate workshop" ----
+   Same structure, same clay-3D language, shifted cool and one notch darker.
+   Petrol steel-blue replaces terracotta as the single action colour; shadows
+   go from warm brown to steel. Activated per client via data-pj-theme="cool"
+   on the portal root (stored on portal_clients.theme_variant). The admin
+   surfaces never set the attribute, so they always render warm. */
+[data-pj-theme="cool"] {
+  --pj-bg: #e2e6ec;
+  --pj-rail: #e6eaf0;
+  --pj-card: #f2f5f8;
+  --pj-ink: #232830;
+  --pj-muted: #5a6370;
+  --pj-faint: #8b93a0;
+  --pj-line: #d5dbe3;
+  --pj-line-soft: #e2e7ed;
+
+  --pj-act: #38708c;
+  --pj-act-fill: #dcebf2;
+  --pj-act-ink: #f3f9fc;
+  --pj-done: #4d6157;
+  --pj-done-fill: #dce9e0;
+  --pj-withus: #5c5a80;
+  --pj-withus-fill: #e6e5f0;
+  --pj-upnext: #8d94a1;
+  --pj-upnext-fill: #e6eaf0;
+
+  --pj-glow: radial-gradient(1100px 480px at 50% -120px, #eef3f9 0%, rgba(238, 243, 249, 0) 65%);
+  --pj-card-grad: linear-gradient(180deg, #f8fafc 0%, #eff3f7 100%);
+  --pj-shadow-card: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 22px 44px -22px rgba(52, 68, 88, 0.42), 0 2px 8px rgba(52, 68, 88, 0.07);
+  --pj-btn-grad: linear-gradient(180deg, #47809d 0%, #33627c 100%);
+  --pj-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 10px 22px -10px rgba(38, 74, 96, 0.55);
+
+  --pj-frame: #eaeef3;
+  --pj-frame-line: #dde3ea;
+  --pj-shadow-frame: 0 2px 6px rgba(52, 68, 88, 0.06), 0 30px 70px -30px rgba(52, 68, 88, 0.38);
+  --pj-frame-deep: #e0e6ed;
+  --pj-frame-deep-line: #d7dee7;
+  --pj-card-line: #dee4eb;
+  --pj-well: #eff2f6;
+  --pj-track: #d3dae2;
+  --pj-ring: #a7b0bd;
+  --pj-strike: #bcc5d0;
+  --pj-path: #a9b3c1;
+  --pj-turn-tint: #e7f0f5;
+  --pj-done-hi: #6d8578;
+  --pj-shadow-badge: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 14px 34px -16px rgba(56, 74, 64, 0.5);
+  --pj-error: #b23b2e;
+  --pj-link: #3f76b6;
+  --pj-scrim: rgba(24, 30, 38, 0.62);
+  --pj-shadow-modal: 0 40px 120px rgba(30, 40, 52, 0.5);
+  --pj-rail-card-grad: linear-gradient(180deg, #fafcfe 0%, #f1f5f9 100%);
+  --pj-rail-card-line: #dde4ec;
+  --pj-rail-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 26px 48px -22px rgba(52, 68, 88, 0.45), 0 3px 10px rgba(52, 68, 88, 0.08);
+  --pj-rail-ring-fill: #f4f7fa;
 }
 
 /* Client-portal home layout — desktop rail, mobile segmented bar.
@@ -67,10 +151,10 @@
   width: min(1180px, calc(100% - 48px));
   min-height: calc(100vh - 170px);
   margin: 28px auto 56px;
-  background: #faf4ea;
-  border: 1px solid #eee3d0;
+  background: var(--pj-frame);
+  border: 1px solid var(--pj-frame-line);
   border-radius: 28px;
-  box-shadow: 0 2px 6px rgba(126, 94, 60, 0.06), 0 30px 70px -30px rgba(126, 94, 60, 0.35);
+  box-shadow: var(--pj-shadow-frame);
   overflow: hidden;
 }
 .pj-rail-desktop {

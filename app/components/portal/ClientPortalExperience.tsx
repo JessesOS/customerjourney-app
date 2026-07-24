@@ -15,7 +15,7 @@ import {
 import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
 import { onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
-import { StageRail } from "@/app/components/portal/StageRail";
+import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
 import { StageCompleteView } from "@/app/components/portal/StageCompleteView";
@@ -34,9 +34,10 @@ export type ClientPortalExperienceProps = {
   milestoneContent?: Record<string, string>;
   milestoneUploads?: Record<string, UploadMeta>;
   portalToken?: string;
+  themeVariant?: "warm" | "cool";
 };
 
-function CheckIcon({ color = "#04130e", size = 13 }: { color?: string; size?: number }) {
+function CheckIcon({ color = "var(--pj-ink)", size = 13 }: { color?: string; size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round">
       <path d="M5 13l4 4 10-12" />
@@ -50,7 +51,7 @@ function LinkifiedLine({ line }: { line: string }) {
     <>
       {parts.map((part, i) =>
         /^https?:\/\//.test(part) ? (
-          <a key={i} href={part} target="_blank" rel="noreferrer" style={{ color: "#6aa6f5", textDecoration: "underline" }}>
+          <a key={i} href={part} target="_blank" rel="noreferrer" style={{ color: "var(--pj-link)", textDecoration: "underline" }}>
             {part}
           </a>
         ) : (
@@ -86,7 +87,7 @@ function PortalLinkCard({ portalToken }: { portalToken?: string }) {
       <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 12 }}>
         Your portal link
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, background: "#faf7f2", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: "12px 14px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, background: "var(--pj-well)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: "12px 14px" }}>
         <span style={{ flex: 1, fontSize: 13.5, color: "var(--pj-ink)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{url || "…"}</span>
         <button
           type="button"
@@ -118,6 +119,7 @@ export function ClientPortalExperience({
   milestoneContent = {},
   milestoneUploads = {},
   portalToken,
+  themeVariant = "warm",
 }: ClientPortalExperienceProps) {
   const [view, setView] = useState<View>("home");
   const [justCompletedStageId, setJustCompletedStageId] = useState<string | null>(null);
@@ -149,6 +151,28 @@ export function ClientPortalExperience({
   // Stage task list is collapsed by default — the hero card is the one action
   // on the page; the list is orientation detail, one click away.
   const [tasksOpen, setTasksOpen] = useState(false);
+  // Journey-card treatment under review. The floating toggle that switches it
+  // renders ONLY on /portal/demo (code-only route) — real clients never see it.
+  const [railVariant, setRailVariant] = useState<RailVariant>("deepframe");
+  const [isDemo, setIsDemo] = useState(false);
+  useEffect(() => {
+    setIsDemo(window.location.pathname === "/portal/demo");
+  }, []);
+  // Portal look: warm (organic) / cool (slate workshop). Seeded from the client
+  // record; the topbar switcher flips it instantly and persists the choice back
+  // to the record so it follows the client across devices. Same link always.
+  const [theme, setTheme] = useState<"warm" | "cool">(themeVariant);
+  function switchTheme(next: "warm" | "cool") {
+    if (next === theme) return;
+    setTheme(next);
+    if (portalToken) {
+      fetch(`/api/portal/${portalToken}/theme`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ themeVariant: next }),
+      }).catch(() => {});
+    }
+  }
 
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -318,7 +342,7 @@ export function ClientPortalExperience({
   }
 
   return (
-    <div style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
+    <div data-pj-theme={theme === "cool" ? "cool" : undefined} style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
       <style>{`
         @keyframes portalPulse { 0% { transform: scale(1); opacity: 0.65; } 70% { transform: scale(2.2); opacity: 0; } 100% { opacity: 0; } }
         @keyframes viewIn { from { transform: translateY(18px); opacity: 0.4; } to { transform: translateY(0); opacity: 1; } }
@@ -352,6 +376,38 @@ export function ClientPortalExperience({
             <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
               Day {currentDay} / {activeJourneyTotalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>
             </span>
+            {/* Look switcher: two swatch dots (warm terracotta / cool steel).
+                Swatches are hardcoded — they must show their own colour
+                regardless of which theme is active. */}
+            <span style={{ display: "flex", alignItems: "center", gap: 7 }}>
+              {(
+                [
+                  ["warm", "#c67139", "Warm look"],
+                  ["cool", "#38708c", "Cool look"],
+                ] as const
+              ).map(([value, swatch, label]) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => switchTheme(value)}
+                  aria-label={label}
+                  aria-pressed={theme === value}
+                  title={label}
+                  style={{
+                    width: 16,
+                    height: 16,
+                    borderRadius: "50%",
+                    background: swatch,
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    opacity: theme === value ? 1 : 0.45,
+                    boxShadow: theme === value ? "0 0 0 2px var(--pj-bg), 0 0 0 3.5px " + swatch : "none",
+                    transition: "opacity 160ms ease, box-shadow 160ms ease",
+                  }}
+                />
+              ))}
+            </span>
             <div style={{ width: 30, height: 30, borderRadius: 99, background: "var(--pj-act)", color: "var(--pj-act-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13 }}>
               {name.charAt(0)}
             </div>
@@ -361,9 +417,14 @@ export function ClientPortalExperience({
 
       {/* JOURNEY — home view */}
       {view === "home" && (
-        <div className="pj-home">
+        <div
+          className="pj-home"
+          // Cool always uses the deep-frame treatment (via themed vars); warm
+          // follows the review-variant choice.
+          style={theme === "cool" || railVariant === "deepframe" ? { background: "var(--pj-frame-deep)", borderColor: "var(--pj-frame-deep-line)" } : undefined}
+        >
           <div className="pj-rail-desktop">
-            <StageRail stages={journeyStages} overallPercent={progress} onSelectStage={(stageId) => openM(stageId, 1)} />
+            <StageRail stages={journeyStages} overallPercent={progress} onSelectStage={(stageId) => openM(stageId, 1)} variant={railVariant} cool={theme === "cool"} />
           </div>
           {currentStage && (
             <div className="pj-segbar" style={{ padding: "14px 18px", borderBottom: "1px solid var(--pj-line)", background: "var(--pj-rail)" }}>
@@ -375,7 +436,7 @@ export function ClientPortalExperience({
                       flex: 1,
                       height: 5,
                       borderRadius: 5,
-                      background: s.status === "done" ? "var(--pj-done)" : s.status === "current" ? "var(--pj-act)" : "#e7dccb",
+                      background: s.status === "done" ? "var(--pj-done)" : s.status === "current" ? "var(--pj-act)" : "var(--pj-track)",
                     }}
                   />
                 ))}
@@ -404,7 +465,7 @@ export function ClientPortalExperience({
             {currentStage && (
               <>
                 <div className="pj-stage-progress" style={{ display: "flex", alignItems: "center", gap: 14, margin: "18px 0 26px", flexWrap: "wrap" }}>
-                  <div style={{ flex: "1 1 160px", maxWidth: 220, height: 6, borderRadius: 6, background: "#e7dccb", overflow: "hidden" }}>
+                  <div style={{ flex: "1 1 160px", maxWidth: 220, height: 6, borderRadius: 6, background: "var(--pj-track)", overflow: "hidden" }}>
                     <span style={{ display: "block", height: "100%", width: `${stagePct}%`, background: "var(--pj-done)", borderRadius: 6 }} />
                   </div>
                   <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
@@ -437,7 +498,7 @@ export function ClientPortalExperience({
                         return (
                           <span
                             key={m.id}
-                            style={{ width: 8, height: 8, borderRadius: "50%", flexShrink: 0, background: solid ?? "transparent", border: solid ? "none" : "1.5px solid #c0b6a5" }}
+                            style={{ width: 8, height: 8, borderRadius: "50%", flexShrink: 0, background: solid ?? "transparent", border: solid ? "none" : "1.5px solid var(--pj-ring)" }}
                           />
                         );
                       })}
@@ -484,12 +545,37 @@ export function ClientPortalExperience({
               </>
             )}
           </section>
+
+          {/* Review-only: journey-card treatment toggle. Demo route only —
+              real client portals never render this. Warm-look tool, so it
+              hides while the cool theme is active. Delete once a winner is
+              picked. */}
+          {isDemo && theme === "warm" && (
+            <div style={{ position: "fixed", bottom: 18, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+              {(
+                [
+                  ["deepframe", "Deep frame"],
+                  ["card3d", "3D card"],
+                  ["flat", "Flat panel"],
+                  ["baseline", "Baseline"],
+                ] as const
+              ).map(([v, label]) => (
+                <button
+                  key={v}
+                  onClick={() => setRailVariant(v)}
+                  style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: railVariant === v ? "var(--pj-act)" : "transparent", color: railVariant === v ? "var(--pj-act-ink)" : "var(--pj-muted)", whiteSpace: "nowrap" }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
       {/* STAGE DETAIL */}
       {view === "stage" && viewingStage && (
-        <section style={{ width: "min(760px, calc(100% - 48px))", margin: "28px auto 56px", padding: "40px clamp(28px, 5vw, 56px) 72px", background: "#faf4ea", border: "1px solid #eee3d0", borderRadius: 28, boxShadow: "0 2px 6px rgba(126,94,60,.06), 0 30px 70px -30px rgba(126,94,60,.35)", animation: "viewIn 0.4s cubic-bezier(0.2,0.7,0.2,1)" }}>
+        <section style={{ width: "min(760px, calc(100% - 48px))", margin: "28px auto 56px", padding: "40px clamp(28px, 5vw, 56px) 72px", background: "var(--pj-frame)", border: "1px solid var(--pj-frame-line)", borderRadius: 28, boxShadow: "var(--pj-shadow-frame)", animation: "viewIn 0.4s cubic-bezier(0.2,0.7,0.2,1)" }}>
           <button
             onClick={backToJourney}
             style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "transparent", border: "none", color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif", fontSize: 13, cursor: "pointer", padding: 0, marginBottom: 26 }}
@@ -564,7 +650,7 @@ export function ClientPortalExperience({
                 )}
 
                 {m.important && (
-                  <div style={{ marginTop: 18, display: "flex", gap: 11, borderRadius: "var(--pj-radius-sm)", border: "1px solid rgba(198,113,57,0.4)", background: "var(--pj-act-fill)", padding: "13px 16px" }}>
+                  <div style={{ marginTop: 18, display: "flex", gap: 11, borderRadius: "var(--pj-radius-sm)", border: "1px solid color-mix(in srgb, var(--pj-act) 40%, transparent)", background: "var(--pj-act-fill)", padding: "13px 16px" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pj-act)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
                       <path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
                     </svg>
@@ -649,7 +735,7 @@ export function ClientPortalExperience({
                         Open in a new tab ↗
                       </a>
                     </div>
-                    <div style={{ borderRadius: "var(--pj-radius-sm)", overflow: "hidden", border: "1px solid var(--pj-line)", background: "#faf7f2" }}>
+                    <div style={{ borderRadius: "var(--pj-radius-sm)", overflow: "hidden", border: "1px solid var(--pj-line)", background: "var(--pj-well)" }}>
                       <iframe
                         src={m.bookingUrl}
                         title="Book your welcome call"
@@ -776,8 +862,8 @@ export function ClientPortalExperience({
 
       {/* walkthrough video modal */}
       {videoTitle && (
-        <div onClick={closeVideo} style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", alignItems: "center", justifyContent: "center", padding: 40, background: "rgba(32,30,29,0.6)" }}>
-          <div onClick={(e) => e.stopPropagation()} style={{ width: "100%", maxWidth: 920, borderRadius: 20, overflow: "hidden", background: "var(--pj-card)", border: "1px solid var(--pj-line)", boxShadow: "0 40px 120px rgba(46,43,37,0.45)" }}>
+        <div onClick={closeVideo} style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", alignItems: "center", justifyContent: "center", padding: 40, background: "var(--pj-scrim)" }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ width: "100%", maxWidth: 920, borderRadius: 20, overflow: "hidden", background: "var(--pj-card)", border: "1px solid var(--pj-line)", boxShadow: "var(--pj-shadow-modal)" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "18px 22px", borderBottom: "1px solid var(--pj-line-soft)" }}>
               <PlayIcon />
               <div style={{ flex: 1 }}>
