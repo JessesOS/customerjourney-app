@@ -69,6 +69,14 @@ Outstanding work:
 4. Automation/notification wiring (post-MVP). PWA install layer (discussed,
    agreed as the mobile path — not started).
 5. Cleanup: assorted test clients in production admin (Jesse deletes as he goes).
+6. **Onboarding "form" rethink (raised 2026-08-05, decided direction, not built):**
+   the word "form" is the only client-facing paperwork language left — and the
+   task hides ~15-20 min of work behind one dot. Plan: (a) soon — language pass,
+   task becomes "Tell us about your business" + honest time hint, no "form"
+   anywhere client-facing; (b) later — elevate the stepper into a designed
+   guided-setup experience (section intros, trade tiles as markers, possible
+   Sonia narration). Explicitly rejected: splitting into micro-tasks (balloons
+   the stage, multiplies perceived workload).
 
 ## Completed: UI/UX overhaul (shipped 2026-07-12)
 
