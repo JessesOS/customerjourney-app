@@ -206,9 +206,10 @@ const TILES: Tile[] = [
 export function WelcomeScreen({ name, brand, onStart }: { name: string; brand: "scale" | "respond"; onStart: () => void }) {
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", flexDirection: "column", background: "var(--pj-ink)" }}>
-      {/* Fixed 40px letterbox above and below the band; the panel below
-          absorbs all remaining height, so the cream rises on tall screens. */}
-      <div style={{ flexShrink: 0, overflow: "hidden", padding: "40px 0" }} aria-hidden>
+      {/* Letterbox above and below the band — ~120px on desktop (split the
+          difference between the original ~200 and the too-tight 40), easing
+          down on short screens. The panel absorbs all remaining height. */}
+      <div style={{ flexShrink: 0, overflow: "hidden", padding: "clamp(40px, 11vh, 120px) 0" }} aria-hidden>
         <div className="pj-welcome-grid">
           {/* 16 tiles = complete rows at both column counts (2×8 desktop,
               4×4 mobile), so the band is letterboxed — clear ink above and

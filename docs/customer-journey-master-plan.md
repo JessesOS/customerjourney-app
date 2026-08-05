@@ -145,6 +145,50 @@ duplicate automation on one contact is how clients get spammed.
 - **Publishing a workflow is manual and always will be.** GHL's public API has no create or
   publish endpoint for workflows. This is a platform limit.
 
+### 2.7 The proof run: this chain has already fired end to end
+
+**This is the most important precedent in the document, and it de-risks the middle of the
+plan.** On **2026-07-19** the full chain was built and fired live, with Jesse as the client.
+Re-verified tonight, 2026-08-06.
+
+What ran, in order, **automatically**:
+
+1. **Sub-account created** from a snapshot via the API. "1. Jesse Demo",
+   `ZFZnrzadkRpJjypLaVhD`. **Still exists**, created 2026-07-19.
+2. **Snapshot loaded** into it.
+3. **Workflow built** in the RT Digital location via the internal API.
+4. **Portal client created** via the admin API, returning a live portal link.
+5. **Link written to the contact** on `contact.onboarding_link` (`I6gvzTG5hVisdCT6xpTa`).
+6. **SMS and email delivered** to the client, carrying that link.
+
+**Jesse's only manual step was clicking publish on the SMS/email workflow.** Everything
+either side of that ran on its own.
+
+Current state of the artefacts:
+
+| Artefact | Now |
+|---|---|
+| Sub-account "1. Jesse Demo" `ZFZnrzadkRpJjypLaVhD` | **exists**, created 2026-07-19 |
+| Workflow "Jesse Onboard Demo" `e88fd7ba-4b05-46f3-84de-aefa9144b6d8` | **still published** |
+| Custom field `contact.onboarding_link` `I6gvzTG5hVisdCT6xpTa` | **exists** |
+| Demo portal link `/portal/LbRjAtQuuy2nITO_vUkcn4Oq` | **404**, deleted in Jesse's cleanup |
+
+**Why this matters to the plan.** Phases 3 and 4 are the parts that would normally carry the
+most delivery risk: provisioning from a payment, and getting a real link into a real client's
+hands. **Both have already been done once, live, and worked.** They are not research. They
+are a rebuild of a proven path on a real trigger instead of a demo tag.
+
+The demo differs from production in exactly three ways, and they are all small:
+
+- the trigger was the literal tag `jesse-onboard-demo`, not a payment
+- the portal client was created by a hand-run API call, not a webhook
+- nothing read the sold product to choose the journey
+
+**One detail worth confirming.** The handoff records the snapshot used as **Convert Snapshot**
+`wI6rD2x4SCfu8Wwmax18`. If the intent was the Scale snapshot, then the product-to-snapshot
+mapping needs settling before Phase 3, because that mapping decides what a paying client
+actually receives. See Decision 2.
+
 ---
 
 ## 3. The five real gaps
@@ -388,12 +432,18 @@ useful on its own. No phase depends on a later one.
 - Product to `clientType` mapping table, fail loud on unknown.
 - Repoint **one** product line to the portal (recommend Respond: smallest journey, 4 stages).
   Leave the other two firing as they are until this one is proven on a real sale.
+- **Already proven (2.7):** sub-account creation, snapshot load and portal client creation all
+  ran live on 2026-07-19. This phase swaps the trigger from a demo tag to a payment. It is not
+  new ground.
 - **Outcome:** a real Respond sale creates a portal client automatically, no hands.
 
 ### Phase 4: Outbound events and welcome
 - `portal_events` outbox plus the drain.
 - `portal.provisioned` writes the link back and tags the contact.
 - Existing SMS/email workflow sends the link, gated on the F1 readiness check.
+- **Already proven (2.7):** writing the link to `contact.onboarding_link` and delivering it by
+  SMS and email ran live on 2026-07-19. Reuse "Jesse Onboard Demo" as the shape rather than
+  starting from scratch.
 - **Outcome:** sale to welcome message, end to end, untouched by a human.
 
 ### Phase 5: The four verbs
