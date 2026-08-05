@@ -141,6 +141,43 @@
   --pj-rail-ring-fill: #f4f7fa;
 }
 
+/* Stage voice-guide orb (Imprint-style): concentric rings that breathe
+   gently at rest and pulse faster while narration plays. Ring colour rides
+   --pj-act, so the orb re-themes with the portal. */
+@keyframes pjBreathe {
+  0%, 100% { transform: scale(1); opacity: 0.35; }
+  50% { transform: scale(1.25); opacity: 0.12; }
+}
+@keyframes pjBreatheCore {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+.pj-orb-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--pj-act);
+  animation: pjBreathe 3.2s ease-in-out infinite;
+}
+.pj-orb--playing .pj-orb-ring {
+  animation-duration: 1.4s;
+}
+.pj-orb-core {
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  background: var(--pj-btn-grad);
+  box-shadow: var(--pj-shadow-btn);
+  animation: pjBreatheCore 3.2s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pj-act-ink);
+}
+.pj-orb--playing .pj-orb-core {
+  animation-duration: 1.4s;
+}
+
 /* Client-portal home layout — desktop rail, mobile segmented bar.
    The home is a single framed interface floating on the glow (per the Claude
    Design task-view mockup): rounded, bordered, shadowed on all four sides,

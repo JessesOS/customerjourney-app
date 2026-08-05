@@ -16,6 +16,8 @@ import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalD
 import { onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
+import { StageGuide } from "@/app/components/portal/StageGuide";
+import { stageGuideFor } from "@/lib/stageGuide";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
 import { StageCompleteView } from "@/app/components/portal/StageCompleteView";
@@ -162,6 +164,22 @@ export function ClientPortalExperience({
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
   const [theme, setTheme] = useState<"warm" | "cool">(themeVariant);
+  // Voice guide on/off — device-level preference (localStorage), defaults on.
+  // Off unmounts the orb entirely, which also stops any playing narration.
+  const [voiceOn, setVoiceOn] = useState(true);
+  useEffect(() => {
+    try {
+      if (localStorage.getItem("pjVoiceOff") === "1") setVoiceOn(false);
+    } catch {}
+  }, []);
+  function toggleVoice() {
+    setVoiceOn((on) => {
+      try {
+        localStorage.setItem("pjVoiceOff", on ? "1" : "0");
+      } catch {}
+      return !on;
+    });
+  }
   function switchTheme(next: "warm" | "cool") {
     if (next === theme) return;
     setTheme(next);
@@ -376,6 +394,25 @@ export function ClientPortalExperience({
             <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
               Day {currentDay} / {activeJourneyTotalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>
             </span>
+            {/* Voice-guide toggle: lives with the theme dots so all "portal
+                preferences" share one home. */}
+            <button
+              type="button"
+              onClick={toggleVoice}
+              aria-label={voiceOn ? "Turn voice guide off" : "Turn voice guide on"}
+              aria-pressed={voiceOn}
+              title={voiceOn ? "Voice guide on" : "Voice guide off"}
+              style={{ background: "transparent", border: "none", padding: 0, cursor: "pointer", color: voiceOn ? "var(--pj-act)" : "var(--pj-faint)", display: "flex", alignItems: "center" }}
+            >
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                <path d="M11 5 6 9H2v6h4l5 4V5z" />
+                {voiceOn ? (
+                  <path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 6a9 9 0 0 1 0 12" />
+                ) : (
+                  <path d="m16 9 6 6M22 9l-6 6" />
+                )}
+              </svg>
+            </button>
             {/* Look switcher: two swatch dots (warm terracotta / cool steel).
                 Swatches are hardcoded — they must show their own colour
                 regardless of which theme is active. */}
@@ -464,6 +501,10 @@ export function ClientPortalExperience({
 
             {currentStage && (
               <>
+                {voiceOn && (() => {
+                  const guide = stageGuideFor(clientType, currentStage.id);
+                  return guide ? <StageGuide key={currentStage.id} guide={guide} /> : null;
+                })()}
                 <div className="pj-stage-progress" style={{ display: "flex", alignItems: "center", gap: 14, margin: "18px 0 26px", flexWrap: "wrap" }}>
                   <div style={{ flex: "1 1 160px", maxWidth: 220, height: 6, borderRadius: 6, background: "var(--pj-track)", overflow: "hidden" }}>
                     <span style={{ display: "block", height: "100%", width: `${stagePct}%`, background: "var(--pj-done)", borderRadius: 6 }} />
