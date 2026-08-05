@@ -629,6 +629,14 @@ export function ClientPortalExperience({
                   {label}
                 </button>
               ))}
+              <span style={{ width: 1, alignSelf: "stretch", background: "var(--pj-line)", margin: "2px 2px" }} />
+              <button
+                onClick={() => setShowWelcome(true)}
+                title="Replay the welcome landing (clients see it on their first visit; ?welcome=1 works on any portal link)"
+                style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: "transparent", color: "var(--pj-muted)", whiteSpace: "nowrap" }}
+              >
+                Welcome
+              </button>
             </div>
           )}
 
