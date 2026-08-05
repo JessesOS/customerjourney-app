@@ -70,11 +70,9 @@ export function StageGuide({ guide }: { guide: StageGuideData }) {
           {playing ? "Playing…" : `Hear this stage${duration ? ` · ${Math.round(duration)}s` : ""}`}
         </span>
       </button>
-      {playing ? (
-        <p style={{ margin: "12px 0 0", maxWidth: "58ch", fontSize: 13.5, lineHeight: 1.6, color: "var(--pj-muted)", background: "var(--pj-card)", border: "1px solid var(--pj-card-line)", borderRadius: 14, padding: "12px 16px" }}>
-          {guide.script}
-        </p>
-      ) : null}
+      {/* Caption bubble deliberately removed (2026-08-05) — the on-screen
+          transcript read as clutter; the orb + audio carry it. Scripts stay
+          in lib/stageGuide.ts for regeneration and future use. */}
     </div>
   );
 }

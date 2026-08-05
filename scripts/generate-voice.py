@@ -7,9 +7,9 @@ transcodes to m4a in public/portal/voice/. The filenames are the contract
 with lib/stageGuide.ts — replacing these files with branded VO (ElevenLabs
 or recorded) needs no code change.
 
-Voice: en-AU-NatashaNeural — Jesse's pick 2026-08-05. He preferred
-William's steadier delivery but wants a female voice; for a future
-ElevenLabs upgrade, look for "William's steadiness, female".
+Voice: en-GB-SoniaNeural — Jesse's pick 2026-08-05 (auditioned against
+steady-tuned Natasha AU and Jenny US). Brief for a future ElevenLabs
+upgrade: "William's steadiness, female".
 
 Usage: python3 scripts/generate-voice.py   (needs: pip3 install edge-tts)
 """
@@ -21,7 +21,7 @@ import tempfile
 
 import edge_tts
 
-VOICE = "en-AU-NatashaNeural"
+VOICE = "en-GB-SoniaNeural"
 RATE = "-4%"  # a touch slower than default for warmth
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "public" / "portal" / "voice"
