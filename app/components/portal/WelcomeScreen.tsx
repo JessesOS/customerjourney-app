@@ -57,7 +57,7 @@ const TILES: Tile[] = [
   },
   {
     // Lightning bolt (sparkie)
-    bg: "var(--pj-ink)",
+    bg: "color-mix(in srgb, var(--pj-ink) 76%, var(--pj-bg))",
     art: <path d="M56 16 30 54h14l-6 30 28-42H50z" fill="var(--pj-act)" />,
   },
   {
@@ -94,7 +94,7 @@ const TILES: Tile[] = [
   },
   {
     // Phone + AI waves (receptionist)
-    bg: "var(--pj-ink)",
+    bg: "color-mix(in srgb, var(--pj-ink) 76%, var(--pj-bg))",
     art: (
       <g>
         <rect x="26" y="20" width="30" height="60" rx="8" fill={cream} />
@@ -148,7 +148,7 @@ const TILES: Tile[] = [
   },
   {
     // Tape measure
-    bg: "var(--pj-ink)",
+    bg: "color-mix(in srgb, var(--pj-ink) 76%, var(--pj-bg))",
     art: (
       <g>
         <circle cx="44" cy="46" r="22" fill={cream} />
@@ -192,7 +192,7 @@ const TILES: Tile[] = [
   },
   {
     // Growth bars
-    bg: "var(--pj-ink)",
+    bg: "color-mix(in srgb, var(--pj-ink) 76%, var(--pj-bg))",
     art: (
       <g fill="var(--pj-act)">
         <rect x="24" y="58" width="12" height="20" rx="3" />
@@ -208,7 +208,10 @@ export function WelcomeScreen({ name, brand, onStart }: { name: string; brand: "
     <div style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", flexDirection: "column", background: "var(--pj-ink)" }}>
       <div style={{ flex: 1, minHeight: 0, overflow: "hidden" }} aria-hidden>
         <div className="pj-welcome-grid">
-          {TILES.map((tile, i) => (
+          {/* Cycle the tile set so every 8-wide row fills; the frame crops the
+              overflow. Art is scaled down inside each tile (negative space
+              frames the mark), and each tile drifts on its own slow phase. */}
+          {[...TILES, ...TILES].map((tile, i) => (
             <div
               key={i}
               style={{
@@ -216,11 +219,11 @@ export function WelcomeScreen({ name, brand, onStart }: { name: string; brand: "
                 borderRadius: "18%",
                 background: tile.bg,
                 overflow: "hidden",
-                animation: `pjWelcomeTile 0.5s ${i * 45}ms cubic-bezier(0.2, 0.7, 0.2, 1) both`,
+                animation: `pjWelcomeTile 0.5s ${i * 40}ms cubic-bezier(0.2, 0.7, 0.2, 1) both, pjWelcomeFloat ${5.5 + (i % 5) * 0.9}s ${(i % 7) * 0.6}s ease-in-out infinite`,
               }}
             >
               <svg viewBox="0 0 100 100" width="100%" height="100%">
-                {tile.art}
+                <g transform="translate(50 50) scale(0.66) translate(-50 -50)">{tile.art}</g>
               </svg>
             </div>
           ))}
@@ -229,15 +232,15 @@ export function WelcomeScreen({ name, brand, onStart }: { name: string; brand: "
       <div
         style={{
           background: "var(--pj-bg)",
-          padding: "clamp(32px, 6vh, 56px) 24px clamp(36px, 7vh, 64px)",
+          padding: "clamp(26px, 4.5vh, 40px) 24px clamp(28px, 5vh, 44px)",
           textAlign: "center",
           animation: "pjWelcomePanel 0.55s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) both",
         }}
       >
-        <div style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: "clamp(38px, 6vw, 54px)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--pj-ink)", lineHeight: 1 }}>
+        <div style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: "clamp(34px, 4.5vw, 46px)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--pj-ink)", lineHeight: 1 }}>
           {brand}
         </div>
-        <p style={{ margin: "14px 0 26px", fontSize: 15.5, color: "var(--pj-muted)" }}>
+        <p style={{ margin: "12px 0 22px", fontSize: 15, color: "var(--pj-muted)" }}>
           Welcome, {name} — your journey starts here.
         </p>
         <button
