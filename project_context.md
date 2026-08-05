@@ -69,14 +69,15 @@ Outstanding work:
 4. Automation/notification wiring (post-MVP). PWA install layer (discussed,
    agreed as the mobile path — not started).
 5. Cleanup: assorted test clients in production admin (Jesse deletes as he goes).
-6. **Onboarding "form" rethink (raised 2026-08-05, decided direction, not built):**
-   the word "form" is the only client-facing paperwork language left — and the
-   task hides ~15-20 min of work behind one dot. Plan: (a) soon — language pass,
-   task becomes "Tell us about your business" + honest time hint, no "form"
-   anywhere client-facing; (b) later — elevate the stepper into a designed
-   guided-setup experience (section intros, trade tiles as markers, possible
-   Sonia narration). Explicitly rejected: splitting into micro-tasks (balloons
-   the stage, multiplies perceived workload).
+6. **Onboarding "form" rethink:** (a) DONE 2026-08-05 — language pass shipped:
+   "Tell us about your business" + honest time hints in both product templates,
+   no "form" anywhere client-facing. (b) NEXT (Jesse wants this ~2026-08-06) —
+   elevate the stepper into a designed guided-setup experience (section intros,
+   trade tiles as markers, possible Sonia narration). Explicitly rejected:
+   splitting into micro-tasks. Also noticed: the Onboarding stage template has
+   no blurb, so the fallback "Everything we need from you is done — sit tight
+   while we build" shows on a fresh 0/10 stage — wrong message for day 1; fix
+   with a real stage blurb during (b).
 
 ## Completed: UI/UX overhaul (shipped 2026-07-12)
 
