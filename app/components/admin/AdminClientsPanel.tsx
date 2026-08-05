@@ -371,7 +371,17 @@ export function AdminClientsPanel() {
     <div style={{ maxWidth: 960, margin: "0 auto", padding: "48px 32px", fontFamily: "system-ui, sans-serif", color: "#fcfaf6" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap", marginBottom: 8 }}>
         <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0 }}>Portal Clients</h1>
-        {adminToken ? (
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <a
+            href="/portal/demo"
+            target="_blank"
+            rel="noreferrer"
+            title="The code-only demo portal — design review toggles live here; no client data"
+            style={{ background: "#151713", color: "#fcfaf6", border: "1px solid #333", borderRadius: 8, padding: "8px 14px", fontSize: 13, textDecoration: "none" }}
+          >
+            Open demo portal ↗
+          </a>
+          {adminToken ? (
           <button
             onClick={copyAdminInvite}
             title="Copies an admin link that includes the access code — safe to send to a teammate you trust"
@@ -379,7 +389,8 @@ export function AdminClientsPanel() {
           >
             {inviteCopied ? "Copied ✓" : "Copy admin invite link"}
           </button>
-        ) : null}
+          ) : null}
+        </div>
       </div>
       <p style={{ color: "rgba(252,250,246,0.6)", marginBottom: 32 }}>Create client portal accounts and copy their unique links.</p>
 
