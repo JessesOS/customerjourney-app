@@ -11,7 +11,6 @@ export const respondJourneyTemplate: StageTemplate[] = [
     name: "Onboarding",
     dayStart: 1,
     dayEnd: 2,
-    blurb: "Everything we need to get you started — the moment these are done, your AI receptionist takes shape.",
     milestones: [
       { id: "rsp-012", title: "Tell us about your business", detail: "A few details so we can set up your AI receptionist — about 10 minutes, before your Welcome Call.", formId: "respond-onboarding-intake-v1" },
       { id: "rsp-014", title: "Attend your Welcome Call & portal walkthrough", detail: "We'll walk you through your portal, your project milestones, and the messaging center on the call. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.", bookingUrl: "https://go.rt-d.com/jesse30" },

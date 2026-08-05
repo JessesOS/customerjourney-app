@@ -518,9 +518,14 @@ export function ClientPortalExperience({
             <h2 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 34, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 8px" }}>
               {currentStage ? currentStage.name : "You’re all caught up"}
             </h2>
-            <p style={{ color: "var(--pj-muted)", fontSize: 14.5, maxWidth: "56ch", margin: 0 }}>
-              {currentStage?.blurb ?? "Everything we need from you is done — sit tight while we build."}
-            </p>
+            {/* A stage with no blurb gets no paragraph (Onboarding: heading
+                straight into the action). The fallback line belongs only to
+                the journey-complete state, where there is no current stage. */}
+            {(currentStage ? currentStage.blurb : "Everything we need from you is done — sit tight while we build.") ? (
+              <p style={{ color: "var(--pj-muted)", fontSize: 14.5, maxWidth: "56ch", margin: 0 }}>
+                {currentStage ? currentStage.blurb : "Everything we need from you is done — sit tight while we build."}
+              </p>
+            ) : null}
 
             {currentStage && voiceOn && (() => {
               const guide = stageGuideFor(clientType, currentStage.id);
