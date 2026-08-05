@@ -206,12 +206,13 @@ const TILES: Tile[] = [
 export function WelcomeScreen({ name, brand, onStart }: { name: string; brand: "scale" | "respond"; onStart: () => void }) {
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", flexDirection: "column", background: "var(--pj-ink)" }}>
-      <div style={{ flex: 1, minHeight: 0, overflow: "hidden" }} aria-hidden>
+      <div style={{ flex: 1, minHeight: 0, overflow: "hidden", display: "flex", alignItems: "center" }} aria-hidden>
         <div className="pj-welcome-grid">
-          {/* Cycle the tile set so every 8-wide row fills; the frame crops the
-              overflow. Art is scaled down inside each tile (negative space
-              frames the mark), and each tile drifts on its own slow phase. */}
-          {[...TILES, ...TILES].map((tile, i) => (
+          {/* 16 tiles = complete rows at both column counts (2×8 desktop,
+              4×4 mobile), so the band is letterboxed — clear ink above and
+              below, no cropped rows. Art is scaled down inside each tile
+              (negative space frames the mark); each drifts on its own phase. */}
+          {TILES.slice(0, 16).map((tile, i) => (
             <div
               key={i}
               style={{
