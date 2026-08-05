@@ -206,7 +206,9 @@ const TILES: Tile[] = [
 export function WelcomeScreen({ name, brand, onStart }: { name: string; brand: "scale" | "respond"; onStart: () => void }) {
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", flexDirection: "column", background: "var(--pj-ink)" }}>
-      <div style={{ flex: 1, minHeight: 0, overflow: "hidden", display: "flex", alignItems: "center" }} aria-hidden>
+      {/* Fixed 40px letterbox above and below the band; the panel below
+          absorbs all remaining height, so the cream rises on tall screens. */}
+      <div style={{ flexShrink: 0, overflow: "hidden", padding: "40px 0" }} aria-hidden>
         <div className="pj-welcome-grid">
           {/* 16 tiles = complete rows at both column counts (2×8 desktop,
               4×4 mobile), so the band is letterboxed — clear ink above and
@@ -236,6 +238,12 @@ export function WelcomeScreen({ name, brand, onStart }: { name: string; brand: "
           padding: "clamp(26px, 4.5vh, 40px) 24px clamp(28px, 5vh, 44px)",
           textAlign: "center",
           animation: "pjWelcomePanel 0.55s 0.15s cubic-bezier(0.2, 0.7, 0.2, 1) both",
+          flex: 1,
+          minHeight: 0,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <div style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: "clamp(34px, 4.5vw, 46px)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--pj-ink)", lineHeight: 1 }}>
