@@ -522,12 +522,17 @@ export function ClientPortalExperience({
               {currentStage?.blurb ?? "Everything we need from you is done — sit tight while we build."}
             </p>
 
+            {currentStage && voiceOn && (() => {
+              const guide = stageGuideFor(clientType, currentStage.id);
+              return guide ? (
+                <div style={{ position: "absolute", top: "clamp(24px, 4vh, 44px)", right: "clamp(20px, 4vw, 64px)" }}>
+                  <StageGuide key={currentStage.id} guide={guide} />
+                </div>
+              ) : null;
+            })()}
+
             {currentStage && (
               <>
-                {voiceOn && (() => {
-                  const guide = stageGuideFor(clientType, currentStage.id);
-                  return guide ? <StageGuide key={currentStage.id} guide={guide} /> : null;
-                })()}
                 <div className="pj-stage-progress" style={{ display: "flex", alignItems: "center", gap: 14, margin: "18px 0 26px", flexWrap: "wrap" }}>
                   <div style={{ flex: "1 1 160px", maxWidth: 220, height: 6, borderRadius: 6, background: "var(--pj-track)", overflow: "hidden" }}>
                     <span style={{ display: "block", height: "100%", width: `${stagePct}%`, background: "var(--pj-done)", borderRadius: 6 }} />
