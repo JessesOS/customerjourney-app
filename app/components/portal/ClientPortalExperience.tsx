@@ -20,6 +20,7 @@ import { StageGuide } from "@/app/components/portal/StageGuide";
 import { stageGuideFor } from "@/lib/stageGuide";
 import { AskChips } from "@/app/components/portal/AskChips";
 import { askItemsFor } from "@/lib/askAi";
+import { WelcomeScreen } from "@/app/components/portal/WelcomeScreen";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
 import { StageCompleteView } from "@/app/components/portal/StageCompleteView";
@@ -158,10 +159,27 @@ export function ClientPortalExperience({
   // Journey-card treatment under review. The floating toggle that switches it
   // renders ONLY on /portal/demo (code-only route) — real clients never see it.
   const [railVariant, setRailVariant] = useState<RailVariant>("deepframe");
+  // Layout under review: "rail" (journey panel, shipped default) vs "focus"
+  // (the mobile single-column look at desktop width — segbar carries
+  // orientation). Demo-only toggle, like the rail variants.
+  const [railLayout, setRailLayout] = useState<"rail" | "focus">("rail");
   const [isDemo, setIsDemo] = useState(false);
+  // First-visit welcome landing (Imprint-style). Shown until dismissed once
+  // on this device; ?welcome=1 forces it back for review.
+  const [showWelcome, setShowWelcome] = useState(false);
   useEffect(() => {
     setIsDemo(window.location.pathname === "/portal/demo");
+    try {
+      const forced = new URLSearchParams(window.location.search).get("welcome") === "1";
+      if (forced || localStorage.getItem("pjWelcomed") !== "1") setShowWelcome(true);
+    } catch {}
   }, []);
+  function dismissWelcome() {
+    try {
+      localStorage.setItem("pjWelcomed", "1");
+    } catch {}
+    setShowWelcome(false);
+  }
   // Portal look: warm (organic) / cool (slate workshop). Seeded from the client
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
@@ -363,6 +381,7 @@ export function ClientPortalExperience({
 
   return (
     <div data-pj-theme={theme === "cool" ? "cool" : undefined} style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
+      {showWelcome && <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />}
       <style>{`
         @keyframes portalPulse { 0% { transform: scale(1); opacity: 0.65; } 70% { transform: scale(2.2); opacity: 0; } 100% { opacity: 0; } }
         @keyframes viewIn { from { transform: translateY(18px); opacity: 0.4; } to { transform: translateY(0); opacity: 1; } }
@@ -457,7 +476,7 @@ export function ClientPortalExperience({
       {/* JOURNEY — home view */}
       {view === "home" && (
         <div
-          className="pj-home"
+          className={railLayout === "focus" ? "pj-home pj-home--focus" : "pj-home"}
           // Cool always uses the deep-frame treatment (via themed vars); warm
           // follows the review-variant choice.
           style={theme === "cool" || railVariant === "deepframe" ? { background: "var(--pj-frame-deep)", borderColor: "var(--pj-frame-deep-line)" } : undefined}
@@ -590,6 +609,28 @@ export function ClientPortalExperience({
               </>
             )}
           </section>
+
+          {/* Review-only: layout toggle (journey rail vs full-width focus).
+              Demo route only; works in both themes. Delete once a winner is
+              picked. */}
+          {isDemo && (
+            <div style={{ position: "fixed", bottom: 64, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+              {(
+                [
+                  ["rail", "Journey rail"],
+                  ["focus", "Focus"],
+                ] as const
+              ).map(([v, label]) => (
+                <button
+                  key={v}
+                  onClick={() => setRailLayout(v)}
+                  style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: railLayout === v ? "var(--pj-act)" : "transparent", color: railLayout === v ? "var(--pj-act-ink)" : "var(--pj-muted)", whiteSpace: "nowrap" }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Review-only: journey-card treatment toggle. Demo route only —
               real client portals never render this. Warm-look tool, so it

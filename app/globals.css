@@ -141,6 +141,49 @@
   --pj-rail-ring-fill: #f4f7fa;
 }
 
+/* Welcome landing (Imprint-style): full-bleed tile mosaic on the ink ground
+   with the brand panel rising from the bottom. Tiles are token-coloured
+   inline SVG, so the whole screen re-themes warm/cool automatically. */
+.pj-welcome-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+  padding: 14px;
+}
+@media (max-width: 820px) {
+  .pj-welcome-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+}
+@keyframes pjWelcomePanel {
+  from { transform: translateY(28px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes pjWelcomeTile {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Demo review: "Focus" layout — the mobile single-column look at desktop
+   width. No journey rail; the segmented stage bar carries orientation and
+   stage progress (so the pane's duplicate progress row hides, same as
+   mobile). */
+.pj-home--focus {
+  flex-direction: column;
+}
+.pj-home--focus .pj-rail-desktop {
+  display: none;
+}
+.pj-home--focus .pj-segbar {
+  display: block;
+  position: static;
+}
+.pj-home--focus .pj-stage-progress {
+  display: none !important;
+}
+
 /* Stage voice-guide orb (Imprint-style): concentric rings that breathe
    gently at rest and pulse faster while narration plays. Ring colour rides
    --pj-act, so the orb re-themes with the portal. */
