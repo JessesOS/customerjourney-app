@@ -373,10 +373,10 @@ export function AdminClientsPanel() {
         <h1 style={{ fontSize: 28, fontWeight: 700, margin: 0 }}>Portal Clients</h1>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           <a
-            href="/portal/demo"
+            href="/portal/demo?welcome=1"
             target="_blank"
             rel="noreferrer"
-            title="The code-only demo portal — design review toggles live here; no client data"
+            title="The code-only demo portal, from the welcome screen — design review toggles live here; no client data"
             style={{ background: "#151713", color: "#fcfaf6", border: "1px solid #333", borderRadius: 8, padding: "8px 14px", fontSize: 13, textDecoration: "none" }}
           >
             Open demo portal ↗

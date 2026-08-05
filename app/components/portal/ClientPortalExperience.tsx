@@ -477,9 +477,11 @@ export function ClientPortalExperience({
       {view === "home" && (
         <div
           className={railLayout === "focus" ? "pj-home pj-home--focus" : "pj-home"}
-          // Cool always uses the deep-frame treatment (via themed vars); warm
-          // follows the review-variant choice.
-          style={theme === "cool" || railVariant === "deepframe" ? { background: "var(--pj-frame-deep)", borderColor: "var(--pj-frame-deep-line)" } : undefined}
+          // The deep-frame tint exists to make the journey card pop, so it
+          // only applies in the rail layout. Focus keeps the light frame —
+          // lighter than the page ground, so the panel reads as a distinct
+          // floating surface instead of melting into the glow.
+          style={railLayout === "rail" && (theme === "cool" || railVariant === "deepframe") ? { background: "var(--pj-frame-deep)", borderColor: "var(--pj-frame-deep-line)" } : undefined}
         >
           <div className="pj-rail-desktop">
             <StageRail stages={journeyStages} overallPercent={progress} onSelectStage={(stageId) => openM(stageId, 1)} variant={railVariant} cool={theme === "cool"} />
