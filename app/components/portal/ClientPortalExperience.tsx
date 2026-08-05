@@ -18,6 +18,8 @@ import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormSte
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
 import { StageGuide } from "@/app/components/portal/StageGuide";
 import { stageGuideFor } from "@/lib/stageGuide";
+import { AskChips } from "@/app/components/portal/AskChips";
+import { askItemsFor } from "@/lib/askAi";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
 import { StageCompleteView } from "@/app/components/portal/StageCompleteView";
@@ -583,6 +585,8 @@ export function ClientPortalExperience({
                     </div>
                   </div>
                 )}
+
+                <AskChips items={askItemsFor(clientType, currentStage.id)} stageKey={currentStage.id} />
               </>
             )}
           </section>
