@@ -141,9 +141,11 @@ done, steel shadows). Architecture:
   select → `PATCH /api/admin/portal-clients/[id]`). Clients flip it themselves via two
   swatch dots in the portal topbar → `POST /api/portal/[token]/theme` (token-authed).
 - Admin surfaces + access gate always render warm (they never set the data attribute).
-- Demo (`/portal/demo`): dots work locally only; the warm rail-variant review toggle
-  (Deep frame / 3D card / Flat panel / Baseline, bottom-right) is still there and hides
-  while cool is active. Jesse hasn't finalised the warm rail treatment yet.
+- Demo (`/portal/demo`): dots work locally only; review pills bottom-right — layout
+  (Journey rail / Focus), warm rail variants (Deep frame / 3D card / Flat panel /
+  Baseline, hidden while cool active), and a Welcome replay button.
+- **Focus (single-column, segbar orientation, no side rail) became the shipped default
+  layout for ALL portals on 2026-08-05** — Jesse's call. Journey rail remains demo-reviewable.
 - Same day, separate session: admin auth hygiene (shared `requestCanAdmin` in
   `lib/adminAuth.ts`, header-based upload downloads, knowledge endpoints locked).
   Gendered theme framing was explicitly rejected — the split is warm/cool, not
