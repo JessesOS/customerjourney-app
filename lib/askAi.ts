@@ -14,7 +14,7 @@ const scaleAsk: Record<string, AskItem[]> = {
   onboarding: [
     {
       q: "How long does onboarding take?",
-      a: "Onboarding is the first couple of days of your 30-day journey — mostly the form plus a few access tasks. Knock them out in one sitting if you like; the moment they're done, our build starts.",
+      a: "Onboarding is the first couple of days of your 30-day journey — mostly telling us about your business, plus a few access tasks. Knock them out in one sitting if you like; the moment they're done, our build starts.",
     },
     {
       q: "What if I can't find a login?",

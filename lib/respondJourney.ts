@@ -12,7 +12,7 @@ export const respondJourneyTemplate: StageTemplate[] = [
     dayStart: 1,
     dayEnd: 2,
     milestones: [
-      { id: "rsp-012", title: "Complete your onboarding form", detail: "Log in to your portal and submit the onboarding form before your Welcome Call.", formId: "respond-onboarding-intake-v1" },
+      { id: "rsp-012", title: "Tell us about your business", detail: "A few details so we can set up your AI receptionist — about 10 minutes, before your Welcome Call.", formId: "respond-onboarding-intake-v1" },
       { id: "rsp-014", title: "Attend your Welcome Call & portal walkthrough", detail: "We'll walk you through your portal, your project milestones, and the messaging center on the call. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.", bookingUrl: "https://go.rt-d.com/jesse30" },
       { id: "rsp-015", title: "Bookmark your portal link", detail: "Save your portal link so you can get back to it anytime — this is the one place to track your progress and message our team.", showPortalLink: true },
       { id: "rsp-017", title: "Upload your client database (CSV)", detail: "Prepare a CSV of your past customers and leads — we'll walk you through the upload.", hasUpload: true },
