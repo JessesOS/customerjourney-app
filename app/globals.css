@@ -200,44 +200,44 @@
    structure as the other themes — page ground, lighter floating frame,
    white cards — with deliberately subtle steps between them. */
 [data-pj-theme="neutral"] {
-  --pj-bg: #f1f1ef;
-  --pj-rail: #ededeb;
-  --pj-card: #fbfbfa;
-  --pj-ink: #222423;
+  --pj-bg: #f7f7f5;
+  --pj-rail: #f2f2ef;
+  --pj-card: #fdfdfc;
+  --pj-ink: #26282a;
   --pj-muted: #63655f;
   --pj-faint: #91938c;
-  --pj-line: #e0e0dc;
+  --pj-line: #e4e4e0;
   --pj-line-soft: #e9e9e6;
 
-  --pj-act: #2e3134;
-  --pj-act-fill: #e9e9e7;
+  --pj-act: #43464a;
+  --pj-act-fill: #ededeb;
   --pj-act-ink: #f7f7f6;
-  --pj-done: #5d6a55;
-  --pj-done-fill: #e6eae2;
-  --pj-withus: #6e6276;
-  --pj-withus-fill: #eae7ec;
-  --pj-upnext: #8f9089;
+  --pj-done: #5b6b4f;
+  --pj-done-fill: #e7ecdf;
+  --pj-withus: #715c78;
+  --pj-withus-fill: #ece6ee;
+  --pj-upnext: #93938c;
   --pj-upnext-fill: #ececea;
 
-  --pj-glow: radial-gradient(1100px 480px at 50% -120px, #fafaf9 0%, rgba(250, 250, 249, 0) 65%);
-  --pj-card-grad: linear-gradient(180deg, #ffffff 0%, #f6f6f4 100%);
+  --pj-glow: radial-gradient(1100px 480px at 50% -120px, #ffffff 0%, rgba(255, 255, 255, 0) 65%);
+  --pj-card-grad: linear-gradient(180deg, #ffffff 0%, #f8f8f6 100%);
   --pj-shadow-card: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 22px 44px -22px rgba(50, 52, 54, 0.28), 0 2px 8px rgba(50, 52, 54, 0.05);
-  --pj-btn-grad: linear-gradient(180deg, #3b3e41 0%, #26292c 100%);
+  --pj-btn-grad: linear-gradient(180deg, #55595e 0%, #3c4045 100%);
   --pj-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 22px -10px rgba(30, 32, 34, 0.5);
 
-  --pj-frame: #fafaf8;
-  --pj-frame-line: #e8e8e4;
+  --pj-frame: #fdfdfc;
+  --pj-frame-line: #ebebe7;
   --pj-shadow-frame: 0 2px 6px rgba(50, 52, 54, 0.05), 0 30px 70px -30px rgba(50, 52, 54, 0.3);
-  --pj-frame-deep: #efefec;
-  --pj-frame-deep-line: #e3e3df;
-  --pj-card-line: #e9e9e5;
-  --pj-well: #f4f4f2;
-  --pj-track: #e3e3df;
+  --pj-frame-deep: #f1f1ee;
+  --pj-frame-deep-line: #e6e6e2;
+  --pj-card-line: #ececea;
+  --pj-well: #f6f6f4;
+  --pj-track: #e6e6e2;
   --pj-ring: #b5b6b0;
   --pj-strike: #d3d3ce;
   --pj-path: #c4c5bf;
-  --pj-turn-tint: #efefed;
-  --pj-done-hi: #7d8a74;
+  --pj-turn-tint: #f1f1ee;
+  --pj-done-hi: #7b8c6c;
   --pj-shadow-badge: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 14px 34px -16px rgba(70, 80, 64, 0.45);
   --pj-error: #b23b2e;
   --pj-link: #4a6b8a;
@@ -247,7 +247,7 @@
   --pj-rail-card-line: #e6e6e2;
   --pj-rail-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 26px 48px -22px rgba(50, 52, 54, 0.3), 0 3px 10px rgba(50, 52, 54, 0.06);
   --pj-rail-ring-fill: #fafaf8;
-  --pj-tile-act: #565b60;
+  --pj-tile-act: #62676c;
 }
 
 /* Stage voice-guide orb (Imprint-style): concentric rings that breathe
