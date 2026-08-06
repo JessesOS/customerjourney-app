@@ -26,6 +26,7 @@ const clientTypeOptions = [
 const themeOptions = [
   { value: "warm", label: "Warm — organic (default)" },
   { value: "cool", label: "Cool — slate" },
+  { value: "neutral", label: "Neutral — gallery white" },
 ];
 
 function clientTypeLabel(value?: string) {
@@ -483,13 +484,14 @@ export function AdminClientsPanel() {
                     </div>
                   </div>
                   <select
-                    value={client.themeVariant === "cool" ? "cool" : "warm"}
+                    value={client.themeVariant === "cool" || client.themeVariant === "neutral" ? client.themeVariant : "warm"}
                     onChange={(e) => handleThemeChange(client.id, e.target.value)}
                     title="Portal look — changes what this client sees on their next load; their link stays the same"
                     style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid #444", background: "transparent", color: "#fcfaf6", cursor: "pointer", fontSize: 13 }}
                   >
                     <option value="warm">Warm</option>
                     <option value="cool">Cool</option>
+                    <option value="neutral">Neutral</option>
                   </select>
                   <button
                     onClick={() => toggleExpanded(client)}

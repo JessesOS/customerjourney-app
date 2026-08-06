@@ -83,6 +83,7 @@
   --pj-rail-card-line: #e7dac4;
   --pj-rail-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 26px 48px -22px rgba(126, 94, 60, 0.45), 0 3px 10px rgba(126, 94, 60, 0.08);
   --pj-rail-ring-fill: #fdf9f1;
+  --pj-tile-act: #c67139;
 }
 
 /* ---- Cool theme: "slate workshop" ----
@@ -139,6 +140,7 @@
   --pj-rail-card-line: #dde4ec;
   --pj-rail-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85), 0 26px 48px -22px rgba(52, 68, 88, 0.45), 0 3px 10px rgba(52, 68, 88, 0.08);
   --pj-rail-ring-fill: #f4f7fa;
+  --pj-tile-act: #38708c;
 }
 
 /* Welcome landing (Imprint-style): full-bleed tile mosaic on the ink ground
@@ -190,6 +192,62 @@
 }
 .pj-home--focus .pj-stage-progress {
   display: none !important;
+}
+
+/* ---- Neutral theme: "gallery white" ----
+   Neither warm nor cool: near-white surfaces, charcoal as the single action
+   colour, status colours desaturated to a whisper, grey shadows. Same layer
+   structure as the other themes — page ground, lighter floating frame,
+   white cards — with deliberately subtle steps between them. */
+[data-pj-theme="neutral"] {
+  --pj-bg: #f1f1ef;
+  --pj-rail: #ededeb;
+  --pj-card: #fbfbfa;
+  --pj-ink: #222423;
+  --pj-muted: #63655f;
+  --pj-faint: #91938c;
+  --pj-line: #e0e0dc;
+  --pj-line-soft: #e9e9e6;
+
+  --pj-act: #2e3134;
+  --pj-act-fill: #e9e9e7;
+  --pj-act-ink: #f7f7f6;
+  --pj-done: #5d6a55;
+  --pj-done-fill: #e6eae2;
+  --pj-withus: #6e6276;
+  --pj-withus-fill: #eae7ec;
+  --pj-upnext: #8f9089;
+  --pj-upnext-fill: #ececea;
+
+  --pj-glow: radial-gradient(1100px 480px at 50% -120px, #fafaf9 0%, rgba(250, 250, 249, 0) 65%);
+  --pj-card-grad: linear-gradient(180deg, #ffffff 0%, #f6f6f4 100%);
+  --pj-shadow-card: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 22px 44px -22px rgba(50, 52, 54, 0.28), 0 2px 8px rgba(50, 52, 54, 0.05);
+  --pj-btn-grad: linear-gradient(180deg, #3b3e41 0%, #26292c 100%);
+  --pj-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 10px 22px -10px rgba(30, 32, 34, 0.5);
+
+  --pj-frame: #fafaf8;
+  --pj-frame-line: #e8e8e4;
+  --pj-shadow-frame: 0 2px 6px rgba(50, 52, 54, 0.05), 0 30px 70px -30px rgba(50, 52, 54, 0.3);
+  --pj-frame-deep: #efefec;
+  --pj-frame-deep-line: #e3e3df;
+  --pj-card-line: #e9e9e5;
+  --pj-well: #f4f4f2;
+  --pj-track: #e3e3df;
+  --pj-ring: #b5b6b0;
+  --pj-strike: #d3d3ce;
+  --pj-path: #c4c5bf;
+  --pj-turn-tint: #efefed;
+  --pj-done-hi: #7d8a74;
+  --pj-shadow-badge: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 14px 34px -16px rgba(70, 80, 64, 0.45);
+  --pj-error: #b23b2e;
+  --pj-link: #4a6b8a;
+  --pj-scrim: rgba(24, 24, 23, 0.58);
+  --pj-shadow-modal: 0 40px 120px rgba(34, 36, 35, 0.42);
+  --pj-rail-card-grad: linear-gradient(180deg, #ffffff 0%, #f5f5f3 100%);
+  --pj-rail-card-line: #e6e6e2;
+  --pj-rail-card-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 26px 48px -22px rgba(50, 52, 54, 0.3), 0 3px 10px rgba(50, 52, 54, 0.06);
+  --pj-rail-ring-fill: #fafaf8;
+  --pj-tile-act: #565b60;
 }
 
 /* Stage voice-guide orb (Imprint-style): concentric rings that breathe

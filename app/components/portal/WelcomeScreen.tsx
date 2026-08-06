@@ -16,7 +16,7 @@ const cream = "var(--pj-card)";
 const TILES: Tile[] = [
   {
     // Wrench
-    bg: "var(--pj-act)",
+    bg: "var(--pj-tile-act)",
     art: (
       <g fill={cream}>
         <path d="M63 22a16 16 0 0 0-17 25L26 67a8 8 0 1 0 11 11l20-20a16 16 0 0 0 21-21l-10 10-9-2-2-9 10-10a16 16 0 0 0-4-4z" />
@@ -58,7 +58,7 @@ const TILES: Tile[] = [
   {
     // Lightning bolt (sparkie)
     bg: "color-mix(in srgb, var(--pj-ink) 76%, var(--pj-bg))",
-    art: <path d="M56 16 30 54h14l-6 30 28-42H50z" fill="var(--pj-act)" />,
+    art: <path d="M56 16 30 54h14l-6 30 28-42H50z" fill="var(--pj-tile-act)" />,
   },
   {
     // Pipe elbow (plumbing)
@@ -73,7 +73,7 @@ const TILES: Tile[] = [
   },
   {
     // Paint roller
-    bg: "var(--pj-act)",
+    bg: "var(--pj-tile-act)",
     art: (
       <g fill={cream}>
         <rect x="22" y="24" width="44" height="18" rx="6" />
@@ -115,12 +115,12 @@ const TILES: Tile[] = [
   },
   {
     // Map pin + route
-    bg: "var(--pj-act)",
+    bg: "var(--pj-tile-act)",
     art: (
       <g>
         <path d="M22 78c14 2 18-10 30-10" stroke={cream} strokeWidth="6" strokeLinecap="round" strokeDasharray="1 12" fill="none" />
         <path d="M62 20a16 16 0 0 0-16 16c0 12 16 30 16 30s16-18 16-30a16 16 0 0 0-16-16z" fill={cream} />
-        <circle cx="62" cy="36" r="7" fill="var(--pj-act)" />
+        <circle cx="62" cy="36" r="7" fill="var(--pj-tile-act)" />
       </g>
     ),
   },
@@ -160,12 +160,12 @@ const TILES: Tile[] = [
   },
   {
     // Toolbox
-    bg: "var(--pj-act)",
+    bg: "var(--pj-tile-act)",
     art: (
       <g fill={cream}>
         <rect x="20" y="40" width="60" height="34" rx="7" />
         <path d="M40 40v-6a6 6 0 0 1 6-6h8a6 6 0 0 1 6 6v6h-8v-4h-4v4z" />
-        <rect x="20" y="52" width="60" height="6" fill="var(--pj-act)" opacity="0.55" />
+        <rect x="20" y="52" width="60" height="6" fill="var(--pj-tile-act)" opacity="0.55" />
       </g>
     ),
   },
@@ -194,7 +194,7 @@ const TILES: Tile[] = [
     // Growth bars
     bg: "color-mix(in srgb, var(--pj-ink) 76%, var(--pj-bg))",
     art: (
-      <g fill="var(--pj-act)">
+      <g fill="var(--pj-tile-act)">
         <rect x="24" y="58" width="12" height="20" rx="3" />
         <rect x="44" y="44" width="12" height="34" rx="3" fill="var(--pj-done)" />
         <rect x="64" y="26" width="12" height="52" rx="3" fill={cream} />

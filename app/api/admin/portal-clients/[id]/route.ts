@@ -10,7 +10,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     const { id } = await params;
     const body = (await request.json()) as { themeVariant?: string };
     if (!isPortalThemeVariant(body.themeVariant)) {
-      return Response.json({ ok: false, error: "Portal look must be warm or cool." }, { status: 400 });
+      return Response.json({ ok: false, error: "Portal look must be warm, cool or neutral." }, { status: 400 });
     }
     await setPortalClientTheme(id, body.themeVariant);
     return Response.json({ ok: true });

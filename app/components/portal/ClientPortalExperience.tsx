@@ -39,7 +39,7 @@ export type ClientPortalExperienceProps = {
   milestoneContent?: Record<string, string>;
   milestoneUploads?: Record<string, UploadMeta>;
   portalToken?: string;
-  themeVariant?: "warm" | "cool";
+  themeVariant?: "warm" | "cool" | "neutral";
 };
 
 function CheckIcon({ color = "var(--pj-ink)", size = 13 }: { color?: string; size?: number }) {
@@ -183,7 +183,7 @@ export function ClientPortalExperience({
   // Portal look: warm (organic) / cool (slate workshop). Seeded from the client
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
-  const [theme, setTheme] = useState<"warm" | "cool">(themeVariant);
+  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant);
   // Voice guide on/off — device-level preference (localStorage), defaults on.
   // Off unmounts the orb entirely, which also stops any playing narration.
   const [voiceOn, setVoiceOn] = useState(true);
@@ -200,7 +200,7 @@ export function ClientPortalExperience({
       return !on;
     });
   }
-  function switchTheme(next: "warm" | "cool") {
+  function switchTheme(next: "warm" | "cool" | "neutral") {
     if (next === theme) return;
     setTheme(next);
     if (portalToken) {
@@ -380,7 +380,7 @@ export function ClientPortalExperience({
   }
 
   return (
-    <div data-pj-theme={theme === "cool" ? "cool" : undefined} style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
+    <div data-pj-theme={theme === "warm" ? undefined : theme} style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
       {showWelcome && <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />}
       <style>{`
         @keyframes portalPulse { 0% { transform: scale(1); opacity: 0.65; } 70% { transform: scale(2.2); opacity: 0; } 100% { opacity: 0; } }
@@ -434,16 +434,18 @@ export function ClientPortalExperience({
                 )}
               </svg>
             </button>
-            {/* Look switcher: two swatch dots (warm terracotta / cool steel).
-                Swatches are hardcoded — they must show their own colour
-                regardless of which theme is active. */}
+            {/* Look switcher: swatch dots (warm terracotta / cool steel /
+                neutral white). Swatches are hardcoded — they must show their
+                own colour regardless of which theme is active; the ring
+                colour differs for neutral so a near-white dot stays visible. */}
             <span style={{ display: "flex", alignItems: "center", gap: 7 }}>
               {(
                 [
-                  ["warm", "#c67139", "Warm look"],
-                  ["cool", "#38708c", "Cool look"],
+                  ["warm", "#c67139", "#c67139", "Warm look"],
+                  ["cool", "#38708c", "#38708c", "Cool look"],
+                  ["neutral", "#e6e6e2", "#9a9b95", "Neutral look"],
                 ] as const
-              ).map(([value, swatch, label]) => (
+              ).map(([value, swatch, ring, label]) => (
                 <button
                   key={value}
                   type="button"
@@ -456,11 +458,11 @@ export function ClientPortalExperience({
                     height: 16,
                     borderRadius: "50%",
                     background: swatch,
-                    border: "none",
+                    border: "1px solid rgba(0, 0, 0, 0.14)",
                     padding: 0,
                     cursor: "pointer",
                     opacity: theme === value ? 1 : 0.45,
-                    boxShadow: theme === value ? "0 0 0 2px var(--pj-bg), 0 0 0 3.5px " + swatch : "none",
+                    boxShadow: theme === value ? "0 0 0 2px var(--pj-bg), 0 0 0 3.5px " + ring : "none",
                     transition: "opacity 160ms ease, box-shadow 160ms ease",
                   }}
                 />
@@ -481,10 +483,10 @@ export function ClientPortalExperience({
           // only applies in the rail layout. Focus keeps the light frame —
           // lighter than the page ground, so the panel reads as a distinct
           // floating surface instead of melting into the glow.
-          style={railLayout === "rail" && (theme === "cool" || railVariant === "deepframe") ? { background: "var(--pj-frame-deep)", borderColor: "var(--pj-frame-deep-line)" } : undefined}
+          style={railLayout === "rail" && (theme !== "warm" || railVariant === "deepframe") ? { background: "var(--pj-frame-deep)", borderColor: "var(--pj-frame-deep-line)" } : undefined}
         >
           <div className="pj-rail-desktop">
-            <StageRail stages={journeyStages} overallPercent={progress} onSelectStage={(stageId) => openM(stageId, 1)} variant={railVariant} cool={theme === "cool"} />
+            <StageRail stages={journeyStages} overallPercent={progress} onSelectStage={(stageId) => openM(stageId, 1)} variant={railVariant} cool={theme !== "warm"} />
           </div>
           {currentStage && (
             <div className="pj-segbar" style={{ padding: "14px 18px", borderBottom: "1px solid var(--pj-line)", background: "var(--pj-rail)" }}>

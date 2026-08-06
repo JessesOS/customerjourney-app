@@ -52,10 +52,10 @@ export async function listPortalClients() {
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
-export type PortalThemeVariant = "warm" | "cool";
+export type PortalThemeVariant = "warm" | "cool" | "neutral";
 
 export function isPortalThemeVariant(value: unknown): value is PortalThemeVariant {
-  return value === "warm" || value === "cool";
+  return value === "warm" || value === "cool" || value === "neutral";
 }
 
 export async function createPortalClient(input: {

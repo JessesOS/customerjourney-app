@@ -4,6 +4,17 @@
 **Scope:** checkout payment page → sub-account + snapshot → nurture/remind/follow-up/inspire → customer journey dashboard
 **Status:** PLAN ONLY. Nothing was built. Nothing in GHL or the portal was changed.
 
+> **SCOPE NARROWED by Jesse, 2026-08-06 (afternoon).** GHL's role is now exactly:
+> (1) automate sub-account creation on a sale, (2) automate snapshot loading into it,
+> (3) possibly one simple nurture automation across the journey. **LaunchBay and GHL
+> contact tasks are out of scope entirely** — no unpublishing, no repointing, no
+> dependence on them. Read the verification pass before building:
+> `~/Master/Labs/stanley-henry-ai-brain/reports/planning/journey-verification-2026-08-06.md`
+> Key verified facts: only 2 paid orders since 1 June; SaaS auto-creation UNVERIFIED, so
+> the build creates sub-accounts itself via the API (proven 2026-07-19) with idempotent
+> skip-if-exists; sub-account timezones are unreliable (FM Essentials = America/Los_Angeles);
+> provisioning fires ~monthly, so every fire logs loud and a synthetic test guards decay.
+
 Everything in "What already exists" was checked **live against the real APIs tonight**, not
 recalled from notes. Where I could not verify something, it says so.
 
@@ -72,6 +83,13 @@ That resolves the old open question, and it partly resolves a second one: the ha
 "nothing reads the sold package to choose `clientType`". The won stage now gives you the
 product. It does **not** give you the Scale channel split (meta / google / meta-google), which
 still needs a second signal. See Decision 3.
+
+> **CORRECTED BY THE PHASE 1 AUDIT, 2026-08-06.** The three workflows below are NOT
+> wired to nothing: each still creates the Active Clients opportunity, 11-20 internal
+> onboarding tasks, and Slack #accounts alerts on every sale. Only the LaunchBay webhook
+> step is dead. Two OTHER published workflows already email clients, and one published
+> sequence still sends clients to the retired portal. Full findings:
+> `~/Master/Labs/stanley-henry-ai-brain/reports/planning/ghl-workflow-audit-2026-08-06/what-fires-on-a-sale.md`
 
 ### 2.3 Post-payment automation: BUILT, PUBLISHED, WIRED TO NOTHING
 
@@ -206,6 +224,16 @@ Everything else is detail. These five are what actually block the journey.
 ---
 
 ## 4. Decisions only Jesse can make
+
+**ANSWERED 2026-08-06: Jesse accepted all five recommendations as written.**
+
+- D1: inbound-webhook URLs, portal never holds a GHL key (verify premium trigger on plan).
+- D2: default `meta-google`, flagged unconfirmed in admin, first onboarding task confirms.
+- D3: keep one AUD and one USD checkout funnel, archive the rest.
+- D4: custom domain before any automation work.
+- D5: `journey_state` pause wired to subscription cancelled. Pause and notify, never chase.
+
+Phase 0 decision work is done; the two hands-on tidies (domain, funnel archive) remain.
 
 These are genuinely his calls. Each has a recommendation, but the choice changes the build.
 
