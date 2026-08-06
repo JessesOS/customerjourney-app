@@ -73,7 +73,12 @@ Outstanding work:
    "Tell us about your business" + honest time hints in both product templates,
    no "form" anywhere client-facing. (b) NEXT (Jesse wants this ~2026-08-06) —
    elevate the stepper into a designed guided-setup experience (section intros,
-   trade tiles as markers, possible Sonia narration). Explicitly rejected:
+   trade tiles as markers, possible Sonia narration). Progress grammar decided
+   2026-08-06 (Jesse spotted "task 1 of 10" vs stepper "1 of 21" confusion):
+   counts are for inventory (stage level keeps "1 of 10 tasks"), bars are for
+   journeys — inside the setup, kill the question count entirely; show section
+   chapters ("Business basics · 2 of 5") + thin continuous bar + "~N min left"
+   carrying the task card's time promise through. Explicitly rejected:
    splitting into micro-tasks. Also noticed: the Onboarding stage template has
    no blurb, so the fallback "Everything we need from you is done — sit tight
    while we build" shows on a fresh 0/10 stage — wrong message for day 1; fix
