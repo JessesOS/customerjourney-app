@@ -184,6 +184,9 @@ export function ClientPortalExperience({
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
   const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant);
+  // Neutral's accent audition (demo pill): gallery surfaces stay, one accent
+  // carries the life. Terracotta is the recommended default everywhere.
+  const [neutralAccent, setNeutralAccent] = useState<"terracotta" | "brass" | "indigo" | "graphite">("terracotta");
   // Voice guide on/off — device-level preference (localStorage), defaults on.
   // Off unmounts the orb entirely, which also stops any playing narration.
   const [voiceOn, setVoiceOn] = useState(true);
@@ -380,7 +383,7 @@ export function ClientPortalExperience({
   }
 
   return (
-    <div data-pj-theme={theme === "warm" ? undefined : theme} style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
+    <div data-pj-theme={theme === "warm" ? undefined : theme} data-pj-accent={theme === "neutral" ? neutralAccent : undefined} style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
       {showWelcome && <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />}
       <style>{`
         @keyframes portalPulse { 0% { transform: scale(1); opacity: 0.65; } 70% { transform: scale(2.2); opacity: 0; } 100% { opacity: 0; } }
@@ -623,6 +626,30 @@ export function ClientPortalExperience({
               </>
             )}
           </section>
+
+          {/* Review-only: Neutral accent audition. Demo route only, shows
+              while the neutral theme is active. Delete once a winner is
+              picked. */}
+          {isDemo && theme === "neutral" && (
+            <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+              {(
+                [
+                  ["terracotta", "Terracotta"],
+                  ["brass", "Brass"],
+                  ["indigo", "Indigo"],
+                  ["graphite", "Graphite"],
+                ] as const
+              ).map(([v, label]) => (
+                <button
+                  key={v}
+                  onClick={() => setNeutralAccent(v)}
+                  style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: neutralAccent === v ? "var(--pj-act)" : "transparent", color: neutralAccent === v ? "var(--pj-act-ink)" : "var(--pj-muted)", whiteSpace: "nowrap" }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Review-only: layout toggle (journey rail vs full-width focus).
               Demo route only; works in both themes. Delete once a winner is

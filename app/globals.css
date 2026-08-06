@@ -250,6 +250,37 @@
   --pj-tile-act: #62676c;
 }
 
+/* Neutral accent audition (demo toggle): the gallery-white surfaces stay,
+   one accent carries the life. Graphite = the base neutral block above;
+   these override just the accent-carrying tokens. */
+[data-pj-theme="neutral"][data-pj-accent="terracotta"] {
+  --pj-act: #c67139;
+  --pj-act-fill: #f7e8dd;
+  --pj-act-ink: #fff2eb;
+  --pj-btn-grad: linear-gradient(180deg, #d3823f 0%, #bd6830 100%);
+  --pj-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 22px -10px rgba(166, 86, 38, 0.5);
+  --pj-tile-act: #c67139;
+  --pj-turn-tint: #f9efe6;
+}
+[data-pj-theme="neutral"][data-pj-accent="brass"] {
+  --pj-act: #9c7a2c;
+  --pj-act-fill: #f3ecd9;
+  --pj-act-ink: #fbf6ea;
+  --pj-btn-grad: linear-gradient(180deg, #b3903c 0%, #8f6f26 100%);
+  --pj-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.32), 0 10px 22px -10px rgba(130, 100, 34, 0.5);
+  --pj-tile-act: #a8862f;
+  --pj-turn-tint: #f6f0e0;
+}
+[data-pj-theme="neutral"][data-pj-accent="indigo"] {
+  --pj-act: #4e5a94;
+  --pj-act-fill: #e7eaf4;
+  --pj-act-ink: #f0f2fa;
+  --pj-btn-grad: linear-gradient(180deg, #5c6aa8 0%, #46528a 100%);
+  --pj-shadow-btn: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 10px 22px -10px rgba(58, 68, 118, 0.5);
+  --pj-tile-act: #58639b;
+  --pj-turn-tint: #eff1f7;
+}
+
 /* Stage voice-guide orb (Imprint-style): concentric rings that breathe
    gently at rest and pulse faster while narration plays. Ring colour rides
    --pj-act, so the orb re-themes with the portal. */
