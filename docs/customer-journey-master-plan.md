@@ -4,6 +4,36 @@
 **Scope:** checkout payment page → sub-account + snapshot → nurture/remind/follow-up/inspire → customer journey dashboard
 **Status:** PLAN ONLY. Nothing was built. Nothing in GHL or the portal was changed.
 
+> **SESSION COORDINATION, added 2026-08-08 by the brain session. Read this before
+> proposing next steps.** Two sessions work this plan and both have shipped:
+>
+> - **Brain repo** (`~/Master/Labs/stanley-henry-ai-brain`): the `journey-provisioning`
+>   skill — a $0 demo checkout page that runs the full chain (sub-account from Convert
+>   snapshot, portal client, verified link, and opt-in `--notify` which fires Jesse's
+>   published July workflow for the SMS + email). **Live-verified end to end by Jesse
+>   2026-08-08**, including received SMS + email.
+> - **Portal repo** (this one): `/api/hooks/ghl/provision` live 2026-08-08 with
+>   idempotency, duplicate-contact handling, identity columns, Slack DM per fire.
+>   See `docs/provision-webhook.md`.
+>
+> **Division of labor, hard rule:** GHL reads, writes, workflow building and GHL UI
+> driving happen ONLY from the brain session (the credentials live there). Portal code
+> happens ONLY from this session. Neither session does or proposes the other's half;
+> cross-lane needs get written into this doc instead.
+>
+> **The GHL half of Phase 3 (what calls the webhook) is an OPEN DECISION owned by
+> Jesse, to be executed from the brain session.** The "repoint the Respond LaunchBay
+> workflow" text in Phase 3 below predates the 2026-08-06 scope narrowing: the three
+> LaunchBay workflows are PARKED, untouched. The leading option is a NEW minimal
+> workflow (trigger: subscription activated, one step: POST to the webhook), built as
+> a draft from the brain session, published by Jesse. Not urgent — the friend demo
+> runs on the brain-side checkout chain.
+>
+> **Open design question before production (not before the demo):** the webhook path
+> creates NO GHL sub-account, because this repo holds no GHL key by design. Where
+> sub-account creation lives on a real sale — SaaS mode (unverified), a narrowly
+> scoped Worker secret, or a brain-side step — is undecided.
+
 > **SCOPE NARROWED by Jesse, 2026-08-06 (afternoon).** GHL's role is now exactly:
 > (1) automate sub-account creation on a sale, (2) automate snapshot loading into it,
 > (3) possibly one simple nurture automation across the journey. **LaunchBay and GHL
@@ -186,7 +216,7 @@ Current state of the artefacts:
 
 | Artefact | Now |
 |---|---|
-| Sub-account "1. Jesse Demo" `ZFZnrzadkRpJjypLaVhD` | **exists**, created 2026-07-19 |
+| Sub-account "1. Jesse Demo" `ZFZnrzadkRpJjypLaVhD` | **deleted by Jesse 2026-08-08** (existed 2026-07-19 to 2026-08-08; superseded by `journey-provisioning` in the brain repo) |
 | Workflow "Jesse Onboard Demo" `e88fd7ba-4b05-46f3-84de-aefa9144b6d8` | **still published** |
 | Custom field `contact.onboarding_link` `I6gvzTG5hVisdCT6xpTa` | **exists** |
 | Demo portal link `/portal/LbRjAtQuuy2nITO_vUkcn4Oq` | **404**, deleted in Jesse's cleanup |
@@ -456,9 +486,10 @@ useful on its own. No phase depends on a later one.
 > link and the Decision-2 "unconfirmed" flag; admin PATCH accepts `journeyState`.
 > Verified: 14-test local matrix + full live cycle on prod (provision → Slack DM →
 > replay → delete). No backfill was needed (only the "v" test client existed).
-> Contract + GHL wiring runbook: `docs/provision-webhook.md`. Still open from Phase 3:
-> repointing the Respond workflow in GHL (brain-session work, publish stays manual) and
-> Decision 4's custom domain, which should precede real automated links.
+> Contract: `docs/provision-webhook.md`. What calls the webhook is the GHL half —
+> an open decision owned by Jesse, executed from the brain session (see the session
+> coordination block at the top; the LaunchBay workflows are parked, not repointed).
+> Also still open: Decision 4's custom domain, which should precede real automated links.
 
 ### Phase 2: Identity (the keystone)
 - Add the GHL id columns and `journey_state` to `portal_clients`.
