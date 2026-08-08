@@ -448,6 +448,18 @@ useful on its own. No phase depends on a later one.
 - Confirm the inbound-webhook premium trigger is available on the plan.
 - **Outcome:** a one-page map of what fires on a sale today. No build without it.
 
+> **PHASE 2 + 3 BUILT AND LIVE, 2026-08-08.** Migration 0011 applied to prod D1
+> (identity columns + `journey_state` + `client_type_confirmed` on `portal_clients`,
+> unique index on `ghl_contact_id`, new `portal_webhook_log`). `/api/hooks/ghl/provision`
+> deployed, secret-gated, idempotent (eventId replay + contact uniqueness + atomic batch),
+> fail-loud to Slack on every fire, `dryRun` for the synthetic guard. Admin shows the GHL
+> link and the Decision-2 "unconfirmed" flag; admin PATCH accepts `journeyState`.
+> Verified: 14-test local matrix + full live cycle on prod (provision → Slack DM →
+> replay → delete). No backfill was needed (only the "v" test client existed).
+> Contract + GHL wiring runbook: `docs/provision-webhook.md`. Still open from Phase 3:
+> repointing the Respond workflow in GHL (brain-session work, publish stays manual) and
+> Decision 4's custom domain, which should precede real automated links.
+
 ### Phase 2: Identity (the keystone)
 - Add the GHL id columns and `journey_state` to `portal_clients`.
 - Backfill by hand for the small number of live clients.

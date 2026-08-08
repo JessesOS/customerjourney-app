@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
+import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 export const knowledgeState = sqliteTable("knowledge_state", {
   id: integer("id").primaryKey(),
@@ -56,21 +56,54 @@ export const liveDashboardOverrideState = sqliteTable("live_dashboard_override_s
   payload: text("payload").notNull(),
 });
 
-export const portalClients = sqliteTable("portal_clients", {
-  id: text("id").primaryKey(),
-  name: text("name").notNull(),
-  companyName: text("company_name").notNull().default(""),
-  portalToken: text("portal_token").notNull().unique(),
-  startDate: text("start_date").notNull(),
-  // Which ad channels this client is on: "meta" | "google" | "meta-google".
-  // Drives which journey tasks they see. Existing clients default to both.
-  clientType: text("client_type").notNull().default("meta-google"),
-  // Portal look: "warm" (organic sand/terracotta, default) | "cool" (slate
-  // workshop). Admin picks at creation and can change later; the client can
-  // also flip it from their portal — same link either way.
-  themeVariant: text("theme_variant").notNull().default("warm"),
-  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+export const portalClients = sqliteTable(
+  "portal_clients",
+  {
+    id: text("id").primaryKey(),
+    name: text("name").notNull(),
+    companyName: text("company_name").notNull().default(""),
+    portalToken: text("portal_token").notNull().unique(),
+    startDate: text("start_date").notNull(),
+    // Which ad channels this client is on: "meta" | "google" | "meta-google".
+    // Drives which journey tasks they see. Existing clients default to both.
+    clientType: text("client_type").notNull().default("meta-google"),
+    // False when provisioning defaulted the type from a product name that
+    // doesn't carry the ad-channel split (Decision 2): admin must confirm.
+    clientTypeConfirmed: integer("client_type_confirmed", { mode: "boolean" }).notNull().default(true),
+    // Portal look: "warm" (organic sand/terracotta, default) | "cool" (slate
+    // workshop). Admin picks at creation and can change later; the client can
+    // also flip it from their portal — same link either way.
+    themeVariant: text("theme_variant").notNull().default("warm"),
+    // Identity join to GHL (master plan §5.3). Null for hand-created clients
+    // until backfilled; the unique index still allows any number of nulls.
+    ghlContactId: text("ghl_contact_id"),
+    ghlLocationId: text("ghl_location_id"),
+    ghlOpportunityId: text("ghl_opportunity_id"),
+    email: text("email"),
+    phone: text("phone"),
+    productCode: text("product_code"),
+    sourceOrderId: text("source_order_id"),
+    provisionedAt: text("provisioned_at"),
+    goLiveAt: text("go_live_at"),
+    // "active" | "paused" | "completed" | "cancelled" (Decision 5).
+    journeyState: text("journey_state").notNull().default("active"),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [uniqueIndex("portal_clients_ghl_contact_id_unique").on(table.ghlContactId)],
+);
+
+// Inbound webhook idempotency (master plan §5.3): one row per eventId ever
+// received on /api/hooks/ghl/provision. A replayed eventId returns the
+// original outcome instead of provisioning twice.
+export const portalWebhookLog = sqliteTable("portal_webhook_log", {
+  id: integer("id").primaryKey(),
+  eventId: text("event_id").notNull().unique(),
+  receivedAt: text("received_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  // "ok" | "duplicate-contact" | "error:<reason>"
+  result: text("result").notNull(),
+  clientId: text("client_id"),
+  payload: text("payload").notNull().default("{}"),
 });
 
 export const portalMilestoneProgress = sqliteTable("portal_milestone_progress", {

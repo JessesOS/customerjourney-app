@@ -10,7 +10,14 @@ type PortalClient = {
   portalToken: string;
   startDate: string;
   clientType?: string;
+  clientTypeConfirmed?: boolean;
   themeVariant?: string;
+  ghlContactId?: string | null;
+  ghlLocationId?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  productCode?: string | null;
+  journeyState?: string;
   currentDay: number;
   completedMilestoneCount: number;
   totalMilestoneCount: number;
@@ -270,6 +277,24 @@ export function AdminClientsPanel() {
     }
   }
 
+  async function handleConfirmType(clientId: string) {
+    try {
+      const res = await fetch(`/api/admin/portal-clients/${clientId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", ...authHeaders },
+        body: JSON.stringify({ clientTypeConfirmed: true }),
+      });
+      const payload = (await res.json()) as { ok: boolean; error?: string };
+      if (!payload.ok) {
+        setError(payload.error ?? "Could not confirm the journey type.");
+        return;
+      }
+      await loadClients();
+    } catch {
+      setError("Could not reach the server.");
+    }
+  }
+
   async function handleThemeChange(clientId: string, nextTheme: string) {
     try {
       const res = await fetch(`/api/admin/portal-clients/${clientId}`, {
@@ -480,7 +505,44 @@ export function AdminClientsPanel() {
                     </div>
                     <div style={{ fontSize: 13, color: "rgba(252,250,246,0.5)", marginTop: 2 }}>
                       <span style={{ color: "#e5b34a" }}>{clientTypeLabel(client.clientType)}</span>
+                      {client.clientTypeConfirmed === false && (
+                        <>
+                          {" "}
+                          <span
+                            title="Provisioning defaulted this journey type from the product name — check with the client, then confirm"
+                            style={{ fontSize: 11, padding: "2px 8px", borderRadius: 99, background: "rgba(245,166,35,0.15)", color: "#f5a623" }}
+                          >
+                            unconfirmed
+                          </span>{" "}
+                          <button
+                            onClick={() => handleConfirmType(client.id)}
+                            style={{ background: "none", border: "none", padding: 0, color: "#00b8a0", textDecoration: "underline", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}
+                          >
+                            confirm
+                          </button>
+                        </>
+                      )}
                       {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
+                      {client.journeyState && client.journeyState !== "active" && (
+                        <>
+                          {" · "}
+                          <span style={{ fontSize: 11, padding: "2px 8px", borderRadius: 99, background: "rgba(255,110,96,0.15)", color: "#ff9a90", textTransform: "uppercase", letterSpacing: "0.06em" }}>
+                            {client.journeyState}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <div style={{ fontSize: 12, color: "rgba(252,250,246,0.4)", marginTop: 2 }}>
+                      {client.ghlContactId ? (
+                        <>
+                          GHL contact <span style={{ color: "rgba(252,250,246,0.65)", fontFamily: "monospace" }}>{client.ghlContactId}</span>
+                          {client.email && <> · {client.email}</>}
+                          {client.phone && <> · {client.phone}</>}
+                          {client.ghlLocationId && <> · sub-account <span style={{ fontFamily: "monospace" }}>{client.ghlLocationId}</span></>}
+                        </>
+                      ) : (
+                        <>Not linked to a GHL contact</>
+                      )}
                     </div>
                   </div>
                   <select

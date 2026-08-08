@@ -24,26 +24,26 @@ From the repo root (`~/Master/AI/customerjourney-app`):
    npm run build
    ```
 3. **Patch the generated `wrangler.json`** — the build emits a config with placeholder values
-   that must be corrected before deploying:
+   (`name` defaults to `site-creator-vinext-starter`, `database_id` to a zeroed placeholder).
+   The patch is a committed script (since 2026-08-08, per master plan §5.5):
    ```bash
-   python3 -c "
-   import json, pathlib
-   cfg = pathlib.Path('dist/server/wrangler.json')
-   data = json.loads(cfg.read_text())
-   data['name'] = 'scale-onboarding-portal'
-   for b in data.get('d1_databases', []):
-       b['database_id'] = 'e9ff232a-b1dc-41f4-b22e-d80551dc1f9b'
-   cfg.write_text(json.dumps(data, indent=2))
-   print('patched')
-   "
+   node scripts/patch-wrangler.mjs
    ```
-   - `name` defaults to `site-creator-vinext-starter` — must be `scale-onboarding-portal` or it deploys to the wrong worker
-   - `database_id` defaults to a zeroed placeholder — must be `e9ff232a-b1dc-41f4-b22e-d80551dc1f9b` (the `scale-onboarding-portal-prod` D1 database)
 
-4. **Deploy:**
+4. **Apply any new migrations to production D1** (schema changes only — most deploys skip this):
+   ```bash
+   npx wrangler d1 execute scale-onboarding-portal-prod --remote --file drizzle/<new-migration>.sql
+   ```
+   Migrations 0000–0011 are applied as of 2026-08-08. Verify with
+   `... --remote --command "PRAGMA table_info(portal_clients)"`.
+
+5. **Deploy:**
    ```bash
    npx wrangler deploy --config dist/server/wrangler.json
    ```
+   The first request or two after a deploy can still hit the old version (isolate
+   propagation) — a 404 on a brand-new route immediately after deploying is not a bug;
+   retry before diagnosing.
 
 ## After deploying — smoke test
 
@@ -53,10 +53,21 @@ From the repo root (`~/Master/AI/customerjourney-app`):
   right day, milestones render.
 - `/portal/demo` is code-only (no DB) — a quick sanity check that the build itself is healthy.
 
+## Worker secrets
+
+Managed with `npx wrangler secret put <NAME> --name scale-onboarding-portal`:
+
+- `ADMIN_ACCESS_TOKEN` — admin API/page token (also in the brain repo's `.env.local` as `SCALE_PORTAL_ADMIN_TOKEN`)
+- `PORTAL_HOOK_SECRET` — auth for `/api/hooks/ghl/provision` (also in the brain's `.env.local`; see `docs/provision-webhook.md`)
+- `PORTAL_SLACK_WEBHOOK` — Slack DM webhook the hook endpoints fail loud to
+
+Local dev reads `.dev.vars` (gitignored) for the same names.
+
 ## Things that stay true
 
-- Local dev (`npm run dev`, port 3333) and production use **separate D1 databases** — nothing
-  local "activates" production.
+- Local dev (`npm run dev`, port 3000) and production use **separate D1 databases** — nothing
+  local "activates" production. Local migrations: apply the SQL file to the sqlite under
+  `.wrangler/state/v3/d1/miniflare-D1DatabaseObject/`.
 - Journey content (`lib/onboardingJourney.ts`) is code — changing it requires commit + redeploy.
 - Client records live only in the database and never ship with code.
 

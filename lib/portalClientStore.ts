@@ -6,6 +6,7 @@ import {
   portalMilestoneContent,
   portalMilestoneProgress,
   portalMilestoneUploads,
+  portalWebhookLog,
 } from "@/db/schema";
 import { journeyTemplate, journeyTotalDays, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
 import { respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
@@ -80,6 +81,120 @@ export async function createPortalClient(input: {
   });
 
   return { id, portalToken: token };
+}
+
+export type JourneyState = "active" | "paused" | "completed" | "cancelled";
+
+export function isJourneyState(value: unknown): value is JourneyState {
+  return value === "active" || value === "paused" || value === "completed" || value === "cancelled";
+}
+
+export async function getPortalClientById(id: string) {
+  const db = getDb();
+  const rows = await db.select().from(portalClients).where(eq(portalClients.id, id)).limit(1);
+  return rows[0] ?? null;
+}
+
+export async function getPortalClientByGhlContactId(ghlContactId: string) {
+  const db = getDb();
+  const rows = await db.select().from(portalClients).where(eq(portalClients.ghlContactId, ghlContactId)).limit(1);
+  return rows[0] ?? null;
+}
+
+export async function getWebhookEvent(eventId: string) {
+  const db = getDb();
+  const rows = await db.select().from(portalWebhookLog).where(eq(portalWebhookLog.eventId, eventId)).limit(1);
+  return rows[0] ?? null;
+}
+
+export async function recordWebhookEvent(eventId: string, result: string, clientId: string | null, payload: unknown) {
+  const db = getDb();
+  const receivedAt = new Date().toISOString();
+  const serialized = JSON.stringify(payload ?? {});
+  await db
+    .insert(portalWebhookLog)
+    .values({ eventId, result, clientId, payload: serialized, receivedAt })
+    .onConflictDoUpdate({
+      target: portalWebhookLog.eventId,
+      set: { result, clientId, payload: serialized, receivedAt },
+    });
+}
+
+/**
+ * Creates a provisioned portal client and its webhook-log row in one atomic
+ * D1 batch, so a crash mid-provision can never leave a client without its
+ * idempotency record (or vice versa). A replayed eventId or a duplicate
+ * ghl_contact_id makes the whole batch fail on the unique constraint.
+ */
+export async function provisionPortalClient(input: {
+  eventId: string;
+  payload: unknown;
+  name: string;
+  companyName: string;
+  startDate: string;
+  clientType: ClientType;
+  clientTypeConfirmed: boolean;
+  ghlContactId: string;
+  ghlLocationId: string | null;
+  ghlOpportunityId: string | null;
+  email: string | null;
+  phone: string | null;
+  productCode: string;
+  sourceOrderId: string | null;
+}) {
+  const db = getDb();
+  const id = crypto.randomUUID();
+  const token = generatePortalToken();
+  const now = new Date().toISOString();
+
+  await db.batch([
+    db.insert(portalClients).values({
+      id,
+      name: input.name,
+      companyName: input.companyName,
+      portalToken: token,
+      startDate: input.startDate,
+      clientType: input.clientType,
+      clientTypeConfirmed: input.clientTypeConfirmed,
+      ghlContactId: input.ghlContactId,
+      ghlLocationId: input.ghlLocationId,
+      ghlOpportunityId: input.ghlOpportunityId,
+      email: input.email,
+      phone: input.phone,
+      productCode: input.productCode,
+      sourceOrderId: input.sourceOrderId,
+      provisionedAt: now,
+      journeyState: "active",
+    }),
+    db
+      .insert(portalWebhookLog)
+      .values({
+        eventId: input.eventId,
+        result: "ok",
+        clientId: id,
+        payload: JSON.stringify(input.payload ?? {}),
+        receivedAt: now,
+      })
+      // The eventId may already hold an error row (e.g. unmapped product,
+      // since fixed) — a retry must overwrite it, not die on the constraint.
+      .onConflictDoUpdate({
+        target: portalWebhookLog.eventId,
+        set: { result: "ok", clientId: id, payload: JSON.stringify(input.payload ?? {}), receivedAt: now },
+      }),
+  ]);
+
+  return { id, portalToken: token };
+}
+
+export async function updatePortalClientAdminFields(
+  clientId: string,
+  fields: Partial<{ journeyState: JourneyState; clientTypeConfirmed: boolean; clientType: ClientType }>,
+) {
+  const db = getDb();
+  await db
+    .update(portalClients)
+    .set({ ...fields, updatedAt: new Date().toISOString() })
+    .where(eq(portalClients.id, clientId));
 }
 
 export async function setPortalClientTheme(clientId: string, themeVariant: PortalThemeVariant) {
