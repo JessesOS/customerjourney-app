@@ -63,6 +63,24 @@ Managed with `npx wrangler secret put <NAME> --name scale-onboarding-portal`:
 
 Local dev reads `.dev.vars` (gitignored) for the same names.
 
+## R2 uploads (built 2026-08-08, waiting on account enablement)
+
+Client file uploads are R2-ready: with an `UPLOADS` binding the file body goes to R2
+and D1 keeps metadata; without it, uploads store inline in D1 (the pre-R2 behavior,
+still what production does). Legacy inline rows keep working either way — verified.
+
+**R2 is NOT enabled on the Cloudflare account** (API error 10042) and enabling it is
+a dashboard-only step. To turn this on:
+
+1. Cloudflare dashboard → R2 → enable (Jesse — it's an account/terms step).
+2. `npx wrangler r2 bucket create scale-onboarding-portal-uploads`
+3. Flip `R2_READY = true` in `scripts/patch-wrangler.mjs`.
+4. Build, patch, deploy as above.
+
+Until then `patch-wrangler.mjs` strips the generated `r2_buckets` binding so deploys
+don't fail on the missing bucket. Local dev always has an emulated bucket
+(miniflare) regardless of the account.
+
 ## Things that stay true
 
 - Local dev (`npm run dev`, port 3000) and production use **separate D1 databases** — nothing

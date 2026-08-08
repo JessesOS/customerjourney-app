@@ -11,6 +11,10 @@ import {
 import type { ClientType } from "@/lib/journeyEngine";
 import { respondJourneyTotalDays } from "@/lib/respondJourney";
 
+export const metadata = {
+  title: "Client Portal · RT Digital",
+};
+
 export default async function PortalPage({
   params,
 }: {

@@ -5,6 +5,10 @@ import { AdminClientsPanel } from "@/app/components/admin/AdminClientsPanel";
 // Real client data is never exposed without valid admin auth. Gating the page
 // render itself is unreliable on Cloudflare Workers (searchParams / process.env
 // aren't dependable at RSC render time), so enforcement lives in the API routes.
+export const metadata = {
+  title: "Portal Clients · RT Digital",
+};
+
 export default function AdminClientsPage() {
   return <AdminClientsPanel />;
 }

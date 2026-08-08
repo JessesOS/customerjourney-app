@@ -8,6 +8,7 @@ import {
   portalMilestoneUploads,
   portalWebhookLog,
 } from "@/db/schema";
+import { getUploadsBucket, uploadObjectKey } from "@/lib/uploadsBucket";
 import { journeyTemplate, journeyTotalDays, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
 import { respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
 import type { PortalFormResponses } from "@/lib/onboardingForm";
@@ -207,6 +208,13 @@ export async function setPortalClientTheme(clientId: string, themeVariant: Porta
 
 export async function deletePortalClient(id: string) {
   const db = getDb();
+  const bucket = getUploadsBucket();
+  if (bucket) {
+    const listed = await bucket.list({ prefix: `uploads/${id}/` });
+    if (listed.objects.length > 0) {
+      await bucket.delete(listed.objects.map((o) => o.key));
+    }
+  }
   await db.delete(portalMilestoneProgress).where(eq(portalMilestoneProgress.clientId, id));
   await db.delete(portalFormResponses).where(eq(portalFormResponses.clientId, id));
   await db.delete(portalMilestoneContent).where(eq(portalMilestoneContent.clientId, id));
@@ -347,6 +355,7 @@ export async function saveFormResponses(
 
 export async function saveMilestoneUpload(clientId: string, milestoneId: string, fileName: string, content: string) {
   const db = getDb();
+  const bucket = getUploadsBucket();
   const rows = await db
     .select()
     .from(portalMilestoneUploads)
@@ -356,13 +365,23 @@ export async function saveMilestoneUpload(clientId: string, milestoneId: string,
   const now = new Date().toISOString();
   const existing = rows[0];
 
+  // With a bucket, the file body lives in R2 and the D1 row keeps only
+  // metadata (empty content marks an R2-backed row). Without one, inline in
+  // D1 as before. R2 write goes first: if the row write then fails, the
+  // orphan object is harmless and the next upload overwrites it.
+  let storedContent = content;
+  if (bucket) {
+    await bucket.put(uploadObjectKey(clientId, milestoneId), content);
+    storedContent = "";
+  }
+
   if (existing) {
     await db
       .update(portalMilestoneUploads)
-      .set({ fileName, content, uploadedAt: now })
+      .set({ fileName, content: storedContent, uploadedAt: now })
       .where(eq(portalMilestoneUploads.id, existing.id));
   } else {
-    await db.insert(portalMilestoneUploads).values({ clientId, milestoneId, fileName, content, uploadedAt: now });
+    await db.insert(portalMilestoneUploads).values({ clientId, milestoneId, fileName, content: storedContent, uploadedAt: now });
   }
 }
 
@@ -374,7 +393,23 @@ export async function getMilestoneUpload(clientId: string, milestoneId: string) 
     .where(and(eq(portalMilestoneUploads.clientId, clientId), eq(portalMilestoneUploads.milestoneId, milestoneId)))
     .limit(1);
 
-  return rows[0] ?? null;
+  const row = rows[0];
+  if (!row) return null;
+
+  // Legacy rows carry the file inline; R2-backed rows have empty content.
+  if (row.content) return row;
+
+  const bucket = getUploadsBucket();
+  if (!bucket) {
+    console.error(`Upload row ${row.id} is R2-backed but no UPLOADS binding is available.`);
+    return null;
+  }
+  const object = await bucket.get(uploadObjectKey(clientId, milestoneId));
+  if (!object) {
+    console.error(`Upload row ${row.id} is R2-backed but the object is missing.`);
+    return null;
+  }
+  return { ...row, content: await object.text() };
 }
 
 export async function getAllMilestoneUploadsMeta(clientId: string): Promise<Record<string, { fileName: string; uploadedAt: string }>> {

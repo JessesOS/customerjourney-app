@@ -134,8 +134,10 @@ export const portalMilestoneContent = sqliteTable("portal_milestone_content", {
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 
-// Client-uploaded files (e.g. a CSV of past leads). Stored inline as text --
-// there's no R2 bucket provisioned for this app, and these files are small.
+// Client-uploaded files (e.g. a CSV of past leads). With the UPLOADS R2
+// binding present, the file body lives in R2 (empty `content` marks such a
+// row) and this table keeps metadata; legacy rows and no-binding deploys
+// store the file inline in `content`. See lib/uploadsBucket.ts.
 export const portalMilestoneUploads = sqliteTable("portal_milestone_uploads", {
   id: integer("id").primaryKey(),
   clientId: text("client_id").notNull(),

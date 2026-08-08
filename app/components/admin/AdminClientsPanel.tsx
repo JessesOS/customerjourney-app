@@ -439,7 +439,7 @@ export function AdminClientsPanel() {
           <input
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
-            placeholder="Strategize"
+            placeholder="Smith & Sons Plumbing"
             style={inputStyle}
           />
         </div>

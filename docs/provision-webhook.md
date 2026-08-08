@@ -68,20 +68,23 @@ Provisioning fires ~monthly, so schedule this monthly from the brain to catch de
   (`active|paused|completed|cancelled`, Decision 5), `clientType` (confirms it), and
   `clientTypeConfirmed: true`.
 
-## GHL side (the half that lives in the brain / GHL session)
+## What calls this endpoint (the GHL half — NOT this session's lane)
 
-Per the master plan, repoint **one** product line first — Respond. In the GHL workflow
-(e.g. `Subscription Activated -> Trigger LaunchBay Zap (Respond)`, id
-`cf62da7d-b8ac-4b3c-9e8e-fa63e7d14553`):
+Per the session coordination block at the top of `customer-journey-master-plan.md`:
+GHL reads, writes, workflow building and UI driving happen **only from the brain
+session**, and the GHL half of Phase 3 is an **open decision owned by Jesse**. The
+three LaunchBay subscription-activated workflows are **parked, untouched** — the
+"repoint" language in the plan's Phase 3 predates the 2026-08-06 scope narrowing.
+The leading option is a new minimal workflow (trigger: subscription activated, one
+step: POST here), built as a draft from the brain session, published by Jesse.
 
-1. Replace the dead LaunchBay webhook step with a **Custom Webhook** action, POST,
-   URL above, header `x-portal-hook-secret: <PORTAL_HOOK_SECRET>`.
-2. Map the body fields from the trigger's contact/payment context. `eventId` must be
-   unique per fire — the workflow execution id or `{{contact.id}}-{{order.id}}`.
-3. **Rename the workflow** (it's named after a tool nobody uses).
-4. Ship as draft → Jesse publishes (platform limit and safety rule agree) → test fire
-   → check the Slack DM and /admin/clients.
+What the caller must supply, whatever it ends up being: the JSON contract above,
+the `x-portal-hook-secret` header, and an `eventId` unique per fire (e.g.
+`{{contact.id}}-{{order.id}}`). Cross-lane needs go into the master plan doc, not
+into either session's backlog.
 
-Not done yet, deliberately: the GHL workflow repoint itself, the outbox/welcome flow
-(Phase 4), and the custom domain (Decision 4 — the portal link still lands in spam
-from `workers.dev`; do the domain before real clients get links automatically).
+Not done yet, deliberately: the outbox/welcome flow (Phase 4), and the custom domain
+(Decision 4 — the portal link still lands in spam from `workers.dev`; do the domain
+before real clients get links automatically). Note the webhook path creates **no GHL
+sub-account** (this repo holds no GHL key by design) — where sub-account creation
+lives on a real sale is an open design question tracked in the coordination block.

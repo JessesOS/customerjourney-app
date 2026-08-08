@@ -32,9 +32,11 @@ const figtreeBody = Figtree({
 });
 
 export const metadata: Metadata = {
-  title: "Strategize × RT Digital | Client Dashboard",
-  description:
-    "Shared client dashboard for clarifying the offer, shaping the campaign, and moving qualified trade owners from ad click to booked consult.",
+  // Neutral default — portal and admin pages set their own titles. The old
+  // "Strategize ×" title leaked into every tab (client-visible); gone per
+  // Jesse 2026-08-06.
+  title: "RT Digital",
+  description: "Client portal by RT Digital.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
