@@ -42,10 +42,14 @@
 > the brain dashboard. Jesse: nothing needed from him now; build proceeds on his go.
 > - Phase 2 (identity) DONE 08-08. Phase 1 REDEFINED per
 >   `reports/punch-lists/HANDOFF-three-surfaces-visibility-model-2026-08-09.md` (brain repo).
-> - NEXT (ready, awaiting go): add `team_visible` + `rolls_up_to` to CSM schema
->   (additive, invisible), then `status_changed_at` + `task_events`, then the importer
->   from portal templates, then the identical-views diff, then the read-only journey
->   view on client detail. Queue decision made: client-only rows stay OUT of the queue.
+> - Steps 1-2 DONE + DEPLOYED 2026-08-09: `team_visible` (all 972 rows = 1),
+>   `rolls_up_to`, `status_changed_at` (stamps only on real transitions, verified),
+>   `task_events` append-only log (verified: one event per transition, none on
+>   no-op or notes edits). Prod migration verified: 972 rows before = after, smoke
+>   numbers unchanged (53 respond / 12 portal-visible).
+> - NEXT: the importer generating client-only rows from the portal's template files,
+>   proven by the identical-views diff; then the read-only journey view on client
+>   detail. Queue decision made: client-only rows stay OUT of the queue.
 > - Phase 4 (portal reads shared DB): parked until raised with Jesse explicitly.
 > - Phases 5-6 (central view, brain dashboard reads CSM): after the above.
 >
