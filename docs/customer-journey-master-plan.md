@@ -21,7 +21,7 @@
 >
 > **Working backlog (mega session), state at 2026-08-09:**
 > - Friend demo test: `run-demo-checkout.sh --live --notify` from the brain repo, Jesse driving. Chain fully verified 2026-08-08.
-> - Cleanup from testing: sub-accounts "Allconvos", "1. Jessetestsub", "1. Ja test", matching portal clients, test contacts in RTD.
+> - Cleanup from testing: portal clients DONE 2026-08-09 (all 5 deleted by Jesse, API shows 0). RTD test contact "jma jma" DONE (deleted via API, verified). **Sub-accounts NOT done: the agency API still lists all four ("1. Jesse Demo", "Allconvos", "1. Jessetestsub", "1. Ja test") after Jesse's UI deletions — the delete flow may not have completed. Jesse to re-check in the agency UI.**
 > - R2 switch-on: DONE 2026-08-09 (Jesse enabled R2, bucket created, deployed, live-verified end to end; `deploying.md` updated).
 > - GHL trigger for the provision webhook: NEW minimal draft workflow (subscription activated -> POST webhook), Jesse publishes. LaunchBay workflows stay parked.
 > - Custom domain for the portal (D4) before real clients.
