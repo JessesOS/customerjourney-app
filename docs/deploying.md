@@ -63,23 +63,19 @@ Managed with `npx wrangler secret put <NAME> --name scale-onboarding-portal`:
 
 Local dev reads `.dev.vars` (gitignored) for the same names.
 
-## R2 uploads (built 2026-08-08, waiting on account enablement)
+## R2 uploads (LIVE since 2026-08-09)
 
-Client file uploads are R2-ready: with an `UPLOADS` binding the file body goes to R2
-and D1 keeps metadata; without it, uploads store inline in D1 (the pre-R2 behavior,
-still what production does). Legacy inline rows keep working either way — verified.
+Client file uploads live in the `scale-onboarding-portal-uploads` R2 bucket (binding
+`UPLOADS`, keys `uploads/<clientId>/<milestoneId>`); D1 keeps the metadata row, with
+empty `content` marking an R2-backed row. Legacy inline rows still serve from D1.
+Client deletion also deletes the client's R2 objects. Live-verified 2026-08-09:
+upload → object in bucket → admin download → delete → object gone.
 
-**R2 is NOT enabled on the Cloudflare account** (API error 10042) and enabling it is
-a dashboard-only step. To turn this on:
-
-1. Cloudflare dashboard → R2 → enable (Jesse — it's an account/terms step).
-2. `npx wrangler r2 bucket create scale-onboarding-portal-uploads`
-3. Flip `R2_READY = true` in `scripts/patch-wrangler.mjs`.
-4. Build, patch, deploy as above.
-
-Until then `patch-wrangler.mjs` strips the generated `r2_buckets` binding so deploys
-don't fail on the missing bucket. Local dev always has an emulated bucket
-(miniflare) regardless of the account.
+Jesse enabled R2 in the dashboard 2026-08-09 (account payment step, free tier covers
+this usage). `R2_READY = true` in `scripts/patch-wrangler.mjs` writes the real bucket
+name into the generated config — if a deploy ever fails on a missing bucket, check
+that flag and the bucket before anything else. Local dev always uses an emulated
+bucket (miniflare), separate from production.
 
 ## Things that stay true
 

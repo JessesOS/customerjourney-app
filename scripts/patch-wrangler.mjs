@@ -8,7 +8,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 // exists (npx wrangler r2 bucket create scale-onboarding-portal-uploads).
 // While false the binding is stripped so deploys don't fail on the missing
 // bucket — the app then stores uploads inline in D1, exactly as before R2.
-const R2_READY = false;
+const R2_READY = true; // R2 enabled + bucket created 2026-08-09
 
 const path = new URL("../dist/server/wrangler.json", import.meta.url);
 const cfg = JSON.parse(readFileSync(path, "utf8"));
