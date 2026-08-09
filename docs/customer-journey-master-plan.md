@@ -4,8 +4,35 @@
 **Scope:** checkout payment page → sub-account + snapshot → nurture/remind/follow-up/inspire → customer journey dashboard
 **Status:** PLAN ONLY. Nothing was built. Nothing in GHL or the portal was changed.
 
-> **SESSION COORDINATION, added 2026-08-08 by the brain session. Read this before
-> proposing next steps.** Two sessions work this plan and both have shipped:
+> **SESSION MODEL CHANGED, 2026-08-09, Jesse's decision: ONE MEGA SESSION.**
+> All customer-journey, three-surfaces/CSM, and portal-tweak work now runs in a single
+> session rooted at `~/Master/Labs/stanley-henry-ai-brain`, working across this repo and
+> `~/Master/AI/csm-dashboard` as needed. This is an explicit, deliberate amendment to the
+> Session Root Protocol for this program of work, chosen by Jesse for cognitive bandwidth.
+> The previously separate portal and tweaks sessions are CLOSED; if you are reading this
+> from a session that is not the mega session, do not start work — hand anything you hold
+> to the mega session via a handoff doc and stop.
+>
+> Operating rules that keep one session viable: heavy exploration is delegated to
+> subagents so the main context stays lean; commits name their files explicitly (three
+> accidental commit-sweeps happened the week this was written); /wrap and /hand-off run
+> at natural breakpoints, not at the point of exhaustion; and decisions still land in
+> this doc the same hour they are made, because docs survive sessions.
+>
+> **Working backlog (mega session), state at 2026-08-09:**
+> - Friend demo test: `run-demo-checkout.sh --live --notify` from the brain repo, Jesse driving. Chain fully verified 2026-08-08.
+> - Cleanup from testing: sub-accounts "Allconvos", "1. Jessetestsub", "1. Ja test", matching portal clients, test contacts in RTD.
+> - R2 switch-on: Jesse enables R2 in the Cloudflare dashboard, then the four steps in `deploying.md` (bucket create, flip R2_READY, build, deploy).
+> - GHL trigger for the provision webhook: NEW minimal draft workflow (subscription activated -> POST webhook), Jesse publishes. LaunchBay workflows stay parked.
+> - Custom domain for the portal (D4) before real clients.
+> - Snapshot mapping: Convert confirmed-pending-Aleena; full product-to-snapshot table before paid clients.
+> - Sub-account creation on a real sale: decide where the agency key lives (SaaS mode / Worker secret / brain-side step).
+> - Three-surfaces phases (CSM as system of record) per `three-surfaces-2026-08-06.md`.
+> - Portal UI tweaks: queue them here as one-line items as Jesse finds them.
+>
+> *Superseded division-of-labor note from 2026-08-08 follows, kept for history:*
+>
+> Two sessions work this plan and both have shipped:
 >
 > - **Brain repo** (`~/Master/Labs/stanley-henry-ai-brain`): the `journey-provisioning`
 >   skill — a $0 demo checkout page that runs the full chain (sub-account from Convert
