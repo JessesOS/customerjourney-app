@@ -22,7 +22,7 @@
 > **Working backlog (mega session), state at 2026-08-09:**
 > - Friend demo test: `run-demo-checkout.sh --live --notify` from the brain repo, Jesse driving. Chain fully verified 2026-08-08.
 > - Cleanup from testing: sub-accounts "Allconvos", "1. Jessetestsub", "1. Ja test", matching portal clients, test contacts in RTD.
-> - R2 switch-on: Jesse enables R2 in the Cloudflare dashboard, then the four steps in `deploying.md` (bucket create, flip R2_READY, build, deploy).
+> - R2 switch-on: DONE 2026-08-09 (Jesse enabled R2, bucket created, deployed, live-verified end to end; `deploying.md` updated).
 > - GHL trigger for the provision webhook: NEW minimal draft workflow (subscription activated -> POST webhook), Jesse publishes. LaunchBay workflows stay parked.
 > - Custom domain for the portal (D4) before real clients.
 > - Snapshot mapping: Convert confirmed-pending-Aleena; full product-to-snapshot table before paid clients.
