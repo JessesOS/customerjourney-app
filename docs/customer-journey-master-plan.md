@@ -19,16 +19,43 @@
 > at natural breakpoints, not at the point of exhaustion; and decisions still land in
 > this doc the same hour they are made, because docs survive sessions.
 >
-> **Working backlog (mega session), state at 2026-08-09:**
-> - Friend demo test: `run-demo-checkout.sh --live --notify` from the brain repo, Jesse driving. Chain fully verified 2026-08-08.
-> - Cleanup from testing: portal clients DONE 2026-08-09 (all 5 deleted by Jesse, API shows 0). RTD test contact "jma jma" DONE (deleted via API, verified). Sub-accounts: deleted by Jesse, on GHL's 24-hour deletion delay — the API lists them until it executes (GHL fact worth remembering: sub-account deletes are scheduled, not instant). Expect them gone from the API by 2026-08-10.
-> - R2 switch-on: DONE 2026-08-09 (Jesse enabled R2, bucket created, deployed, live-verified end to end; `deploying.md` updated).
-> - GHL trigger for the provision webhook: NEW minimal draft workflow (subscription activated -> POST webhook), Jesse publishes. LaunchBay workflows stay parked.
-> - Custom domain for the portal (D4) before real clients.
-> - Snapshot mapping: Convert confirmed-pending-Aleena; full product-to-snapshot table before paid clients.
-> - Sub-account creation on a real sale: decide where the agency key lives (SaaS mode / Worker secret / brain-side step).
-> - Three-surfaces phases (CSM as system of record) per `three-surfaces-2026-08-06.md`.
-> - Portal UI tweaks: queue them here as one-line items as Jesse finds them.
+> **Working backlog (mega session), restructured 2026-08-09 into Jesse's three streams.**
+> Every new piece of work belongs to exactly one stream. Done items from before the
+> restructure: test-artifact cleanup (sub-accounts on GHL's 24h delete delay, gone by
+> 08-10), R2 switch-on live, portal clients + test contact deleted.
+>
+> **STREAM 1 — THE FLOW.** Payment page to finished onboarding and delivery: sub-account
+> + snapshot + workflow on a sale, then the continuing automations, webhooks, and the
+> whole customer experience through the portal. Working chain exists (demo checkout,
+> live-verified 08-08); webhook endpoint live on the Worker.
+> - NEXT: friend demo (`run-demo-checkout.sh --live --notify`, Jesse driving).
+> - GHL trigger workflow: new minimal draft (subscription activated -> POST webhook),
+>   Jesse publishes. LaunchBay stays parked.
+> - Custom domain (D4) before real clients — welcome emails currently land in spam.
+> - Snapshot mapping table (Convert confirmed-pending-Aleena; Scale/Respond unset).
+> - Sub-account creation on a real sale: where the agency key lives (SaaS mode / Worker
+>   secret / brain-side step). Decide before production.
+> - Later in this stream: the four verbs (remind / follow-up / nurture / inspire) behind
+>   one governor, stalled sweep, journey pause on cancellation (D5).
+>
+> **STREAM 2 — THE BRAIN WIRING.** CSM + portal joined on one truth, surfaced up into
+> the brain dashboard. Jesse: nothing needed from him now; build proceeds on his go.
+> - Phase 2 (identity) DONE 08-08. Phase 1 REDEFINED per
+>   `reports/punch-lists/HANDOFF-three-surfaces-visibility-model-2026-08-09.md` (brain repo).
+> - NEXT (ready, awaiting go): add `team_visible` + `rolls_up_to` to CSM schema
+>   (additive, invisible), then `status_changed_at` + `task_events`, then the importer
+>   from portal templates, then the identical-views diff, then the read-only journey
+>   view on client detail. Queue decision made: client-only rows stay OUT of the queue.
+> - Phase 4 (portal reads shared DB): parked until raised with Jesse explicitly.
+> - Phases 5-6 (central view, brain dashboard reads CSM): after the above.
+>
+> **STREAM 3 — THE PORTAL.** The client-facing thing itself: aesthetics, content,
+> changes and additions, finalizing it for real clients.
+> - NEXT: Jesse dumps his change list — one-liners added here as they come.
+> - Known content pass already flagged: CSM task titles naming the retired tool
+>   (stream 2 touches these too); guided-setup experience queued by Jesse.
+> - Standing rule: any portal template change stales stream 2's importer — re-run it
+>   after portal changes ship (cheap, it is a command, not a transcription).
 >
 > *Superseded division-of-labor note from 2026-08-08 follows, kept for history:*
 >
