@@ -411,7 +411,7 @@ function internalTasks(tasks: CuratedTask[], currentPhase: string) {
   );
 }
 
-function recentMovement(tasks: CuratedTask[]) {
+function recentMovement(tasks: CuratedTask[]): { text: string; tone: "teal" | "gold" | "red" }[] {
   return [...tasks]
     .sort((left, right) => new Date(right.updatedAt).getTime() - new Date(left.updatedAt).getTime())
     .slice(0, 4)
