@@ -285,6 +285,16 @@ export const respondOnboardingForm: PortalFormDefinition = {
   ],
 };
 
+/** Honest size label for a form task, computed from the definition so it never
+    drifts: "21 questions · about 15 minutes". */
+export function formSizeLabel(formId: string): string | null {
+  const form = onboardingFormById(formId);
+  if (!form) return null;
+  const count = form.sections.reduce((n, s) => n + s.fields.filter((f) => !f.hidden).length, 0);
+  const minutes = Math.max(5, Math.round((count * 0.7) / 5) * 5);
+  return `${count} questions · about ${minutes} minutes`;
+}
+
 export function onboardingFormById(formId: string): PortalFormDefinition | undefined {
   return [scaleOnboardingForm, respondOnboardingForm].find((form) => form.id === formId);
 }

@@ -153,9 +153,14 @@ export function OnboardingFormStepper({
         </div>
       </div>
 
-      <div style={{ height: 3, borderRadius: 99, background: "var(--pj-track)", marginBottom: 24, overflow: "hidden" }}>
+      <div style={{ height: 3, borderRadius: 99, background: "var(--pj-track)", marginBottom: index === 0 ? 10 : 24, overflow: "hidden" }}>
         <div style={{ height: "100%", width: `${((index + 1) / total) * 100}%`, background: "var(--pj-act)", borderRadius: 99, transition: "width 0.3s ease" }} />
       </div>
+      {index === 0 && (
+        <p style={{ fontSize: 12.5, color: "var(--pj-faint)", margin: "0 0 22px" }}>
+          {total} quick screens — your answers save as you go, so you can leave and pick up where you stopped.
+        </p>
+      )}
 
       {isGroup ? (
         <div>

@@ -13,7 +13,7 @@ import {
   type JourneyMilestone,
 } from "@/lib/onboardingJourney";
 import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
-import { onboardingFormById } from "@/lib/onboardingForm";
+import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
@@ -646,7 +646,11 @@ export function ClientPortalExperience({
 
                 <UpNextCard
                   title={upNext ? upNext.title : "We’re preparing your next step"}
-                  desc={upNext ? upNext.detail : "Nothing needed from you right now — we’ll flag you the moment there’s something to review."}
+                  desc={
+                    upNext
+                      ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}`
+                      : "Nothing needed from you right now — we’ll flag you the moment there’s something to review."
+                  }
                   actionable={!!upNext}
                   onStart={upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
                 />
