@@ -255,7 +255,7 @@ export function ClientPortalExperience({
       ? Math.round((stageDoneCount / currentStage.milestones.length) * 100)
       : 0;
   const upNextCandidate = currentStage ? currentStage.milestones[firstOpenMilestoneIndex] : undefined;
-  const upNext = upNextCandidate && taskDisplayStatus(upNextCandidate) === "your-turn" ? upNextCandidate : null;
+  const upNext = upNextCandidate && taskDisplayStatus(upNextCandidate) === "your-turn" ? upNextCandidate : undefined;
 
   // Returns the stage id if approving `milestoneId` completes its whole stage.
   function stageCompletedBy(milestoneId: string): string | null {
@@ -873,7 +873,7 @@ export function ClientPortalExperience({
 
                 {m.videoUrl && (
                   <button
-                    onClick={() => openVideo(m.title, m.videoUrl)}
+                    onClick={() => m.videoUrl && openVideo(m.title, m.videoUrl)}
                     style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-pill)", padding: "7px 16px 7px 7px", color: "var(--pj-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 13, cursor: "pointer" }}
                   >
                     <PlayIcon color="var(--pj-act)" />
