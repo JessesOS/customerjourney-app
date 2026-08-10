@@ -117,7 +117,7 @@ export const scaleOnboardingForm: PortalFormDefinition = {
       fields: [
         { id: "street_address", label: "Business Street Address", type: "text" },
         { id: "city", label: "Business City", type: "text" },
-        { id: "state_region", label: "Business State / Province / Region", type: "text" },
+        { id: "state_region", label: "Business State", type: "text", placeholder: "e.g. NSW" },
         { id: "country", label: "Business Country", type: "text" },
         { id: "post_code", label: "Business Post Code / Zip Code", type: "text" },
       ],
