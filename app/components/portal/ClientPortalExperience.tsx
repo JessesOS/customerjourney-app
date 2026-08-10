@@ -16,6 +16,7 @@ import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalD
 import { onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
+import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
 import { StageGuide } from "@/app/components/portal/StageGuide";
 import { stageGuideFor } from "@/lib/stageGuide";
@@ -1072,6 +1073,10 @@ export function ClientPortalExperience({
                           </p>
                         )}
                       </div>
+                    )}
+
+                    {(m.id === "ts-2" || m.id === "rsp-048") && portalToken && (
+                      <ReceptionistPlayground portalToken={portalToken} />
                     )}
 
                     {m.notePrompt && (
