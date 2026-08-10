@@ -2,7 +2,10 @@ import { requestCanAdmin } from "@/lib/adminAuth";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { getMilestoneContentFull, resolveMilestoneDraft, setMilestoneContent, setMilestoneDraft } from "@/lib/portalClientStore";
 
-const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
+// Virtual slots: per-client content that isn't a journey task — e.g. the
+// structured landing-page JSON rendered at /portal/[token]/landing.
+const VIRTUAL_CONTENT_SLOTS = ["landing-page"];
+const validMilestoneIds = new Set([...allMilestoneTemplates.map((m) => m.id), ...VIRTUAL_CONTENT_SLOTS]);
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string; milestoneId: string }> }) {
   if (!requestCanAdmin(request)) {

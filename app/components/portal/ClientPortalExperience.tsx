@@ -1096,6 +1096,24 @@ export function ClientPortalExperience({
                       <ReceptionistPlayground portalToken={portalToken} />
                     )}
 
+                    {/* bd-g2 approves a REAL page, not a wall of copy: live preview of
+                        the auto-generated landing page at /portal/[token]/landing. */}
+                    {m.id === "bd-g2" && portalToken && (
+                      <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 20 }}>
+                        <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
+                          <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
+                            Your landing page — live preview
+                          </div>
+                          <a href={`/portal/${portalToken}/landing`} target="_blank" rel="noreferrer" style={{ fontSize: 12.5, fontWeight: 600, color: "var(--pj-act)", textDecoration: "none", whiteSpace: "nowrap" }}>
+                            Open full page ↗
+                          </a>
+                        </div>
+                        <div style={{ borderRadius: "var(--pj-radius-sm)", overflow: "hidden", border: "1px solid var(--pj-line)", background: "var(--pj-well)" }}>
+                          <iframe src={`/portal/${portalToken}/landing`} title="Your landing page preview" style={{ display: "block", width: "100%", height: 560, border: 0 }} loading="lazy" />
+                        </div>
+                      </div>
+                    )}
+
                     {m.notePrompt && (
                       <div style={{ marginTop: 16 }}>
                         <label style={{ fontSize: 10.5, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
