@@ -281,6 +281,88 @@
   --pj-turn-tint: #eff1f7;
 }
 
+/* Animated welcome marquee (design_handoff_scale/welcome_screen): drifting
+   trade-tile rows with micro-animations. Keyframe names (om*) come from the
+   handoff reference verbatim — the embedded tile markup animates against
+   them. */
+@keyframes omRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@keyframes omLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes omSpin { to { transform: rotate(360deg); } }
+@keyframes omPulse { 0%, 100% { opacity: 0.45; } 50% { opacity: 1; } }
+@keyframes omBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+@keyframes omDrip { 0%, 50% { transform: translateY(-30px); opacity: 0; } 65% { opacity: 1; } 100% { transform: translateY(12px); opacity: 0; } }
+.pj-marquee-cta:hover {
+  background: #2c261d !important;
+  transform: translateY(-1px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pj-marquee * {
+    animation-play-state: paused !important;
+  }
+}
+
+/* ---- "Handoff" design skin (design_handoff_scale/client_portal) ----
+   Demo review toggle: re-points fonts to DM Sans / DM Mono and the token set
+   to the handoff's light palette (terracotta + teal on near-white, warm
+   layered shadows). Skin-level only — the handoff's structural/behavioral
+   changes (watermark header, strict task ordering, per-kind task screens)
+   are a separate adoption decision. Placed after the theme blocks so it
+   overrides whichever theme is active while toggled on. */
+[data-pj-design="handoff"] {
+  --font-heading: var(--font-dm-sans);
+  --font-body: var(--font-dm-sans);
+  --font-ibm-plex-mono: var(--font-dm-mono);
+
+  --pj-bg: #fbfaf8;
+  --pj-rail: #f7f3ea;
+  --pj-card: #ffffff;
+  --pj-ink: #17130e;
+  --pj-muted: #6f6a60;
+  --pj-faint: #8a8478;
+  --pj-line: #e9e4da;
+  --pj-line-soft: #f0ece2;
+
+  --pj-act: #c9622f;
+  --pj-act-fill: #f9e2d0;
+  --pj-act-ink: #ffffff;
+  --pj-done: #1f6b70;
+  --pj-done-fill: #dcebe9;
+  --pj-withus: #6a4a7e;
+  --pj-withus-fill: #eae3f0;
+  --pj-upnext: #8a8478;
+  --pj-upnext-fill: #f0ece2;
+
+  --pj-glow: radial-gradient(1100px 480px at 50% -120px, #ffffff 0%, rgba(255, 255, 255, 0) 65%);
+  --pj-card-grad: linear-gradient(180deg, #ffffff 0%, #f7f3ea 100%);
+  --pj-shadow-card: 0 12px 26px -16px rgba(120, 80, 30, 0.3);
+  --pj-btn-grad: linear-gradient(180deg, #d9773f 0%, #b4541f 100%);
+  --pj-shadow-btn: 0 8px 18px -8px rgba(23, 19, 14, 0.35);
+
+  --pj-frame: #ffffff;
+  --pj-frame-line: #e9e4da;
+  --pj-shadow-frame: 0 1px 2px rgba(23, 19, 14, 0.05), 0 14px 34px -10px rgba(23, 19, 14, 0.1), 0 40px 80px -30px rgba(120, 80, 30, 0.18);
+  --pj-frame-deep: #f7f3ea;
+  --pj-frame-deep-line: #e3d7c1;
+  --pj-card-line: #e9e4da;
+  --pj-well: #f7f3ea;
+  --pj-track: #e9e4da;
+  --pj-ring: #c9c3b8;
+  --pj-strike: #d5cfc2;
+  --pj-path: #d8d2c6;
+  --pj-turn-tint: #f7f3ea;
+  --pj-done-hi: #2a8087;
+  --pj-shadow-badge: 0 14px 34px -16px rgba(31, 107, 112, 0.5);
+  --pj-error: #b23b2e;
+  --pj-link: #1f6b70;
+  --pj-scrim: rgba(23, 19, 14, 0.55);
+  --pj-shadow-modal: 0 40px 120px rgba(23, 19, 14, 0.4);
+  --pj-rail-card-grad: linear-gradient(180deg, #ffffff 0%, #fbfaf8 100%);
+  --pj-rail-card-line: #e9e4da;
+  --pj-rail-card-shadow: 0 1px 2px rgba(23, 19, 14, 0.05), 0 14px 34px -10px rgba(23, 19, 14, 0.1);
+  --pj-rail-ring-fill: #ffffff;
+  --pj-tile-act: #c9622f;
+}
+
 /* Stage voice-guide orb (Imprint-style): concentric rings that breathe
    gently at rest and pulse faster while narration plays. Ring colour rides
    --pj-act, so the orb re-themes with the portal. */

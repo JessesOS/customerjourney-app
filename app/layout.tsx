@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { Archivo, DM_Mono, DM_Sans, Figtree, IBM_Plex_Mono, Instrument_Serif, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -31,6 +31,31 @@ const figtreeBody = Figtree({
   weight: ["400", "500", "600", "700"],
 });
 
+// Welcome marquee (design handoff 2026-08-10): serif wordmark + Archivo UI.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+});
+
+// "Handoff" design skin (demo review toggle) re-points the portal type to
+// DM Sans / DM Mono via [data-pj-design="handoff"] in globals.css.
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+});
+
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
 export const metadata: Metadata = {
   // Neutral default — portal and admin pages set their own titles. The old
   // "Strategize ×" title leaked into every tab (client-visible); gone per
@@ -51,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${figtreeHeading.variable} ${figtreeBody.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${figtreeHeading.variable} ${figtreeBody.variable} ${instrumentSerif.variable} ${archivo.variable} ${dmSans.variable} ${dmMono.variable} antialiased`}
       >
         {children}
       </body>

@@ -21,6 +21,7 @@ import { stageGuideFor } from "@/lib/stageGuide";
 import { AskChips } from "@/app/components/portal/AskChips";
 import { askItemsFor } from "@/lib/askAi";
 import { WelcomeScreen } from "@/app/components/portal/WelcomeScreen";
+import { WelcomeMarquee } from "@/app/components/portal/WelcomeMarquee";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
 import { StageCompleteView } from "@/app/components/portal/StageCompleteView";
@@ -187,6 +188,12 @@ export function ClientPortalExperience({
   // Neutral's accent audition (demo pill): gallery surfaces stay, one accent
   // carries the life. Terracotta is the recommended default everywhere.
   const [neutralAccent, setNeutralAccent] = useState<"terracotta" | "brass" | "indigo" | "graphite">("terracotta");
+  // Welcome screen generation under review: "marquee" (animated handoff port,
+  // default) vs "mosaic" (previous static tiles). Demo pill switches live.
+  const [welcomeVersion, setWelcomeVersion] = useState<"marquee" | "mosaic">("marquee");
+  // Whole-portal design skin from the client_portal handoff package (DM fonts,
+  // terracotta+teal on near-white). Demo review toggle; skin-level only.
+  const [designSkin, setDesignSkin] = useState<"current" | "handoff">("current");
   // Voice guide on/off — device-level preference (localStorage), defaults on.
   // Off unmounts the orb entirely, which also stops any playing narration.
   const [voiceOn, setVoiceOn] = useState(true);
@@ -383,8 +390,41 @@ export function ClientPortalExperience({
   }
 
   return (
-    <div data-pj-theme={theme === "warm" ? undefined : theme} data-pj-accent={theme === "neutral" ? neutralAccent : undefined} style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}>
-      {showWelcome && <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />}
+    <div
+      // While the handoff skin is active, theme/accent attributes come off so
+      // its token block applies cleanly (the accent selectors would otherwise
+      // out-specificity it).
+      data-pj-theme={designSkin === "handoff" || theme === "warm" ? undefined : theme}
+      data-pj-accent={designSkin === "handoff" || theme !== "neutral" ? undefined : neutralAccent}
+      data-pj-design={designSkin === "handoff" ? "handoff" : undefined}
+      style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}
+    >
+      {showWelcome &&
+        (welcomeVersion === "marquee" ? (
+          <WelcomeMarquee brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
+        ) : (
+          <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
+        ))}
+      {/* Review-only: welcome-generation toggle, floats OVER the welcome
+          overlay (demo route only). */}
+      {showWelcome && isDemo && (
+        <div style={{ position: "fixed", bottom: 18, right: 18, zIndex: 70, display: "flex", gap: 4, background: "#fff", border: "1px solid #e0dcd2", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(0,0,0,.5)" }}>
+          {(
+            [
+              ["marquee", "Marquee"],
+              ["mosaic", "Mosaic"],
+            ] as const
+          ).map(([v, label]) => (
+            <button
+              key={v}
+              onClick={() => setWelcomeVersion(v)}
+              style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: welcomeVersion === v ? "#17130e" : "transparent", color: welcomeVersion === v ? "#f7f5f0" : "#6f6a60", whiteSpace: "nowrap" }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
       <style>{`
         @keyframes portalPulse { 0% { transform: scale(1); opacity: 0.65; } 70% { transform: scale(2.2); opacity: 0; } 100% { opacity: 0; } }
         @keyframes viewIn { from { transform: translateY(18px); opacity: 0.4; } to { transform: translateY(0); opacity: 1; } }
@@ -627,10 +667,31 @@ export function ClientPortalExperience({
             )}
           </section>
 
+          {/* Review-only: design-skin toggle (current system vs the client
+              portal handoff package). Demo route only. */}
+          {isDemo && (
+            <div style={{ position: "fixed", bottom: 156, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+              {(
+                [
+                  ["current", "Current design"],
+                  ["handoff", "New design"],
+                ] as const
+              ).map(([v, label]) => (
+                <button
+                  key={v}
+                  onClick={() => setDesignSkin(v)}
+                  style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: designSkin === v ? "var(--pj-act)" : "transparent", color: designSkin === v ? "var(--pj-act-ink)" : "var(--pj-muted)", whiteSpace: "nowrap" }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
+
           {/* Review-only: Neutral accent audition. Demo route only, shows
               while the neutral theme is active. Delete once a winner is
               picked. */}
-          {isDemo && theme === "neutral" && (
+          {isDemo && theme === "neutral" && designSkin !== "handoff" && (
             <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
