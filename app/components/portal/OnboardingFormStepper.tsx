@@ -325,6 +325,29 @@ function FileUploadField({
   );
 }
 
+/**
+ * Maps our field ids/types to the standard autocomplete tokens so the OS and
+ * browser offer their native autofill (saved phone, email, address, org name).
+ * Without these, autofill is hit-and-miss; with them, iOS QuickType and
+ * Chrome/Safari profiles light up.
+ */
+function autocompleteFor(field: PortalFormField): string | undefined {
+  const byId: Record<string, string> = {
+    business_phone: "tel",
+    website_url: "url",
+    legal_business_name: "organization",
+    street_address: "address-line1",
+    city: "address-level2",
+    state_region: "address-level1",
+    country: "country-name",
+  };
+  if (byId[field.id]) return byId[field.id];
+  if (field.type === "email") return "email";
+  if (field.type === "tel") return "tel";
+  if (field.type === "url") return "url";
+  return undefined;
+}
+
 function FieldPrompt({
   field,
   value,
@@ -408,6 +431,8 @@ function FieldPrompt({
         {(field.type === "text" || field.type === "email" || field.type === "url" || field.type === "tel") && (
           <input
             type={field.type}
+            name={field.id}
+            autoComplete={autocompleteFor(field)}
             value={textValue}
             placeholder={field.placeholder}
             autoFocus
