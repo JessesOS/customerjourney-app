@@ -142,8 +142,8 @@ export const journeyTemplate: StageTemplate[] = [
     dayEnd: 31,
     blurb: "Ongoing support once you're live.",
     milestones: [
-      { id: "pl-1", title: "Your Week 1 check-in call", detail: "A quick check-in to make sure everything's running smoothly." },
-      { id: "pl-2", title: "Your Week 2 check-in call", detail: "Another check-in before we move to monthly calls." },
+      { id: "pl-1", title: "Book your Week 1 check-in call", detail: "A quick check-in to make sure everything's running smoothly. Pick a time that suits you below.", bookingUrl: "https://go.rt-d.com/jesse30" },
+      { id: "pl-2", title: "Book your Week 2 check-in call", detail: "Another check-in before we move to monthly calls. Pick a time that suits you below.", bookingUrl: "https://go.rt-d.com/jesse30" },
       { id: "pl-3", title: "Send us a testimonial", detail: "We'd love to hear how it's going — this helps us and future clients like you." },
     ],
     statusNotes: ["Your account is actively monitored — performance reports available monthly."],
