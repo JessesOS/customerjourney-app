@@ -168,18 +168,21 @@ export function ClientPortalExperience({
   const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" ? "rail" : "focus");
   const [isDemo, setIsDemo] = useState(false);
   // First-visit welcome landing (Imprint-style). Shown until dismissed once
-  // on this device; ?welcome=1 forces it back for review.
+  // on this device PER CLIENT (a global flag meant a second client on the same
+  // browser never saw their welcome — caught testing 2026-08-10);
+  // ?welcome=1 forces it back for review.
+  const welcomedKey = `pjWelcomed:${portalToken ?? "demo"}`;
   const [showWelcome, setShowWelcome] = useState(false);
   useEffect(() => {
     setIsDemo(window.location.pathname === "/portal/demo");
     try {
       const forced = new URLSearchParams(window.location.search).get("welcome") === "1";
-      if (forced || localStorage.getItem("pjWelcomed") !== "1") setShowWelcome(true);
+      if (forced || localStorage.getItem(welcomedKey) !== "1") setShowWelcome(true);
     } catch {}
-  }, []);
+  }, [welcomedKey]);
   function dismissWelcome() {
     try {
-      localStorage.setItem("pjWelcomed", "1");
+      localStorage.setItem(welcomedKey, "1");
     } catch {}
     setShowWelcome(false);
   }
