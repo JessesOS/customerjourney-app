@@ -85,9 +85,9 @@
 >   qualifier-drafter skill (reads the client's website, drafts the AI receptionist's
 >   qualification questions). First real draft (FM Essentials) pending Jesse's verdict.
 > - NEXT: Jesse dumps his change list — one-liners added here as they come.
-> - QUEUED 2026-08-10 (Jesse, build later): AI receptionist TEST PLAYGROUND on the
->   Testing task — stage 1: portal-native chat (our API + the client's generated
->   qualifiers as the script; voice variant possible via mic + TTS). Stage 2: auto-
+> - STAGE 1 SHIPPED same night 2026-08-10: AI receptionist playground live on the
+>   Testing task (chat + mic + spoken replies, client's own script, Worker-side
+>   sonnet; ANTHROPIC_API_KEY now also a Worker secret). Stage 2 still queued: auto-
 >   configure the REAL GHL Voice AI + Conversation AI in the client's sub-account
 >   from the same content — gated on sub-account write access (OAuth agency token
 >   that can mint location tokens, or verify the internal-API route works
