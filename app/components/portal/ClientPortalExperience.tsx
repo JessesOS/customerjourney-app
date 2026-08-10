@@ -195,14 +195,9 @@ export function ClientPortalExperience({
     setShowWelcome(false);
   }
 
-  // "Get started" on the welcome screen goes straight INTO the first open task,
-  // not just back to the rail — one click between peak motivation and task 1.
-  function dismissWelcomeAndBegin() {
-    dismissWelcome();
-    if (currentStage && firstOpenMilestoneIndex >= 0) {
-      openM(currentStage.id, firstOpenMilestoneIndex + 1);
-    }
-  }
+  // Jesse 2026-08-10: "Get started" lands on the onboarding OVERVIEW (the
+  // journey page with Up Next / Start this task), NOT straight into the form.
+  // The overview is the orientation moment; the client chooses to start.
   // Portal look: warm (organic) / cool (slate workshop). Seeded from the client
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
@@ -427,9 +422,9 @@ export function ClientPortalExperience({
     >
       {showWelcome &&
         (welcomeVersion === "marquee" ? (
-          <WelcomeMarquee brand={isRespond ? "respond" : "scale"} onStart={dismissWelcomeAndBegin} />
+          <WelcomeMarquee brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
         ) : (
-          <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcomeAndBegin} />
+          <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
         ))}
       {/* Review-only: welcome-generation toggle, floats OVER the welcome
           overlay (demo route only). */}
