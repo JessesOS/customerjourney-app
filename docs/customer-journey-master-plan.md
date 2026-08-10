@@ -9,9 +9,18 @@
 > session rooted at `~/Master/Labs/stanley-henry-ai-brain`, working across this repo and
 > `~/Master/AI/csm-dashboard` as needed. This is an explicit, deliberate amendment to the
 > Session Root Protocol for this program of work, chosen by Jesse for cognitive bandwidth.
-> The previously separate portal and tweaks sessions are CLOSED; if you are reading this
-> from a session that is not the mega session, do not start work — hand anything you hold
-> to the mega session via a handoff doc and stop.
+> The previously separate portal and tweaks sessions are CLOSED.
+>
+> **AMENDED 2026-08-10: one scoped delegation.** Stream 3 (portal UI/design work) runs
+> in Jesse's desktop "Customer Journey" session, because design iteration is high-volume
+> and would flood the mega session's context. That session's lane is exactly:
+> `~/Master/AI/customerjourney-app` UI/content/aesthetics. It does NOT touch GHL, the
+> CSM repo, the brain repo, webhooks, or schema; cross-lane needs get written here.
+> It commits by explicit file paths and pushes when pausing. Any OTHER session reading
+> this: do not start work — hand anything you hold to the mega session and stop.
+>
+> Standing rule reminder for the design session: shipping portal template/journey
+> changes stales stream 2's importer — note it here so the mega session re-runs it.
 >
 > Operating rules that keep one session viable: heavy exploration is delegated to
 > subagents so the main context stays lean; commits name their files explicitly (three
