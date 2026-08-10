@@ -85,6 +85,16 @@
 >   qualifier-drafter skill (reads the client's website, drafts the AI receptionist's
 >   qualification questions). First real draft (FM Essentials) pending Jesse's verdict.
 > - NEXT: Jesse dumps his change list — one-liners added here as they come.
+> - QUEUED 2026-08-10 (Jesse, build later): AI receptionist TEST PLAYGROUND on the
+>   Testing task — stage 1: portal-native chat (our API + the client's generated
+>   qualifiers as the script; voice variant possible via mic + TTS). Stage 2: auto-
+>   configure the REAL GHL Voice AI + Conversation AI in the client's sub-account
+>   from the same content — gated on sub-account write access (OAuth agency token
+>   that can mint location tokens, or verify the internal-API route works
+>   cross-location). Then the task shows their real number + chat widget.
+> - QUEUED 2026-08-10 (Jesse, build later): REMINDER TRACK — email/SMS check-backs
+>   (e.g. review your ebook copy after a few days), so clients continue the journey
+>   and return on a nudge. Maps onto stream 1's remind/governor machinery.
 > - Known content pass already flagged: CSM task titles naming the retired tool
 >   (stream 2 touches these too); guided-setup experience queued by Jesse.
 > - Standing rule: any portal template change stales stream 2's importer — re-run it
