@@ -127,7 +127,7 @@ export const journeyTemplate: StageTemplate[] = [
     dayEnd: 30,
     blurb: "Your system goes live — we'll walk your team through everything.",
     milestones: [
-      { id: "gl-1", title: "Attend your Go-Live walkthrough call", detail: "We'll get your team confident using the live system before we finish." },
+      { id: "gl-1", title: "Attend your Go-Live walkthrough call", detail: "Your booking details are below — they're also in your calendar invite. We'll get your team confident using the live system before we finish.", hasEditableContent: true },
       { id: "gl-2", title: "Learn your live system", detail: "Calls, texts, missed-call handling — all in one app." },
       { id: "gl-3", title: "See your AI in action", detail: "Live call summaries, coaching notes, and real lead handling, demoed live." },
       { id: "gl-4", title: "Set your team's usage standards", detail: "How your team should use the app day-to-day, so nothing falls through the cracks." },

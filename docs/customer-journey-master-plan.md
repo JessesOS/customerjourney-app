@@ -92,6 +92,10 @@
 >   from the same content — gated on sub-account write access (OAuth agency token
 >   that can mint location tokens, or verify the internal-API route works
 >   cross-location). Then the task shows their real number + chat widget.
+> - QUEUED 2026-08-10: APPOINTMENT-BOOKED WEBHOOK — first real use of the events
+>   pipeline: GHL "appointment booked" workflow POSTs to the portal, which writes
+>   the go-live date/time into gl-1's content slot (slot + display shipped
+>   2026-08-10; team pastes the time manually until the webhook exists).
 > - QUEUED 2026-08-10 (Jesse, build later): REMINDER TRACK — email/SMS check-backs
 >   (e.g. review your ebook copy after a few days), so clients continue the journey
 >   and return on a nudge. Maps onto stream 1's remind/governor machinery.
