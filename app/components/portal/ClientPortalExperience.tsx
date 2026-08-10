@@ -173,13 +173,21 @@ export function ClientPortalExperience({
   // ?welcome=1 forces it back for review.
   const welcomedKey = `pjWelcomed:${portalToken ?? "demo"}`;
   const [showWelcome, setShowWelcome] = useState(false);
+  const [welcomeDecided, setWelcomeDecided] = useState(false);
   useEffect(() => {
     setIsDemo(window.location.pathname === "/portal/demo");
     try {
       const forced = new URLSearchParams(window.location.search).get("welcome") === "1";
       if (forced || localStorage.getItem(welcomedKey) !== "1") setShowWelcome(true);
     } catch {}
+    setWelcomeDecided(true);
   }, [welcomedKey]);
+  // Lift the page's anti-flash veil only after the decision has rendered, so
+  // the first visible paint is the welcome overlay (or the rail on a return
+  // visit) — never a flash of one then the other.
+  useEffect(() => {
+    if (welcomeDecided) document.documentElement.removeAttribute("data-welcome-pending");
+  }, [welcomeDecided]);
   function dismissWelcome() {
     try {
       localStorage.setItem(welcomedKey, "1");

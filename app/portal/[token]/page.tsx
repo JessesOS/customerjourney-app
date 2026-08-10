@@ -38,17 +38,29 @@ export default async function PortalPage({
     getAllMilestoneUploadsMeta(client.id),
   ]);
 
+  // Anti-flash veil: the welcome-or-not decision lives in localStorage, which
+  // only the browser can read — without this, the journey rail paints for a
+  // frame or two before the welcome overlay mounts. This inline script runs
+  // before first paint and hides the page when the welcome is due; the
+  // experience component lifts the veil once the welcome (or the rail, on a
+  // return visit) is actually mounted.
+  const veilScript = `try{var q=new URLSearchParams(location.search);if(q.get("welcome")==="1"||localStorage.getItem(${JSON.stringify(`pjWelcomed:${token}`)})!=="1"){document.documentElement.setAttribute("data-welcome-pending","1")}}catch(e){}`;
+
   return (
-    <ClientPortalExperience
-      name={client.name}
-      clientType={clientType}
-      currentDay={currentDay}
-      initialCompletedMilestoneIds={[...completedIds]}
-      initialMilestoneNotes={milestoneNotes}
-      milestoneContent={milestoneContent}
-      milestoneUploads={milestoneUploads}
-      portalToken={token}
-      themeVariant={client.themeVariant === "cool" || client.themeVariant === "neutral" || client.themeVariant === "warm" ? client.themeVariant : "handoff"}
-    />
+    <>
+      <script dangerouslySetInnerHTML={{ __html: veilScript }} />
+      <style>{`html[data-welcome-pending] body{visibility:hidden;background:#f6f3ec}`}</style>
+      <ClientPortalExperience
+        name={client.name}
+        clientType={clientType}
+        currentDay={currentDay}
+        initialCompletedMilestoneIds={[...completedIds]}
+        initialMilestoneNotes={milestoneNotes}
+        milestoneContent={milestoneContent}
+        milestoneUploads={milestoneUploads}
+        portalToken={token}
+        themeVariant={client.themeVariant === "cool" || client.themeVariant === "neutral" || client.themeVariant === "warm" ? client.themeVariant : "handoff"}
+      />
+    </>
   );
 }
