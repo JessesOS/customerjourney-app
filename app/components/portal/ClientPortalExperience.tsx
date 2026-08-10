@@ -135,6 +135,30 @@ export function ClientPortalExperience({
   const [notes, setNotes] = useState<Record<string, string>>(initialMilestoneNotes);
   const [noteDrafts, setNoteDrafts] = useState<Record<string, string>>({});
   const [uploads, setUploads] = useState<Record<string, UploadMeta>>(milestoneUploads);
+  // Team content can land minutes AFTER the client first opens the portal (the
+  // AI pack generates during checkout). Start from the server-rendered snapshot
+  // and poll for fresh content while any of it is still empty, so "your team is
+  // finalizing these" resolves into real content without a manual refresh.
+  const [liveContent, setLiveContent] = useState<Record<string, string>>(milestoneContent);
+  useEffect(() => {
+    if (!portalToken) return;
+    let cancelled = false;
+    let ticks = 0;
+    const poll = async () => {
+      try {
+        const res = await fetch(`/api/portal/${portalToken}/milestone-content`, { cache: "no-store" });
+        const data = (await res.json()) as { ok: boolean; content?: Record<string, string> };
+        if (!cancelled && data.ok && data.content) setLiveContent((prev) => ({ ...prev, ...data.content }));
+      } catch {}
+    };
+    const interval = setInterval(() => {
+      ticks += 1;
+      if (ticks > 40) { clearInterval(interval); return; } // ~20 min, then stop
+      void poll();
+    }, 30000);
+    void poll();
+    return () => { cancelled = true; clearInterval(interval); };
+  }, [portalToken]);
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [uploadingId, setUploadingId] = useState<string | null>(null);
 
@@ -873,7 +897,7 @@ export function ClientPortalExperience({
             const isLast = milestone === viewingStage.milestones.length;
             const isFirst = milestone === 1;
             const inlineForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
-            const savedContent = milestoneContent[m.id];
+            const savedContent = liveContent[m.id];
             const noteValue = noteDrafts[m.id] ?? notes[m.id] ?? "";
             const uploadMeta = uploads[m.id];
             const showUploadWidget = m.status !== "done" && m.hasUpload;
