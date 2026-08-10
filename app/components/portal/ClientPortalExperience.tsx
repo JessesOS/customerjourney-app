@@ -161,10 +161,10 @@ export function ClientPortalExperience({
   // Journey-card treatment under review. The floating toggle that switches it
   // renders ONLY on /portal/demo (code-only route) — real clients never see it.
   const [railVariant, setRailVariant] = useState<RailVariant>("deepframe");
-  // Portal layout: "focus" is the shipped default (Jesse's call 2026-08-05 —
-  // single column, segbar carries orientation, no side panel). "rail" (the
-  // journey panel) remains reviewable via the demo-only toggle.
-  const [railLayout, setRailLayout] = useState<"rail" | "focus">("focus");
+  // Portal layout: the handoff design defaults to its journey rail (Jesse
+  // 2026-08-10 — clients like Rich should land on it with no toggling);
+  // the current design keeps "focus" as its shipped default (2026-08-05).
+  const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" ? "rail" : "focus");
   const [isDemo, setIsDemo] = useState(false);
   // First-visit welcome landing (Imprint-style). Shown until dismissed once
   // on this device; ?welcome=1 forces it back for review.
