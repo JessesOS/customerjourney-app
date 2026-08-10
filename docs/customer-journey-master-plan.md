@@ -22,6 +22,13 @@
 > Standing rule reminder for the design session: shipping portal template/journey
 > changes stales stream 2's importer — note it here so the mega session re-runs it.
 >
+> **Design-session note 2026-08-10:** the portal's default look is now the handoff
+> design (`theme_variant: "handoff"`). This includes `provisionPortalClient` in
+> `lib/portalClientStore.ts` (webhook-provisioned clients get it too) — one-line,
+> deliberate cross-lane touch so Stream 1's auto-provisioned clients open in the
+> new design. Admin can still set Warm/Cool/Neutral per client. No schema change
+> (TEXT column), no journey/template change (importer unaffected).
+>
 > Operating rules that keep one session viable: heavy exploration is delegated to
 > subagents so the main context stays lean; commits name their files explicitly (three
 > accidental commit-sweeps happened the week this was written); /wrap and /hand-off run

@@ -54,10 +54,10 @@ export async function listPortalClients() {
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
-export type PortalThemeVariant = "warm" | "cool" | "neutral";
+export type PortalThemeVariant = "warm" | "cool" | "neutral" | "handoff";
 
 export function isPortalThemeVariant(value: unknown): value is PortalThemeVariant {
-  return value === "warm" || value === "cool" || value === "neutral";
+  return value === "warm" || value === "cool" || value === "neutral" || value === "handoff";
 }
 
 export async function createPortalClient(input: {
@@ -78,7 +78,7 @@ export async function createPortalClient(input: {
     portalToken: token,
     startDate: input.startDate,
     clientType: input.clientType ?? "meta-google",
-    themeVariant: input.themeVariant ?? "warm",
+    themeVariant: input.themeVariant ?? "handoff",
   });
 
   return { id, portalToken: token };
@@ -165,6 +165,8 @@ export async function provisionPortalClient(input: {
       productCode: input.productCode,
       sourceOrderId: input.sourceOrderId,
       provisionedAt: now,
+      // New clients open in the handoff design by default (Jesse 2026-08-10).
+      themeVariant: "handoff",
       journeyState: "active",
     }),
     db

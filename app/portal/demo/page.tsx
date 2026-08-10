@@ -9,5 +9,5 @@ export const metadata = {
 // welcome mosaic → Stage 1, first task. Completing tasks advances the
 // journey in memory, so later states are reachable by clicking through.
 export default function PortalDemoPage() {
-  return <ClientPortalExperience name="Chris" currentDay={1} initialCompletedMilestoneIds={[]} />;
+  return <ClientPortalExperience name="Chris" currentDay={1} initialCompletedMilestoneIds={[]} themeVariant="handoff" />;
 }

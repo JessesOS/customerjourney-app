@@ -41,7 +41,7 @@ export type ClientPortalExperienceProps = {
   milestoneContent?: Record<string, string>;
   milestoneUploads?: Record<string, UploadMeta>;
   portalToken?: string;
-  themeVariant?: "warm" | "cool" | "neutral";
+  themeVariant?: "warm" | "cool" | "neutral" | "handoff";
 };
 
 function CheckIcon({ color = "var(--pj-ink)", size = 13 }: { color?: string; size?: number }) {
@@ -185,7 +185,7 @@ export function ClientPortalExperience({
   // Portal look: warm (organic) / cool (slate workshop). Seeded from the client
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
-  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant);
+  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant === "handoff" ? "warm" : themeVariant);
   // Neutral's accent audition (demo pill): gallery surfaces stay, one accent
   // carries the life. Terracotta is the recommended default everywhere.
   const [neutralAccent, setNeutralAccent] = useState<"terracotta" | "brass" | "indigo" | "graphite">("terracotta");
@@ -194,7 +194,7 @@ export function ClientPortalExperience({
   const [welcomeVersion, setWelcomeVersion] = useState<"marquee" | "mosaic">("marquee");
   // Whole-portal design skin from the client_portal handoff package (DM fonts,
   // terracotta+teal on near-white). Demo review toggle; skin-level only.
-  const [designSkin, setDesignSkin] = useState<"current" | "handoff">("current");
+  const [designSkin, setDesignSkin] = useState<"current" | "handoff">(themeVariant === "handoff" ? "handoff" : "current");
   // The handoff design's own Light|Dark scheme (its README ships both); it
   // replaces the warm/cool/neutral dots while the handoff skin is active.
   const [handoffScheme, setHandoffScheme] = useState<"light" | "dark">("light");

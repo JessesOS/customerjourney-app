@@ -31,7 +31,8 @@ const clientTypeOptions = [
 ];
 
 const themeOptions = [
-  { value: "warm", label: "Warm — organic (default)" },
+  { value: "handoff", label: "New design (default)" },
+  { value: "warm", label: "Warm — organic" },
   { value: "cool", label: "Cool — slate" },
   { value: "neutral", label: "Neutral — gallery white" },
 ];
@@ -127,7 +128,7 @@ export function AdminClientsPanel() {
   const [companyName, setCompanyName] = useState("");
   const [startDate, setStartDate] = useState(todayIso());
   const [clientType, setClientType] = useState("meta-google");
-  const [themeVariant, setThemeVariant] = useState("warm");
+  const [themeVariant, setThemeVariant] = useState("handoff");
 
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [detailByClient, setDetailByClient] = useState<Record<string, ClientDetail | "loading" | "error">>({});
@@ -546,11 +547,12 @@ export function AdminClientsPanel() {
                     </div>
                   </div>
                   <select
-                    value={client.themeVariant === "cool" || client.themeVariant === "neutral" ? client.themeVariant : "warm"}
+                    value={["cool", "neutral", "warm"].includes(client.themeVariant ?? "") ? (client.themeVariant as string) : "handoff"}
                     onChange={(e) => handleThemeChange(client.id, e.target.value)}
                     title="Portal look — changes what this client sees on their next load; their link stays the same"
                     style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid #444", background: "transparent", color: "#fcfaf6", cursor: "pointer", fontSize: 13 }}
                   >
+                    <option value="handoff">New design</option>
                     <option value="warm">Warm</option>
                     <option value="cool">Cool</option>
                     <option value="neutral">Neutral</option>

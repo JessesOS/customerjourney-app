@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     const companyName = body.companyName?.trim() ?? "";
     const startDate = body.startDate?.trim();
     const clientType = body.clientType?.trim() ?? "meta-google";
-    const themeVariant = body.themeVariant?.trim() ?? "warm";
+    const themeVariant = body.themeVariant?.trim() ?? "handoff";
 
     if (!name) {
       return Response.json({ ok: false, error: "Client name is required." }, { status: 400 });
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       return Response.json({ ok: false, error: "Client type must be meta, google, meta-google, or respond." }, { status: 400 });
     }
     if (!isPortalThemeVariant(themeVariant)) {
-      return Response.json({ ok: false, error: "Portal look must be warm, cool or neutral." }, { status: 400 });
+      return Response.json({ ok: false, error: "Portal look must be handoff, warm, cool or neutral." }, { status: 400 });
     }
 
     const created = await createPortalClient({ name, companyName, startDate, clientType: clientType as ClientType, themeVariant });
