@@ -1,6 +1,49 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { JourneyStage } from "@/lib/onboardingJourney";
+
+/** One-shot confetti rain for the journey-complete moment. Pure CSS pieces in
+    theme colours; clears itself after the show. */
+function Confetti() {
+  const [show, setShow] = useState(true);
+  useEffect(() => {
+    const t = setTimeout(() => setShow(false), 6000);
+    return () => clearTimeout(t);
+  }, []);
+  if (!show) return null;
+  const colors = ["var(--pj-act)", "var(--pj-done)", "#e0c56e", "#d98a66", "#7fb5a3"];
+  const pieces = Array.from({ length: 70 }, (_, i) => {
+    const left = (i * 137.5) % 100;
+    const delay = ((i * 53) % 200) / 100;
+    const duration = 2.6 + ((i * 89) % 180) / 100;
+    const size = 6 + ((i * 31) % 8);
+    const color = colors[i % colors.length];
+    const rotate = (i * 47) % 360;
+    return { left, delay, duration, size, color, rotate, round: i % 3 === 0 };
+  });
+  return (
+    <div aria-hidden style={{ position: "fixed", inset: 0, pointerEvents: "none", overflow: "hidden", zIndex: 60 }}>
+      <style>{`@keyframes pj-confetti-fall { 0% { transform: translateY(-6vh) rotate(0deg); opacity: 1 } 85% { opacity: 1 } 100% { transform: translateY(106vh) rotate(720deg); opacity: 0 } }`}</style>
+      {pieces.map((c, i) => (
+        <span
+          key={i}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: `${c.left}%`,
+            width: c.size,
+            height: c.round ? c.size : c.size * 0.45,
+            borderRadius: c.round ? 99 : 2,
+            background: c.color,
+            transform: `rotate(${c.rotate}deg)`,
+            animation: `pj-confetti-fall ${c.duration}s cubic-bezier(0.25,0.4,0.45,1) ${c.delay}s both`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 /**
  * The payoff screen shown the moment a client approves the final task in a
@@ -52,11 +95,14 @@ export function StageCompleteView({
           <path d="M5 13l4 4 10-12" />
         </svg>
       </div>
+      {!nextStage && <Confetti />}
       <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 34, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 10px" }}>
-        {stageName} complete.
+        {nextStage ? `${stageName} complete.` : "That's the whole journey. You're live."}
       </h3>
       <p style={{ color: "var(--pj-muted)", fontSize: 15, margin: "0 0 30px" }}>
-        {totalTasks} of {totalTasks} tasks done — that&apos;s everything we need from you for this stage. Nice work.
+        {nextStage
+          ? `${totalTasks} of ${totalTasks} tasks done — that's everything we need from you for this stage. Nice work.`
+          : "Every stage, every task, done. Your system is live, your team is trained, and from here we're in your corner month after month."}
       </p>
 
       {nextStage ? (
@@ -100,9 +146,12 @@ export function StageCompleteView({
           </div>
         </div>
       ) : (
-        <div style={{ background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-card)", padding: "24px 26px" }}>
-          <div style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 20, fontWeight: 800, letterSpacing: "-0.02em" }}>You&apos;re all the way through. 🎉</div>
-          <p style={{ fontSize: 13.5, color: "var(--pj-muted)", margin: "8px 0 0" }}>Every stage of your onboarding journey is complete.</p>
+        <div style={{ background: "var(--pj-card-grad, var(--pj-card))", border: "1px solid var(--pj-card-line, var(--pj-line))", borderRadius: 24, padding: "26px 28px", boxShadow: "var(--pj-shadow-card)" }}>
+          <div style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 21, fontWeight: 800, letterSpacing: "-0.02em" }}>Welcome to the other side. 🎉</div>
+          <p style={{ fontSize: 13.5, color: "var(--pj-muted)", margin: "10px 0 0", lineHeight: 1.55 }}>
+            Onboarding is officially behind you — from here it&apos;s monthly check-ins, real leads, and your AI answering every call.
+            This portal stays yours: your bookings, your approvals, and your team&apos;s next steps all live here.
+          </p>
         </div>
       )}
 
