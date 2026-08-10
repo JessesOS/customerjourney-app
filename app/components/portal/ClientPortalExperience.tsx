@@ -15,6 +15,7 @@ import {
 import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
 import { onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
+import { MicButton } from "@/app/components/portal/MicButton";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
 import { StageGuide } from "@/app/components/portal/StageGuide";
 import { stageGuideFor } from "@/lib/stageGuide";
@@ -1046,6 +1047,7 @@ export function ClientPortalExperience({
                           rows={3}
                           style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
                         />
+                        <MicButton onText={(chunk) => setNoteDrafts((prev) => ({ ...prev, [m.id]: `${prev[m.id] ?? ""} ${chunk}`.trim() }))} />
                       </div>
                     )}
                   </div>

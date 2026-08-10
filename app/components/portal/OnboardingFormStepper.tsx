@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { PortalFormDefinition, PortalFormField, PortalFormResponses } from "@/lib/onboardingForm";
 import { decodePortalFileValue, emptyFormResponses } from "@/lib/onboardingForm";
+import { MicButton } from "./MicButton";
 
 type FlatField = { field: PortalFormField; sectionTitle: string };
 
@@ -421,14 +422,17 @@ function FieldPrompt({
         )}
 
         {field.type === "textarea" && (
-          <textarea
-            value={textValue}
-            placeholder={field.placeholder}
-            autoFocus
-            rows={4}
-            onChange={(e) => onChange(e.target.value)}
-            style={{ ...inputStyle, resize: "vertical", fontFamily: "var(--font-body), system-ui, sans-serif" }}
-          />
+          <div>
+            <textarea
+              value={textValue}
+              placeholder={field.placeholder}
+              autoFocus
+              rows={4}
+              onChange={(e) => onChange(e.target.value)}
+              style={{ ...inputStyle, resize: "vertical", fontFamily: "var(--font-body), system-ui, sans-serif" }}
+            />
+            <MicButton onText={(chunk) => onChange(`${textValue} ${chunk}`.trim())} />
+          </div>
         )}
 
         {field.type === "select" && (
