@@ -67,6 +67,9 @@ export interface PortalFormSection {
   title: string;
   description?: string;
   fields: PortalFormField[];
+  /** Render every field of this section on ONE step (e.g. an address block, so
+      browser autofill can fill the whole thing at once). */
+  grouped?: boolean;
 }
 
 export interface PortalFormDefinition {
@@ -114,6 +117,7 @@ export const scaleOnboardingForm: PortalFormDefinition = {
     {
       id: "business-address",
       title: "Business address",
+      grouped: true,
       fields: [
         { id: "street_address", label: "Business Street Address", type: "text" },
         { id: "city", label: "Business City", type: "text" },

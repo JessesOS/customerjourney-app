@@ -5,12 +5,18 @@ import type { PortalFormDefinition, PortalFormField, PortalFormResponses } from 
 import { decodePortalFileValue, emptyFormResponses } from "@/lib/onboardingForm";
 import { MicButton } from "./MicButton";
 
-type FlatField = { field: PortalFormField; sectionTitle: string };
+/** One screen of the stepper: usually a single field, but grouped sections
+    (like the address block) put all their fields on one step so browser
+    address-autofill can fill everything at once. */
+type FlatStep = { fields: PortalFormField[]; sectionTitle: string };
 
-function flattenFields(form: PortalFormDefinition): FlatField[] {
-  return form.sections.flatMap((section) =>
-    section.fields.filter((field) => !field.hidden).map((field) => ({ field, sectionTitle: section.title })),
-  );
+function flattenFields(form: PortalFormDefinition): FlatStep[] {
+  return form.sections.flatMap((section) => {
+    const visible = section.fields.filter((field) => !field.hidden);
+    if (visible.length === 0) return [];
+    if (section.grouped) return [{ fields: visible, sectionTitle: section.title }];
+    return visible.map((field) => ({ fields: [field], sectionTitle: section.title }));
+  });
 }
 
 function isAnswered(field: PortalFormField, value: PortalFormResponses[string] | undefined) {
@@ -107,8 +113,10 @@ export function OnboardingFormStepper({
   const total = flat.length;
   const isLast = index === total - 1;
   const isFirst = index === 0;
-  const value = responses[current.field.id];
-  const answered = isAnswered(current.field, value);
+  const isGroup = current.fields.length > 1;
+  const singleField = current.fields[0];
+  const value = responses[singleField.id];
+  const answered = current.fields.every((f) => isAnswered(f, responses[f.id]));
 
   function updateValue(fieldId: string, next: PortalFormResponses[string]) {
     setError(null);
@@ -149,7 +157,36 @@ export function OnboardingFormStepper({
         <div style={{ height: "100%", width: `${((index + 1) / total) * 100}%`, background: "var(--pj-act)", borderRadius: 99, transition: "width 0.3s ease" }} />
       </div>
 
-      <FieldPrompt field={current.field} value={value} onChange={(next) => updateValue(current.field.id, next)} onEnter={goNext} portalToken={portalToken ?? ""} />
+      {isGroup ? (
+        <div>
+          <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontWeight: 800, fontSize: 22, margin: 0, letterSpacing: "-0.01em", lineHeight: 1.3, color: "var(--pj-ink)" }}>
+            {current.sectionTitle}
+          </h3>
+          <div style={{ marginTop: 18 }}>
+            {current.fields.map((f, i) => (
+              <div key={f.id} style={{ marginTop: i === 0 ? 0 : 14 }}>
+                <label htmlFor={`grp-${f.id}`} style={{ display: "block", fontSize: 13, fontWeight: 600, marginBottom: 6, color: "var(--pj-ink)" }}>
+                  {f.label} {f.required && <span style={{ color: "var(--pj-act)" }}>*</span>}
+                </label>
+                <input
+                  id={`grp-${f.id}`}
+                  type={f.type === "email" || f.type === "url" || f.type === "tel" ? f.type : "text"}
+                  name={f.id}
+                  autoComplete={autocompleteFor(f)}
+                  autoFocus={i === 0}
+                  value={typeof responses[f.id] === "string" ? (responses[f.id] as string) : ""}
+                  placeholder={f.placeholder}
+                  onChange={(e) => updateValue(f.id, e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && goNext()}
+                  style={inputStyle}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <FieldPrompt field={singleField} value={value} onChange={(next) => updateValue(singleField.id, next)} onEnter={goNext} portalToken={portalToken ?? ""} />
+      )}
 
       {error && <div style={{ marginTop: 14, fontSize: 13, color: "var(--pj-error)" }}>{error}</div>}
 
