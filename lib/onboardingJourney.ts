@@ -116,7 +116,7 @@ export const journeyTemplate: StageTemplate[] = [
     milestones: [
       { id: "ts-1", title: "Confirm your app, calendar & social accounts are connected", detail: "A quick check that everything is linked correctly before the test." },
       { id: "ts-2", title: "Test your AI receptionist live", detail: "Try to stump it with different scenarios — this is how we make it better for you." },
-      { id: "ts-3", title: "Your Go-Live Call is scheduled", detail: "We'll lock in your Day 30 walkthrough based on today's results." },
+      { id: "ts-3", title: "Book your Go-Live Call", detail: "Testing looks good — time to lock in your go-live walkthrough. Pick a time that suits you below and we'll send a calendar invite with everything you need to join.", bookingUrl: "https://go.rt-d.com/jesse30" },
     ],
     statusNotes: ["We'll fine-tune your AI based on your test feedback — no action needed from you."],
   },
