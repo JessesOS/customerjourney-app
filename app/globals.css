@@ -363,6 +363,68 @@
   --pj-tile-act: #c9622f;
 }
 
+/* Handoff design — dark scheme (README "Dark" token column) + hub bits.
+   The handoff look ships its own Light|Dark pill instead of the portal's
+   warm/cool/neutral dots. */
+[data-pj-design="handoff"][data-pj-scheme="dark"] {
+  --pj-bg: #131118;
+  --pj-rail: #241f2c;
+  --pj-card: #1d1a23;
+  --pj-ink: #f2efe9;
+  --pj-muted: #a49e92;
+  --pj-faint: #8d8779;
+  --pj-line: #2e2a36;
+  --pj-line-soft: #241f2c;
+
+  --pj-act: #e08a4e;
+  --pj-act-fill: #3a2d1c;
+  --pj-act-ink: #17130e;
+  --pj-done: #7fc4c9;
+  --pj-done-fill: #1d3335;
+  --pj-withus: #b39ac4;
+  --pj-withus-fill: #2c2435;
+  --pj-upnext: #8d8779;
+  --pj-upnext-fill: #241f2c;
+
+  --pj-glow: radial-gradient(1100px 480px at 50% -120px, #1a1721 0%, rgba(26, 23, 33, 0) 65%);
+  --pj-card-grad: linear-gradient(180deg, #1d1a23 0%, #241f2c 100%);
+  --pj-shadow-card: 0 12px 26px -16px rgba(0, 0, 0, 0.6);
+  --pj-btn-grad: linear-gradient(180deg, #f2efe9 0%, #e2ddd1 100%);
+  --pj-shadow-btn: 0 8px 18px -8px rgba(0, 0, 0, 0.55);
+
+  --pj-frame: #1d1a23;
+  --pj-frame-line: #2e2a36;
+  --pj-shadow-frame: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 34px -10px rgba(0, 0, 0, 0.4), 0 40px 80px -30px rgba(0, 0, 0, 0.5);
+  --pj-frame-deep: #241f2c;
+  --pj-frame-deep-line: #352f40;
+  --pj-card-line: #2e2a36;
+  --pj-well: #241f2c;
+  --pj-track: #2e2a36;
+  --pj-ring: #55505e;
+  --pj-strike: #55505e;
+  --pj-path: #4a4553;
+  --pj-turn-tint: #241f2c;
+  --pj-done-hi: #9ad4d8;
+  --pj-shadow-badge: 0 14px 34px -16px rgba(0, 0, 0, 0.6);
+  --pj-scrim: rgba(0, 0, 0, 0.65);
+  --pj-shadow-modal: 0 40px 120px rgba(0, 0, 0, 0.7);
+  --pj-rail-card-grad: linear-gradient(180deg, #1d1a23 0%, #221e2a 100%);
+  --pj-rail-card-line: #2e2a36;
+  --pj-rail-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 34px -10px rgba(0, 0, 0, 0.4);
+  --pj-rail-ring-fill: #1d1a23;
+  --pj-tile-act: #e08a4e;
+}
+
+@keyframes hfDot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 98, 47, 0.35); }
+  50% { box-shadow: 0 0 0 6px rgba(201, 98, 47, 0); }
+}
+@media (max-width: 900px) {
+  .hf-rail {
+    display: none;
+  }
+}
+
 /* Stage voice-guide orb (Imprint-style): concentric rings that breathe
    gently at rest and pulse faster while narration plays. Ring colour rides
    --pj-act, so the orb re-themes with the portal. */

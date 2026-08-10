@@ -22,6 +22,7 @@ import { AskChips } from "@/app/components/portal/AskChips";
 import { askItemsFor } from "@/lib/askAi";
 import { WelcomeScreen } from "@/app/components/portal/WelcomeScreen";
 import { WelcomeMarquee } from "@/app/components/portal/WelcomeMarquee";
+import { HandoffHub } from "@/app/components/portal/HandoffHub";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
 import { StageCompleteView } from "@/app/components/portal/StageCompleteView";
@@ -194,6 +195,9 @@ export function ClientPortalExperience({
   // Whole-portal design skin from the client_portal handoff package (DM fonts,
   // terracotta+teal on near-white). Demo review toggle; skin-level only.
   const [designSkin, setDesignSkin] = useState<"current" | "handoff">("current");
+  // The handoff design's own Light|Dark scheme (its README ships both); it
+  // replaces the warm/cool/neutral dots while the handoff skin is active.
+  const [handoffScheme, setHandoffScheme] = useState<"light" | "dark">("light");
   // Voice guide on/off — device-level preference (localStorage), defaults on.
   // Off unmounts the orb entirely, which also stops any playing narration.
   const [voiceOn, setVoiceOn] = useState(true);
@@ -397,6 +401,7 @@ export function ClientPortalExperience({
       data-pj-theme={designSkin === "handoff" || theme === "warm" ? undefined : theme}
       data-pj-accent={designSkin === "handoff" || theme !== "neutral" ? undefined : neutralAccent}
       data-pj-design={designSkin === "handoff" ? "handoff" : undefined}
+      data-pj-scheme={designSkin === "handoff" && handoffScheme === "dark" ? "dark" : undefined}
       style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}
     >
       {showWelcome &&
@@ -431,7 +436,8 @@ export function ClientPortalExperience({
         @keyframes soundPulse { 0%, 100% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.06); } }
       `}</style>
 
-      {/* TOP BAR */}
+      {/* TOP BAR (the handoff design's home brings its own header) */}
+      {!(designSkin === "handoff" && view === "home") && (
       <div
         style={{
           position: "sticky",
@@ -480,7 +486,10 @@ export function ClientPortalExperience({
             {/* Look switcher: swatch dots (warm terracotta / cool steel /
                 neutral white). Swatches are hardcoded — they must show their
                 own colour regardless of which theme is active; the ring
-                colour differs for neutral so a near-white dot stays visible. */}
+                colour differs for neutral so a near-white dot stays visible.
+                Hidden under the handoff design, which brings its own
+                Light|Dark schemes instead. */}
+            {designSkin !== "handoff" && (
             <span style={{ display: "flex", alignItems: "center", gap: 7 }}>
               {(
                 [
@@ -511,15 +520,17 @@ export function ClientPortalExperience({
                 />
               ))}
             </span>
+            )}
             <div style={{ width: 30, height: 30, borderRadius: 99, background: "var(--pj-act)", color: "var(--pj-act-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13 }}>
               {name.charAt(0)}
             </div>
           </div>
         </div>
       </div>
+      )}
 
       {/* JOURNEY — home view */}
-      {view === "home" && (
+      {view === "home" && designSkin !== "handoff" && (
         <div
           className={railLayout === "focus" ? "pj-home pj-home--focus" : "pj-home"}
           // The deep-frame tint exists to make the journey card pop, so it
@@ -666,7 +677,45 @@ export function ClientPortalExperience({
               </>
             )}
           </section>
+        </div>
+      )}
 
+      {/* NEW DESIGN (handoff package) — full structural hub, home view */}
+      {view === "home" && designSkin === "handoff" && (
+        <HandoffHub
+          brand={isRespond ? "respond" : "scale"}
+          clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
+          name={name}
+          currentDay={currentDay}
+          totalDays={activeJourneyTotalDays}
+          stages={journeyStages}
+          currentStageIndex={currentStageIndex}
+          stageDoneCount={stageDoneCount}
+          stagePct={stagePct}
+          overallPercent={progress}
+          upNext={upNext}
+          onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
+          onStartTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
+          onViewTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
+          taskStatus={taskDisplayStatus}
+          tasksOpen={tasksOpen}
+          onToggleTasks={() => setTasksOpen(!tasksOpen)}
+          showRail={railLayout === "rail"}
+          orbSlot={
+            voiceOn && currentStage
+              ? (() => {
+                  const g = stageGuideFor(clientType, currentStage.id);
+                  return g ? <StageGuide key={currentStage.id} guide={g} /> : null;
+                })()
+              : null
+          }
+        />
+      )}
+
+      {/* Review pills — rendered outside both layout trees so every option
+          survives the design swap (demo route only). */}
+      {view === "home" && (
+        <>
           {/* Review-only: design-skin toggle (current system vs the client
               portal handoff package). Demo route only. */}
           {isDemo && (
@@ -679,7 +728,7 @@ export function ClientPortalExperience({
               ).map(([v, label]) => (
                 <button
                   key={v}
-                  onClick={() => setDesignSkin(v)}
+                  onClick={() => { setDesignSkin(v); if (v === "handoff") setRailLayout("rail"); }}
                   style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: designSkin === v ? "var(--pj-act)" : "transparent", color: designSkin === v ? "var(--pj-act-ink)" : "var(--pj-muted)", whiteSpace: "nowrap" }}
                 >
                   {label}
@@ -746,7 +795,7 @@ export function ClientPortalExperience({
               real client portals never render this. Warm-look tool, so it
               hides while the cool theme is active. Delete once a winner is
               picked. */}
-          {isDemo && theme === "warm" && (
+          {isDemo && theme === "warm" && designSkin !== "handoff" && (
             <div style={{ position: "fixed", bottom: 18, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
@@ -766,7 +815,27 @@ export function ClientPortalExperience({
               ))}
             </div>
           )}
-        </div>
+          {/* Handoff design brings its own Light|Dark schemes (per the
+              handoff README) in place of the theme dots. */}
+          {isDemo && designSkin === "handoff" && (
+            <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+              {(
+                [
+                  ["light", "Light"],
+                  ["dark", "Dark"],
+                ] as const
+              ).map(([v, label]) => (
+                <button
+                  key={v}
+                  onClick={() => setHandoffScheme(v)}
+                  style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: handoffScheme === v ? "#17130e" : "transparent", color: handoffScheme === v ? "#f7f5f0" : "var(--pj-muted)", whiteSpace: "nowrap" }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          )}
+        </>
       )}
 
       {/* STAGE DETAIL */}
