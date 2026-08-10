@@ -1031,6 +1031,23 @@ export function ClientPortalExperience({
                   </div>
                 ) : m.showPortalLink ? (
                   <PortalLinkCard portalToken={portalToken} />
+                ) : m.embedUrl ? (
+                  <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 20 }}>
+                    <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
+                      <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
+                        {m.embedTitle ?? m.title}
+                      </div>
+                      <a href={m.embedUrl} target="_blank" rel="noreferrer" style={{ fontSize: 12.5, fontWeight: 600, color: "var(--pj-act)", textDecoration: "none", whiteSpace: "nowrap" }}>
+                        Open in a new tab ↗
+                      </a>
+                    </div>
+                    <div style={{ borderRadius: "var(--pj-radius-sm)", overflow: "hidden", border: "1px solid var(--pj-line)", background: "var(--pj-well)" }}>
+                      <iframe src={m.embedUrl} title={m.embedTitle ?? m.title} style={{ display: "block", width: "100%", height: 640, border: 0 }} loading="lazy" allow="camera; microphone" />
+                    </div>
+                    {m.embedNote && (
+                      <p style={{ fontSize: 12.5, color: "var(--pj-faint)", margin: "14px 0 0" }}>{m.embedNote}</p>
+                    )}
+                  </div>
                 ) : m.bookingUrl ? (
                   <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 20 }}>
                     <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>

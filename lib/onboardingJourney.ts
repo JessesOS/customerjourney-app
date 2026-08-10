@@ -144,7 +144,7 @@ export const journeyTemplate: StageTemplate[] = [
     milestones: [
       { id: "pl-1", title: "Book your Week 1 check-in call", detail: "A quick check-in to make sure everything's running smoothly. Pick a time that suits you below.", bookingUrl: "https://go.rt-d.com/jesse30" },
       { id: "pl-2", title: "Book your Week 2 check-in call", detail: "Another check-in before we move to monthly calls. Pick a time that suits you below.", bookingUrl: "https://go.rt-d.com/jesse30" },
-      { id: "pl-3", title: "Send us a testimonial", detail: "We'd love to hear how it's going — this helps us and future clients like you." },
+      { id: "pl-3", title: "Send us a testimonial", detail: "We'd love to hear how it's going — this helps us and future clients like you.", embedUrl: "https://senja.io/p/tradeai/r/ssh63o", embedTitle: "Leave your testimonial", embedNote: "Two minutes, means the world — written or video, whatever suits you." },
     ],
     statusNotes: ["Your account is actively monitored — performance reports available monthly."],
   },

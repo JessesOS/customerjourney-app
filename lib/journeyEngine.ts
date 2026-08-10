@@ -35,6 +35,10 @@ export type JourneyMilestone = {
   hasUpload?: boolean;
   awaitingTeam?: boolean;
   bookingUrl?: string;
+  /** Generic embedded page (e.g. a testimonial form) with its own heading/note. */
+  embedUrl?: string;
+  embedTitle?: string;
+  embedNote?: string;
   guideUrl?: string;
   guideLabel?: string;
   important?: string;
@@ -70,6 +74,9 @@ export type MilestoneTemplate = {
   hasUpload?: boolean;
   awaitingTeam?: boolean;
   bookingUrl?: string;
+  embedUrl?: string;
+  embedTitle?: string;
+  embedNote?: string;
   guideUrl?: string;
   guideLabel?: string;
   important?: string;
@@ -145,6 +152,9 @@ export function buildStagesFromTemplate(
       hasUpload: m.hasUpload,
       awaitingTeam: m.awaitingTeam,
       bookingUrl: m.bookingUrl,
+      embedUrl: m.embedUrl,
+      embedTitle: m.embedTitle,
+      embedNote: m.embedNote,
       guideUrl: m.guideUrl,
       guideLabel: m.guideLabel,
       important: m.important,
