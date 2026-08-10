@@ -3,12 +3,13 @@ import { getDb } from "@/db";
 import {
   portalClients,
   portalFormResponses,
+  portalFormUploads,
   portalMilestoneContent,
   portalMilestoneProgress,
   portalMilestoneUploads,
   portalWebhookLog,
 } from "@/db/schema";
-import { getUploadsBucket, uploadObjectKey } from "@/lib/uploadsBucket";
+import { formUploadObjectKey, getUploadsBucket, uploadObjectKey } from "@/lib/uploadsBucket";
 import { journeyTemplate, journeyTotalDays, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
 import { respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
 import type { PortalFormResponses } from "@/lib/onboardingForm";
@@ -212,15 +213,18 @@ export async function deletePortalClient(id: string) {
   const db = getDb();
   const bucket = getUploadsBucket();
   if (bucket) {
-    const listed = await bucket.list({ prefix: `uploads/${id}/` });
-    if (listed.objects.length > 0) {
-      await bucket.delete(listed.objects.map((o) => o.key));
+    for (const prefix of [`uploads/${id}/`, `form-uploads/${id}/`]) {
+      const listed = await bucket.list({ prefix });
+      if (listed.objects.length > 0) {
+        await bucket.delete(listed.objects.map((o) => o.key));
+      }
     }
   }
   await db.delete(portalMilestoneProgress).where(eq(portalMilestoneProgress.clientId, id));
   await db.delete(portalFormResponses).where(eq(portalFormResponses.clientId, id));
   await db.delete(portalMilestoneContent).where(eq(portalMilestoneContent.clientId, id));
   await db.delete(portalMilestoneUploads).where(eq(portalMilestoneUploads.clientId, id));
+  await db.delete(portalFormUploads).where(eq(portalFormUploads.clientId, id));
   await db.delete(portalClients).where(eq(portalClients.id, id));
 }
 
@@ -418,6 +422,72 @@ export async function getAllMilestoneUploadsMeta(clientId: string): Promise<Reco
   const db = getDb();
   const rows = await db.select().from(portalMilestoneUploads).where(eq(portalMilestoneUploads.clientId, clientId));
   return Object.fromEntries(rows.map((r) => [r.milestoneId, { fileName: r.fileName, uploadedAt: r.uploadedAt }]));
+}
+
+// ---- Guided-form file uploads (R2-only bodies, metadata in D1) ----
+
+export async function saveFormUpload(
+  clientId: string,
+  fieldId: string,
+  fileName: string,
+  contentType: string,
+  body: ArrayBuffer,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  const bucket = getUploadsBucket();
+  if (!bucket) {
+    // Binary files never go inline in D1 — without R2 the client uses the
+    // paste-a-link fallback instead. Live prod has had the binding since 2026-08-09.
+    return { ok: false, error: "File uploads are not available right now — paste a link instead." };
+  }
+
+  const db = getDb();
+  await bucket.put(formUploadObjectKey(clientId, fieldId), body, { httpMetadata: { contentType } });
+
+  const now = new Date().toISOString();
+  const rows = await db
+    .select()
+    .from(portalFormUploads)
+    .where(and(eq(portalFormUploads.clientId, clientId), eq(portalFormUploads.fieldId, fieldId)))
+    .limit(1);
+
+  if (rows[0]) {
+    await db
+      .update(portalFormUploads)
+      .set({ fileName, contentType, size: body.byteLength, uploadedAt: now })
+      .where(eq(portalFormUploads.id, rows[0].id));
+  } else {
+    await db.insert(portalFormUploads).values({ clientId, fieldId, fileName, contentType, size: body.byteLength, uploadedAt: now });
+  }
+  return { ok: true };
+}
+
+export async function getFormUpload(clientId: string, fieldId: string) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalFormUploads)
+    .where(and(eq(portalFormUploads.clientId, clientId), eq(portalFormUploads.fieldId, fieldId)))
+    .limit(1);
+  const row = rows[0];
+  if (!row) return null;
+
+  const bucket = getUploadsBucket();
+  if (!bucket) {
+    console.error(`Form upload row ${row.id} exists but no UPLOADS binding is available.`);
+    return null;
+  }
+  const object = await bucket.get(formUploadObjectKey(clientId, fieldId));
+  if (!object) {
+    console.error(`Form upload row ${row.id} exists but the R2 object is missing.`);
+    return null;
+  }
+  return { meta: row, body: await object.arrayBuffer() };
+}
+
+export async function getAllFormUploadsMeta(clientId: string): Promise<Record<string, { fileName: string; contentType: string; size: number; uploadedAt: string }>> {
+  const db = getDb();
+  const rows = await db.select().from(portalFormUploads).where(eq(portalFormUploads.clientId, clientId));
+  return Object.fromEntries(rows.map((r) => [r.fieldId, { fileName: r.fileName, contentType: r.contentType, size: r.size, uploadedAt: r.uploadedAt }]));
 }
 
 /** Day 1 = the client's start date. Clamped to the 30-day journey length. */

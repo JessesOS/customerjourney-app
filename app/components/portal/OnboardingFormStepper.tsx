@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { PortalFormDefinition, PortalFormField, PortalFormResponses } from "@/lib/onboardingForm";
-import { emptyFormResponses } from "@/lib/onboardingForm";
+import { decodePortalFileValue, emptyFormResponses } from "@/lib/onboardingForm";
 
 type FlatField = { field: PortalFormField; sectionTitle: string };
 
@@ -148,7 +148,7 @@ export function OnboardingFormStepper({
         <div style={{ height: "100%", width: `${((index + 1) / total) * 100}%`, background: "var(--pj-act)", borderRadius: 99, transition: "width 0.3s ease" }} />
       </div>
 
-      <FieldPrompt field={current.field} value={value} onChange={(next) => updateValue(current.field.id, next)} onEnter={goNext} />
+      <FieldPrompt field={current.field} value={value} onChange={(next) => updateValue(current.field.id, next)} onEnter={goNext} portalToken={portalToken ?? ""} />
 
       {error && <div style={{ marginTop: 14, fontSize: 13, color: "var(--pj-error)" }}>{error}</div>}
 
@@ -187,16 +187,155 @@ export function OnboardingFormStepper({
   );
 }
 
+function FileUploadField({
+  field,
+  value,
+  portalToken,
+  onChange,
+}: {
+  field: PortalFormField;
+  value: string;
+  portalToken: string;
+  onChange: (next: string) => void;
+}) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [pasteMode, setPasteMode] = useState(false);
+
+  const uploaded = decodePortalFileValue(value);
+  // The demo page renders the stepper without a token — no upload target there,
+  // so fall back to the paste-a-link input.
+  const canUpload = Boolean(portalToken);
+  const isPastedLink = !uploaded && value.trim() !== "";
+
+  async function uploadFile(file: File) {
+    setUploading(true);
+    setError(null);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      const response = await fetch(`/api/portal/${portalToken}/form-upload/${field.id}`, { method: "POST", body: formData });
+      const data = (await response.json()) as { ok: boolean; value?: string; error?: string };
+      if (!data.ok || !data.value) {
+        setError(data.error ?? "Upload failed — try again, or paste a link instead.");
+        return;
+      }
+      onChange(data.value);
+      setPasteMode(false);
+    } catch {
+      setError("Upload failed — check your connection and try again, or paste a link instead.");
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  }
+
+  const pillButton: React.CSSProperties = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 9,
+    background: "var(--pj-ink)",
+    border: "1px solid var(--pj-ink)",
+    borderRadius: 999,
+    padding: "11px 22px",
+    color: "var(--pj-bg, #fff)",
+    fontFamily: "var(--font-body), sans-serif",
+    fontWeight: 600,
+    fontSize: 14,
+    cursor: uploading ? "wait" : "pointer",
+  };
+
+  const quietLink: React.CSSProperties = {
+    background: "none",
+    border: "none",
+    padding: 0,
+    color: "var(--pj-faint)",
+    fontFamily: "var(--font-body), sans-serif",
+    fontSize: 12.5,
+    textDecoration: "underline",
+    cursor: "pointer",
+  };
+
+  return (
+    <div>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept={field.accept}
+        style={{ display: "none" }}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) void uploadFile(file);
+        }}
+      />
+
+      {uploaded ? (
+        <div style={{ display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", border: "1px solid var(--pj-line)", borderRadius: 14, background: "var(--pj-well)", padding: "14px 18px" }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pj-act, #0a7d33)" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+          <span style={{ fontFamily: "var(--font-body), sans-serif", fontWeight: 600, fontSize: 14, color: "var(--pj-ink)", overflowWrap: "anywhere" }}>{uploaded.fileName}</span>
+          <a href={`/api/portal/${portalToken}/form-upload/${field.id}`} target="_blank" rel="noreferrer" style={quietLink}>
+            View
+          </a>
+          <button type="button" style={quietLink} disabled={uploading} onClick={() => fileInputRef.current?.click()}>
+            {uploading ? "Uploading…" : "Replace"}
+          </button>
+        </div>
+      ) : pasteMode || isPastedLink || !canUpload ? (
+        <div>
+          <input
+            type="url"
+            value={value}
+            placeholder={field.placeholder ?? "https://…"}
+            autoFocus
+            onChange={(e) => onChange(e.target.value)}
+            style={inputStyle}
+          />
+          {canUpload && (
+            <div style={{ marginTop: 10 }}>
+              <button type="button" style={quietLink} disabled={uploading} onClick={() => { onChange(""); setPasteMode(false); fileInputRef.current?.click(); }}>
+                Upload a file instead
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div style={{ display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
+          <button type="button" style={pillButton} disabled={uploading} onClick={() => fileInputRef.current?.click()}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <path d="m17 8-5-5-5 5" />
+              <path d="M12 3v12" />
+            </svg>
+            {uploading ? "Uploading…" : "Upload file"}
+          </button>
+          <button type="button" style={quietLink} onClick={() => setPasteMode(true)}>
+            or paste a link instead
+          </button>
+        </div>
+      )}
+
+      {error && (
+        <div style={{ marginTop: 10, fontFamily: "var(--font-body), sans-serif", fontSize: 12.5, color: "#b3261e" }}>{error}</div>
+      )}
+    </div>
+  );
+}
+
 function FieldPrompt({
   field,
   value,
   onChange,
   onEnter,
+  portalToken,
 }: {
   field: PortalFormField;
   value: PortalFormResponses[string] | undefined;
   onChange: (next: PortalFormResponses[string]) => void;
   onEnter: () => void;
+  portalToken: string;
 }) {
   const textValue = typeof value === "string" ? value : "";
   const arrayValue = Array.isArray(value) ? value : [];
@@ -275,6 +414,10 @@ function FieldPrompt({
             onKeyDown={(e) => e.key === "Enter" && onEnter()}
             style={inputStyle}
           />
+        )}
+
+        {field.type === "file" && (
+          <FileUploadField field={field} value={typeof value === "string" ? value : ""} portalToken={portalToken} onChange={onChange} />
         )}
 
         {field.type === "textarea" && (

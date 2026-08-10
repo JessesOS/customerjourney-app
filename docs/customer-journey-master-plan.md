@@ -71,6 +71,14 @@
 >
 > **STREAM 3 — THE PORTAL.** The client-facing thing itself: aesthetics, content,
 > changes and additions, finalizing it for real clients.
+> - DONE 2026-08-10 (mega session, design session paused): real file uploads in the
+>   guided form. proof_of_address_link + both brand_assets_link fields are now type
+>   "file": upload button -> R2 (10MB cap, type allowlist), metadata in
+>   portal_form_uploads (migration 0012), paste-a-link fallback kept, client can
+>   view/replace, admin panel renders the answer as a download link served from R2,
+>   client deletion cleans the objects. Live-verified locally (byte-identical
+>   round-trip, sanitizer round-trip, delete cleanup, wrong-type/unknown-field
+>   rejections) and deployed + smoke-tested in prod.
 > - NEXT: Jesse dumps his change list — one-liners added here as they come.
 > - Known content pass already flagged: CSM task titles naming the retired tool
 >   (stream 2 touches these too); guided-setup experience queued by Jesse.

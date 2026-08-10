@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { onboardingFormById, formatFieldValue, type PortalFormResponses } from "@/lib/onboardingForm";
+import { decodePortalFileValue, onboardingFormById, formatFieldValue, type PortalFormResponses } from "@/lib/onboardingForm";
 
 type PortalClient = {
   id: string;
@@ -662,12 +662,29 @@ export function AdminClientsPanel() {
                                   {section.title}
                                 </div>
                                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                                  {section.fields.map((field) => (
-                                    <div key={field.id} style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: 12, fontSize: 13 }}>
-                                      <div style={{ color: "rgba(252,250,246,0.6)" }}>{field.label}</div>
-                                      <div style={{ color: "#fcfaf6" }}>{formatFieldValue(field, clientForm.responses![field.id])}</div>
-                                    </div>
-                                  ))}
+                                  {section.fields.map((field) => {
+                                    const rawValue = clientForm.responses![field.id];
+                                    const fileValue = decodePortalFileValue(rawValue);
+                                    return (
+                                      <div key={field.id} style={{ display: "grid", gridTemplateColumns: "260px 1fr", gap: 12, fontSize: 13 }}>
+                                        <div style={{ color: "rgba(252,250,246,0.6)" }}>{field.label}</div>
+                                        <div style={{ color: "#fcfaf6" }}>
+                                          {fileValue ? (
+                                            <a
+                                              href={`/api/admin/portal-clients/${client.id}/form-uploads/${field.id}${adminToken ? `?token=${encodeURIComponent(adminToken)}` : ""}`}
+                                              target="_blank"
+                                              rel="noreferrer"
+                                              style={{ color: "#8ecfa8", textDecoration: "underline" }}
+                                            >
+                                              {fileValue.fileName} ⬇
+                                            </a>
+                                          ) : (
+                                            formatFieldValue(field, rawValue)
+                                          )}
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
                                 </div>
                               </div>
                             ))}

@@ -7,10 +7,18 @@ import { env } from "cloudflare:workers";
  * the account and R2_READY is flipped in scripts/patch-wrangler.mjs — until
  * then this returns null and uploads stay inline in D1, the pre-R2 behavior.
  */
-type R2ObjectBodyLike = { text(): Promise<string> };
+type R2ObjectBodyLike = {
+  text(): Promise<string>;
+  arrayBuffer(): Promise<ArrayBuffer>;
+  httpMetadata?: { contentType?: string };
+};
 
 export type UploadsBucket = {
-  put(key: string, value: string): Promise<unknown>;
+  put(
+    key: string,
+    value: string | ArrayBuffer,
+    options?: { httpMetadata?: { contentType?: string } },
+  ): Promise<unknown>;
   get(key: string): Promise<R2ObjectBodyLike | null>;
   delete(keys: string | string[]): Promise<void>;
   list(options: { prefix: string }): Promise<{ objects: { key: string }[] }>;
@@ -22,4 +30,9 @@ export function getUploadsBucket(): UploadsBucket | null {
 
 export function uploadObjectKey(clientId: string, milestoneId: string): string {
   return `uploads/${clientId}/${milestoneId}`;
+}
+
+/** Guided-form file uploads live under their own prefix; one object per client+field. */
+export function formUploadObjectKey(clientId: string, fieldId: string): string {
+  return `form-uploads/${clientId}/${fieldId}`;
 }

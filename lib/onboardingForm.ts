@@ -9,7 +9,27 @@ export type PortalFormFieldType =
   | "select"
   | "radio"
   | "checkboxes"
-  | "checkbox";
+  | "checkbox"
+  | "file";
+
+/**
+ * A stored "file" answer is an encoded token referencing the client's R2
+ * upload for that field (body at form-uploads/{clientId}/{fieldId}). A plain
+ * URL string is also legal — the paste-a-link fallback.
+ */
+const PORTAL_FILE_PREFIX = "portal-file::";
+
+export function encodePortalFileValue(fieldId: string, fileName: string): string {
+  return `${PORTAL_FILE_PREFIX}${fieldId}::${fileName}`;
+}
+
+export function decodePortalFileValue(value: PortalFormValue | undefined): { fieldId: string; fileName: string } | null {
+  if (typeof value !== "string" || !value.startsWith(PORTAL_FILE_PREFIX)) return null;
+  const rest = value.slice(PORTAL_FILE_PREFIX.length);
+  const sep = rest.indexOf("::");
+  if (sep === -1) return null;
+  return { fieldId: rest.slice(0, sep), fileName: rest.slice(sep + 2) };
+}
 
 export type PortalFormValue = string | string[];
 export type PortalFormResponses = Record<string, PortalFormValue>;
@@ -38,6 +58,8 @@ export interface PortalFormField {
   /** Muted from the form entirely (not rendered, not counted, not required).
       Flip to re-enable without deleting the field. */
   hidden?: boolean;
+  /** For type "file": accepted extensions/MIME types, as an <input accept> string. */
+  accept?: string;
 }
 
 export interface PortalFormSection {
@@ -107,9 +129,10 @@ export const scaleOnboardingForm: PortalFormDefinition = {
       fields: [
         {
           id: "proof_of_address_link",
-          label: "Proof of Address document link",
-          type: "url",
-          helper: "Upload a utility bill, lease agreement, or business registration document to a secure shared folder and paste the link here.",
+          label: "Proof of Address document",
+          type: "file",
+          helper: "Upload a utility bill, lease agreement, or business registration document — PDF or a clear photo.",
+          accept: ".pdf,.png,.jpg,.jpeg,.webp,.heic",
           placeholder: "https://drive.google.com/...",
         },
       ],
@@ -141,7 +164,7 @@ export const scaleOnboardingForm: PortalFormDefinition = {
       id: "branding",
       title: "Branding & assets",
       fields: [
-        { id: "brand_assets_link", label: "Shared folder link for high-resolution logos and brand images", type: "url", placeholder: "Google Drive, Dropbox, or shared folder link" },
+        { id: "brand_assets_link", label: "Your logo and brand images", type: "file", helper: "Upload your high-resolution logo (a zip is fine for multiple files), or paste a shared folder link instead.", accept: ".png,.jpg,.jpeg,.webp,.svg,.pdf,.zip", placeholder: "Google Drive, Dropbox, or shared folder link" },
       ],
     },
     {
@@ -238,7 +261,7 @@ export const respondOnboardingForm: PortalFormDefinition = {
       id: "branding",
       title: "Branding & assets",
       fields: [
-        { id: "brand_assets_link", label: "Shared folder link for your logo and brand images (optional)", type: "url", placeholder: "Google Drive, Dropbox, or shared folder link" },
+        { id: "brand_assets_link", label: "Your logo and brand images (optional)", type: "file", helper: "Upload your logo (a zip is fine for multiple files), or paste a shared folder link instead.", accept: ".png,.jpg,.jpeg,.webp,.svg,.pdf,.zip", placeholder: "Google Drive, Dropbox, or shared folder link" },
       ],
     },
     {
@@ -305,6 +328,11 @@ function sanitizeFieldValue(field: PortalFormField, value: unknown): PortalFormV
     const clean = cleanTextValue(value, field.type);
     return optionValues(field).has(clean) ? clean : "";
   }
+  if (field.type === "file") {
+    // Either an encoded portal-file token (validated against R2 on download,
+    // scoped to the client) or a pasted URL — both plain strings.
+    return typeof value === "string" ? value.trim() : "";
+  }
   return cleanTextValue(value, field.type);
 }
 
@@ -339,6 +367,11 @@ export function formMissingRequired(responses: PortalFormResponses, form: Portal
 export function formatFieldValue(field: PortalFormField, value: PortalFormValue | undefined): string {
   if (value === undefined || value === null || value === "" || (Array.isArray(value) && value.length === 0)) {
     return "—";
+  }
+
+  const file = decodePortalFileValue(value);
+  if (file) {
+    return file.fileName;
   }
 
   const labelFor = (raw: string) => field.options?.find((opt) => opt.value === raw)?.label ?? raw;

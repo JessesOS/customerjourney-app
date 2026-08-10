@@ -146,3 +146,17 @@ export const portalMilestoneUploads = sqliteTable("portal_milestone_uploads", {
   content: text("content").notNull(),
   uploadedAt: text("uploaded_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
+
+// Real-file uploads from the guided setup form (proof of address, brand
+// assets...). Bodies ALWAYS live in R2 under form-uploads/{clientId}/{fieldId}
+// (no inline fallback — binary doesn't belong in D1); this table keeps the
+// metadata. One row per client+field, replaced on re-upload.
+export const portalFormUploads = sqliteTable("portal_form_uploads", {
+  id: integer("id").primaryKey(),
+  clientId: text("client_id").notNull(),
+  fieldId: text("field_id").notNull(),
+  fileName: text("file_name").notNull(),
+  contentType: text("content_type").notNull().default("application/octet-stream"),
+  size: integer("size").notNull().default(0),
+  uploadedAt: text("uploaded_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
