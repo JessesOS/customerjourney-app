@@ -131,6 +131,11 @@ export const portalMilestoneContent = sqliteTable("portal_milestone_content", {
   clientId: text("client_id").notNull(),
   milestoneId: text("milestone_id").notNull(),
   content: text("content").notNull().default(""),
+  // AI-drafted content awaiting team review. NEVER shown to the client — the
+  // portal renders `content` only; an admin publishes a draft into `content`.
+  draft: text("draft").notNull().default(""),
+  // Provenance line for the admin, e.g. "AI draft from https://... (2026-08-10)".
+  draftSource: text("draft_source").notNull().default(""),
   updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 

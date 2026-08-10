@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { decodePortalFileValue, onboardingFormById, formatFieldValue, type PortalFormResponses } from "@/lib/onboardingForm";
 
 type PortalClient = {
@@ -61,6 +61,30 @@ function MilestoneContentEditor({ clientId, milestoneId, title, initialContent, 
   const [value, setValue] = useState(initialContent);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [draft, setDraft] = useState("");
+  const [draftSource, setDraftSource] = useState("");
+  const [resolvingDraft, setResolvingDraft] = useState(false);
+
+  const authHeaders = useMemo<HeadersInit>(
+    () => ({ "Content-Type": "application/json", ...(adminToken ? { "x-admin-token": adminToken } : {}) }),
+    [adminToken],
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/api/admin/portal-clients/${clientId}/milestone-content/${milestoneId}`, { headers: authHeaders, cache: "no-store" })
+      .then((res) => res.json() as Promise<{ ok: boolean; draft?: string; draftSource?: string }>)
+      .then((payload) => {
+        if (!cancelled && payload.ok) {
+          setDraft(payload.draft ?? "");
+          setDraftSource(payload.draftSource ?? "");
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [clientId, milestoneId, authHeaders]);
 
   async function save() {
     setSaving(true);
@@ -68,7 +92,7 @@ function MilestoneContentEditor({ clientId, milestoneId, title, initialContent, 
     try {
       const res = await fetch(`/api/admin/portal-clients/${clientId}/milestone-content/${milestoneId}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...(adminToken ? { "x-admin-token": adminToken } : {}) },
+        headers: authHeaders,
         body: JSON.stringify({ content: value }),
       });
       const payload = (await res.json()) as { ok: boolean };
@@ -81,11 +105,56 @@ function MilestoneContentEditor({ clientId, milestoneId, title, initialContent, 
     }
   }
 
+  async function resolveDraft(action: "publish" | "dismiss") {
+    setResolvingDraft(true);
+    try {
+      const res = await fetch(`/api/admin/portal-clients/${clientId}/milestone-content/${milestoneId}`, {
+        method: "POST",
+        headers: authHeaders,
+        body: JSON.stringify({ resolveDraft: action }),
+      });
+      const payload = (await res.json()) as { ok: boolean };
+      if (payload.ok) {
+        if (action === "publish") setValue(draft);
+        setDraft("");
+        setDraftSource("");
+      }
+    } finally {
+      setResolvingDraft(false);
+    }
+  }
+
   return (
     <div style={{ marginBottom: 16 }}>
       <div style={{ fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(252,250,246,0.4)", marginBottom: 8 }}>
         {title} — team content
       </div>
+
+      {draft && (
+        <div style={{ marginBottom: 10, border: "1px solid #6b5d2e", borderRadius: 8, background: "#1d1a10", padding: "10px 12px" }}>
+          <div style={{ fontSize: 11, color: "#e0c56e", marginBottom: 6, fontWeight: 600 }}>
+            AI DRAFT — review before the client sees anything{draftSource ? ` · ${draftSource}` : ""}
+          </div>
+          <div style={{ whiteSpace: "pre-wrap", fontSize: 13, color: "#fcfaf6", maxHeight: 220, overflowY: "auto" }}>{draft}</div>
+          <div style={{ marginTop: 8, display: "flex", gap: 8 }}>
+            <button
+              onClick={() => resolveDraft("publish")}
+              disabled={resolvingDraft}
+              style={{ padding: "6px 12px", borderRadius: 7, border: "1px solid #444", background: "#e0c56e", color: "#111", cursor: "pointer", fontSize: 12.5, fontWeight: 600 }}
+            >
+              {resolvingDraft ? "…" : "Publish to client"}
+            </button>
+            <button
+              onClick={() => resolveDraft("dismiss")}
+              disabled={resolvingDraft}
+              style={{ padding: "6px 12px", borderRadius: 7, border: "1px solid #444", background: "transparent", color: "rgba(252,250,246,0.6)", cursor: "pointer", fontSize: 12.5 }}
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      )}
+
       <textarea
         value={value}
         onChange={(e) => setValue(e.target.value)}

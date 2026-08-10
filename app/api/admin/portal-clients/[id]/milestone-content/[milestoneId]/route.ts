@@ -1,6 +1,6 @@
 import { requestCanAdmin } from "@/lib/adminAuth";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
-import { getMilestoneContent, setMilestoneContent } from "@/lib/portalClientStore";
+import { getMilestoneContentFull, resolveMilestoneDraft, setMilestoneContent, setMilestoneDraft } from "@/lib/portalClientStore";
 
 const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
 
@@ -15,8 +15,8 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
   }
 
   try {
-    const content = await getMilestoneContent(id, milestoneId);
-    return Response.json({ ok: true, content });
+    const full = await getMilestoneContentFull(id, milestoneId);
+    return Response.json({ ok: true, ...full });
   } catch (error) {
     return Response.json(
       { ok: false, error: error instanceof Error ? error.message : "Could not load content." },
@@ -36,7 +36,28 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   }
 
   try {
-    const body = (await request.json()) as { content?: string };
+    const body = (await request.json()) as {
+      content?: string;
+      draft?: string;
+      draftSource?: string;
+      resolveDraft?: "publish" | "dismiss";
+    };
+
+    // Publish or dismiss a pending AI draft.
+    if (body.resolveDraft) {
+      const resolved = await resolveMilestoneDraft(id, milestoneId, body.resolveDraft === "publish");
+      if (!resolved) {
+        return Response.json({ ok: false, error: "No pending draft to resolve." }, { status: 400 });
+      }
+      return Response.json({ ok: true });
+    }
+
+    // Store an AI draft for team review (the client never sees drafts).
+    if (typeof body.draft === "string") {
+      await setMilestoneDraft(id, milestoneId, body.draft.slice(0, 8000), (body.draftSource ?? "").slice(0, 300));
+      return Response.json({ ok: true });
+    }
+
     const content = (body.content ?? "").slice(0, 8000);
     await setMilestoneContent(id, milestoneId, content);
     return Response.json({ ok: true });

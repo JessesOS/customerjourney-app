@@ -79,6 +79,11 @@
 >   client deletion cleans the objects. Live-verified locally (byte-identical
 >   round-trip, sanitizer round-trip, delete cleanup, wrong-type/unknown-field
 >   rejections) and deployed + smoke-tested in prod.
+> - DONE 2026-08-10: milestone-content DRAFT GATE (migration 0013): AI-drafted
+>   content stages in a draft slot the client never sees; admin panel shows an
+>   "AI DRAFT" box with Publish/Dismiss. Negative-tested in prod. Feeds the brain's
+>   qualifier-drafter skill (reads the client's website, drafts the AI receptionist's
+>   qualification questions). First real draft (FM Essentials) pending Jesse's verdict.
 > - NEXT: Jesse dumps his change list — one-liners added here as they come.
 > - Known content pass already flagged: CSM task titles naming the retired tool
 >   (stream 2 touches these too); guided-setup experience queued by Jesse.

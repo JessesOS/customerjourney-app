@@ -309,6 +309,52 @@ export async function setMilestoneContent(clientId: string, milestoneId: string,
   }
 }
 
+/** Content row incl. the unpublished AI draft — admin/API use only. */
+export async function getMilestoneContentFull(clientId: string, milestoneId: string) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalMilestoneContent)
+    .where(and(eq(portalMilestoneContent.clientId, clientId), eq(portalMilestoneContent.milestoneId, milestoneId)))
+    .limit(1);
+  const row = rows[0];
+  return { content: row?.content ?? "", draft: row?.draft ?? "", draftSource: row?.draftSource ?? "" };
+}
+
+/** Stores an AI draft for team review. Never touches `content`, so the client sees nothing. */
+export async function setMilestoneDraft(clientId: string, milestoneId: string, draft: string, draftSource: string) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalMilestoneContent)
+    .where(and(eq(portalMilestoneContent.clientId, clientId), eq(portalMilestoneContent.milestoneId, milestoneId)))
+    .limit(1);
+  const now = new Date().toISOString();
+  if (rows[0]) {
+    await db.update(portalMilestoneContent).set({ draft, draftSource, updatedAt: now }).where(eq(portalMilestoneContent.id, rows[0].id));
+  } else {
+    await db.insert(portalMilestoneContent).values({ clientId, milestoneId, content: "", draft, draftSource, updatedAt: now });
+  }
+}
+
+/** Publishes the pending draft into live content (or clears it with publish=false). */
+export async function resolveMilestoneDraft(clientId: string, milestoneId: string, publish: boolean) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalMilestoneContent)
+    .where(and(eq(portalMilestoneContent.clientId, clientId), eq(portalMilestoneContent.milestoneId, milestoneId)))
+    .limit(1);
+  const row = rows[0];
+  if (!row || !row.draft) return false;
+  const now = new Date().toISOString();
+  await db
+    .update(portalMilestoneContent)
+    .set(publish ? { content: row.draft, draft: "", draftSource: "", updatedAt: now } : { draft: "", draftSource: "", updatedAt: now })
+    .where(eq(portalMilestoneContent.id, row.id));
+  return true;
+}
+
 export async function getFormResponses(clientId: string, formId: string) {
   const db = getDb();
   const rows = await db
