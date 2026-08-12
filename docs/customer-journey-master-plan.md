@@ -85,6 +85,13 @@
 >   qualifier-drafter skill (reads the client's website, drafts the AI receptionist's
 >   qualification questions). First real draft (FM Essentials) pending Jesse's verdict.
 > - NEXT: Jesse dumps his change list — one-liners added here as they come.
+> - PROCESS (Jesse 2026-08-12): Google keywords run DRAFT-THEN-REPLACE. The AI
+>   list (from the client's website) publishes immediately so the client can
+>   steer early and their exclusions reach the Ads Team before the 6-hour Upwork
+>   keyword milestone. When the Ads Team's Keyword Planner plan lands, the team
+>   PASTES IT OVER bd-g3's content before final approval. CSM already carries the
+>   team half ("Activate the Ads Team keyword-research milestone"); bd-g3 is the
+>   client-facing half of that same work — a two-flag pair for the stream 2 import.
 > - STAGE 1 SHIPPED same night 2026-08-10: AI receptionist playground live on the
 >   Testing task (chat + mic + spoken replies, client's own script, Worker-side
 >   sonnet; ANTHROPIC_API_KEY now also a Worker secret). Stage 2 still queued: auto-
