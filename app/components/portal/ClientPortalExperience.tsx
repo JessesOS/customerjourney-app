@@ -25,6 +25,7 @@ import { askItemsFor } from "@/lib/askAi";
 import { WelcomeScreen } from "@/app/components/portal/WelcomeScreen";
 import { WelcomeMarquee } from "@/app/components/portal/WelcomeMarquee";
 import { HandoffHub } from "@/app/components/portal/HandoffHub";
+import { IncentiveModal } from "@/app/components/portal/IncentiveModal";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
 import { StageCompleteView } from "@/app/components/portal/StageCompleteView";
@@ -238,6 +239,27 @@ export function ClientPortalExperience({
       localStorage.setItem(welcomedKey, "1");
     } catch {}
     setShowWelcome(false);
+    // Fresh client, never seen it: the incentive popup takes the welcome's
+    // slot immediately after — same per-client key pattern.
+    try {
+      if (localStorage.getItem(incentiveKey) !== "1") setShowIncentive(true);
+    } catch {}
+  }
+
+  // "Move fast, save $200" engagement popup — one-time per client, shown the
+  // instant the welcome dismisses. ?incentive=1 forces it back for review.
+  const incentiveKey = `pjIncentiveSeen:${portalToken ?? "demo"}`;
+  const [showIncentive, setShowIncentive] = useState(false);
+  useEffect(() => {
+    try {
+      if (new URLSearchParams(window.location.search).get("incentive") === "1") setShowIncentive(true);
+    } catch {}
+  }, []);
+  function dismissIncentive() {
+    try {
+      localStorage.setItem(incentiveKey, "1");
+    } catch {}
+    setShowIncentive(false);
   }
 
   // Jesse 2026-08-10: "Get started" lands on the onboarding OVERVIEW (the
@@ -471,6 +493,7 @@ export function ClientPortalExperience({
         ) : (
           <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
         ))}
+      {!showWelcome && showIncentive && <IncentiveModal onClose={dismissIncentive} />}
       {/* Review-only: welcome-generation toggle, floats OVER the welcome
           overlay (demo route only). */}
       {showWelcome && isDemo && (
@@ -852,6 +875,13 @@ export function ClientPortalExperience({
                 style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: "transparent", color: "var(--pj-muted)", whiteSpace: "nowrap" }}
               >
                 Welcome
+              </button>
+              <button
+                onClick={() => setShowIncentive(true)}
+                title="Replay the $200 incentive popup (clients see it once, right after welcome; ?incentive=1 works on any portal link)"
+                style={{ border: "none", cursor: "pointer", borderRadius: 999, padding: "7px 13px", fontSize: 11, fontWeight: 650, fontFamily: "var(--font-body), sans-serif", background: "transparent", color: "var(--pj-muted)", whiteSpace: "nowrap" }}
+              >
+                Incentive
               </button>
             </div>
           )}
