@@ -66,6 +66,12 @@
 > - NEXT: the importer generating client-only rows from the portal's template files,
 >   proven by the identical-views diff; then the read-only journey view on client
 >   detail. Queue decision made: client-only rows stay OUT of the queue.
+> - DONE 2026-08-12/13: CSM dashboard restyled to the portal's look (warm sand +
+>   terracotta light, aubergine dark, Figtree + IBM Plex Mono), then a measured
+>   design review pass: WCAG contrast failures fixed (muted text, amber, and
+>   card borders in both themes), dark kanban headers rebuilt as deep tints
+>   instead of light-theme pastel slabs, six-hue phase rainbow harmonised to the
+>   portal family. ~29 stray cool values remain in unvisited corners.
 > - Phase 4 (portal reads shared DB): parked until raised with Jesse explicitly.
 > - Phases 5-6 (central view, brain dashboard reads CSM): after the above.
 >
