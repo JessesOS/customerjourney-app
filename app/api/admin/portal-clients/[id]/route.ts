@@ -22,6 +22,11 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       journeyState?: string;
       clientType?: string;
       clientTypeConfirmed?: boolean;
+      /** Set by the brain's provisioning script so hand-run demo clients can be
+          reached by the nudge worker, same as webhook-provisioned ones. */
+      ghlContactId?: string;
+      phone?: string;
+      email?: string;
     };
 
     if (body.themeVariant !== undefined) {
@@ -32,6 +37,11 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     }
 
     const adminFields: Parameters<typeof updatePortalClientAdminFields>[1] = {};
+    if (typeof body.ghlContactId === "string" && body.ghlContactId.trim()) {
+      adminFields.ghlContactId = body.ghlContactId.trim();
+    }
+    if (typeof body.phone === "string") adminFields.phone = body.phone.trim();
+    if (typeof body.email === "string") adminFields.email = body.email.trim();
     if (body.journeyState !== undefined) {
       if (!isJourneyState(body.journeyState)) {
         return Response.json(

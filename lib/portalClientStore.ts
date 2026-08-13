@@ -192,7 +192,7 @@ export async function provisionPortalClient(input: {
 
 export async function updatePortalClientAdminFields(
   clientId: string,
-  fields: Partial<{ journeyState: JourneyState; clientTypeConfirmed: boolean; clientType: ClientType }>,
+  fields: Partial<{ journeyState: JourneyState; clientTypeConfirmed: boolean; clientType: ClientType; ghlContactId: string; phone: string; email: string }>,
 ) {
   const db = getDb();
   await db
@@ -528,6 +528,26 @@ export async function getFormUpload(clientId: string, fieldId: string) {
     return null;
   }
   return { meta: row, body: await object.arrayBuffer() };
+}
+
+/**
+ * The most recent sign of life from a client: a milestone ticked or noted, a
+ * form answer saved, or a file uploaded. Used to spot a stalled journey.
+ */
+export async function getLastActivityAt(clientId: string): Promise<string | null> {
+  const db = getDb();
+  const [progress, forms, uploads] = await Promise.all([
+    db.select().from(portalMilestoneProgress).where(eq(portalMilestoneProgress.clientId, clientId)),
+    db.select().from(portalFormResponses).where(eq(portalFormResponses.clientId, clientId)),
+    db.select().from(portalFormUploads).where(eq(portalFormUploads.clientId, clientId)),
+  ]);
+  const stamps = [
+    ...progress.map((r) => r.updatedAt),
+    ...forms.map((r) => r.updatedAt),
+    ...uploads.map((r) => r.uploadedAt),
+  ].filter(Boolean) as string[];
+  if (stamps.length === 0) return null;
+  return stamps.sort().at(-1) ?? null;
 }
 
 export async function getAllFormUploadsMeta(clientId: string): Promise<Record<string, { fileName: string; contentType: string; size: number; uploadedAt: string }>> {

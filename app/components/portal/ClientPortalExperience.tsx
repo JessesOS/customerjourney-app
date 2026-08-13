@@ -207,6 +207,26 @@ export function ClientPortalExperience({
     } catch {}
     setWelcomeDecided(true);
   }, [welcomedKey]);
+  // Deep link: /portal/<token>?task=<milestoneId> opens that task directly, so a
+  // reminder can drop the client exactly where they stopped instead of on the rail.
+  useEffect(() => {
+    try {
+      const wanted = new URLSearchParams(window.location.search).get("task");
+      if (!wanted) return;
+      for (const stage of journeyStages) {
+        const idx = stage.milestones.findIndex((m) => m.id === wanted);
+        if (idx !== -1) {
+          setViewingStageId(stage.id);
+          setMilestone(idx + 1);
+          setView("stage");
+          return;
+        }
+      }
+    } catch {}
+    // journeyStages is stable for a given client/day; run once on mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Lift the page's anti-flash veil only after the decision has rendered, so
   // the first visible paint is the welcome overlay (or the rail on a return
   // visit) — never a flash of one then the other.
