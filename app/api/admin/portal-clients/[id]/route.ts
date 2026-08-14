@@ -37,7 +37,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     }
 
     const adminFields: Parameters<typeof updatePortalClientAdminFields>[1] = {};
-    if (typeof body.ghlContactId === "string" && body.ghlContactId.trim()) {
+    // Empty string explicitly UNLINKS (a client can be re-linked or corrected);
+    // omitting the field leaves it untouched.
+    if (typeof body.ghlContactId === "string") {
       adminFields.ghlContactId = body.ghlContactId.trim();
     }
     if (typeof body.phone === "string") adminFields.phone = body.phone.trim();
