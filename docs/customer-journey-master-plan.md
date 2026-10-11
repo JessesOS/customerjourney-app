@@ -29,6 +29,20 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
+> **Design-session note 2026-10-11 (branch `motion-redesign`, NOT merged, NOT deployed):**
+> a JOURNEY/TEMPLATE CHANGE is waiting on that branch. Scale onboarding gains a new first
+> task, `ob-0` "Your voice interview" (`lib/onboardingJourney.ts`), ahead of `ob-1`, so
+> Onboarding goes from 10 to 11 tasks. The client answers six questions out loud or by
+> typing; the transcript saves as the task's note through the existing `/complete`
+> endpoint. When this branch merges: (1) re-run stream 2's importer; (2) every existing
+> Scale client will show `ob-0` as open, including clients already past Onboarding, so
+> decide before merge whether to back-fill it as complete for them. Two small cross-lane
+> touches, both deliberate: `MilestoneTemplate` / `JourneyMilestone` gain an optional
+> `interview?: string[]` field (`lib/journeyEngine.ts`), and the note length cap in
+> `app/api/portal/[token]/complete/route.ts` goes from 2,000 to 12,000 characters so a
+> spoken transcript is not cut short. No schema change (TEXT column). Anything that
+> forwards notes onward (webhooks, CSM) should expect longer notes for `ob-0`.
+>
 > Operating rules that keep one session viable: heavy exploration is delegated to
 > subagents so the main context stays lean; commits name their files explicitly (three
 > accidental commit-sweeps happened the week this was written); /wrap and /hand-off run

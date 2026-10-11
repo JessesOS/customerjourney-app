@@ -19,7 +19,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
       return Response.json({ ok: false, error: "Unknown milestone id." }, { status: 400 });
     }
 
-    const note = typeof body.note === "string" ? body.note.trim().slice(0, 2000) : undefined;
+    // 12,000 characters, so a spoken interview transcript (ob-0) is not cut short.
+    const note = typeof body.note === "string" ? body.note.trim().slice(0, 12000) : undefined;
     await markMilestoneComplete(client.id, milestoneId, note);
 
     return Response.json({ ok: true });

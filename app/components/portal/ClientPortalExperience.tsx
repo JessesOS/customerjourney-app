@@ -16,6 +16,7 @@ import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalD
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
+import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
 import { StageGuide } from "@/app/components/portal/StageGuide";
@@ -1290,6 +1291,14 @@ export function ClientPortalExperience({
                       </div>
                     )}
 
+                    {m.interview && (
+                      <VoiceInterview
+                        questions={m.interview}
+                        storageKey={`pjInterview:${portalToken ?? "demo"}:${m.id}`}
+                        onChange={(transcript) => setNoteDrafts((prev) => (prev[m.id] === transcript ? prev : { ...prev, [m.id]: transcript }))}
+                      />
+                    )}
+
                     {m.notePrompt && (
                       <div style={{ marginTop: 16 }}>
                         <label style={{ fontSize: 10.5, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
@@ -1319,8 +1328,8 @@ export function ClientPortalExperience({
                       {m.status === "done"
                         ? "Completed"
                         : m.noteRequired && !noteValue.trim()
-                          ? "Fill in the field above to continue"
-                          : "Awaiting your approval"}
+                          ? m.interview ? "Answer at least one question to continue" : "Fill in the field above to continue"
+                          : m.interview ? "Ready when you are" : "Awaiting your approval"}
                     </span>
                     {m.status !== "done" ? (
                       (() => {
@@ -1331,7 +1340,7 @@ export function ClientPortalExperience({
                         onClick={() => {
                           if (noteMissing) return;
                           const completedStageId = stageCompletedBy(m.id);
-                          approveMilestone(m.id, m.notePrompt ? noteValue : undefined);
+                          approveMilestone(m.id, m.notePrompt || m.interview ? noteValue : undefined);
                           if (completedStageId) {
                             setJustCompletedStageId(completedStageId);
                             setView("complete");
@@ -1344,7 +1353,7 @@ export function ClientPortalExperience({
                         }}
                         style={{ marginLeft: isFirst ? "auto" : 0, background: noteMissing ? "var(--pj-act-fill)" : "var(--pj-btn-grad)", color: noteMissing ? "var(--pj-act)" : "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: noteMissing ? "default" : "pointer", boxShadow: noteMissing ? "none" : "var(--pj-shadow-btn)" }}
                       >
-                        {isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
+                        {m.interview ? "Finish interview" : isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
                       </button>
                         );
                       })()

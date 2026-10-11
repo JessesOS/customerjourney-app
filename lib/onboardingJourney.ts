@@ -37,6 +37,23 @@ export const journeyTemplate: StageTemplate[] = [
     dayStart: 1,
     dayEnd: 2,
     milestones: [
+      // Voice interview (added 2026-10-11 on Jesse's instruction): the very first
+      // task. The client answers out loud; the transcript saves as the task note.
+      // Title, detail and questions are a first draft for Jesse to edit.
+      {
+        id: "ob-0",
+        title: "Your voice interview",
+        detail: "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+        noteRequired: true,
+        interview: [
+          "What does your business do, and who do you do it for?",
+          "Which services or products do you most want more enquiries for?",
+          "Who is your ideal customer, and where are they?",
+          "Why do customers choose you over someone else?",
+          "What happens today when a new enquiry comes in?",
+          "What would a great result look like 90 days from now?",
+        ],
+      },
       { id: "ob-1", title: "Tell us about your business", detail: "Your details, access and branding — about 15 minutes, best done in one sitting.", formId: "scale-onboarding-intake-v1" },
       { id: "ob-2", title: "Book your Welcome Call & portal walkthrough", detail: "A live 30-minute walkthrough of your portal, your milestones, and your messaging center. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.", bookingUrl: "https://go.rt-d.com/jesse30" },
       { id: "ob-3", title: "Review & approve your AI receptionist's qualification questions", detail: "Our team has drafted the qualification questions your AI will ask incoming leads, based on how you'd train a new team member. Take a look below and approve, or leave a note if you'd like anything adjusted.", notePrompt: "Any adjustments or requests for these questions?", hasEditableContent: true },

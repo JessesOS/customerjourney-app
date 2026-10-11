@@ -140,6 +140,24 @@ Checked in a browser: green welcome, handoff, home at 1440 px, task list open, t
 scroll). Typecheck 0 errors, build complete. Not checked: focus layout, stages 2 to 5, stage-complete card,
 reduced motion. Critics not run. No credits spent.
 
+## 2026-10-11: piece 6, Grove picked, rail depth, voice interview task
+
+Jesse: Grove is "the winner for now". Two asks.
+- **Rail depth:** the Grove journey rail is now its own shaded panel (deeper off-white, hairline, soft shadow), so
+  it reads as a separate thing from the main body. The current step sits on it as a white card.
+- **Voice interview as the first task:** new `ob-0` "Your voice interview" ahead of the intake form, so Onboarding
+  is 11 tasks and the form is task 2. `app/components/portal/VoiceInterview.tsx`: one question at a time, a mic
+  button (browser speech recognition, free, no backend), the words land in an editable box, typing works too.
+  Saved as the task's note. Works in every look through the tokens.
+- **New copy, first draft for Jesse to edit:** the task title, its one-line detail, six interview questions, and
+  the labels inside the interview. All in `lib/onboardingJourney.ts` and `VoiceInterview.tsx`.
+
+Checked in a browser (demo client, typed answers): home shows the interview as up next and 0 / 11, the interview
+opens, next question, finish, lands on task 2 of 11 (the form). Typecheck 0 errors, build complete.
+Not checked: speaking into the mic (cannot be tested from here), saving against a real client record, a phone,
+Firefox (no speech recognition there, typing only). It is not a two-way AI voice agent: nothing speaks the
+questions or asks follow-ups. Cross-lane notes are in `docs/customer-journey-master-plan.md`.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

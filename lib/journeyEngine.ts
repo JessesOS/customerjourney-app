@@ -48,6 +48,9 @@ export type JourneyMilestone = {
   /** Shows a "copy your portal link" card instead of the usual content — for
       tasks that just ask the client to bookmark where they already are. */
   showPortalLink?: boolean;
+  /** Voice interview: questions asked one at a time; the answers are saved
+      as the task's note. */
+  interview?: string[];
 };
 
 export type JourneyStage = {
@@ -82,6 +85,7 @@ export type MilestoneTemplate = {
   important?: string;
   steps?: string[];
   showPortalLink?: boolean;
+  interview?: string[];
   /** Hidden from the client flow entirely (not rendered, not counted). Flip to
       re-enable a task without deleting it. */
   hidden?: boolean;
@@ -145,6 +149,7 @@ export function buildStagesFromTemplate(
       detail: m.detail,
       formId: m.formId,
       notePrompt: m.notePrompt,
+      interview: m.interview,
       notePlaceholder: m.notePlaceholder,
       noteRequired: m.noteRequired,
       hasEditableContent: m.hasEditableContent,
