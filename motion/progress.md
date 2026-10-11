@@ -64,6 +64,20 @@ rebuild.
 - The demo review pills use the cobalt accent, so on the demo route cobalt shows more than twice. Clients never see them.
 - No credits spent.
 
+## 2026-10-11: piece 2, second pass (Jesse's review)
+
+Jesse's call on the first pass: it lost the framing and functions of the other designs. No journey rail, no
+Journey rail / Focus choice, the task list sat too far down the page, and the bar graphic by the title did not read.
+
+**Rebuilt** `CobaltHub.tsx` on the same frame as the other designs: sticky header and stage strip, a journey rail
+(click a stage to open it, overall progress at the foot), and one main card with the title, the up-next action and
+the task list expanding in place straight under it. Journey rail / Focus works on the pill again, rail by default.
+The bar graphic is gone; the tasks show as small segments in the task-list header instead.
+
+Checked in a browser: rail and focus at 1440 px, task list open, a rail click into the Build stage, 375 px phone
+(rail hides, no sideways scroll). Typecheck 0 errors, build complete. Still not checked: stage-complete card and the
+home page of stages 2 to 5, reduced motion. Critics not run.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

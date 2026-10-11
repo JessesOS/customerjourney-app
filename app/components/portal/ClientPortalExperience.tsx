@@ -194,7 +194,7 @@ export function ClientPortalExperience({
   // Portal layout: the handoff design defaults to its journey rail (Jesse
   // 2026-08-10 — clients like Rich should land on it with no toggling);
   // the current design keeps "focus" as its shipped default (2026-08-05).
-  const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" ? "rail" : "focus");
+  const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" || themeVariant === "cobalt" ? "rail" : "focus");
   const [isDemo, setIsDemo] = useState(false);
   // First-visit welcome landing (Imprint-style). Shown until dismissed once
   // on this device PER CLIENT (a global flag meant a second client on the same
@@ -818,6 +818,9 @@ export function ClientPortalExperience({
           stages={journeyStages}
           currentStageIndex={currentStageIndex}
           stageDoneCount={stageDoneCount}
+          overallPercent={progress}
+          showRail={railLayout === "rail"}
+          onSelectStage={(stageId) => openM(stageId, 1)}
           upNext={upNext}
           upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
           onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
@@ -893,12 +896,11 @@ export function ClientPortalExperience({
               picked. */}
           {isDemo && (
             <div style={{ position: "fixed", bottom: 64, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
-              {(designSkin === "cobalt"
-                ? [] // the cobalt page has one layout
-                : ([
-                    ["rail", "Journey rail"],
-                    ["focus", "Focus"],
-                  ] as const)
+              {(
+                [
+                  ["rail", "Journey rail"],
+                  ["focus", "Focus"],
+                ] as const
               ).map(([v, label]) => (
                 <button
                   key={v}
@@ -908,7 +910,7 @@ export function ClientPortalExperience({
                   {label}
                 </button>
               ))}
-              {designSkin !== "cobalt" && <span style={{ width: 1, alignSelf: "stretch", background: "var(--pj-line)", margin: "2px 2px" }} />}
+              <span style={{ width: 1, alignSelf: "stretch", background: "var(--pj-line)", margin: "2px 2px" }} />
               <button
                 onClick={() => setShowWelcome(true)}
                 title="Replay the welcome landing (clients see it on their first visit; ?welcome=1 works on any portal link)"

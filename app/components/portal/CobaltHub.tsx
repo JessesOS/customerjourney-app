@@ -6,17 +6,18 @@ import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 
 /**
  * Journey page in the motion-redesign look (bar and design system in
- * motion/). A white gallery: one thing per band, white and mist bands
- * alternating, 28 px corners, hairlines, no shadows, one family (Geist).
- * Cobalt appears twice per screen at most: the current segment of the stage
- * strip and the one primary button. Each stage opens on its one-word title.
- * The stage's task bars echo the booked rows of the funnel welcome, so the
- * picture a client just watched carries into the page they land on.
- * Colours ride the --pj-* tokens set by [data-pj-design="cobalt"].
+ * motion/). Same frame as the other designs: sticky header with the stage
+ * strip, an optional journey rail, and one main card holding the stage
+ * title, the up-next action and the expandable task list. What changes is
+ * the look: white cards on a mist ground, 28 px corners, hairlines, no
+ * shadows, one family (Geist), a one-word stage title at display size.
+ * Cobalt is kept to the current segment of the stage strip and the one
+ * primary button. Colours ride the --pj-* tokens set by
+ * [data-pj-design="cobalt"].
  */
 
-function days(s: JourneyStage) {
-  return s.dayStart === s.dayEnd ? `Day ${s.dayStart}` : `Days ${s.dayStart}–${s.dayEnd}`;
+function days(s: JourneyStage, one = "Day", many = "Days") {
+  return s.dayStart === s.dayEnd ? `${one} ${s.dayStart}` : `${many} ${s.dayStart}–${s.dayEnd}`;
 }
 
 function Mark({ state }: { state: "done" | "current" | "future" }) {
@@ -43,13 +44,16 @@ export function CobaltHub({
   stages,
   currentStageIndex,
   stageDoneCount,
+  overallPercent,
   upNext,
   upNextDetail,
   onStartUpNext,
   onOpenTask,
+  onSelectStage,
   taskStatus,
   tasksOpen,
   onToggleTasks,
+  showRail,
   orbSlot,
   children,
 }: {
@@ -61,13 +65,16 @@ export function CobaltHub({
   stages: JourneyStage[];
   currentStageIndex: number;
   stageDoneCount: number;
+  overallPercent: number;
   upNext?: JourneyMilestone;
   upNextDetail?: string;
   onStartUpNext?: () => void;
   onOpenTask: (milestoneIndex: number) => void;
+  onSelectStage: (stageId: string) => void;
   taskStatus: (m: JourneyMilestone) => TaskDisplayStatus;
   tasksOpen: boolean;
   onToggleTasks: () => void;
+  showRail: boolean;
   orbSlot?: ReactNode;
   children?: ReactNode;
 }) {
@@ -75,9 +82,9 @@ export function CobaltHub({
   const tasks = stage?.milestones ?? [];
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif" }}>
+    <div style={{ minHeight: "100vh", background: "var(--pj-rail)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif" }}>
       {/* Header and stage strip */}
-      <header style={{ position: "sticky", top: 0, zIndex: 5, background: "var(--pj-bg)", borderBottom: "1px solid var(--pj-line)" }}>
+      <header style={{ position: "sticky", top: 0, zIndex: 5, background: "var(--pj-card)", borderBottom: "1px solid var(--pj-line)" }}>
         <div className="gx-wrap" style={{ display: "flex", alignItems: "center", gap: 14, paddingTop: 16, paddingBottom: 14 }}>
           <span style={{ fontWeight: 600, fontSize: 19, letterSpacing: "-0.02em" }}>{brand}</span>
           <span style={{ ...label, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>{clientLabel}</span>
@@ -95,121 +102,133 @@ export function CobaltHub({
         </div>
       </header>
 
-      {/* Stage opener: one word at display size, and the stage's task bars */}
-      <section className="gx-wrap gx-opener" key={stage?.id}>
-        <div style={{ minWidth: 0 }}>
+      <div className="gx-wrap gx-main-row">
+        {/* Journey rail */}
+        {showRail ? (
+          <aside className="gx-rail">
+            <div style={{ ...label, margin: "0 10px 12px" }}>Your journey</div>
+            {stages.map((s, i) => {
+              const done = s.status === "done", now = i === currentStageIndex && !done;
+              const doneCount = s.milestones.filter((m) => m.status === "done").length;
+              const meta = done
+                ? `All ${s.milestones.length} tasks done · ${days(s, "Days")}`
+                : now
+                  ? `${doneCount} of ${s.milestones.length} done · ${days(s, "Days")}`
+                  : `${s.milestones.length} tasks · ${days(s, "Day", "Day")}`;
+              return (
+                <button key={s.id} type="button" onClick={() => onSelectStage(s.id)} className={now ? "gx-stage gx-stage--now" : "gx-stage"}>
+                  <Mark state={done ? "done" : now ? "current" : "future"} />
+                  <span style={{ minWidth: 0, flex: 1 }}>
+                    <span style={{ display: "block", fontSize: 16, fontWeight: now ? 600 : 500, color: done || now ? "var(--pj-ink)" : "var(--pj-muted)" }}>{s.name}</span>
+                    <span style={{ display: "block", fontSize: 12.5, color: "var(--pj-muted)", marginTop: 2 }}>{meta}</span>
+                  </span>
+                </button>
+              );
+            })}
+            <div style={{ borderTop: "1px solid var(--pj-line)", margin: "14px 10px 0", paddingTop: 16 }}>
+              <div style={{ display: "flex", alignItems: "baseline" }}>
+                <span style={label}>Overall progress</span>
+                <b style={{ marginLeft: "auto", fontSize: 16, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{overallPercent}%</b>
+              </div>
+              <div style={{ height: 6, borderRadius: 6, background: "var(--pj-track)", overflow: "hidden", margin: "10px 0 8px" }}>
+                <span style={{ display: "block", height: "100%", width: `${overallPercent}%`, background: "var(--pj-ink)", borderRadius: 6 }} />
+              </div>
+              <span style={{ fontSize: 12.5, color: "var(--pj-muted)" }}>of the journey complete</span>
+            </div>
+          </aside>
+        ) : null}
+
+        {/* Main card */}
+        <main className="gx-card" key={stage?.id}>
+          {orbSlot ? <div className="gx-orb">{orbSlot}</div> : null}
           <div className="gx-rise" style={label}>
             Stage {currentStageIndex + 1} of {stages.length} · {stage ? days(stage) : ""}
           </div>
           <h2 className="gx-title gx-rise" style={{ animationDelay: "80ms" }}>{stage?.name}</h2>
           {stage?.blurb ? (
-            <p className="gx-rise" style={{ fontSize: 21, lineHeight: 1.38, color: "var(--pj-muted)", maxWidth: "30ch", margin: 0, animationDelay: "160ms" }}>
+            <p className="gx-rise" style={{ fontSize: 18, lineHeight: 1.45, color: "var(--pj-muted)", maxWidth: "52ch", margin: 0, animationDelay: "160ms" }}>
               {stage.blurb}
             </p>
           ) : null}
-        </div>
-        <div className="gx-bars" data-xray="Task bars · CSS, drawn in code" data-xray-tool="code">
-          {tasks.map((m, i) => {
-            const st = taskStatus(m);
-            return (
-              <span key={m.id} className="gx-bar-track">
-                {st === "done" || st === "your-turn" ? (
-                  <span className={st === "done" ? "gx-bar" : "gx-bar gx-bar--now"} style={{ animationDelay: `${200 + i * 90}ms`, width: st === "done" ? "100%" : "34%" }} />
-                ) : null}
-              </span>
-            );
-          })}
-          <span style={{ ...label, marginTop: 6, fontVariantNumeric: "tabular-nums" }}>
-            {stageDoneCount} of {tasks.length} done
-          </span>
-        </div>
-        {orbSlot ? <div className="gx-orb">{orbSlot}</div> : null}
-      </section>
 
-      {/* Up next: the one action on the page */}
-      <section style={{ background: "var(--pj-rail)" }}>
-        <div className="gx-wrap gx-band">
-          <div style={{ background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 28, padding: "clamp(24px, 4vw, 40px)" }}>
-            <div style={label}>Up next for you</div>
+          {/* Up next: the one action on the page */}
+          <div className="gx-next gx-rise" style={{ animationDelay: "240ms" }}>
+            <div style={{ minWidth: 0 }}>
+              <div style={label}>Up next for you</div>
+              <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.17, letterSpacing: "-0.01em", marginTop: 8 }}>{upNext ? upNext.title : "We’re preparing your next step"}</div>
+              <p style={{ fontSize: 16, lineHeight: 1.47, color: "var(--pj-muted)", margin: "6px 0 0", maxWidth: "52ch" }}>
+                {upNext ? (upNextDetail ?? upNext.detail) : "Nothing needed from you right now — we’ll flag you the moment there’s something to review."}
+              </p>
+            </div>
             {upNext ? (
-              <div className="gx-next">
-                <div style={{ minWidth: 0 }}>
-                  <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.17, letterSpacing: "-0.01em", marginTop: 10 }}>{upNext.title}</div>
-                  <p style={{ fontSize: 17, lineHeight: 1.47, color: "var(--pj-muted)", margin: "8px 0 0", maxWidth: "52ch" }}>{upNextDetail ?? upNext.detail}</p>
-                </div>
-                <button type="button" onClick={onStartUpNext} className="gx-primary">
-                  Start this task →
-                </button>
-              </div>
-            ) : (
-              <>
-                <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.17, letterSpacing: "-0.01em", marginTop: 10 }}>We’re preparing your next step</div>
-                <p style={{ fontSize: 17, lineHeight: 1.47, color: "var(--pj-muted)", margin: "8px 0 0" }}>Nothing needed from you right now — we’ll flag you the moment there’s something to review.</p>
-              </>
-            )}
+              <button type="button" onClick={onStartUpNext} className="gx-primary">
+                Start this task →
+              </button>
+            ) : null}
           </div>
-        </div>
-      </section>
 
-      {/* All tasks in this stage */}
-      <section className="gx-wrap gx-band">
-        <button type="button" onClick={onToggleTasks} aria-expanded={tasksOpen} className="gx-toggle">
-          <span style={{ fontSize: 24, fontWeight: 600, letterSpacing: "-0.01em" }}>All tasks in this stage</span>
-          <span style={{ ...label, marginLeft: "auto", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
-            {stageDoneCount} / {tasks.length} done · {tasksOpen ? "Hide" : "Show"}
-          </span>
-        </button>
-        {tasksOpen
-          ? tasks.map((m, mi) => {
-              const st = taskStatus(m);
-              const done = st === "done", now = st === "your-turn";
-              return (
-                <button key={m.id} type="button" onClick={() => onOpenTask(mi)} className="gx-row">
-                  <Mark state={done ? "done" : now ? "current" : "future"} />
-                  <span style={{ fontSize: 17, fontWeight: now ? 600 : 400, color: done ? "var(--pj-muted)" : "var(--pj-ink)", textAlign: "left", minWidth: 0 }}>{m.title}</span>
-                  <span style={{ ...label, marginLeft: "auto", whiteSpace: "nowrap", color: now ? "var(--pj-ink)" : "var(--pj-muted)" }}>
-                    {done ? "Done" : now ? "Your turn" : st === "with-us" ? "With us" : "Up next"}
-                  </span>
-                </button>
-              );
-            })
-          : null}
-      </section>
-
-      {/* Happening with us */}
-      {stage && stage.statusNotes.length > 0 ? (
-        <section style={{ background: "var(--pj-rail)" }}>
-          <div className="gx-wrap gx-band">
-            <div style={label}>Happening with us</div>
-            <ul style={{ listStyle: "none", padding: 0, margin: "14px 0 0", display: "grid", gap: 10 }}>
-              {stage.statusNotes.map((note) => (
-                <li key={note} style={{ fontSize: 17, lineHeight: 1.47 }}>{note}</li>
-              ))}
-            </ul>
+          {/* All tasks in this stage: expands in place, right under the action */}
+          <div className="gx-tasks gx-rise" style={{ animationDelay: "320ms" }}>
+            <button type="button" onClick={onToggleTasks} aria-expanded={tasksOpen} className="gx-toggle">
+              <span className="gx-toggle-title">All tasks in this stage</span>
+              {/* One segment per task, so the whole stage reads at a glance */}
+              <span className="gx-segs" aria-hidden data-xray="Task segments · CSS, drawn in code" data-xray-tool="code">
+                {tasks.map((m, i) => {
+                  const st = taskStatus(m);
+                  return (
+                    <span key={m.id} className={st === "your-turn" ? "gx-seg gx-seg--now" : "gx-seg"}>
+                      {st === "done" || st === "your-turn" ? <i style={{ animationDelay: `${400 + i * 70}ms` }} /> : null}
+                    </span>
+                  );
+                })}
+              </span>
+              <span style={{ ...label, marginLeft: "auto", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+                {stageDoneCount} / {tasks.length} done · <span style={{ color: "var(--pj-ink)" }}>{tasksOpen ? "Hide" : "Show"}</span>
+              </span>
+              <span className="gx-chev" style={{ transform: tasksOpen ? "rotate(180deg)" : "none" }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M6 9l6 6 6-6" />
+                </svg>
+              </span>
+            </button>
+            {tasksOpen
+              ? tasks.map((m, mi) => {
+                  const st = taskStatus(m);
+                  const done = st === "done", now = st === "your-turn";
+                  return (
+                    <div key={m.id} className={now ? "gx-row gx-row--now" : "gx-row"} style={{ animationDelay: `${mi * 40}ms` }}>
+                      <Mark state={done ? "done" : now ? "current" : "future"} />
+                      <span style={{ fontSize: 16, fontWeight: now ? 600 : 400, color: done ? "var(--pj-muted)" : "var(--pj-ink)", minWidth: 0 }}>{m.title}</span>
+                      <span style={{ marginLeft: "auto", flexShrink: 0 }}>
+                        {done ? (
+                          <button type="button" onClick={() => onOpenTask(mi)} className="gx-view">View</button>
+                        ) : now ? (
+                          <button type="button" onClick={() => onOpenTask(mi)} className="gx-small">Start</button>
+                        ) : (
+                          <span className="gx-chip">{st === "with-us" ? "With us" : "Up next"}</span>
+                        )}
+                      </span>
+                    </div>
+                  );
+                })
+              : null}
           </div>
-        </section>
-      ) : null}
 
-      {children ? <section className="gx-wrap gx-band">{children}</section> : null}
+          {/* Happening with us */}
+          {stage && stage.statusNotes.length > 0 ? (
+            <div style={{ marginTop: 28 }}>
+              <div style={label}>Happening with us</div>
+              <ul style={{ listStyle: "none", padding: "16px 20px", margin: "10px 0 0", display: "grid", gap: 8, background: "var(--pj-rail)", borderRadius: 18 }}>
+                {stage.statusNotes.map((note) => (
+                  <li key={note} style={{ fontSize: 15, lineHeight: 1.47 }}>{note}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
 
-      {/* Your journey: every stage, so the whole road stays in view without a side rail */}
-      <section style={{ borderTop: "1px solid var(--pj-line)" }}>
-        <div className="gx-wrap gx-band">
-          <div style={label}>Your journey</div>
-          <div style={{ marginTop: 10 }}>
-            {stages.map((s, i) => {
-              const done = s.status === "done", now = i === currentStageIndex && !done;
-              return (
-                <div key={s.id} style={{ display: "flex", alignItems: "center", gap: 14, padding: "16px 0", borderTop: i ? "1px solid var(--pj-line)" : "none" }}>
-                  <Mark state={done ? "done" : now ? "current" : "future"} />
-                  <span style={{ fontSize: 21, fontWeight: now ? 600 : 400, color: done || now ? "var(--pj-ink)" : "var(--pj-muted)" }}>{s.name}</span>
-                  <span style={{ ...label, marginLeft: "auto", whiteSpace: "nowrap" }}>{days(s)}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+          {children}
+        </main>
+      </div>
     </div>
   );
 }
