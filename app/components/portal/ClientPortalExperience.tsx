@@ -27,6 +27,7 @@ import { WelcomeMarquee } from "@/app/components/portal/WelcomeMarquee";
 import { WelcomeFunnel } from "@/app/components/portal/WelcomeFunnel";
 import { HandoffHub } from "@/app/components/portal/HandoffHub";
 import { CobaltHub } from "@/app/components/portal/CobaltHub";
+import { AuroraHub } from "@/app/components/portal/AuroraHub";
 import { IncentiveModal } from "@/app/components/portal/IncentiveModal";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
@@ -47,7 +48,7 @@ export type ClientPortalExperienceProps = {
   milestoneUploads?: Record<string, UploadMeta>;
   portalToken?: string;
   // "cobalt" is the motion-redesign look. It is a review option only: nothing stores it yet.
-  themeVariant?: "warm" | "cool" | "neutral" | "handoff" | "cobalt";
+  themeVariant?: "warm" | "cool" | "neutral" | "handoff" | "cobalt" | "aurora";
 };
 
 function CheckIcon({ color = "var(--pj-ink)", size = 13 }: { color?: string; size?: number }) {
@@ -194,7 +195,7 @@ export function ClientPortalExperience({
   // Portal layout: the handoff design defaults to its journey rail (Jesse
   // 2026-08-10 — clients like Rich should land on it with no toggling);
   // the current design keeps "focus" as its shipped default (2026-08-05).
-  const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" || themeVariant === "cobalt" ? "rail" : "focus");
+  const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" ? "rail" : "focus");
   const [isDemo, setIsDemo] = useState(false);
   // First-visit welcome landing (Imprint-style). Shown until dismissed once
   // on this device PER CLIENT (a global flag meant a second client on the same
@@ -271,7 +272,7 @@ export function ClientPortalExperience({
   // Portal look: warm (organic) / cool (slate workshop). Seeded from the client
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
-  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant === "handoff" || themeVariant === "cobalt" ? "warm" : themeVariant);
+  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" ? "warm" : themeVariant);
   // Neutral's accent audition (demo pill): gallery surfaces stay, one accent
   // carries the life. Terracotta is the recommended default everywhere.
   const [neutralAccent, setNeutralAccent] = useState<"terracotta" | "brass" | "indigo" | "graphite">("terracotta");
@@ -281,7 +282,7 @@ export function ClientPortalExperience({
   const [welcomeVersion, setWelcomeVersion] = useState<"funnel" | "marquee" | "mosaic">("funnel");
   // Whole-portal design skin from the client_portal handoff package (DM fonts,
   // terracotta+teal on near-white). Demo review toggle; skin-level only.
-  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt">(themeVariant === "handoff" || themeVariant === "cobalt" ? themeVariant : "current");
+  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt" | "aurora">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" ? themeVariant : "current");
   // The handoff design's own Light|Dark scheme (its README ships both); it
   // replaces the warm/cool/neutral dots while the handoff skin is active.
   const [handoffScheme, setHandoffScheme] = useState<"light" | "dark">("light");
@@ -548,7 +549,7 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
@@ -841,6 +842,41 @@ export function ClientPortalExperience({
         </CobaltHub>
       )}
 
+      {/* AURORA DESIGN (motion redesign, second direction) — night hub with stage art, home view */}
+      {view === "home" && designSkin === "aurora" && (
+        <AuroraHub
+          brand={isRespond ? "Respond" : "Scale"}
+          clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
+          name={name}
+          currentDay={currentDay}
+          totalDays={activeJourneyTotalDays}
+          stages={journeyStages}
+          currentStageIndex={currentStageIndex}
+          stageDoneCount={stageDoneCount}
+          stagePct={stagePct}
+          overallPercent={progress}
+          showRail={railLayout === "rail"}
+          onSelectStage={(stageId) => openM(stageId, 1)}
+          upNext={upNext}
+          upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
+          onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
+          onOpenTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
+          taskStatus={taskDisplayStatus}
+          tasksOpen={tasksOpen}
+          onToggleTasks={() => setTasksOpen(!tasksOpen)}
+          orbSlot={
+            voiceOn && currentStage
+              ? (() => {
+                  const g = stageGuideFor(clientType, currentStage.id);
+                  return g ? <StageGuide key={currentStage.id} guide={g} /> : null;
+                })()
+              : null
+          }
+        >
+          {currentStage ? <AskChips items={askItemsFor(clientType, currentStage.id)} stageKey={currentStage.id} /> : null}
+        </AuroraHub>
+      )}
+
       {/* Review pills — rendered outside both layout trees so every option
           survives the design swap (demo route only). */}
       {view === "home" && (
@@ -848,12 +884,13 @@ export function ClientPortalExperience({
           {/* Review-only: design-skin toggle (current system vs the client
               portal handoff package). Demo route only. */}
           {isDemo && (
-            <div style={{ position: "fixed", bottom: 156, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+            <div style={{ position: "fixed", bottom: 156, right: 18, zIndex: 50, maxWidth: "calc(100vw - 36px)", overflowX: "auto", display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
                   ["current", "Current design"],
                   ["handoff", "Handoff design"],
                   ["cobalt", "Cobalt design"],
+                  ["aurora", "Aurora design"],
                 ] as const
               ).map(([v, label]) => (
                 <button
@@ -871,7 +908,7 @@ export function ClientPortalExperience({
               while the neutral theme is active. Delete once a winner is
               picked. */}
           {isDemo && theme === "neutral" && designSkin === "current" && (
-            <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+            <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
                   ["terracotta", "Terracotta"],
@@ -895,7 +932,7 @@ export function ClientPortalExperience({
               Demo route only; works in both themes. Delete once a winner is
               picked. */}
           {isDemo && (
-            <div style={{ position: "fixed", bottom: 64, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+            <div style={{ position: "fixed", bottom: 64, right: 18, zIndex: 50, display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
                   ["rail", "Journey rail"],
@@ -933,7 +970,7 @@ export function ClientPortalExperience({
               hides while the cool theme is active. Delete once a winner is
               picked. */}
           {isDemo && theme === "warm" && designSkin === "current" && (
-            <div style={{ position: "fixed", bottom: 18, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+            <div style={{ position: "fixed", bottom: 18, right: 18, zIndex: 50, display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
                   ["deepframe", "Deep frame"],
@@ -955,7 +992,7 @@ export function ClientPortalExperience({
           {/* Handoff design brings its own Light|Dark schemes (per the
               handoff README) in place of the theme dots. */}
           {isDemo && designSkin === "handoff" && (
-            <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+            <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
                   ["light", "Light"],

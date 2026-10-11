@@ -78,6 +78,27 @@ Checked in a browser: rail and focus at 1440 px, task list open, a rail click in
 (rail hides, no sideways scroll). Typecheck 0 errors, build complete. Still not checked: stage-complete card and the
 home page of stages 2 to 5, reduced motion. Critics not run.
 
+## 2026-10-11: piece 3, a second look for the inside ("Aurora design")
+
+Jesse on Cobalt: flat, boring, a bit busy. Keep it as an option, find another look. His new references: the
+brain.fm app (night ground, one giant figure under a progress arc, art tiles of flowing lines), a dark dashboard
+with glowing orbs, Dala (https://styles.refero.design/style/e5f5f8cf-e68d-4ed1-bbf5-6b67569af648, particles on
+black, huge light-weight type) and Mercury (https://styles.refero.design/style/3172cd4d-118a-4a16-a259-6b634d32322e,
+near-black, cinematic, one accent). The welcome stays as it is.
+
+**Built:** `app/components/portal/AuroraHub.tsx`, a `[data-pj-design="aurora"]` night token block and `ax-*`
+classes, font Outfit. Fourth option on the demo design pill; the demo route opens on it on this branch.
+- Night ground. Each stage has its own field of flowing lines, drawn in code on canvas: large and moving behind
+  the current stage, small on that stage's tile in the journey rail. No images, no video, no credits.
+- The stage's one word sits huge under a progress arc. One white "Start this task" button.
+- Same frame and functions as the other designs: journey rail / focus, stage clicks from the rail, task list
+  expanding in place, happening with us, ask chips. Task view and the $200 popup go dark through the tokens.
+- Copy: existing wording only.
+
+Checked in a browser: home at 1440 px, task view, $200 popup, 375 px phone (no sideways scroll). Typecheck 0 errors.
+Not checked: focus layout, expanded task list, stages 2 to 5 (each has its own colours), stage-complete card,
+reduced motion, frame rate on a slow machine. Critics not run.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

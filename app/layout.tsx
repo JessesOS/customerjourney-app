@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, DM_Mono, DM_Sans, Figtree, Geist, IBM_Plex_Mono, Instrument_Serif, Space_Grotesk } from "next/font/google";
+import { Archivo, DM_Mono, DM_Sans, Figtree, Geist, IBM_Plex_Mono, Instrument_Serif, Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -50,6 +50,13 @@ const geist = Geist({
   weight: ["400", "500", "600"],
 });
 
+// Aurora design (motion redesign, second direction): a rounder geometric sans.
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
 // "Handoff" design skin (demo review toggle) re-points the portal type to
 // DM Sans / DM Mono via [data-pj-design="handoff"] in globals.css.
 const dmSans = DM_Sans({
@@ -83,7 +90,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${figtreeHeading.variable} ${figtreeBody.variable} ${instrumentSerif.variable} ${archivo.variable} ${dmSans.variable} ${dmMono.variable} ${geist.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${figtreeHeading.variable} ${figtreeBody.variable} ${instrumentSerif.variable} ${archivo.variable} ${dmSans.variable} ${dmMono.variable} ${geist.variable} ${outfit.variable} antialiased`}
       >
         {children}
       </body>
