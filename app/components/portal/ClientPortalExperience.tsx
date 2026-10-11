@@ -1295,6 +1295,8 @@ export function ClientPortalExperience({
                       <VoiceInterview
                         questions={m.interview}
                         storageKey={`pjInterview:${portalToken ?? "demo"}:${m.id}`}
+                        audioBase={`/portal/voice/interview-${m.id}`}
+                        sound={voiceOn}
                         onChange={(transcript) => setNoteDrafts((prev) => (prev[m.id] === transcript ? prev : { ...prev, [m.id]: transcript }))}
                       />
                     )}

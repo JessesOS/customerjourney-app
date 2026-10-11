@@ -158,6 +158,19 @@ Not checked: speaking into the mic (cannot be tested from here), saving against 
 Firefox (no speech recognition there, typing only). It is not a two-way AI voice agent: nothing speaks the
 questions or asks follow-ups. Cross-lane notes are in `docs/customer-journey-master-plan.md`.
 
+## 2026-10-11: piece 7, the interview asks its questions out loud
+
+Jesse asked whether the interview could ask the questions in his voice, or any voice for now. Went with any voice
+now: six clips rendered once with the free Sonia voice the stage guide already uses
+(`scripts/generate-interview-voice.py` → `public/portal/voice/interview-ob-0-1..6.m4a`). Each clip plays as its
+question appears; "Hear it" replays; the portal's voice toggle silences it; starting the mic stops the clip.
+Swapping in Jesse's voice later (Fish Audio) means replacing those six files, no code change.
+Re-run the script whenever a question's wording changes.
+
+Checked through the page: clip 1 is requested and plays when the task opens, clip 2 on the next question, files
+serve as audio. Not checked by ear (cannot listen from here), nor on a phone, where browsers are stricter about
+sound starting on its own. No credits spent.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

@@ -10,6 +10,10 @@ import { useEffect, useRef, useState } from "react";
  * speech recognition (e.g. Firefox) the mic is simply absent and the box is
  * typed into. Answers are handed up as one "Q / A" transcript, which the task
  * view saves as the task's note when the client finishes.
+ * Each question is also spoken: a pre-rendered clip per question (see
+ * scripts/generate-interview-voice.py) plays as the question appears, with a
+ * replay button. The portal's voice toggle silences it. Starting the mic
+ * stops the clip, so the interviewer is never transcribed.
  * Colours ride the --pj-* tokens, so it follows whichever look is active.
  */
 
@@ -39,12 +43,15 @@ export function compileInterview(questions: string[], answers: string[]) {
     .join("\n\n");
 }
 
-export function VoiceInterview({ questions, storageKey, readOnly = false, onChange }: { questions: string[]; storageKey: string; readOnly?: boolean; onChange: (transcript: string) => void }) {
+export function VoiceInterview({ questions, storageKey, audioBase, sound = true, readOnly = false, onChange }: { questions: string[]; storageKey: string; /** e.g. "/portal/voice/interview-ob-0" → "-1.m4a", "-2.m4a"… */ audioBase?: string; sound?: boolean; readOnly?: boolean; onChange: (transcript: string) => void }) {
   const [answers, setAnswers] = useState<string[]>(() => questions.map(() => ""));
   const [i, setI] = useState(0);
   const [supported, setSupported] = useState(false);
   const [listening, setListening] = useState(false);
   const [interim, setInterim] = useState("");
+  const [speaking, setSpeaking] = useState(false);
+  const [ready, setReady] = useState(false); // saved answers restored, so the right question is known
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const recRef = useRef<SpeechRecognitionLike | null>(null);
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
@@ -60,8 +67,32 @@ export function VoiceInterview({ questions, storageKey, readOnly = false, onChan
         setI(firstEmpty === -1 ? questions.length - 1 : firstEmpty);
       }
     } catch {}
+    setReady(true);
     return () => recRef.current?.stop();
   }, [storageKey, questions.length]);
+
+  function hush() {
+    audioRef.current?.pause();
+    audioRef.current = null;
+    setSpeaking(false);
+  }
+  function speak(index: number) {
+    hush();
+    if (!audioBase) return;
+    const a = new Audio(`${audioBase}-${index + 1}.m4a`);
+    audioRef.current = a;
+    a.onended = () => setSpeaking(false);
+    a.onerror = () => setSpeaking(false);
+    // A browser may refuse to play before the client has touched the page; the replay button still works.
+    a.play().then(() => setSpeaking(true)).catch(() => setSpeaking(false));
+  }
+  // Ask each question out loud as it appears.
+  useEffect(() => {
+    if (!ready || readOnly || !sound) { hush(); return; }
+    const id = window.setTimeout(() => speak(i), 350);
+    return () => { window.clearTimeout(id); hush(); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i, ready, sound, readOnly, audioBase]);
 
   useEffect(() => {
     onChangeRef.current(compileInterview(questions, answers));
@@ -80,6 +111,7 @@ export function VoiceInterview({ questions, storageKey, readOnly = false, onChan
   function start() {
     const Ctor = recognitionCtor();
     if (!Ctor) return;
+    hush();
     const rec = new Ctor();
     const at = i;
     rec.lang = "en-AU";
@@ -116,6 +148,12 @@ export function VoiceInterview({ questions, storageKey, readOnly = false, onChan
         <span className="vi-count">
           Question {i + 1} of {questions.length}
         </span>
+        {audioBase && !readOnly ? (
+          <button type="button" onClick={() => (speaking ? hush() : speak(i))} className={speaking ? "vi-say vi-say--on" : "vi-say"} aria-label={speaking ? "Stop the question" : "Hear the question"}>
+            <span className="vi-wave" aria-hidden><i /><i /><i /></span>
+            {speaking ? "Stop" : "Hear it"}
+          </button>
+        ) : null}
         <span className="vi-segs" aria-hidden>
           {questions.map((q, k) => (
             <span key={q} className={k === i ? "vi-seg vi-seg--now" : answers[k].trim() ? "vi-seg vi-seg--done" : "vi-seg"} />
