@@ -1,0 +1,29 @@
+[
+  {
+    "created_at": "2026-10-11T05:35:15.677394Z",
+    "display_name": "Nano Banana Pro",
+    "id": "6b71f80f-0406-4d5f-bec3-31ea5c6a92c9",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_30ic0WYO4BZY8NJLFDuPPsQQIQj/hf_20261011_053515_6b71f80f-0406-4d5f-bec3-31ea5c6a92c9_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "16:9",
+      "batch_size": 1,
+      "height": 1536,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "eda7fffe-5384-45c5-8ade-c6a7189823d7",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_30ic0WYO4BZY8NJLFDuPPsQQIQj/eda7fffe-5384-45c5-8ade-c6a7189823d7.jpg"
+        }
+      ],
+      "prompt": "Same scene, same surface, same camera angle and lens as the first reference image, one small step on: the very same discs as in the reference image, the same number of them, each one has only moved a short way closer to the others and turned a little more level, so the group is tighter and sits in the upper right of centre with two of them just overlapping. Do not add any disc and do not hide any disc: count the discs in the reference and keep that count, seven. Still floating in mid-air: no floor, no ground, no cast shadows on any surface. Same straight-on view from slightly above. Premium abstract 3D render: soft matte cobalt blue discs, each with a thin lighter blue rim, in tones of a single blue hue, floating in a flat seamless cobalt blue #1F4BFF field with no floor and no horizon, soft even studio light from the upper left, very soft shading, everything in focus, 50mm lens, calm, generous negative space. No text, no letters, no numbers, no logos, no people, no tools, no devices.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2752
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_30ic0WYO4BZY8NJLFDuPPsQQIQj/hf_20261011_053515_6b71f80f-0406-4d5f-bec3-31ea5c6a92c9.png",
+    "status": "completed"
+  }
+]

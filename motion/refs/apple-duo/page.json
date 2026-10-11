@@ -1,0 +1,148 @@
+{
+ "title": "iPhone Duo - Apple",
+ "height": 32466,
+ "canvases": [
+  "1440x760 three.js r165"
+ ],
+ "videos": [
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/hero/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/highlights-display/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/350b2add-c10c-41d9-b8d1-e5b2204b8bcd/anim/highlights-versatility/large.mp4",
+  "https://www.apple.com/iphone-duo/",
+  "https://www.apple.com/iphone-duo/",
+  "https://www.apple.com/iphone-duo/",
+  "https://www.apple.com/iphone-duo/",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/350b2add-c10c-41d9-b8d1-e5b2204b8bcd/anim/design/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/hero-display/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/350b2add-c10c-41d9-b8d1-e5b2204b8bcd/anim/versatility-hero/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/smart-take/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/duo-preview/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/kid-cue/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/duo-facetime/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/low-light/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/cinematic-mode/large.mp4",
+  "https://www.apple.com/105/media/us/iphone-duo/2026/9305e4b9-72d9-4c05-9381-b572adadd5e5/anim/timelapse/large.mp4",
+  null
+ ],
+ "lottie": false,
+ "scripts": [],
+ "fonts": [
+  "\"SF Pro Text\" 400",
+  "\"SF Pro Text\" 300",
+  "\"SF Pro Text\" 600",
+  "\"SF Pro Display\" 600",
+  "\"SF Pro Text\" 500",
+  "\"SF Pro Display\" 500",
+  "\"SF Pro Display\" 400",
+  "Times 400"
+ ],
+ "headings": [
+  "H2 12px \"SF Pro Text\" | Shop",
+  "H2 12px \"SF Pro Text\" | Quick Links",
+  "H2 12px \"SF Pro Text\" | Shop Special Stores",
+  "H2 12px \"SF Pro Text\" | Explore Mac",
+  "H2 12px \"SF Pro Text\" | Shop Mac",
+  "H2 12px \"SF Pro Text\" | More from Mac",
+  "H2 12px \"SF Pro Text\" | Explore iPad",
+  "H2 12px \"SF Pro Text\" | Shop iPad",
+  "H2 12px \"SF Pro Text\" | More from iPad",
+  "H2 12px \"SF Pro Text\" | Explore iPhone",
+  "H2 12px \"SF Pro Text\" | Shop iPhone",
+  "H2 12px \"SF Pro Text\" | More from iPhone",
+  "H2 12px \"SF Pro Text\" | Explore Watch",
+  "H2 12px \"SF Pro Text\" | Shop Watch",
+  "H2 12px \"SF Pro Text\" | More from Watch",
+  "H2 12px \"SF Pro Text\" | Explore Vision",
+  "H2 12px \"SF Pro Text\" | Shop Vision",
+  "H2 12px \"SF Pro Text\" | More from Vision",
+  "H2 12px \"SF Pro Text\" | Explore AirPods",
+  "H2 12px \"SF Pro Text\" | Shop AirPods",
+  "H2 12px \"SF Pro Text\" | More from AirPods",
+  "H2 12px \"SF Pro Text\" | Explore TV & Home",
+  "H2 12px \"SF Pro Text\" | Shop TV & Home",
+  "H2 12px \"SF Pro Text\" | More from TV & Home",
+  "H2 12px \"SF Pro Text\" | Explore Entertainment",
+  "H2 12px \"SF Pro Text\" | Support",
+  "H2 12px \"SF Pro Text\" | Shop by Product",
+  "H2 12px \"SF Pro Text\" | Shop by Category",
+  "H2 12px \"SF Pro Text\" | More to Explore",
+  "H2 12px \"SF Pro Text\" | Explore Support",
+  "H2 12px \"SF Pro Text\" | Get Help",
+  "H2 12px \"SF Pro Text\" | Helpful Topics",
+  "H2 12px \"SF Pro Text\" | Quick Links",
+  "H2 19px \"SF Pro Display\" | iPhone Duo",
+  "H1 21px \"SF Pro Display\" | iPhone Duo",
+  "H2 48px \"SF Pro Display\" | Get the highlights.",
+  "H2 26px \"SF Pro Text\" | Foldable design",
+  "H2 26px \"SF Pro Text\" | Switch from Android to iPhone Duo",
+  "H2 48px \"SF Pro Display\" | Take a closer look.",
+  "H2 26px \"SF Pro Text\" | Expansive display"
+ ],
+ "colors": [
+  [
+   "bg rgba(0, 0, 0, 0)",
+   1666
+  ],
+  [
+   "rgb(29, 29, 31)",
+   790
+  ],
+  [
+   "rgb(51, 51, 54)",
+   292
+  ],
+  [
+   "rgb(0, 102, 204)",
+   126
+  ],
+  [
+   "rgb(110, 110, 115)",
+   125
+  ],
+  [
+   "rgba(0, 0, 0, 0.8)",
+   106
+  ],
+  [
+   "rgba(0, 0, 0, 0.72)",
+   94
+  ],
+  [
+   "rgba(0, 0, 0, 0.88)",
+   65
+  ],
+  [
+   "rgba(0, 0, 0, 0.56)",
+   64
+  ],
+  [
+   "rgb(255, 255, 255)",
+   31
+  ],
+  [
+   "bg rgb(232, 232, 237)",
+   22
+  ],
+  [
+   "rgba(0, 0, 0, 0)",
+   20
+  ],
+  [
+   "rgb(134, 134, 139)",
+   20
+  ],
+  [
+   "bg rgba(210, 210, 215, 0.64)",
+   20
+  ],
+  [
+   "bg rgba(232, 232, 237, 0.72)",
+   13
+  ],
+  [
+   "bg rgba(0, 0, 0, 0.42)",
+   7
+  ]
+ ],
+ "text": "Choose another country or region to shop online and see content specific to your location.\nAustralia\nContinue\nApple\nStore\nMac\niPad\niPhone\nWatch\nVision\nAirPods\nTV & Home\nEntertainment\nAccessories\nSupport\n0\n+\niPhone Duo\nExplore\nView pricing\n\niPhone Duo\nCurrently viewing\n\niPhone 18 Pro\nNew\n\niPhone Air\n\niPhone 17\n\niPhone 17e\n\niPhone 16\n\nCompare\n\nAccessories\n\nShop iPhone\n\niOS 27\n\niPhone Duo\n\nFrom $1999\nor $83.29/mo. for 24 mo.*\nFootnote * symbol\n\nView pricing\nOverview\nHighlights\nDesign\nCameras\nPerformance\nShared Features\nAccessories\nTech Specs\nSwitch from Android\n \n\nLease a new iPhone with low monthly payments for 12 or 24 months and upgrade at the end of your term with Apple Upgrade.§ Learn more\n\niPhone Duo\n\nHello, hello.\n\nPre-order starting 5:00 a.m. PT on October sixteenth. Available starting October twenty-third\nPre-order starting 5:00 a.m. PT on 10.16\nAvailable starting 10.23\n\nFrom $1999 or $83.29/mo. for 24 mo.*\nLease from $57.99/mo. for 24 mo. with Apple Upgrade◊\nView pricing\nGet the highlights.\nWatch the film\nDisplay\niOS\nTitanium frame\n48MP Dual Fusion camera\nA20 Pro chip\nBattery\nSiri AI\n\nThe largest iPhone display ever.\nIn a thin, foldable design.\n\nMore ways to iPhone.\nReimagined iOS experiences for ultimate versatility.\n\nFoldable design\n\nA new iPhone enters the fold.\n\nIntroducing iPhone Duo, the first foldable iPhone. When open, it’s the thinnest iPhone with the largest display ever — 50 percent larger than iPhone 18 Pro Max. And it has an outer display with more than 90 percent of the screen area of iPhone 18 Pro. Through reimagined iOS experiences, it offers unparalleled versatility in all-new poses and orientations. All in a durable, pocketable design. It’s an iPhone unlike any iPhone.\n\nNight Sky\nStar White\nTake a closer look.\nFoldable design\nLandscape\nPortrait\nClosed\nSeated\nStanding\nDurability\nExpansive display\n\nThink vast.\n\niPhone Duo offers the most immersive viewing experience of any iPhone. The aspect ratio of the 7.6‑inch Super Retina XDR display4 is consistent across the inner and outer displays. The inner display is made of more than 10 ultrathin layers with a custom nano‑texture finish that reduces glare. And the under‑display FaceTime camera is hidden until you need it. The result is an uninterrupted viewing surface that’s remarkably smooth and flat. It’s simply the best iPhone for enjoying movies, shows, and games.\n\nNano-texture finish\non inner display to reduce glare\n \nWide-angle OLEDs\nfor excellent viewing angles\n \n3000 nits\npeak brightness\n\n50% larger display than iPhone 18 Pro Max\n\n7.6″\nSuper Retina XDR display4\nVersatility\n\nReimagined iOS.\nAnything’s posable.\n\nA posable design and reimagined iOS 27 open up totally new iPhone experiences — and transitioning between displays and orientations is seamless. Get things done on the outer display or large inner display. Angle iPhone Duo for the perfect view of movies and shows. Stand it up and take hands-free videos and calls. Sometimes all you need is a change of space.\n\nWhatever shape your day takes.\nSplit View multitasking. \n\nMultitasking across your favorite apps has never been easier. Now you can browse your Photos library on one side, and drag a picture into Mail on the other.\n\nSiri AI. \n\nAsk questions, get answers, and use the rich conversation window. A larger canvas makes iPhone Duo great for Siri AI.2\n\nStandBy. \n\nUse StandBy just about anywhere, even when you aren’t charging iPhone Duo. Turn it into a clock or photo frame or a display for the weather, your calendar, or your favorite widgets.\n\nHands-free. \n\niPhone Duo can stand on its own, so you can take FaceTime calls without holding up your phone.\n\nAdvanced camera system\n\nYour new favorite\ncamera features.\nHands down.\n\niPhone Duo gives the camera system you love delightful new features. Duo Preview helps you look your best, and Kid Cue grabs your child's attention. Include the people around you in group calls with Duo FaceTime. Use Smart Take so you can be part of the moment, not stuck photographing it. And capture dazzling 48MP photos and up to 4K 120 fps videos.\n\n48MP\nFusion Ultra Wide camera\n48MP\nFusion Main camera\n12MP\nCenter Stage front camera\nUnder-display FaceTime camera\nA whole family of possibilities.\nSmart Take\nDuo Preview\nKid Cue\nDuo FaceTime\nSmart Take. \n\niPhone Duo can detect when everyone is ready and takes the picture. So you don’t have to race against a timer to get in the shot.\n\nSet to stunning.\nPhotographic Styles 3. \n\nIn addition to tone and color, you can now customize texture and grain to smooth out skin details or achieve an artful film look, all while staying true to your original photo.\n\nIntelligent photo editing. \n\nReframe a photo after it’s been taken with Spatial Reframing. Expand your shots with the Extend tool. And remove even larger objects with the enhanced Clean Up tool.5 All possible with Apple Intelligence.\n\nUsage limits may apply.\n\nStunning image quality. \n\n48MP frames are used throughout the imaging pipeline of the Fusion Main camera, for photos with remarkable resolution and detail.\n\nLow-light videos. \n\nCapture impressive videos in low-light conditions with the default 1080p setting.\n\nCinematic mode effects. \n\nApply a depth‑of‑field effect that keeps your subject sharp while creating a beautifully blurred foreground and background. You can even apply and adjust it after you’ve captured a video.\n\n4K time-lapse. \n\nRecord in more detail with support for 4K resolution with Dolby Vision HDR.\n\nSmart focus tracking. \n\nOn-device intelligence lets you lock onto a subject and maintain focus as they move through the scene — even if they leave and then reenter the frame.\n\n2x optical-quality zoom. \n\nAdd extended reach to your compositions.\n\nCenter Stage. \n\nFrame your selfies in more flexible ways. Go from portrait to landscape without moving your iPhone. And fit more people in the frame automatically.\n\nCustomizable widgets. \n\nGet fast access to manual controls like white balance and focus.\n\nPerformance and battery life\n\nPower on full di"
+}

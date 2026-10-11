@@ -1,0 +1,8 @@
+# Raw reference captures and full-size generated images stay on this Mac.
+# Notes, contact sheets, prompts and Higgsfield job ids are committed, so anything here can be re-fetched.
+refs/*/s_*.jpg
+refs/*/anim_*.jpg
+kf/*.png
+kf-phone/*.png
+kf/rejected/
+*.ref.jpg

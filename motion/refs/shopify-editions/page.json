@@ -1,0 +1,94 @@
+{
+ "title": "Shopify Editions",
+ "height": 900,
+ "canvases": [
+  "1440x900 three.js r181"
+ ],
+ "videos": [],
+ "lottie": false,
+ "scripts": [
+  "https://www.googletagmanager.com/gtag/js?id=G-W6NECZNE63&cx=c&gtm=4e6a72",
+  "https://www.googletagmanager.com/gtm.js?id=GTM-TZ26LP8&dl=dataLayer"
+ ],
+ "fonts": [
+  "Inter-Variable 400",
+  "Inter-Variable 500"
+ ],
+ "headings": [
+  "H1 11px Inter-Variable | Shopify Editions",
+  "H1 14px Inter-Variable | Everything new across Shopify.Every six months.",
+  "H2 24px Inter-Variable | Everywhere",
+  "H2 24px Inter-Variable | Renaissance",
+  "H2 24px Inter-Variable | Horizons",
+  "H2 24px Inter-Variable | Boring",
+  "H2 24px Inter-Variable | Unified",
+  "H2 24px Inter-Variable | Foundations",
+  "H2 24px Inter-Variable | Imagine My Business",
+  "H2 24px Inter-Variable | Built to Last",
+  "H2 24px Inter-Variable | Connect to Consumer",
+  "H2 11px Inter-Variable | Everywhere",
+  "H2 11px Inter-Variable | Renaissance",
+  "H2 11px Inter-Variable | Horizons",
+  "H2 11px Inter-Variable | Boring",
+  "H2 11px Inter-Variable | Unified",
+  "H2 11px Inter-Variable | Foundations",
+  "H2 11px Inter-Variable | Imagine My Business",
+  "H2 11px Inter-Variable | Built to Last",
+  "H2 11px Inter-Variable | Connect to Consumer"
+ ],
+ "colors": [
+  [
+   "bg rgba(0, 0, 0, 0)",
+   82
+  ],
+  [
+   "rgb(0, 0, 0)",
+   79
+  ],
+  [
+   "oklab(0 0 0 / 0.6)",
+   19
+  ],
+  [
+   "bg oklab(0.999994 0.0000455677 0.0000200868 / 0.7)",
+   18
+  ],
+  [
+   "bg rgb(0, 0, 0)",
+   16
+  ],
+  [
+   "rgb(255, 255, 255)",
+   11
+  ],
+  [
+   "rgb(185, 185, 185)",
+   9
+  ],
+  [
+   "rgb(42, 42, 42)",
+   2
+  ],
+  [
+   "bg rgb(236, 236, 236)",
+   2
+  ],
+  [
+   "rgb(201, 201, 201)",
+   2
+  ],
+  [
+   "bg rgb(201, 201, 201)",
+   2
+  ],
+  [
+   "bg rgb(255, 255, 255)",
+   1
+  ],
+  [
+   "bg oklab(0.999994 0.0000455678 0.0000200868 / 0.3)",
+   1
+  ]
+ ],
+ "text": "Skip to main content\nShopify Editions\nSearch\nCLEAR\nSearch\nShopify.com\nStart for free\nEverything new across Shopify.\nEvery six months.\nAlbum spring-2026 details opened. Use Tab to cycle between Open and Close buttons. Press Space to flip album. Press Escape to exit album view.\nOpen\nDetails\nOpen\nDetails\nOpen\nDetails\nOpen\nDetails\nOpen\nDetails\nOpen\nDetails\nOpen\nDetails\nOpen\nDetails\nOpen\nDetails\n\n2026\n\nSpring\n\nEverywhere\n\n2026\n\nWinter\n\nRenaissance\n\n2025\n\nSummer\n\nHorizons\n\n2025\n\nWinter\n\nBoring\n\n2024\n\nSummer\n\nUnified\n\n2024\n\nWinter\n\nFoundations\n\n2023\n\nSummer\n\nImagine My Business\n\n2023\n\nWinter\n\nBuilt to Last\n\n2022\n\nSummer\n\nConnect to Consumer"
+}

@@ -24,6 +24,7 @@ import { AskChips } from "@/app/components/portal/AskChips";
 import { askItemsFor } from "@/lib/askAi";
 import { WelcomeScreen } from "@/app/components/portal/WelcomeScreen";
 import { WelcomeMarquee } from "@/app/components/portal/WelcomeMarquee";
+import { WelcomeFunnel } from "@/app/components/portal/WelcomeFunnel";
 import { HandoffHub } from "@/app/components/portal/HandoffHub";
 import { IncentiveModal } from "@/app/components/portal/IncentiveModal";
 import { TaskRow } from "@/app/components/portal/TaskRow";
@@ -272,9 +273,10 @@ export function ClientPortalExperience({
   // Neutral's accent audition (demo pill): gallery surfaces stay, one accent
   // carries the life. Terracotta is the recommended default everywhere.
   const [neutralAccent, setNeutralAccent] = useState<"terracotta" | "brass" | "indigo" | "graphite">("terracotta");
-  // Welcome screen generation under review: "marquee" (animated handoff port,
-  // default) vs "mosaic" (previous static tiles). Demo pill switches live.
-  const [welcomeVersion, setWelcomeVersion] = useState<"marquee" | "mosaic">("marquee");
+  // Welcome screen generation under review: "funnel" (motion redesign, drawn in
+  // code; the default on the motion-redesign branch), "marquee" (trade tiles)
+  // and "mosaic" (the first static tiles). Demo pill switches live.
+  const [welcomeVersion, setWelcomeVersion] = useState<"funnel" | "marquee" | "mosaic">("funnel");
   // Whole-portal design skin from the client_portal handoff package (DM fonts,
   // terracotta+teal on near-white). Demo review toggle; skin-level only.
   const [designSkin, setDesignSkin] = useState<"current" | "handoff">(themeVariant === "handoff" ? "handoff" : "current");
@@ -488,7 +490,9 @@ export function ClientPortalExperience({
       style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}
     >
       {showWelcome &&
-        (welcomeVersion === "marquee" ? (
+        (welcomeVersion === "funnel" ? (
+          <WelcomeFunnel brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
+        ) : welcomeVersion === "marquee" ? (
           <WelcomeMarquee brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
         ) : (
           <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
@@ -497,9 +501,10 @@ export function ClientPortalExperience({
       {/* Review-only: welcome-generation toggle, floats OVER the welcome
           overlay (demo route only). */}
       {showWelcome && isDemo && (
-        <div style={{ position: "fixed", bottom: 18, right: 18, zIndex: 70, display: "flex", gap: 4, background: "#fff", border: "1px solid #e0dcd2", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(0,0,0,.5)" }}>
+        <div style={{ position: "fixed", top: 18, right: 18, zIndex: 70, display: "flex", gap: 4, background: "#fff", border: "1px solid #e0dcd2", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(0,0,0,.5)" }}>
           {(
             [
+              ["funnel", "Funnel"],
               ["marquee", "Marquee"],
               ["mosaic", "Mosaic"],
             ] as const

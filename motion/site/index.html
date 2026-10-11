@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Scale welcome · 2D funnel sketch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0}
+  html,body{height:100%}
+  body{font-family:Geist,system-ui,sans-serif;background:#1F4BFF;color:#fff;overflow:hidden}
+  canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+  .wm{position:fixed;top:28px;left:32px;font-weight:600;font-size:20px;letter-spacing:-.02em}
+  .copy{position:fixed;left:32px;bottom:36px}
+  .copy h1{font-weight:600;font-size:clamp(64px,8vw,106px);line-height:1;letter-spacing:-.02em}
+  .copy p{margin-top:10px;font-size:17px;opacity:.85}
+  .cta{position:fixed;right:32px;bottom:40px;font:500 17px Geist,sans-serif;padding:16px 36px;border-radius:999px;border:0;background:#fff;color:#1d1d1f;cursor:pointer}
+  .legal{position:fixed;left:0;right:0;bottom:10px;text-align:center;font-size:12px;opacity:.6}
+  @media (max-width:700px){
+    .copy{left:24px;bottom:132px}
+    .cta{left:24px;right:24px;bottom:56px}
+    .wm{left:24px}
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="wm">scale</div>
+<div class="copy"><h1>Scale</h1><p>Built for the trades</p></div>
+<button class="cta">Get started</button>
+<div class="legal">Terms &amp; Conditions · Privacy Policy</div>
+<script>
+// 2D sketch of the funnel idea, drawn in code. No video, no credits.
+// Enquiries (dots) arrive from everywhere, pass through a funnel, and land as booked jobs (bars).
+const cv = document.getElementById('c'), g = cv.getContext('2d');
+let W, H, D, tall, F;            // F = layout: funnel mouth, neck, slots
+const N = 90, SLOTS = 7, PER = 6; // dots, booked rows, dots that fill one row
+const dots = [];
+const ease = t => t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+const lerp = (a, b, t) => a + (b - a) * t;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function layout() {
+  D = Math.min(devicePixelRatio || 1, 2);
+  W = cv.width = innerWidth * D; H = cv.height = innerHeight * D;
+  tall = H > W * 1.1;
+  if (tall) {            // phone: top to bottom, copy sits below
+    F = { mouth: [W*.5, H*.20], neck: [W*.5, H*.36], spread: W*.34, pinch: W*.035,
+          slotX: W*.5, slotY: H*.43, slotW: W*.50, slotH: H*.018, gap: H*.012 };
+  } else {               // desktop: left to right across the upper half
+    F = { mouth: [W*.42, H*.36], neck: [W*.60, H*.36], spread: H*.26, pinch: H*.022,
+          slotX: W*.80, slotY: H*.17, slotW: W*.17, slotH: H*.030, gap: H*.022 };
+  }
+}
+function spawn(d, first) {
+  d.t = first ? Math.random() : 0;
+  d.speed = .055 + Math.random() * .035;          // one trip takes about 11 to 18 seconds
+  d.off = Math.random() * 2 - 1;                  // where it sits across the funnel mouth
+  d.wob = Math.random() * 6.28;
+  if (tall) { d.sx = Math.random() * W; d.sy = -H*.03 - Math.random() * H*.05; }
+  else      { d.sx = -W*.03 - Math.random() * W*.05; d.sy = Math.random() * H * .72; }
+  d.slot = Math.floor(Math.random() * SLOTS);
+}
+for (let i = 0; i < N; i++) { const d = {}; dots.push(d); }
+const fill = new Array(SLOTS).fill(0);            // how full each booked row is, 0..1
+
+function pos(d) {       // three legs: drift in, squeeze through the funnel, land in a row
+  const { mouth, neck, spread, pinch, slotX, slotY, slotW, slotH, gap } = F, t = d.t;
+  const mx = tall ? mouth[0] + d.off * spread : mouth[0], my = tall ? mouth[1] : mouth[1] + d.off * spread;
+  const nx = tall ? neck[0] + d.off * pinch : neck[0],    ny = tall ? neck[1] : neck[1] + d.off * pinch;
+  const ty = slotY + d.slot * (slotH + gap) + slotH / 2;
+  const tx = tall ? slotX - slotW/2 + slotW * (.15 + .7 * ((d.off + 1) / 2)) : slotX + slotW * (.15 + .7 * ((d.off + 1) / 2));
+  if (t < .45) { const k = ease(t / .45); return [lerp(d.sx, mx, k), lerp(d.sy, my, k), 1]; }
+  if (t < .70) { const k = ease((t - .45) / .25); return [lerp(mx, nx, k), lerp(my, ny, k), 1]; }
+  const k = ease((t - .70) / .30); return [lerp(nx, tx, k), lerp(ny, ty, k), 1 - k * .6];
+}
+function funnel() {
+  const { mouth, neck, spread, pinch } = F;
+  g.strokeStyle = 'rgba(255,255,255,.34)'; g.lineWidth = 2 * D; g.lineCap = 'round';
+  for (const s of [-1, 1]) {
+    g.beginPath();
+    if (tall) { g.moveTo(mouth[0] + s * spread * 1.08, mouth[1]); g.quadraticCurveTo(neck[0] + s * pinch * 2.4, lerp(mouth[1], neck[1], .55), neck[0] + s * pinch * 2.4, neck[1] + H*.03); }
+    else      { g.moveTo(mouth[0], mouth[1] + s * spread * 1.08); g.quadraticCurveTo(lerp(mouth[0], neck[0], .55), neck[1] + s * pinch * 2.4, neck[0] + W*.03, neck[1] + s * pinch * 2.4); }
+    g.stroke();
+  }
+}
+function rows() {
+  const { slotX, slotY, slotW, slotH, gap } = F, x0 = tall ? slotX - slotW / 2 : slotX;
+  for (let i = 0; i < SLOTS; i++) {
+    const y = slotY + i * (slotH + gap), r = slotH / 2;
+    g.beginPath(); g.roundRect(x0, y, slotW, slotH, r); g.fillStyle = 'rgba(255,255,255,.16)'; g.fill();
+    if (fill[i] > .01) { g.beginPath(); g.roundRect(x0, y, Math.max(slotH, slotW * fill[i]), slotH, r); g.fillStyle = '#fff'; g.fill(); }
+  }
+}
+let last = performance.now();
+function frame(now) {
+  const dt = Math.min(.05, (now - last) / 1000); last = now;
+  g.clearRect(0, 0, W, H);
+  funnel(); rows();
+  for (const d of dots) {
+    d.t += d.speed * dt;
+    if (d.t >= 1) { fill[d.slot] = Math.min(1, fill[d.slot] + 1 / PER); spawn(d, false); }
+    const [x, y, a] = pos(d), wob = Math.sin(now / 900 + d.wob) * 3 * D * (1 - d.t);
+    g.beginPath(); g.arc(x + wob, y + wob * .6, 3.4 * D, 0, 6.283); g.fillStyle = `rgba(255,255,255,${.9 * a})`; g.fill();
+  }
+  if (fill.every(f => f >= 1)) fill.fill(0);       // every row booked: start the board again
+  requestAnimationFrame(frame);
+}
+layout(); dots.forEach(d => spawn(d, true)); addEventListener('resize', layout);
+if (reduced) { fill.fill(1); funnel(); rows(); } else requestAnimationFrame(frame);
+</script>
+</body>
+</html>

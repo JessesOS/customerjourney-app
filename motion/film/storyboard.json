@@ -1,0 +1,24 @@
+{
+  "vector": "the camera slowly pulls back while seven floating discs gather and line up as one neat stack",
+  "vector_direction": "out",
+  "clips": [
+    {
+      "id": "c1",
+      "start": "../kf/kf01.png",
+      "end": "../kf/kf02.png",
+      "prompt": "One continuous shot, no cuts. The camera slowly pulls back a little. The same seven matte discs float gently together as a tighter group, each one turning slowly, until two of them just overlap. No disc leaves, no disc is added. Flat seamless blue field, identical colour and light, nothing else moves."
+    },
+    {
+      "id": "c2",
+      "start": "../kf/kf02.png",
+      "end": "../kf/kf03.png",
+      "prompt": "Continuing the same slow pull back, no cuts. The same seven matte discs glide together and line up one above another as a loose leaning column with uneven gaps of air between them, each disc turning level. No disc leaves, no disc is added. Flat seamless blue field, identical colour and light, nothing else moves."
+    },
+    {
+      "id": "c3",
+      "start": "../kf/kf03.png",
+      "end": "../kf/kf04.png",
+      "prompt": "Continuing the same slow pull back, no cuts, coming to rest. The loose column of the same seven matte discs straightens until it is one neat stack, every disc level and evenly spaced, perfectly still at the end. No disc leaves, no disc is added. Flat seamless blue field, identical colour and light, nothing else moves."
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+ "title": "Shopify Editions | Spring ’26",
+ "height": 38953,
+ "canvases": [
+  "1440x900 three.js r183"
+ ],
+ "videos": [
+  null,
+  null,
+  null,
+  null,
+  "https://editions-spring-2026.myshopify.com/cdn/shop/videos/c/vp/0028ea4b62ed4b419a6959483bca6f82/0028ea4b62ed4b419a6959483bca6f82.HD-720p-1.6Mbps-86306909.mp4",
+  "https://editions-spring-2026.myshopify.com/cdn/shop/videos/c/vp/744a0dc565394d169befe4bb03c22565/744a0dc565394d169befe4bb03c22565.HD-720p-1.6Mbps-86306911.mp4",
+  null,
+  null,
+  "https://editions-spring-2026.myshopify.com/cdn/shop/videos/c/vp/9ec279e2e833435baa39393b3f6676f1/9ec279e2e833435baa39393b3f6676f1.HD-720p-1.6Mbps-86713745.mp4",
+  null,
+  null,
+  null,
+  null
+ ],
+ "lottie": false,
+ "scripts": [
+  "https://www.googletagmanager.com/gtag/js?id=G-W6NECZNE63&cx=c&gtm=4e6a72",
+  "https://googleads.g.doubleclick.net/pagead/viewthroughconversion/827000963/?random=1791695639572&cv=11&fst=1791695639572&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45je6a72v877474166za20ozb9237247647zd9237247647xecxf1&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938465~115938469~118897920~118897930~120213116~120385422~120469145~120469153~121046263~121046271~121246026~121246034~123227970&u_w=800&u_h=600&url=https%3A%2F%2Fwww.shopify.com%2Feditions%2Fspring2026&rcb=10&frm=0&tiba=Shopify%20Editions%20%7C%20Spring%20%E2%80%9926&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=103193505.1791695640&_tu=JA&data=event%3Dgtag.config%3Bcontinent_code%3Dno-geo-location-code%3Bcountry_code%3Dno-geo-location-code%3Bunix_timestamp%3D1791695638761%3Bpage_query_string%3D%3Bpage_hostname%3Dwww.shopify.com%3Bpage_hostname_path%3Dwww.shopify.com%2Feditions%2Fspring2026%3Bpage_path%3D%2Feditions%2Fspring2026%3Bfiring_tag%3DGA4%20(G-W6NECZNE63)%20-%20Measurement%20-%20ALL%20-%20Config%3Bcontainer_id%3DGTM-KW6FGBL7%3Bfb_event_id_v2%3D1791696080143_17916965286662%3Ballow_custom_scripts%3Dtrue%3Bdom_referrer%3D%3Bpage_fragment%3D&ept=9&rfmt=3&fmt=4",
+  "https://www.googletagmanager.com/gtm.js?id=GTM-KW6FGBL7&dl=dataLayer"
+ ],
+ "fonts": [
+  "National2 400",
+  "Inter-Variable 500",
+  "Inter-Variable 400",
+  "ShopifyInter 400",
+  "ShopifyInter 500"
+ ],
+ "headings": [
+  "H1 14px National2 | Shopify EditionsSpring ’26",
+  "H2 40px ShopifyInter | Get notified",
+  "H1 14px National2 | ",
+  "H2 120px National2 | Agentic",
+  "H3 64px National2 | Your products optimized for AI",
+  "H3 14px ShopifyInter | Product data structured for agentsRead help doc",
+  "H3 14px ShopifyInter | Checkout on more surfacesRead help doc",
+  "H3 14px ShopifyInter | Agentic planLearn more",
+  "H3 64px National2 | The open protocol for agentic commerce",
+  "H3 14px ShopifyInter | Sponsored products with Catalog APIRead dev docs",
+  "H3 14px ShopifyInter | Catalog API supports Shop sign-inRead dev docs",
+  "H3 14px ShopifyInter | Experiences built with Catalog API and UCPRead dev docs",
+  "H3 14px ShopifyInter | Catalog API image searchRead dev docs",
+  "H3 14px ShopifyInter | Catalog API product lookupRead dev docs",
+  "H3 14px ShopifyInter | Richer product data in agentic experiencesRead dev docs",
+  "H2 120px National2 | Sidekick",
+  "H3 64px National2 | Sidekick works with your apps",
+  "H3 14px ShopifyInter | Actionable guidance from SidekickRead help doc",
+  "H3 14px ShopifyInter | Sidekick on Apple WatchRead help doc",
+  "H3 14px ShopifyInter | Follow-up questions from SidekickRead help doc",
+  "H3 14px ShopifyInter | Multi-task with SidekickRead help doc",
+  "H3 14px ShopifyInter | Improved editing for Sidekick-generated appsRead help doc",
+  "H3 14px ShopifyInter | Sidekick everywhere in the Shopify appRead help doc",
+  "H3 14px ShopifyInter | Sidekick creates customersRead help doc",
+  "H3 14px ShopifyInter | Automation tests with SidekickRead help doc",
+  "H2 120px National2 | Online",
+  "H3 64px National2 | Your AI sales associate",
+  "H3 14px ShopifyInter | Storefront search delivers more resultsRead help doc",
+  "H3 14px ShopifyInter | AI-powered store analysis on any themeRead help doc",
+  "H3 14px ShopifyInter | A/B tests on online store and checkoutRead help doc",
+  "H3 14px ShopifyInter | Visualized markets graphRead help doc",
+  "H3 14px ShopifyInter | Better online store editing on mobileRead help doc",
+  "H3 14px ShopifyInter | Variant-level publishing for productsRead help doc",
+  "H3 14px ShopifyInter | Scheduling and testing for localized themesRead help doc",
+  "H3 14px ShopifyInter | Discounts by marketRead help doc",
+  "H3 14px ShopifyInter | Sales channel control in marketsRead help doc",
+  "H3 14px ShopifyInter | Product compliance disclosureRead help doc",
+  "H3 14px ShopifyInter | Stacking multiple product discountsRead help doc",
+  "H3 14px ShopifyInter | Refreshed customer accountsLearn more",
+  "H3 14px ShopifyInter | Customer data syncs from identity providersRead help doc"
+ ],
+ "colors": [
+  [
+   "bg rgba(0, 0, 0, 0)",
+   1360
+  ],
+  [
+   "rgb(255, 255, 255)",
+   522
+  ],
+  [
+   "rgba(255, 255, 255, 0.9)",
+   312
+  ],
+  [
+   "rgba(255, 255, 255, 0.6)",
+   301
+  ],
+  [
+   "rgb(9, 9, 9)",
+   159
+  ],
+  [
+   "rgba(255, 255, 255, 0.7)",
+   81
+  ],
+  [
+   "bg rgb(255, 255, 255)",
+   26
+  ],
+  [
+   "rgb(0, 0, 0)",
+   14
+  ],
+  [
+   "bg rgb(9, 9, 9)",
+   13
+  ],
+  [
+   "rgb(140, 140, 140)",
+   8
+  ],
+  [
+   "rgba(9, 9, 9, 0.9)",
+   7
+  ],
+  [
+   "bg rgb(0, 0, 0)",
+   6
+  ],
+  [
+   "rgb(42, 42, 42)",
+   2
+  ],
+  [
+   "bg rgb(236, 236, 236)",
+   2
+  ],
+  [
+   "rgb(201, 201, 201)",
+   2
+  ],
+  [
+   "bg rgb(201, 201, 201)",
+   2
+  ]
+ ],
+ "text": "Read dev docs\nSkip to main content\nShopify Editions\nSpring ’26\nEditions\nSearch\nCLEAR\nSearch\nShopify.com\nStart for free\nA\ng\ne\nn\nt\ni\nc\nS\ni\nd\ne\nk\ni\nc\nk\nO\nn\nl\ni\nn\ne\nR\ne\nt\na\ni\nl\nM\na\nr\nk\ne\nt\ni\nn\ng\nO\np\ne\nr\na\nt\ni\no\nn\ns\nS\nh\no\np\n \na\np\np\nP\na\ny\nm\ne\nn\nt\ns\nF\ni\nn\na\nn\nc\ne\nD\ne\nv\ne\nl\no\np\ne\nr\nAgentic\nSidekick\nOnline\nRetail\nMarketing\nOperations\nShop app\nPayments\nFinance\nDeveloper\n\n150+ updates to sell, shop, and build everywhere\n1\n5\n0\n+\n \nu\np\nd\na\nt\ne\ns\n \nt\no\n \ns\ne\nl\nl\n,\n \ns\nh\no\np\n,\n \na\nn\nd\n \nb\nu\ni\nl\nd\n \ne\nv\ne\nr\ny\nw\nh\ne\nr\ne\n\nAgentic\nA\ng\ne\nn\nt\ni\nc\nSidekick\nS\ni\nd\ne\nk\ni\nc\nk\nOnline\nO\nn\nl\ni\nn\ne\nRetail\nR\ne\nt\na\ni\nl\nMarketing\nM\na\nr\nk\ne\nt\ni\nn\ng\nOperations\nO\np\ne\nr\na\nt\ni\no\nn\ns\nShop app\nS\nh\no\np\n \na\np\np\nPayments\nP\na\ny\nm\ne\nn\nt\ns\nFinance\nF\ni\nn\na\nn\nc\ne\nDeveloper\nD\ne\nv\ne\nl\no\np\ne\nr\nAgentic\n\nThe only platform you need to be in every AI channel\n\nYour products optimized for AI\n\nShopify gets your products in AI channels automatically. See how you’re performing, track sales, and get guidance on what’s missing to drive conversion.\n\nLearn about selling in AI\nProduct data structured for agents\n\nShopify Catalog automatically standardizes and enriches your product data. Data syndicated by Shopify drives 2x more conversion in AI chats.\n\nCheckout on more surfaces\n\nShopping in Copilot, and soon Meta ads, is powered by the Universal Commerce Protocol. Customers can purchase directly in chat and pay with Shop Pay in Copilot.\n\nAgentic plan\n\nBusinesses not on Shopify can sync their products to Shopify Catalog and sell across AI channels and in the Shop app.\n\nThe open protocol for agentic commerce\n\nBuild agentic shopping experiences from discovery to purchase with Catalog, Cart, and Checkout MCPs powered by the Universal Commerce Protocol.\n\nExplore dev docs\nSponsored products with Catalog API\n\nEarn revenue on sales made in your agentic experiences with Catalog API. Developer preview coming soon.\n\nCatalog API supports Shop sign-in\n\nAdd Shop sign-in to experiences built with Catalog API, so shoppers can connect their Shop account. Personalized search results coming soon.\n\nExperiences built with Catalog API and UCP\n\nCreate new ways to shop. Check out our demos: plan for a trip, ask an agent for board games, get inspiration from shows, browse photo lookalikes, and shop your star sign.\n\nAll Set demo\nSourced demo\nStarred demo\nShowroom demo\nPippin demo\nCatalog API image search\n\nAgents can pass images directly to the Catalog API to return visually similar products and enhance search capabilities.\n\nCatalog API product lookup\n\nUse the product ID or URL to retrieve real-time data, like pricing and availability, for up to 50 products in a single request.\n\nRicher product data in agentic experiences\n\nAgents can show product details from the Catalog API, including media, variants, availability, and offers from multiple sellers.\n\nBack to navigation\nSidekick\nSidekick works with your apps\n\nStarting with Judge.me, Klaviyo, Loop, Smile, and more top partners, Sidekick can answer questions about and take action in your apps.\n\nExplore apps\nActionable guidance from Sidekick\n\nStart every admin session with tips to attract customers, improve conversion, and drive repeat sales.\n\nSidekick on Apple Watch\n\nAsk Sidekick to look up information about your business from your Apple Watch.\n\nFollow-up questions from Sidekick\n\nSidekick presents multiple choice answers when it needs more information, so you can quickly clarify the task.\n\nMulti-task with Sidekick\n\nSidekick keeps working in the background, even when you start a new task, run multiple chats, or close the window.\n\nImproved editing for Sidekick-generated apps\n\nEdit code, preview on desktop and mobile, and track version history in Sidekick's app editor.\n\nSidekick everywhere in the Shopify app\n\nType or talk with Sidekick on any screen to get help in context as you edit your store from your phone.\n\nSidekick creates customers\n\nDescribe your customer in plain language, and Sidekick automatically fills out the form.\n\nAutomation tests with Sidekick\n\nGenerate test events for Shopify Flow automations with Sidekick, and verify your logic works.\n\nBack to navigation\nOnline\nYour AI sales associate\n\nHelp drive sales with an AI assistant on your online store from our messaging tool Shopify Inbox. For customers signed in with Shop, it recommends products based on their history.\n\nGet Shopify Inbox\nExplore AI messaging apps\nStorefront search delivers more results\n\nEven when shoppers search on your store using typos or unusual phrasing, they'll get relevant results.\n\nAI-powered store analysis on any theme\n\nAnalyze a single theme to get ideas from AI-simulated shoppers on ways to improve your store with SimGym.\n\nA/B tests on online store and checkout\n\nPublish a new theme, checkout configuration, or customer accounts setup at a scheduled time or as an A/B test using Rollouts.\n\nVisualized markets graph\n\nUnderstand your Shopify Markets setup with a clearer view across discounts, products, and other settings for each market in one graph.\n\nBetter online store editing on mobile\n\nEdit your store in the Shopify app with controls designed for mobile, a preview that stays on-screen as you edit, and Sidekick built right in.\n\nVariant-level publishing for products\n\nControl which product variants are published by channel and per market without any workarounds.\n\nScheduling and testing for localized themes\n\nTranslate your theme across markets, then schedule to publish or A/B test it with Rollouts.\n\nDiscounts by market\n\nRun targeted promotions for customers across specific regions, different retail locations, and B2B setups.\n\nSales channel control in markets\n\nCustomize product availability, pricing, and currency for each sales channel connection with Shopify Markets.\n\nProduct compliance disclosure\n\nAdd mandatory warnings on products and display them on your store, in AI channels, and the Shop app.\n\nStacking multiple product discounts\n\nApply multiple discounts to the same product in one order like a percentage off and fixed amount discount.\n\nRefreshed cust"
+}

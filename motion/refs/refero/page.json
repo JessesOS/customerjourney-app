@@ -1,0 +1,123 @@
+{
+ "title": "Apple iPhone Duo design system | Refero Styles",
+ "height": 900,
+ "canvases": [],
+ "videos": [
+  "https://images.refero.design/styles/refero.design/video/093f8c1d-1060-4aef-bf95-68d0396951eb.mp4"
+ ],
+ "lottie": false,
+ "scripts": [
+  "https://www.googletagmanager.com/gtag/js?id=G-RL39SC0LB2"
+ ],
+ "fonts": [
+  "neueMontreal 530",
+  "neueMontreal 600",
+  "neueMontreal 500",
+  "kalice 530",
+  "\"JetBrains Mono\" 530",
+  "\"SF Pro Display\" 600",
+  "\"SF Pro Display\" 400",
+  "\"SF Pro Text\" 400",
+  "\"SF Pro Display\" 500",
+  "\"SF Pro Text\" 600",
+  "Arial 600",
+  "kalice 400",
+  "\"JetBrains Mono\" 700"
+ ],
+ "headings": [
+  "H1 48px kalice | Apple iPhone Duo",
+  "H2 20px neueMontreal | Color Palette",
+  "H2 20px neueMontreal | Typography",
+  "H2 20px neueMontreal | Spacing & Shape",
+  "H2 20px neueMontreal | Guidelines",
+  "H2 36px kalice | Give your AIdesign taste",
+  "H2 20px neueMontreal | More like this",
+  "H3 20px neueMontreal | Apple iPhone 18 Pro",
+  "H3 20px neueMontreal | Apple (España)",
+  "H3 20px neueMontreal | Apple AirPods 5",
+  "H3 20px neueMontreal | Apple (España)",
+  "H3 20px neueMontreal | Apple (España)",
+  "H3 20px neueMontreal | Apple (España)",
+  "H3 20px neueMontreal | Apple (España)",
+  "H3 20px neueMontreal | Apple",
+  "H3 20px neueMontreal | Apple (España)",
+  "H3 20px neueMontreal | Apple (España)",
+  "H3 20px neueMontreal | Apple (España)",
+  "H3 20px neueMontreal | Apple Watch Ultra 4",
+  "H3 20px neueMontreal | Things",
+  "H3 20px neueMontreal | Sleeve",
+  "H3 20px neueMontreal | 1X NEO",
+  "H3 20px neueMontreal | Paste",
+  "H3 20px neueMontreal | Flighty",
+  "H3 20px neueMontreal | Analogue",
+  "H3 20px neueMontreal | Tesla",
+  "H3 20px neueMontreal | Dyson"
+ ],
+ "colors": [
+  [
+   "bg rgba(0, 0, 0, 0)",
+   1712
+  ],
+  [
+   "rgb(225, 228, 232)",
+   1001
+  ],
+  [
+   "rgb(121, 184, 255)",
+   210
+  ],
+  [
+   "rgb(255, 171, 112)",
+   140
+  ],
+  [
+   "rgb(255, 255, 255)",
+   132
+  ],
+  [
+   "rgba(209, 219, 255, 0.7)",
+   125
+  ],
+  [
+   "rgb(249, 117, 131)",
+   66
+  ],
+  [
+   "rgb(16, 18, 22)",
+   19
+  ],
+  [
+   "rgb(106, 115, 125)",
+   16
+  ],
+  [
+   "bg rgb(16, 18, 22)",
+   14
+  ],
+  [
+   "rgb(253, 174, 183)",
+   11
+  ],
+  [
+   "rgb(133, 232, 157)",
+   10
+  ],
+  [
+   "bg oklab(0.999994 0.0000455678 0.0000200868 / 0.15)",
+   6
+  ],
+  [
+   "rgb(158, 203, 255)",
+   6
+  ],
+  [
+   "rgb(0, 0, 0)",
+   5
+  ],
+  [
+   "bg oklab(0 0 0 / 0.1)",
+   5
+  ]
+ ],
+ "text": "/\nStyles\n/\nApple iPhone Duo\nApple iPhone Duo\n\nfoldable device in a white gallery. Center product renders as the visual event, with typography and blue controls kept deliberately quiet around it.\n\nApple treats the product page as a white gallery: enormous product photography occupies the center while compact black typography gives each claim a controlled, almost editorial weight. The page alternates seamless white storytelling sections with #f5f5f7 feature bands containing oversized #ffffff cards, using one saturated blue only for links and compact conversion controls. Rounded 28px media frames soften the hardware-led composition without turning the page into a card dashboard; nearly every surface stays flat and shadowless.\n\nhttps://www.apple.com/iphone-duo\nColor Palette\n\nBRAND\n\nCopy\nApple Blue\n#0066cc\nInline links, section links, and blue text controls — a precise blue punctuation against monochrome product storytelling\nCopy\nPricing Blue\n#0071e3\nFilled pricing and learn-more controls — the brighter blue reserves visual urgency for compact conversion moments\n\nACCENT\n\nCopy\nLaunch Orange\n#b64400\nSmall launch-status labels such as new-product markers\n\nNEUTRALS\n\nCopy\nInk\n#1d1d1f\nHeadlines, primary body copy, navigation labels, and dark utility icons\nCopy\nSlate\n#707070\nSecondary copy, legal text, subdued navigation content, and low-emphasis glyphs\nCopy\nSteel\n#86868b\nInput outlines, inactive indicators, and fine outlined-control edges\nCopy\nHairline Silver\n#d6d6d6\n1px dividers, restrained control outlines, and subtle separators\nCopy\nControl Gray\n#e6e6e8\nDisabled control fills, subdued utility surfaces, and single-pixel navigation edge treatment\nCopy\nStudio Mist\n#f5f5f7\nAlternate full-width section background, feature-stage backdrop, footer surface, and muted content blocks\nCopy\nPaper Frost\n#fafafc\nOpened global-navigation surface and secondary pale fill\nCopy\nGallery White\n#ffffff\nPrimary page canvas, hero background, product story sections, and feature-card surfaces\nTypography\n\nTYPE SCALE\n\nMinor Third (1.2) from 14px base\n\nhero-display\n80px · 600 · 1.05\nThe quick brown fox jumps\nfeature-heading\n40px · 600 · 1\nThe quick brown fox jumps\n24px\n24px · 600 · 1.17\nThe quick brown fox jumps\n21px\n21px · 400 · 1.38\nThe quick brown fox jumps\nproduct-kicker\n21px · 600 · 1\nThe quick brown fox jumps\n20px\n20px · 400 · 1.47\nThe quick brown fox jumps\n19px\n19px · 500 · 1.21\nThe quick brown fox jumps\nproduct-nav-title\n19px · 600 · 1.21\nThe quick brown fox jumps\nShow all 18 steps\n\nFONTS\n\nDISPLAY\nSF Pro Display\nWeight\n400, 500, 600\nSizes\n19–80px · 7 values\nLine height\n1–1.38 · 8 values\nLetter spacing\n-1.2px at 80px; normal at 40px; +0.23px at 19-21px; profile range -0.015em to 0.012em\nFallback\nInter, Helvetica Neue, Arial\n\nProduct names, display headlines, large feature statements, and section-level product claims. The 80px/600 hero treatment tightens to -1.2px, making the largest type feel compact rather than promotional.\n\nBODY\nSF Pro Text\nWeight\n400, 500, 600\nSizes\n10–44px · 7 values\nLine height\n1–1.47 · 7 values\nLetter spacing\n-0.37px at 10px, -0.12px at 12px, -0.22px at 14px, -0.37px at 17px; profile range -0.037em to -0.003em\nFallback\nInter, Helvetica Neue, Arial\n\nNavigation, body copy, links, compact buttons, pricing details, labels, and footnotes. The consistently negative tracking lets small interface text remain dense and Apple-specific instead of looking like generic system UI.\n\nTYPEFACE\nArial\nWeight\n400\nSizes\n13px\nLine height\n1.20\nFallback\nArial\n\nFallback text inside the observed search/input control only.\n\nSpacing & Shape\n\nSPACING\n\nPurpose\tValue\tPreview\nDensity\tcomfortable\n\t\nBase unit\t4px\n\t\n\nSection gap\t90px\n\t\n\nCard padding\t28px\n\t\n\nElement gap\t20px\n\t\n\nBORDER RADIUS\n\nElement\tValue\tPreview\nLinks\t10px\n\t\n\nNavigation\t20px\n\t\n\nCards\t28px\n\t\n\nImages\t28px\n\t\n\nPills\t36px\n\t\n\nInputs\t980px\n\t\n\nSHADOWS\n\nShadow 1\nShadow 2\nGuidelines\n\nDO\n\nUse #ffffff as the default product-story canvas and reserve #f5f5f7 for full-width feature bands and footer regions.\nSet display hero statements in SF Pro Display 80px/600, 84px line height, and -1.2px tracking.\nUse SF Pro Text 17px/400 with -0.374px tracking for feature paragraphs and in-page navigation at 17px/500.\nUse 28px radius for feature cards and contained media; keep those cards shadowless.\nUse #0071e3 only for compact filled conversion pills with #ffffff 12px SF Pro Text.\nUse #0066cc for inline links and textual section links rather than turning every navigation item blue.\nSpace major storytelling sections by 90px and use 20px gaps between related interface elements.\n\nDON'T\n\nDo not add gradients; product imagery supplies the page’s color and visual depth.\nDo not use shadows on feature cards, editorial blocks, or floating pricing capsules.\nDo not replace the 28px feature-card radius with 8px, 12px, or square corners.\nDo not use #0071e3 as a large hero background or a universal filled button color.\nDo not set hero headlines in bold 700 or wider tracking than -1.2px at 80px.\nDo not introduce colored status pills for launch labels; use bare #b64400 12px text.\nDo not place dense boxed UI panels over the product renders; keep #ffffff space around hardware imagery.\nGive your AI\ndesign taste\n\nBetter layouts, clearer flows, more thoughtful details. Give your AI real products to learn from.\n\nConnect to\nyour AI\n(opens in a new tab)\n\nClaude, ChatGPT, Cursor, Codex & more\n\nMore like this\nApple iPhone 18 Pro\n\nMidnight hardware gallery. Treat…\n\nApple (España)\n\ncinematic gallery on poured…\n\nApple AirPods 5\n\nApple - cinema on white. Vast…\n\nApple (España)\n\nwhite gallery vitrine\n\nApple (España)\n\nMuseum gallery in soft daylight —…\n\nApple (España)\n\ngallery vitrine in morning fog\n\nApple (España)\n\nCathedral of white space with…\n\nApple\n\nwhite room with a single blue…\n\nApple (España)\n\nobsidian gallery vitrine — a dark…\n\nApple (España)\n\nwhite museum gallery at noon\n\nApple (España)\n\nblack theater with luminous…\n\nApple Watch Ultra 4\n\nMidnight endurance instrument.…\n\nThings\n\nApple keynote at half volume — a"
+}

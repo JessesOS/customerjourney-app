@@ -1,0 +1,23 @@
+[
+  {
+    "created_at": "2026-10-11T05:28:15.540436Z",
+    "display_name": "Nano Banana Pro",
+    "id": "3bc6f43f-2cda-48af-b32a-c73508a71ad6",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_30ic0WYO4BZY8NJLFDuPPsQQIQj/hf_20261011_052815_3bc6f43f-2cda-48af-b32a-c73508a71ad6_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "16:9",
+      "batch_size": 1,
+      "height": 1536,
+      "input_image": null,
+      "input_images": [],
+      "prompt": "Exactly seven separate round flat discs, like thick smooth coins with softly rounded edges, float scattered across the whole frame at different heights and different tilts, well apart from each other, none touching, most of them in the upper two thirds of the frame; the lower left of the frame is empty. Seen straight on from slightly above. Premium abstract 3D render: soft matte cobalt blue discs, each with a thin lighter blue rim, in tones of a single blue hue, floating in a flat seamless cobalt blue #1F4BFF field with no floor and no horizon, soft even studio light from the upper left, very soft shading, everything in focus, 50mm lens, calm, generous negative space. No text, no letters, no numbers, no logos, no people, no tools, no devices.",
+      "resolution": "2k",
+      "surface": null,
+      "width": 2752
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_30ic0WYO4BZY8NJLFDuPPsQQIQj/hf_20261011_052815_3bc6f43f-2cda-48af-b32a-c73508a71ad6.png",
+    "status": "completed"
+  }
+]

@@ -1,0 +1,270 @@
+/
+Styles
+/
+Apple iPhone Duo
+Apple iPhone Duo
+
+foldable device in a white gallery. Center product renders as the visual event, with typography and blue controls kept deliberately quiet around it.
+
+Apple treats the product page as a white gallery: enormous product photography occupies the center while compact black typography gives each claim a controlled, almost editorial weight. The page alternates seamless white storytelling sections with #f5f5f7 feature bands containing oversized #ffffff cards, using one saturated blue only for links and compact conversion controls. Rounded 28px media frames soften the hardware-led composition without turning the page into a card dashboard; nearly every surface stays flat and shadowless.
+
+https://www.apple.com/iphone-duo
+Color Palette
+
+BRAND
+
+Copy
+Apple Blue
+#0066cc
+Inline links, section links, and blue text controls — a precise blue punctuation against monochrome product storytelling
+Copy
+Pricing Blue
+#0071e3
+Filled pricing and learn-more controls — the brighter blue reserves visual urgency for compact conversion moments
+
+ACCENT
+
+Copy
+Launch Orange
+#b64400
+Small launch-status labels such as new-product markers
+
+NEUTRALS
+
+Copy
+Ink
+#1d1d1f
+Headlines, primary body copy, navigation labels, and dark utility icons
+Copy
+Slate
+#707070
+Secondary copy, legal text, subdued navigation content, and low-emphasis glyphs
+Copy
+Steel
+#86868b
+Input outlines, inactive indicators, and fine outlined-control edges
+Copy
+Hairline Silver
+#d6d6d6
+1px dividers, restrained control outlines, and subtle separators
+Copy
+Control Gray
+#e6e6e8
+Disabled control fills, subdued utility surfaces, and single-pixel navigation edge treatment
+Copy
+Studio Mist
+#f5f5f7
+Alternate full-width section background, feature-stage backdrop, footer surface, and muted content blocks
+Copy
+Paper Frost
+#fafafc
+Opened global-navigation surface and secondary pale fill
+Copy
+Gallery White
+#ffffff
+Primary page canvas, hero background, product story sections, and feature-card surfaces
+Typography
+
+TYPE SCALE
+
+Minor Third (1.2) from 14px base
+
+hero-display
+80px · 600 · 1.05
+The quick brown fox jumps
+feature-heading
+40px · 600 · 1
+The quick brown fox jumps
+24px
+24px · 600 · 1.17
+The quick brown fox jumps
+21px
+21px · 400 · 1.38
+The quick brown fox jumps
+product-kicker
+21px · 600 · 1
+The quick brown fox jumps
+20px
+20px · 400 · 1.47
+The quick brown fox jumps
+19px
+19px · 500 · 1.21
+The quick brown fox jumps
+product-nav-title
+19px · 600 · 1.21
+The quick brown fox jumps
+Show all 18 steps
+
+FONTS
+
+DISPLAY
+SF Pro Display
+Weight
+400, 500, 600
+Sizes
+19–80px · 7 values
+Line height
+1–1.38 · 8 values
+Letter spacing
+-1.2px at 80px; normal at 40px; +0.23px at 19-21px; profile range -0.015em to 0.012em
+Fallback
+Inter, Helvetica Neue, Arial
+
+Product names, display headlines, large feature statements, and section-level product claims. The 80px/600 hero treatment tightens to -1.2px, making the largest type feel compact rather than promotional.
+
+BODY
+SF Pro Text
+Weight
+400, 500, 600
+Sizes
+10–44px · 7 values
+Line height
+1–1.47 · 7 values
+Letter spacing
+-0.37px at 10px, -0.12px at 12px, -0.22px at 14px, -0.37px at 17px; profile range -0.037em to -0.003em
+Fallback
+Inter, Helvetica Neue, Arial
+
+Navigation, body copy, links, compact buttons, pricing details, labels, and footnotes. The consistently negative tracking lets small interface text remain dense and Apple-specific instead of looking like generic system UI.
+
+TYPEFACE
+Arial
+Weight
+400
+Sizes
+13px
+Line height
+1.20
+Fallback
+Arial
+
+Fallback text inside the observed search/input control only.
+
+Spacing & Shape
+
+SPACING
+
+Purpose	Value	Preview
+Density	comfortable
+	
+Base unit	4px
+	
+
+Section gap	90px
+	
+
+Card padding	28px
+	
+
+Element gap	20px
+	
+
+BORDER RADIUS
+
+Element	Value	Preview
+Links	10px
+	
+
+Navigation	20px
+	
+
+Cards	28px
+	
+
+Images	28px
+	
+
+Pills	36px
+	
+
+Inputs	980px
+	
+
+SHADOWS
+
+Shadow 1
+Shadow 2
+Guidelines
+
+DO
+
+Use #ffffff as the default product-story canvas and reserve #f5f5f7 for full-width feature bands and footer regions.
+Set display hero statements in SF Pro Display 80px/600, 84px line height, and -1.2px tracking.
+Use SF Pro Text 17px/400 with -0.374px tracking for feature paragraphs and in-page navigation at 17px/500.
+Use 28px radius for feature cards and contained media; keep those cards shadowless.
+Use #0071e3 only for compact filled conversion pills with #ffffff 12px SF Pro Text.
+Use #0066cc for inline links and textual section links rather than turning every navigation item blue.
+Space major storytelling sections by 90px and use 20px gaps between related interface elements.
+
+DON'T
+
+Do not add gradients; product imagery supplies the page’s color and visual depth.
+Do not use shadows on feature cards, editorial blocks, or floating pricing capsules.
+Do not replace the 28px feature-card radius with 8px, 12px, or square corners.
+Do not use #0071e3 as a large hero background or a universal filled button color.
+Do not set hero headlines in bold 700 or wider tracking than -1.2px at 80px.
+Do not introduce colored status pills for launch labels; use bare #b64400 12px text.
+Do not place dense boxed UI panels over the product renders; keep #ffffff space around hardware imagery.
+Give your AI
+design taste
+
+Better layouts, clearer flows, more thoughtful details. Give your AI real products to learn from.
+
+Connect to
+your AI
+(opens in a new tab)
+
+Claude, ChatGPT, Cursor, Codex & more
+
+More like this
+Apple iPhone 18 Pro
+
+Midnight hardware gallery. Treat…
+
+Apple (España)
+
+cinematic gallery on poured…
+
+Apple AirPods 5
+
+Apple - cinema on white. Vast…
+
+Apple (España)
+
+white gallery vitrine
+
+Apple (España)
+
+Museum gallery in soft daylight —…
+
+Apple (España)
+
+gallery vitrine in morning fog
+
+Apple (España)
+
+Cathedral of white space with…
+
+Apple
+
+white room with a single blue…
+
+Apple (España)
+
+obsidian gallery vitrine — a dark…
+
+Apple (España)
+
+white museum gallery at noon
+
+Apple (España)
+
+black theater with luminous…
+
+Apple Watch Ultra 4
+
+Midnight endurance instrument.…
+
+Things
+
+Apple keynote at half volume — a
