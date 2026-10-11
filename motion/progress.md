@@ -28,8 +28,41 @@ became the welcome. The disc keyframes are parked, not rendered: `kf/` and `kf-p
 - The Off / On / X-ray switch is not wired in. The canvas carries its `data-xray` tags ready for it.
 - SlopMonster and the copy gate were not run: no copy was written, only one line removed.
 - Jank was not measured with the skill's script.
-- Step 2 of the scope, the new look across the journey page with one-word stage openers, is not started.
+- Step 2 of the scope, the new look across the journey page: done as piece 2, below.
 - The old Marquee and Mosaic welcomes still say "Built for the trades" and show trade tiles.
+
+## 2026-10-11: piece 2, the look carried onto the journey page
+
+**Built:** `app/components/portal/CobaltHub.tsx`, the journey home in the new look, plus a
+`[data-pj-design="cobalt"]` token block and `gx-*` classes in `app/globals.css`. It is the third option on the demo
+design pill: Current design, Handoff design, Cobalt design. The demo route opens on Cobalt on this branch, so the
+flow is funnel welcome, then the cobalt journey page.
+
+**What it is:** white and mist bands, Geist only, 28 px corners, hairlines, no shadows. Each stage opens on its
+one-word title at display size. The stage's tasks sit beside it as bars that draw in, echoing the booked rows of the
+funnel. Cobalt is used twice: the current segment of the stage strip and the one primary button. Because the look
+rides the `--pj-*` tokens, the task view, the stage-complete card and the $200 popup pick it up without their own
+rebuild.
+
+**Copy:** all existing wording, word for word (task titles, details, waiting-state lines, labels). Nothing new written.
+
+| Check | Result |
+|---|---|
+| Typecheck (`npx tsc --noEmit`) | 0 errors |
+| Build | complete |
+| Funnel, handoff, cobalt page, $200 popup at `/portal/demo?welcome=1` | works, 1440 px |
+| Task list opens, up-next task opens in the task view | works |
+| 375 px phone | stacks, no sideways scroll |
+| Console errors from the new code | none |
+
+**Not done / not run**
+- Critics and the sparring agent: not run (not asked for).
+- Reduced motion: CSS rule written, not tested in a browser.
+- Stage-complete card and later stages (2 to 5): not looked at in a browser under Cobalt, only stage 1.
+- Dark scheme: none for Cobalt.
+- "cobalt" is a review option only. Nothing stores it per client; real client portals are unchanged.
+- The demo review pills use the cobalt accent, so on the demo route cobalt shows more than twice. Clients never see them.
+- No credits spent.
 
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.

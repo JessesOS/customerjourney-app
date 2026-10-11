@@ -301,6 +301,98 @@
   }
 }
 
+/* ---- Cobalt design (motion redesign): white gallery tokens ----
+   One family, flat surfaces, hairlines, no shadows. Cobalt is the single
+   accent. Placed after the theme blocks so it wins while active. */
+[data-pj-design="cobalt"] {
+  --font-heading: var(--font-geist);
+  --font-body: var(--font-geist);
+  --font-ibm-plex-mono: var(--font-geist);
+
+  --pj-bg: #ffffff;
+  --pj-rail: #f5f5f7;
+  --pj-card: #ffffff;
+  --pj-ink: #1d1d1f;
+  --pj-muted: #707070;
+  --pj-faint: #86868b;
+  --pj-line: #d6d6d6;
+  --pj-line-soft: #e6e6e8;
+
+  --pj-act: #1f4bff;
+  --pj-act-fill: #eef1ff;
+  --pj-act-ink: #ffffff;
+  --pj-done: #1d1d1f;
+  --pj-done-fill: #f5f5f7;
+  --pj-withus: #1d1d1f;
+  --pj-withus-fill: #f5f5f7;
+  --pj-upnext: #86868b;
+  --pj-upnext-fill: #f5f5f7;
+
+  --pj-radius-card: 28px;
+  --pj-glow: none;
+  --pj-card-grad: #ffffff;
+  --pj-shadow-card: none;
+  --pj-btn-grad: #1f4bff;
+  --pj-shadow-btn: none;
+
+  --pj-frame: #ffffff;
+  --pj-frame-line: #d6d6d6;
+  --pj-shadow-frame: none;
+  --pj-frame-deep: #f5f5f7;
+  --pj-frame-deep-line: #d6d6d6;
+  --pj-card-line: #d6d6d6;
+  --pj-well: #f5f5f7;
+  --pj-track: #e6e6e8;
+  --pj-ring: #d6d6d6;
+  --pj-strike: #d6d6d6;
+  --pj-path: #d6d6d6;
+  --pj-turn-tint: #f5f5f7;
+  --pj-done-hi: #1d1d1f;
+  --pj-shadow-badge: none;
+  --pj-error: #b23b2e;
+  --pj-link: #1f4bff;
+  --pj-scrim: rgba(29, 29, 31, 0.5);
+  --pj-shadow-modal: none;
+  --pj-rail-card-grad: #ffffff;
+  --pj-rail-card-line: #d6d6d6;
+  --pj-rail-card-shadow: none;
+  --pj-rail-ring-fill: #ffffff;
+  --pj-tile-act: #1f4bff;
+}
+/* The voice orb is a moving mark, so in this look it is ink, keeping cobalt
+   to the stage strip and the one primary button. */
+[data-pj-design="cobalt"] .pj-orb-ring { border-color: var(--pj-ink); }
+[data-pj-design="cobalt"] .pj-orb-core { background: var(--pj-ink); box-shadow: none; }
+
+.gx-wrap { max-width: 1200px; margin: 0 auto; padding-left: clamp(24px, 5vw, 56px); padding-right: clamp(24px, 5vw, 56px); }
+.gx-band { padding-top: clamp(40px, 7vw, 72px); padding-bottom: clamp(40px, 7vw, 72px); }
+.gx-opener { position: relative; display: flex; align-items: flex-end; gap: 48px; padding-top: clamp(56px, 11vh, 128px); padding-bottom: clamp(48px, 9vh, 96px); }
+.gx-title { font-family: var(--font-heading), sans-serif; font-weight: 600; font-size: clamp(48px, 7vw, 80px); line-height: 1.05; letter-spacing: -0.015em; margin: 14px 0 16px; }
+.gx-bars { margin-left: auto; width: min(280px, 34%); display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.gx-bar-track { display: block; height: 10px; border-radius: 999px; background: var(--pj-track); overflow: hidden; }
+.gx-bar { display: block; height: 100%; border-radius: 999px; background: var(--pj-ink); transform-origin: left center; animation: gxBar 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.gx-bar--now { animation: gxBar 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both, gxNow 2.4s ease-in-out 900ms infinite; }
+.gx-orb { position: absolute; top: clamp(24px, 5vh, 56px); right: clamp(24px, 5vw, 56px); }
+.gx-rise { animation: gxRise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.gx-next { display: flex; align-items: flex-end; gap: 32px; }
+.gx-primary { margin-left: auto; flex-shrink: 0; background: var(--pj-act); color: var(--pj-act-ink); font: 500 17px var(--font-body), sans-serif; border: 0; border-radius: 999px; padding: 16px 32px; cursor: pointer; white-space: nowrap; transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.gx-primary:hover { transform: translateY(-2px); }
+.gx-toggle { width: 100%; display: flex; align-items: baseline; gap: 16px; background: transparent; border: 0; padding: 0 0 20px; cursor: pointer; color: inherit; font-family: inherit; text-align: left; }
+.gx-row { width: 100%; display: flex; align-items: center; gap: 14px; padding: 18px 0; background: transparent; border: 0; border-top: 1px solid var(--pj-line); cursor: pointer; color: inherit; font-family: inherit; }
+@keyframes gxRise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes gxBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes gxNow { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@media (max-width: 760px) {
+  .gx-opener { flex-direction: column; align-items: stretch; gap: 32px; }
+  .gx-bars { margin-left: 0; width: 100%; }
+  .gx-next { flex-direction: column; align-items: stretch; gap: 20px; }
+  .gx-primary { margin-left: 0; text-align: center; }
+  .gx-toggle { flex-direction: column; gap: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gx-rise, .gx-bar, .gx-bar--now { animation: none; }
+}
+
 /* Funnel welcome (motion redesign): copy bottom-left, the one action
    bottom-right; on phones both sit in a column under the picture. */
 .pj-funnel-copy {

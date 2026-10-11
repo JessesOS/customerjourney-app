@@ -26,6 +26,7 @@ import { WelcomeScreen } from "@/app/components/portal/WelcomeScreen";
 import { WelcomeMarquee } from "@/app/components/portal/WelcomeMarquee";
 import { WelcomeFunnel } from "@/app/components/portal/WelcomeFunnel";
 import { HandoffHub } from "@/app/components/portal/HandoffHub";
+import { CobaltHub } from "@/app/components/portal/CobaltHub";
 import { IncentiveModal } from "@/app/components/portal/IncentiveModal";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
@@ -45,7 +46,8 @@ export type ClientPortalExperienceProps = {
   milestoneContent?: Record<string, string>;
   milestoneUploads?: Record<string, UploadMeta>;
   portalToken?: string;
-  themeVariant?: "warm" | "cool" | "neutral" | "handoff";
+  // "cobalt" is the motion-redesign look. It is a review option only: nothing stores it yet.
+  themeVariant?: "warm" | "cool" | "neutral" | "handoff" | "cobalt";
 };
 
 function CheckIcon({ color = "var(--pj-ink)", size = 13 }: { color?: string; size?: number }) {
@@ -269,7 +271,7 @@ export function ClientPortalExperience({
   // Portal look: warm (organic) / cool (slate workshop). Seeded from the client
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
-  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant === "handoff" ? "warm" : themeVariant);
+  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant === "handoff" || themeVariant === "cobalt" ? "warm" : themeVariant);
   // Neutral's accent audition (demo pill): gallery surfaces stay, one accent
   // carries the life. Terracotta is the recommended default everywhere.
   const [neutralAccent, setNeutralAccent] = useState<"terracotta" | "brass" | "indigo" | "graphite">("terracotta");
@@ -279,7 +281,7 @@ export function ClientPortalExperience({
   const [welcomeVersion, setWelcomeVersion] = useState<"funnel" | "marquee" | "mosaic">("funnel");
   // Whole-portal design skin from the client_portal handoff package (DM fonts,
   // terracotta+teal on near-white). Demo review toggle; skin-level only.
-  const [designSkin, setDesignSkin] = useState<"current" | "handoff">(themeVariant === "handoff" ? "handoff" : "current");
+  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt">(themeVariant === "handoff" || themeVariant === "cobalt" ? themeVariant : "current");
   // The handoff design's own Light|Dark scheme (its README ships both); it
   // replaces the warm/cool/neutral dots while the handoff skin is active.
   const [handoffScheme, setHandoffScheme] = useState<"light" | "dark">("light");
@@ -483,9 +485,9 @@ export function ClientPortalExperience({
       // While the handoff skin is active, theme/accent attributes come off so
       // its token block applies cleanly (the accent selectors would otherwise
       // out-specificity it).
-      data-pj-theme={designSkin === "handoff" || theme === "warm" ? undefined : theme}
-      data-pj-accent={designSkin === "handoff" || theme !== "neutral" ? undefined : neutralAccent}
-      data-pj-design={designSkin === "handoff" ? "handoff" : undefined}
+      data-pj-theme={designSkin !== "current" || theme === "warm" ? undefined : theme}
+      data-pj-accent={designSkin !== "current" || theme !== "neutral" ? undefined : neutralAccent}
+      data-pj-design={designSkin === "current" ? undefined : designSkin}
       data-pj-scheme={designSkin === "handoff" && handoffScheme === "dark" ? "dark" : undefined}
       style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}
     >
@@ -526,7 +528,7 @@ export function ClientPortalExperience({
       `}</style>
 
       {/* TOP BAR (the handoff design's home brings its own header) */}
-      {!(designSkin === "handoff" && view === "home") && (
+      {!(designSkin !== "current" && view === "home") && (
       <div
         style={{
           position: "sticky",
@@ -546,7 +548,7 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{isRespond ? "respond" : "scale"}</span>
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
@@ -578,7 +580,7 @@ export function ClientPortalExperience({
                 colour differs for neutral so a near-white dot stays visible.
                 Hidden under the handoff design, which brings its own
                 Light|Dark schemes instead. */}
-            {designSkin !== "handoff" && (
+            {designSkin === "current" && (
             <span style={{ display: "flex", alignItems: "center", gap: 7 }}>
               {(
                 [
@@ -619,7 +621,7 @@ export function ClientPortalExperience({
       )}
 
       {/* JOURNEY — home view */}
-      {view === "home" && designSkin !== "handoff" && (
+      {view === "home" && designSkin === "current" && (
         <div
           className={railLayout === "focus" ? "pj-home pj-home--focus" : "pj-home"}
           // The deep-frame tint exists to make the journey card pop, so it
@@ -805,6 +807,37 @@ export function ClientPortalExperience({
         />
       )}
 
+      {/* COBALT DESIGN (motion redesign) — white gallery hub, home view */}
+      {view === "home" && designSkin === "cobalt" && (
+        <CobaltHub
+          brand={isRespond ? "Respond" : "Scale"}
+          clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
+          name={name}
+          currentDay={currentDay}
+          totalDays={activeJourneyTotalDays}
+          stages={journeyStages}
+          currentStageIndex={currentStageIndex}
+          stageDoneCount={stageDoneCount}
+          upNext={upNext}
+          upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
+          onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
+          onOpenTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
+          taskStatus={taskDisplayStatus}
+          tasksOpen={tasksOpen}
+          onToggleTasks={() => setTasksOpen(!tasksOpen)}
+          orbSlot={
+            voiceOn && currentStage
+              ? (() => {
+                  const g = stageGuideFor(clientType, currentStage.id);
+                  return g ? <StageGuide key={currentStage.id} guide={g} /> : null;
+                })()
+              : null
+          }
+        >
+          {currentStage ? <AskChips items={askItemsFor(clientType, currentStage.id)} stageKey={currentStage.id} /> : null}
+        </CobaltHub>
+      )}
+
       {/* Review pills — rendered outside both layout trees so every option
           survives the design swap (demo route only). */}
       {view === "home" && (
@@ -816,7 +849,8 @@ export function ClientPortalExperience({
               {(
                 [
                   ["current", "Current design"],
-                  ["handoff", "New design"],
+                  ["handoff", "Handoff design"],
+                  ["cobalt", "Cobalt design"],
                 ] as const
               ).map(([v, label]) => (
                 <button
@@ -833,7 +867,7 @@ export function ClientPortalExperience({
           {/* Review-only: Neutral accent audition. Demo route only, shows
               while the neutral theme is active. Delete once a winner is
               picked. */}
-          {isDemo && theme === "neutral" && designSkin !== "handoff" && (
+          {isDemo && theme === "neutral" && designSkin === "current" && (
             <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
@@ -859,11 +893,12 @@ export function ClientPortalExperience({
               picked. */}
           {isDemo && (
             <div style={{ position: "fixed", bottom: 64, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
-              {(
-                [
-                  ["rail", "Journey rail"],
-                  ["focus", "Focus"],
-                ] as const
+              {(designSkin === "cobalt"
+                ? [] // the cobalt page has one layout
+                : ([
+                    ["rail", "Journey rail"],
+                    ["focus", "Focus"],
+                  ] as const)
               ).map(([v, label]) => (
                 <button
                   key={v}
@@ -873,7 +908,7 @@ export function ClientPortalExperience({
                   {label}
                 </button>
               ))}
-              <span style={{ width: 1, alignSelf: "stretch", background: "var(--pj-line)", margin: "2px 2px" }} />
+              {designSkin !== "cobalt" && <span style={{ width: 1, alignSelf: "stretch", background: "var(--pj-line)", margin: "2px 2px" }} />}
               <button
                 onClick={() => setShowWelcome(true)}
                 title="Replay the welcome landing (clients see it on their first visit; ?welcome=1 works on any portal link)"
@@ -895,7 +930,7 @@ export function ClientPortalExperience({
               real client portals never render this. Warm-look tool, so it
               hides while the cool theme is active. Delete once a winner is
               picked. */}
-          {isDemo && theme === "warm" && designSkin !== "handoff" && (
+          {isDemo && theme === "warm" && designSkin === "current" && (
             <div style={{ position: "fixed", bottom: 18, right: 18, zIndex: 50, display: "flex", gap: 4, background: "#fff", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
