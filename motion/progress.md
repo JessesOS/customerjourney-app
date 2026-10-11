@@ -171,6 +171,18 @@ Checked through the page: clip 1 is requested and plays when the task opens, cli
 serve as audio. Not checked by ear (cannot listen from here), nor on a phone, where browsers are stricter about
 sound starting on its own. No credits spent.
 
+## 2026-10-11: piece 8, interview voice switched to Fish Audio ("Jack")
+
+Jesse wanted an Aussie, more natural voice. He added `FISH_API_KEY` to `.env.local` himself. Auditioned question 1
+in 14 Fish Audio library voices (clips in `motion/voice-audition/`, not committed); celebrity and character clones
+were left out on purpose. His pick: "Jack", a young, casual Australian man (model `4c26db2c00a346f687aa8ed984c418b5`).
+All six question clips re-rendered in that voice; `scripts/generate-interview-voice.py` now uses Fish Audio by
+default (`--free` falls back to the Sonia voice). The stage voice guide on the home page is still Sonia, so the
+portal currently has two voices.
+
+Fish Audio spend for the whole audition plus the six clips: about 1 cent (balance 9.695 → 9.684 USD).
+Not checked by ear by me. The last clip is short for its sentence (2.1 s), so worth a listen for pace.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 
