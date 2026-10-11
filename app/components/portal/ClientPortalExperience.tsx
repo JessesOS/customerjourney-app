@@ -28,6 +28,7 @@ import { WelcomeFunnel } from "@/app/components/portal/WelcomeFunnel";
 import { HandoffHub } from "@/app/components/portal/HandoffHub";
 import { CobaltHub } from "@/app/components/portal/CobaltHub";
 import { AuroraHub } from "@/app/components/portal/AuroraHub";
+import { WelcomeAurora } from "@/app/components/portal/WelcomeAurora";
 import { IncentiveModal } from "@/app/components/portal/IncentiveModal";
 import { TaskRow } from "@/app/components/portal/TaskRow";
 import { UpNextCard } from "@/app/components/portal/UpNextCard";
@@ -279,10 +280,10 @@ export function ClientPortalExperience({
   // Welcome screen generation under review: "funnel" (motion redesign, drawn in
   // code; the default on the motion-redesign branch), "marquee" (trade tiles)
   // and "mosaic" (the first static tiles). Demo pill switches live.
-  const [welcomeVersion, setWelcomeVersion] = useState<"funnel" | "marquee" | "mosaic">("funnel");
+  const [welcomeVersion, setWelcomeVersion] = useState<"funnel" | "aurora" | "marquee" | "mosaic">(themeVariant === "aurora" ? "aurora" : "funnel");
   // Whole-portal design skin from the client_portal handoff package (DM fonts,
   // terracotta+teal on near-white). Demo review toggle; skin-level only.
-  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt" | "aurora">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" ? themeVariant : "current");
+  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt" | "aurora" | "calm">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" ? themeVariant : "current");
   // The handoff design's own Light|Dark scheme (its README ships both); it
   // replaces the warm/cool/neutral dots while the handoff skin is active.
   const [handoffScheme, setHandoffScheme] = useState<"light" | "dark">("light");
@@ -488,13 +489,15 @@ export function ClientPortalExperience({
       // out-specificity it).
       data-pj-theme={designSkin !== "current" || theme === "warm" ? undefined : theme}
       data-pj-accent={designSkin !== "current" || theme !== "neutral" ? undefined : neutralAccent}
-      data-pj-design={designSkin === "current" ? undefined : designSkin}
-      data-pj-scheme={designSkin === "handoff" && handoffScheme === "dark" ? "dark" : undefined}
+      data-pj-design={designSkin === "current" ? undefined : designSkin === "calm" ? "aurora" : designSkin}
+      data-pj-scheme={designSkin === "handoff" && handoffScheme === "dark" ? "dark" : designSkin === "calm" ? "calm" : undefined}
       style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}
     >
       {showWelcome &&
         (welcomeVersion === "funnel" ? (
           <WelcomeFunnel brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
+        ) : welcomeVersion === "aurora" ? (
+          <WelcomeAurora brand={isRespond ? "respond" : "scale"} stages={journeyStages.map((s) => s.name)} onStart={dismissWelcome} />
         ) : welcomeVersion === "marquee" ? (
           <WelcomeMarquee brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
         ) : (
@@ -508,6 +511,7 @@ export function ClientPortalExperience({
           {(
             [
               ["funnel", "Funnel"],
+              ["aurora", "Aurora"],
               ["marquee", "Marquee"],
               ["mosaic", "Mosaic"],
             ] as const
@@ -549,7 +553,7 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
@@ -843,8 +847,9 @@ export function ClientPortalExperience({
       )}
 
       {/* AURORA DESIGN (motion redesign, second direction) — night hub with stage art, home view */}
-      {view === "home" && designSkin === "aurora" && (
+      {view === "home" && (designSkin === "aurora" || designSkin === "calm") && (
         <AuroraHub
+          calm={designSkin === "calm"}
           brand={isRespond ? "Respond" : "Scale"}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
@@ -891,6 +896,7 @@ export function ClientPortalExperience({
                   ["handoff", "Handoff design"],
                   ["cobalt", "Cobalt design"],
                   ["aurora", "Aurora design"],
+                  ["calm", "Aurora calm"],
                 ] as const
               ).map(([v, label]) => (
                 <button

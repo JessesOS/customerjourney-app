@@ -18,7 +18,7 @@ import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
  */
 
 // One palette per stage, cycling. Each is the left-to-right colour of the lines.
-const PALETTES: string[][] = [
+export const AURORA_PALETTES: string[][] = [
   ["#6d4bff", "#ff4fa3", "#ff9a3d"],
   ["#2f7bff", "#35d6e6", "#8a5cff"],
   ["#ffb320", "#ff4fa3", "#6d4bff"],
@@ -27,13 +27,13 @@ const PALETTES: string[][] = [
 ];
 
 /** A field of flowing lines: wireframe hills that drift. Static unless `animate`. */
-function WaveField({ seed, animate = false, lines = 44, className, style }: { seed: number; animate?: boolean; lines?: number; className?: string; style?: React.CSSProperties }) {
+export function WaveField({ seed, animate = false, sparks = true, lines = 44, className, style }: { seed: number; animate?: boolean; sparks?: boolean; lines?: number; className?: string; style?: React.CSSProperties }) {
   const ref = useRef<HTMLCanvasElement | null>(null);
   useEffect(() => {
     const cv = ref.current;
     const g = cv?.getContext("2d");
     if (!cv || !g) return;
-    const pal = PALETTES[seed % PALETTES.length];
+    const pal = AURORA_PALETTES[seed % AURORA_PALETTES.length];
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let W = 0, H = 0, raf = 0, last = 0;
     // Two hills per field; the seed moves and reshapes them so no two stages match.
@@ -69,7 +69,7 @@ function WaveField({ seed, animate = false, lines = 44, className, style }: { se
         g!.stroke();
       }
       // A few slow sparks above the hills, on the moving field only
-      if (animate) {
+      if (animate && sparks) {
         g!.fillStyle = "#fff";
         for (let k = 0; k < 70; k++) {
           const sx = ((k * 0.6180339 + seed * 0.13) % 1) * W + Math.sin(t * 0.12 + k) * W * 0.01;
@@ -93,7 +93,7 @@ function WaveField({ seed, animate = false, lines = 44, className, style }: { se
     window.addEventListener("resize", onResize);
     if (animate && !reduced) raf = requestAnimationFrame(frame);
     return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); };
-  }, [seed, animate, lines]);
+  }, [seed, animate, sparks, lines]);
   return <canvas ref={ref} aria-hidden className={className} style={style} />;
 }
 
@@ -135,6 +135,7 @@ export function AuroraHub({
   tasksOpen,
   onToggleTasks,
   showRail,
+  calm = false,
   orbSlot,
   children,
 }: {
@@ -157,21 +158,23 @@ export function AuroraHub({
   tasksOpen: boolean;
   onToggleTasks: () => void;
   showRail: boolean;
+  /** The dialled-back version: quieter art, no arc, a smaller left-aligned title. */
+  calm?: boolean;
   orbSlot?: ReactNode;
   children?: ReactNode;
 }) {
   const stage = stages[currentStageIndex];
   const tasks = stage?.milestones ?? [];
-  const pal = PALETTES[currentStageIndex % PALETTES.length];
+  const pal = AURORA_PALETTES[currentStageIndex % AURORA_PALETTES.length];
   // The arc is a half circle. Its end dot sits at the stage's progress.
   const pct = Math.max(0, Math.min(100, stagePct));
   const ang = Math.PI * (1 - pct / 100);
   const dotX = 500 + 460 * Math.cos(ang), dotY = 500 - 460 * Math.sin(ang);
 
   return (
-    <div className="ax-page" style={{ "--ax-a": pal[0], "--ax-b": pal[1], "--ax-c": pal[2] } as React.CSSProperties}>
+    <div className={calm ? "ax-page ax-page--calm" : "ax-page"} style={{ "--ax-a": pal[0], "--ax-b": pal[1], "--ax-c": pal[2] } as React.CSSProperties}>
       {/* The current stage's field, large and moving, behind everything */}
-      <WaveField key={`bg${currentStageIndex}`} seed={currentStageIndex} animate lines={64} className="ax-bg" />
+      <WaveField key={`bg${currentStageIndex}`} seed={currentStageIndex} animate sparks={!calm} lines={calm ? 36 : 64} className="ax-bg" />
 
       {/* Header and stage strip */}
       <header className="ax-header">
@@ -262,10 +265,15 @@ export function AuroraHub({
               <div className="ax-label ax-rise" style={{ animationDelay: "180ms", fontVariantNumeric: "tabular-nums" }}>
                 {stageDoneCount} / {tasks.length} done
               </div>
+              {calm ? (
+                <div className="ax-calm-bar" aria-hidden>
+                  <span style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${pal[0]}, ${pal[1]}, ${pal[2]})` }} />
+                </div>
+              ) : null}
             </div>
           </section>
           {stage?.blurb ? (
-            <p className="ax-rise" style={{ fontSize: 18, lineHeight: 1.45, color: "var(--pj-muted)", maxWidth: "52ch", margin: "0 auto 8px", textAlign: "center", animationDelay: "240ms" }}>
+            <p className="ax-rise ax-blurb" style={{ animationDelay: "240ms" }}>
               {stage.blurb}
             </p>
           ) : null}

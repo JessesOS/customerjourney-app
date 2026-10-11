@@ -99,6 +99,25 @@ Checked in a browser: home at 1440 px, task view, $200 popup, 375 px phone (no s
 Not checked: focus layout, expanded task list, stages 2 to 5 (each has its own colours), stage-complete card,
 reduced motion, frame rate on a slow machine. Critics not run.
 
+## 2026-10-11: piece 4, Aurora welcome and "Aurora calm"
+
+Jesse on Aurora: "pretty sick", keep it, but possibly too edgy for a marketing-funnel onboarding. Asked for both a
+matching welcome and a dialled-back version.
+
+- **Aurora welcome** (`app/components/portal/WelcomeAurora.tsx`), reference the brain.fm landing hero. Night stage,
+  wordmark at display size, and under it the stage names cycling one at a time on a colour bar, each with its own
+  field of lines; a strip of all five stages along the bottom; one white "Get started". No new copy. Fourth option
+  on the welcome pill, and the default welcome when the demo opens on Aurora. The funnel welcome is unchanged.
+- **Aurora calm**: fifth option on the design pill. Same page and functions, quieter: graphite cards, the art as a
+  soft band, no arc, no sparks, a smaller left-aligned title with a slim progress bar.
+
+Checked in a browser: welcome at 1440 px and 375 px, handoff into the journey page, Aurora calm home at 1440 px.
+Typecheck 0 errors, build complete. Not checked: Aurora calm on a phone, its task list open and focus layout,
+reduced motion. Critics not run. No credits spent.
+
+**Open, Jesse's call:** the product name. He wants something more explicit than "Scale" (along the lines of AI
+marketing). "Scale" stays in the build until he picks.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 
