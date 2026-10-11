@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, DM_Mono, DM_Sans, Figtree, Geist, IBM_Plex_Mono, Instrument_Serif, Outfit, Space_Grotesk } from "next/font/google";
+import { Archivo, DM_Mono, DM_Sans, Figtree, Geist, Geist_Mono, IBM_Plex_Mono, Instrument_Serif, Outfit, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -50,6 +50,13 @@ const geist = Geist({
   weight: ["400", "500", "600"],
 });
 
+// Grove design (motion redesign, third direction): small labels and figures.
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
 // Aurora design (motion redesign, second direction): a rounder geometric sans.
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -90,7 +97,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${figtreeHeading.variable} ${figtreeBody.variable} ${instrumentSerif.variable} ${archivo.variable} ${dmSans.variable} ${dmMono.variable} ${geist.variable} ${outfit.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} ${figtreeHeading.variable} ${figtreeBody.variable} ${instrumentSerif.variable} ${archivo.variable} ${dmSans.variable} ${dmMono.variable} ${geist.variable} ${outfit.variable} ${geistMono.variable} antialiased`}
       >
         {children}
       </body>

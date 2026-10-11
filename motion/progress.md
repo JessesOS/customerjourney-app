@@ -118,6 +118,28 @@ reduced motion. Critics not run. No credits spent.
 **Open, Jesse's call:** the product name. He wants something more explicit than "Scale" (along the lines of AI
 marketing). "Scale" stays in the build until he picks.
 
+## 2026-10-11: piece 5, a third look for the inside ("Grove design")
+
+Jesse: Aurora went over the top and Aurora calm was painful. The original was too warm, Cobalt too cold. It is an
+onboarding step-through, so it must be very clean and not distract. Asked for one more look in one shot: the most
+elegant, fonts Vercel would use, and he likes clay.com (https://www.clay.com/). Motion on the journey rail and on
+the way in from the start page.
+
+**Built:** `app/components/portal/GroveHub.tsx`, a `[data-pj-design="grove"]` token block and `gv-*` classes.
+Sixth option on the demo design pill; the demo route opens on it on this branch.
+- Soft off-white ground, white cards, near-black type. Geist for text, Geist Mono for small labels and figures.
+- Colour lives in one place: a deep green band holding the stage name, its progress and the one action (a lime
+  "Start this task" button), with two soft hills drawn in SVG drifting slowly behind.
+- Journey rail is a stepper: the line draws down to the current stage, the current node breathes, steps arrive
+  one after another, a step nudges on hover. Click a step to open that stage.
+- The funnel welcome takes the same green when Grove is the active look, so the welcome closes into a page that
+  carries its colour.
+- Same functions as the other designs. Copy: existing wording only.
+
+Checked in a browser: green welcome, handoff, home at 1440 px, task list open, task view, 375 px phone (no sideways
+scroll). Typecheck 0 errors, build complete. Not checked: focus layout, stages 2 to 5, stage-complete card,
+reduced motion. Critics not run. No credits spent.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

@@ -28,6 +28,7 @@ import { WelcomeFunnel } from "@/app/components/portal/WelcomeFunnel";
 import { HandoffHub } from "@/app/components/portal/HandoffHub";
 import { CobaltHub } from "@/app/components/portal/CobaltHub";
 import { AuroraHub } from "@/app/components/portal/AuroraHub";
+import { GroveHub } from "@/app/components/portal/GroveHub";
 import { WelcomeAurora } from "@/app/components/portal/WelcomeAurora";
 import { IncentiveModal } from "@/app/components/portal/IncentiveModal";
 import { TaskRow } from "@/app/components/portal/TaskRow";
@@ -49,7 +50,7 @@ export type ClientPortalExperienceProps = {
   milestoneUploads?: Record<string, UploadMeta>;
   portalToken?: string;
   // "cobalt" is the motion-redesign look. It is a review option only: nothing stores it yet.
-  themeVariant?: "warm" | "cool" | "neutral" | "handoff" | "cobalt" | "aurora";
+  themeVariant?: "warm" | "cool" | "neutral" | "handoff" | "cobalt" | "aurora" | "grove";
 };
 
 function CheckIcon({ color = "var(--pj-ink)", size = 13 }: { color?: string; size?: number }) {
@@ -196,7 +197,7 @@ export function ClientPortalExperience({
   // Portal layout: the handoff design defaults to its journey rail (Jesse
   // 2026-08-10 — clients like Rich should land on it with no toggling);
   // the current design keeps "focus" as its shipped default (2026-08-05).
-  const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" ? "rail" : "focus");
+  const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" || themeVariant === "grove" ? "rail" : "focus");
   const [isDemo, setIsDemo] = useState(false);
   // First-visit welcome landing (Imprint-style). Shown until dismissed once
   // on this device PER CLIENT (a global flag meant a second client on the same
@@ -273,7 +274,7 @@ export function ClientPortalExperience({
   // Portal look: warm (organic) / cool (slate workshop). Seeded from the client
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
-  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" ? "warm" : themeVariant);
+  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" || themeVariant === "grove" ? "warm" : themeVariant);
   // Neutral's accent audition (demo pill): gallery surfaces stay, one accent
   // carries the life. Terracotta is the recommended default everywhere.
   const [neutralAccent, setNeutralAccent] = useState<"terracotta" | "brass" | "indigo" | "graphite">("terracotta");
@@ -283,7 +284,7 @@ export function ClientPortalExperience({
   const [welcomeVersion, setWelcomeVersion] = useState<"funnel" | "aurora" | "marquee" | "mosaic">(themeVariant === "aurora" ? "aurora" : "funnel");
   // Whole-portal design skin from the client_portal handoff package (DM fonts,
   // terracotta+teal on near-white). Demo review toggle; skin-level only.
-  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt" | "aurora" | "calm">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" ? themeVariant : "current");
+  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt" | "aurora" | "calm" | "grove">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" || themeVariant === "grove" ? themeVariant : "current");
   // The handoff design's own Light|Dark scheme (its README ships both); it
   // replaces the warm/cool/neutral dots while the handoff skin is active.
   const [handoffScheme, setHandoffScheme] = useState<"light" | "dark">("light");
@@ -495,7 +496,7 @@ export function ClientPortalExperience({
     >
       {showWelcome &&
         (welcomeVersion === "funnel" ? (
-          <WelcomeFunnel brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
+          <WelcomeFunnel brand={isRespond ? "respond" : "scale"} color={designSkin === "grove" ? "#0f6b4b" : undefined} onStart={dismissWelcome} />
         ) : welcomeVersion === "aurora" ? (
           <WelcomeAurora brand={isRespond ? "respond" : "scale"} stages={journeyStages.map((s) => s.name)} onStart={dismissWelcome} />
         ) : welcomeVersion === "marquee" ? (
@@ -553,7 +554,7 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
@@ -882,6 +883,41 @@ export function ClientPortalExperience({
         </AuroraHub>
       )}
 
+      {/* GROVE DESIGN (motion redesign, third direction) — clean hub with one green band, home view */}
+      {view === "home" && designSkin === "grove" && (
+        <GroveHub
+          brand={isRespond ? "Respond" : "Scale"}
+          clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
+          name={name}
+          currentDay={currentDay}
+          totalDays={activeJourneyTotalDays}
+          stages={journeyStages}
+          currentStageIndex={currentStageIndex}
+          stageDoneCount={stageDoneCount}
+          stagePct={stagePct}
+          overallPercent={progress}
+          showRail={railLayout === "rail"}
+          onSelectStage={(stageId) => openM(stageId, 1)}
+          upNext={upNext}
+          upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
+          onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
+          onOpenTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
+          taskStatus={taskDisplayStatus}
+          tasksOpen={tasksOpen}
+          onToggleTasks={() => setTasksOpen(!tasksOpen)}
+          orbSlot={
+            voiceOn && currentStage
+              ? (() => {
+                  const g = stageGuideFor(clientType, currentStage.id);
+                  return g ? <StageGuide key={currentStage.id} guide={g} /> : null;
+                })()
+              : null
+          }
+        >
+          {currentStage ? <AskChips items={askItemsFor(clientType, currentStage.id)} stageKey={currentStage.id} /> : null}
+        </GroveHub>
+      )}
+
       {/* Review pills — rendered outside both layout trees so every option
           survives the design swap (demo route only). */}
       {view === "home" && (
@@ -897,6 +933,7 @@ export function ClientPortalExperience({
                   ["cobalt", "Cobalt design"],
                   ["aurora", "Aurora design"],
                   ["calm", "Aurora calm"],
+                  ["grove", "Grove design"],
                 ] as const
               ).map(([v, label]) => (
                 <button

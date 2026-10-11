@@ -24,7 +24,7 @@ type Dot = { t: number; speed: number; off: number; wob: number; sx: number; sy:
 const ease = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-export function WelcomeFunnel({ brand, onStart }: { brand: "scale" | "respond"; onStart: () => void }) {
+export function WelcomeFunnel({ brand, color = COBALT, onStart }: { brand: "scale" | "respond"; color?: string; onStart: () => void }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [exit, setExit] = useState<{ x: number; y: number } | null>(null);
@@ -161,7 +161,7 @@ export function WelcomeFunnel({ brand, onStart }: { brand: "scale" | "respond"; 
         position: "fixed",
         inset: 0,
         zIndex: 60,
-        background: COBALT,
+        background: color,
         color: "#fff",
         fontFamily: "var(--font-geist), system-ui, sans-serif",
         overflow: "hidden",
