@@ -189,6 +189,16 @@ After hearing Jack in the portal, Jesse auditioned 18 more voices (32 in all, ab
 gentle Australian woman (`w5-calm-gentle`, Fish Audio model `1ac1da8f595841fe9ca8b5cb464364f8`). All six clips
 re-rendered; the script's default voice updated. Not checked by ear by me.
 
+## 2026-10-12: merged and deployed to production
+
+Jesse is pitching and has no real clients yet, so he asked for everything live. `motion-redesign` fast-forwarded
+into `main` (no conflicts, main had not moved), pushed, built and deployed to the Cloudflare worker
+`scale-onboarding-portal` (version `44cd957b`). Jesse re-authorised the deploy tool himself.
+Checked live: `/portal/demo` loads and opens in Grove, the interview audio serves, the admin API refuses a visitor
+without access (403). Not checked live: clicking through the page in a browser, the mic.
+The demo route still shows the review pills. Grove, Cobalt and Aurora are still demo-only options: no client can
+be assigned them yet.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

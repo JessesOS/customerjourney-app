@@ -29,6 +29,10 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
+> **UPDATE 2026-10-12: MERGED TO `main` AND DEPLOYED TO PRODUCTION** on Jesse's instruction
+> (he is pitching and there are no real clients yet). Version `44cd957b`. The note below is
+> now live: re-run the importer; `ob-0` shows open for any existing Scale client.
+>
 > **Design-session note 2026-10-11 (branch `motion-redesign`, NOT merged, NOT deployed):**
 > a JOURNEY/TEMPLATE CHANGE is waiting on that branch. Scale onboarding gains a new first
 > task, `ob-0` "Your voice interview" (`lib/onboardingJourney.ts`), ahead of `ob-1`, so
