@@ -183,6 +183,12 @@ portal currently has two voices.
 Fish Audio spend for the whole audition plus the six clips: about 1 cent (balance 9.695 → 9.684 USD).
 Not checked by ear by me. The last clip is short for its sentence (2.1 s), so worth a listen for pace.
 
+## 2026-10-11: piece 9, interview voice changed again
+
+After hearing Jack in the portal, Jesse auditioned 18 more voices (32 in all, about 2 cents) and picked the calm,
+gentle Australian woman (`w5-calm-gentle`, Fish Audio model `1ac1da8f595841fe9ca8b5cb464364f8`). All six clips
+re-rendered; the script's default voice updated. Not checked by ear by me.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 
