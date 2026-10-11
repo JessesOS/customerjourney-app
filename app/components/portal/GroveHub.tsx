@@ -137,12 +137,12 @@ export function GroveHub({
                 );
               })}
             </div>
-            <div style={{ borderTop: "1px solid var(--pj-line)", marginTop: 18, paddingTop: 18 }}>
+            <div style={{ borderTop: "1px solid #cfe2d4", marginTop: 18, paddingTop: 18 }}>
               <div style={{ display: "flex", alignItems: "baseline" }}>
                 <span className="gv-mono gv-kick">Overall progress</span>
                 <b className="gv-mono" style={{ marginLeft: "auto", fontSize: 14, color: "var(--pj-ink)", fontWeight: 500 }}>{overallPercent}%</b>
               </div>
-              <div style={{ height: 4, borderRadius: 4, background: "var(--pj-track)", overflow: "hidden", margin: "10px 0 8px" }}>
+              <div style={{ height: 4, borderRadius: 4, background: "#c9dfcf", overflow: "hidden", margin: "10px 0 8px" }}>
                 <span className="gv-grow" style={{ display: "block", height: "100%", width: `${overallPercent}%`, background: "var(--pj-act)", borderRadius: 4 }} />
               </div>
               <span style={{ fontSize: 12.5, color: "var(--pj-muted)" }}>of the journey complete</span>
