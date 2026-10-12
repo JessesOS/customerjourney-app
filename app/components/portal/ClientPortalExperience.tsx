@@ -1331,6 +1331,23 @@ export function ClientPortalExperience({
                       </div>
                     )}
 
+                    {/* Demo route only: a tiny way past the interview when presenting. */}
+                    {m.interview && isDemo && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          approveMilestone(m.id, "Skipped in the demo.");
+                          if (!isLast) setMilestone(milestone + 1);
+                          else backToJourney();
+                          window.scrollTo(0, 0);
+                        }}
+                        title="Skip the interview (demo only)"
+                        style={{ position: "fixed", bottom: 22, right: 58, zIndex: 71, background: "transparent", border: "1px solid rgba(128,128,128,0.3)", borderRadius: 999, padding: "4px 10px", fontSize: 11, fontFamily: "var(--font-body), sans-serif", color: "rgba(128,128,128,0.85)", cursor: "pointer" }}
+                      >
+                        Skip
+                      </button>
+                    )}
+
                     {m.interview && (
                       <VoiceInterview
                         agentId={m.interviewAgentId}
