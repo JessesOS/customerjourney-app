@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     const companyName = body.companyName?.trim() ?? "";
     const startDate = body.startDate?.trim();
     const clientType = body.clientType?.trim() ?? "meta-google";
-    const themeVariant = body.themeVariant?.trim() ?? "handoff";
+    const themeVariant = body.themeVariant?.trim() ?? "grove";
 
     if (!name) {
       return Response.json({ ok: false, error: "Client name is required." }, { status: 400 });

@@ -29,7 +29,13 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
-> **Design-session note 2026-10-12 (branch `motion-redesign`, not yet deployed):** `ob-0` can now
+> **Design-session note 2026-10-12, DEPLOYED:** new clients now default to the Grove look
+> (`theme_variant: "grove"`), including `provisionPortalClient` in `lib/portalClientStore.ts`
+> (webhook-provisioned clients get it too) and the admin's create form. `PortalThemeVariant`
+> gains `"grove"`. Deliberate cross-lane touch on Jesse's instruction; no schema change
+> (TEXT column). Existing clients keep their look. The voice-agent note below is deployed too.
+>
+> **Design-session note 2026-10-12 (branch `motion-redesign`, now deployed):** `ob-0` can now
 > run as a live voice call with an ElevenLabs agent. New optional milestone field
 > `interviewAgentId` (`lib/journeyEngine.ts`), new dependency `@elevenlabs/client`. The call's
 > transcript saves as the `ob-0` note ("Interviewer: … / Client: …"), so notes for that task

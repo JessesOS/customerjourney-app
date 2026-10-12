@@ -55,10 +55,12 @@ export async function listPortalClients() {
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 }
 
-export type PortalThemeVariant = "warm" | "cool" | "neutral" | "handoff";
+// "grove" is the clean green look from the motion redesign, the default for new
+// clients from 2026-10-12 (Jesse). TEXT column, so no schema change.
+export type PortalThemeVariant = "warm" | "cool" | "neutral" | "handoff" | "grove";
 
 export function isPortalThemeVariant(value: unknown): value is PortalThemeVariant {
-  return value === "warm" || value === "cool" || value === "neutral" || value === "handoff";
+  return value === "warm" || value === "cool" || value === "neutral" || value === "handoff" || value === "grove";
 }
 
 export async function createPortalClient(input: {
@@ -79,7 +81,7 @@ export async function createPortalClient(input: {
     portalToken: token,
     startDate: input.startDate,
     clientType: input.clientType ?? "meta-google",
-    themeVariant: input.themeVariant ?? "handoff",
+    themeVariant: input.themeVariant ?? "grove",
   });
 
   return { id, portalToken: token };
@@ -166,8 +168,9 @@ export async function provisionPortalClient(input: {
       productCode: input.productCode,
       sourceOrderId: input.sourceOrderId,
       provisionedAt: now,
-      // New clients open in the handoff design by default (Jesse 2026-08-10).
-      themeVariant: "handoff",
+      // New clients open in the Grove design by default (Jesse 2026-10-12;
+      // it was the handoff design from 2026-08-10).
+      themeVariant: "grove",
       journeyState: "active",
     }),
     db

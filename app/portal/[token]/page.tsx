@@ -59,7 +59,7 @@ export default async function PortalPage({
         milestoneContent={milestoneContent}
         milestoneUploads={milestoneUploads}
         portalToken={token}
-        themeVariant={client.themeVariant === "cool" || client.themeVariant === "neutral" || client.themeVariant === "warm" ? client.themeVariant : "handoff"}
+        themeVariant={client.themeVariant === "cool" || client.themeVariant === "neutral" || client.themeVariant === "warm" || client.themeVariant === "grove" ? client.themeVariant : "handoff"}
       />
     </>
   );
