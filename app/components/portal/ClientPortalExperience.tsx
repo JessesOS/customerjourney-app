@@ -298,7 +298,7 @@ export function ClientPortalExperience({
   const [welcomeVersion, setWelcomeVersion] = useState<"funnel" | "aurora" | "marquee" | "mosaic">(themeVariant === "aurora" ? "aurora" : "funnel");
   // Whole-portal design skin from the client_portal handoff package (DM fonts,
   // terracotta+teal on near-white). Demo review toggle; skin-level only.
-  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt" | "aurora" | "calm" | "grove">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" || themeVariant === "grove" ? themeVariant : "current");
+  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt" | "aurora" | "calm" | "grove" | "groveaurora">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" || themeVariant === "grove" ? themeVariant : "current");
   // The handoff design's own Light|Dark scheme (its README ships both); it
   // replaces the warm/cool/neutral dots while the handoff skin is active.
   const [handoffScheme, setHandoffScheme] = useState<"light" | "dark">("light");
@@ -504,14 +504,14 @@ export function ClientPortalExperience({
       // out-specificity it).
       data-pj-theme={designSkin !== "current" || theme === "warm" ? undefined : theme}
       data-pj-accent={designSkin !== "current" || theme !== "neutral" ? undefined : neutralAccent}
-      data-pj-design={designSkin === "current" ? undefined : designSkin === "calm" ? "aurora" : designSkin}
-      data-pj-scheme={designSkin === "handoff" && handoffScheme === "dark" ? "dark" : designSkin === "calm" ? "calm" : undefined}
+      data-pj-design={designSkin === "current" ? undefined : designSkin === "calm" ? "aurora" : designSkin === "groveaurora" ? "grove" : designSkin}
+      data-pj-scheme={designSkin === "handoff" && handoffScheme === "dark" ? "dark" : designSkin === "calm" ? "calm" : designSkin === "groveaurora" ? "aurora" : undefined}
       style={{ background: "var(--pj-glow) no-repeat, var(--pj-bg)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", minHeight: "100vh" }}
     >
       {showWelcome &&
-        (welcomeVersion === "funnel" ? (
+        (welcomeVersion === "funnel" && designSkin !== "groveaurora" ? (
           <WelcomeFunnel brand={isRespond ? "respond" : "scale"} color={designSkin === "grove" ? "#0f6b4b" : undefined} onStart={dismissWelcome} />
-        ) : welcomeVersion === "aurora" ? (
+        ) : welcomeVersion === "aurora" || (welcomeVersion === "funnel" && designSkin === "groveaurora") ? (
           <WelcomeAurora brand={isRespond ? "respond" : "scale"} stages={journeyStages.map((s) => s.name)} onStart={dismissWelcome} />
         ) : welcomeVersion === "marquee" ? (
           <WelcomeMarquee brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
@@ -593,7 +593,7 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" || designSkin === "groveaurora" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
@@ -923,8 +923,9 @@ export function ClientPortalExperience({
       )}
 
       {/* GROVE DESIGN (motion redesign, third direction) — clean hub with one green band, home view */}
-      {view === "home" && designSkin === "grove" && (
+      {view === "home" && (designSkin === "grove" || designSkin === "groveaurora") && (
         <GroveHub
+          aurora={designSkin === "groveaurora"}
           brand={isRespond ? "Respond" : "Scale"}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
@@ -973,6 +974,7 @@ export function ClientPortalExperience({
                   ["aurora", "Aurora design"],
                   ["calm", "Aurora calm"],
                   ["grove", "Grove design"],
+                  ["groveaurora", "Grove Aurora"],
                 ] as const
               ).map(([v, label]) => (
                 <button

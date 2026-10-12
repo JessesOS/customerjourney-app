@@ -241,6 +241,17 @@ clients, `PortalThemeVariant`), and the voice-agent interview. Merged to `main`,
 Checked live: demo and admin load, admin data refuses a visitor without access, the deployed bundle carries the
 agent id. Not checked live: a call on the live site, or a real client record end to end.
 
+## 2026-10-12: piece 12, presentation switch and "Grove Aurora"
+
+- **Presentation switch** (deployed, version `90e36219`): a small eye button bottom right on the demo route hides
+  and shows every review pill; remembered in the browser.
+- **Grove Aurora:** Jesse loves Grove, found Aurora calm did not work, and wanted Grove with accents from the
+  Aurora welcome. Same page, type and off-white ground as Grove. The green band becomes a night band lit with the
+  stage's own three hues and its field of lines; the rail's fade takes the same hues, very pale; violet is the
+  working accent; the main button is the stage's gradient; the interviewer orb takes the colours too. It opens on
+  the Aurora welcome. Eighth option on the demo pill, demo-only (not assignable to a client).
+  Checked at 1440 px on the dev server, stage 1 only. Typecheck 0 errors.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

@@ -735,6 +735,44 @@
   .gv-in, .gv-band, .gv-step, .gv-row, .gv-hills, .gv-grow, .gv-line > i, .gv-node--current, .gv-rail::before { animation: none; }
 }
 
+/* ---- Grove Aurora: Grove's page, the Aurora welcome's colours as accents ----
+   Same layout, type and off-white ground. The green gives way to violet as the
+   working accent; the band goes to night with the stage's own hues (--ax-a/b/c,
+   set per stage); the rail's fade takes the same three hues, very pale. */
+[data-pj-design="grove"][data-pj-scheme="aurora"] {
+  --pj-act: #6d4bff;
+  --pj-act-fill: #efebff;
+  --pj-done: #6d4bff;
+  --pj-done-fill: #efebff;
+  --pj-done-hi: #6d4bff;
+  --pj-link: #6d4bff;
+  --pj-tile-act: #6d4bff;
+  --pj-turn-tint: #f8f6ff;
+}
+.gv-page--aurora { --gv-rail-edge: color-mix(in srgb, var(--ax-a) 22%, #ffffff); --gv-rail-track: color-mix(in srgb, var(--ax-a) 20%, #ffffff); }
+.gv-page--aurora .gv-band { background: radial-gradient(70% 90% at 12% 110%, color-mix(in srgb, var(--ax-a) 70%, transparent) 0%, transparent 70%), radial-gradient(60% 80% at 60% 120%, color-mix(in srgb, var(--ax-b) 60%, transparent) 0%, transparent 70%), radial-gradient(55% 80% at 100% 100%, color-mix(in srgb, var(--ax-c) 60%, transparent) 0%, transparent 72%), #0b0a16; }
+.gv-page--aurora .gv-hills { display: none; }
+.gv-field { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.55; pointer-events: none; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 55%); mask-image: linear-gradient(180deg, transparent 0%, #000 55%); }
+.gv-page--aurora .gv-bar > i { background: linear-gradient(90deg, var(--ax-a), var(--ax-b), var(--ax-c)); }
+.gv-page--aurora .gv-primary { background: linear-gradient(100deg, var(--ax-a), var(--ax-b)); color: #ffffff; box-shadow: 0 12px 28px -14px var(--ax-a); }
+.gv-page--aurora .gv-primary:hover { background: linear-gradient(100deg, var(--ax-a), var(--ax-b)); filter: brightness(1.08); }
+.gv-page--aurora .gv-next { background: #ffffff; }
+.gv-page--aurora .gv-band .pj-orb-core { color: #0b0a16; }
+.gv-page--aurora .gv-band .pj-orb-core svg { fill: #0b0a16; color: #0b0a16; }
+.gv-page--aurora .gv-rail { background: linear-gradient(165deg, color-mix(in srgb, var(--ax-a) 13%, #ffffff) 0%, color-mix(in srgb, var(--ax-b) 11%, #ffffff) 55%, color-mix(in srgb, var(--ax-c) 16%, #ffffff) 100%); border-color: var(--gv-rail-edge); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 22px 44px -30px color-mix(in srgb, var(--ax-a) 60%, transparent); }
+.gv-page--aurora .gv-rail::before { background: radial-gradient(closest-side, color-mix(in srgb, var(--ax-c) 50%, transparent), transparent); }
+.gv-page--aurora .gv-rail .gv-node--future { background: color-mix(in srgb, var(--ax-a) 6%, #ffffff); border-color: color-mix(in srgb, var(--ax-a) 34%, #ffffff); }
+.gv-page--aurora .gv-rail .gv-line { background: var(--gv-rail-track); }
+.gv-page--aurora .gv-line > i { background: linear-gradient(180deg, var(--ax-a), var(--ax-b)); }
+.gv-page--aurora .gv-rail .gv-step--now { border-color: var(--gv-rail-edge); box-shadow: 0 1px 2px rgba(60, 40, 140, 0.06), 0 14px 26px -18px color-mix(in srgb, var(--ax-a) 70%, transparent); }
+.gv-page--aurora .gv-node--current { animation-name: gvPulseAurora; }
+@keyframes gvPulseAurora { 0% { box-shadow: 0 0 0 0 rgba(109, 75, 255, 0.35); } 100% { box-shadow: 0 0 0 10px rgba(109, 75, 255, 0); } }
+/* The interviewer orb takes the same colours in this look. */
+[data-pj-scheme="aurora"] .vi-orb-body { background: #1a1236; box-shadow: inset 0 -18px 40px rgba(10, 6, 30, 0.6), inset 0 10px 30px rgba(255, 255, 255, 0.18), 0 24px 50px -18px rgba(109, 75, 255, 0.7); }
+[data-pj-scheme="aurora"] .vi-orb-swirl { background: conic-gradient(from 0deg, #2a1a6e, #6d4bff, #b58cff, #ff4fa3, #ff9a3d, #ff6fb5, #6d4bff, #1c1250, #3d8bff, #2a1a6e); }
+[data-pj-scheme="aurora"] .vi-orb-glow { background: radial-gradient(closest-side, rgba(140, 100, 255, 0.5), rgba(255, 79, 163, 0.24) 55%, rgba(140, 100, 255, 0) 72%); }
+[data-pj-scheme="aurora"] .vi-orb-ring { border-color: rgba(109, 75, 255, 0.3); }
+
 /* Voice interview task (ob-0): the interviewer is an orb */
 .vi { margin-top: 10px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(18px, 4vw, 40px) 0 8px; }
 .vi-orb { position: relative; width: clamp(168px, 26vw, 228px); aspect-ratio: 1; border: 0; padding: 0; background: transparent; border-radius: 50%; cursor: pointer; color: #fff; -webkit-tap-highlight-color: transparent; transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1); }

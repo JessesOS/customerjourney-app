@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
 import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
+import { AURORA_PALETTES, WaveField } from "@/app/components/portal/AuroraHub";
 
 /**
  * Journey page in the "Grove" look (motion redesign, third direction,
@@ -55,6 +56,7 @@ export function GroveHub({
   tasksOpen,
   onToggleTasks,
   showRail,
+  aurora = false,
   orbSlot,
   children,
 }: {
@@ -77,15 +79,23 @@ export function GroveHub({
   tasksOpen: boolean;
   onToggleTasks: () => void;
   showRail: boolean;
+  /** "Grove Aurora": the same page with the Aurora welcome's colours as the
+      accents. The band turns to night with the stage's field of lines, and the
+      rail's fade takes the same hues. Everything else stays Grove. */
+  aurora?: boolean;
   orbSlot?: ReactNode;
   children?: ReactNode;
 }) {
   const stage = stages[currentStageIndex];
   const tasks = stage?.milestones ?? [];
   const pct = Math.max(0, Math.min(100, stagePct));
+  const pal = AURORA_PALETTES[currentStageIndex % AURORA_PALETTES.length];
 
   return (
-    <div className="gv-page">
+    <div
+      className={aurora ? "gv-page gv-page--aurora" : "gv-page"}
+      style={aurora ? ({ "--ax-a": pal[0], "--ax-b": pal[1], "--ax-c": pal[2] } as React.CSSProperties) : undefined}
+    >
       <header className="gv-header">
         <div className="gv-wrap" style={{ display: "flex", alignItems: "center", gap: 14, height: 64 }}>
           <span style={{ fontWeight: 600, fontSize: 19, letterSpacing: "-0.03em" }}>{brand}</span>
@@ -137,12 +147,12 @@ export function GroveHub({
                 );
               })}
             </div>
-            <div style={{ borderTop: "1px solid #cfe2d4", marginTop: 18, paddingTop: 18 }}>
+            <div style={{ borderTop: "1px solid var(--gv-rail-edge, #cfe2d4)", marginTop: 18, paddingTop: 18 }}>
               <div style={{ display: "flex", alignItems: "baseline" }}>
                 <span className="gv-mono gv-kick">Overall progress</span>
                 <b className="gv-mono" style={{ marginLeft: "auto", fontSize: 14, color: "var(--pj-ink)", fontWeight: 500 }}>{overallPercent}%</b>
               </div>
-              <div style={{ height: 4, borderRadius: 4, background: "#c9dfcf", overflow: "hidden", margin: "10px 0 8px" }}>
+              <div style={{ height: 4, borderRadius: 4, background: "var(--gv-rail-track, #c9dfcf)", overflow: "hidden", margin: "10px 0 8px" }}>
                 <span className="gv-grow" style={{ display: "block", height: "100%", width: `${overallPercent}%`, background: "var(--pj-act)", borderRadius: 4 }} />
               </div>
               <span style={{ fontSize: 12.5, color: "var(--pj-muted)" }}>of the journey complete</span>
@@ -153,6 +163,7 @@ export function GroveHub({
         <main className="gv-main" key={stage?.id}>
           {/* The one field of colour: where you are, and the one thing to do */}
           <section className="gv-band">
+            {aurora ? <WaveField key={currentStageIndex} seed={currentStageIndex} animate sparks={false} lines={38} className="gv-field" /> : null}
             <svg className="gv-hills" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden data-xray="Hills · SVG, drawn in code" data-xray-tool="code">
               <path d="M0 150 C 180 70, 330 90, 520 140 S 900 190, 1200 90 V220 H0Z" fill="rgba(255,255,255,0.05)" />
               <path d="M0 190 C 220 120, 420 150, 640 180 S 1000 140, 1200 170 V220 H0Z" fill="rgba(255,255,255,0.06)" />
