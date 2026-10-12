@@ -45,6 +45,10 @@ export const journeyTemplate: StageTemplate[] = [
         title: "Your voice interview",
         detail: "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
         noteRequired: true,
+        // ElevenLabs agent (public id, created by Jesse 2026-10-12). Its prompt is
+        // kept in motion/interviewer-prompt.md. Remove this line to go back to the
+        // scripted interview below.
+        interviewAgentId: "agent_3001m4pqxn11ecs9s47qarwvsbp1",
         interview: [
           "What does your business do, and who do you do it for?",
           "Which services or products do you most want more enquiries for?",

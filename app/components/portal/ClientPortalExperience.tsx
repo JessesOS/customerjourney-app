@@ -1293,6 +1293,7 @@ export function ClientPortalExperience({
 
                     {m.interview && (
                       <VoiceInterview
+                        agentId={m.interviewAgentId}
                         questions={m.interview}
                         storageKey={`pjInterview:${portalToken ?? "demo"}:${m.id}`}
                         audioBase={`/portal/voice/interview-${m.id}`}

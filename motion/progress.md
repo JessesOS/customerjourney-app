@@ -215,6 +215,24 @@ Checked on the dev server with typed answers: orb idle, asking, fall-back to typ
 to go on, question 2 asked, transcript builds, Finish appears once there is an answer. The mic itself cannot be
 tested from the Browser pane (it blocks microphone access), so listening is untested by me. Not yet deployed.
 
+## 2026-10-12: piece 11, the interview is a live voice agent
+
+Jesse wanted a real back-and-forth, like the voice agents he has built before: one prompt behind the voice holding
+the goal and the questions. Fish Audio is a voice, not an agent, so this uses ElevenLabs Agents. Jesse created the
+agent (`agent_3001m4pqxn11ecs9s47qarwvsbp1`, public) from the prompt in `motion/interviewer-prompt.md`.
+
+`VoiceInterview.tsx` now starts a live call when the task has an `interviewAgentId` (new optional field on the
+milestone, `lib/journeyEngine.ts`): the orb swells with whoever is talking, the transcript fills in live, and when
+the call ends the whole transcript is the task's note. New dependency: `@elevenlabs/client`. If the mic is refused
+or the call cannot connect, it drops to the scripted interview with a one-line explanation; "Type your answers
+instead" does the same by choice.
+
+Checked: typecheck 0 errors, build complete, the agent's public endpoint answers, and the mic-refused fallback
+works on the dev server. NOT checked: an actual call. The Browser pane blocks the microphone, so the live
+conversation, the transcript filling in and the save at the end are untested by me. Jesse to test in Chrome.
+Each call bills Jesse's ElevenLabs account per minute; the agent is capped at five minutes. A public agent id
+means anyone who finds it can start a call. Not yet deployed.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

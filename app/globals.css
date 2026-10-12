@@ -773,6 +773,15 @@
 .vi-tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin-top: 18px; }
 .vi-tool { background: transparent; border: 0; padding: 4px 0; cursor: pointer; font: 500 13.5px var(--font-body), sans-serif; color: var(--pj-muted); text-decoration: underline; text-decoration-color: var(--pj-line); text-underline-offset: 4px; transition: color 300ms ease; }
 .vi-tool:hover { color: var(--pj-ink); }
+/* Live call: the orb swells with whoever is talking (--vi-level, 0 to 1, set from the call's audio). */
+.vi-orb--live .vi-orb-glow { transform: scale(calc(0.94 + var(--vi-level, 0) * 0.3)); opacity: calc(0.7 + var(--vi-level, 0) * 0.3); }
+.vi-orb--live.vi-orb--asking .vi-orb-glow, .vi-orb--live.vi-orb--listening .vi-orb-glow { animation: none; transition: transform 120ms linear; }
+.vi-orb--live.vi-orb--asking .vi-orb-body, .vi-orb--live.vi-orb--listening .vi-orb-body { animation: none; transform: scale(calc(1 + var(--vi-level, 0) * 0.07)); transition: transform 120ms linear; }
+.vi-orb--connecting { cursor: default; }
+.vi-orb--connecting .vi-orb-swirl { animation-duration: 3s; }
+.vi-orb--connecting .vi-bars > i { animation-duration: 1400ms; opacity: 0.7; }
+.vi-turn--said { opacity: 0.78; }
+.vi-note { margin-top: 18px; padding: 12px 16px; border-radius: 12px; background: var(--pj-well); color: var(--pj-muted); font-size: 14px; line-height: 1.45; text-align: center; }
 @keyframes viIn { from { opacity: 0; transform: translateY(10px); } }
 @keyframes viSpin { to { transform: rotate(360deg); } }
 @keyframes viGlow { 0%, 100% { transform: scale(0.94); opacity: 0.75; } 50% { transform: scale(1.06); opacity: 1; } }

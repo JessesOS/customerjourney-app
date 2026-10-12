@@ -29,6 +29,12 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
+> **Design-session note 2026-10-12 (branch `motion-redesign`, not yet deployed):** `ob-0` can now
+> run as a live voice call with an ElevenLabs agent. New optional milestone field
+> `interviewAgentId` (`lib/journeyEngine.ts`), new dependency `@elevenlabs/client`. The call's
+> transcript saves as the `ob-0` note ("Interviewer: … / Client: …"), so notes for that task
+> are a conversation, not six Q/A pairs. No schema change, no new server route, no new secret.
+>
 > **UPDATE 2026-10-12: MERGED TO `main` AND DEPLOYED TO PRODUCTION** on Jesse's instruction
 > (he is pitching and there are no real clients yet). Version `44cd957b`. The note below is
 > now live: re-run the importer; `ob-0` shows open for any existing Scale client.
