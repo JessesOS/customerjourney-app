@@ -233,6 +233,14 @@ conversation, the transcript filling in and the save at the end are untested by 
 Each call bills Jesse's ElevenLabs account per minute; the agent is capped at five minutes. A public agent id
 means anyone who finds it can start a call. Not yet deployed.
 
+## 2026-10-12: second production deploy
+
+Jesse tested the live voice agent on his Mac ("the interview is great") and asked to publish. Two things shipped:
+Grove is now a look a client can be given and the default for new clients (admin create form, webhook-provisioned
+clients, `PortalThemeVariant`), and the voice-agent interview. Merged to `main`, deployed as version `b448a7cb`.
+Checked live: demo and admin load, admin data refuses a visitor without access, the deployed bundle carries the
+agent id. Not checked live: a call on the live site, or a real client record end to end.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 
