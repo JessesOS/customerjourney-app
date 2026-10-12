@@ -200,6 +200,19 @@ export function ClientPortalExperience({
   // the current design keeps "focus" as its shipped default (2026-08-05).
   const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" || themeVariant === "grove" ? "rail" : "focus");
   const [isDemo, setIsDemo] = useState(false);
+  // Presentation switch (demo route): hides every review pill so the page can be
+  // shown clean, and brings them back. Remembered in this browser.
+  const [pillsOn, setPillsOn] = useState(true);
+  useEffect(() => {
+    try { if (window.localStorage.getItem("pjDemoPills") === "off") setPillsOn(false); } catch {}
+  }, []);
+  const togglePills = () => {
+    setPillsOn((on) => {
+      try { window.localStorage.setItem("pjDemoPills", on ? "off" : "on"); } catch {}
+      return !on;
+    });
+  };
+  const showPills = isDemo && pillsOn;
   // First-visit welcome landing (Imprint-style). Shown until dismissed once
   // on this device PER CLIENT (a global flag meant a second client on the same
   // browser never saw their welcome — caught testing 2026-08-10);
@@ -506,9 +519,34 @@ export function ClientPortalExperience({
           <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
         ))}
       {!showWelcome && showIncentive && <IncentiveModal onClose={dismissIncentive} />}
+      {/* Presentation switch: one small dot, bottom right, demo route only. */}
+      {isDemo && (
+        <button
+          type="button"
+          onClick={togglePills}
+          aria-pressed={pillsOn}
+          aria-label={pillsOn ? "Hide the review controls" : "Show the review controls"}
+          title={pillsOn ? "Hide the review controls (presentation mode)" : "Show the review controls"}
+          style={{ position: "fixed", bottom: 18, right: 18, zIndex: 71, width: 30, height: 30, borderRadius: "50%", border: "1px solid rgba(128,128,128,0.35)", background: pillsOn ? "rgba(20,20,20,0.82)" : "rgba(128,128,128,0.16)", color: pillsOn ? "#fff" : "rgba(128,128,128,0.9)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", padding: 0, opacity: pillsOn ? 1 : 0.55, transition: "opacity 300ms ease, background 300ms ease" }}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            {pillsOn ? (
+              <>
+                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+                <circle cx="12" cy="12" r="3" />
+              </>
+            ) : (
+              <>
+                <path d="M3 3l18 18M10.6 5.2A10.7 10.7 0 0 1 12 5c6.4 0 10 7 10 7a17 17 0 0 1-3.2 4M6.5 6.6C3.7 8.5 2 12 2 12s3.6 7 10 7c1.6 0 3-.4 4.3-1" />
+              </>
+            )}
+          </svg>
+        </button>
+      )}
+
       {/* Review-only: welcome-generation toggle, floats OVER the welcome
           overlay (demo route only). */}
-      {showWelcome && isDemo && (
+      {showWelcome && showPills && (
         <div style={{ position: "fixed", top: 18, right: 18, zIndex: 70, display: "flex", gap: 4, background: "#fff", border: "1px solid #e0dcd2", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(0,0,0,.5)" }}>
           {(
             [
@@ -925,7 +963,7 @@ export function ClientPortalExperience({
         <>
           {/* Review-only: design-skin toggle (current system vs the client
               portal handoff package). Demo route only. */}
-          {isDemo && (
+          {showPills && (
             <div style={{ position: "fixed", bottom: 156, right: 18, zIndex: 50, maxWidth: "calc(100vw - 36px)", overflowX: "auto", display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
@@ -951,7 +989,7 @@ export function ClientPortalExperience({
           {/* Review-only: Neutral accent audition. Demo route only, shows
               while the neutral theme is active. Delete once a winner is
               picked. */}
-          {isDemo && theme === "neutral" && designSkin === "current" && (
+          {showPills && theme === "neutral" && designSkin === "current" && (
             <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
@@ -975,7 +1013,7 @@ export function ClientPortalExperience({
           {/* Review-only: layout toggle (journey rail vs full-width focus).
               Demo route only; works in both themes. Delete once a winner is
               picked. */}
-          {isDemo && (
+          {showPills && (
             <div style={{ position: "fixed", bottom: 64, right: 18, zIndex: 50, display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
@@ -1013,8 +1051,8 @@ export function ClientPortalExperience({
               real client portals never render this. Warm-look tool, so it
               hides while the cool theme is active. Delete once a winner is
               picked. */}
-          {isDemo && theme === "warm" && designSkin === "current" && (
-            <div style={{ position: "fixed", bottom: 18, right: 18, zIndex: 50, display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
+          {showPills && theme === "warm" && designSkin === "current" && (
+            <div style={{ position: "fixed", bottom: 18, right: 58, zIndex: 50, display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
                   ["deepframe", "Deep frame"],
@@ -1035,7 +1073,7 @@ export function ClientPortalExperience({
           )}
           {/* Handoff design brings its own Light|Dark schemes (per the
               handoff README) in place of the theme dots. */}
-          {isDemo && designSkin === "handoff" && (
+          {showPills && designSkin === "handoff" && (
             <div style={{ position: "fixed", bottom: 110, right: 18, zIndex: 50, display: "flex", gap: 4, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 999, padding: 4, boxShadow: "0 12px 32px -12px rgba(60,46,32,.45)" }}>
               {(
                 [
