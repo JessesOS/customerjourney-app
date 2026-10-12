@@ -1319,7 +1319,8 @@ export function ClientPortalExperience({
                   </div>
                 )}
 
-                {!hasCustomFlow && (
+                {/* The interview keeps its page to the orb alone until there is an answer to hand in. */}
+                {!hasCustomFlow && !(m.interview && m.status !== "done" && !noteValue.trim()) && (
                   <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid var(--pj-line)", paddingTop: 22 }}>
                     {!isFirst && (
                       <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid var(--pj-line)", color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 14, borderRadius: "var(--pj-radius-sm)", padding: "12px 18px", cursor: "pointer" }}>

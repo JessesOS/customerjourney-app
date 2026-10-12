@@ -199,6 +199,22 @@ without access (403). Not checked live: clicking through the page in a browser, 
 The demo route still shows the review pills. Grove, Cobalt and Aurora are still demo-only options: no client can
 be assigned them yet.
 
+## 2026-10-12: piece 10, the interview becomes a voice call with an orb
+
+Jesse: make task 1 purely the voice interview, like a voice-AI phone call. A big glowing orb as the interviewer,
+greens moving round inside it, with the transcript underneath.
+
+Rebuilt `VoiceInterview.tsx`: one orb (a turning conic gradient of greens with a lime core, a glow that breathes,
+drawn in CSS). Tap once to start. The interviewer asks out loud, the mic opens by itself when the clip ends, the
+client taps the orb when they have finished, and the next question follows. A running transcript sits underneath
+(Interviewer / You); any answer can be typed or edited. The task footer stays hidden until there is an answer.
+New labels are mine: "Tap to start", "Asking…", "Listening. Tap when you've finished.", "Type your answer, then
+tap to go on.", "All done. Thank you.", "Hear it again", "Type instead", "Speak instead", "Previous question".
+
+Checked on the dev server with typed answers: orb idle, asking, fall-back to typing when the mic is refused, tap
+to go on, question 2 asked, transcript builds, Finish appears once there is an answer. The mic itself cannot be
+tested from the Browser pane (it blocks microphone access), so listening is untested by me. Not yet deployed.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

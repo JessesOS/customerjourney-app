@@ -735,42 +735,52 @@
   .gv-in, .gv-band, .gv-step, .gv-row, .gv-hills, .gv-grow, .gv-line > i, .gv-node--current, .gv-rail::before { animation: none; }
 }
 
-/* Voice interview task (ob-0) */
-.vi { margin-top: 22px; border: 1px solid var(--pj-line); border-radius: var(--pj-radius-card, 20px); background: var(--pj-card); padding: clamp(18px, 3vw, 30px); }
-.vi-top { display: flex; align-items: center; gap: 14px; }
-.vi-count { font-family: var(--font-ibm-plex-mono), monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pj-faint); white-space: nowrap; }
-.vi-segs { flex: 1; display: flex; gap: 4px; max-width: 220px; margin-left: auto; }
-.vi-seg { flex: 1; height: 4px; border-radius: 4px; background: var(--pj-track); transition: background 400ms ease; }
-.vi-seg--done { background: var(--pj-done); }
-.vi-seg--now { background: var(--pj-ink); }
-.vi-say { display: inline-flex; align-items: center; gap: 7px; background: transparent; border: 1px solid var(--pj-line); border-radius: 999px; padding: 5px 11px 5px 9px; cursor: pointer; font: 500 12.5px var(--font-body), sans-serif; color: var(--pj-muted); transition: border-color 300ms ease, color 300ms ease; }
-.vi-say:hover, .vi-say--on { border-color: var(--pj-act); color: var(--pj-act); }
-.vi-wave { display: inline-flex; align-items: center; gap: 2px; height: 12px; }
-.vi-wave > i { display: block; width: 2px; height: 5px; border-radius: 2px; background: currentColor; }
-.vi-say--on .vi-wave > i { animation: viWave 900ms ease-in-out infinite; }
-.vi-say--on .vi-wave > i:nth-child(2) { animation-delay: 150ms; }
-.vi-say--on .vi-wave > i:nth-child(3) { animation-delay: 300ms; }
-@keyframes viWave { 0%, 100% { height: 4px; } 50% { height: 12px; } }
-.vi-q { font-family: var(--font-heading), sans-serif; font-size: clamp(22px, 2.8vw, 30px); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; margin: 18px 0 22px; max-width: 30ch; animation: viIn 500ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
-.vi-mic-row { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
-.vi-mic { position: relative; width: 64px; height: 64px; border-radius: 50%; border: 0; flex-shrink: 0; background: var(--pj-act); color: var(--pj-act-ink); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1); }
-.vi-mic:hover { transform: scale(1.05); }
-.vi-mic--on { animation: viPulse 1.6s ease-out infinite; }
-.vi-hint { font-size: 15px; color: var(--pj-muted); min-width: 0; }
-.vi-box { display: block; width: 100%; box-sizing: border-box; padding: 14px 16px; border-radius: 14px; border: 1px solid var(--pj-line); background: var(--pj-well); color: var(--pj-ink); font-family: var(--font-body), system-ui, sans-serif; font-size: 15px; line-height: 1.5; resize: vertical; outline: none; transition: border-color 300ms ease; }
+/* Voice interview task (ob-0): the interviewer is an orb */
+.vi { margin-top: 10px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(18px, 4vw, 40px) 0 8px; }
+.vi-orb { position: relative; width: clamp(168px, 26vw, 228px); aspect-ratio: 1; border: 0; padding: 0; background: transparent; border-radius: 50%; cursor: pointer; color: #fff; -webkit-tap-highlight-color: transparent; transition: transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+.vi-orb:hover { transform: scale(1.03); }
+.vi-orb:active { transform: scale(0.98); }
+.vi-orb-glow { position: absolute; inset: -22%; border-radius: 50%; background: radial-gradient(closest-side, rgba(52, 190, 120, 0.5), rgba(214, 242, 75, 0.22) 55%, rgba(52, 190, 120, 0) 72%); filter: blur(10px); animation: viGlow 4.5s ease-in-out infinite; }
+.vi-orb-ring { position: absolute; inset: -7%; border-radius: 50%; border: 1.5px solid rgba(15, 107, 75, 0.28); opacity: 0; }
+.vi-orb-body { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: #0c5a40; box-shadow: inset 0 -18px 40px rgba(4, 40, 28, 0.55), inset 0 10px 30px rgba(255, 255, 255, 0.18), 0 24px 50px -18px rgba(12, 90, 64, 0.7); }
+.vi-orb-swirl { position: absolute; inset: -30%; background: conic-gradient(from 0deg, #0c5a40, #17875b, #3cc27f, #a7e36a, #d6f24b, #58cf8c, #11734f, #0a4a35, #17875b, #0c5a40); filter: blur(18px); animation: viSpin 16s linear infinite; }
+.vi-orb-shine { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(60% 45% at 34% 24%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 70%), radial-gradient(closest-side, rgba(255, 255, 255, 0) 62%, rgba(4, 40, 28, 0.35) 100%); }
+.vi-orb-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 2px 8px rgba(4, 40, 28, 0.55)); }
+/* Asking: the orb speaks. Listening: it leans in, rings going out. */
+.vi-orb--asking .vi-orb-swirl { animation-duration: 5s; }
+.vi-orb--asking .vi-orb-body { animation: viSpeak 900ms ease-in-out infinite; }
+.vi-orb--listening .vi-orb-ring { animation: viRing 1.9s ease-out infinite; }
+.vi-orb--listening .vi-orb-swirl { animation-duration: 9s; }
+.vi-orb--done .vi-orb-swirl, .vi-orb--idle .vi-orb-swirl { animation-duration: 22s; }
+.vi-bars { display: inline-flex; align-items: center; gap: 5px; height: 38px; }
+.vi-bars > i { display: block; width: 5px; height: 12px; border-radius: 5px; background: #fff; animation: viBar 800ms ease-in-out infinite; }
+.vi-bars > i:nth-child(2) { animation-delay: 120ms; }
+.vi-bars > i:nth-child(3) { animation-delay: 240ms; }
+.vi-bars > i:nth-child(4) { animation-delay: 360ms; }
+.vi-bars > i:nth-child(5) { animation-delay: 480ms; }
+.vi-status { margin-top: clamp(22px, 3vw, 34px); font-family: var(--font-heading), sans-serif; font-size: clamp(19px, 2.2vw, 24px); font-weight: 600; letter-spacing: -0.02em; color: var(--pj-ink); }
+.vi-count { margin-top: 6px; font-family: var(--font-ibm-plex-mono), monospace; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pj-faint); }
+.vi-log { width: 100%; max-width: 560px; max-height: 340px; overflow-y: auto; margin-top: 26px; text-align: left; display: flex; flex-direction: column; gap: 10px; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22px); mask-image: linear-gradient(180deg, transparent 0, #000 22px); padding-top: 14px; }
+.vi-turn { padding: 16px 18px; border-radius: 16px; border: 1px solid transparent; opacity: 0.6; transition: opacity 400ms ease; animation: viIn 500ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.vi-turn--now { opacity: 1; background: var(--pj-card); border-color: var(--pj-line); }
+.vi-who { display: flex; align-items: center; gap: 10px; font-family: var(--font-ibm-plex-mono), monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pj-faint); }
+.vi-said { margin-top: 4px; font-size: 15.5px; line-height: 1.5; color: var(--pj-ink); min-height: 1.5em; white-space: pre-wrap; }
+.vi-said--q { font-weight: 600; letter-spacing: -0.01em; }
+.vi-interim { color: var(--pj-faint); }
+.vi-edit { background: transparent; border: 0; padding: 0; cursor: pointer; font: inherit; letter-spacing: inherit; text-transform: inherit; color: var(--pj-act); }
+.vi-box { display: block; width: 100%; box-sizing: border-box; margin-top: 6px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--pj-line); background: var(--pj-well); color: var(--pj-ink); font-family: var(--font-body), system-ui, sans-serif; font-size: 15px; line-height: 1.5; resize: vertical; outline: none; transition: border-color 300ms ease; }
 .vi-box:focus { border-color: var(--pj-act); }
-.vi-nav { display: flex; align-items: center; gap: 14px; margin-top: 16px; }
-.vi-back { background: transparent; border: 0; padding: 8px 0; cursor: pointer; font: 500 14px var(--font-body), sans-serif; color: var(--pj-muted); }
-.vi-back:disabled { opacity: 0.35; cursor: default; }
-.vi-next { background: var(--pj-ink); color: var(--pj-bg); border: 0; border-radius: 12px; padding: 12px 18px; cursor: pointer; font: 500 14.5px var(--font-body), sans-serif; white-space: nowrap; }
-@keyframes viIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes viPulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--pj-act) 45%, transparent); } 100% { box-shadow: 0 0 0 18px transparent; } }
-@media (max-width: 700px) {
-  .vi-nav { flex-wrap: wrap; }
-  .vi-next { flex: 1 1 100%; order: 3; }
-}
+.vi-tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin-top: 18px; }
+.vi-tool { background: transparent; border: 0; padding: 4px 0; cursor: pointer; font: 500 13.5px var(--font-body), sans-serif; color: var(--pj-muted); text-decoration: underline; text-decoration-color: var(--pj-line); text-underline-offset: 4px; transition: color 300ms ease; }
+.vi-tool:hover { color: var(--pj-ink); }
+@keyframes viIn { from { opacity: 0; transform: translateY(10px); } }
+@keyframes viSpin { to { transform: rotate(360deg); } }
+@keyframes viGlow { 0%, 100% { transform: scale(0.94); opacity: 0.75; } 50% { transform: scale(1.06); opacity: 1; } }
+@keyframes viSpeak { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+@keyframes viRing { 0% { transform: scale(0.96); opacity: 0.9; } 100% { transform: scale(1.32); opacity: 0; } }
+@keyframes viBar { 0%, 100% { height: 10px; } 50% { height: 36px; } }
 @media (prefers-reduced-motion: reduce) {
-  .vi-q, .vi-mic--on, .vi-say--on .vi-wave > i { animation: none; }
+  .vi-orb-glow, .vi-orb-swirl, .vi-orb-body, .vi-orb-ring, .vi-bars > i, .vi-turn { animation: none !important; }
 }
 
 /* Funnel welcome (motion redesign): copy bottom-left, the one action
