@@ -57,10 +57,12 @@ export async function listPortalClients() {
 
 // "grove" is the clean green look from the motion redesign, the default for new
 // clients from 2026-10-12 (Jesse). TEXT column, so no schema change.
-export type PortalThemeVariant = "warm" | "cool" | "neutral" | "handoff" | "grove";
+// Every look on the demo switcher is assignable from the admin (Jesse 2026-10-12).
+export const PORTAL_THEME_VARIANTS = ["grove", "groveaurora", "handoff", "cobalt", "aurora", "calm", "warm", "cool", "neutral"] as const;
+export type PortalThemeVariant = (typeof PORTAL_THEME_VARIANTS)[number];
 
 export function isPortalThemeVariant(value: unknown): value is PortalThemeVariant {
-  return value === "warm" || value === "cool" || value === "neutral" || value === "handoff" || value === "grove";
+  return typeof value === "string" && (PORTAL_THEME_VARIANTS as readonly string[]).includes(value);
 }
 
 export async function createPortalClient(input: {

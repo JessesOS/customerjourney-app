@@ -31,7 +31,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 
     if (body.themeVariant !== undefined) {
       if (!isPortalThemeVariant(body.themeVariant)) {
-        return Response.json({ ok: false, error: "Portal look must be handoff, warm, cool or neutral." }, { status: 400 });
+        return Response.json({ ok: false, error: "Portal look is not one of the available looks." }, { status: 400 });
       }
       await setPortalClientTheme(id, body.themeVariant);
     }

@@ -18,7 +18,7 @@ export const clientTypeLabels: Record<ClientType, string> = {
   meta: "Scale — Meta ads",
   google: "Scale — Google Ads",
   "meta-google": "Scale — Meta + Google Ads",
-  respond: "Respond",
+  respond: "CRM",
 };
 
 export type JourneyMilestone = {

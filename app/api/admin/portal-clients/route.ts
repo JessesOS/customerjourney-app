@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       return Response.json({ ok: false, error: "Client type must be meta, google, meta-google, or respond." }, { status: 400 });
     }
     if (!isPortalThemeVariant(themeVariant)) {
-      return Response.json({ ok: false, error: "Portal look must be handoff, warm, cool or neutral." }, { status: 400 });
+      return Response.json({ ok: false, error: "Portal look is not one of the available looks." }, { status: 400 });
     }
 
     const created = await createPortalClient({ name, companyName, startDate, clientType: clientType as ClientType, themeVariant });

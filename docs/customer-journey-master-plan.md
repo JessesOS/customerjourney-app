@@ -29,6 +29,15 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
+> **Design-session note 2026-10-12 (later), JOURNEY/TEMPLATE CHANGE, re-run the importer:**
+> the second product (Respond) gains the voice interview as its first task, `rsp-000`
+> (`lib/respondJourney.ts`), so its Onboarding goes from 5 to 6 tasks; existing Respond
+> clients will see it open. The product is now DISPLAYED as "CRM" (admin product list,
+> `clientTypeLabels`, portal wordmarks); the internal code value is still `respond`, so no
+> data or webhook contract changes. Every look is now assignable per client from the admin
+> (`PORTAL_THEME_VARIANTS` in `lib/portalClientStore.ts`): grove, groveaurora, handoff,
+> cobalt, aurora, calm, warm, cool, neutral. No schema change (TEXT column).
+>
 > **Design-session note 2026-10-12, DEPLOYED:** new clients now default to the Grove look
 > (`theme_variant: "grove"`), including `provisionPortalClient` in `lib/portalClientStore.ts`
 > (webhook-provisioned clients get it too) and the admin's create form. `PortalThemeVariant`

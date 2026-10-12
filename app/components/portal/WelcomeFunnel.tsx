@@ -28,7 +28,7 @@ export function WelcomeFunnel({ brand, color = COBALT, onStart }: { brand: "scal
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [exit, setExit] = useState<{ x: number; y: number } | null>(null);
-  const wordmark = brand === "respond" ? "Respond" : "Scale";
+  const wordmark = brand === "respond" ? "CRM" : "Scale"; // the second product is shown as "CRM" (Jesse 2026-10-12)
 
   useEffect(() => {
     const cv = canvasRef.current;

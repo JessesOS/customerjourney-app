@@ -248,7 +248,7 @@ export function WelcomeScreen({ name, brand, onStart }: { name: string; brand: "
         }}
       >
         <div style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: "clamp(34px, 4.5vw, 46px)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--pj-ink)", lineHeight: 1 }}>
-          {brand}
+          {brand === "respond" ? "crm" : brand}
         </div>
         <p style={{ margin: "12px 0 22px", fontSize: 15, color: "var(--pj-muted)" }}>
           Welcome, {name} — your journey starts here.

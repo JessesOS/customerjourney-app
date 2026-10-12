@@ -12,6 +12,23 @@ export const respondJourneyTemplate: StageTemplate[] = [
     dayStart: 1,
     dayEnd: 2,
     milestones: [
+      // Voice interview, the very first task, as on Scale (ob-0). Same live agent
+      // and the same six questions as the typed fallback. Added 2026-10-12 (Jesse).
+      {
+        id: "rsp-000",
+        title: "Your voice interview",
+        detail: "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+        noteRequired: true,
+        interviewAgentId: "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+        interview: [
+          "What does your business do, and who do you do it for?",
+          "Which services or products do you most want more enquiries for?",
+          "Who is your ideal customer, and where are they?",
+          "Why do customers choose you over someone else?",
+          "What happens today when a new enquiry comes in?",
+          "What would a great result look like 90 days from now?",
+        ],
+      },
       { id: "rsp-012", title: "Tell us about your business", detail: "A few details so we can set up your AI receptionist — about 10 minutes, before your Welcome Call.", formId: "respond-onboarding-intake-v1" },
       { id: "rsp-014", title: "Attend your Welcome Call & portal walkthrough", detail: "We'll walk you through your portal, your project milestones, and the messaging center on the call. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.", bookingUrl: "https://go.rt-d.com/jesse30" },
       { id: "rsp-015", title: "Bookmark your portal link", detail: "Save your portal link so you can get back to it anytime — this is the one place to track your progress and message our team.", showPortalLink: true },

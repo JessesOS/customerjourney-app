@@ -51,7 +51,7 @@ export type ClientPortalExperienceProps = {
   milestoneUploads?: Record<string, UploadMeta>;
   portalToken?: string;
   // "cobalt" is the motion-redesign look. It is a review option only: nothing stores it yet.
-  themeVariant?: "warm" | "cool" | "neutral" | "handoff" | "cobalt" | "aurora" | "grove";
+  themeVariant?: "warm" | "cool" | "neutral" | "handoff" | "cobalt" | "aurora" | "calm" | "grove" | "groveaurora";
 };
 
 function CheckIcon({ color = "var(--pj-ink)", size = 13 }: { color?: string; size?: number }) {
@@ -198,7 +198,7 @@ export function ClientPortalExperience({
   // Portal layout: the handoff design defaults to its journey rail (Jesse
   // 2026-08-10 — clients like Rich should land on it with no toggling);
   // the current design keeps "focus" as its shipped default (2026-08-05).
-  const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" || themeVariant === "grove" ? "rail" : "focus");
+  const [railLayout, setRailLayout] = useState<"rail" | "focus">(themeVariant === "warm" || themeVariant === "cool" || themeVariant === "neutral" ? "focus" : "rail");
   const [isDemo, setIsDemo] = useState(false);
   // Presentation switch (demo route): hides every review pill so the page can be
   // shown clean, and brings them back. Remembered in this browser.
@@ -288,17 +288,17 @@ export function ClientPortalExperience({
   // Portal look: warm (organic) / cool (slate workshop). Seeded from the client
   // record; the topbar switcher flips it instantly and persists the choice back
   // to the record so it follows the client across devices. Same link always.
-  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" || themeVariant === "grove" ? "warm" : themeVariant);
+  const [theme, setTheme] = useState<"warm" | "cool" | "neutral">(themeVariant === "warm" || themeVariant === "cool" || themeVariant === "neutral" ? themeVariant : "warm");
   // Neutral's accent audition (demo pill): gallery surfaces stay, one accent
   // carries the life. Terracotta is the recommended default everywhere.
   const [neutralAccent, setNeutralAccent] = useState<"terracotta" | "brass" | "indigo" | "graphite">("terracotta");
   // Welcome screen generation under review: "funnel" (motion redesign, drawn in
   // code; the default on the motion-redesign branch), "marquee" (trade tiles)
   // and "mosaic" (the first static tiles). Demo pill switches live.
-  const [welcomeVersion, setWelcomeVersion] = useState<"funnel" | "aurora" | "marquee" | "mosaic">(themeVariant === "aurora" ? "aurora" : "funnel");
+  const [welcomeVersion, setWelcomeVersion] = useState<"funnel" | "aurora" | "marquee" | "mosaic">(themeVariant === "aurora" || themeVariant === "calm" ? "aurora" : "funnel");
   // Whole-portal design skin from the client_portal handoff package (DM fonts,
   // terracotta+teal on near-white). Demo review toggle; skin-level only.
-  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt" | "aurora" | "calm" | "grove" | "groveaurora">(themeVariant === "handoff" || themeVariant === "cobalt" || themeVariant === "aurora" || themeVariant === "grove" ? themeVariant : "current");
+  const [designSkin, setDesignSkin] = useState<"current" | "handoff" | "cobalt" | "aurora" | "calm" | "grove" | "groveaurora">(themeVariant === "warm" || themeVariant === "cool" || themeVariant === "neutral" ? "current" : themeVariant);
   // The handoff design's own Light|Dark scheme (its README ships both); it
   // replaces the warm/cool/neutral dots while the handoff skin is active.
   const [handoffScheme, setHandoffScheme] = useState<"light" | "dark">("light");
@@ -593,7 +593,7 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" || designSkin === "groveaurora" ? (isRespond ? "Respond" : "Scale") : isRespond ? "respond" : "scale"}</span>
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" || designSkin === "groveaurora" ? (isRespond ? "CRM" : "Scale") : isRespond ? "crm" : "scale"}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
@@ -823,7 +823,7 @@ export function ClientPortalExperience({
       {/* NEW DESIGN (handoff package) — full structural hub, home view */}
       {view === "home" && designSkin === "handoff" && (
         <HandoffHub
-          brand={isRespond ? "respond" : "scale"}
+          brand={isRespond ? "crm" : "scale"}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
@@ -855,7 +855,7 @@ export function ClientPortalExperience({
       {/* COBALT DESIGN (motion redesign) — white gallery hub, home view */}
       {view === "home" && designSkin === "cobalt" && (
         <CobaltHub
-          brand={isRespond ? "Respond" : "Scale"}
+          brand={isRespond ? "CRM" : "Scale"}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
@@ -890,7 +890,7 @@ export function ClientPortalExperience({
       {view === "home" && (designSkin === "aurora" || designSkin === "calm") && (
         <AuroraHub
           calm={designSkin === "calm"}
-          brand={isRespond ? "Respond" : "Scale"}
+          brand={isRespond ? "CRM" : "Scale"}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
@@ -926,7 +926,7 @@ export function ClientPortalExperience({
       {view === "home" && (designSkin === "grove" || designSkin === "groveaurora") && (
         <GroveHub
           aurora={designSkin === "groveaurora"}
-          brand={isRespond ? "Respond" : "Scale"}
+          brand={isRespond ? "CRM" : "Scale"}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}

@@ -252,6 +252,23 @@ agent id. Not checked live: a call on the live site, or a real client record end
   the Aurora welcome. Eighth option on the demo pill, demo-only (not assignable to a client).
   Checked at 1440 px on the dev server, stage 1 only. Typecheck 0 errors.
 
+## 2026-10-12: piece 13, the admin catches up
+
+Jesse: the back end needs all the changes for all products, every look listed under portal look, and Respond
+shown as "CRM".
+- **Looks:** all nine are assignable per client from the admin (create form and the per-client picker), and a
+  client's portal opens in whichever is set.
+- **Voice interview on the second product:** new first task `rsp-000`, same live agent, same six fallback
+  questions (clips copied from `ob-0`, no spend). The voice script now covers both products.
+- **"CRM":** the product is displayed as CRM in the admin and on the portal's wordmarks. Internal value unchanged.
+- **Transcripts in the admin:** a long or multi-line note (an interview) now shows as its own readable block.
+- A Skip button for the interview exists on the demo route only (deployed earlier, version `e518d858`).
+
+Checked on the dev server: created a CRM client in Grove Aurora through the admin API, its portal opened in that
+look with the interview as task 1 and no review pills; the admin lists nine looks and "CRM"; an unknown look is
+refused. Not checked: a saved live-call transcript displayed in the admin (needs a real call).
+The agent's prompt speaks of "marketing"; fine for Scale, worth a second agent or a tweak for CRM clients.
+
 ## Credits
 22 spent (11 keyframe images), all on the parked disc film. Quote ceiling was 225. Balance 736.
 

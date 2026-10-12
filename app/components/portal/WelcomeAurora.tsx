@@ -20,7 +20,7 @@ export function WelcomeAurora({ brand, stages, onStart }: { brand: "scale" | "re
   const [i, setI] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const timer = useRef<number | undefined>(undefined);
-  const wordmark = brand === "respond" ? "Respond" : "Scale";
+  const wordmark = brand === "respond" ? "CRM" : "Scale"; // the second product is shown as "CRM" (Jesse 2026-10-12)
 
   useEffect(() => {
     if (stages.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

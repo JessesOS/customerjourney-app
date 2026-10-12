@@ -205,7 +205,7 @@ function Track({ group, animation, marginLeft }: { group: string; animation: str
 }
 
 export function WelcomeMarquee({ brand, onStart }: { brand: "scale" | "respond"; onStart: () => void }) {
-  const wordmark = brand === "respond" ? "Respond" : "Scale";
+  const wordmark = brand === "respond" ? "CRM" : "Scale"; // the second product is shown as "CRM" (Jesse 2026-10-12)
   return (
     <div className="pj-marquee" style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "var(--font-archivo), Archivo, sans-serif", background: WALL }}>
       <div style={{ position: "relative", flex: "1 1 0%", minHeight: 300, display: "flex", flexDirection: "column", justifyContent: "center", gap: 16, overflow: "hidden", background: WALL }} aria-hidden>

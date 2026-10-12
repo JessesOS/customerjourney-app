@@ -7,6 +7,7 @@ import {
   getCompletedMilestoneIds,
   getMilestoneNotes,
   getPortalClientByToken,
+  isPortalThemeVariant,
 } from "@/lib/portalClientStore";
 import type { ClientType } from "@/lib/journeyEngine";
 import { respondJourneyTotalDays } from "@/lib/respondJourney";
@@ -59,7 +60,7 @@ export default async function PortalPage({
         milestoneContent={milestoneContent}
         milestoneUploads={milestoneUploads}
         portalToken={token}
-        themeVariant={client.themeVariant === "cool" || client.themeVariant === "neutral" || client.themeVariant === "warm" || client.themeVariant === "grove" ? client.themeVariant : "handoff"}
+        themeVariant={isPortalThemeVariant(client.themeVariant) ? client.themeVariant : "handoff"}
       />
     </>
   );

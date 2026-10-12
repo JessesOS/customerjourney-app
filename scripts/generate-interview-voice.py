@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Render the voice-interview questions to audio, one clip per question.
 
-Reads every `interview: [...]` list out of lib/onboardingJourney.ts (single
-source of truth) and renders each question to m4a in public/portal/voice/.
+Reads every `interview: [...]` list out of lib/onboardingJourney.ts and
+lib/respondJourney.ts (single source of truth) and renders each question to m4a in public/portal/voice/.
 Filenames are the contract with VoiceInterview.tsx:
 interview-<milestone id>-<question number>.m4a. Replacing these files with
 another voice needs no code change.
@@ -38,7 +38,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "public" / "portal" / "voice"
 FREE = "--free" in sys.argv
 
-src = (ROOT / "lib" / "onboardingJourney.ts").read_text()
+# Every product's journey: Scale (ob-0) and CRM / Respond (rsp-000).
+src = "\n".join((ROOT / "lib" / f).read_text() for f in ("onboardingJourney.ts", "respondJourney.ts"))
 
 def fish_key() -> str:
     env = ROOT / ".env.local"
@@ -64,7 +65,7 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     found = re.findall(r'id: "([\w-]+)",(?:(?!\bid: ").)*?interview: \[(.*?)\]', src, re.S)
     if not found:
-        raise SystemExit("no interview lists found in lib/onboardingJourney.ts")
+        raise SystemExit("no interview lists found in the journey files")
     key = None if FREE else fish_key()
     for milestone_id, block in found:
         questions = re.findall(r'"((?:[^"\\]|\\.)*)"', block)

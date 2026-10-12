@@ -27,15 +27,19 @@ const clientTypeOptions = [
   { value: "meta-google", label: "Scale — Meta + Google Ads" },
   { value: "meta", label: "Scale — Meta ads only" },
   { value: "google", label: "Scale — Google Ads only" },
-  { value: "respond", label: "Respond" },
+  { value: "respond", label: "CRM" },
 ];
 
 const themeOptions = [
   { value: "grove", label: "Grove — clean green (default)" },
+  { value: "groveaurora", label: "Grove Aurora — Grove with aurora accents" },
   { value: "handoff", label: "Handoff design" },
-  { value: "warm", label: "Warm — organic" },
-  { value: "cool", label: "Cool — slate" },
-  { value: "neutral", label: "Neutral — gallery white" },
+  { value: "cobalt", label: "Cobalt — white and blue" },
+  { value: "aurora", label: "Aurora — night" },
+  { value: "calm", label: "Aurora calm" },
+  { value: "warm", label: "Current — warm" },
+  { value: "cool", label: "Current — cool slate" },
+  { value: "neutral", label: "Current — neutral white" },
 ];
 
 function clientTypeLabel(value?: string) {
@@ -617,16 +621,14 @@ export function AdminClientsPanel() {
                     </div>
                   </div>
                   <select
-                    value={["cool", "neutral", "warm", "grove"].includes(client.themeVariant ?? "") ? (client.themeVariant as string) : "handoff"}
+                    value={themeOptions.some((o) => o.value === client.themeVariant) ? (client.themeVariant as string) : "handoff"}
                     onChange={(e) => handleThemeChange(client.id, e.target.value)}
                     title="Portal look — changes what this client sees on their next load; their link stays the same"
                     style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid #444", background: "transparent", color: "#fcfaf6", cursor: "pointer", fontSize: 13 }}
                   >
-                    <option value="grove">Grove</option>
-                    <option value="handoff">Handoff</option>
-                    <option value="warm">Warm</option>
-                    <option value="cool">Cool</option>
-                    <option value="neutral">Neutral</option>
+                    {themeOptions.map((o) => (
+                      <option key={o.value} value={o.value}>{o.label.replace(" (default)", "")}</option>
+                    ))}
                   </select>
                   <button
                     onClick={() => toggleExpanded(client)}
@@ -669,9 +671,18 @@ export function AdminClientsPanel() {
                         </div>
                         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                           {detail.milestoneNotes.map((n) => (
-                            <div key={n.milestoneId} style={{ fontSize: 13 }}>
-                              <span style={{ color: "rgba(252,250,246,0.6)" }}>{n.title}:</span> <span style={{ color: "#fcfaf6" }}>{n.note}</span>
-                            </div>
+                            // A voice interview saves a whole conversation, so long or multi-line
+                            // notes get their own block with the line breaks kept.
+                            n.note.includes("\n") || n.note.length > 240 ? (
+                              <div key={n.milestoneId} style={{ fontSize: 13 }}>
+                                <div style={{ color: "rgba(252,250,246,0.6)", marginBottom: 6 }}>{n.title}</div>
+                                <div style={{ color: "#fcfaf6", whiteSpace: "pre-wrap", lineHeight: 1.5, background: "rgba(252,250,246,0.05)", border: "1px solid rgba(252,250,246,0.1)", borderRadius: 8, padding: "12px 14px", maxHeight: 360, overflowY: "auto" }}>{n.note}</div>
+                              </div>
+                            ) : (
+                              <div key={n.milestoneId} style={{ fontSize: 13 }}>
+                                <span style={{ color: "rgba(252,250,246,0.6)" }}>{n.title}:</span> <span style={{ color: "#fcfaf6" }}>{n.note}</span>
+                              </div>
+                            )
                           ))}
                         </div>
                       </div>
