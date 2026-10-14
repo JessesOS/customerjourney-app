@@ -28,6 +28,7 @@ const clientTypeOptions = [
   { value: "meta", label: "Scale — Meta ads only" },
   { value: "google", label: "Scale — Google Ads only" },
   { value: "respond", label: "CRM" },
+  { value: "bss", label: "BSS Fin Crichton (custom, based on Scale Meta)" },
 ];
 
 const themeOptions = [

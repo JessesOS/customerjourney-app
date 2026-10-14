@@ -11,7 +11,10 @@ export type StageStatus = "done" | "current" | "locked";
 /** Which product + ad channel(s) a client is on. Stored on the client record
     (portal_clients.client_type); chosen in admin. Scale clients pick a channel
     variant; Respond has no channels at all. */
-export type ClientType = "meta" | "google" | "meta-google" | "respond";
+// "bss": custom product for Bitcoin Success School (Fin Crichton), the first signed
+// client, 2026-10-15. For now it runs the Scale journey exactly as a Meta-only
+// client sees it; give it its own template when the custom work is defined.
+export type ClientType = "meta" | "google" | "meta-google" | "respond" | "bss";
 export type ClientChannel = "meta" | "google";
 
 export const clientTypeLabels: Record<ClientType, string> = {
@@ -19,6 +22,7 @@ export const clientTypeLabels: Record<ClientType, string> = {
   google: "Scale — Google Ads",
   "meta-google": "Scale — Meta + Google Ads",
   respond: "CRM",
+  bss: "BSS Fin Crichton",
 };
 
 export type JourneyMilestone = {
@@ -118,6 +122,7 @@ export function milestoneVisibleFor(m: { hidden?: boolean; channels?: ClientChan
   if (!m.channels || m.channels.length === 0) return true;
   if (clientType === "meta-google") return true;
   if (clientType === "meta" || clientType === "google") return m.channels.includes(clientType);
+  if (clientType === "bss") return m.channels.includes("meta"); // based on Scale, Meta only
   return false;
 }
 
