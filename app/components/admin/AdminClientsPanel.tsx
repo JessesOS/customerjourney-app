@@ -28,7 +28,7 @@ const clientTypeOptions = [
   { value: "meta", label: "Scale — Meta ads only" },
   { value: "google", label: "Scale — Google Ads only" },
   { value: "respond", label: "CRM" },
-  { value: "bss", label: "BSS Fin Crichton (custom, based on Scale Meta)" },
+  { value: "bss", label: "BSS Fin Creighton (custom, based on Scale Meta)" },
 ];
 
 const themeOptions = [
@@ -622,9 +622,10 @@ export function AdminClientsPanel() {
                     </div>
                   </div>
                   <select
-                    value={themeOptions.some((o) => o.value === client.themeVariant) ? (client.themeVariant as string) : "handoff"}
+                    value={client.clientType === "bss" ? "groveaurora" : themeOptions.some((o) => o.value === client.themeVariant) ? (client.themeVariant as string) : "handoff"}
                     onChange={(e) => handleThemeChange(client.id, e.target.value)}
-                    title="Portal look — changes what this client sees on their next load; their link stays the same"
+                    disabled={client.clientType === "bss"}
+                    title={client.clientType === "bss" ? "Locked by the product: BSS Fin Creighton always uses Grove Aurora" : "Portal look — changes what this client sees on their next load; their link stays the same"}
                     style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid #444", background: "transparent", color: "#fcfaf6", cursor: "pointer", fontSize: 13 }}
                   >
                     {themeOptions.map((o) => (

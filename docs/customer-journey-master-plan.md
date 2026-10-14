@@ -30,7 +30,7 @@
 > (TEXT column), no journey/template change (importer unaffected).
 >
 > **Design-session note 2026-10-15, NEW PRODUCT:** `client_type = "bss"`, shown as "BSS Fin
-> Crichton", for the first signed client (Bitcoin Success School). Runs the Scale journey as a
+> Creighton", for the first signed client (Bitcoin Success School). Runs the Scale journey as a
 > Meta-only client sees it, same task ids. Admin can create it; webhook provisioning cannot yet
 > (`lib/productMapping.ts` untouched). Full handover for the CSM side:
 > `docs/handover-to-csm-2026-10-15.md`.

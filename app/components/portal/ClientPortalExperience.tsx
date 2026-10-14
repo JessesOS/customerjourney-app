@@ -454,6 +454,40 @@ export function ClientPortalExperience({
     window.scrollTo(0, 0);
   }
 
+  // Keep the address bar in step with what's on screen, so the browser's Back
+  // and Forward buttons move between the journey page and a task without ever
+  // leaving the client's own link: opening a task adds one history entry
+  // (?task=<id>), moving between tasks replaces it, and going back to the
+  // journey steps back over it.
+  const openTaskId = view === "stage" ? viewingStage?.milestones[milestone - 1]?.id : undefined;
+  useEffect(() => {
+    if (view === "complete") return;
+    const path = window.location.pathname;
+    const shownTask = new URLSearchParams(window.location.search).get("task");
+    if (openTaskId) {
+      if (shownTask === openTaskId) return;
+      const url = `${path}?task=${encodeURIComponent(openTaskId)}`;
+      if (shownTask) window.history.replaceState(window.history.state, "", url);
+      else window.history.pushState({ pjTask: true }, "", url);
+    } else if (shownTask) {
+      if ((window.history.state as { pjTask?: boolean } | null)?.pjTask) window.history.back();
+      else window.history.replaceState(null, "", path);
+    }
+  }, [view, openTaskId]);
+  useEffect(() => {
+    const onPop = () => {
+      const wanted = new URLSearchParams(window.location.search).get("task");
+      if (!wanted) { setView("home"); return; }
+      for (const stage of journeyStages) {
+        const idx = stage.milestones.findIndex((m) => m.id === wanted);
+        if (idx !== -1) { setViewingStageId(stage.id); setMilestone(idx + 1); setView("stage"); return; }
+      }
+      setView("home");
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, [journeyStages]);
+
   // After a task auto-completes (upload / form submit), move the client onward:
   // fire the stage-completion payoff if it finished the stage, else advance to
   // the next task, else return to the journey.

@@ -9,7 +9,7 @@ import {
   getPortalClientByToken,
   isPortalThemeVariant,
 } from "@/lib/portalClientStore";
-import type { ClientType } from "@/lib/journeyEngine";
+import { productLockedLook, type ClientType } from "@/lib/journeyEngine";
 import { respondJourneyTotalDays } from "@/lib/respondJourney";
 
 export const metadata = {
@@ -60,7 +60,7 @@ export default async function PortalPage({
         milestoneContent={milestoneContent}
         milestoneUploads={milestoneUploads}
         portalToken={token}
-        themeVariant={isPortalThemeVariant(client.themeVariant) ? client.themeVariant : "handoff"}
+        themeVariant={productLockedLook[clientType] ?? (isPortalThemeVariant(client.themeVariant) ? client.themeVariant : "handoff")}
       />
     </>
   );

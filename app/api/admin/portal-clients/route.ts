@@ -1,6 +1,6 @@
 import { requestCanAdmin } from "@/lib/adminAuth";
 import { createPortalClient, isPortalThemeVariant, listPortalClients } from "@/lib/portalClientStore";
-import type { ClientType } from "@/lib/journeyEngine";
+import { productLockedLook, type ClientType } from "@/lib/journeyEngine";
 
 const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond", "bss"];
 
@@ -31,7 +31,9 @@ export async function POST(request: Request) {
     const companyName = body.companyName?.trim() ?? "";
     const startDate = body.startDate?.trim();
     const clientType = body.clientType?.trim() ?? "meta-google";
-    const themeVariant = body.themeVariant?.trim() ?? "grove";
+    // A product with a fixed look stores that look, so the admin shows what the client sees.
+    const lockedLook = productLockedLook[(body.clientType?.trim() ?? "") as ClientType];
+    const themeVariant = lockedLook ?? body.themeVariant?.trim() ?? "grove";
 
     if (!name) {
       return Response.json({ ok: false, error: "Client name is required." }, { status: 400 });
