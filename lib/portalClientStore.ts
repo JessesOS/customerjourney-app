@@ -273,6 +273,27 @@ export async function markMilestoneComplete(clientId: string, milestoneId: strin
   }
 }
 
+/** BSS clients and their completed tasks, for the CSM dashboard to pick up
+    (GET /api/csm-sync/clients). No portal tokens, no secrets. */
+export async function listBssClientsForSync() {
+  const db = getDb();
+  const clients = await db.select().from(portalClients).where(eq(portalClients.clientType, "bss"));
+  return Promise.all(
+    clients.map(async (c) => {
+      const rows = await db.select().from(portalMilestoneProgress).where(eq(portalMilestoneProgress.clientId, c.id));
+      return {
+        id: c.id,
+        name: c.name,
+        companyName: c.companyName,
+        createdAt: c.createdAt,
+        completed: rows
+          .filter((r) => r.completedAt)
+          .map((r) => (r.note ? { milestoneId: r.milestoneId, note: r.note } : { milestoneId: r.milestoneId })),
+      };
+    }),
+  );
+}
+
 /** The team ticks a task off (or back on) from the admin. Un-ticking keeps any
     note the client left. */
 export async function setMilestoneDone(clientId: string, milestoneId: string, done: boolean) {
