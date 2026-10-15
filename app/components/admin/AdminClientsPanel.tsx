@@ -1,5 +1,9 @@
 "use client";
 
+import { AdminTaskChecklist } from "@/app/components/admin/AdminTaskChecklist";
+
+import type { ClientType } from "@/lib/journeyEngine";
+
 import { useEffect, useMemo, useState } from "react";
 import { decodePortalFileValue, onboardingFormById, formatFieldValue, type PortalFormResponses } from "@/lib/onboardingForm";
 
@@ -598,7 +602,7 @@ export function AdminClientsPanel() {
                           </button>
                         </>
                       )}
-                      {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
+                      {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : client.clientType === "bss" ? 240 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
                       {client.journeyState && client.journeyState !== "active" && (
                         <>
                           {" · "}
@@ -654,6 +658,7 @@ export function AdminClientsPanel() {
 
                 {isExpanded && (
                   <div style={{ borderTop: "1px solid #2a2c27", padding: "16px 18px" }}>
+                    <AdminTaskChecklist clientId={client.id} clientType={(client.clientType as ClientType) ?? "meta-google"} adminToken={adminToken} onChanged={() => void loadClients()} />
                     {detail === "loading" && <p style={{ color: "rgba(252,250,246,0.5)", fontSize: 13 }}>Loading answers…</p>}
                     {detail === "error" && <p style={{ color: "#ff9a90", fontSize: 13 }}>Could not load form answers.</p>}
                     {detail && typeof detail === "object" && detail.editableContent.map((item) => (

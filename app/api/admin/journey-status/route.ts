@@ -2,6 +2,7 @@ import { requestCanAdmin } from "@/lib/adminAuth";
 import { formFields, onboardingFormById } from "@/lib/onboardingForm";
 import { journeyTemplate, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
 import { respondJourneyTemplate } from "@/lib/respondJourney";
+import { bssJourneyTemplate } from "@/lib/bssJourney";
 import {
   getAllFormUploadsMeta,
   getCompletedMilestoneIds,
@@ -45,7 +46,7 @@ export async function GET(request: Request) {
       clients.map(async (client) => {
         const clientType = (client.clientType as ClientType) ?? "meta-google";
         const isRespond = clientType === "respond";
-        const template = isRespond ? respondJourneyTemplate : journeyTemplate;
+        const template = isRespond ? respondJourneyTemplate : clientType === "bss" ? bssJourneyTemplate : journeyTemplate;
         const completed = await getCompletedMilestoneIds(client.id);
 
         // Visible milestones in journey order.

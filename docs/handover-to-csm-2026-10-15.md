@@ -39,6 +39,23 @@ Paste this into the CSM Dashboard session (`~/Master/AI/csm-dashboard`).
 - Opening a task now puts `?task=<id>` in the portal's address, so browser Back and Forward move between
   the journey page and a task. Links of the form `/portal/<token>?task=<id>` open that task directly.
 
+## Update: the portal now runs your 41-task BSS journey (deployed)
+
+- `lib/bssJourney.ts` holds the BSS journey: **your ids `bss-001` … `bss-041`, your five stages**, from
+  your `lib/bssTasks.ts`. A task ticked in the portal is the same task on your board.
+- **Jesse's call: Fin sees all 41 tasks for now** (not only the portal-visible ones). Each has Fin-facing
+  wording written from the agreement (a first draft for Jesse to check).
+- **Client tasks** (Fin acts): `bss-001` intake interview, `bss-003` share access, `bss-004` agree the
+  customer journey, `bss-014` / `bss-015` / `bss-016` review website, webinar and partner pages,
+  `bss-027` confirm launch day. Their notes carry Fin's comments.
+- **Team tasks** (the other 34) are flagged `awaitingTeam`: Fin sees them as "With us" and can't tick them.
+  The team ticks them in the portal admin (new checklist per client, `POST
+  /api/admin/portal-clients/<id>/milestones` with `{ milestoneId, done }`).
+- `bss-001` is the voice interview; its transcript is the note on `bss-001`.
+- Journey length for BSS is 240 days (weeks 1–10 plus support to month 8).
+- If the CSM board becomes where the team ticks tasks, a sync from the CSM to the portal's completions
+  (or the reverse) is the next piece; nothing syncs yet.
+
 ## Not decided yet
 
 - Whether BSS gets its own task list (it would need its own task ids, e.g. `bss-…`, and the CSM

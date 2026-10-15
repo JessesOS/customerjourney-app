@@ -38,8 +38,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "public" / "portal" / "voice"
 FREE = "--free" in sys.argv
 
-# Every product's journey: Scale (ob-0) and CRM / Respond (rsp-000).
-src = "\n".join((ROOT / "lib" / f).read_text() for f in ("onboardingJourney.ts", "respondJourney.ts"))
+# Every product's journey: Scale (ob-0), CRM / Respond (rsp-000) and BSS (bss-001).
+src = "\n".join((ROOT / "lib" / f).read_text() for f in ("onboardingJourney.ts", "respondJourney.ts", "bssJourney.ts"))
 
 def fish_key() -> str:
     env = ROOT / ".env.local"

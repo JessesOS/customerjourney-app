@@ -12,11 +12,15 @@ import {
 import { formUploadObjectKey, getUploadsBucket, uploadObjectKey } from "@/lib/uploadsBucket";
 import { journeyTemplate, journeyTotalDays, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
 import { respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
+import { bssJourneyTemplate, bssJourneyTotalDays } from "@/lib/bssJourney";
 import type { PortalFormResponses } from "@/lib/onboardingForm";
 
 function totalMilestoneCountFor(clientType: ClientType): number {
   if (clientType === "respond") {
     return respondJourneyTemplate.reduce((sum, stage) => sum + stage.milestones.length, 0);
+  }
+  if (clientType === "bss") {
+    return bssJourneyTemplate.reduce((sum, stage) => sum + stage.milestones.length, 0);
   }
   return journeyTemplate.reduce(
     (sum, stage) => sum + stage.milestones.filter((m) => milestoneVisibleFor(m, clientType)).length,
@@ -47,7 +51,7 @@ export async function listPortalClients() {
       const type = (client.clientType as ClientType) ?? "meta-google";
       return {
         ...client,
-        currentDay: computeCurrentDay(client.startDate, type === "respond" ? respondJourneyTotalDays : undefined),
+        currentDay: computeCurrentDay(client.startDate, type === "respond" ? respondJourneyTotalDays : type === "bss" ? bssJourneyTotalDays : undefined),
         completedMilestoneCount: completedCount,
         totalMilestoneCount: totalMilestoneCountFor((client.clientType as ClientType) ?? "meta-google"),
       };
@@ -267,6 +271,20 @@ export async function markMilestoneComplete(clientId: string, milestoneId: strin
       updatedAt: now,
     });
   }
+}
+
+/** The team ticks a task off (or back on) from the admin. Un-ticking keeps any
+    note the client left. */
+export async function setMilestoneDone(clientId: string, milestoneId: string, done: boolean) {
+  if (done) return markMilestoneComplete(clientId, milestoneId);
+  const db = getDb();
+  const rows = await db.select().from(portalMilestoneProgress).where(eq(portalMilestoneProgress.clientId, clientId));
+  const row = rows.find((r) => r.milestoneId === milestoneId);
+  if (!row) return;
+  await db
+    .update(portalMilestoneProgress)
+    .set({ completedAt: null, updatedAt: new Date().toISOString() })
+    .where(eq(portalMilestoneProgress.id, row.id));
 }
 
 export async function getMilestoneNotes(clientId: string): Promise<Record<string, string>> {

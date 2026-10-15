@@ -4,9 +4,11 @@
 // rsp- for Respond), so routes can simply validate against the union.
 import { journeyTemplate } from "./onboardingJourney";
 import { respondJourneyTemplate } from "./respondJourney";
+import { bssJourneyTemplate } from "./bssJourney";
 import type { MilestoneTemplate } from "./journeyEngine";
 
 export const allMilestoneTemplates: MilestoneTemplate[] = [
   ...journeyTemplate.flatMap((stage) => stage.milestones),
   ...respondJourneyTemplate.flatMap((stage) => stage.milestones),
+  ...bssJourneyTemplate.flatMap((stage) => stage.milestones),
 ];

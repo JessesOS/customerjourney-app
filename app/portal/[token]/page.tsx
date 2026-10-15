@@ -11,6 +11,7 @@ import {
 } from "@/lib/portalClientStore";
 import { productBrandName, productLockedLook, type ClientType } from "@/lib/journeyEngine";
 import { respondJourneyTotalDays } from "@/lib/respondJourney";
+import { bssJourneyTotalDays } from "@/lib/bssJourney";
 
 // The browser tab: a custom product shows its own name (BSS: "BSS Launchpad").
 export async function generateMetadata({ params }: { params: Promise<{ token: string }> }) {
@@ -33,7 +34,7 @@ export default async function PortalPage({
   }
 
   const clientType: ClientType = (client.clientType as ClientType) ?? "meta-google";
-  const totalDaysForClient = clientType === "respond" ? respondJourneyTotalDays : undefined;
+  const totalDaysForClient = clientType === "respond" ? respondJourneyTotalDays : clientType === "bss" ? bssJourneyTotalDays : undefined;
 
   const [completedIds, currentDay, milestoneNotes, milestoneContent, milestoneUploads] = await Promise.all([
     getCompletedMilestoneIds(client.id),

@@ -111,5 +111,6 @@ const respondAsk: Record<string, AskItem[]> = {
 };
 
 export function askItemsFor(clientType: ClientType, stageId: string): AskItem[] {
+  if (clientType === "bss") return []; // the example answers were written for Scale and CRM
   return (clientType === "respond" ? respondAsk : scaleAsk)[stageId] ?? [];
 }

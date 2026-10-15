@@ -29,6 +29,13 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
+> **Design-session note 2026-10-15, JOURNEY/TEMPLATE CHANGE (BSS), re-run the importer:** BSS no
+> longer runs the Scale journey. It has its own 41-task journey, ids `bss-001`…`bss-041`, matching the
+> CSM dashboard's BSS template (`lib/bssJourney.ts`). Team-owned tasks are `awaitingTeam` and are
+> ticked from a new admin checklist (`app/api/admin/portal-clients/[id]/milestones`). New store
+> function `setMilestoneDone`. No schema change. Client's next task now skips team tasks on every
+> product (no effect on Scale or CRM, which have none).
+>
 > **Design-session note 2026-10-15 (later):** the BSS product shows as "BSS Launchpad" (welcome,
 > header, browser tab; `productBrandName` in `lib/journeyEngine.ts`), tagline "Onboarding &
 > delivery". On Jesse's instruction "RT Digital" is removed from client-facing portal wording on

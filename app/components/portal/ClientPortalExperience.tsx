@@ -13,6 +13,7 @@ import {
   type JourneyMilestone,
 } from "@/lib/onboardingJourney";
 import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
+import { bssJourneyTemplate, bssJourneyTotalDays, buildBssJourneyStages } from "@/lib/bssJourney";
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
@@ -176,12 +177,18 @@ export function ClientPortalExperience({
   // The name the client sees: a custom product's own name, else the house product name.
   const brandName = productBrandName[clientType];
   const brandTagline = productTagline[clientType];
-  const activeJourneyTemplate = isRespond ? respondJourneyTemplate : journeyTemplate;
-  const activeJourneyTotalDays = isRespond ? respondJourneyTotalDays : journeyTotalDays;
+  const isBss = clientType === "bss";
+  const activeJourneyTemplate = isRespond ? respondJourneyTemplate : isBss ? bssJourneyTemplate : journeyTemplate;
+  const activeJourneyTotalDays = isRespond ? respondJourneyTotalDays : isBss ? bssJourneyTotalDays : journeyTotalDays;
 
   const journeyStages = useMemo(
-    () => (isRespond ? buildRespondJourneyStages(completedIds, currentDay) : buildJourneyStages(completedIds, currentDay, clientType)),
-    [completedIds, currentDay, clientType, isRespond],
+    () =>
+      isRespond
+        ? buildRespondJourneyStages(completedIds, currentDay)
+        : isBss
+          ? buildBssJourneyStages(completedIds, currentDay)
+          : buildJourneyStages(completedIds, currentDay, clientType),
+    [completedIds, currentDay, clientType, isRespond, isBss],
   );
 
   const defaultStage = useMemo(() => journeyStages.find((s) => s.status === "current"), [journeyStages]);
@@ -340,9 +347,16 @@ export function ClientPortalExperience({
   const progress = journeyProgressPercent(currentDay, activeJourneyTotalDays);
   const currentStageIndex = journeyStages.findIndex((s) => s.status === "current");
   const currentStage = currentStageIndex >= 0 ? journeyStages[currentStageIndex] : undefined;
+  // The client's next task is the first open one that is theirs to do. Tasks the
+  // team does ("With us", awaitingTeam) never block it; with none left for the
+  // client, it falls back to the first open task of any kind.
   const firstOpenMilestoneIndex = currentStage
-    ? Math.max(0, currentStage.milestones.findIndex((m) => m.status !== "done"))
+    ? (() => {
+        const mine = currentStage.milestones.findIndex((m) => m.status !== "done" && !m.awaitingTeam);
+        return mine !== -1 ? mine : Math.max(0, currentStage.milestones.findIndex((m) => m.status !== "done"));
+      })()
     : 0;
+  const yourTurnId = currentStage?.milestones[firstOpenMilestoneIndex]?.id;
   const viewingStageIndex = journeyStages.findIndex((s) => s.id === viewingStageId);
   const viewingStage = viewingStageIndex >= 0 ? journeyStages[viewingStageIndex] : undefined;
 
@@ -354,8 +368,8 @@ export function ClientPortalExperience({
   // "With us" comes from the explicit awaitingTeam content flag.
   function taskDisplayStatus(m: JourneyMilestone): TaskDisplayStatus {
     if (m.status === "done") return "done";
-    if (m.status === "current") return m.awaitingTeam ? "with-us" : "your-turn";
-    return m.awaitingTeam ? "with-us" : "up-next";
+    if (m.awaitingTeam) return "with-us";
+    return m.id === yourTurnId ? "your-turn" : "up-next";
   }
   const stageDoneCount = currentStage ? currentStage.milestones.filter((m) => m.status === "done").length : 0;
   const stagePct =
@@ -1426,11 +1440,13 @@ export function ClientPortalExperience({
                     <span style={{ marginLeft: isFirst ? 0 : "auto", fontSize: 12.5, color: "var(--pj-faint)" }}>
                       {m.status === "done"
                         ? "Completed"
+                        : m.awaitingTeam
+                          ? "With us. We’ll tick this off when it’s done."
                         : m.noteRequired && !noteValue.trim()
                           ? m.interview ? "Answer at least one question to continue" : "Fill in the field above to continue"
                           : m.interview ? "Ready when you are" : "Awaiting your approval"}
                     </span>
-                    {m.status !== "done" ? (
+                    {m.status !== "done" && !m.awaitingTeam ? (
                       (() => {
                         const noteMissing = Boolean(m.noteRequired) && !noteValue.trim();
                         return (

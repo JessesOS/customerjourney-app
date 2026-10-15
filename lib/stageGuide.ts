@@ -35,6 +35,7 @@ const respondScripts: Record<string, string> = {
 };
 
 export function stageGuideFor(clientType: ClientType, stageId: string): StageGuide | undefined {
+  if (clientType === "bss") return undefined; // its scripts were written for Scale and CRM
   const isRespond = clientType === "respond";
   const script = (isRespond ? respondScripts : scaleScripts)[stageId];
   if (!script) return undefined;
