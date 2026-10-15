@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
 import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
+import { bssWorkstreams } from "@/lib/bssJourney";
+import { StringTheory } from "@/app/components/portal/StringTheory";
 
 /**
  * The client's progress at a glance (Jesse, 2026-10-15): opened from the
@@ -11,12 +13,14 @@ import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
  *             chosen stage's tasks underneath.
  *   Board:    every task in columns by status (Your turn, With us, Coming up,
  *             Done), like a Kanban board, read-only.
+ *   String Theory (BSS): the parallel workstreams as strings across the weeks.
+ * A colour key under the header explains the four task colours.
  * Built from what the portal already knows (the journey and each task's
  * status), so it moves as the team's ticks arrive from the CSM board.
  * Colours ride the --pj-* tokens, so it follows the client's look.
  */
 
-type View = "timeline" | "board";
+type View = "timeline" | "board" | "strings";
 
 function when(s: JourneyStage) {
   if (s.ongoing) return "Ongoing";
@@ -66,6 +70,14 @@ export function ProgressOverview({
   const doneCount = all.filter((t) => t.status === "done").length;
   const pct = all.length ? Math.round((doneCount / all.length) * 100) : 0;
   const stage = stages[picked];
+  // String Theory needs workstreams; today only BSS has them (ids bss-…).
+  const isBss = all.some((t) => t.m.id.startsWith("bss-"));
+  const milestoneById = new Map(all.map((t) => [t.m.id, { m: t.m, stageId: t.stage.id, index: t.mi }]));
+  const views: { key: View; label: string }[] = [
+    { key: "timeline", label: "Timeline" },
+    { key: "board", label: "Board" },
+    ...(isBss ? [{ key: "strings" as View, label: "String Theory" }] : []),
+  ];
 
   return (
     <div className="po-scrim" onClick={onClose} role="presentation">
@@ -78,9 +90,9 @@ export function ProgressOverview({
             </div>
           </div>
           <div className="po-toggle" role="tablist" aria-label="View">
-            {(["timeline", "board"] as const).map((v) => (
-              <button key={v} type="button" role="tab" aria-selected={view === v} className={view === v ? "po-tab po-tab--on" : "po-tab"} onClick={() => setView(v)}>
-                {v === "timeline" ? "Timeline" : "Board"}
+            {views.map((v) => (
+              <button key={v.key} type="button" role="tab" aria-selected={view === v.key} className={view === v.key ? "po-tab po-tab--on" : "po-tab"} onClick={() => setView(v.key)}>
+                {v.label}
               </button>
             ))}
           </div>
@@ -89,8 +101,16 @@ export function ProgressOverview({
           </button>
         </div>
         <div className="po-overall" aria-hidden><i style={{ width: `${pct}%` }} /></div>
+        <div className="po-key" aria-label="Colour key">
+          <span><StatusDot status="your-turn" /> Your turn: the one thing for you to do next</span>
+          <span><StatusDot status="with-us" /> With us: our team&rsquo;s work</span>
+          <span><StatusDot status="up-next" /> Coming up: yours, later</span>
+          <span><StatusDot status="done" /> Done</span>
+        </div>
 
-        {view === "timeline" ? (
+        {view === "strings" ? (
+          <StringTheory workstreams={bssWorkstreams} milestoneById={milestoneById} taskStatus={taskStatus} currentDay={currentDay} onOpenTask={onOpenTask} />
+        ) : view === "timeline" ? (
           <>
             <div className="po-line">
               {stages.map((s, i) => {

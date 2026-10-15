@@ -830,6 +830,40 @@
 .po-card-title { font-size: 13.5px; line-height: 1.35; }
 .po-card-stage { font-family: var(--font-geist-mono), monospace; font-size: 10.5px; color: var(--pj-muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .po-empty { font-size: 12.5px; color: var(--pj-faint); padding: 6px 4px; }
+.po-key { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: -10px 0 20px; font-size: 12.5px; color: var(--pj-muted); }
+.po-key > span { display: inline-flex; align-items: center; gap: 7px; }
+.po-dot--up-next { background: var(--pj-ring); }
+
+/* String Theory */
+.st-wrap { overflow-x: auto; border: 1px solid var(--pj-line); border-radius: 18px; background: var(--pj-card); padding: 10px 6px 6px; }
+.st { display: block; min-width: 860px; width: 100%; height: auto; font-family: var(--font-geist), sans-serif; }
+.st-grid { stroke: var(--pj-line-soft); stroke-width: 1; }
+.st-week { font: 500 11px var(--font-geist-mono), monospace; fill: var(--pj-faint); }
+.st-golive { stroke: var(--pj-act); stroke-width: 1; stroke-dasharray: 3 4; opacity: 0.6; }
+.st-golive-label { font: 500 10.5px var(--font-geist-mono), monospace; fill: var(--pj-act); text-transform: uppercase; letter-spacing: 0.06em; }
+.st-name { font-size: 13px; font-weight: 500; fill: var(--pj-ink); }
+.st-count { font: 400 10.5px var(--font-geist-mono), monospace; fill: var(--pj-faint); }
+.st-lane--ahead .st-name { fill: var(--pj-muted); }
+.st-lane--done .st-name { fill: var(--pj-muted); }
+.st-string { stroke: var(--pj-track); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: stDraw 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.st-lane--now .st-string { stroke: color-mix(in srgb, var(--pj-act) 30%, var(--pj-track)); }
+.st-fill { stroke: var(--pj-act); stroke-width: 3; stroke-linecap: round; animation: stFill 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both; transform-box: fill-box; transform-origin: left center; }
+.st-thread { fill: none; stroke: var(--pj-ring); stroke-width: 1.2; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0.7; animation: stDraw 1100ms ease both; }
+.st-bead { stroke: var(--pj-card); stroke-width: 2; cursor: pointer; transform-box: fill-box; transform-origin: center; animation: stPop 500ms cubic-bezier(0.3, 1.4, 0.4, 1) both; transition: r 200ms ease; }
+.st-bead--done { fill: var(--pj-ink); }
+.st-bead--with-us { fill: #b58cff; }
+.st-bead--up-next { fill: var(--pj-card); stroke: var(--pj-ring); stroke-width: 1.5; }
+.st-bead--your-turn { fill: var(--pj-act); animation: stPop 500ms cubic-bezier(0.3, 1.4, 0.4, 1) both, stBeat 2.2s ease-in-out 1.2s infinite; }
+.st-today line { stroke: var(--pj-ink); stroke-width: 1.5; }
+.st-today rect { fill: var(--pj-ink); }
+.st-today text { font: 600 10px var(--font-geist), sans-serif; fill: var(--pj-bg); }
+.st-today { animation: poFade 600ms ease 700ms both; }
+.st-lane { animation: poFade 400ms ease both; }
+@keyframes stDraw { to { stroke-dashoffset: 0; } }
+@keyframes stFill { from { transform: scaleX(0); } }
+@keyframes stPop { from { transform: scale(0); } }
+@keyframes stBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+@media (prefers-reduced-motion: reduce) { .st-string, .st-fill, .st-thread, .st-bead, .st-bead--your-turn, .st-today, .st-lane { animation: none; stroke-dashoffset: 0; } }
 @keyframes poFade { from { opacity: 0; } }
 @keyframes poUp { from { opacity: 0; transform: translateY(40px); } }
 @media (prefers-reduced-motion: reduce) { .po-scrim, .po-sheet, .po-stage, .po-task, .po-overall > i, .po-stage--now .po-node { animation: none; } }

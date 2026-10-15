@@ -172,3 +172,24 @@ export const bssJourneyTotalDays = 42;
 export function buildBssJourneyStages(completedIds: Set<string>, currentDay: number): JourneyStage[] {
   return buildStagesFromTemplate(bssJourneyTemplate, completedIds, currentDay, "bss");
 }
+
+/** The parallel workstreams behind the five stages, with their weeks, for the
+    "String Theory" view in the progress panel. Groups and windows are the CSM
+    board's categories and due windows (csm-dashboard lib/bssTasks.ts), from the
+    agreement. `ongoing` runs past week 10 (support to month 8). `after` names
+    the workstreams that feed this one, drawn as threads between strings. */
+export type Workstream = { id: string; name: string; weekStart: number; weekEnd: number; ongoing?: boolean; taskIds: string[]; after?: string[] };
+
+const ids = (from: number, to: number) => Array.from({ length: to - from + 1 }, (_, i) => `bss-${String(from + i).padStart(3, "0")}`);
+
+export const bssWorkstreams: Workstream[] = [
+  { id: "intake", name: "Intake & kick-off", weekStart: 1, weekEnd: 2, taskIds: ids(1, 3) },
+  { id: "mapping", name: "Mapping & audit", weekStart: 1, weekEnd: 2, taskIds: ids(4, 7), after: ["intake"] },
+  { id: "crm", name: "CRM build", weekStart: 2, weekEnd: 4, taskIds: ids(8, 13), after: ["mapping"] },
+  { id: "website", name: "Website build", weekStart: 2, weekEnd: 4, taskIds: ids(14, 18), after: ["mapping"] },
+  { id: "channels", name: "Channel connections", weekStart: 5, weekEnd: 5, taskIds: ids(19, 21), after: ["crm", "website"] },
+  { id: "testing", name: "Testing & QA", weekStart: 6, weekEnd: 6, taskIds: ids(22, 26), after: ["channels"] },
+  { id: "launch", name: "Launch & automate", weekStart: 6, weekEnd: 6, taskIds: ids(27, 34), after: ["testing"] },
+  { id: "partners", name: "Partners, webinar & onboarding", weekStart: 7, weekEnd: 10, taskIds: ids(35, 37), after: ["launch"] },
+  { id: "support", name: "Refine & support", weekStart: 7, weekEnd: 10, ongoing: true, taskIds: ids(38, 41), after: ["launch"] },
+];
