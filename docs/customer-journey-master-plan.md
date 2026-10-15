@@ -29,6 +29,13 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
+> **Design-session note 2026-10-15, BSS SYNC (portal half built, NOT deployed):** two-way BSS task
+> sync with the CSM dashboard per `csm-dashboard/docs/journey-sync.md`. New endpoint
+> `POST /api/csm-sync/milestone` (shared `JOURNEY_SYNC_TOKEN`, never calls CSM back); BSS completions
+> from the client (`/complete`) and the admin checklist push to `{CSM_SYNC_URL}/api/journey-sync`
+> (3 s cap, failures ignored). New file `lib/csmSync.ts`. Goes live only on Jesse's OK, with the
+> production token set on both workers by the CSM session.
+>
 > **Design-session note 2026-10-15, JOURNEY/TEMPLATE CHANGE (BSS), re-run the importer:** BSS no
 > longer runs the Scale journey. It has its own 41-task journey, ids `bss-001`…`bss-041`, matching the
 > CSM dashboard's BSS template (`lib/bssJourney.ts`). Team-owned tasks are `awaitingTeam` and are

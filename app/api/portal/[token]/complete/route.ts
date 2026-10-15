@@ -1,4 +1,5 @@
 import { getPortalClientByToken, markMilestoneComplete } from "@/lib/portalClientStore";
+import { pushMilestoneToCsm } from "@/lib/csmSync";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
 
 const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
@@ -22,6 +23,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
     // 12,000 characters, so a spoken interview transcript (ob-0) is not cut short.
     const note = typeof body.note === "string" ? body.note.trim().slice(0, 12000) : undefined;
     await markMilestoneComplete(client.id, milestoneId, note);
+    // BSS: tell the CSM board (bounded wait, never fails this request).
+    if (client.clientType === "bss") await pushMilestoneToCsm({ journeyClientId: client.id, milestoneId, done: true, note });
 
     return Response.json({ ok: true });
   } catch (error) {

@@ -1,6 +1,7 @@
 import { requestCanAdmin } from "@/lib/adminAuth";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
-import { getCompletedMilestoneIds, setMilestoneDone } from "@/lib/portalClientStore";
+import { getCompletedMilestoneIds, getPortalClientById, setMilestoneDone } from "@/lib/portalClientStore";
+import { pushMilestoneToCsm } from "@/lib/csmSync";
 
 // The team's task checklist for one client: which tasks are done, and ticking
 // them off. Needed for tasks the team does ("With us"), which the client can't
@@ -30,7 +31,11 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     if (!body.milestoneId || !validMilestoneIds.has(body.milestoneId)) {
       return Response.json({ ok: false, error: "Unknown milestone id." }, { status: 400 });
     }
-    await setMilestoneDone(id, body.milestoneId, body.done !== false);
+    const done = body.done !== false;
+    await setMilestoneDone(id, body.milestoneId, done);
+    // BSS: tell the CSM board (bounded wait, never fails this request).
+    const client = await getPortalClientById(id);
+    if (client?.clientType === "bss") await pushMilestoneToCsm({ journeyClientId: id, milestoneId: body.milestoneId, done });
     return Response.json({ ok: true });
   } catch (error) {
     return Response.json({ ok: false, error: error instanceof Error ? error.message : "Could not update the task." }, { status: 500 });
