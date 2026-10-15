@@ -41,13 +41,19 @@ export function requestHasSyncToken(request: Request): boolean {
 export async function pushMilestoneToCsm(input: { journeyClientId: string; milestoneId: string; done: boolean; note?: string }): Promise<void> {
   const token = journeySyncToken();
   if (!token || !isBssMilestoneId(input.milestoneId)) return;
-  const base = (setting("CSM_SYNC_URL") ?? DEFAULT_CSM_URL).replace(/\/$/, "");
+  // On Cloudflare the call goes through the CSM_DASHBOARD service binding (a plain
+  // fetch to another workers.dev Worker on the same account is refused, error
+  // 1042). An explicit CSM_SYNC_URL (local dev) uses a plain fetch instead.
+  const explicitUrl = setting("CSM_SYNC_URL");
+  const base = (explicitUrl ?? DEFAULT_CSM_URL).replace(/\/$/, "");
+  const binding = (env as Record<string, unknown>).CSM_DASHBOARD as { fetch: typeof fetch } | undefined;
+  const send: typeof fetch = !explicitUrl && binding?.fetch ? binding.fetch.bind(binding) : fetch;
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), PUSH_TIMEOUT_MS);
   try {
     const body: Record<string, unknown> = { journeyClientId: input.journeyClientId, milestoneId: input.milestoneId, done: input.done };
     if (input.note && input.note.trim()) body.note = input.note.slice(0, 12000);
-    await fetch(`${base}/api/journey-sync`, {
+    await send(`${base}/api/journey-sync`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-journey-sync-token": token },
       body: JSON.stringify(body),

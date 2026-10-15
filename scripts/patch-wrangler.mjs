@@ -25,5 +25,13 @@ if (R2_READY) {
   delete cfg.r2_buckets;
 }
 
+// BSS journey sync: a Worker can't fetch() another workers.dev Worker on the
+// same account (Cloudflare error 1042), so the portal reaches the CSM dashboard
+// through a service binding (lib/csmSync.ts uses env.CSM_DASHBOARD).
+cfg.services = [
+  ...(cfg.services ?? []).filter((s) => s.binding !== "CSM_DASHBOARD"),
+  { binding: "CSM_DASHBOARD", service: "csm-dashboard" },
+];
+
 writeFileSync(path, JSON.stringify(cfg, null, 2));
-console.log(`patched dist/server/wrangler.json: ${cfg.name} (r2: ${R2_READY ? "on" : "stripped"})`);
+console.log(`patched dist/server/wrangler.json: ${cfg.name} (r2: ${R2_READY ? "on" : "stripped"}, service: CSM_DASHBOARD)`);
