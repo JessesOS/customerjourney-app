@@ -16,7 +16,7 @@ import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalD
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
-import { productBrandName, productTagline } from "@/lib/journeyEngine";
+import { productBrandName, productHidesIncentive, productTagline } from "@/lib/journeyEngine";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
@@ -556,7 +556,7 @@ export function ClientPortalExperience({
         ) : (
           <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} brandName={brandName} onStart={dismissWelcome} />
         ))}
-      {!showWelcome && showIncentive && <IncentiveModal onClose={dismissIncentive} />}
+      {!showWelcome && showIncentive && !productHidesIncentive[clientType] && <IncentiveModal onClose={dismissIncentive} />}
       {/* Presentation switch: one small dot, bottom right, demo route only. */}
       {isDemo && (
         <button

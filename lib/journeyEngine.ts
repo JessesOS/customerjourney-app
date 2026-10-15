@@ -30,6 +30,11 @@ export const productBrandName: Partial<Record<ClientType, string>> = {
   bss: "BSS Launchpad",
 };
 
+/** Products that never show the $200 "move fast" incentive popup. BSS: off (Jesse, 2026-10-15). */
+export const productHidesIncentive: Partial<Record<ClientType, true>> = {
+  bss: true,
+};
+
 /** A short line under a custom product's name on the welcome. */
 export const productTagline: Partial<Record<ClientType, string>> = {
   bss: "Onboarding & delivery",
