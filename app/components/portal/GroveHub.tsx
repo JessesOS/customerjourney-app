@@ -1,6 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { ProgressOverview } from "@/app/components/portal/ProgressOverview";
 import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
 import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 import { AURORA_PALETTES, WaveField } from "@/app/components/portal/AuroraHub";
@@ -21,6 +22,7 @@ import { AURORA_PALETTES, WaveField } from "@/app/components/portal/AuroraHub";
 const STEP = 68; // height of one rail step, so the progress line can be measured
 
 function days(s: JourneyStage, one = "Day", many = "Days") {
+  if (s.ongoing) return "";
   return s.dayStart === s.dayEnd ? `${one} ${s.dayStart}` : `${many} ${s.dayStart}–${s.dayEnd}`;
 }
 
@@ -52,6 +54,7 @@ export function GroveHub({
   onStartUpNext,
   onOpenTask,
   onSelectStage,
+  onOpenStageTask,
   taskStatus,
   tasksOpen,
   onToggleTasks,
@@ -75,6 +78,8 @@ export function GroveHub({
   onStartUpNext?: () => void;
   onOpenTask: (milestoneIndex: number) => void;
   onSelectStage: (stageId: string) => void;
+  /** Opens any task, in any stage (used by the progress view). */
+  onOpenStageTask?: (stageId: string, milestoneNumber: number) => void;
   taskStatus: (m: JourneyMilestone) => TaskDisplayStatus;
   tasksOpen: boolean;
   onToggleTasks: () => void;
@@ -90,6 +95,7 @@ export function GroveHub({
   const tasks = stage?.milestones ?? [];
   const pct = Math.max(0, Math.min(100, stagePct));
   const pal = AURORA_PALETTES[currentStageIndex % AURORA_PALETTES.length];
+  const [progressOpen, setProgressOpen] = useState(false);
 
   return (
     <div
@@ -98,10 +104,16 @@ export function GroveHub({
     >
       <header className="gv-header">
         <div className="gv-wrap" style={{ display: "flex", alignItems: "center", gap: 14, height: 64 }}>
-          <span style={{ fontWeight: 600, fontSize: 19, letterSpacing: "-0.03em" }}>{brand}</span>
+          <span style={{ fontWeight: 600, fontSize: 19, letterSpacing: "-0.03em", whiteSpace: "nowrap", flexShrink: 0 }}>{brand}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)" }} />
           <span className="gv-muted" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>{clientLabel}</span>
-          <span className="gv-mono" style={{ marginLeft: "auto", whiteSpace: "nowrap", flexShrink: 0 }}>
+          <button type="button" className="gv-progress-btn" onClick={() => setProgressOpen(true)} style={{ marginLeft: "auto" }}>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
+              <path d="M4 6h10M4 12h16M4 18h7" />
+            </svg>
+            <span className="gv-progress-label">Progress</span>
+          </button>
+          <span className="gv-mono gv-daycount" style={{ whiteSpace: "nowrap", flexShrink: 0 }}>
             Day {currentDay} / {totalDays} · <span style={{ color: "var(--pj-act)" }}>on track</span>
           </span>
           <span style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--pj-ink)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 600, fontSize: 13, flexShrink: 0 }}>
@@ -109,6 +121,18 @@ export function GroveHub({
           </span>
         </div>
       </header>
+
+      {progressOpen ? (
+        <ProgressOverview
+          stages={stages}
+          currentStageIndex={currentStageIndex}
+          currentDay={currentDay}
+          totalDays={totalDays}
+          taskStatus={taskStatus}
+          onOpenTask={(stageId, n) => { setProgressOpen(false); if (onOpenStageTask) onOpenStageTask(stageId, n); else onSelectStage(stageId); }}
+          onClose={() => setProgressOpen(false)}
+        />
+      ) : null}
 
       <div className="gv-wrap gv-main-row">
         {/* Journey rail: a stepper whose line draws down to the current stage */}
@@ -122,11 +146,12 @@ export function GroveHub({
               {stages.map((s, i) => {
                 const done = s.status === "done", now = i === currentStageIndex && !done;
                 const doneCount = s.milestones.filter((m) => m.status === "done").length;
+                const when = (one: string, many: string) => (s.ongoing ? "" : ` · ${days(s, one, many)}`);
                 const meta = done
-                  ? `All ${s.milestones.length} tasks done · ${days(s, "Days")}`
+                  ? `All ${s.milestones.length} tasks done${when("Days", "Days")}`
                   : now
-                    ? `${doneCount} of ${s.milestones.length} done · ${days(s, "Days")}`
-                    : `${s.milestones.length} tasks · ${days(s, "Day", "Day")}`;
+                    ? `${doneCount} of ${s.milestones.length} done${when("Days", "Days")}`
+                    : `${s.milestones.length} tasks${when("Day", "Day")}`;
                 return (
                   <button
                     key={s.id}
@@ -171,7 +196,7 @@ export function GroveHub({
             {orbSlot ? <div className="gv-orb">{orbSlot}</div> : null}
             <div className="gv-in" style={{ position: "relative" }}>
               <div className="gv-mono gv-kick" style={{ color: "rgba(255,255,255,0.72)" }}>
-                Stage {currentStageIndex + 1} of {stages.length} · {stage ? days(stage) : ""}
+                Stage {currentStageIndex + 1} of {stages.length}{stage && !stage.ongoing ? ` · ${days(stage)}` : ""}
               </div>
               <h2 className="gv-title">{stage?.name}</h2>
               {stage?.blurb ? <p style={{ fontSize: 17, lineHeight: 1.5, color: "rgba(255,255,255,0.82)", maxWidth: "52ch", margin: "0 0 4px" }}>{stage.blurb}</p> : null}

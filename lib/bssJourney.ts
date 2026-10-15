@@ -12,6 +12,7 @@ import { buildStagesFromTemplate, type JourneyStage, type StageTemplate } from "
 // portal admin. The client-facing wording is a first draft for Jesse to check.
 // Timings follow the agreement: weeks 1–2 onboarding, weeks 2–5 build, week 6
 // test and launch, weeks 7–10 partners and webinar, support to month 8.
+// Post-Launch is marked ongoing: no days shown, not in the header count.
 
 const team = { awaitingTeam: true } as const;
 
@@ -149,6 +150,7 @@ export const bssJourneyTemplate: StageTemplate[] = [
     name: "Post-Launch",
     dayStart: 43,
     dayEnd: 240,
+    ongoing: true,
     blurb: "Weeks 7 to 10 add partners, webinars and client onboarding. Then we review, tune and support you through month 8.",
     milestones: [
       { id: "bss-035", title: "Partner and referral tracking live", detail: "See which partners bring paying clients, from their link through to payment.", ...team },
@@ -163,7 +165,9 @@ export const bssJourneyTemplate: StageTemplate[] = [
   },
 ];
 
-export const bssJourneyTotalDays = 240;
+// The header counts the days to Go-Live (week 6); support after that is ongoing
+// and not counted (Jesse, 2026-10-15).
+export const bssJourneyTotalDays = 42;
 
 export function buildBssJourneyStages(completedIds: Set<string>, currentDay: number): JourneyStage[] {
   return buildStagesFromTemplate(bssJourneyTemplate, completedIds, currentDay, "bss");

@@ -990,6 +990,7 @@ export function ClientPortalExperience({
           overallPercent={progress}
           showRail={railLayout === "rail"}
           onSelectStage={(stageId) => openM(stageId, 1)}
+          onOpenStageTask={(stageId, n) => openM(stageId, n)}
           upNext={upNext}
           upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
           onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}

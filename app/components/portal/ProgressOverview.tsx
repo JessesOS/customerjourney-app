@@ -1,0 +1,155 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
+import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
+
+/**
+ * The client's progress at a glance (Jesse, 2026-10-15): opened from the
+ * "Progress" button in the portal header. Two views of the same tasks:
+ *   Timeline: the stages left to right with where they are now, and the
+ *             chosen stage's tasks underneath.
+ *   Board:    every task in columns by status (Your turn, With us, Coming up,
+ *             Done), like a Kanban board, read-only.
+ * Built from what the portal already knows (the journey and each task's
+ * status), so it moves as the team's ticks arrive from the CSM board.
+ * Colours ride the --pj-* tokens, so it follows the client's look.
+ */
+
+type View = "timeline" | "board";
+
+function when(s: JourneyStage) {
+  if (s.ongoing) return "Ongoing";
+  return s.dayStart === s.dayEnd ? `Day ${s.dayStart}` : `Days ${s.dayStart}–${s.dayEnd}`;
+}
+
+const COLUMNS: { key: TaskDisplayStatus; label: string }[] = [
+  { key: "your-turn", label: "Your turn" },
+  { key: "with-us", label: "With us" },
+  { key: "up-next", label: "Coming up" },
+  { key: "done", label: "Done" },
+];
+
+function StatusDot({ status }: { status: TaskDisplayStatus }) {
+  return <span className={`po-dot po-dot--${status}`} aria-hidden />;
+}
+
+export function ProgressOverview({
+  stages,
+  currentStageIndex,
+  currentDay,
+  totalDays,
+  taskStatus,
+  onOpenTask,
+  onClose,
+}: {
+  stages: JourneyStage[];
+  currentStageIndex: number;
+  currentDay: number;
+  totalDays: number;
+  taskStatus: (m: JourneyMilestone) => TaskDisplayStatus;
+  onOpenTask: (stageId: string, milestoneIndex: number) => void;
+  onClose: () => void;
+}) {
+  const [view, setView] = useState<View>("timeline");
+  const [picked, setPicked] = useState(Math.max(0, currentStageIndex));
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, [onClose]);
+
+  const all = stages.flatMap((s) => s.milestones.map((m, mi) => ({ m, mi, stage: s, status: taskStatus(m) })));
+  const doneCount = all.filter((t) => t.status === "done").length;
+  const pct = all.length ? Math.round((doneCount / all.length) * 100) : 0;
+  const stage = stages[picked];
+
+  return (
+    <div className="po-scrim" onClick={onClose} role="presentation">
+      <div className="po-sheet" role="dialog" aria-modal="true" aria-label="Your progress" onClick={(e) => e.stopPropagation()}>
+        <div className="po-head">
+          <div>
+            <div className="po-kick">Your progress</div>
+            <div className="po-sum">
+              {doneCount} of {all.length} tasks done · Day {currentDay} of {totalDays} to go-live
+            </div>
+          </div>
+          <div className="po-toggle" role="tablist" aria-label="View">
+            {(["timeline", "board"] as const).map((v) => (
+              <button key={v} type="button" role="tab" aria-selected={view === v} className={view === v ? "po-tab po-tab--on" : "po-tab"} onClick={() => setView(v)}>
+                {v === "timeline" ? "Timeline" : "Board"}
+              </button>
+            ))}
+          </div>
+          <button type="button" className="po-close" onClick={onClose} aria-label="Close">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden><path d="M6 6l12 12M18 6L6 18" /></svg>
+          </button>
+        </div>
+        <div className="po-overall" aria-hidden><i style={{ width: `${pct}%` }} /></div>
+
+        {view === "timeline" ? (
+          <>
+            <div className="po-line">
+              {stages.map((s, i) => {
+                const n = s.milestones.length;
+                const d = s.milestones.filter((m) => taskStatus(m) === "done").length;
+                const state = s.status === "done" ? "done" : i === currentStageIndex ? "now" : "later";
+                return (
+                  <button key={s.id} type="button" onClick={() => setPicked(i)} className={`po-stage po-stage--${state}${i === picked ? " po-stage--picked" : ""}`} style={{ animationDelay: `${i * 70}ms` }}>
+                    <span className="po-node" aria-hidden>{state === "done" ? "✓" : i + 1}</span>
+                    <span className="po-stage-name">{s.name}</span>
+                    <span className="po-stage-when">{when(s)}</span>
+                    <span className="po-stage-bar" aria-hidden><i style={{ width: `${n ? (d / n) * 100 : 0}%` }} /></span>
+                    <span className="po-stage-count">{d} of {n} done</span>
+                    {state === "now" ? <span className="po-here">You are here</span> : null}
+                  </button>
+                );
+              })}
+            </div>
+            {stage ? (
+              <div className="po-tasks" key={stage.id}>
+                {stage.milestones.map((m, mi) => {
+                  const st = taskStatus(m);
+                  return (
+                    <button key={m.id} type="button" className="po-task" onClick={() => onOpenTask(stage.id, mi + 1)} style={{ animationDelay: `${mi * 30}ms` }}>
+                      <StatusDot status={st} />
+                      <span className="po-task-title">{m.title}</span>
+                      <span className={`po-chip po-chip--${st}`}>{COLUMNS.find((c) => c.key === st)?.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
+          </>
+        ) : (
+          <div className="po-board">
+            {COLUMNS.map((col) => {
+              const items = all.filter((t) => t.status === col.key);
+              return (
+                <div key={col.key} className="po-col">
+                  <div className="po-col-head">
+                    <StatusDot status={col.key} />
+                    {col.label}
+                    <span className="po-col-n">{items.length}</span>
+                  </div>
+                  <div className="po-col-body">
+                    {items.length === 0 ? <div className="po-empty">Nothing here</div> : null}
+                    {items.map((t) => (
+                      <button key={t.m.id} type="button" className="po-card" onClick={() => onOpenTask(t.stage.id, t.mi + 1)}>
+                        <span className="po-card-title">{t.m.title}</span>
+                        <span className="po-card-stage">{t.stage.name}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

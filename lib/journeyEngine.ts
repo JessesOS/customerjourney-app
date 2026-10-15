@@ -88,6 +88,7 @@ export type JourneyStage = {
   name: string;
   dayStart: number;
   dayEnd: number;
+  ongoing?: boolean;
   status: StageStatus;
   blurb?: string;
   milestones: JourneyMilestone[];
@@ -131,6 +132,9 @@ export type StageTemplate = {
   name: string;
   dayStart: number;
   dayEnd: number;
+  /** An open-ended stage (support after launch): shown without days, and
+      outside the day count in the portal header. */
+  ongoing?: boolean;
   blurb?: string;
   milestones: MilestoneTemplate[];
   statusNotes: string[];
@@ -206,6 +210,7 @@ export function buildStagesFromTemplate(
       name: stageTemplate.name,
       dayStart: stageTemplate.dayStart,
       dayEnd: stageTemplate.dayEnd,
+      ongoing: stageTemplate.ongoing,
       blurb: stageTemplate.blurb,
       statusNotes: stageTemplate.statusNotes,
       status,
