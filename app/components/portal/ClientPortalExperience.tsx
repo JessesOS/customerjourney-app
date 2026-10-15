@@ -645,7 +645,8 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{brandName ?? (designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" || designSkin === "groveaurora" ? (isRespond ? "CRM" : "Scale") : isRespond ? "crm" : "scale")}</span>
+          {/* The name, top left, is the way home: back to the journey page. */}
+          <button type="button" className="pj-home-link" onClick={backToJourney} title="Home" style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)" }}>{brandName ?? (designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" || designSkin === "groveaurora" ? (isRespond ? "CRM" : "Scale") : isRespond ? "crm" : "scale")}</button>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>

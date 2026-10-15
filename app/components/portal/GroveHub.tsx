@@ -104,7 +104,15 @@ export function GroveHub({
     >
       <header className="gv-header">
         <div className="gv-wrap" style={{ display: "flex", alignItems: "center", gap: 14, height: 64 }}>
-          <span style={{ fontWeight: 600, fontSize: 19, letterSpacing: "-0.03em", whiteSpace: "nowrap", flexShrink: 0 }}>{brand}</span>
+          <button
+            type="button"
+            className="pj-home-link"
+            onClick={() => { setProgressOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            title="Home"
+            style={{ fontWeight: 600, fontSize: 19, letterSpacing: "-0.03em" }}
+          >
+            {brand}
+          </button>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)" }} />
           <span className="gv-muted" style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>{clientLabel}</span>
           <button type="button" className="gv-progress-btn" onClick={() => setProgressOpen(true)} style={{ marginLeft: "auto" }}>

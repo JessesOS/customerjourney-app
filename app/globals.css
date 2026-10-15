@@ -774,6 +774,9 @@
 [data-pj-scheme="aurora"] .vi-orb-glow { background: radial-gradient(closest-side, rgba(140, 100, 255, 0.5), rgba(255, 79, 163, 0.24) 55%, rgba(140, 100, 255, 0) 72%); }
 [data-pj-scheme="aurora"] .vi-orb-ring { border-color: rgba(109, 75, 255, 0.3); }
 
+.pj-home-link { background: transparent; border: 0; padding: 0; margin: 0; cursor: pointer; color: inherit; font-family: inherit; white-space: nowrap; flex-shrink: 0; transition: opacity 250ms ease; }
+.pj-home-link:hover { opacity: 0.7; }
+
 /* Progress button in the Grove header, and the progress view it opens */
 .gv-progress-btn { display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0; background: var(--pj-card); border: 1px solid var(--pj-line); border-radius: 999px; padding: 7px 14px 7px 11px; cursor: pointer; color: var(--pj-ink); font: 500 13px var(--font-geist), sans-serif; transition: border-color 300ms ease, background 300ms ease; }
 .gv-progress-btn:hover { border-color: var(--pj-act); color: var(--pj-act); }
