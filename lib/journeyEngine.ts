@@ -24,6 +24,17 @@ export const productLockedLook: Partial<Record<ClientType, "groveaurora">> = {
   bss: "groveaurora",
 };
 
+/** Products that carry their own name in the portal (welcome, header, browser
+    tab) instead of the house product name. BSS: "BSS Launchpad" (Jesse, 2026-10-15). */
+export const productBrandName: Partial<Record<ClientType, string>> = {
+  bss: "BSS Launchpad",
+};
+
+/** A short line under a custom product's name on the welcome. */
+export const productTagline: Partial<Record<ClientType, string>> = {
+  bss: "Onboarding & delivery",
+};
+
 export const clientTypeLabels: Record<ClientType, string> = {
   meta: "Scale — Meta ads",
   google: "Scale — Google Ads",

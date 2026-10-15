@@ -16,11 +16,11 @@ import { AURORA_PALETTES, WaveField } from "@/app/components/portal/AuroraHub";
 const HOLD_MS = 2600;
 const EXIT_MS = 700;
 
-export function WelcomeAurora({ brand, stages, onStart }: { brand: "scale" | "respond"; stages: string[]; onStart: () => void }) {
+export function WelcomeAurora({ brand, stages, onStart, brandName, tagline }: { brand: "scale" | "respond"; stages: string[]; onStart: () => void; brandName?: string; tagline?: string }) {
   const [i, setI] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const timer = useRef<number | undefined>(undefined);
-  const wordmark = brand === "respond" ? "CRM" : "Scale"; // the second product is shown as "CRM" (Jesse 2026-10-12)
+  const wordmark = brandName ?? (brand === "respond" ? "CRM" : "Scale"); // the second product is shown as "CRM" (Jesse 2026-10-12); custom products pass their own name
 
   useEffect(() => {
     if (stages.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -45,6 +45,7 @@ export function WelcomeAurora({ brand, stages, onStart }: { brand: "scale" | "re
       <WaveField key={i} seed={i} animate lines={64} className="aw-field" />
       <div className="aw-copy">
         <h1 className="aw-wordmark">{wordmark}</h1>
+        {tagline ? <div className="aw-tagline">{tagline}</div> : null}
         <div className="aw-word" key={i} data-xray="Stage word · CSS, drawn in code" data-xray-tool="code">
           <span>{stages[i]}</span>
         </div>

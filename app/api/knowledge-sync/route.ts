@@ -6,7 +6,7 @@ export async function POST(request: Request) {
   // and rewrites the D1 snapshot — team only.
   if (!requestCanAdmin(request)) {
     return Response.json(
-      { ok: false, error: "Refreshing the library is limited to the RT Digital team." },
+      { ok: false, error: "Refreshing the library is limited to the team." },
       { status: 403 },
     );
   }

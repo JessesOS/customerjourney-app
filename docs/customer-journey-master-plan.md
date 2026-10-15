@@ -29,6 +29,14 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
+> **Design-session note 2026-10-15 (later):** the BSS product shows as "BSS Launchpad" (welcome,
+> header, browser tab; `productBrandName` in `lib/journeyEngine.ts`), tagline "Onboarding &
+> delivery". On Jesse's instruction "RT Digital" is removed from client-facing portal wording on
+> every product (task titles bd-3 and bd-g1, the ob-crm step, the intake form helpers, ask-AI
+> answers, page titles, the handoff watermark). NOT changed: the legal terms text
+> (`lib/termsText.ts`, which names RT Digital as the contracting party), the booking and CRM
+> URLs on rt-d.com / rtdigital.agency, and internal-only screens.
+>
 > **Design-session note 2026-10-15, NEW PRODUCT:** `client_type = "bss"`, shown as "BSS Fin
 > Creighton", for the first signed client (Bitcoin Success School). Runs the Scale journey as a
 > Meta-only client sees it, same task ids. Admin can create it; webhook provisioning cannot yet

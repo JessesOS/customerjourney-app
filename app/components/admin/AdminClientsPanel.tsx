@@ -441,7 +441,7 @@ export function AdminClientsPanel() {
           </div>
           <h1 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 26, fontWeight: 800, letterSpacing: "-0.01em", margin: "0 0 10px" }}>Team access only</h1>
           <p style={{ color: "var(--pj-muted)", fontSize: 14, lineHeight: 1.6, margin: "0 0 22px" }}>
-            This is the RT Digital client-management area. Ask a teammate who already has access to send you an <b style={{ color: "var(--pj-ink)", fontWeight: 650 }}>invite link</b> — opening it unlocks this browser automatically. Been given an access code instead? Paste it below.
+            This is the client-management area. Ask a teammate who already has access to send you an <b style={{ color: "var(--pj-ink)", fontWeight: 650 }}>invite link</b> — opening it unlocks this browser automatically. Been given an access code instead? Paste it below.
           </p>
           <form onSubmit={handleUnlock} style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
             <input

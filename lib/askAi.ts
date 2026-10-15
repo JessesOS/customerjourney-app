@@ -22,7 +22,7 @@ const scaleAsk: Record<string, AskItem[]> = {
     },
     {
       q: "Who sees what I submit?",
-      a: "Only the RT Digital team working on your account. Your details go straight into building your campaigns and AI receptionist — nothing is shared outside your project.",
+      a: "Only the team working on your account. Your details go straight into building your campaigns and AI receptionist — nothing is shared outside your project.",
     },
   ],
   build: [
@@ -79,7 +79,7 @@ const respondAsk: Record<string, AskItem[]> = {
     },
     {
       q: "Who sees what I submit?",
-      a: "Only the RT Digital team working on your account. Your details go straight into setting up your AI receptionist — nothing is shared outside your project.",
+      a: "Only the team working on your account. Your details go straight into setting up your AI receptionist — nothing is shared outside your project.",
     },
   ],
   testing: [

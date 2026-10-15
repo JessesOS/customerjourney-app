@@ -6,7 +6,7 @@ import { AdminClientsPanel } from "@/app/components/admin/AdminClientsPanel";
 // render itself is unreliable on Cloudflare Workers (searchParams / process.env
 // aren't dependable at RSC render time), so enforcement lives in the API routes.
 export const metadata = {
-  title: "Portal Clients · RT Digital",
+  title: "Portal Clients",
 };
 
 export default function AdminClientsPage() {

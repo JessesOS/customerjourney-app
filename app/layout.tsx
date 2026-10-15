@@ -81,8 +81,8 @@ export const metadata: Metadata = {
   // Neutral default — portal and admin pages set their own titles. The old
   // "Strategize ×" title leaked into every tab (client-visible); gone per
   // Jesse 2026-08-06.
-  title: "RT Digital",
-  description: "Client portal by RT Digital.",
+  title: "Client Portal",
+  description: "Your client portal.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

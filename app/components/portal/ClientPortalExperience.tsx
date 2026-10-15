@@ -16,6 +16,7 @@ import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalD
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
+import { productBrandName, productTagline } from "@/lib/journeyEngine";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
@@ -172,6 +173,9 @@ export function ClientPortalExperience({
   const [uploadingId, setUploadingId] = useState<string | null>(null);
 
   const isRespond = clientType === "respond";
+  // The name the client sees: a custom product's own name, else the house product name.
+  const brandName = productBrandName[clientType];
+  const brandTagline = productTagline[clientType];
   const activeJourneyTemplate = isRespond ? respondJourneyTemplate : journeyTemplate;
   const activeJourneyTotalDays = isRespond ? respondJourneyTotalDays : journeyTotalDays;
 
@@ -544,13 +548,13 @@ export function ClientPortalExperience({
     >
       {showWelcome &&
         (welcomeVersion === "funnel" && designSkin !== "groveaurora" ? (
-          <WelcomeFunnel brand={isRespond ? "respond" : "scale"} color={designSkin === "grove" ? "#0f6b4b" : undefined} onStart={dismissWelcome} />
+          <WelcomeFunnel brand={isRespond ? "respond" : "scale"} brandName={brandName} color={designSkin === "grove" ? "#0f6b4b" : undefined} onStart={dismissWelcome} />
         ) : welcomeVersion === "aurora" || (welcomeVersion === "funnel" && designSkin === "groveaurora") ? (
-          <WelcomeAurora brand={isRespond ? "respond" : "scale"} stages={journeyStages.map((s) => s.name)} onStart={dismissWelcome} />
+          <WelcomeAurora brand={isRespond ? "respond" : "scale"} brandName={brandName} tagline={brandTagline} stages={journeyStages.map((s) => s.name)} onStart={dismissWelcome} />
         ) : welcomeVersion === "marquee" ? (
-          <WelcomeMarquee brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
+          <WelcomeMarquee brand={isRespond ? "respond" : "scale"} brandName={brandName} onStart={dismissWelcome} />
         ) : (
-          <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} onStart={dismissWelcome} />
+          <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} brandName={brandName} onStart={dismissWelcome} />
         ))}
       {!showWelcome && showIncentive && <IncentiveModal onClose={dismissIncentive} />}
       {/* Presentation switch: one small dot, bottom right, demo route only. */}
@@ -627,7 +631,7 @@ export function ClientPortalExperience({
             padding: "15px 24px",
           }}
         >
-          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" || designSkin === "groveaurora" ? (isRespond ? "CRM" : "Scale") : isRespond ? "crm" : "scale"}</span>
+          <span style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)", flexShrink: 0 }}>{brandName ?? (designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" || designSkin === "groveaurora" ? (isRespond ? "CRM" : "Scale") : isRespond ? "crm" : "scale")}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
@@ -857,7 +861,7 @@ export function ClientPortalExperience({
       {/* NEW DESIGN (handoff package) — full structural hub, home view */}
       {view === "home" && designSkin === "handoff" && (
         <HandoffHub
-          brand={isRespond ? "crm" : "scale"}
+          brand={brandName ?? (isRespond ? "crm" : "scale")}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
@@ -889,7 +893,7 @@ export function ClientPortalExperience({
       {/* COBALT DESIGN (motion redesign) — white gallery hub, home view */}
       {view === "home" && designSkin === "cobalt" && (
         <CobaltHub
-          brand={isRespond ? "CRM" : "Scale"}
+          brand={brandName ?? (isRespond ? "CRM" : "Scale")}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
@@ -924,7 +928,7 @@ export function ClientPortalExperience({
       {view === "home" && (designSkin === "aurora" || designSkin === "calm") && (
         <AuroraHub
           calm={designSkin === "calm"}
-          brand={isRespond ? "CRM" : "Scale"}
+          brand={brandName ?? (isRespond ? "CRM" : "Scale")}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
@@ -960,7 +964,7 @@ export function ClientPortalExperience({
       {view === "home" && (designSkin === "grove" || designSkin === "groveaurora") && (
         <GroveHub
           aurora={designSkin === "groveaurora"}
-          brand={isRespond ? "CRM" : "Scale"}
+          brand={brandName ?? (isRespond ? "CRM" : "Scale")}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}

@@ -1,7 +1,7 @@
 import { ClientPortalExperience } from "@/app/components/portal/ClientPortalExperience";
 
 export const metadata = {
-  title: "Client Portal · RT Digital",
+  title: "Client Portal",
 };
 
 // Code-only demo (no DB): starts as a brand-new client — day 1, nothing

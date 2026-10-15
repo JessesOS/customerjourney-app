@@ -573,6 +573,7 @@
 .aw-field { position: absolute; inset: 0; width: 100%; height: 100%; animation: awFade 1200ms ease both; -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 55%); mask-image: linear-gradient(90deg, transparent 0%, #000 55%); }
 .aw-copy { position: absolute; left: clamp(24px, 9vw, 150px); top: 50%; transform: translateY(-56%); max-width: 90vw; }
 .aw-wordmark { font-weight: 500; font-size: clamp(72px, 11vw, 168px); line-height: 0.95; letter-spacing: -0.035em; margin: 0; animation: axRise 800ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.aw-tagline { margin-top: clamp(8px, 1.2vw, 14px); font-size: clamp(13px, 1.2vw, 16px); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.72); animation: axRise 800ms cubic-bezier(0.2, 0.7, 0.2, 1) 120ms both; }
 .aw-word { position: relative; display: inline-block; margin-top: clamp(10px, 1.6vw, 22px); font-weight: 500; font-size: clamp(40px, 6vw, 92px); line-height: 1; letter-spacing: -0.03em; padding: 0 0.12em 0.06em 0.04em; }
 .aw-word::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 46%; border-radius: 4px; background: linear-gradient(90deg, var(--ax-a), var(--ax-b)); transform-origin: left center; animation: awBar 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .aw-word > span { position: relative; display: inline-block; animation: axRise 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }

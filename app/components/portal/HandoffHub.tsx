@@ -156,9 +156,6 @@ export function HandoffHub({
           <span style={{ fontWeight: 800, fontSize: 18, letterSpacing: "-0.02em" }}>{brand}</span>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)" }} />
           <span style={{ fontSize: 13.5, color: "var(--pj-muted)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", minWidth: 0 }}>{clientLabel}</span>
-          <span aria-hidden style={{ ...monoLabel(14), position: "absolute", left: "50%", transform: "translateX(-50%)", letterSpacing: "0.26em", opacity: 0.55, color: "var(--pj-faint)" }}>
-            RT DIGITAL
-          </span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 14, flexShrink: 0 }}>
             <span style={{ fontSize: 13, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
               Day {currentDay} / {totalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>

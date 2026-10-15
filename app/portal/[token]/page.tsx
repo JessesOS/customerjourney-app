@@ -9,12 +9,16 @@ import {
   getPortalClientByToken,
   isPortalThemeVariant,
 } from "@/lib/portalClientStore";
-import { productLockedLook, type ClientType } from "@/lib/journeyEngine";
+import { productBrandName, productLockedLook, type ClientType } from "@/lib/journeyEngine";
 import { respondJourneyTotalDays } from "@/lib/respondJourney";
 
-export const metadata = {
-  title: "Client Portal · RT Digital",
-};
+// The browser tab: a custom product shows its own name (BSS: "BSS Launchpad").
+export async function generateMetadata({ params }: { params: Promise<{ token: string }> }) {
+  const { token } = await params;
+  const client = await getPortalClientByToken(token);
+  const brand = client ? productBrandName[(client.clientType as ClientType) ?? "meta-google"] : undefined;
+  return { title: brand ?? "Client Portal" };
+}
 
 export default async function PortalPage({
   params,
