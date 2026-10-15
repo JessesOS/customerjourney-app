@@ -29,7 +29,7 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
-> **Design-session note 2026-10-15, BSS SYNC (portal half DEPLOYED 4d310b92 on Jesse's "go on the sync"; dormant until JOURNEY_SYNC_TOKEN is set on the worker):** two-way BSS task
+> **Design-session note 2026-10-15, BSS SYNC (portal half DEPLOYED 4d310b92 on Jesse's "go on the sync"; now LIVE and verified both ways on prod "Fin Test" 2026-10-15; the portal reaches CSM through service binding `CSM_DASHBOARD`, set in `scripts/patch-wrangler.mjs`, because Cloudflare blocks worker-to-worker fetch on workers.dev, error 1042):** two-way BSS task
 > sync with the CSM dashboard per `csm-dashboard/docs/journey-sync.md`. New endpoint
 > `POST /api/csm-sync/milestone` (shared `JOURNEY_SYNC_TOKEN`, never calls CSM back); BSS completions
 > from the client (`/complete`) and the admin checklist push to `{CSM_SYNC_URL}/api/journey-sync`
