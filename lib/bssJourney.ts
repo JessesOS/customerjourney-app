@@ -40,7 +40,9 @@ export const bssJourneyTemplate: StageTemplate[] = [
           "What would a great result look like 90 days from now?",
         ],
       },
-      { id: "bss-002", title: "Kick-off call & portal walkthrough", detail: "We set you up here, walk through your journey together, and agree the next steps.", ...team },
+      // Not needed (Jesse, 2026-10-16). Hidden rather than deleted, so the id stays
+      // valid for the CSM sync. Delete `hidden: true` to bring it back.
+      { id: "bss-002", title: "Kick-off call & portal walkthrough", detail: "We set you up here, walk through your journey together, and agree the next steps.", ...team, hidden: true },
       {
         id: "bss-003",
         title: "Invite us to your accounts",

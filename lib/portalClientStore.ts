@@ -20,7 +20,7 @@ function totalMilestoneCountFor(clientType: ClientType): number {
     return respondJourneyTemplate.reduce((sum, stage) => sum + stage.milestones.length, 0);
   }
   if (clientType === "bss") {
-    return bssJourneyTemplate.reduce((sum, stage) => sum + stage.milestones.length, 0);
+    return bssJourneyTemplate.reduce((sum, stage) => sum + stage.milestones.filter((m) => !m.hidden).length, 0);
   }
   return journeyTemplate.reduce(
     (sum, stage) => sum + stage.milestones.filter((m) => milestoneVisibleFor(m, clientType)).length,
