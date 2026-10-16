@@ -11,7 +11,8 @@
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
-    "sync:live-dashboard": "node scripts/sync-live-dashboard.mjs"
+    "sync:live-dashboard": "node scripts/sync-live-dashboard.mjs",
+    "check:fin": "tsx scripts/check-fin-journey.ts"
   },
   "dependencies": {
     "@elevenlabs/client": "^1.27.0",
@@ -39,7 +40,8 @@
     "typescript": "5.9.3",
     "vinext": "0.0.50",
     "vite": "8.0.13",
-    "wrangler": "4.92.0"
+    "wrangler": "4.92.0",
+    "tsx": "4.22.1"
   },
   "type": "module"
 }
