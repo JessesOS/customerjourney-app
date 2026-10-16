@@ -62,7 +62,10 @@ export const productHiddenTaskVideos: Partial<Record<ClientType, string[]>> = {
 /** A product-only note shown at the top of a task. BSS Meta ads only: CRM
     access isn't ready yet (Jesse, 2026-10-16). */
 export const productTaskNotes: Partial<Record<ClientType, Record<string, string>>> = {
-  "bss-meta": { "ob-crm": "CRM access is coming very soon." },
+  "bss-meta": {
+    "ob-crm": "CRM access is coming very soon.",
+    "ob-6": "You can do this once your CRM access is ready. We'll let you know.",
+  },
 };
 
 /** A short line under a custom product's name on the welcome. */
