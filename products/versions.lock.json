@@ -1,0 +1,18 @@
+{
+  "scale": {
+    "version": "2026-10-16.1",
+    "sha256": "73630f1c44b74e64538fd4e17f24c9c90c077493687ca041203ccda70aea327d"
+  },
+  "respond": {
+    "version": "2026-10-16.1",
+    "sha256": "bb9bb1c043a03c3981dc0cf19f1883d45ae150d736e8e10bf2baa7ff7e04e4a8"
+  },
+  "bss": {
+    "version": "2026-10-16.1",
+    "sha256": "693c09e99f5e3012bf4a8d802f89db405f19621d2d27e54f891948f5d005b12b"
+  },
+  "website": {
+    "version": "2026-10-16.1",
+    "sha256": "dc3d10c4a5b29762a5a086937db10da183085a05b99651757f6eda0cced63b89"
+  }
+}

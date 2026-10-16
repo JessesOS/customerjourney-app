@@ -12,7 +12,10 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate",
     "sync:live-dashboard": "node scripts/sync-live-dashboard.mjs",
-    "check:fin": "tsx scripts/check-fin-journey.ts"
+    "check:fin": "tsx scripts/check-fin-journey.ts",
+    "products:check": "tsx scripts/products/check.ts",
+    "products:render": "tsx scripts/products/render.ts",
+    "products:lock": "tsx scripts/products/check.ts --write-lock"
   },
   "dependencies": {
     "@elevenlabs/client": "^1.27.0",
