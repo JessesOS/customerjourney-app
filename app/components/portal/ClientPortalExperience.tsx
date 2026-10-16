@@ -17,7 +17,7 @@ import { bssJourneyTemplate, bssJourneyTotalDays, buildBssJourneyStages } from "
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
-import { productBrandName, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline, productTaskNotes } from "@/lib/journeyEngine";
+import { productBrandName, productHiddenTaskImportant, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline, productTaskNotes } from "@/lib/journeyEngine";
 import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
 import { bssStringPlan, scaleMetaStringPlan } from "@/lib/stringPlans";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
@@ -1291,7 +1291,7 @@ export function ClientPortalExperience({
                   </div>
                 )}
 
-                {m.important && (
+                {m.important && !productHiddenTaskImportant[clientType]?.includes(m.id) && (
                   <div style={{ marginTop: 18, display: "flex", gap: 11, borderRadius: "var(--pj-radius-sm)", border: "1px solid color-mix(in srgb, var(--pj-act) 40%, transparent)", background: "var(--pj-act-fill)", padding: "13px 16px" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pj-act)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
                       <path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />

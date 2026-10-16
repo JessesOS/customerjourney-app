@@ -66,7 +66,14 @@ export const productTaskNotes: Partial<Record<ClientType, Record<string, string>
     "ob-crm": "CRM access is coming very soon.",
     "ob-6": "You can do this once your CRM access is ready. We'll let you know.",
     "ob-6b": "You can do this once your CRM access is ready. We'll let you know.",
+    "ob-6c": "Not needed at this point. If you need a phone number, it's billed at cost, along with your SMS and call charges.",
   },
+};
+
+/** Tasks whose "Important" box is hidden for a product, where it no longer
+    applies. BSS Meta ads only: the payment warning (Jesse, 2026-10-16). */
+export const productHiddenTaskImportant: Partial<Record<ClientType, string[]>> = {
+  "bss-meta": ["ob-6c"],
 };
 
 /** A short line under a custom product's name on the welcome. */
