@@ -10,6 +10,7 @@ import { buildStagesFromTemplate, type JourneyStage, type StageTemplate } from "
 // Jesse, 2026-10-15: every task is shown to Fin for now. Tasks the team does
 // carry `awaitingTeam` and show as "With us"; the team ticks them off in the
 // portal admin. The client-facing wording is a first draft for Jesse to check.
+// Fin uses Calendly, not Cal.com as the agreement says (Jesse, 2026-10-16).
 // Timings follow the agreement: weeks 1–2 onboarding, weeks 2–5 build, week 6
 // test and launch, weeks 7–10 partners and webinar, support to month 8.
 // Post-Launch is marked ongoing: no days shown, not in the header count.
@@ -43,7 +44,7 @@ export const bssJourneyTemplate: StageTemplate[] = [
       {
         id: "bss-003",
         title: "Share your access",
-        detail: "Give us access to your existing CRM, your GoHighLevel sub-account, Cal.com (as admin), your domain, your hosting and your social accounts.",
+        detail: "Give us access to your existing CRM, your GoHighLevel sub-account, your Calendly account, your domain, your hosting and your social accounts.",
         notePrompt: "Anything we should know about your access?",
         notePlaceholder: "Optional. Please don't put passwords here; we'll arrange access with you directly.",
         important: "Please don't share passwords in this portal. Tick this off once you've given us access, and tell us here if anything is stuck.",
@@ -57,7 +58,7 @@ export const bssJourneyTemplate: StageTemplate[] = [
       },
       { id: "bss-005", title: "Audit of your current CRM and GoHighLevel account", detail: "We review what you have and write up what to keep, migrate or replace.", ...team },
       { id: "bss-006", title: "Map where your enquiries come from today", detail: "Every channel a new enquiry arrives through, listed and checked.", ...team },
-      { id: "bss-007", title: "Map your partner, payment, webinar and Cal.com setup", detail: "How partners and payouts work today, how payment is taken after sales calls, your webinar platform, and Cal.com.", ...team },
+      { id: "bss-007", title: "Map your partner, payment, webinar and Calendly setup", detail: "How partners and payouts work today, how payment is taken after sales calls, your webinar platform, and Calendly.", ...team },
     ],
     statusNotes: [
       "Nothing is built until your customer journey is mapped and agreed with you.",
@@ -76,7 +77,7 @@ export const bssJourneyTemplate: StageTemplate[] = [
       { id: "bss-010", title: "Move and tidy your contacts", detail: "Your contacts migrated, cleaned, de-duplicated and tagged by where they came from.", ...team },
       { id: "bss-011", title: "Smart lists and lead scoring", detail: "Hot, warm and cold leads sorted automatically.", ...team },
       { id: "bss-012", title: "Business phone number and missed-call text-back", detail: "A missed call gets a text back straight away.", ...team },
-      { id: "bss-013", title: "Calendar, booking, confirmations and reminders", detail: "Connected to Cal.com, without doubled-up reminders.", ...team },
+      { id: "bss-013", title: "Calendar, booking, confirmations and reminders", detail: "Connected to Calendly, without doubled-up reminders.", ...team },
       {
         id: "bss-014",
         title: "Review your new website's core pages",
