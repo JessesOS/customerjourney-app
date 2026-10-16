@@ -55,8 +55,6 @@ export const bssJourneyTemplate: StageTemplate[] = [
           "Calendly: invite admin@allconvos.ai as an admin.",
           "Your domain: at your domain provider, give admin@allconvos.ai access (often called delegate or shared access).",
           "Your website hosting: add admin@allconvos.ai as a user with admin access.",
-          "Facebook and Instagram: in Meta Business Suite, add admin@allconvos.ai as a person with full control.",
-          "YouTube: add admin@allconvos.ai as a manager of your channel.",
         ],
         notePrompt: "Anything we should know?",
         notePlaceholder: "Optional. For example, which ones are done, or one that won't let you invite us.",
