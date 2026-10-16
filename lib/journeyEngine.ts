@@ -30,9 +30,11 @@ export const productBrandName: Partial<Record<ClientType, string>> = {
   bss: "BSS Launchpad",
 };
 
-/** Products that never show the $200 "move fast" incentive popup. BSS: off (Jesse, 2026-10-15). */
+/** Products that never show the $200 "move fast" incentive popup. BSS: off
+    (Jesse, 2026-10-15). Scale Meta-only: off (Jesse, 2026-10-16). */
 export const productHidesIncentive: Partial<Record<ClientType, true>> = {
   bss: true,
+  meta: true,
 };
 
 /** A short line under a custom product's name on the welcome. */
