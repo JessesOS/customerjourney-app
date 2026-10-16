@@ -13,10 +13,9 @@ export const ENVS = {
     d1Name: "scale-onboarding-portal-prod",
     d1Id: "e9ff232a-b1dc-41f4-b22e-d80551dc1f9b",
     r2Bucket: "scale-onboarding-portal-uploads",
-    // BSS journey sync (paused): a Worker can't fetch() another workers.dev
-    // Worker on the same account (Cloudflare error 1042), so the portal reaches
-    // the CSM dashboard through a service binding (lib/csmSync.ts).
-    services: [{ binding: "CSM_DASHBOARD", service: "csm-dashboard" }],
+    // The CSM_DASHBOARD service binding (BSS journey sync) was retired on
+    // 2026-10-16 with the sync itself: the back office now lives in this app.
+    services: [],
     vars: {},
     out: "dist/server/wrangler.json",
   },
