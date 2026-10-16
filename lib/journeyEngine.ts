@@ -54,9 +54,9 @@ export const productIntroVideo: Partial<Record<ClientType, { src: string; poster
 };
 
 /** Tasks whose "Watch how it works" video is hidden for a product.
-    BSS Meta ads only: the mobile-app walkthrough (Jesse, 2026-10-16). */
+    BSS Meta ads only: the mobile-app, calendar and social walkthroughs (Jesse, 2026-10-16). */
 export const productHiddenTaskVideos: Partial<Record<ClientType, string[]>> = {
-  "bss-meta": ["ob-4"],
+  "bss-meta": ["ob-4", "ob-6", "ob-6b"],
 };
 
 /** A product-only note shown at the top of a task. BSS Meta ads only: CRM
@@ -65,6 +65,7 @@ export const productTaskNotes: Partial<Record<ClientType, Record<string, string>
   "bss-meta": {
     "ob-crm": "CRM access is coming very soon.",
     "ob-6": "You can do this once your CRM access is ready. We'll let you know.",
+    "ob-6b": "You can do this once your CRM access is ready. We'll let you know.",
   },
 };
 
