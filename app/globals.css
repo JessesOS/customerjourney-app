@@ -714,6 +714,8 @@
 .gv-small { background: var(--pj-ink); color: #fff; font: 500 13px var(--font-geist), sans-serif; border: 0; border-radius: 9px; padding: 8px 16px; cursor: pointer; }
 .gv-view { background: transparent; border: 0; cursor: pointer; font: 500 13px var(--font-geist), sans-serif; color: var(--pj-muted); }
 .gv-chip { font-family: var(--font-geist-mono), monospace; font-size: 11px; color: var(--pj-faint); border: 1px solid var(--pj-line); border-radius: 7px; padding: 4px 8px; white-space: nowrap; }
+.gv-chip--link { background: transparent; cursor: pointer; }
+.gv-chip--link:hover { border-color: var(--pj-act); color: var(--pj-act); }
 .gv-note { background: var(--pj-rail); border-radius: 20px; padding: 20px 22px; margin-top: 16px; }
 .gv-in { animation: gvIn 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 @keyframes gvIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }

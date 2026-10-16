@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { ProgressOverview } from "@/app/components/portal/ProgressOverview";
 import type { StringPlan } from "@/lib/stringPlans";
 import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
@@ -97,16 +97,25 @@ export function GroveHub({
   orbSlot?: ReactNode;
   children?: ReactNode;
 }) {
-  const stage = stages[currentStageIndex];
+  // Clicking a stage in the rail shows that stage's own page (band, tasks, notes)
+  // rather than opening its first task (Jesse, 2026-10-16). It follows the
+  // client's current stage until they pick another.
+  const [shown, setShown] = useState(currentStageIndex);
+  useEffect(() => setShown(currentStageIndex), [currentStageIndex]);
+  const isCurrent = shown === currentStageIndex;
+  const stage = stages[shown] ?? stages[currentStageIndex];
   const tasks = stage?.milestones ?? [];
+  const shownDone = tasks.filter((m) => m.status === "done").length;
+  const openTask = (mi: number) => (isCurrent ? onOpenTask(mi) : onOpenStageTask ? onOpenStageTask(stage.id, mi + 1) : onSelectStage(stage.id));
+  const showStage = (i: number) => { setShown(i); window.scrollTo({ top: 0, behavior: "smooth" }); };
   // The client's list shows their own tasks; the team's work in this stage is
   // one summary line (Jesse, 2026-10-16). The full picture is in Progress.
   const myTasks = tasks.map((m, mi) => ({ m, mi })).filter((t) => !t.m.awaitingTeam);
   const teamTasks = tasks.filter((m) => m.awaitingTeam);
   const teamDone = teamTasks.filter((m) => m.status === "done").length;
   const myDone = myTasks.filter((t) => t.m.status === "done").length;
-  const pct = Math.max(0, Math.min(100, stagePct));
-  const pal = AURORA_PALETTES[currentStageIndex % AURORA_PALETTES.length];
+  const pct = Math.max(0, Math.min(100, isCurrent ? stagePct : tasks.length ? (shownDone / tasks.length) * 100 : 0));
+  const pal = AURORA_PALETTES[shown % AURORA_PALETTES.length];
   const [progressOpen, setProgressOpen] = useState(false);
 
   return (
@@ -119,7 +128,7 @@ export function GroveHub({
           <button
             type="button"
             className="pj-home-link"
-            onClick={() => { setProgressOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            onClick={() => { setProgressOpen(false); showStage(currentStageIndex); }}
             title="Home"
             style={{ fontWeight: 600, fontSize: 19, letterSpacing: "-0.03em" }}
           >
@@ -178,8 +187,9 @@ export function GroveHub({
                   <button
                     key={s.id}
                     type="button"
-                    onClick={() => onSelectStage(s.id)}
-                    className={now ? "gv-step gv-step--now" : "gv-step"}
+                    onClick={() => showStage(i)}
+                    aria-current={i === shown ? "page" : undefined}
+                    className={i === shown ? "gv-step gv-step--now" : "gv-step"}
                     style={{ height: STEP, animationDelay: `${120 + i * 70}ms` }}
                   >
                     <Node state={done ? "done" : now ? "current" : "future"} />
@@ -210,24 +220,40 @@ export function GroveHub({
         <main className="gv-main" key={stage?.id}>
           {/* The one field of colour: where you are, and the one thing to do */}
           <section className="gv-band">
-            {aurora ? <WaveField key={currentStageIndex} seed={currentStageIndex} animate sparks={false} lines={38} className="gv-field" /> : null}
+            {aurora ? <WaveField key={shown} seed={shown} animate sparks={false} lines={38} className="gv-field" /> : null}
             <svg className="gv-hills" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden data-xray="Hills · SVG, drawn in code" data-xray-tool="code">
               <path d="M0 150 C 180 70, 330 90, 520 140 S 900 190, 1200 90 V220 H0Z" fill="rgba(255,255,255,0.05)" />
               <path d="M0 190 C 220 120, 420 150, 640 180 S 1000 140, 1200 170 V220 H0Z" fill="rgba(255,255,255,0.06)" />
             </svg>
-            {orbSlot ? <div className="gv-orb">{orbSlot}</div> : null}
+            {orbSlot && isCurrent ? <div className="gv-orb">{orbSlot}</div> : null}
             <div className="gv-in" style={{ position: "relative" }}>
               <div className="gv-mono gv-kick" style={{ color: "rgba(255,255,255,0.72)" }}>
-                Stage {currentStageIndex + 1} of {stages.length}{stage && !stage.ongoing ? ` · ${days(stage)}` : ""}
+                Stage {shown + 1} of {stages.length}{stage && !stage.ongoing ? ` · ${days(stage)}` : ""}
               </div>
               <h2 className="gv-title">{stage?.name}</h2>
               {stage?.blurb ? <p style={{ fontSize: 17, lineHeight: 1.5, color: "rgba(255,255,255,0.82)", maxWidth: "52ch", margin: "0 0 4px" }}>{stage.blurb}</p> : null}
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 14 }}>
                 <span className="gv-bar"><i className="gv-grow" style={{ width: `${pct}%` }} /></span>
-                <span className="gv-mono" style={{ color: "rgba(255,255,255,0.82)" }}>{stageDoneCount} / {tasks.length} done</span>
+                <span className="gv-mono" style={{ color: "rgba(255,255,255,0.82)" }}>{isCurrent ? stageDoneCount : shownDone} / {tasks.length} done</span>
               </div>
             </div>
 
+            {!isCurrent ? (
+              <div className="gv-next gv-in" style={{ animationDelay: "140ms" }}>
+                <div style={{ minWidth: 0 }}>
+                  <div className="gv-mono gv-kick" style={{ color: "var(--pj-muted)" }}>{stage.status === "done" ? "Complete" : "Coming up"}</div>
+                  <div style={{ fontSize: 22, fontWeight: 600, lineHeight: 1.2, letterSpacing: "-0.02em", marginTop: 8 }}>
+                    {stage.status === "done" ? "All done here" : stage.ongoing ? "This stage starts after go-live" : `This stage starts on day ${stage.dayStart}`}
+                  </div>
+                  <p style={{ fontSize: 15.5, lineHeight: 1.5, color: "var(--pj-muted)", margin: "6px 0 0", maxWidth: "54ch" }}>
+                    {stage.status === "done" ? "Every task in this stage is complete." : "Here’s what’s ahead. Nothing for you to do here yet."}
+                  </p>
+                </div>
+                <button type="button" onClick={() => showStage(currentStageIndex)} className="gv-primary">
+                  Back to {stages[currentStageIndex]?.name ?? "your stage"} <span aria-hidden>→</span>
+                </button>
+              </div>
+            ) : (
             <div className="gv-next gv-in" style={{ animationDelay: "140ms" }}>
               <div style={{ minWidth: 0 }}>
                 <div className="gv-mono gv-kick" style={{ color: "var(--pj-muted)" }}>Up next for you</div>
@@ -242,6 +268,7 @@ export function GroveHub({
                 </button>
               ) : null}
             </div>
+            )}
           </section>
 
           {/* All tasks in this stage: expands in place */}
@@ -255,7 +282,7 @@ export function GroveHub({
                 })}
               </span>
               <span className="gv-mono" style={{ marginLeft: "auto", whiteSpace: "nowrap" }}>
-                {teamTasks.length ? `${myDone} / ${myTasks.length}` : `${stageDoneCount} / ${tasks.length}`} done · <span style={{ color: "var(--pj-ink)" }}>{tasksOpen ? "Hide" : "Show"}</span>
+                {teamTasks.length ? `${myDone} / ${myTasks.length}` : `${shownDone} / ${tasks.length}`} done · <span style={{ color: "var(--pj-ink)" }}>{tasksOpen ? "Hide" : "Show"}</span>
               </span>
               <span className="gv-chev" style={{ transform: tasksOpen ? "rotate(180deg)" : "none" }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -277,11 +304,11 @@ export function GroveHub({
                       <span style={{ fontSize: 15.5, fontWeight: now ? 600 : 400, color: done ? "var(--pj-muted)" : "var(--pj-ink)", minWidth: 0 }}>{m.title}</span>
                       <span style={{ marginLeft: "auto", flexShrink: 0 }}>
                         {done ? (
-                          <button type="button" onClick={() => onOpenTask(mi)} className="gv-view">View</button>
+                          <button type="button" onClick={() => openTask(mi)} className="gv-view">View</button>
                         ) : now ? (
-                          <button type="button" onClick={() => onOpenTask(mi)} className="gv-small">Start</button>
+                          <button type="button" onClick={() => openTask(mi)} className="gv-small">Start</button>
                         ) : (
-                          <span className="gv-chip">{st === "with-us" ? "With us" : "Up next"}</span>
+                          <button type="button" onClick={() => openTask(mi)} className="gv-chip gv-chip--link">{st === "with-us" ? "With us" : "Up next"}</button>
                         )}
                       </span>
                     </div>
@@ -310,7 +337,7 @@ export function GroveHub({
             </div>
           ) : null}
 
-          {children}
+          {isCurrent ? children : null}
         </main>
       </div>
     </div>
