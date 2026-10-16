@@ -148,7 +148,9 @@ function LiveInterview({ agentId, storageKey, onChange, onFallback }: { agentId:
         onConnect: () => setPhase("asking"),
         onModeChange: ({ mode }) => setPhase((p) => (p === "done" || p === "idle" ? p : mode === "speaking" ? "asking" : "listening")),
         onMessage: (m) => {
-          const text = (m.message ?? "").trim();
+          // The voice model's delivery cues ("[warmly]", "[laughs]") steer how she sounds;
+          // they aren't words, so they stay out of the transcript.
+          const text = (m.message ?? "").replace(/\[[^\]]{1,30}\]\s*/g, "").replace(/\s{2,}/g, " ").trim();
           if (!text) return;
           const who: Line["who"] = m.role === "user" ? "user" : "agent";
           setLines((prev) => [...prev, { who, text }]);
