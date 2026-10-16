@@ -93,6 +93,12 @@ export function GroveHub({
 }) {
   const stage = stages[currentStageIndex];
   const tasks = stage?.milestones ?? [];
+  // The client's list shows their own tasks; the team's work in this stage is
+  // one summary line (Jesse, 2026-10-16). The full picture is in Progress.
+  const myTasks = tasks.map((m, mi) => ({ m, mi })).filter((t) => !t.m.awaitingTeam);
+  const teamTasks = tasks.filter((m) => m.awaitingTeam);
+  const teamDone = teamTasks.filter((m) => m.status === "done").length;
+  const myDone = myTasks.filter((t) => t.m.status === "done").length;
   const pct = Math.max(0, Math.min(100, stagePct));
   const pal = AURORA_PALETTES[currentStageIndex % AURORA_PALETTES.length];
   const [progressOpen, setProgressOpen] = useState(false);
@@ -233,15 +239,15 @@ export function GroveHub({
           {/* All tasks in this stage: expands in place */}
           <div className="gv-card gv-in" style={{ animationDelay: "220ms", overflow: "hidden" }}>
             <button type="button" onClick={onToggleTasks} aria-expanded={tasksOpen} className="gv-toggle">
-              <span className="gv-toggle-title">All tasks in this stage</span>
+              <span className="gv-toggle-title">{teamTasks.length ? "Your tasks in this stage" : "All tasks in this stage"}</span>
               <span className="gv-dots" aria-hidden>
-                {tasks.map((m) => {
+                {myTasks.map(({ m }) => {
                   const st = taskStatus(m);
                   return <span key={m.id} className={st === "done" ? "gv-dot gv-dot--done" : st === "your-turn" ? "gv-dot gv-dot--now" : "gv-dot"} />;
                 })}
               </span>
               <span className="gv-mono" style={{ marginLeft: "auto", whiteSpace: "nowrap" }}>
-                {stageDoneCount} / {tasks.length} done · <span style={{ color: "var(--pj-ink)" }}>{tasksOpen ? "Hide" : "Show"}</span>
+                {teamTasks.length ? `${myDone} / ${myTasks.length}` : `${stageDoneCount} / ${tasks.length}`} done · <span style={{ color: "var(--pj-ink)" }}>{tasksOpen ? "Hide" : "Show"}</span>
               </span>
               <span className="gv-chev" style={{ transform: tasksOpen ? "rotate(180deg)" : "none" }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -249,13 +255,16 @@ export function GroveHub({
                 </svg>
               </span>
             </button>
+            {tasksOpen && teamTasks.length > 0 && myTasks.length === 0 ? (
+              <div className="gv-row gv-row--team">Nothing for you to do in this stage.</div>
+            ) : null}
             {tasksOpen
-              ? tasks.map((m, mi) => {
+              ? myTasks.map(({ m, mi }, k) => {
                   const st = taskStatus(m);
                   const done = st === "done", now = st === "your-turn";
                   return (
-                    <div key={m.id} className={now ? "gv-row gv-row--now" : "gv-row"} style={{ animationDelay: `${mi * 35}ms` }}>
-                      <span className="gv-mono" style={{ width: 22, color: "var(--pj-faint)" }}>{String(mi + 1).padStart(2, "0")}</span>
+                    <div key={m.id} className={now ? "gv-row gv-row--now" : "gv-row"} style={{ animationDelay: `${k * 35}ms` }}>
+                      <span className="gv-mono" style={{ width: 22, color: "var(--pj-faint)" }}>{String(k + 1).padStart(2, "0")}</span>
                       <Node state={done ? "done" : now ? "current" : "future"} />
                       <span style={{ fontSize: 15.5, fontWeight: now ? 600 : 400, color: done ? "var(--pj-muted)" : "var(--pj-ink)", minWidth: 0 }}>{m.title}</span>
                       <span style={{ marginLeft: "auto", flexShrink: 0 }}>
@@ -271,6 +280,14 @@ export function GroveHub({
                   );
                 })
               : null}
+            {teamTasks.length > 0 ? (
+              <div className="gv-row gv-row--team">
+                <span className="gv-team-dot" aria-hidden />
+                <span>
+                  Our team: {teamDone} of {teamTasks.length} done this stage
+                </span>
+              </div>
+            ) : null}
           </div>
 
           {/* Happening with us */}

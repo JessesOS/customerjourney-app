@@ -519,8 +519,9 @@ export function ClientPortalExperience({
     }
     const stage = viewingStage;
     const idx = stage ? stage.milestones.findIndex((mm) => mm.id === milestoneId) : -1;
-    if (stage && idx >= 0 && idx < stage.milestones.length - 1) {
-      setMilestone(idx + 2);
+    const nextMine = stage ? stage.milestones.findIndex((mm, i) => i > idx && !mm.awaitingTeam) : -1;
+    if (stage && idx >= 0 && nextMine !== -1) {
+      setMilestone(nextMine + 1);
       window.scrollTo(0, 0);
     } else {
       backToJourney();
@@ -1166,8 +1167,15 @@ export function ClientPortalExperience({
           {(() => {
             const m: JourneyMilestone | undefined = viewingStage.milestones[milestone - 1];
             if (!m) return null;
-            const isLast = milestone === viewingStage.milestones.length;
-            const isFirst = milestone === 1;
+            // The client steps through their own tasks only; the team's tasks
+            // ("With us") are skipped. Products without team tasks are unchanged.
+            const mine = viewingStage.milestones.map((mm, i) => ({ mm, n: i + 1 })).filter((x) => !x.mm.awaitingTeam).map((x) => x.n);
+            const isTeamTask = Boolean(m.awaitingTeam);
+            const pos = mine.indexOf(milestone);
+            const isLast = isTeamTask || pos === mine.length - 1;
+            const isFirst = isTeamTask || pos <= 0;
+            const nextN = pos >= 0 && pos < mine.length - 1 ? mine[pos + 1] : undefined;
+            const prevN = pos > 0 ? mine[pos - 1] : undefined;
             const inlineForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
             const savedContent = liveContent[m.id];
             const noteValue = noteDrafts[m.id] ?? notes[m.id] ?? "";
@@ -1178,7 +1186,7 @@ export function ClientPortalExperience({
             return (
               <div>
                 <div style={{ fontSize: 10.5, letterSpacing: "0.16em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-act)", marginBottom: 12 }}>
-                  {viewingStage.name} · Task {milestone} of {viewingStage.milestones.length}
+                  {isTeamTask ? `${viewingStage.name} · Our team’s task` : `${viewingStage.name} · Task ${pos + 1} of ${mine.length}`}
                 </div>
                 <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 10px" }}>{m.title}</h3>
                 <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: 0, maxWidth: "54ch", lineHeight: 1.55 }}>{m.detail}</p>
@@ -1413,7 +1421,7 @@ export function ClientPortalExperience({
                         type="button"
                         onClick={() => {
                           approveMilestone(m.id, "Skipped in the demo.");
-                          if (!isLast) setMilestone(milestone + 1);
+                          if (nextN) setMilestone(nextN);
                           else backToJourney();
                           window.scrollTo(0, 0);
                         }}
@@ -1457,7 +1465,7 @@ export function ClientPortalExperience({
                 {!hasCustomFlow && !(m.interview && m.status !== "done" && !noteValue.trim()) && (
                   <div style={{ marginTop: 30, display: "flex", alignItems: "center", gap: 14, borderTop: "1px solid var(--pj-line)", paddingTop: 22 }}>
                     {!isFirst && (
-                      <button onClick={() => setMilestone(milestone - 1)} style={{ background: "transparent", border: "1px solid var(--pj-line)", color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 14, borderRadius: "var(--pj-radius-sm)", padding: "12px 18px", cursor: "pointer" }}>
+                      <button onClick={() => prevN && setMilestone(prevN)} style={{ background: "transparent", border: "1px solid var(--pj-line)", color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 14, borderRadius: "var(--pj-radius-sm)", padding: "12px 18px", cursor: "pointer" }}>
                         ← Previous
                       </button>
                     )}
@@ -1484,8 +1492,8 @@ export function ClientPortalExperience({
                             setJustCompletedStageId(completedStageId);
                             setView("complete");
                             window.scrollTo(0, 0);
-                          } else if (!isLast) {
-                            setMilestone(milestone + 1);
+                          } else if (nextN) {
+                            setMilestone(nextN);
                           } else {
                             backToJourney();
                           }
@@ -1498,7 +1506,7 @@ export function ClientPortalExperience({
                       })()
                     ) : (
                       <button
-                        onClick={() => (isLast ? backToJourney() : setMilestone(milestone + 1))}
+                        onClick={() => (isLast || !nextN ? backToJourney() : setMilestone(nextN))}
                         style={{ marginLeft: isFirst ? "auto" : 0, background: "transparent", border: "1px solid var(--pj-act)", color: "var(--pj-act)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: "pointer" }}
                       >
                         {isLast ? "Back to journey" : "Next task"} <span style={{ fontSize: 17 }}>→</span>

@@ -678,7 +678,7 @@
 .gv-step-arrow { margin-left: auto; flex-shrink: 0; color: var(--pj-faint); opacity: 0; transform: translateX(-4px); transition: opacity 300ms ease, transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1); }
 .gv-step:hover .gv-step-arrow, .gv-step--now .gv-step-arrow { opacity: 1; transform: translateX(0); }
 .gv-node { position: relative; z-index: 1; width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-sizing: border-box; background: var(--pj-bg); border: 2px solid var(--pj-ring); }
-.gv-node--done { background: var(--pj-act); border-color: var(--pj-act); }
+.gv-node--done { background: var(--pj-ink); border-color: var(--pj-ink); }
 .gv-node--current { background: #fff; border: 6px solid var(--pj-act); animation: gvPulse 2.6s ease-out infinite; }
 .gv-main { flex: 1; min-width: 0; }
 .gv-band { position: relative; overflow: hidden; border-radius: 28px; background: linear-gradient(180deg, #11734f 0%, #0c5a40 100%); color: #fff; padding: clamp(24px, 4vw, 48px); animation: gvBand 800ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
@@ -701,14 +701,16 @@
 .gv-toggle-title { font-size: 15.5px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
 .gv-dots { display: flex; align-items: center; gap: 5px; }
 .gv-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--pj-track); }
-.gv-dot--done { background: var(--pj-act); }
-.gv-dot--now { background: var(--pj-ink); }
+.gv-dot--done { background: var(--pj-ink); }
+.gv-dot--now { background: var(--pj-act); }
 .gv-chev { width: 26px; height: 26px; border-radius: 8px; border: 1px solid var(--pj-line); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1); }
 .gv-row { display: flex; align-items: center; gap: 12px; padding: 14px 22px; border-top: 1px solid var(--pj-line-soft); animation: gvIn 450ms cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .gv-row--now { background: var(--pj-turn-tint); }
 .gv-row .gv-node { background: #fff; }
-.gv-row .gv-node--done { background: var(--pj-act); }
+.gv-row .gv-node--done { background: var(--pj-ink); }
 .gv-row .gv-node--current { animation: none; }
+.gv-row--team { gap: 10px; font-size: 14px; color: var(--pj-muted); background: transparent; animation: none; }
+.gv-team-dot { width: 9px; height: 9px; border-radius: 50%; background: #b58cff; flex-shrink: 0; margin-left: 2px; }
 .gv-small { background: var(--pj-ink); color: #fff; font: 500 13px var(--font-geist), sans-serif; border: 0; border-radius: 9px; padding: 8px 16px; cursor: pointer; }
 .gv-view { background: transparent; border: 0; cursor: pointer; font: 500 13px var(--font-geist), sans-serif; color: var(--pj-muted); }
 .gv-chip { font-family: var(--font-geist-mono), monospace; font-size: 11px; color: var(--pj-faint); border: 1px solid var(--pj-line); border-radius: 7px; padding: 4px 8px; white-space: nowrap; }
