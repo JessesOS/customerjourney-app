@@ -69,6 +69,7 @@ export const productTaskNotes: Partial<Record<ClientType, Record<string, string>
     "ob-6b": "You can do this once your CRM access is ready. We'll let you know.",
     "ob-6c": "Not needed at this point. If you need a phone number, it's billed at cost, along with your SMS and call charges.",
     "ts-1": "Your CRM access is coming soon. You can check this once it's set up.",
+    "ts-2": "This opens once your CRM is connected and live. We'll let you know when it's ready to test.",
     "ts-3": "Booking isn't open yet. We'll give you access and let you know when it's ready.",
   },
 };
