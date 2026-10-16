@@ -235,6 +235,14 @@ export function ClientPortalExperience({
   // First-visit welcome landing (Imprint-style). Shown until dismissed once
   // on this device PER CLIENT (a global flag meant a second client on the same
   // browser never saw their welcome — caught testing 2026-08-10);
+  // Tell admin the client opened their portal. Skipped in a browser signed in
+  // to admin, so Jesse's own checks don't count as the client's visits.
+  useEffect(() => {
+    if (!portalToken) return;
+    try { if (window.localStorage.getItem("scaleAdminToken")) return; } catch {}
+    fetch(`/api/portal/${portalToken}/opened`, { method: "POST", keepalive: true }).catch(() => {});
+  }, [portalToken]);
+
   // ?welcome=1 forces it back for review.
   const welcomedKey = `pjWelcomed:${portalToken ?? "demo"}`;
   const [showWelcome, setShowWelcome] = useState(false);

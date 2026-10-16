@@ -7,6 +7,17 @@ import type { ClientType } from "@/lib/journeyEngine";
 import { useEffect, useMemo, useState } from "react";
 import { decodePortalFileValue, onboardingFormById, formatFieldValue, type PortalFormResponses } from "@/lib/onboardingForm";
 
+/** "just now", "5 min ago", "3 h ago", "2 days ago". */
+function timeAgo(iso: string): string {
+  const mins = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
+  if (mins < 1) return "just now";
+  if (mins < 60) return `${mins} min ago`;
+  const hours = Math.round(mins / 60);
+  if (hours < 24) return `${hours} h ago`;
+  const days = Math.round(hours / 24);
+  return `${days} day${days === 1 ? "" : "s"} ago`;
+}
+
 type PortalClient = {
   id: string;
   name: string;
@@ -22,6 +33,8 @@ type PortalClient = {
   phone?: string | null;
   productCode?: string | null;
   journeyState?: string;
+  firstOpenedAt?: string | null;
+  lastOpenedAt?: string | null;
   currentDay: number;
   completedMilestoneCount: number;
   totalMilestoneCount: number;
@@ -604,7 +617,7 @@ export function AdminClientsPanel() {
                           </button>
                         </>
                       )}
-                      {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : client.clientType === "bss" ? 42 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
+                      {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : client.clientType === "bss" ? 42 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)} · {client.lastOpenedAt ? `opened ${timeAgo(client.lastOpenedAt)}${client.firstOpenedAt && client.firstOpenedAt !== client.lastOpenedAt ? ` (first ${timeAgo(client.firstOpenedAt)})` : ""}` : "not opened yet"}
                       {client.journeyState && client.journeyState !== "active" && (
                         <>
                           {" · "}

@@ -1,4 +1,4 @@
-import { and, eq } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { getDb } from "@/db";
 import {
   portalClients,
@@ -57,6 +57,16 @@ export async function listPortalClients() {
       };
     })
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+}
+
+/** The client opened their portal: keep the first time, move the last. */
+export async function recordPortalOpen(clientId: string) {
+  const db = getDb();
+  const now = new Date().toISOString();
+  await db
+    .update(portalClients)
+    .set({ firstOpenedAt: sql`coalesce(${portalClients.firstOpenedAt}, ${now})`, lastOpenedAt: now })
+    .where(eq(portalClients.id, clientId));
 }
 
 // "grove" is the clean green look from the motion redesign, the default for new

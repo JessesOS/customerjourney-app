@@ -87,6 +87,11 @@ export const portalClients = sqliteTable(
     goLiveAt: text("go_live_at"),
     // "active" | "paused" | "completed" | "cancelled" (Decision 5).
     journeyState: text("journey_state").notNull().default("active"),
+    // When the client first and last opened their portal link (Jesse,
+    // 2026-10-16). Recorded by the page itself, so link previews don't count,
+    // and skipped in a browser signed in to admin.
+    firstOpenedAt: text("first_opened_at"),
+    lastOpenedAt: text("last_opened_at"),
     createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
     updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
   },
