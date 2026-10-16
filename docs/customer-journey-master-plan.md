@@ -29,6 +29,12 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
+> **Design-session note 2026-10-16, SCHEMA (additive, Jesse approved, DEPLOYED a5262f4):**
+> `portal_clients.first_opened_at` / `last_opened_at` (nullable text, migration
+> `drizzle/0014_portal_opened.sql`, applied to prod D1 before the deploy). The portal page
+> posts `/api/portal/[token]/opened` on load (link previews don't count; browsers signed in to
+> admin are skipped). Admin's client list shows "opened … / not opened yet". No email ping yet.
+>
 > **Design-session note 2026-10-16, UPLOADS + BSS META NOTES (no template change, importer
 > unaffected):** an upload task (`hasUpload`, e.g. `ob-7` past leads) now takes up to 20 CSVs.
 > Each file is its own `portal_milestone_uploads` row, with its body in R2 at
