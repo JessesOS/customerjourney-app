@@ -1,7 +1,12 @@
 # Deploying to Production (Cloudflare Workers)
 
-Current as of 2026-07-12. This replaces the old Codex Sites publish flow
+Current as of 2026-10-16. This replaces the old Codex Sites publish flow
 (`publishing-to-codex-sites.md`, now superseded).
+
+> **A real client is live (Fin Creighton, since 2026-10-16).**
+> - Every prod deploy needs Jesse's explicit OK. Run `npm run check:fin` first.
+> - Never put Cloudflare Access on the prod workers.dev address. It is every client's link.
+> - Test on **staging** first (see "Staging" below).
 
 **Live URL:** `https://scale-onboarding-portal.jesse-b4e.workers.dev`
 **Host:** Cloudflare Workers (account: jesse@allconvos.ai) · **DB:** Cloudflare D1
@@ -23,19 +28,26 @@ From the repo root (`~/Master/AI/customerjourney-app`):
    ```bash
    npm run build
    ```
-3. **Patch the generated `wrangler.json`** — the build emits a config with placeholder values
+3. **Patch the generated `wrangler.json`.** The build emits a config with placeholder values
    (`name` defaults to `site-creator-vinext-starter`, `database_id` to a zeroed placeholder).
-   The patch is a committed script (since 2026-08-08, per master plan §5.5):
+   The patch is a committed script; environments live in `scripts/deploy-envs.mjs`:
    ```bash
    node scripts/patch-wrangler.mjs
    ```
 
-4. **Apply any new migrations to production D1** (schema changes only — most deploys skip this):
+4. **Apply any new migrations to production D1.** Schema changes only, and most deploys skip
+   this. Additive only (new tables): the script refuses `ALTER`/`DROP` on `portal_*` tables.
    ```bash
-   npx wrangler d1 execute scale-onboarding-portal-prod --remote --file drizzle/<new-migration>.sql
+   node scripts/d1-migrate.mjs --env prod --file drizzle/<new-migration>.sql --yes-prod
    ```
-   Migrations 0000–0011 are applied as of 2026-08-08. Verify with
-   `... --remote --command "PRAGMA table_info(portal_clients)"`.
+   Migrations 0000–0014 are applied to prod as of 2026-10-16.
+
+   Before a prod migration or a risky deploy, note a restore point:
+   ```bash
+   npx wrangler d1 time-travel info scale-onboarding-portal-prod
+   npx wrangler deployments list --name scale-onboarding-portal
+   ```
+   Rollback: `npx wrangler rollback <version-id> --name scale-onboarding-portal`.
 
 5. **Deploy:**
    ```bash
@@ -53,6 +65,26 @@ From the repo root (`~/Master/AI/customerjourney-app`):
   right day, milestones render.
 - `/portal/demo` is code-only (no DB) — a quick sanity check that the build itself is healthy.
 
+## Staging (since 2026-10-16)
+
+A private copy for testing, with its own D1 (`scale-onboarding-portal-staging`), its own R2
+bucket (`scale-onboarding-portal-staging-uploads`) and its own secrets. It holds synthetic
+data only.
+
+- **URL:** `https://scale-onboarding-portal-staging.jesse-b4e.workers.dev`
+- **Access:** Cloudflare Access protects it once set up. That's fine here: staging is never a client's link.
+
+```bash
+npm run build
+node scripts/patch-wrangler.mjs --env staging          # writes dist/server/wrangler.staging.json only
+node scripts/d1-migrate.mjs --env staging --file drizzle/<new>.sql   # if there's a migration
+npx wrangler deploy --config dist/server/wrangler.staging.json
+```
+
+- The staging patch refuses to run if any setting points at a prod resource. It never writes the prod config file.
+- If `dist/server/wrangler.json` ever holds staging values, the prod patch refuses until you rebuild.
+- Staging secrets (`ADMIN_ACCESS_TOKEN`, `PORTAL_HOOK_SECRET`) are staging-only values, saved in the git-ignored `.env.staging.local`. Don't set Slack webhooks on staging.
+
 ## Worker secrets
 
 Managed with `npx wrangler secret put <NAME> --name scale-onboarding-portal`:
@@ -60,6 +92,8 @@ Managed with `npx wrangler secret put <NAME> --name scale-onboarding-portal`:
 - `ADMIN_ACCESS_TOKEN` — admin API/page token (also in the brain repo's `.env.local` as `SCALE_PORTAL_ADMIN_TOKEN`)
 - `PORTAL_HOOK_SECRET` — auth for `/api/hooks/ghl/provision` (also in the brain's `.env.local`; see `docs/provision-webhook.md`)
 - `PORTAL_SLACK_WEBHOOK` — Slack DM webhook the hook endpoints fail loud to
+- `JOURNEY_SYNC_TOKEN` is no longer used: the BSS sync with the CSM dashboard was retired on
+  2026-10-16, along with the `CSM_DASHBOARD` service binding.
 
 Local dev reads `.dev.vars` (gitignored) for the same names.
 

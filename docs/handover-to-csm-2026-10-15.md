@@ -1,3 +1,6 @@
+> **Superseded 2026-10-16.** Jesse chose Option D: the CSM back office is being folded into
+> this app, and the BSS sync is retired. See `docs/option-d-build.md`.
+
 # Handover to the CSM dashboard session: 2026-10-15
 
 From the portal design session (`~/Master/AI/customerjourney-app`, branch `motion-redesign`).

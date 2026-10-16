@@ -4,6 +4,12 @@
 **Scope:** checkout payment page → sub-account + snapshot → nurture/remind/follow-up/inspire → customer journey dashboard
 **Status:** PLAN ONLY. Nothing was built. Nothing in GHL or the portal was changed.
 
+> **OPTION D, 2026-10-16, Jesse's decision. This replaces the session notes below for this work.**
+> - The CSM back office is being folded into this app. Each product is defined once (client steps plus team tasks), with no sync.
+> - One session, rooted at `~/Master/AI/customerjourney-app`, owns the portal and the back office. The CSM dashboard is frozen.
+> - GHL automation stays with the brain session.
+> - Plan: `~/.claude/plans/temporal-waddling-wave.md`. Build log: `docs/option-d-build.md`.
+>
 > **SESSION MODEL CHANGED, 2026-08-09, Jesse's decision: ONE MEGA SESSION.**
 > All customer-journey, three-surfaces/CSM, and portal-tweak work now runs in a single
 > session rooted at `~/Master/Labs/stanley-henry-ai-brain`, working across this repo and
