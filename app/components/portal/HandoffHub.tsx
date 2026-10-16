@@ -133,7 +133,9 @@ export function HandoffHub({
   orbSlot?: ReactNode;
   children?: ReactNode;
 }) {
-  const stage = stages[currentStageIndex];
+  // Once every task is done there is no current stage (index -1); show the last.
+  const homeIndex = currentStageIndex < 0 ? Math.max(0, stages.length - 1) : currentStageIndex;
+  const stage = stages[homeIndex];
   const inkBtn: React.CSSProperties = {
     background: "var(--pj-ink)",
     color: "var(--pj-bg)",
@@ -191,7 +193,7 @@ export function HandoffHub({
           </div>
           <div style={{ display: "flex", alignItems: "baseline", marginTop: 9 }}>
             <b style={{ fontSize: 14, fontWeight: 650 }}>
-              Stage {currentStageIndex + 1} · {stage?.name}
+              Stage {homeIndex + 1} · {stage?.name}
             </b>
             <span style={{ marginLeft: "auto", fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums" }}>
               {stageDoneCount} / {stage?.milestones.length ?? 0} done
@@ -245,7 +247,7 @@ export function HandoffHub({
         <main style={{ flex: 1, minWidth: 0, position: "relative", background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: 28, padding: "46px 54px 42px", boxShadow: "var(--pj-shadow-frame)" }}>
           {orbSlot ? <div style={{ position: "absolute", top: 42, right: 46 }}>{orbSlot}</div> : null}
           <div style={{ ...monoLabel(11), color: "var(--pj-act)", marginBottom: 12 }}>
-            Stage {currentStageIndex + 1} of {stages.length} · Days {stage?.dayStart}
+            Stage {homeIndex + 1} of {stages.length} · Days {stage?.dayStart}
             {stage && stage.dayEnd !== stage.dayStart ? `–${stage.dayEnd}` : ""}
           </div>
           <h2 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 46, fontWeight: 800, letterSpacing: "-0.5px", margin: "0 0 10px", lineHeight: 1.05 }}>{stage?.name}</h2>

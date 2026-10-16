@@ -81,6 +81,12 @@ export const productHiddenTaskBooking: Partial<Record<ClientType, string[]>> = {
   "bss-meta": ["ob-2", "ts-3"],
 };
 
+/** Tasks whose live AI receptionist test is hidden for a product. BSS Meta ads
+    only: testing waits for the CRM connection (Jesse, 2026-10-16). */
+export const productHiddenTaskPlayground: Partial<Record<ClientType, string[]>> = {
+  "bss-meta": ["ts-2"],
+};
+
 /** Tasks whose "Important" box is hidden for a product, where it no longer
     applies. BSS Meta ads only: the payment warning (Jesse, 2026-10-16). */
 export const productHiddenTaskImportant: Partial<Record<ClientType, string[]>> = {

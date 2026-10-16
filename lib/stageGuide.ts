@@ -36,6 +36,9 @@ const respondScripts: Record<string, string> = {
 
 export function stageGuideFor(clientType: ClientType, stageId: string): StageGuide | undefined {
   if (clientType === "bss") return undefined; // its scripts were written for Scale and CRM
+  // BSS Meta ads only: testing waits for the CRM connection, so skip the script
+  // that promises a live test call (Jesse, 2026-10-16).
+  if (clientType === "bss-meta" && stageId === "testing") return undefined;
   const isRespond = clientType === "respond";
   const script = (isRespond ? respondScripts : scaleScripts)[stageId];
   if (!script) return undefined;

@@ -16,7 +16,7 @@ import { bssJourneyTemplate, bssJourneyTotalDays, buildBssJourneyStages } from "
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
-import { productBrandName, productHiddenTaskBooking, productHiddenTaskImportant, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline, productTaskNotes } from "@/lib/journeyEngine";
+import { productBrandName, productHiddenTaskBooking, productHiddenTaskImportant, productHiddenTaskPlayground, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline, productTaskNotes } from "@/lib/journeyEngine";
 import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
 import { bssStringPlan, scaleMetaStringPlan } from "@/lib/stringPlans";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
@@ -359,6 +359,8 @@ export function ClientPortalExperience({
   const progress = allTasks.length ? Math.round((allTasks.filter((m) => m.status === "done").length / allTasks.length) * 100) : 0;
   const currentStageIndex = journeyStages.findIndex((s) => s.status === "current");
   const currentStage = currentStageIndex >= 0 ? journeyStages[currentStageIndex] : undefined;
+  // The stage a hub shows: the current one, or the last once every task is done.
+  const homeStage = currentStage ?? journeyStages[journeyStages.length - 1];
   // The client's next task is the first open one that is theirs to do. Tasks the
   // team does ("With us", awaitingTeam) never block it; with none left for the
   // client, it falls back to the first open task of any kind.
@@ -957,8 +959,8 @@ export function ClientPortalExperience({
           overallPercent={progress}
           upNext={upNext}
           onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
-          onStartTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
-          onViewTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
+          onStartTask={(mi) => homeStage && openM(homeStage.id, mi + 1)}
+          onViewTask={(mi) => homeStage && openM(homeStage.id, mi + 1)}
           taskStatus={taskDisplayStatus}
           tasksOpen={tasksOpen}
           onToggleTasks={() => setTasksOpen(!tasksOpen)}
@@ -991,7 +993,7 @@ export function ClientPortalExperience({
           upNext={upNext}
           upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
           onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
-          onOpenTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
+          onOpenTask={(mi) => homeStage && openM(homeStage.id, mi + 1)}
           taskStatus={taskDisplayStatus}
           tasksOpen={tasksOpen}
           onToggleTasks={() => setTasksOpen(!tasksOpen)}
@@ -1027,7 +1029,7 @@ export function ClientPortalExperience({
           upNext={upNext}
           upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
           onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
-          onOpenTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
+          onOpenTask={(mi) => homeStage && openM(homeStage.id, mi + 1)}
           taskStatus={taskDisplayStatus}
           tasksOpen={tasksOpen}
           onToggleTasks={() => setTasksOpen(!tasksOpen)}
@@ -1066,7 +1068,7 @@ export function ClientPortalExperience({
           upNext={upNext}
           upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
           onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
-          onOpenTask={(mi) => currentStage && openM(currentStage.id, mi + 1)}
+          onOpenTask={(mi) => homeStage && openM(homeStage.id, mi + 1)}
           taskStatus={taskDisplayStatus}
           tasksOpen={tasksOpen}
           onToggleTasks={() => setTasksOpen(!tasksOpen)}
@@ -1510,7 +1512,7 @@ export function ClientPortalExperience({
                       </div>
                     )}
 
-                    {(m.id === "ts-2" || m.id === "rsp-048") && portalToken && (
+                    {(m.id === "ts-2" || m.id === "rsp-048") && portalToken && !productHiddenTaskPlayground[clientType]?.includes(m.id) && (
                       <ReceptionistPlayground portalToken={portalToken} />
                     )}
 

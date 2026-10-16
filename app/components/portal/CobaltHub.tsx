@@ -78,7 +78,9 @@ export function CobaltHub({
   orbSlot?: ReactNode;
   children?: ReactNode;
 }) {
-  const stage = stages[currentStageIndex];
+  // Once every task is done there is no current stage (index -1); show the last.
+  const homeIndex = currentStageIndex < 0 ? Math.max(0, stages.length - 1) : currentStageIndex;
+  const stage = stages[homeIndex];
   const tasks = stage?.milestones ?? [];
 
   return (
@@ -142,7 +144,7 @@ export function CobaltHub({
         <main className="gx-card" key={stage?.id}>
           {orbSlot ? <div className="gx-orb">{orbSlot}</div> : null}
           <div className="gx-rise" style={label}>
-            Stage {currentStageIndex + 1} of {stages.length} · {stage ? days(stage) : ""}
+            Stage {homeIndex + 1} of {stages.length} · {stage ? days(stage) : ""}
           </div>
           <h2 className="gx-title gx-rise" style={{ animationDelay: "80ms" }}>{stage?.name}</h2>
           {stage?.blurb ? (

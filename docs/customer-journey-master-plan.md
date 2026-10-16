@@ -32,11 +32,12 @@
 > **Design-session note 2026-10-16, UPLOADS + BSS META NOTES (no template change, importer
 > unaffected):** an upload task (`hasUpload`, e.g. `ob-7` past leads) now takes up to 20 CSVs.
 > Each file is its own `portal_milestone_uploads` row, with its body in R2 at
-> `uploads/{client}/{task}/{rowId}`. Older single-file rows stay readable from
-> `uploads/{client}/{task}`. No schema change. Uploading no longer completes the task: the client
+> `uploads/{client}/{task}/{rowId}`. The two live uploads stored under the old single-file key
+> (`uploads/{client}/{task}`) were copied to their per-file keys on deploy; there is no fallback to
+> the old key. No schema change. Uploading no longer completes the task: the client
 > clicks "I've added everything". Admin lists and downloads each file (`?file=<id>`).
-> Product-level only (`lib/journeyEngine.ts`): BSS Meta ads only gets notes on `ob-2`, `ts-1` and
-> `ts-3`, `ob-2` and `ts-3` hide their booking calendar (`productHiddenTaskBooking`), and `bd-3`
+> Product-level only (`lib/journeyEngine.ts`): BSS Meta ads only gets notes on `ob-2`, `ts-1`, `ts-2`
+> and `ts-3`, hides the live AI receptionist test on `ts-2` and the Testing voice guide, `ob-2` and `ts-3` hide their booking calendar (`productHiddenTaskBooking`), and `bd-3`
 > hides its walkthrough video. The onboarding form's proof-of-address field now says why it's
 > needed (new optional field prop `why`, all products). Overall progress is now tasks done, not
 > days elapsed, in every look. Fix: the Grove and Aurora homes crashed (Error 1101) once every
