@@ -24,11 +24,11 @@ This file records progress, decisions and anything the next session must know.
   - No saved "master" task list, so CSM's code files are the source.
 - CSM frozen: banner in `csm-dashboard/CLAUDE.md` (commit a0da9c6). The CSM session confirmed it has stopped.
 - `npm run check:fin`: baseline proof of Fin's portal (`scripts/fixtures/fin-bss-meta-journey.json`).
-- Security batch, committed and **not yet live**:
+- Security batch, **live 2026-10-16** (version b9498d0f, Jesse's OK; previous version a3694869):
   - localhost check by exact hostname;
   - `GET /api/live-scale-bridge`, `GET /api/live-scale-sync` and `POST /api/project-chat` need admin;
   - `/` replaced by a neutral page.
-- BSS sync retired, committed and **not yet live**:
+- BSS sync retired, **live 2026-10-16** (same deploy):
   - removed: both pushes, `/api/csm-sync/*`, `lib/csmSync.ts`, and the `CSM_DASHBOARD` binding;
   - `setting()` moved to `lib/settings.ts`.
 - Environment-aware deploys: `scripts/deploy-envs.mjs`, `scripts/patch-wrangler.mjs --env staging` and `scripts/d1-migrate.mjs`.
@@ -40,7 +40,7 @@ This file records progress, decisions and anything the next session must know.
   - Staging-only `ADMIN_ACCESS_TOKEN` / `PORTAL_HOOK_SECRET`, saved in `.env.staging.local`.
 
 **Waiting on Jesse:**
-1. OK to deploy the security batch and the sync retirement to prod.
+1. ~~OK to deploy the security batch and the sync retirement to prod.~~ Done 2026-10-16.
 2. Switch off CSM's public address: Workers & Pages → `csm-dashboard` → Settings → Domains & Routes → turn off workers.dev and Preview URLs. **Don't delete the worker.**
 3. Rotate the Fish Audio key. Then delete the stray `.env.local<key>` file in the repo root.
 4. Create a Zero Trust organisation (Free) and turn on Access for the **staging** worker's workers.dev address. Add the team's emails, and copy the AUD tag into `scripts/deploy-envs.mjs`.
