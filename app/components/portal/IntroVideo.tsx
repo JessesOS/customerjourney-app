@@ -21,6 +21,8 @@ const FADE_MS = 500;
 export const IntroVideo = forwardRef<IntroVideoHandle, { src: string; poster?: string; title: string; visible: boolean; onDone: () => void }>(
   function IntroVideo({ src, poster, title, visible, onDone }, ref) {
     const video = useRef<HTMLVideoElement | null>(null);
+    const box = useRef<HTMLDivElement | null>(null);
+    const closeBtn = useRef<HTMLButtonElement | null>(null);
     const [blocked, setBlocked] = useState(false);
     const [closing, setClosing] = useState(false);
 
@@ -41,14 +43,29 @@ export const IntroVideo = forwardRef<IntroVideoHandle, { src: string; poster?: s
       window.setTimeout(onDone, FADE_MS);
     };
 
+    const open = visible && !closing;
+
+    // Keyboard: focus moves into the lightbox when it opens and Tab stays in
+    // it, so nothing behind can be reached while it plays. Esc closes it.
     useEffect(() => {
-      if (!visible) return;
-      const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") finish(); };
+      if (open) closeBtn.current?.focus({ preventScroll: true });
+    }, [open]);
+    useEffect(() => {
+      if (!open) return;
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") { finish(); return; }
+        if (e.key !== "Tab" || !box.current) return;
+        const items = Array.from(box.current.querySelectorAll<HTMLElement>("button, video"));
+        if (items.length === 0) return;
+        const first = items[0], last = items[items.length - 1];
+        const inside = box.current.contains(document.activeElement);
+        if (e.shiftKey && (!inside || document.activeElement === first)) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && (!inside || document.activeElement === last)) { e.preventDefault(); first.focus(); }
+      };
       window.addEventListener("keydown", onKey);
       return () => window.removeEventListener("keydown", onKey);
     });
 
-    const open = visible && !closing;
     return (
       <div
         className={open ? "iv iv--on" : "iv"}
@@ -56,11 +73,12 @@ export const IntroVideo = forwardRef<IntroVideoHandle, { src: string; poster?: s
         role={open ? "dialog" : undefined}
         aria-modal={open ? true : undefined}
         aria-label={title}
+        inert={!open}
       >
-        <div className="iv-box">
+        <div className="iv-box" ref={box}>
           <div className="iv-head">
             <span className="iv-title">{title}</span>
-            <button type="button" className="iv-close" onClick={finish} aria-label="Close the video">
+            <button type="button" className="iv-close" ref={closeBtn} onClick={finish} aria-label="Close the video">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden><path d="M6 6l12 12M18 6L6 18" /></svg>
             </button>
           </div>
