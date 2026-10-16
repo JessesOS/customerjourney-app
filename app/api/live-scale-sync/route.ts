@@ -1,3 +1,4 @@
+import { requestCanAdmin } from "@/lib/adminAuth";
 import { env } from "cloudflare:workers";
 import {
   buildLiveBridgePayload,
@@ -34,7 +35,11 @@ function isAuthorized(request: Request) {
   return Boolean(headerValue && headerValue === expected);
 }
 
-export async function GET() {
+// Admin only since 2026-10-16 (it was open to anyone). POST keeps its own sync token.
+export async function GET(request: Request) {
+  if (!requestCanAdmin(request)) {
+    return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
+  }
   try {
     return Response.json(await getLiveDashboardStatus());
   } catch (error) {

@@ -1,5 +1,9 @@
-export function isLocalDevelopmentHost(host: string | null) {
-  return Boolean(host && /localhost|127\.0\.0\.1/.test(host));
+const LOCAL_HOSTNAMES = new Set(["localhost", "127.0.0.1", "[::1]", "::1"]);
+
+/** True only for the local dev server: an exact hostname match, so a name like
+    "localhost.evil.com" doesn't count (2026-10-16). */
+export function isLocalDevelopmentHost(hostname: string | null) {
+  return Boolean(hostname && LOCAL_HOSTNAMES.has(hostname.toLowerCase()));
 }
 
 /** Fallback admin check for deploys without the ChatGPT-injected auth header (e.g. a raw Cloudflare Workers URL). */
@@ -18,8 +22,7 @@ export function isAdminToken(token: string | null) {
  * anyone who sent Jesse's email got admin on the live worker.
  */
 export function requestCanAdmin(request: Request, { allowToken = true }: { allowToken?: boolean } = {}) {
-  const host = request.headers.get("host");
-  if (isLocalDevelopmentHost(host)) return true;
+  if (isLocalDevelopmentHost(new URL(request.url).hostname)) return true;
 
   if (!allowToken) return false;
 

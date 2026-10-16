@@ -1,4 +1,5 @@
 import { env } from "cloudflare:workers";
+import { requestCanAdmin } from "@/lib/adminAuth";
 import { getKnowledgeSnapshot, type KnowledgeSnapshot } from "@/lib/knowledgeStore";
 
 type ChatMessage = {
@@ -790,7 +791,12 @@ async function openAiAnswer(question: string, messages: ChatMessage[]) {
   };
 }
 
+// Admin only since 2026-10-16: it was open to anyone, served the knowledge
+// library and could spend OpenAI credit. Due for removal in the Codex cleanup.
 export async function POST(request: Request) {
+  if (!requestCanAdmin(request)) {
+    return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
+  }
   try {
     const body = (await request.json()) as {
       question?: string;

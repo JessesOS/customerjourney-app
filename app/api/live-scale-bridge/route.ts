@@ -1,6 +1,11 @@
+import { requestCanAdmin } from "@/lib/adminAuth";
 import { readLiveDashboardSnapshot } from "@/lib/liveDashboardStore";
 
-export async function GET() {
+// Codex-era dashboard data. Admin only since 2026-10-16 (it was open to anyone).
+export async function GET(request: Request) {
+  if (!requestCanAdmin(request)) {
+    return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
+  }
   try {
     const snapshot = await readLiveDashboardSnapshot();
 
