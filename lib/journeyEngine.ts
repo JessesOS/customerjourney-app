@@ -14,7 +14,10 @@ export type StageStatus = "done" | "current" | "locked";
 // "bss": custom product for Bitcoin Success School (Fin Creighton), the first signed
 // client, 2026-10-15. For now it runs the Scale journey exactly as a Meta-only
 // client sees it; give it its own template when the custom work is defined.
-export type ClientType = "meta" | "google" | "meta-google" | "respond" | "bss";
+// "bss-meta": BSS Meta ads only (Jesse, 2026-10-16). An exact copy of Scale — Meta
+// ads only (same tasks, same ids), with the BSS Launchpad name and locked look.
+// The custom 41-task "bss" journey is paused.
+export type ClientType = "meta" | "google" | "meta-google" | "respond" | "bss" | "bss-meta";
 export type ClientChannel = "meta" | "google";
 
 /** Products whose portal look is fixed, whatever look the client record holds.
@@ -22,12 +25,14 @@ export type ClientChannel = "meta" | "google";
     journey rail. Grove Aurora opens on the Aurora welcome by itself. */
 export const productLockedLook: Partial<Record<ClientType, "groveaurora">> = {
   bss: "groveaurora",
+  "bss-meta": "groveaurora",
 };
 
 /** Products that carry their own name in the portal (welcome, header, browser
     tab) instead of the house product name. BSS: "BSS Launchpad" (Jesse, 2026-10-15). */
 export const productBrandName: Partial<Record<ClientType, string>> = {
   bss: "BSS Launchpad",
+  "bss-meta": "BSS Launchpad",
 };
 
 /** Products that never show the $200 "move fast" incentive popup. BSS: off
@@ -35,19 +40,22 @@ export const productBrandName: Partial<Record<ClientType, string>> = {
 export const productHidesIncentive: Partial<Record<ClientType, true>> = {
   bss: true,
   meta: true,
+  "bss-meta": true,
 };
 
 /** A short line under a custom product's name on the welcome. */
 export const productTagline: Partial<Record<ClientType, string>> = {
   bss: "Onboarding & delivery",
+  "bss-meta": "Onboarding & delivery",
 };
 
 export const clientTypeLabels: Record<ClientType, string> = {
   meta: "Scale — Meta ads",
   google: "Scale — Google Ads",
   "meta-google": "Scale — Meta + Google Ads",
-  respond: "CRM",
+  respond: "CRM — Respond",
   bss: "BSS Fin Creighton",
+  "bss-meta": "BSS Meta ads only",
 };
 
 export type JourneyMilestone = {
@@ -157,7 +165,7 @@ export function milestoneVisibleFor(m: { hidden?: boolean; channels?: ClientChan
   if (!m.channels || m.channels.length === 0) return true;
   if (clientType === "meta-google") return true;
   if (clientType === "meta" || clientType === "google") return m.channels.includes(clientType);
-  if (clientType === "bss") return m.channels.includes("meta"); // based on Scale, Meta only
+  if (clientType === "bss" || clientType === "bss-meta") return m.channels.includes("meta"); // Scale, Meta only
   return false;
 }
 

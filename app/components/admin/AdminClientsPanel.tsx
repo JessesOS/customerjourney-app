@@ -31,8 +31,8 @@ const clientTypeOptions = [
   { value: "meta-google", label: "Scale — Meta + Google Ads" },
   { value: "meta", label: "Scale — Meta ads only" },
   { value: "google", label: "Scale — Google Ads only" },
-  { value: "respond", label: "CRM" },
-  { value: "bss", label: "BSS Fin Creighton (custom, based on Scale Meta)" },
+  { value: "respond", label: "CRM — Respond" },
+  { value: "bss-meta", label: "BSS Meta ads only" },
 ];
 
 const themeOptions = [
@@ -48,6 +48,8 @@ const themeOptions = [
 ];
 
 function clientTypeLabel(value?: string) {
+  // Products no longer offered for new clients (the paused "bss") still show their name.
+  if (value === "bss") return "BSS Fin Creighton (paused)";
   return clientTypeOptions.find((o) => o.value === value)?.label ?? "Scale — Meta + Google Ads";
 }
 
@@ -602,7 +604,7 @@ export function AdminClientsPanel() {
                           </button>
                         </>
                       )}
-                      {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : client.clientType === "bss" ? 240 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
+                      {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : client.clientType === "bss" ? 42 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)}
                       {client.journeyState && client.journeyState !== "active" && (
                         <>
                           {" · "}
@@ -626,10 +628,10 @@ export function AdminClientsPanel() {
                     </div>
                   </div>
                   <select
-                    value={client.clientType === "bss" ? "groveaurora" : themeOptions.some((o) => o.value === client.themeVariant) ? (client.themeVariant as string) : "handoff"}
+                    value={client.clientType === "bss" || client.clientType === "bss-meta" ? "groveaurora" : themeOptions.some((o) => o.value === client.themeVariant) ? (client.themeVariant as string) : "handoff"}
                     onChange={(e) => handleThemeChange(client.id, e.target.value)}
-                    disabled={client.clientType === "bss"}
-                    title={client.clientType === "bss" ? "Locked by the product: BSS Fin Creighton always uses Grove Aurora" : "Portal look — changes what this client sees on their next load; their link stays the same"}
+                    disabled={client.clientType === "bss" || client.clientType === "bss-meta"}
+                    title={client.clientType === "bss" || client.clientType === "bss-meta" ? "Locked by the product: BSS always uses Grove Aurora" : "Portal look — changes what this client sees on their next load; their link stays the same"}
                     style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid #444", background: "transparent", color: "#fcfaf6", cursor: "pointer", fontSize: 13 }}
                   >
                     {themeOptions.map((o) => (

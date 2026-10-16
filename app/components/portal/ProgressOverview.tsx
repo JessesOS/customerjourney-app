@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
 import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
-import { bssWorkstreams } from "@/lib/bssJourney";
+import type { StringPlan } from "@/lib/stringPlans";
 import { StringTheory } from "@/app/components/portal/StringTheory";
 
 /**
@@ -46,6 +46,7 @@ export function ProgressOverview({
   taskStatus,
   onOpenTask,
   onClose,
+  stringPlan,
 }: {
   stages: JourneyStage[];
   currentStageIndex: number;
@@ -54,6 +55,8 @@ export function ProgressOverview({
   taskStatus: (m: JourneyMilestone) => TaskDisplayStatus;
   onOpenTask: (stageId: string, milestoneIndex: number) => void;
   onClose: () => void;
+  /** The product's workstreams for String Theory; no plan, no tab. */
+  stringPlan?: StringPlan;
 }) {
   const [view, setView] = useState<View>("timeline");
   const [picked, setPicked] = useState(Math.max(0, currentStageIndex));
@@ -70,13 +73,11 @@ export function ProgressOverview({
   const doneCount = all.filter((t) => t.status === "done").length;
   const pct = all.length ? Math.round((doneCount / all.length) * 100) : 0;
   const stage = stages[picked];
-  // String Theory needs workstreams; today only BSS has them (ids bss-…).
-  const isBss = all.some((t) => t.m.id.startsWith("bss-"));
   const milestoneById = new Map(all.map((t) => [t.m.id, { m: t.m, stageId: t.stage.id, index: t.mi }]));
   const views: { key: View; label: string }[] = [
     { key: "timeline", label: "Timeline" },
     { key: "board", label: "Board" },
-    ...(isBss ? [{ key: "strings" as View, label: "String Theory" }] : []),
+    ...(stringPlan ? [{ key: "strings" as View, label: "String Theory" }] : []),
   ];
 
   return (
@@ -108,8 +109,8 @@ export function ProgressOverview({
           <span><StatusDot status="done" /> Done</span>
         </div>
 
-        {view === "strings" ? (
-          <StringTheory workstreams={bssWorkstreams} milestoneById={milestoneById} taskStatus={taskStatus} currentDay={currentDay} onOpenTask={onOpenTask} />
+        {view === "strings" && stringPlan ? (
+          <StringTheory plan={stringPlan!} milestoneById={milestoneById} taskStatus={taskStatus} currentDay={currentDay} onOpenTask={onOpenTask} />
         ) : view === "timeline" ? (
           <>
             <div className="po-line">

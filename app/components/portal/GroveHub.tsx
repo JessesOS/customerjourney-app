@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import { ProgressOverview } from "@/app/components/portal/ProgressOverview";
+import type { StringPlan } from "@/lib/stringPlans";
 import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
 import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 import { AURORA_PALETTES, WaveField } from "@/app/components/portal/AuroraHub";
@@ -55,6 +56,7 @@ export function GroveHub({
   onOpenTask,
   onSelectStage,
   onOpenStageTask,
+  stringPlan,
   taskStatus,
   tasksOpen,
   onToggleTasks,
@@ -80,6 +82,8 @@ export function GroveHub({
   onSelectStage: (stageId: string) => void;
   /** Opens any task, in any stage (used by the progress view). */
   onOpenStageTask?: (stageId: string, milestoneNumber: number) => void;
+  /** Workstreams for the String Theory view (products that have one). */
+  stringPlan?: StringPlan;
   taskStatus: (m: JourneyMilestone) => TaskDisplayStatus;
   tasksOpen: boolean;
   onToggleTasks: () => void;
@@ -143,6 +147,7 @@ export function GroveHub({
           currentDay={currentDay}
           totalDays={totalDays}
           taskStatus={taskStatus}
+          stringPlan={stringPlan}
           onOpenTask={(stageId, n) => { setProgressOpen(false); if (onOpenStageTask) onOpenStageTask(stageId, n); else onSelectStage(stageId); }}
           onClose={() => setProgressOpen(false)}
         />

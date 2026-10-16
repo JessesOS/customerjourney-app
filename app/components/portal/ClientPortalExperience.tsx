@@ -18,6 +18,7 @@ import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
 import { productBrandName, productHidesIncentive, productTagline } from "@/lib/journeyEngine";
+import { bssStringPlan, scaleMetaStringPlan } from "@/lib/stringPlans";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
@@ -993,6 +994,7 @@ export function ClientPortalExperience({
           showRail={railLayout === "rail"}
           onSelectStage={(stageId) => openM(stageId, 1)}
           onOpenStageTask={(stageId, n) => openM(stageId, n)}
+          stringPlan={clientType === "bss" ? bssStringPlan : clientType === "bss-meta" ? scaleMetaStringPlan : undefined}
           upNext={upNext}
           upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
           onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}

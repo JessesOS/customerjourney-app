@@ -8,7 +8,7 @@ import {
 } from "@/lib/portalClientStore";
 import type { ClientType } from "@/lib/journeyEngine";
 
-const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond", "bss"];
+const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond", "bss", "bss-meta"];
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!requestCanAdmin(request)) {
@@ -55,7 +55,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     }
     if (body.clientType !== undefined) {
       if (!validClientTypes.includes(body.clientType as ClientType)) {
-        return Response.json({ ok: false, error: "Client type must be meta, google, meta-google, respond or bss." }, { status: 400 });
+        return Response.json({ ok: false, error: "Client type must be meta, google, meta-google, respond, bss or bss-meta." }, { status: 400 });
       }
       adminFields.clientType = body.clientType as ClientType;
       // Explicitly choosing a type is what "confirming" means (Decision 2).

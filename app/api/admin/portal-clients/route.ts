@@ -2,7 +2,7 @@ import { requestCanAdmin } from "@/lib/adminAuth";
 import { createPortalClient, isPortalThemeVariant, listPortalClients } from "@/lib/portalClientStore";
 import { productLockedLook, type ClientType } from "@/lib/journeyEngine";
 
-const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond", "bss"];
+const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond", "bss", "bss-meta"];
 
 export async function GET(request: Request) {
   if (!requestCanAdmin(request)) {
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
       return Response.json({ ok: false, error: "A valid start date is required." }, { status: 400 });
     }
     if (!validClientTypes.includes(clientType as ClientType)) {
-      return Response.json({ ok: false, error: "Client type must be meta, google, meta-google, respond or bss." }, { status: 400 });
+      return Response.json({ ok: false, error: "Client type must be meta, google, meta-google, respond, bss or bss-meta." }, { status: 400 });
     }
     if (!isPortalThemeVariant(themeVariant)) {
       return Response.json({ ok: false, error: "Portal look is not one of the available looks." }, { status: 400 });
