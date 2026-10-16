@@ -1,14 +1,3 @@
-export function isAdminEmail(email: string | null) {
-  if (!email) return false;
-
-  const configured = process.env.LIVE_DASHBOARD_ADMIN_EMAIL?.toLowerCase();
-  if (configured) {
-    return email.toLowerCase() === configured;
-  }
-
-  return email.toLowerCase() === "jessallan@gmail.com";
-}
-
 export function isLocalDevelopmentHost(host: string | null) {
   return Boolean(host && /localhost|127\.0\.0\.1/.test(host));
 }
@@ -20,14 +9,15 @@ export function isAdminToken(token: string | null) {
 }
 
 /**
- * Shared gate for admin API routes: the authenticated-email header, a local
- * dev host, or ADMIN_ACCESS_TOKEN (x-admin-token header or ?token= query).
- * Routes that must not accept the shared token pass { allowToken: false }.
+ * Shared gate for admin API routes: a local dev host, or ADMIN_ACCESS_TOKEN
+ * (x-admin-token header or ?token= query). Routes that must not accept the
+ * shared token pass { allowToken: false }.
+ *
+ * It no longer trusts the "oai-authenticated-user-email" header (2026-10-16).
+ * Codex Sites set that header itself; on Cloudflare any caller can send it, so
+ * anyone who sent Jesse's email got admin on the live worker.
  */
 export function requestCanAdmin(request: Request, { allowToken = true }: { allowToken?: boolean } = {}) {
-  const email = request.headers.get("oai-authenticated-user-email");
-  if (isAdminEmail(email)) return true;
-
   const host = request.headers.get("host");
   if (isLocalDevelopmentHost(host)) return true;
 
