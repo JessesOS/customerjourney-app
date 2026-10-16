@@ -842,6 +842,14 @@
 .po-card:hover { transform: translateY(-1px); border-color: var(--pj-act); }
 .po-card-title { font-size: 13.5px; line-height: 1.35; }
 .po-card-stage { font-family: var(--font-geist-mono), monospace; font-size: 10.5px; color: var(--pj-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.po-group { display: flex; flex-direction: column; gap: 8px; }
+.po-group + .po-group { margin-top: 4px; }
+.po-group-head { display: flex; align-items: center; gap: 8px; width: 100%; padding: 6px 4px; background: transparent; border: 0; cursor: pointer; color: var(--pj-muted); font: 600 11px var(--font-geist-mono), monospace; letter-spacing: 0.06em; text-transform: uppercase; text-align: left; }
+.po-group-head:hover { color: var(--pj-ink); }
+.po-group-head .po-col-n { margin-left: auto; }
+.po-group-chev { flex-shrink: 0; transition: transform 300ms ease; }
+.po-tab:focus { outline: none; }
+.po-tab:focus-visible { outline: 2px solid var(--pj-act); outline-offset: 2px; }
 .po-empty { font-size: 12.5px; color: var(--pj-faint); padding: 6px 4px; }
 .po-key { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: -10px 0 20px; font-size: 12.5px; color: var(--pj-muted); }
 .po-key > span { display: inline-flex; align-items: center; gap: 7px; }

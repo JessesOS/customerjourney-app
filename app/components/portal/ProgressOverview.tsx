@@ -62,6 +62,10 @@ export function ProgressOverview({
 }) {
   const [view, setView] = useState<View>("timeline");
   const [picked, setPicked] = useState(Math.max(0, currentStageIndex));
+  // Board: "Coming up" is grouped by stage. The current stage starts open,
+  // later stages start folded; a click opens or folds one.
+  const [openGroups, setOpenGroups] = useState<Set<string>>(() => new Set(stages[currentStageIndex] ? [stages[currentStageIndex].id] : []));
+  const toggleGroup = (id: string) => setOpenGroups((prev) => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); return n; });
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -75,6 +79,9 @@ export function ProgressOverview({
   const doneCount = all.filter((t) => t.status === "done").length;
   const pct = all.length ? Math.round((doneCount / all.length) * 100) : 0;
   const stage = stages[picked];
+  // "With us" only exists where the team has tasks in the client's journey.
+  const hasTeamTasks = all.some((t) => t.m.awaitingTeam);
+  const columns = COLUMNS.filter((c) => c.key !== "with-us" || hasTeamTasks);
   const milestoneById = new Map(all.map((t) => [t.m.id, { m: t.m, stageId: t.stage.id, index: t.mi }]));
   const views: { key: View; label: string }[] = [
     { key: "timeline", label: "Timeline" },
@@ -105,9 +112,9 @@ export function ProgressOverview({
         </div>
         <div className="po-overall" aria-hidden><i style={{ width: `${pct}%` }} /></div>
         <div className="po-key" aria-label="Colour key">
-          <span><StatusDot status="your-turn" /> Your turn: the one thing for you to do next</span>
-          <span><StatusDot status="with-us" /> With us: our team&rsquo;s work</span>
-          <span><StatusDot status="up-next" /> Coming up: yours, later</span>
+          <span><StatusDot status="your-turn" /> Your turn: what to do next</span>
+          {hasTeamTasks ? <span><StatusDot status="with-us" /> With us: our team&rsquo;s work</span> : null}
+          <span><StatusDot status="up-next" /> Coming up: your later tasks</span>
           <span><StatusDot status="done" /> Done</span>
         </div>
 
@@ -148,9 +155,15 @@ export function ProgressOverview({
             ) : null}
           </>
         ) : (
-          <div className="po-board">
-            {COLUMNS.map((col) => {
+          <div className="po-board" style={{ gridTemplateColumns: `repeat(${columns.length}, minmax(220px, 1fr))` }}>
+            {columns.map((col) => {
               const items = all.filter((t) => t.status === col.key);
+              const card = (t: (typeof all)[number], showStage: boolean) => (
+                <button key={t.m.id} type="button" className="po-card" onClick={() => onOpenTask(t.stage.id, t.mi + 1)}>
+                  <span className="po-card-title">{t.m.title}</span>
+                  {showStage ? <span className="po-card-stage">{t.stage.name}</span> : null}
+                </button>
+              );
               return (
                 <div key={col.key} className="po-col">
                   <div className="po-col-head">
@@ -160,12 +173,25 @@ export function ProgressOverview({
                   </div>
                   <div className="po-col-body">
                     {items.length === 0 ? <div className="po-empty">Nothing here</div> : null}
-                    {items.map((t) => (
-                      <button key={t.m.id} type="button" className="po-card" onClick={() => onOpenTask(t.stage.id, t.mi + 1)}>
-                        <span className="po-card-title">{t.m.title}</span>
-                        <span className="po-card-stage">{t.stage.name}</span>
-                      </button>
-                    ))}
+                    {col.key === "up-next"
+                      ? stages.map((s) => {
+                          const group = items.filter((t) => t.stage.id === s.id);
+                          if (!group.length) return null;
+                          const open = openGroups.has(s.id);
+                          return (
+                            <div key={s.id} className="po-group">
+                              <button type="button" className="po-group-head" aria-expanded={open} onClick={() => toggleGroup(s.id)}>
+                                <span>{s.name}</span>
+                                <span className="po-col-n">{group.length}</span>
+                                <svg className="po-group-chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden style={{ transform: open ? "rotate(180deg)" : "none" }}>
+                                  <path d="M6 9l6 6 6-6" />
+                                </svg>
+                              </button>
+                              {open ? group.map((t) => card(t, false)) : null}
+                            </div>
+                          );
+                        })
+                      : items.map((t) => card(t, true))}
                   </div>
                 </div>
               );
