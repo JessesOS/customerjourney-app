@@ -17,7 +17,7 @@ import { bssJourneyTemplate, bssJourneyTotalDays, buildBssJourneyStages } from "
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
-import { productBrandName, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline } from "@/lib/journeyEngine";
+import { productBrandName, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline, productTaskNotes } from "@/lib/journeyEngine";
 import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
 import { bssStringPlan, scaleMetaStringPlan } from "@/lib/stringPlans";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
@@ -1219,6 +1219,12 @@ export function ClientPortalExperience({
                 </div>
                 <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 10px" }}>{m.title}</h3>
                 <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: 0, maxWidth: "54ch", lineHeight: 1.55 }}>{m.detail}</p>
+                {productTaskNotes[clientType]?.[m.id] ? (
+                  <div className="pj-task-note">
+                    <span className="pj-task-note-dot" aria-hidden />
+                    {productTaskNotes[clientType]?.[m.id]}
+                  </div>
+                ) : null}
 
                 {m.videoUrl && !productHiddenTaskVideos[clientType]?.includes(m.id) && (
                   <button

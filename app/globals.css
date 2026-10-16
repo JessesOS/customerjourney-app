@@ -781,6 +781,8 @@
 .pj-home-link { background: transparent; border: 0; padding: 0; margin: 0; cursor: pointer; color: inherit; font-family: inherit; white-space: nowrap; flex-shrink: 0; transition: opacity 250ms ease; }
 .pj-home-link:hover { opacity: 0.7; }
 
+.pj-task-note { margin-top: 16px; display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: var(--pj-act-fill); color: var(--pj-ink); font-size: 14.5px; font-weight: 500; }
+.pj-task-note-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pj-act); animation: gvPulse 2.4s ease-out infinite; flex-shrink: 0; }
 .pj-invite { margin-top: 20px; display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: var(--pj-radius-card, 20px); border: 1px solid var(--pj-line); background: var(--pj-card); }
 .pj-invite-label { font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 650; color: var(--pj-faint); }
 .pj-invite-email { margin-top: 4px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; color: var(--pj-ink); word-break: break-all; }
