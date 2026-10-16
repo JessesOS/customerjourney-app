@@ -7,7 +7,8 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "re
  * the welcome's "Get started" (Jesse, 2026-10-16: BSS Meta ads only plays his
  * walkthrough). A framed video on a dimmed, blurred backdrop, not full screen,
  * so the client is already on their journey behind it. It fades away when it
- * ends; the close button, Esc or a click outside the frame closes it early.
+ * ends; the close button or Esc closes it early. A click outside the frame does
+ * not: a double-click on "Get started" would land there and close it at once.
  *
  * It is mounted with the welcome, hidden, so `start()` can be called inside
  * the click itself: that is what lets the browser play it with sound. If the
@@ -55,7 +56,6 @@ export const IntroVideo = forwardRef<IntroVideoHandle, { src: string; poster?: s
         role={open ? "dialog" : undefined}
         aria-modal={open ? true : undefined}
         aria-label={title}
-        onClick={(e) => { if (e.target === e.currentTarget) finish(); }}
       >
         <div className="iv-box">
           <div className="iv-head">
