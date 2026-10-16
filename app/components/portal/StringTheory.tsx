@@ -44,14 +44,24 @@ export function StringTheory({
     .map((w) => ({ w, tasks: w.taskIds.map((id) => milestoneById.get(id)).filter((t): t is NonNullable<typeof t> => Boolean(t)) }))
     .filter((x) => x.tasks.length > 0);
   const height = TOP + workstreams.length * LANE_H + 24;
-  const todayX = xDay(Math.max(1, currentDay));
+  // Today sits in the middle of the current day. Past the axis it parks in the tail.
+  const todayX = Math.min(xDay(Math.max(1, currentDay) + 0.5), axisEnd + TAIL - 8);
   const goLiveX = xDay(goLiveDay + 1);
   const laneY = (i: number) => TOP + i * LANE_H + LANE_H / 2;
+  // A strand runs over its own days. If its beads need more room than that, it
+  // grows earlier (never later), so nothing crosses past its end or the go-live
+  // line; only if it would run off the left edge does it grow later instead.
   const span = (w: StringWorkstream, n: number) => {
-    const x1 = xDay(w.dayStart) + 6;
-    const planned = w.ongoing ? axisEnd + TAIL - 6 : xDay(w.dayEnd + 1) - 6;
-    return { x1, x2: Math.max(planned, x1 + 8 + (n - 1) * BEAD_GAP) };
+    const end = w.ongoing ? axisEnd + TAIL - 6 : xDay(w.dayEnd + 1) - 6;
+    let x1 = xDay(w.dayStart) + 6;
+    const need = 8 + (n - 1) * BEAD_GAP;
+    const beadEnd = w.ongoing ? Math.min(end, axisEnd) : end;
+    if (beadEnd - x1 < need) x1 = Math.max(X0 + 6, beadEnd - need);
+    return { x1, x2: Math.max(end, x1 + need) };
   };
+  // A strand's state comes from the days, not the drawing.
+  const stateOf = (w: StringWorkstream, allDone: boolean) =>
+    allDone ? "done" : currentDay < w.dayStart ? "ahead" : w.ongoing || currentDay <= w.dayEnd ? "now" : "behind";
   const index = new Map(workstreams.map((x, i) => [x.w.id, i]));
 
   return (
@@ -82,7 +92,8 @@ export function StringTheory({
             const j = index.get(from);
             if (j === undefined) return null;
             const a = span(workstreams[j].w, workstreams[j].tasks.length), b = span(w, tasks.length);
-            const xa = Math.min(a.x2, b.x1 + 20), ya = laneY(j), xb = b.x1, yb = laneY(i);
+            const xb = b.x1, ya = laneY(j), yb = laneY(i);
+            const xa = Math.min(a.x2, xb + 20, xb); // never curve backwards
             const mid = (xa + xb) / 2;
             return <path key={`${from}-${w.id}`} className="st-thread" d={`M ${xa} ${ya} C ${mid} ${ya}, ${mid} ${yb}, ${xb} ${yb}`} pathLength={1} style={{ animationDelay: `${500 + i * 60}ms` }} />;
           }),
@@ -94,7 +105,7 @@ export function StringTheory({
           const { x1, x2 } = span(w, tasks.length);
           const statuses = tasks.map((t) => taskStatus(t.m));
           const done = statuses.filter((s) => s === "done").length;
-          const state = done === tasks.length ? "done" : todayX >= x1 && todayX <= x2 ? "now" : todayX > x2 ? "behind" : "ahead";
+          const state = stateOf(w, done === tasks.length);
           const beadEnd = w.ongoing ? Math.min(x2, axisEnd) : x2;
           const step = tasks.length > 1 ? Math.max(BEAD_GAP, (beadEnd - x1 - 8) / (tasks.length - 1)) : 0;
           return (

@@ -57,6 +57,7 @@ export function GroveHub({
   onSelectStage,
   onOpenStageTask,
   stringPlan,
+  calendarDay,
   taskStatus,
   tasksOpen,
   onToggleTasks,
@@ -84,6 +85,7 @@ export function GroveHub({
   onOpenStageTask?: (stageId: string, milestoneNumber: number) => void;
   /** Workstreams for the String Theory view (products that have one). */
   stringPlan?: StringPlan;
+  calendarDay?: number;
   taskStatus: (m: JourneyMilestone) => TaskDisplayStatus;
   tasksOpen: boolean;
   onToggleTasks: () => void;
@@ -148,6 +150,7 @@ export function GroveHub({
           totalDays={totalDays}
           taskStatus={taskStatus}
           stringPlan={stringPlan}
+          calendarDay={calendarDay}
           onOpenTask={(stageId, n) => { setProgressOpen(false); if (onOpenStageTask) onOpenStageTask(stageId, n); else onSelectStage(stageId); }}
           onClose={() => setProgressOpen(false)}
         />

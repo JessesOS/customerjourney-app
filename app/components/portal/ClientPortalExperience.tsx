@@ -48,6 +48,8 @@ export type ClientPortalExperienceProps = {
   name?: string;
   clientType?: ClientType;
   currentDay?: number;
+  /** Days since the start, not capped at the journey length (String Theory's Today line). */
+  calendarDay?: number;
   initialCompletedMilestoneIds?: string[];
   initialMilestoneNotes?: Record<string, string>;
   milestoneContent?: Record<string, string>;
@@ -134,6 +136,7 @@ export function ClientPortalExperience({
   name = "Chris",
   clientType = "meta-google",
   currentDay = defaultCurrentDay,
+  calendarDay,
   initialCompletedMilestoneIds = defaultCompletedMilestoneIds,
   initialMilestoneNotes = {},
   milestoneContent = {},
@@ -994,6 +997,7 @@ export function ClientPortalExperience({
           showRail={railLayout === "rail"}
           onSelectStage={(stageId) => openM(stageId, 1)}
           onOpenStageTask={(stageId, n) => openM(stageId, n)}
+          calendarDay={calendarDay}
           stringPlan={clientType === "bss" ? bssStringPlan : clientType === "bss-meta" ? scaleMetaStringPlan : undefined}
           upNext={upNext}
           upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}

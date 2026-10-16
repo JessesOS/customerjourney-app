@@ -47,6 +47,7 @@ export function ProgressOverview({
   onOpenTask,
   onClose,
   stringPlan,
+  calendarDay,
 }: {
   stages: JourneyStage[];
   currentStageIndex: number;
@@ -57,6 +58,7 @@ export function ProgressOverview({
   onClose: () => void;
   /** The product's workstreams for String Theory; no plan, no tab. */
   stringPlan?: StringPlan;
+  calendarDay?: number;
 }) {
   const [view, setView] = useState<View>("timeline");
   const [picked, setPicked] = useState(Math.max(0, currentStageIndex));
@@ -110,7 +112,7 @@ export function ProgressOverview({
         </div>
 
         {view === "strings" && stringPlan ? (
-          <StringTheory plan={stringPlan!} milestoneById={milestoneById} taskStatus={taskStatus} currentDay={currentDay} onOpenTask={onOpenTask} />
+          <StringTheory plan={stringPlan!} milestoneById={milestoneById} taskStatus={taskStatus} currentDay={calendarDay ?? currentDay} onOpenTask={onOpenTask} />
         ) : view === "timeline" ? (
           <>
             <div className="po-line">

@@ -60,6 +60,7 @@ export default async function PortalPage({
         name={client.name}
         clientType={clientType}
         currentDay={currentDay}
+        calendarDay={computeCurrentDay(client.startDate, 100000)}
         initialCompletedMilestoneIds={[...completedIds]}
         initialMilestoneNotes={milestoneNotes}
         milestoneContent={milestoneContent}
