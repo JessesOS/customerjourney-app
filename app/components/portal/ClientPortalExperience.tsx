@@ -17,7 +17,7 @@ import { bssJourneyTemplate, bssJourneyTotalDays, buildBssJourneyStages } from "
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
-import { productBrandName, productHidesIncentive, productIntroVideo, productTagline } from "@/lib/journeyEngine";
+import { productBrandName, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline } from "@/lib/journeyEngine";
 import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
 import { bssStringPlan, scaleMetaStringPlan } from "@/lib/stringPlans";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
@@ -1220,7 +1220,7 @@ export function ClientPortalExperience({
                 <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 10px" }}>{m.title}</h3>
                 <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: 0, maxWidth: "54ch", lineHeight: 1.55 }}>{m.detail}</p>
 
-                {m.videoUrl && (
+                {m.videoUrl && !productHiddenTaskVideos[clientType]?.includes(m.id) && (
                   <button
                     onClick={() => m.videoUrl && openVideo(m.title, m.videoUrl)}
                     style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-pill)", padding: "7px 16px 7px 7px", color: "var(--pj-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 13, cursor: "pointer" }}

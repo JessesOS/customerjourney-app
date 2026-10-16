@@ -53,6 +53,12 @@ export const productIntroVideo: Partial<Record<ClientType, { src: string; poster
   },
 };
 
+/** Tasks whose "Watch how it works" video is hidden for a product.
+    BSS Meta ads only: the mobile-app walkthrough (Jesse, 2026-10-16). */
+export const productHiddenTaskVideos: Partial<Record<ClientType, string[]>> = {
+  "bss-meta": ["ob-4"],
+};
+
 /** A short line under a custom product's name on the welcome. */
 export const productTagline: Partial<Record<ClientType, string>> = {
   bss: "Onboarding & delivery",
