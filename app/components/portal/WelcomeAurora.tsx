@@ -16,7 +16,7 @@ import { AURORA_PALETTES, WaveField } from "@/app/components/portal/AuroraHub";
 const HOLD_MS = 2600;
 const EXIT_MS = 700;
 
-export function WelcomeAurora({ brand, stages, onStart, brandName, tagline }: { brand: "scale" | "respond"; stages: string[]; onStart: () => void; brandName?: string; tagline?: string }) {
+export function WelcomeAurora({ brand, stages, onStart, brandName, tagline, onStartGesture }: { brand: "scale" | "respond"; stages: string[]; onStart: () => void; brandName?: string; tagline?: string; onStartGesture?: () => void }) {
   const [i, setI] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const timer = useRef<number | undefined>(undefined);
@@ -31,6 +31,8 @@ export function WelcomeAurora({ brand, stages, onStart, brandName, tagline }: { 
 
   function start() {
     if (leaving) return;
+    // Called inside the click, so whatever it starts (a video) may play with sound.
+    onStartGesture?.();
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { onStart(); return; }
     setLeaving(true);
     timer.current = window.setTimeout(onStart, EXIT_MS);

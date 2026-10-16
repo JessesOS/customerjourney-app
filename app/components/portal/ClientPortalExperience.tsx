@@ -17,7 +17,8 @@ import { bssJourneyTemplate, bssJourneyTotalDays, buildBssJourneyStages } from "
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
-import { productBrandName, productHidesIncentive, productTagline } from "@/lib/journeyEngine";
+import { productBrandName, productHidesIncentive, productIntroVideo, productTagline } from "@/lib/journeyEngine";
+import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
 import { bssStringPlan, scaleMetaStringPlan } from "@/lib/stringPlans";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
@@ -181,6 +182,10 @@ export function ClientPortalExperience({
   // The name the client sees: a custom product's own name, else the house product name.
   const brandName = productBrandName[clientType];
   const brandTagline = productTagline[clientType];
+  // A product's intro video plays after the welcome, then the journey page.
+  const introVideo = productIntroVideo[clientType];
+  const introRef = useRef<IntroVideoHandle | null>(null);
+  const [introPlaying, setIntroPlaying] = useState(false);
   const isBss = clientType === "bss";
   const activeJourneyTemplate = isRespond ? respondJourneyTemplate : isBss ? bssJourneyTemplate : journeyTemplate;
   const activeJourneyTotalDays = isRespond ? respondJourneyTotalDays : isBss ? bssJourneyTotalDays : journeyTotalDays;
@@ -569,13 +574,31 @@ export function ClientPortalExperience({
         (welcomeVersion === "funnel" && designSkin !== "groveaurora" ? (
           <WelcomeFunnel brand={isRespond ? "respond" : "scale"} brandName={brandName} color={designSkin === "grove" ? "#0f6b4b" : undefined} onStart={dismissWelcome} />
         ) : welcomeVersion === "aurora" || (welcomeVersion === "funnel" && designSkin === "groveaurora") ? (
-          <WelcomeAurora brand={isRespond ? "respond" : "scale"} brandName={brandName} tagline={brandTagline} stages={journeyStages.map((s) => s.name)} onStart={dismissWelcome} />
+          <WelcomeAurora
+            brand={isRespond ? "respond" : "scale"}
+            brandName={brandName}
+            tagline={brandTagline}
+            stages={journeyStages.map((s) => s.name)}
+            onStartGesture={introVideo ? () => { introRef.current?.start(); setIntroPlaying(true); } : undefined}
+            onStart={dismissWelcome}
+          />
         ) : welcomeVersion === "marquee" ? (
           <WelcomeMarquee brand={isRespond ? "respond" : "scale"} brandName={brandName} onStart={dismissWelcome} />
         ) : (
           <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} brandName={brandName} onStart={dismissWelcome} />
         ))}
-      {!showWelcome && showIncentive && !productHidesIncentive[clientType] && <IncentiveModal onClose={dismissIncentive} />}
+      {/* Mounted while the welcome is up (hidden), so "Get started" can start it with sound. */}
+      {introVideo && (showWelcome || introPlaying) ? (
+        <IntroVideo
+          ref={introRef}
+          src={introVideo.src}
+          poster={introVideo.poster}
+          title={introVideo.title}
+          visible={introPlaying}
+          onDone={() => setIntroPlaying(false)}
+        />
+      ) : null}
+      {!showWelcome && !introPlaying && showIncentive && !productHidesIncentive[clientType] && <IncentiveModal onClose={dismissIncentive} />}
       {/* Presentation switch: one small dot, bottom right, demo route only. */}
       {isDemo && (
         <button

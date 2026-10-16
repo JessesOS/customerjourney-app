@@ -43,6 +43,16 @@ export const productHidesIncentive: Partial<Record<ClientType, true>> = {
   "bss-meta": true,
 };
 
+/** A video that plays after the welcome's "Get started", before the journey
+    page. BSS Meta ads only: Jesse's walkthrough (2026-10-16), served from R2. */
+export const productIntroVideo: Partial<Record<ClientType, { src: string; poster: string; title: string }>> = {
+  "bss-meta": {
+    src: "/api/media/bss-launch-walkthrough.mp4",
+    poster: "/portal/media/bss-launch-walkthrough-poster.jpg",
+    title: "Welcome to BSS Launchpad",
+  },
+};
+
 /** A short line under a custom product's name on the welcome. */
 export const productTagline: Partial<Record<ClientType, string>> = {
   bss: "Onboarding & delivery",

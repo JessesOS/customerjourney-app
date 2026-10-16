@@ -787,6 +787,14 @@
 .pj-invite-copy { margin-left: auto; flex-shrink: 0; border: 1px solid var(--pj-line); background: var(--pj-rail); color: var(--pj-ink); border-radius: 999px; padding: 9px 18px; cursor: pointer; font: 500 13.5px var(--font-body), sans-serif; transition: border-color 250ms ease; }
 .pj-invite-copy:hover { border-color: var(--pj-act); }
 
+/* Intro video after the welcome (BSS Meta ads only) */
+.iv { position: fixed; inset: 0; z-index: 59; background: #050508; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 600ms ease; }
+.iv--on { z-index: 75; opacity: 1; pointer-events: auto; }
+.iv-video { width: 100%; height: 100%; max-height: 100vh; object-fit: contain; background: #050508; }
+.iv-skip { position: absolute; top: 18px; right: 18px; display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: rgba(10,10,18,0.55); color: #fff; font: 500 14px var(--font-geist), system-ui, sans-serif; cursor: pointer; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: background 250ms ease; }
+.iv-skip:hover { background: rgba(10,10,18,0.8); }
+.iv-play { position: absolute; width: 92px; height: 92px; border-radius: 50%; border: 0; background: #fff; color: #0a0a12; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 20px 60px -10px rgba(255,255,255,0.4); }
+
 /* Progress button in the Grove header, and the progress view it opens */
 .gv-progress-btn { display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0; background: var(--pj-card); border: 1px solid var(--pj-line); border-radius: 999px; padding: 7px 14px 7px 11px; cursor: pointer; color: var(--pj-ink); font: 500 13px var(--font-geist), sans-serif; transition: border-color 300ms ease, background 300ms ease; }
 .gv-progress-btn:hover { border-color: var(--pj-act); color: var(--pj-act); }
