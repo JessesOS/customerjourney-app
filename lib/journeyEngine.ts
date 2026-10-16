@@ -74,6 +74,16 @@ export const productTaskNotes: Partial<Record<ClientType, Record<string, string>
   },
 };
 
+/** A product's own description for a task, replacing the template's. BSS Meta
+    ads only: the two booking tasks no longer say "pick a time below", because
+    their calendars are hidden (Jesse, 2026-10-16). */
+export const productTaskDetails: Partial<Record<ClientType, Record<string, string>>> = {
+  "bss-meta": {
+    "ob-2": "A live 30-minute walkthrough of your portal, your milestones, and your messaging center.",
+    "ts-3": "Once testing is done, we'll lock in your go-live walkthrough together.",
+  },
+};
+
 /** Tasks whose booking calendar is hidden for a product. BSS Meta ads only:
     the welcome call is already done and the go-live calendar isn't set up yet
     (Jesse, 2026-10-16). */
@@ -248,7 +258,7 @@ export function buildStagesFromTemplate(
     const milestones: JourneyMilestone[] = visible.map((m, i) => ({
       id: m.id,
       title: m.title,
-      detail: m.detail,
+      detail: productTaskDetails[clientType]?.[m.id] ?? m.detail,
       formId: m.formId,
       notePrompt: m.notePrompt,
       interview: m.interview,
