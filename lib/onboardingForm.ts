@@ -87,7 +87,7 @@ export const scaleOnboardingForm: PortalFormDefinition = {
   id: "scale-onboarding-intake-v1",
   title: "Scale onboarding intake",
   introTitle: "Complete this once so the Scale team can build from one clean source of truth.",
-  introDescription: "For passwords, use your approved secure handoff method or paste a secure one-time link instead of raw credentials.",
+  introDescription: "Please don't type passwords anywhere in this form. Where we need access, invite admin@allconvos.ai instead. If you really must share a password, paste a one-time secret link (for example from onetimesecret.com), never the password itself.",
   sections: [
     {
       id: "business-basics",
@@ -179,15 +179,15 @@ export const scaleOnboardingForm: PortalFormDefinition = {
           id: "domain_provider_access",
           label: "Domain provider access",
           type: "textarea",
-          helper: "Share the provider URL and username. For passwords, use your approved secure handoff method or paste a secure one-time link.",
-          placeholder: "Example: GoDaddy URL, username, secure handoff link",
+          helper: "Invite admin@allconvos.ai to your domain account (most providers call this delegate, shared or team access), then tell us here who your provider is. If yours doesn't offer that, say so and we'll set it up with you on a quick call. Please don't type passwords here; if you must share one, paste a one-time secret link (for example from onetimesecret.com).",
+          placeholder: "Example: GoDaddy — invited admin@allconvos.ai as a delegate",
         },
         {
           id: "website_cms_access",
           label: "Website content management access",
           type: "textarea",
-          helper: "Share the CMS URL and username. For passwords, use your approved secure handoff method or paste a secure one-time link.",
-          placeholder: "Example: WordPress URL, username, secure handoff link",
+          helper: "Add admin@allconvos.ai as an admin user on your website platform, then tell us here which platform and its login address. If it doesn't let you add a user, say so and we'll set it up with you on a quick call. Please don't type passwords here; if you must share one, paste a one-time secret link (for example from onetimesecret.com).",
+          placeholder: "Example: WordPress at yoursite.com/wp-admin — added admin@allconvos.ai as an admin",
         },
         // MUTED per Jesse (2026-07-12) — likely not needed; delete `hidden: true`
         // to bring it back exactly as it was (emails, steps, Scribe guide intact).
@@ -239,7 +239,7 @@ export const respondOnboardingForm: PortalFormDefinition = {
   id: "respond-onboarding-intake-v1",
   title: "Respond onboarding intake",
   introTitle: "Complete this once so we can set up your AI receptionist correctly.",
-  introDescription: "For passwords, use your approved secure handoff method or paste a secure one-time link instead of raw credentials.",
+  introDescription: "Please don't type passwords anywhere in this form. Where we need access, invite admin@allconvos.ai instead. If you really must share a password, paste a one-time secret link (for example from onetimesecret.com), never the password itself.",
   sections: [
     {
       id: "business-basics",
