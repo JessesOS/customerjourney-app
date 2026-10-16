@@ -65,7 +65,7 @@ export const journeyTemplate: StageTemplate[] = [
       { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.", videoUrl: "/portal/download-app-walkthrough.mp4" },
       {
         id: "ob-crm",
-        title: "Log into your TradeAI CRM",
+        title: "Log into your CRM", // "TradeAI" removed from client-facing wording (Jesse, 2026-10-16)
         detail: "Before you can complete your Build-Phase action steps, you need to successfully log into your new CRM dashboard.",
         guideUrl: "https://crm.rtdigital.agency/",
         guideLabel: "Open your CRM login",
