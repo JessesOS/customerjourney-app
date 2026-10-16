@@ -78,6 +78,10 @@ export type JourneyMilestone = {
   /** Voice interview: questions asked one at a time; the answers are saved
       as the task's note. */
   interview?: string[];
+  /** An email the client invites to their accounts, shown with a copy button. */
+  inviteEmail?: string;
+  /** The finish button's wording, in place of "Approve & continue". */
+  doneLabel?: string;
   /** Hosted voice agent that runs the interview as a live call; the
       `interview` questions remain as the typed fallback. */
   interviewAgentId?: string;
@@ -118,6 +122,8 @@ export type MilestoneTemplate = {
   showPortalLink?: boolean;
   interview?: string[];
   interviewAgentId?: string;
+  inviteEmail?: string;
+  doneLabel?: string;
   /** Hidden from the client flow entirely (not rendered, not counted). Flip to
       re-enable a task without deleting it. */
   hidden?: boolean;
@@ -187,6 +193,8 @@ export function buildStagesFromTemplate(
       notePrompt: m.notePrompt,
       interview: m.interview,
       interviewAgentId: m.interviewAgentId,
+      inviteEmail: m.inviteEmail,
+      doneLabel: m.doneLabel,
       notePlaceholder: m.notePlaceholder,
       noteRequired: m.noteRequired,
       hasEditableContent: m.hasEditableContent,

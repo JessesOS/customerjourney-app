@@ -1208,6 +1208,28 @@ export function ClientPortalExperience({
                   </a>
                 )}
 
+                {m.inviteEmail && (
+                  <div className="pj-invite">
+                    <div>
+                      <div className="pj-invite-label">Invite this email</div>
+                      <div className="pj-invite-email">{m.inviteEmail}</div>
+                    </div>
+                    <button
+                      type="button"
+                      className="pj-invite-copy"
+                      onClick={(e) => {
+                        const btn = e.currentTarget;
+                        void navigator.clipboard?.writeText(m.inviteEmail ?? "").then(() => {
+                          btn.textContent = "Copied";
+                          window.setTimeout(() => { btn.textContent = "Copy"; }, 1600);
+                        });
+                      }}
+                    >
+                      Copy
+                    </button>
+                  </div>
+                )}
+
                 {m.steps && m.steps.length > 0 && (
                   <div style={{ marginTop: 20, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
                     <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 14 }}>
@@ -1446,7 +1468,7 @@ export function ClientPortalExperience({
                           ? "With us. We’ll tick this off when it’s done."
                         : m.noteRequired && !noteValue.trim()
                           ? m.interview ? "Answer at least one question to continue" : "Fill in the field above to continue"
-                          : m.interview ? "Ready when you are" : "Awaiting your approval"}
+                          : m.interview ? "Ready when you are" : m.doneLabel ? "Tick this off when you’re done" : "Awaiting your approval"}
                     </span>
                     {m.status !== "done" && !m.awaitingTeam ? (
                       (() => {
@@ -1470,7 +1492,7 @@ export function ClientPortalExperience({
                         }}
                         style={{ marginLeft: isFirst ? "auto" : 0, background: noteMissing ? "var(--pj-act-fill)" : "var(--pj-btn-grad)", color: noteMissing ? "var(--pj-act)" : "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: noteMissing ? "default" : "pointer", boxShadow: noteMissing ? "none" : "var(--pj-shadow-btn)" }}
                       >
-                        {m.interview ? "Finish interview" : isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
+                        {m.interview ? "Finish interview" : m.doneLabel ? m.doneLabel : isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
                       </button>
                         );
                       })()

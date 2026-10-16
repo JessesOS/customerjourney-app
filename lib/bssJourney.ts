@@ -43,11 +43,23 @@ export const bssJourneyTemplate: StageTemplate[] = [
       { id: "bss-002", title: "Kick-off call & portal walkthrough", detail: "We set you up here, walk through your journey together, and agree the next steps.", ...team },
       {
         id: "bss-003",
-        title: "Share your access",
-        detail: "Give us access to your existing CRM, your GoHighLevel sub-account, your Calendly account, your domain, your hosting and your social accounts.",
-        notePrompt: "Anything we should know about your access?",
-        notePlaceholder: "Optional. Please don't put passwords here; we'll arrange access with you directly.",
-        important: "Please don't share passwords in this portal. Tick this off once you've given us access, and tell us here if anything is stuck.",
+        title: "Invite us to your accounts",
+        detail: "Add our team email as an admin on each of your accounts. No passwords change hands: each platform sends us an invite, and you can remove us at any time.",
+        // Invite-based access, best practice (Jesse, 2026-10-16).
+        inviteEmail: "admin@allconvos.ai",
+        steps: [
+          "Your current CRM: add admin@allconvos.ai as an admin user.",
+          "GoHighLevel: in your sub-account, add admin@allconvos.ai as a team member with admin access.",
+          "Calendly: invite admin@allconvos.ai as an admin.",
+          "Your domain: at your domain provider, give admin@allconvos.ai access (often called delegate or shared access).",
+          "Your website hosting: add admin@allconvos.ai as a user with admin access.",
+          "Facebook and Instagram: in Meta Business Suite, add admin@allconvos.ai as a person with full control.",
+          "YouTube: add admin@allconvos.ai as a manager of your channel.",
+        ],
+        notePrompt: "Anything we should know?",
+        notePlaceholder: "Optional. For example, which ones are done, or one that won't let you invite us.",
+        important: "If a platform won't let you invite us, tell us below and we'll sort it out with you on a call.",
+        doneLabel: "I've sent the invites",
       },
       {
         id: "bss-004",
