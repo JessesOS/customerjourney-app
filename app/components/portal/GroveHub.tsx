@@ -100,10 +100,14 @@ export function GroveHub({
   // Clicking a stage in the rail shows that stage's own page (band, tasks, notes)
   // rather than opening its first task (Jesse, 2026-10-16). It follows the
   // client's current stage until they pick another.
-  const [shown, setShown] = useState(currentStageIndex);
-  useEffect(() => setShown(currentStageIndex), [currentStageIndex]);
-  const isCurrent = shown === currentStageIndex;
-  const stage = stages[shown] ?? stages[currentStageIndex];
+  // Once every task is done there is no current stage (index -1); home is
+  // then the last stage, shown as complete.
+  const allDone = currentStageIndex < 0;
+  const homeIndex = allDone ? Math.max(0, stages.length - 1) : currentStageIndex;
+  const [shown, setShown] = useState(homeIndex);
+  useEffect(() => setShown(homeIndex), [homeIndex]);
+  const isCurrent = !allDone && shown === currentStageIndex;
+  const stage = stages[shown] ?? stages[homeIndex];
   const tasks = stage?.milestones ?? [];
   const shownDone = tasks.filter((m) => m.status === "done").length;
   const openTask = (mi: number) => (isCurrent ? onOpenTask(mi) : onOpenStageTask ? onOpenStageTask(stage.id, mi + 1) : onSelectStage(stage.id));
@@ -115,7 +119,7 @@ export function GroveHub({
   const teamDone = teamTasks.filter((m) => m.status === "done").length;
   const myDone = myTasks.filter((t) => t.m.status === "done").length;
   const pct = Math.max(0, Math.min(100, isCurrent ? stagePct : tasks.length ? (shownDone / tasks.length) * 100 : 0));
-  const pal = AURORA_PALETTES[shown % AURORA_PALETTES.length];
+  const pal = AURORA_PALETTES[Math.max(0, shown) % AURORA_PALETTES.length];
   const [progressOpen, setProgressOpen] = useState(false);
 
   return (
@@ -128,7 +132,7 @@ export function GroveHub({
           <button
             type="button"
             className="pj-home-link"
-            onClick={() => { setProgressOpen(false); showStage(currentStageIndex); }}
+            onClick={() => { setProgressOpen(false); showStage(homeIndex); }}
             title="Home"
             style={{ fontWeight: 600, fontSize: 19, letterSpacing: "-0.03em" }}
           >
@@ -172,7 +176,7 @@ export function GroveHub({
             <div className="gv-mono gv-kick" style={{ margin: "0 0 14px 2px" }}>Your journey</div>
             <div style={{ position: "relative" }}>
               <span className="gv-line" style={{ top: STEP / 2, height: STEP * (stages.length - 1) }}>
-                <i style={{ height: `${stages.length > 1 ? (currentStageIndex / (stages.length - 1)) * 100 : 0}%` }} />
+                <i style={{ height: `${stages.length > 1 ? (homeIndex / (stages.length - 1)) * 100 : 0}%` }} />
               </span>
               {stages.map((s, i) => {
                 const done = s.status === "done", now = i === currentStageIndex && !done;
@@ -249,9 +253,11 @@ export function GroveHub({
                     {stage.status === "done" ? "Every task in this stage is complete." : "Here’s what’s ahead. Nothing for you to do here yet."}
                   </p>
                 </div>
-                <button type="button" onClick={() => showStage(currentStageIndex)} className="gv-primary">
-                  Back to {stages[currentStageIndex]?.name ?? "your stage"} <span aria-hidden>→</span>
-                </button>
+                {shown !== homeIndex ? (
+                  <button type="button" onClick={() => showStage(homeIndex)} className="gv-primary">
+                    Back to {stages[homeIndex]?.name ?? "your stage"} <span aria-hidden>→</span>
+                  </button>
+                ) : null}
               </div>
             ) : (
             <div className="gv-next gv-in" style={{ animationDelay: "140ms" }}>
