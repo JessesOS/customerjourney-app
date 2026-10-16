@@ -1,26 +1,28 @@
-// RT Digital Complete Marketing System — Program Terms & Conditions.
+// allconvos.ai Complete Marketing System — Program Terms & Conditions.
+// Every "RT Digital" was changed to "allconvos.ai" on Jesse's instruction (2026-10-16).
+// Nothing else in the wording changed. Not reviewed by a lawyer.
 // Displayed in a scrollable frame on the onboarding form's Terms step.
 // Light markup understood by the renderer in OnboardingFormStepper:
 //   #  title      ##  section (1.)      ###  sub-section (1.1)
 //   *  bullet     ---  divider          (blank line = spacing)
-export const cmsTermsText = `# RT Digital Complete Marketing System
+export const cmsTermsText = `# allconvos.ai Complete Marketing System
 # Program Terms and Conditions
 
-These terms govern the delivery of the RT Digital Complete Marketing System, including the parties' responsibilities, costs, commercial provisions and general agreement terms.
+These terms govern the delivery of the allconvos.ai Complete Marketing System, including the parties' responsibilities, costs, commercial provisions and general agreement terms.
 
 ---
 
 ## 1. Working Together
 
-To support the successful delivery of your RT Digital Complete Marketing System ("CMS"), you agree to work with RT Digital in the following ways.
+To support the successful delivery of your allconvos.ai Complete Marketing System ("CMS"), you agree to work with allconvos.ai in the following ways.
 
 ### 1.1 Communication
 
-Initially, RT Digital will communicate with you by phone and email to begin setting up your CMS.
+Initially, allconvos.ai will communicate with you by phone and email to begin setting up your CMS.
 
-Once the program is underway, RT Digital will provide you with a dedicated CMS Slack channel. Slack is an online and mobile business communications platform.
+Once the program is underway, allconvos.ai will provide you with a dedicated CMS Slack channel. Slack is an online and mobile business communications platform.
 
-Your Slack channel will provide access to the key RT Digital personnel working with you during the term of your CMS agreement.
+Your Slack channel will provide access to the key allconvos.ai personnel working with you during the term of your CMS agreement.
 
 You are required to monitor and respond to your Slack channel regarding:
 
@@ -33,13 +35,13 @@ You are required to monitor and respond to your Slack channel regarding:
 
 ### 1.2 Main Point of Contact
 
-You must nominate one or more individuals as the main point of contact for all communications and meetings with RT Digital.
+You must nominate one or more individuals as the main point of contact for all communications and meetings with allconvos.ai.
 
 The nominated person or persons must actively monitor the dedicated Slack channel throughout the term of the CMS agreement.
 
 ### 1.3 Scheduled Meetings
 
-After signing up for the CMS, you will be invited to attend a series of strategy, onboarding and content meetings with key RT Digital personnel.
+After signing up for the CMS, you will be invited to attend a series of strategy, onboarding and content meetings with key allconvos.ai personnel.
 
 These meetings may begin as soon as one week after sign-up and will generally be conducted online using Zoom.
 
@@ -62,9 +64,9 @@ You must attend these meetings prepared to discuss the next round of social cont
 
 ### 1.5 Account Access
 
-As part of your CMS, RT Digital may be responsible for managing several of your business's social media and digital accounts.
+As part of your CMS, allconvos.ai may be responsible for managing several of your business's social media and digital accounts.
 
-You must provide RT Digital with appropriate access to manage relevant accounts during the term of the agreement, including:
+You must provide allconvos.ai with appropriate access to manage relevant accounts during the term of the agreement, including:
 
 * Facebook Page
 * Instagram
@@ -74,7 +76,7 @@ You must provide RT Digital with appropriate access to manage relevant accounts 
 
 ### 1.6 Content and Marketing Materials
 
-You must provide RT Digital with relevant existing marketing materials that may be used in the delivery and management of your CMS.
+You must provide allconvos.ai with relevant existing marketing materials that may be used in the delivery and management of your CMS.
 
 These may include:
 
@@ -94,19 +96,19 @@ These may include:
 
 When providing photographs for social media use, you should also provide descriptive notes explaining the content and context of each photograph.
 
-The more information you provide, the more relevant and accurate RT Digital can make the captions written on your behalf.
+The more information you provide, the more relevant and accurate allconvos.ai can make the captions written on your behalf.
 
-Where suitable photographs are unavailable, RT Digital may recommend the use of professional stock photography.
+Where suitable photographs are unavailable, allconvos.ai may recommend the use of professional stock photography.
 
 ### 1.7 Dropbox
 
-During the CMS setup process, RT Digital will provide you with access to a shared CMS Dropbox folder.
+During the CMS setup process, allconvos.ai will provide you with access to a shared CMS Dropbox folder.
 
-You must use this Dropbox folder to provide the content and files required by RT Digital throughout the term of your CMS.
+You must use this Dropbox folder to provide the content and files required by allconvos.ai throughout the term of your CMS.
 
 ### 1.8 Delivery Timeframes
 
-RT Digital aims to meet the following indicative delivery timeframes:
+allconvos.ai aims to meet the following indicative delivery timeframes:
 
 * Social media posts commencing approximately four weeks after sign-up
 * Social media advertising campaigns launching approximately six to eight weeks after sign-up
@@ -126,19 +128,19 @@ Delays in providing information, content or approvals may delay delivery.
 
 ### 1.9 Review and Pre-Approval
 
-Before launch, RT Digital will provide you with an opportunity to review and pre-approve:
+Before launch, allconvos.ai will provide you with an opportunity to review and pre-approve:
 
 * Scheduled social media content
 * Social media advertising campaigns
 * SocialSite development
 
-You must provide feedback and approval in a timely manner so that RT Digital can meet the intended delivery timeframes.
+You must provide feedback and approval in a timely manner so that allconvos.ai can meet the intended delivery timeframes.
 
-Where you are unable to participate in the review process, RT Digital may elect to proceed with publishing or launching the content in order to maintain the delivery schedule.
+Where you are unable to participate in the review process, allconvos.ai may elect to proceed with publishing or launching the content in order to maintain the delivery schedule.
 
 ### 1.10 Reporting
 
-RT Digital will provide monthly reporting through your Slack channel.
+allconvos.ai will provide monthly reporting through your Slack channel.
 
 Reports may include:
 
@@ -154,11 +156,11 @@ Questions regarding reports may be addressed through your Slack channel or durin
 
 ### 1.11 Enquiries and Leads
 
-Lead and enquiry information captured through your CMS will be made available to you through notifications and tools provided by RT Digital.
+Lead and enquiry information captured through your CMS will be made available to you through notifications and tools provided by allconvos.ai.
 
 These notifications may include email and Slack messages containing lead or enquiry contact details.
 
-RT Digital:
+allconvos.ai:
 
 * Does not contact your leads or enquiries unless separately agreed
 * Does not make any ownership claim over your lead or enquiry data
@@ -170,7 +172,7 @@ You are responsible for monitoring and responding to the lead and enquiry notifi
 
 ## 2. Costs
 
-You agree to pay RT Digital the fees for the services and deliverables described in:
+You agree to pay allconvos.ai the fees for the services and deliverables described in:
 
 * Your CMS agreement
 * Your Complete Marketing System Package Outline
@@ -200,7 +202,7 @@ Subject to any exclusions contained in these terms, your minimum financial oblig
 
 At sign-up, you will nominate a monthly advertising expenditure budget.
 
-You authorise RT Digital to manage this budget on your behalf and use it to purchase advertising through platforms including:
+You authorise allconvos.ai to manage this budget on your behalf and use it to purchase advertising through platforms including:
 
 * Facebook
 * Instagram
@@ -251,7 +253,7 @@ The following commercial terms apply to the delivery of your CMS.
 
 ### 3.1 Fees and Charges
 
-You acknowledge that RT Digital's fees and charges may vary depending on:
+You acknowledge that allconvos.ai's fees and charges may vary depending on:
 
 * The CMS package selected
 * Changes to pricing structures
@@ -261,7 +263,7 @@ Your exact fees and charges will be set out in your CMS agreement.
 
 ### 3.2 Conditions of Delivery
 
-RT Digital will provide the CMS services and deliverables described in your CMS Package Outline.
+allconvos.ai will provide the CMS services and deliverables described in your CMS Package Outline.
 
 You acknowledge that successful delivery depends on your cooperation and fulfilment of your obligations under the agreement.
 
@@ -273,7 +275,7 @@ Payments for the following must be made using a credit or debit card:
 * Advertising campaigns
 * Third-party platforms
 
-RT Digital does not accept other payment methods unless separately agreed in writing.
+allconvos.ai does not accept other payment methods unless separately agreed in writing.
 
 You must ensure that your nominated card is valid and capable of processing all payments by their due dates throughout the CMS term.
 
@@ -283,7 +285,7 @@ Monthly Basic Fee payments must be paid by their respective due dates.
 
 Failure to pay the Basic Fee by the due date may constitute a breach of contract.
 
-In the event of non-payment, RT Digital may:
+In the event of non-payment, allconvos.ai may:
 
 * Suspend CMS services or activity
 * Commence recovery proceedings
@@ -298,31 +300,31 @@ You must provide a credit card that can be used to process direct payments for:
 
 These payments must be made by their due dates.
 
-If payments are not processed, the relevant advertising campaigns, platforms or functions may stop operating, which may prevent RT Digital from properly delivering the CMS.
+If payments are not processed, the relevant advertising campaigns, platforms or functions may stop operating, which may prevent allconvos.ai from properly delivering the CMS.
 
 ### 3.6 SocialSites
 
-RT Digital SocialSites are custom-built using HTML code by RT Digital's internal development team and hosted through a third-party hosting provider.
+allconvos.ai SocialSites are custom-built using HTML code by allconvos.ai's internal development team and hosted through a third-party hosting provider.
 
-SocialSites may contain features, functions and systems that are the intellectual property of RT Digital.
+SocialSites may contain features, functions and systems that are the intellectual property of allconvos.ai.
 
-Where a SocialSite forms part of your CMS, access to the underlying website systems or administration may not be provided outside RT Digital.
+Where a SocialSite forms part of your CMS, access to the underlying website systems or administration may not be provided outside allconvos.ai.
 
 This restriction is intended to protect:
 
 * The site's operational integrity
-* RT Digital's intellectual property
+* allconvos.ai's intellectual property
 * The security and stability of the platform
 
 ### 3.7 Non-Payment
 
-If a nominated credit or debit card fails to process a payment, RT Digital will notify you and may assist you in arranging payment as soon as possible.
+If a nominated credit or debit card fails to process a payment, allconvos.ai will notify you and may assist you in arranging payment as soon as possible.
 
-RT Digital is not responsible for making the payment on your behalf.
+allconvos.ai is not responsible for making the payment on your behalf.
 
-RT Digital is also not liable for losses resulting from a payment failure.
+allconvos.ai is also not liable for losses resulting from a payment failure.
 
-Where RT Digital incurs a debt or cost because of your non-payment, RT Digital may:
+Where allconvos.ai incurs a debt or cost because of your non-payment, allconvos.ai may:
 
 * Suspend CMS activity
 * Recover the amount from you
@@ -336,34 +338,34 @@ Any continuation will be formalised through a renewed CMS agreement.
 
 ### 3.9 Non-Renewal and Your SocialSite
 
-Where you do not renew your CMS agreement, RT Digital may offer to continue hosting, securing and maintaining your SocialSite for an annual hosting fee.
+Where you do not renew your CMS agreement, allconvos.ai may offer to continue hosting, securing and maintaining your SocialSite for an annual hosting fee.
 
 You may also elect to continue operating the SocialSite's integrated email marketing system by paying the applicable monthly operational fee.
 
-Where you choose not to continue operating your SocialSite, RT Digital will provide you with the source files.
+Where you choose not to continue operating your SocialSite, allconvos.ai will provide you with the source files.
 
-However, where amounts remain outstanding under the agreement, RT Digital may withhold the source files until all outstanding amounts have been paid in full.
+However, where amounts remain outstanding under the agreement, allconvos.ai may withhold the source files until all outstanding amounts have been paid in full.
 
 ### 3.10 Early Termination
 
-Where you experience financial difficulty and wish to end the agreement early, RT Digital agrees to discuss an exit strategy with you.
+Where you experience financial difficulty and wish to end the agreement early, allconvos.ai agrees to discuss an exit strategy with you.
 
 If you are unable to continue making payments, you must provide evidence of your financial position before an exit strategy is discussed.
 
-After the first three months, refunds may not be available because RT Digital may already have:
+After the first three months, refunds may not be available because allconvos.ai may already have:
 
 * Developed the required CMS assets
 * Allocated employee time and expertise
 * Built the CMS infrastructure
 * Launched assets or campaigns into the market
 
-You acknowledge that RT Digital makes a significant investment in building your CMS and must recover that investment.
+You acknowledge that allconvos.ai makes a significant investment in building your CMS and must recover that investment.
 
 ### 3.11 Outcomes
 
-RT Digital is responsible for delivering and managing the services and deliverables described in your CMS.
+allconvos.ai is responsible for delivering and managing the services and deliverables described in your CMS.
 
-RT Digital is not responsible for:
+allconvos.ai is not responsible for:
 
 * Your sales performance
 * Your business revenue
@@ -373,13 +375,13 @@ RT Digital is not responsible for:
 
 ### 3.12 Refunds
 
-Where RT Digital delivers the CMS, a refund will generally only be payable where RT Digital has:
+Where allconvos.ai delivers the CMS, a refund will generally only be payable where allconvos.ai has:
 
 * Materially failed to comply with the agreement
 * Breached an applicable law
 * Breached obligations under the Australian Consumer Law
 
-Where permitted by law, RT Digital may choose to:
+Where permitted by law, allconvos.ai may choose to:
 
 * Repair the service
 * Replace the service
@@ -390,21 +392,21 @@ These remedies may be provided instead of a refund.
 
 ### 3.13 Third Parties
 
-RT Digital is not responsible for service interruptions caused by the actions or failures of third parties.
+allconvos.ai is not responsible for service interruptions caused by the actions or failures of third parties.
 
-You agree, to the extent permitted by law, to indemnify RT Digital against losses resulting from third-party actions or inactions.
+You agree, to the extent permitted by law, to indemnify allconvos.ai against losses resulting from third-party actions or inactions.
 
 ### 3.14 Limitation of Liability
 
-To the extent permitted by law, RT Digital's liability under the agreement is limited to the total amount of Basic Fee monthly payments paid by you during a 12-month period.
+To the extent permitted by law, allconvos.ai's liability under the agreement is limited to the total amount of Basic Fee monthly payments paid by you during a 12-month period.
 
 You may not seek damages exceeding that amount.
 
-RT Digital excludes liability and warranties to the maximum extent permitted by law.
+allconvos.ai excludes liability and warranties to the maximum extent permitted by law.
 
 ### 3.15 Force Majeure
 
-RT Digital will not be responsible for failing to meet its obligations where performance is prevented by an event outside its reasonable control.
+allconvos.ai will not be responsible for failing to meet its obligations where performance is prevented by an event outside its reasonable control.
 
 Such events may include:
 
@@ -414,15 +416,15 @@ Such events may include:
 * Pandemics
 * Government restrictions
 * Other acts of God
-* Other events beyond RT Digital's control
+* Other events beyond allconvos.ai's control
 
-RT Digital will notify you as soon as reasonably possible and explain:
+allconvos.ai will notify you as soon as reasonably possible and explain:
 
 * The nature of the event
 * Its expected duration
 * Its anticipated impact on CMS delivery
 
-Where the force majeure event continues for more than 30 days, you may reject RT Digital's proposed arrangements.
+Where the force majeure event continues for more than 30 days, you may reject allconvos.ai's proposed arrangements.
 
 All amounts owed under the agreement remain payable during a force majeure event.
 
