@@ -28,8 +28,9 @@ export function getUploadsBucket(): UploadsBucket | null {
   return ((env as Record<string, unknown>).UPLOADS as UploadsBucket | undefined) ?? null;
 }
 
-export function uploadObjectKey(clientId: string, milestoneId: string): string {
-  return `uploads/${clientId}/${milestoneId}`;
+/** One file of a task (a row of portal_milestone_uploads; a task can hold several). */
+export function uploadFileObjectKey(clientId: string, milestoneId: string, uploadId: number): string {
+  return `uploads/${clientId}/${milestoneId}/${uploadId}`;
 }
 
 /** Guided-form file uploads live under their own prefix; one object per client+field. */

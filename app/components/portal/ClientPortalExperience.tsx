@@ -5,7 +5,6 @@ import {
   buildJourneyStages,
   defaultCompletedMilestoneIds,
   defaultCurrentDay,
-  journeyProgressPercent,
   journeyTemplate,
   journeyTotalDays,
   milestoneVisibleFor,
@@ -17,7 +16,7 @@ import { bssJourneyTemplate, bssJourneyTotalDays, buildBssJourneyStages } from "
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
-import { productBrandName, productHiddenTaskImportant, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline, productTaskNotes } from "@/lib/journeyEngine";
+import { productBrandName, productHiddenTaskBooking, productHiddenTaskImportant, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline, productTaskNotes } from "@/lib/journeyEngine";
 import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
 import { bssStringPlan, scaleMetaStringPlan } from "@/lib/stringPlans";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
@@ -43,7 +42,7 @@ import { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 
 type View = "home" | "stage" | "complete";
 
-export type UploadMeta = { fileName: string; uploadedAt: string };
+export type UploadMeta = { id?: number; fileName: string; uploadedAt: string };
 
 export type ClientPortalExperienceProps = {
   name?: string;
@@ -54,7 +53,7 @@ export type ClientPortalExperienceProps = {
   initialCompletedMilestoneIds?: string[];
   initialMilestoneNotes?: Record<string, string>;
   milestoneContent?: Record<string, string>;
-  milestoneUploads?: Record<string, UploadMeta>;
+  milestoneUploads?: Record<string, UploadMeta[]>;
   portalToken?: string;
   // "cobalt" is the motion-redesign look. It is a review option only: nothing stores it yet.
   themeVariant?: "warm" | "cool" | "neutral" | "handoff" | "cobalt" | "aurora" | "calm" | "grove" | "groveaurora";
@@ -150,7 +149,7 @@ export function ClientPortalExperience({
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set(initialCompletedMilestoneIds));
   const [notes, setNotes] = useState<Record<string, string>>(initialMilestoneNotes);
   const [noteDrafts, setNoteDrafts] = useState<Record<string, string>>({});
-  const [uploads, setUploads] = useState<Record<string, UploadMeta>>(milestoneUploads);
+  const [uploads, setUploads] = useState<Record<string, UploadMeta[]>>(milestoneUploads);
   // Team content can land minutes AFTER the client first opens the portal (the
   // AI pack generates during checkout). Start from the server-rendered snapshot
   // and poll for fresh content while any of it is still empty, so "your team is
@@ -353,7 +352,11 @@ export function ClientPortalExperience({
   const modalVideoRef = useRef<HTMLVideoElement | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const progress = journeyProgressPercent(currentDay, activeJourneyTotalDays);
+  // Overall progress is the share of the client's tasks that are done, so a
+  // finished journey reads 100% (Jesse, 2026-10-16: it counted days, and a
+  // fully ticked journey on day 1 read 3%). Same count as the Progress view.
+  const allTasks = journeyStages.flatMap((s) => s.milestones);
+  const progress = allTasks.length ? Math.round((allTasks.filter((m) => m.status === "done").length / allTasks.length) * 100) : 0;
   const currentStageIndex = journeyStages.findIndex((s) => s.status === "current");
   const currentStage = currentStageIndex >= 0 ? journeyStages[currentStageIndex] : undefined;
   // The client's next task is the first open one that is theirs to do. Tasks the
@@ -416,51 +419,89 @@ export function ClientPortalExperience({
     }
   }
 
-  function uploadFile(milestoneId: string, file: File) {
+  // An upload task takes one or more CSVs (a lead list can come in parts).
+  // Files upload one at a time; the client finishes the task when they've
+  // added everything (Jesse, 2026-10-16).
+  const MAX_UPLOAD_BYTES = 20_000_000;
+
+  function readText(file: File) {
+    return new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result ?? ""));
+      reader.onerror = () => reject(new Error("read"));
+      reader.readAsText(file);
+    });
+  }
+
+  async function uploadFiles(milestoneId: string, files: File[]) {
     setUploadError(null);
-    if (!file.name.toLowerCase().endsWith(".csv")) {
-      setUploadError("Please choose a .csv file.");
+    const bad = files.find((f) => !f.name.toLowerCase().endsWith(".csv"));
+    if (bad) {
+      setUploadError(`${bad.name} isn't a .csv file.`);
       return;
     }
-    if (file.size > 1_000_000) {
-      setUploadError("That file is too large — please keep it under 1MB.");
+    const big = files.find((f) => f.size > MAX_UPLOAD_BYTES);
+    if (big) {
+      setUploadError(`${big.name} is too large. Please keep each file under 20MB.`);
       return;
     }
 
     setUploadingId(milestoneId);
-    const reader = new FileReader();
-    reader.onload = () => {
-      const content = String(reader.result ?? "");
-      if (!portalToken) {
-        setUploadingId(null);
-        setUploads((prev) => ({ ...prev, [milestoneId]: { fileName: file.name, uploadedAt: new Date().toISOString() } }));
-        approveMilestone(milestoneId);
-        advanceAfterComplete(milestoneId);
-        return;
+    try {
+      for (const file of files) {
+        let content: string;
+        try {
+          content = await readText(file);
+        } catch {
+          setUploadError(`Could not read ${file.name}.`);
+          return;
+        }
+        if (!portalToken) {
+          setUploads((prev) => ({ ...prev, [milestoneId]: [...(prev[milestoneId] ?? []), { fileName: file.name, uploadedAt: new Date().toISOString() }] }));
+          continue;
+        }
+        let payload: { ok: boolean; error?: string; file?: UploadMeta };
+        try {
+          const res = await fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ fileName: file.name, content }),
+          });
+          payload = (await res.json()) as typeof payload;
+        } catch {
+          setUploadError("Could not reach the server.");
+          return;
+        }
+        if (!payload.ok || !payload.file) {
+          setUploadError(payload.error ?? `Could not upload ${file.name}.`);
+          return;
+        }
+        const saved = payload.file;
+        setUploads((prev) => ({ ...prev, [milestoneId]: [...(prev[milestoneId] ?? []), saved] }));
       }
-      fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fileName: file.name, content }),
-      })
-        .then((res) => res.json())
-        .then((payload: { ok: boolean; error?: string }) => {
-          if (!payload.ok) {
-            setUploadError(payload.error ?? "Could not upload the file.");
-            return;
-          }
-          setUploads((prev) => ({ ...prev, [milestoneId]: { fileName: file.name, uploadedAt: new Date().toISOString() } }));
-          approveMilestone(milestoneId);
-          advanceAfterComplete(milestoneId);
-        })
-        .catch(() => setUploadError("Could not reach the server."))
-        .finally(() => setUploadingId(null));
-    };
-    reader.onerror = () => {
-      setUploadError("Could not read that file.");
+    } finally {
       setUploadingId(null);
-    };
-    reader.readAsText(file);
+    }
+  }
+
+  function removeUpload(milestoneId: string, index: number) {
+    const file = uploads[milestoneId]?.[index];
+    if (!file) return;
+    setUploadError(null);
+    const drop = () => setUploads((prev) => ({ ...prev, [milestoneId]: (prev[milestoneId] ?? []).filter((_, i) => i !== index) }));
+    if (!portalToken || file.id === undefined) {
+      drop();
+      return;
+    }
+    setUploadingId(milestoneId);
+    fetch(`/api/portal/${portalToken}/upload/${milestoneId}?id=${file.id}`, { method: "DELETE" })
+      .then((res) => res.json())
+      .then((payload: { ok: boolean; error?: string }) => {
+        if (payload.ok) drop();
+        else setUploadError(payload.error ?? "Could not remove that file.");
+      })
+      .catch(() => setUploadError("Could not reach the server."))
+      .finally(() => setUploadingId(null));
   }
 
   useEffect(() => {
@@ -1208,7 +1249,7 @@ export function ClientPortalExperience({
             const inlineForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
             const savedContent = liveContent[m.id];
             const noteValue = noteDrafts[m.id] ?? notes[m.id] ?? "";
-            const uploadMeta = uploads[m.id];
+            const uploadedFiles = uploads[m.id] ?? [];
             const showUploadWidget = m.status !== "done" && m.hasUpload;
             const hasCustomFlow = Boolean(inlineForm) || showUploadWidget;
 
@@ -1322,9 +1363,9 @@ export function ClientPortalExperience({
                         <span style={{ color: "var(--pj-act)", fontWeight: 600 }}>Your note:</span> {notes[m.id]}
                       </div>
                     )}
-                    {uploadMeta && (
-                      <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--pj-muted)" }}>
-                        <span style={{ color: "var(--pj-act)", fontWeight: 600 }}>Uploaded:</span> {uploadMeta.fileName}
+                    {uploadedFiles.length > 0 && (
+                      <div style={{ marginTop: 14, fontSize: 13, color: "var(--pj-muted)" }}>
+                        <span style={{ color: "var(--pj-act)", fontWeight: 600 }}>Uploaded:</span> {uploadedFiles.map((f) => f.fileName).join(", ")}
                       </div>
                     )}
                   </div>
@@ -1339,13 +1380,35 @@ export function ClientPortalExperience({
                   />
                 ) : showUploadWidget ? (
                   <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
-                    <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 12 }}>
-                      Upload your file
+                    <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 8 }}>
+                      Upload your files
                     </div>
+                    <p style={{ fontSize: 13.5, color: "var(--pj-muted)", lineHeight: 1.5, margin: "0 0 14px" }}>
+                      One file with your full list is best. If it&apos;s split across several files, add them all.
+                    </p>
+                    {uploadedFiles.length > 0 && (
+                      <ul style={{ listStyle: "none", margin: "0 0 12px", padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                        {uploadedFiles.map((f, i) => (
+                          <li key={f.id ?? `${f.fileName}-${i}`} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderRadius: "var(--pj-radius-sm)", background: "var(--pj-well)", fontSize: 14 }}>
+                            <span aria-hidden style={{ color: "var(--pj-act)", fontWeight: 700 }}>✓</span>
+                            <span style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: "var(--pj-ink)" }}>{f.fileName}</span>
+                            <button
+                              type="button"
+                              onClick={() => removeUpload(m.id, i)}
+                              disabled={uploadingId === m.id}
+                              aria-label={`Remove ${f.fileName}`}
+                              style={{ marginLeft: "auto", background: "none", border: "none", padding: 0, color: "var(--pj-muted)", fontSize: 12.5, textDecoration: "underline", cursor: uploadingId === m.id ? "default" : "pointer", fontFamily: "inherit" }}
+                            >
+                              Remove
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                     <label
                       style={{
                         display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-                        border: "1.5px dashed var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: "28px 20px",
+                        border: "1.5px dashed var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: uploadedFiles.length ? "16px 20px" : "28px 20px",
                         cursor: uploadingId === m.id ? "default" : "pointer", color: "var(--pj-muted)",
                         fontFamily: "var(--font-body), sans-serif", fontSize: 14,
                       }}
@@ -1353,17 +1416,36 @@ export function ClientPortalExperience({
                       <input
                         type="file"
                         accept=".csv"
+                        multiple
                         disabled={uploadingId === m.id}
                         onChange={(e) => {
-                          const file = e.target.files?.[0];
-                          if (file) uploadFile(m.id, file);
+                          const files = Array.from(e.target.files ?? []);
+                          if (files.length) void uploadFiles(m.id, files);
                           e.target.value = "";
                         }}
                         style={{ display: "none" }}
                       />
-                      {uploadingId === m.id ? "Uploading…" : "Click to choose a .csv file"}
+                      {uploadingId === m.id ? "Working…" : uploadedFiles.length ? "+ Add another .csv file" : "Click to choose your .csv file(s)"}
                     </label>
                     {uploadError && <div style={{ marginTop: 12, fontSize: 13, color: "var(--pj-act)" }}>{uploadError}</div>}
+                    {uploadedFiles.length > 0 && (
+                      <div style={{ marginTop: 18, display: "flex", alignItems: "center", gap: 14 }}>
+                        <span style={{ fontSize: 12.5, color: "var(--pj-faint)" }}>
+                          {uploadedFiles.length === 1 ? "1 file added" : `${uploadedFiles.length} files added`}
+                        </span>
+                        <button
+                          type="button"
+                          disabled={uploadingId === m.id}
+                          onClick={() => {
+                            approveMilestone(m.id);
+                            advanceAfterComplete(m.id);
+                          }}
+                          style={{ marginLeft: "auto", background: "var(--pj-btn-grad)", color: "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, boxShadow: "var(--pj-shadow-btn)", cursor: uploadingId === m.id ? "default" : "pointer", opacity: uploadingId === m.id ? 0.6 : 1 }}
+                        >
+                          I&apos;ve added everything <span style={{ fontSize: 17 }}>→</span>
+                        </button>
+                      </div>
+                    )}
                   </div>
                 ) : m.showPortalLink ? (
                   <PortalLinkCard portalToken={portalToken} />
@@ -1384,7 +1466,7 @@ export function ClientPortalExperience({
                       <p style={{ fontSize: 12.5, color: "var(--pj-faint)", margin: "14px 0 0" }}>{m.embedNote}</p>
                     )}
                   </div>
-                ) : m.bookingUrl ? (
+                ) : m.bookingUrl && !productHiddenTaskBooking[clientType]?.includes(m.id) ? (
                   <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 20 }}>
                     <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
                       <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>

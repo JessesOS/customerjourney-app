@@ -9,7 +9,7 @@ import {
   portalMilestoneUploads,
   portalWebhookLog,
 } from "@/db/schema";
-import { formUploadObjectKey, getUploadsBucket, uploadObjectKey } from "@/lib/uploadsBucket";
+import { formUploadObjectKey, getUploadsBucket, uploadFileObjectKey } from "@/lib/uploadsBucket";
 import { journeyTemplate, journeyTotalDays, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
 import { respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
 import { bssJourneyTemplate, bssJourneyTotalDays } from "@/lib/bssJourney";
@@ -449,50 +449,65 @@ export async function saveFormResponses(
   }
 }
 
-export async function saveMilestoneUpload(clientId: string, milestoneId: string, fileName: string, content: string) {
+// ---- Task file uploads (CSV) ----
+// A task can hold several files (Jesse, 2026-10-16: a client's lead list may
+// come in more than one CSV). One row per file. Bodies live in R2 under
+// uploads/{clientId}/{milestoneId}/{rowId}. Without R2 the body stays inline
+// in D1 (empty content marks an R2-backed row). The one upload stored under the
+// older single-file key (uploads/{clientId}/{milestoneId}) was moved to its
+// per-file key when this shipped, so there is no fallback to that key.
+
+export type MilestoneUploadMeta = { id: number; fileName: string; uploadedAt: string };
+
+export async function addMilestoneUpload(clientId: string, milestoneId: string, fileName: string, content: string): Promise<MilestoneUploadMeta> {
   const db = getDb();
   const bucket = getUploadsBucket();
-  const rows = await db
-    .select()
-    .from(portalMilestoneUploads)
-    .where(and(eq(portalMilestoneUploads.clientId, clientId), eq(portalMilestoneUploads.milestoneId, milestoneId)))
-    .limit(1);
-
   const now = new Date().toISOString();
-  const existing = rows[0];
-
-  // With a bucket, the file body lives in R2 and the D1 row keeps only
-  // metadata (empty content marks an R2-backed row). Without one, inline in
-  // D1 as before. R2 write goes first: if the row write then fails, the
-  // orphan object is harmless and the next upload overwrites it.
-  let storedContent = content;
+  const inserted = await db
+    .insert(portalMilestoneUploads)
+    .values({ clientId, milestoneId, fileName, content: bucket ? "" : content, uploadedAt: now })
+    .returning({ id: portalMilestoneUploads.id });
+  const id = inserted[0].id;
   if (bucket) {
-    await bucket.put(uploadObjectKey(clientId, milestoneId), content);
-    storedContent = "";
+    try {
+      await bucket.put(uploadFileObjectKey(clientId, milestoneId, id), content);
+    } catch (error) {
+      await db.delete(portalMilestoneUploads).where(eq(portalMilestoneUploads.id, id));
+      throw error;
+    }
   }
-
-  if (existing) {
-    await db
-      .update(portalMilestoneUploads)
-      .set({ fileName, content: storedContent, uploadedAt: now })
-      .where(eq(portalMilestoneUploads.id, existing.id));
-  } else {
-    await db.insert(portalMilestoneUploads).values({ clientId, milestoneId, fileName, content: storedContent, uploadedAt: now });
-  }
+  return { id, fileName, uploadedAt: now };
 }
 
-export async function getMilestoneUpload(clientId: string, milestoneId: string) {
+/** Removes one file from a task. Returns false when it isn't this task's file. */
+export async function deleteMilestoneUpload(clientId: string, milestoneId: string, uploadId: number): Promise<boolean> {
   const db = getDb();
   const rows = await db
     .select()
     .from(portalMilestoneUploads)
-    .where(and(eq(portalMilestoneUploads.clientId, clientId), eq(portalMilestoneUploads.milestoneId, milestoneId)))
+    .where(and(eq(portalMilestoneUploads.clientId, clientId), eq(portalMilestoneUploads.milestoneId, milestoneId), eq(portalMilestoneUploads.id, uploadId)))
     .limit(1);
-
   const row = rows[0];
+  if (!row) return false;
+  const bucket = getUploadsBucket();
+  if (bucket && !row.content) {
+    await bucket.delete(uploadFileObjectKey(clientId, milestoneId, row.id));
+  }
+  await db.delete(portalMilestoneUploads).where(eq(portalMilestoneUploads.id, row.id));
+  return true;
+}
+
+/** One file's content. With no uploadId, the most recent file for the task. */
+export async function getMilestoneUpload(clientId: string, milestoneId: string, uploadId?: number) {
+  const db = getDb();
+  const rows = await db
+    .select()
+    .from(portalMilestoneUploads)
+    .where(and(eq(portalMilestoneUploads.clientId, clientId), eq(portalMilestoneUploads.milestoneId, milestoneId)));
+  const row = uploadId !== undefined ? rows.find((r) => r.id === uploadId) : rows.sort((x, y) => y.id - x.id)[0];
   if (!row) return null;
 
-  // Legacy rows carry the file inline; R2-backed rows have empty content.
+  // Inline rows carry the file; R2-backed rows have empty content.
   if (row.content) return row;
 
   const bucket = getUploadsBucket();
@@ -500,7 +515,7 @@ export async function getMilestoneUpload(clientId: string, milestoneId: string) 
     console.error(`Upload row ${row.id} is R2-backed but no UPLOADS binding is available.`);
     return null;
   }
-  const object = await bucket.get(uploadObjectKey(clientId, milestoneId));
+  const object = await bucket.get(uploadFileObjectKey(clientId, milestoneId, row.id));
   if (!object) {
     console.error(`Upload row ${row.id} is R2-backed but the object is missing.`);
     return null;
@@ -508,10 +523,13 @@ export async function getMilestoneUpload(clientId: string, milestoneId: string) 
   return { ...row, content: await object.text() };
 }
 
-export async function getAllMilestoneUploadsMeta(clientId: string): Promise<Record<string, { fileName: string; uploadedAt: string }>> {
+/** Every task's files, oldest first, keyed by task id. */
+export async function getAllMilestoneUploadsMeta(clientId: string): Promise<Record<string, MilestoneUploadMeta[]>> {
   const db = getDb();
   const rows = await db.select().from(portalMilestoneUploads).where(eq(portalMilestoneUploads.clientId, clientId));
-  return Object.fromEntries(rows.map((r) => [r.milestoneId, { fileName: r.fileName, uploadedAt: r.uploadedAt }]));
+  const out: Record<string, MilestoneUploadMeta[]> = {};
+  for (const r of rows.sort((x, y) => x.id - y.id)) (out[r.milestoneId] ??= []).push({ id: r.id, fileName: r.fileName, uploadedAt: r.uploadedAt });
+  return out;
 }
 
 // ---- Guided-form file uploads (R2-only bodies, metadata in D1) ----
@@ -580,15 +598,18 @@ export async function getFormUpload(clientId: string, fieldId: string) {
  */
 export async function getLastActivityAt(clientId: string): Promise<string | null> {
   const db = getDb();
-  const [progress, forms, uploads] = await Promise.all([
+  const [progress, forms, uploads, taskFiles] = await Promise.all([
     db.select().from(portalMilestoneProgress).where(eq(portalMilestoneProgress.clientId, clientId)),
     db.select().from(portalFormResponses).where(eq(portalFormResponses.clientId, clientId)),
     db.select().from(portalFormUploads).where(eq(portalFormUploads.clientId, clientId)),
+    // A CSV added to an upload task counts before the task is finished.
+    db.select({ uploadedAt: portalMilestoneUploads.uploadedAt }).from(portalMilestoneUploads).where(eq(portalMilestoneUploads.clientId, clientId)),
   ]);
   const stamps = [
     ...progress.map((r) => r.updatedAt),
     ...forms.map((r) => r.updatedAt),
     ...uploads.map((r) => r.uploadedAt),
+    ...taskFiles.map((r) => r.uploadedAt),
   ].filter(Boolean) as string[];
   if (stamps.length === 0) return null;
   return stamps.sort().at(-1) ?? null;

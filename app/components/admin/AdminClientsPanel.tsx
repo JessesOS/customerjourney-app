@@ -58,7 +58,7 @@ type CreateResponse = { ok: boolean; id?: string; portalToken?: string; error?: 
 type ClientForm = { formId: string; responses: PortalFormResponses | null; completedAt: string | null };
 type MilestoneNote = { milestoneId: string; title: string; note: string };
 type EditableContent = { milestoneId: string; title: string; content: string };
-type ClientUpload = { milestoneId: string; title: string; fileName: string; uploadedAt: string };
+type ClientUpload = { milestoneId: string; title: string; uploadId: number; fileName: string; uploadedAt: string };
 type ClientDetail = { forms: ClientForm[]; milestoneNotes: MilestoneNote[]; editableContent: EditableContent[]; uploads: ClientUpload[] };
 type FormsResponse = {
   ok: boolean;
@@ -337,11 +337,11 @@ export function AdminClientsPanel() {
     }
   }
 
-  async function downloadUpload(clientId: string, milestoneId: string, fileName: string) {
+  async function downloadUpload(clientId: string, milestoneId: string, uploadId: number, fileName: string) {
     // Fetch with the x-admin-token header instead of linking with ?token= so
     // the admin secret never lands in browser history or server logs.
     try {
-      const res = await fetch(`/api/admin/portal-clients/${clientId}/uploads/${milestoneId}`, { headers: authHeaders });
+      const res = await fetch(`/api/admin/portal-clients/${clientId}/uploads/${milestoneId}?file=${uploadId}`, { headers: authHeaders });
       if (!res.ok) {
         setError("Could not download the file.");
         return;
@@ -703,12 +703,12 @@ export function AdminClientsPanel() {
                         </div>
                         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                           {detail.uploads.map((u) => (
-                            <div key={u.milestoneId} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13 }}>
+                            <div key={u.uploadId} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13 }}>
                               <span style={{ color: "rgba(252,250,246,0.6)" }}>{u.title}:</span>
                               <span style={{ color: "#fcfaf6" }}>{u.fileName}</span>
                               <button
                                 type="button"
-                                onClick={() => void downloadUpload(client.id, u.milestoneId, u.fileName)}
+                                onClick={() => void downloadUpload(client.id, u.milestoneId, u.uploadId, u.fileName)}
                                 style={{ background: "none", border: "none", padding: 0, color: "#00b8a0", textDecoration: "underline", fontSize: 12, cursor: "pointer", fontFamily: "inherit" }}
                               >
                                 Download

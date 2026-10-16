@@ -7,7 +7,8 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
   }
 
   const { id, milestoneId } = await params;
-  const upload = await getMilestoneUpload(id, milestoneId);
+  const fileParam = new URL(request.url).searchParams.get("file");
+  const upload = await getMilestoneUpload(id, milestoneId, fileParam ? Number(fileParam) : undefined);
 
   if (!upload) {
     return Response.json({ ok: false, error: "No upload found." }, { status: 404 });

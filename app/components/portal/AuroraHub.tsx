@@ -163,18 +163,23 @@ export function AuroraHub({
   orbSlot?: ReactNode;
   children?: ReactNode;
 }) {
-  const stage = stages[currentStageIndex];
+  // Once every task is done there is no current stage (index -1); show the
+  // last stage instead of reading a palette at -1, which crashed the page.
+  const homeIndex = currentStageIndex < 0 ? Math.max(0, stages.length - 1) : currentStageIndex;
+  const stage = stages[homeIndex];
   const tasks = stage?.milestones ?? [];
-  const pal = AURORA_PALETTES[currentStageIndex % AURORA_PALETTES.length];
+  const pal = AURORA_PALETTES[homeIndex % AURORA_PALETTES.length];
   // The arc is a half circle. Its end dot sits at the stage's progress.
-  const pct = Math.max(0, Math.min(100, stagePct));
+  const allDone = currentStageIndex < 0;
+  const pct = allDone ? 100 : Math.max(0, Math.min(100, stagePct));
+  const doneHere = allDone ? tasks.length : stageDoneCount;
   const ang = Math.PI * (1 - pct / 100);
   const dotX = 500 + 460 * Math.cos(ang), dotY = 500 - 460 * Math.sin(ang);
 
   return (
     <div className={calm ? "ax-page ax-page--calm" : "ax-page"} style={{ "--ax-a": pal[0], "--ax-b": pal[1], "--ax-c": pal[2] } as React.CSSProperties}>
       {/* The current stage's field, large and moving, behind everything */}
-      <WaveField key={`bg${currentStageIndex}`} seed={currentStageIndex} animate sparks={!calm} lines={calm ? 36 : 64} className="ax-bg" />
+      <WaveField key={`bg${homeIndex}`} seed={homeIndex} animate sparks={!calm} lines={calm ? 36 : 64} className="ax-bg" />
 
       {/* Header and stage strip */}
       <header className="ax-header">
@@ -259,11 +264,11 @@ export function AuroraHub({
             </svg>
             <div className="ax-hero-copy">
               <div className="ax-kicker ax-rise">
-                Stage {currentStageIndex + 1} of {stages.length} · {stage ? days(stage) : ""}
+                Stage {homeIndex + 1} of {stages.length} · {stage ? days(stage) : ""}
               </div>
               <h2 className="ax-title ax-rise" style={{ animationDelay: "90ms" }}>{stage?.name}</h2>
               <div className="ax-label ax-rise" style={{ animationDelay: "180ms", fontVariantNumeric: "tabular-nums" }}>
-                {stageDoneCount} / {tasks.length} done
+                {doneHere} / {tasks.length} done
               </div>
               {calm ? (
                 <div className="ax-calm-bar" aria-hidden>
@@ -305,7 +310,7 @@ export function AuroraHub({
                 })}
               </span>
               <span className="ax-label" style={{ marginLeft: "auto", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
-                {stageDoneCount} / {tasks.length} done · <span style={{ color: "var(--pj-ink)" }}>{tasksOpen ? "Hide" : "Show"}</span>
+                {doneHere} / {tasks.length} done · <span style={{ color: "var(--pj-ink)" }}>{tasksOpen ? "Hide" : "Show"}</span>
               </span>
               <span className="ax-chev" style={{ transform: tasksOpen ? "rotate(180deg)" : "none" }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

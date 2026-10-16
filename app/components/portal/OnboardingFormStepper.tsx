@@ -412,6 +412,12 @@ function FieldPrompt({
         {field.label} {field.required && <span style={{ color: "var(--pj-act)" }}>*</span>}
       </h3>
       {field.helper && <p style={{ fontSize: 13, color: "var(--pj-muted)", marginTop: 8, lineHeight: 1.5 }}>{field.helper}</p>}
+      {field.why && (
+        <div style={{ marginTop: 12, padding: "12px 14px", borderRadius: "var(--pj-radius-sm)", background: "var(--pj-act-fill)", fontSize: 13, color: "var(--pj-ink)", lineHeight: 1.5 }}>
+          <b style={{ fontWeight: 650 }}>Why we need this: </b>
+          {field.why}
+        </div>
+      )}
 
       {(field.inviteEmails || field.steps || field.guideUrl) && (
         <div style={{ marginTop: 16, borderRadius: 14, border: "1px solid var(--pj-line)", background: "var(--pj-well)", padding: 20 }}>

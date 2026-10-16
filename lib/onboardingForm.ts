@@ -60,6 +60,8 @@ export interface PortalFormField {
   hidden?: boolean;
   /** For type "file": accepted extensions/MIME types, as an <input accept> string. */
   accept?: string;
+  /** A short "Why we need this" note shown under the helper. */
+  why?: string;
 }
 
 export interface PortalFormSection {
@@ -136,6 +138,7 @@ export const scaleOnboardingForm: PortalFormDefinition = {
           label: "Proof of Address document",
           type: "file",
           helper: "Upload a utility bill, lease agreement, or business registration document — PDF or a clear photo.",
+          why: "Your CRM's calls and texts run through regulated phone carriers. Before a carrier will issue a business phone number, it has to verify your business address. It's a one-off compliance check, and we only use it to register your number.",
           accept: ".pdf,.png,.jpg,.jpeg,.webp,.heic",
           placeholder: "https://drive.google.com/...",
         },

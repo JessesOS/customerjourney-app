@@ -29,6 +29,19 @@
 > new design. Admin can still set Warm/Cool/Neutral per client. No schema change
 > (TEXT column), no journey/template change (importer unaffected).
 >
+> **Design-session note 2026-10-16, UPLOADS + BSS META NOTES (no template change, importer
+> unaffected):** an upload task (`hasUpload`, e.g. `ob-7` past leads) now takes up to 20 CSVs.
+> Each file is its own `portal_milestone_uploads` row, with its body in R2 at
+> `uploads/{client}/{task}/{rowId}`. Older single-file rows stay readable from
+> `uploads/{client}/{task}`. No schema change. Uploading no longer completes the task: the client
+> clicks "I've added everything". Admin lists and downloads each file (`?file=<id>`).
+> Product-level only (`lib/journeyEngine.ts`): BSS Meta ads only gets notes on `ob-2`, `ts-1` and
+> `ts-3`, `ob-2` and `ts-3` hide their booking calendar (`productHiddenTaskBooking`), and `bd-3`
+> hides its walkthrough video. The onboarding form's proof-of-address field now says why it's
+> needed (new optional field prop `why`, all products). Overall progress is now tasks done, not
+> days elapsed, in every look. Fix: the Grove and Aurora homes crashed (Error 1101) once every
+> task was done. They now show the last stage as complete. CSV uploads count as client activity.
+>
 > **Design-session note 2026-10-15, BSS SYNC (portal half DEPLOYED 4d310b92 on Jesse's "go on the sync"; now LIVE and verified both ways on prod "Fin Test" 2026-10-15; the portal reaches CSM through service binding `CSM_DASHBOARD`, set in `scripts/patch-wrangler.mjs`, because Cloudflare blocks worker-to-worker fetch on workers.dev, error 1042):** two-way BSS task
 > sync with the CSM dashboard per `csm-dashboard/docs/journey-sync.md`. New endpoint
 > `POST /api/csm-sync/milestone` (shared `JOURNEY_SYNC_TOKEN`, never calls CSM back); BSS completions

@@ -56,18 +56,28 @@ export const productIntroVideo: Partial<Record<ClientType, { src: string; poster
 /** Tasks whose "Watch how it works" video is hidden for a product.
     BSS Meta ads only: the mobile-app, calendar and social walkthroughs (Jesse, 2026-10-16). */
 export const productHiddenTaskVideos: Partial<Record<ClientType, string[]>> = {
-  "bss-meta": ["ob-4", "ob-6", "ob-6b"],
+  "bss-meta": ["ob-4", "ob-6", "ob-6b", "bd-3"],
 };
 
 /** A product-only note shown at the top of a task. BSS Meta ads only: CRM
     access isn't ready yet (Jesse, 2026-10-16). */
 export const productTaskNotes: Partial<Record<ClientType, Record<string, string>>> = {
   "bss-meta": {
+    "ob-2": "No need to book this one. We've already been working through this together, so you can tick it off.",
     "ob-crm": "CRM access is coming very soon.",
     "ob-6": "You can do this once your CRM access is ready. We'll let you know.",
     "ob-6b": "You can do this once your CRM access is ready. We'll let you know.",
     "ob-6c": "Not needed at this point. If you need a phone number, it's billed at cost, along with your SMS and call charges.",
+    "ts-1": "Your CRM access is coming soon. You can check this once it's set up.",
+    "ts-3": "Booking isn't open yet. We'll give you access and let you know when it's ready.",
   },
+};
+
+/** Tasks whose booking calendar is hidden for a product. BSS Meta ads only:
+    the welcome call is already done and the go-live calendar isn't set up yet
+    (Jesse, 2026-10-16). */
+export const productHiddenTaskBooking: Partial<Record<ClientType, string[]>> = {
+  "bss-meta": ["ob-2", "ts-3"],
 };
 
 /** Tasks whose "Important" box is hidden for a product, where it no longer

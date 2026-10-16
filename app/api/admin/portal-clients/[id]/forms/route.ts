@@ -35,9 +35,9 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       content: content[m.id] ?? "",
     }));
 
-    const uploads = allMilestones
-      .filter((m) => uploadsMeta[m.id])
-      .map((m) => ({ milestoneId: m.id, title: m.title, fileName: uploadsMeta[m.id].fileName, uploadedAt: uploadsMeta[m.id].uploadedAt }));
+    const uploads = allMilestones.flatMap((m) =>
+      (uploadsMeta[m.id] ?? []).map((u) => ({ milestoneId: m.id, title: m.title, uploadId: u.id, fileName: u.fileName, uploadedAt: u.uploadedAt })),
+    );
 
     return Response.json({ ok: true, forms, milestoneNotes, editableContent, uploads });
   } catch (error) {
