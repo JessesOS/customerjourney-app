@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { ClientPortalExperience } from "@/app/components/portal/ClientPortalExperience";
+import { PortalPausedNotice } from "@/app/components/portal/PortalPausedNotice";
 import {
   computeCurrentDay,
   getAllMilestoneContent,
@@ -34,6 +35,12 @@ export default async function PortalPage({
   }
 
   const clientType: ClientType = (client.clientType as ClientType) ?? "meta-google";
+
+  // A paused client sees a short notice instead of their portal (Jesse, 2026-10-17).
+  if (client.journeyState === "paused") {
+    return <PortalPausedNotice firstName={client.name.trim().split(/\s+/)[0] ?? ""} brand={productBrandName[clientType] ?? "Client Portal"} portalToken={token} />;
+  }
+
   const totalDaysForClient = clientType === "respond" ? respondJourneyTotalDays : clientType === "bss" ? bssJourneyTotalDays : undefined;
 
   const [completedIds, currentDay, milestoneNotes, milestoneContent, milestoneUploads] = await Promise.all([
