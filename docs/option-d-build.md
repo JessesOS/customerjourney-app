@@ -69,6 +69,71 @@ Built 2026-10-17. See `docs/team-board.md`.
 4. The team list.
 5. The allconvos.ai DNS move, before go-live.
 
+### Phase 3: the portal reads product files (branch `team-board`)
+
+Built 2026-10-17. **Nothing deployed:** prod and staging are untouched, no remote database was touched. The client portal, the admin and the board now all read each client type's journey from `products/`, through `lib/productRegistry.ts`. No client wording changed. How it works: `docs/products/README.md`.
+
+**Commits:**
+1. `0a006b2` C1: freeze every client type's portal (`npm run check:journeys`) before the switch.
+2. `43b7a43` C2: shared journey types (`lib/journeyTypes.ts`) and the pure stage builder (`lib/journeyBuild.ts`).
+3. `84009ff` C3: product files carry the portal settings; BSS converted into `products/bss`; the registry; `products/index.ts` generated.
+4. `15778f4` C4a: server routes and the admin read journeys, days and labels from the registry.
+5. `48db4f4` C4b: the client portal reads its journey from the registry; `lib/respondJourney.ts` and `lib/bssJourney.ts` deleted; the old `lib/*` journey files are compat shims for `check:fin` only.
+6. `8ff3212` + `ff514d3` C5: custom products (`defineCustomProduct`), drafts behind `PRODUCT_DRAFTS`, the custom-product proof in `products:check`.
+7. C6: this log.
+
+**Decisions:**
+- **D1 Freeze first, switch later.** Fixtures for 7 client types (meta, google, meta-google, bss-meta, respond, bss, and an unknown type) store outputs: templates, renders, decisions and hashes of server-rendered markup. They were written once in C1 and never re-saved.
+- **D2 One answer per client type.** `portalJourneyFor(clientType)` returns plain data; the server passes it as a prop. No `isRespond`/`isBss`/`clientType ===` branches remain, and client components never import `products/`, so the 184 team tasks never reach a browser.
+- **D3 BSS converted faithfully** into `products/bss` (paused): client steps, a `bss` variant, each `bss-NNN` task behind its step. One code path, no legacy fallback.
+- **D4 Paused:** existing clients keep rendering; never offered in the admin dropdown; the board never starts. The API still accepts the type.
+- **D5 `ClientType` is generated from the product files**, so a typo fails `tsc`. Unknown stored types render as before (Scale, channel steps hidden, 30 days).
+- **D6 Portal extras live with the product:** product `portal` (wordmark, voice guide, Ask-AI, features) and variant overrides. Anything absent is off; existing types carry today's values verbatim.
+- **D7 Step features** (playground, landing preview, receptionist script, non-blocking) are lists of step ids on the product, so step objects (and check:fin's template) stay unchanged.
+- **D8 Compat shims:** `lib/journeyEngine.ts`, `onboardingJourney.ts`, `stageGuide.ts`, `askAi.ts`, `stringPlans.ts` stay as thin re-exports because `scripts/check-fin-journey.ts` imports them. That script and its fixture were never edited.
+- **D9 One import direction:** `lib/journeyTypes` → `lib/journeyBuild` → `products/**` (types only from lib) → `lib/productRegistry` → shims, server and routes. A static check enforces it.
+- **D10 `products/index.ts` is generated** by `npm run products:render` from the folders. A new product is one folder.
+- **D11 `defineCustomProduct`** resolves a base plus differences into a plain product at import time, and throws on any mistake.
+- **D12 Drafts:** the Worker var `PRODUCT_DRAFTS=1` (staging, or locally in `.dev.vars`) offers draft products in admin and lets their boards start. Prod leaves it unset.
+- **D13 Id checks stay union-based** (first id wins), except the form route, which now resolves per client.
+- **D14 Still code:** forms, the playground and landing-preview components, the `"landing-page"` slot, `STAGE_ORDER`, interview-audio naming, GHL mapping, incentive and stage-complete copy, the look list.
+
+**Checks (all pass at the end of the phase):**
+- `npx tsc --noEmit`.
+- `npm run check:fin` (Fin's baseline; `scripts/check-fin-journey.ts` and its fixture unchanged since `983ffb1`).
+- `npm run check:journeys`: 7 client types, 618 renders, 413 markup renders; fixtures unchanged since C1. It also cross-checks Fin's `check:fin` baseline.
+- `npm run products:check`: six checks: frozen journeys, integrity, custom-product proof, code boundaries, version lock, sheets and index.
+- `npm run check:team-auth`.
+- `npm run build` succeeds, and no team-task text (e.g. "Accounts - Sandy", "RTDigital Agency Slack", "Merged SOP steps") is in `dist/client`.
+- Page and API captures on the local server: C3 against C1 differs only in the bss board rows (below); C4a against C3, and C4b against C4a, are identical, every portal page included.
+- The voice generators' `--list` output is identical before and after (9 guide lines, 18 interview lines).
+- A manual draft test on the local server: a temporary draft custom product was offered only with `PRODUCT_DRAFTS=1`, its client's portal rendered and its board started. The test client and folder were deleted afterwards.
+
+**Intentional admin-only wording changes (C4a):**
+- The theme lock's tooltip now reads "Locked by the product (<label>): always uses <look>".
+- The invalid client-type error lists the accepted types from the product files.
+- The client-type dropdown fills once the client list loads (its options come from the API).
+
+**Team board change (C3):** `bss` clients (local and staging test clients only) now show their BSS client steps, 42 days and a next step on the Board, instead of 0 steps and 30 days. Their board still can't start; the message is now "BSS Launchpad (custom journey) is paused."
+
+**Notes for the next session:**
+- A new product folder with new step ids changes `scripts/fixtures/journeys/_global.json` (the step-id union), even as a draft. Re-save `_global` only as part of the product change Jesse approved. A new live client type must also be added to `CLIENT_TYPES` in `scripts/journeys/contract.ts` before it can be frozen. Both are in `docs/products/README.md` §7 and §9.
+- `npm run products:render` now also handles a deleted or renamed product folder: it rewrites the index and removes the old sheet.
+- `PRODUCT_DRAFTS: "1"` is in the staging vars (`scripts/deploy-envs.mjs`); it takes effect on the next staging deploy.
+
+**Waiting on Jesse:**
+1. Review Phase 3 before it is merged or deployed. A deploy needs the usual package.
+2. **Moving Fin onto a custom product** is a separate, approved prod data change: its own deploy package and a `check:journeys -- --write bss-meta --yes-fin` re-save. Nothing here moved him.
+3. Existing issues, untouched on purpose (frozen for Fin):
+   - the `bss-meta` testing Ask-AI still promises a day-14 test call;
+   - the `bd-3` guide URL contains `RT_Digital`;
+   - `go.rt-d.com` booking links on `ob-2`, `ts-3`, `pl-1`, `pl-2` and `rsp-014`;
+   - `crm.rtdigital.agency` on `ob-crm`.
+4. Out of scope, flagged for later:
+   - **Portal version pinning.** Only boards are stamped with a product version. A future step is an additive `client_product_pins` table.
+   - Product-specific copy in `StageCompleteView` and `IncentiveModal` (possible product settings).
+   - The admin forms list is still the union of all products, so a reworded reused id shows the base title in admin.
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:

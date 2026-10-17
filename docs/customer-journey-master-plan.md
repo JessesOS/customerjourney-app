@@ -9,6 +9,7 @@
 > - One session, rooted at `~/Master/AI/customerjourney-app`, owns the portal and the back office. The CSM dashboard is frozen.
 > - GHL automation stays with the brain session.
 > - Plan: `~/.claude/plans/temporal-waddling-wave.md`. Build log: `docs/option-d-build.md`.
+> - 2026-10-17: journeys now live in `products/`; no client wording changed; guarded by `check:journeys`.
 >
 > **SESSION MODEL CHANGED, 2026-08-09, Jesse's decision: ONE MEGA SESSION.**
 > All customer-journey, three-surfaces/CSM, and portal-tweak work now runs in a single
