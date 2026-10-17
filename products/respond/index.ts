@@ -5,8 +5,10 @@
 // npm run products:lock, products:render and products:check.
 // Readable sheet: docs/products/respond.md (generated).
 
-import { STAGE_ORDER, type Product, type ProductStage } from "../types";
+import { defineProduct } from "../define";
+import { STAGE_ORDER, type ProductStage } from "../types";
 import { respondClientStages } from "./client-steps";
+import { respondAskAi, respondFeatures, respondVoiceGuide } from "./portal";
 import { respondTeamTasks } from "./team-tasks";
 
 /**
@@ -37,10 +39,10 @@ const support: ProductStage = {
   teamOnly: true,
 };
 
-export const respond: Product = {
+export const respond = defineProduct({
   id: "respond",
   name: "Respond",
-  version: "2026-10-16.1",
+  version: "2026-10-17.1",
   status: "live",
   totalDays: 10,
   roles: [
@@ -56,6 +58,9 @@ export const respond: Product = {
   ],
   stages: [...respondClientStages, build, support].sort((a, b) => STAGE_ORDER.indexOf(a.id) - STAGE_ORDER.indexOf(b.id)),
   teamTasks: respondTeamTasks,
+  // Shown as "CRM" (Jesse, 2026-10-12), with its own voice guide, Ask-AI
+  // answers and step features (products/respond/portal.ts).
+  portal: { wordmark: "CRM", voiceGuide: respondVoiceGuide, askAi: respondAskAi, features: respondFeatures },
   // Copied verbatim from lib/journeyEngine.ts (2026-10-16): Respond has no
   // product-map entries, only its label.
   variants: [
@@ -63,6 +68,7 @@ export const respond: Product = {
       id: "respond",
       clientType: "respond",
       label: "CRM — Respond",
+      pickerOrder: 4,
       portal: {},
     },
   ],
@@ -77,4 +83,4 @@ export const respond: Product = {
     convertedOn: "2026-10-16",
     report: "docs/products/conversion-report-2026-10.md",
   },
-};
+});

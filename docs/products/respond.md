@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-16.1` |
+| Version | `2026-10-17.1` |
 | Status | live: new clients start on it |
 | Journey | 10 days to go-live |
 | Client steps | 13 (1 client only, 0 hidden in the portal) |
@@ -18,9 +18,18 @@ Until the portal reads product files, the client wording here mirrors the live p
 
 ## Variants
 
-| Variant | Client type | Channels | Client steps shown | Team tasks |
-|---|---|---|---|---|
-| CRM — Respond | `respond` | none | 13 | 53 |
+| Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
+|---|---|---|---|---|---|
+| CRM — Respond | `respond` | none | yes | 13 | 53 |
+
+## Portal settings
+
+| | |
+|---|---|
+| Name the client sees | **CRM**, unless a variant sets its own name |
+| Voice guide | `onboarding`, `testing`, `go-live`, `post-launch` (audio `public/portal/voice/respond-<stage>.m4a`) |
+| Ask-AI | `onboarding` (2), `testing` (2), `go-live` (2), `post-launch` (1) |
+| Step features | live AI receptionist test on `rsp-048`; receptionist script from `rsp-018` |
 
 ## Roles
 

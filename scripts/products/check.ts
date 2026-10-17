@@ -1,5 +1,5 @@
 /**
- * Checks the product files (products/**). Six checks, all must pass:
+ * Checks the product files (products/**). Seven checks, all must pass:
  *
  *   1. Golden template: for meta, google, meta-google, bss-meta and respond,
  *      portalTemplate() deep-equals today's code template (journeyTemplate /
@@ -11,16 +11,23 @@
  *      equals the variant's portal overrides, both ways; totalDays matches.
  *   4. Integrity: unique ids, every reference resolves, valid roles, every team
  *      task placed once, every visible client step has team tasks or is
- *      clientOnly, variant channels agree with the portal's visibility rule.
- *   5. Version lock: a product edited without a version bump fails.
- *   6. Sheets current: docs/products/<id>.md match a fresh render.
+ *      clientOnly, statuses and variants agree, portal settings and per-variant
+ *      tweaks name real steps and stages, voice audio and media exist, forms
+ *      exist, no RT Digital in client wording, every live or paused client type
+ *      is frozen (scripts/fixtures/journeys/), channels agree with the portal.
+ *   5. Code boundaries: no "use client" module reaches products/, the registry
+ *      or server-only code; products/ imports only types from lib/
+ *      (scripts/products/static-checks.ts).
+ *   6. Version lock: a product edited without a version bump fails.
+ *   7. Sheets and index: docs/products/<id>.md and products/index.ts match a
+ *      fresh render.
  *
  *   npm run products:check
  *   npm run products:lock     record the current versions in products/versions.lock.json
  *                             (refuses a changed product whose version wasn't bumped)
  */
 import { createHash } from "node:crypto";
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { isDeepStrictEqual } from "node:util";
@@ -33,19 +40,22 @@ import {
   respondJourneyTemplate,
   respondJourneyTotalDays,
 } from "../../lib/respondJourney";
+import { onboardingFormById } from "../../lib/onboardingForm";
 import { productList } from "../../products/index";
 import {
   allSteps,
   dueDaysFor,
   PORTAL_OVERRIDE_MAPS,
   portalTemplate,
+  type LegacyOverrideKey,
   productForClientType,
   stepVisibleFor,
   teamTasksFor,
   variantFor,
 } from "../../products/load";
-import { STAGE_ORDER, type PortalOverrides, type Product } from "../../products/types";
-import { staleSheets } from "./render";
+import { STAGE_ORDER, type ClientStep, type Product } from "../../products/types";
+import { indexCurrent, staleSheets } from "./render";
+import { codeBoundaries } from "./static-checks";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const LOCK_PATH = join(ROOT, "products", "versions.lock.json");
@@ -135,7 +145,7 @@ function goldenOverrides(): string {
   const engineMaps = Object.entries(engine).filter(
     ([name, value]) => (name.startsWith("product") || name === "clientTypeLabels") && value !== null && typeof value === "object",
   ) as [string, Partial<Record<ClientType, unknown>>][];
-  const keyForMap = new Map(Object.entries(PORTAL_OVERRIDE_MAPS).map(([key, map]) => [map, key as keyof PortalOverrides]));
+  const keyForMap = new Map(Object.entries(PORTAL_OVERRIDE_MAPS).map(([key, map]) => [map, key as LegacyOverrideKey]));
   for (const map of keyForMap.keys()) must(engineMaps.some(([name]) => name === map), `PORTAL_OVERRIDE_MAPS names ${map}, which lib/journeyEngine.ts no longer exports`);
   let compared = 0;
   for (const ct of CLIENT_TYPES) {
@@ -245,27 +255,101 @@ function integrity(): string {
       else if (!step.hidden) must(hasTasks, `${P}: visible step ${step.id} has no team task and is not clientOnly`);
     }
 
-    // Variants: only live products have them; each matches the portal's rules.
-    if (p.status !== "live") must(p.variants.length === 0, `${P}: a ${p.status} product must have no variants (no client type may start on it)`);
-    else must(p.variants.length > 0, `${P}: a live product needs at least one variant`);
+    // Statuses: a live product has variants; a paused one never offers them.
+    if (p.status === "live") must(p.variants.length > 0, `${P}: a live product needs at least one variant`);
+    if (p.variants.length) {
+      must(Boolean(p.portal?.wordmark), `${P}: a product with variants needs portal.wordmark (the name its clients see)`);
+      must(p.totalDays !== null, `${P}: a product with variants needs totalDays`);
+    }
+    const portalStageIds = p.stages.filter((s) => !s.teamOnly).map((s) => s.id as string);
+
+    // Product portal settings: voice guide, Ask-AI and features name real stages and steps.
+    if (p.portal) {
+      const guide = p.portal.voiceGuide;
+      if (guide) {
+        must(/^[a-z0-9-]+$/.test(guide.audioPrefix), `${P}: voiceGuide.audioPrefix "${guide.audioPrefix}" must be kebab-case`);
+        for (const [stage, script] of Object.entries(guide.scripts)) {
+          must(portalStageIds.includes(stage), `${P}: voice guide script for ${stage}, which is not a portal stage`);
+          if (script) must(existsSync(join(ROOT, "public", "portal", "voice", `${guide.audioPrefix}-${stage}.m4a`)), `${P}: voice guide audio public/portal/voice/${guide.audioPrefix}-${stage}.m4a is missing`);
+        }
+      }
+      for (const stage of Object.keys(p.portal.askAi ?? {})) must(portalStageIds.includes(stage), `${P}: Ask-AI items for ${stage}, which is not a portal stage`);
+      const f = p.portal.features ?? {};
+      const featureIds = [...(f.playgroundSteps ?? []), ...(f.landingPreviewSteps ?? []), ...(f.nonBlockingSteps ?? []), ...(f.receptionistScriptStep ? [f.receptionistScriptStep] : [])];
+      for (const id of featureIds) must(stepStage.has(id), `${P}: portal.features names unknown step ${id}`);
+    }
+
+    // Client wording and assets.
+    const RT = /rt[\s_-]?digital/i;
+    const RT_URL = /rt-d\.com|rtdigital|rt_digital/i;
+    const textOf = (step: ClientStep) => [step.title, step.detail, step.notePrompt, step.notePlaceholder, step.embedTitle, step.embedNote, step.guideLabel, step.important, step.inviteEmail, step.doneLabel, ...(step.steps ?? []), ...(step.interview ?? [])];
+    const clientText: [string, string | undefined][] = [];
+    for (const s of p.stages.filter((st) => !st.teamOnly)) {
+      clientText.push([`stage ${s.id}`, s.name], [`stage ${s.id}`, s.blurb], ...s.statusNotes.map((n) => [`stage ${s.id}`, n] as [string, string]));
+    }
+    for (const step of steps) {
+      for (const t of textOf(step)) clientText.push([step.id, t]);
+      for (const url of [step.videoUrl, step.bookingUrl, step.embedUrl, step.guideUrl]) if (url && RT_URL.test(url)) notes.push(`${p.id}: ${step.id} links to an RT Digital address (${url})`);
+      if (step.formId) must(Boolean(onboardingFormById(step.formId)), `${P}: ${step.id} uses form ${step.formId}, which lib/onboardingForm.ts does not define`);
+      (step.interview ?? []).forEach((_, i) => {
+        const file = `public/portal/voice/interview-${step.id}-${i + 1}.m4a`;
+        if (!existsSync(join(ROOT, file))) notes.push(`${p.id}: ${file} is missing (the interview plays without audio): python3 scripts/generate-interview-voice.py`);
+      });
+    }
+    if (p.portal) {
+      clientText.push(["portal.wordmark", p.portal.wordmark]);
+      for (const [stage, script] of Object.entries(p.portal.voiceGuide?.scripts ?? {})) clientText.push([`voice guide ${stage}`, script]);
+      for (const [stage, items] of Object.entries(p.portal.askAi ?? {})) for (const item of items ?? []) clientText.push([`Ask-AI ${stage}`, item.q], [`Ask-AI ${stage}`, item.a]);
+    }
+
+    // Variants: each matches the portal's rules; every tweak names a real step or stage.
     for (const v of p.variants) {
       const V = `${P} variant ${v.id}`;
       must(v.id === v.clientType, `${V}: id should equal the client type`);
+      must(/^[a-z][a-z0-9]*(-[a-z0-9]+)*$/.test(v.clientType), `${V}: client type must be kebab-case`);
       must(!clientTypes.has(v.clientType), `${V}: client type ${v.clientType} is also in ${clientTypes.get(v.clientType)}`);
       clientTypes.set(v.clientType, p.id);
+      if (p.status === "paused") must(v.offered !== true, `${V}: a paused product is never offered`);
       for (const step of steps) {
-        must(stepVisibleFor(step, v) === milestoneVisibleFor(step, v.clientType), `${V}: channels disagree with the portal on ${step.id}`);
+        must(stepVisibleFor(step, v) === milestoneVisibleFor(step, v.clientType as ClientType), `${V}: channels disagree with the portal on ${step.id}`);
       }
-      for (const map of Object.values(v.portal)) {
-        const ids = Array.isArray(map) ? map : map && typeof map === "object" && !("src" in map) ? Object.keys(map) : [];
-        for (const id of ids) must(stepStage.has(id), `${V}: portal override names unknown step ${id}`);
+      const o = v.portal;
+      for (const key of ["hiddenTaskVideos", "hiddenTaskBooking", "hiddenTaskPlayground", "hiddenTaskImportant"] as const) {
+        for (const id of o[key] ?? []) must(stepStage.has(id), `${V}: portal.${key} names unknown step ${id}`);
+      }
+      for (const key of ["taskNotes", "taskDetails"] as const) {
+        for (const [id, text] of Object.entries(o[key] ?? {})) {
+          must(stepStage.has(id), `${V}: portal.${key} names unknown step ${id}`);
+          clientText.push([`${v.id} ${key} ${id}`, text]);
+        }
+      }
+      for (const stage of o.hiddenGuideStages ?? []) must(portalStageIds.includes(stage), `${V}: portal.hiddenGuideStages names ${stage}, which is not a portal stage`);
+      if (o.stringPlan) {
+        const strands = o.stringPlan.workstreams.map((w) => w.id);
+        must(new Set(strands).size === strands.length, `${V}: portal.stringPlan has duplicate strand ids`);
+        for (const w of o.stringPlan.workstreams) {
+          for (const id of w.taskIds) must(stepStage.has(id), `${V}: portal.stringPlan strand ${w.id} names unknown step ${id}`);
+          for (const a of w.after ?? []) must(strands.includes(a), `${V}: portal.stringPlan strand ${w.id} comes after unknown strand ${a}`);
+        }
+      }
+      if (o.introVideo) {
+        const { src, poster } = o.introVideo;
+        if (src.startsWith("/api/media/")) must(/\.(mp4|webm|m4a|mp3)$/i.test(src), `${V}: intro video ${src} must be .mp4, .webm, .m4a or .mp3`);
+        if (poster.startsWith("/portal/")) must(existsSync(join(ROOT, "public", poster)), `${V}: intro video poster public${poster} is missing`);
+        clientText.push([`${v.id} introVideo`, o.introVideo.title]);
+      }
+      clientText.push([`${v.id} brandName`, o.brandName], [`${v.id} tagline`, o.tagline]);
+      if (p.status === "live" || p.status === "paused") {
+        must(existsSync(join(ROOT, "scripts", "fixtures", "journeys", `${v.clientType}.json`)), `${V}: no frozen journey (scripts/fixtures/journeys/${v.clientType}.json): freeze it with npm run check:journeys -- --write ${v.clientType}`);
       }
       // A client of this variant gets every task's prerequisites too.
       const own = new Set(teamTasksFor(p, v).map((t) => t.id));
       for (const t of teamTasksFor(p, v)) for (const d of t.dependencies) must(own.has(d), `${V}: ${t.id} depends on ${d}, which this variant doesn't get`);
     }
+    for (const [where, text] of clientText) if (text && RT.test(text)) must(false, `${P}: "RT Digital" in client wording (${where}): the client-facing brand is allconvos.ai`);
   }
-  must(productForClientType("bss") === null, `productForClientType("bss") must be null (BSS is paused)`);
+  const bssProduct = productForClientType("bss");
+  must(bssProduct?.id === "bss" && bssProduct.status === "paused", `"bss" must resolve to the paused bss product`);
   return `${productList.length} products, ${taskCount} team tasks, ${stepCount} client steps, ${clientTypes.size} variants; ${openWindows} tasks have open due windows ("As needed", "Ongoing"...)`;
 }
 
@@ -337,11 +421,19 @@ function writeLock() {
   console.log(`Wrote products/versions.lock.json: ${productList.map((p) => `${p.id} ${p.version}`).join(", ")}`);
 }
 
-// ── 6. Sheets current ─────────────────────────────────────────────────────
+// ── Code boundaries ───────────────────────────────────────────────────────
+function boundaries(): string {
+  const { failures: found, summary } = codeBoundaries();
+  for (const f of found) must(false, f);
+  return summary;
+}
+
+// ── Sheets and index ──────────────────────────────────────────────────────
 function sheetsCurrent(): string {
   const stale = staleSheets();
-  must(stale.length === 0, `sheets out of date: ${stale.join(", ")}: run npm run products:render`);
-  return `${productList.length} sheets in docs/products/ match a fresh render`;
+  if (!indexCurrent()) stale.unshift("products/index.ts");
+  must(stale.length === 0, `out of date: ${stale.join(", ")}: run npm run products:render`);
+  return `products/index.ts and ${productList.length} sheets in docs/products/ match a fresh render`;
 }
 
 // ── Main ──────────────────────────────────────────────────────────────────
@@ -355,8 +447,9 @@ if (isMain) {
       ["2 golden render", goldenRender],
       ["3 golden overrides", goldenOverrides],
       ["4 integrity", integrity],
-      ["5 version lock", versionLock],
-      ["6 sheets current", sheetsCurrent],
+      ["5 code boundaries", boundaries],
+      ["6 version lock", versionLock],
+      ["7 sheets and index", sheetsCurrent],
     ];
     let failed = 0;
     for (const [name, run] of checks) {

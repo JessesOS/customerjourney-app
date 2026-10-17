@@ -7,7 +7,7 @@
 | | |
 |---|---|
 | Version | `2026-10-16.1` |
-| Status | draft: being written, never put on a board |
+| Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | timeline not set yet |
 | Client steps | none in this product file |
 | Team tasks | 4 (0 behind a client step, 4 team-only) |
@@ -17,6 +17,10 @@
 ## Variants
 
 None. No client type runs on this product.
+
+## Portal settings
+
+None: no client type runs on this product.
 
 ## Roles
 

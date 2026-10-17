@@ -5,8 +5,7 @@ import { clientTypeLabels, type ClientType } from "@/lib/journeyEngine";
 import { computeCurrentDay, getLastActivityAt } from "@/lib/portalClientStore";
 import { setting } from "@/lib/settings";
 import { teamBoardEnabled, type TeamActor } from "@/lib/teamAuth";
-import { productById } from "@/products";
-import { dueDaysFor, productForClientType, stepTree, teamTasksFor, variantFor } from "@/products/load";
+import { dueDaysFor, productById, productForClientType, stepTree, teamTasksFor, variantFor } from "@/products/load";
 import type { Product, ProductVariant } from "@/products/types";
 
 /**

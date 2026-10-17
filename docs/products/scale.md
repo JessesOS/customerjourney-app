@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-16.1` |
+| Version | `2026-10-17.1` |
 | Status | live: new clients start on it |
 | Journey | 30 days to go-live |
 | Client steps | 30 (3 client only, 2 hidden in the portal) |
@@ -18,12 +18,12 @@ Until the portal reads product files, the client wording here mirrors the live p
 
 ## Variants
 
-| Variant | Client type | Channels | Client steps shown | Team tasks |
-|---|---|---|---|---|
-| Scale — Meta ads | `meta` | meta | 25 | 76 |
-| Scale — Google Ads | `google` | google | 25 | 71 |
-| Scale — Meta + Google Ads | `meta-google` | meta, google | 28 | 87 |
-| BSS Meta ads only | `bss-meta` | meta | 25 | 76 |
+| Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
+|---|---|---|---|---|---|
+| Scale — Meta ads | `meta` | meta | yes | 25 | 76 |
+| Scale — Google Ads | `google` | google | yes | 25 | 71 |
+| Scale — Meta + Google Ads | `meta-google` | meta, google | yes | 28 | 87 |
+| BSS Meta ads only | `bss-meta` | meta | yes | 25 | 76 |
 
 ### Portal tweaks by variant
 
@@ -46,6 +46,17 @@ Until the portal reads product files, the client wording here mirrors the live p
 - Description of `ob-2` replaced with: "A live 30-minute walkthrough of your portal, your milestones, and your messaging center."
 - Description of `ts-3` replaced with: "Once testing is done, we'll lock in your go-live walkthrough together."
 - Hidden: video on `ob-4`, `ob-6`, `ob-6b`, `bd-3`; booking calendar on `ob-2`, `ts-3`; live AI test on `ts-2`; "Important" box on `ob-6c`
+- Voice guide hidden on `testing`
+- String Theory: 7 strands, go-live day 30
+
+## Portal settings
+
+| | |
+|---|---|
+| Name the client sees | **Scale**, unless a variant sets its own name |
+| Voice guide | `onboarding`, `build`, `testing`, `go-live`, `post-launch` (audio `public/portal/voice/scale-<stage>.m4a`) |
+| Ask-AI | `onboarding` (3), `build` (3), `testing` (2), `go-live` (2), `post-launch` (2) |
+| Step features | live AI receptionist test on `ts-2`; receptionist script from `ob-3`; landing-page preview on `bd-g2`; never blocking: `ob-6`, `ob-6b`, `ob-6c`, `ob-crm`, `ob-7`, `bd-3`, `bd-g1` |
 
 ## Roles
 

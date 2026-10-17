@@ -5,8 +5,10 @@
 // npm run products:lock, products:render and products:check.
 // Readable sheet: docs/products/scale.md (generated).
 
-import { STAGE_ORDER, type Product, type ProductStage } from "../types";
+import { defineProduct } from "../define";
+import { STAGE_ORDER, type ProductStage } from "../types";
 import { scaleClientStages } from "./client-steps";
+import { scaleAskAi, scaleFeatures, scaleMetaStringPlan, scaleVoiceGuide } from "./portal";
 import { scaleTeamTasks } from "./team-tasks";
 
 /** Team-only: exits, pauses and cancellations. Never reaches the portal. */
@@ -22,10 +24,10 @@ const support: ProductStage = {
   teamOnly: true,
 };
 
-export const scale: Product = {
+export const scale = defineProduct({
   id: "scale",
   name: "Scale",
-  version: "2026-10-16.1",
+  version: "2026-10-17.1",
   status: "live",
   totalDays: 30,
   roles: [
@@ -42,13 +44,18 @@ export const scale: Product = {
   ],
   stages: [...scaleClientStages, support].sort((a, b) => STAGE_ORDER.indexOf(a.id) - STAGE_ORDER.indexOf(b.id)),
   teamTasks: scaleTeamTasks,
+  // The house name, voice guide, Ask-AI answers and step features every Scale
+  // variant shows (products/scale/portal.ts).
+  portal: { wordmark: "Scale", voiceGuide: scaleVoiceGuide, askAi: scaleAskAi, features: scaleFeatures },
   // Portal tweaks copied verbatim from the product* maps and clientTypeLabels in
-  // lib/journeyEngine.ts (2026-10-16). The golden-overrides check keeps them equal.
+  // lib/journeyEngine.ts (2026-10-16). check:journeys freezes what each shows.
   variants: [
     {
       id: "meta",
       clientType: "meta",
       label: "Scale — Meta ads",
+      adminLabel: "Scale — Meta ads only",
+      pickerOrder: 2,
       channels: ["meta"],
       portal: {
         hidesIncentive: true,
@@ -58,6 +65,8 @@ export const scale: Product = {
       id: "google",
       clientType: "google",
       label: "Scale — Google Ads",
+      adminLabel: "Scale — Google Ads only",
+      pickerOrder: 3,
       channels: ["google"],
       portal: {},
     },
@@ -65,6 +74,7 @@ export const scale: Product = {
       id: "meta-google",
       clientType: "meta-google",
       label: "Scale — Meta + Google Ads",
+      pickerOrder: 1,
       channels: ["meta", "google"],
       portal: {},
     },
@@ -73,6 +83,7 @@ export const scale: Product = {
       id: "bss-meta",
       clientType: "bss-meta",
       label: "BSS Meta ads only",
+      pickerOrder: 5,
       channels: ["meta"],
       portal: {
         lockedLook: "groveaurora",
@@ -102,6 +113,10 @@ export const scale: Product = {
         hiddenTaskPlayground: ["ts-2"],
         hiddenTaskImportant: ["ob-6c"],
         tagline: "Onboarding & delivery",
+        // BSS Meta ads only: testing waits for the CRM connection, so skip the script
+        // that promises a live test call (Jesse, 2026-10-16).
+        hiddenGuideStages: ["testing"],
+        stringPlan: scaleMetaStringPlan,
       },
     },
   ],
@@ -116,4 +131,4 @@ export const scale: Product = {
     convertedOn: "2026-10-16",
     report: "docs/products/conversion-report-2026-10.md",
   },
-};
+});

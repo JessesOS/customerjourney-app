@@ -8,7 +8,8 @@
 // From here on this file is edited by hand: ask Claude, and bump the version
 // with every change (npm run products:check enforces it).
 
-import type { Product, TeamTask } from "../types";
+import { defineProduct } from "../define";
+import type { TeamTask } from "../types";
 
 const websiteTeamTasks: TeamTask[] = [
   // ── Website Build (build) ──
@@ -58,7 +59,7 @@ const websiteTeamTasks: TeamTask[] = [
   },
 ];
 
-export const website: Product = {
+export const website = defineProduct({
   id: "website",
   name: "Website add-on",
   version: "2026-10-16.1",
@@ -89,4 +90,4 @@ export const website: Product = {
     convertedOn: "2026-10-16",
     report: "docs/products/conversion-report-2026-10.md",
   },
-};
+});

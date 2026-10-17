@@ -6,17 +6,35 @@
 
 | | |
 |---|---|
-| Version | `2026-10-16.1` |
-| Status | paused: reference only, never put on a board |
+| Version | `2026-10-17.1` |
+| Status | paused: existing clients keep it; never offered for new clients or put on a board |
 | Journey | 42 days to go-live |
-| Client steps | none in this product file |
-| Team tasks | 40 (0 behind a client step, 40 team-only) |
+| Client steps | 41 (0 client only, 1 hidden in the portal) |
+| Team tasks | 40 (40 behind a client step, 0 team-only) |
 | Converted from | csm-dashboard lib/bssTasks.ts at `5c9abc9` on 2026-10-16: [conversion report](conversion-report-2026-10.md), with [open questions for Jesse](conversion-report-2026-10.md#flags-for-jesse-not-fixed) |
 | Source document | [Bitcoin Success School — Scope & Agreement v2 (2026-10-14)](https://bss-agreement.vercel.app/) |
 
 ## Variants
 
-None. No client type runs on this product.
+| Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
+|---|---|---|---|---|---|
+| BSS Fin Creighton | `bss` | none | no | 40 | 40 |
+
+### Portal tweaks by variant
+
+**BSS Fin Creighton** (`bss`)
+
+- named **BSS Launchpad** · tagline "Onboarding & delivery" · look fixed to `groveaurora` · no $200 "move fast" popup
+- String Theory: 9 strands, go-live day 42
+
+## Portal settings
+
+| | |
+|---|---|
+| Name the client sees | **Scale**, unless a variant sets its own name |
+| Voice guide | off |
+| Ask-AI | off |
+| Step features | none |
 
 ## Roles
 
@@ -34,24 +52,41 @@ _Two weeks to get to know your business, gather access, and map your customer jo
 
 Status notes the client sees: "Nothing is built until your customer journey is mapped and agreed with you." · "We'll confirm your partner pages and how payment is taken in these first two weeks."
 
-### Team-only work in Onboarding
+### `bss-001` Your intake interview
+
+> Tell us about your business in your own words, out loud or typed. About 5 minutes. It shapes your CRM, website and AI agent.
+
+Portal: voice interview · answer required
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| **Intake** | | | | |
 | `bss-001` Voice interview — intake | Jesse Allan | Weeks 1-2 | high |  |
-| `bss-003` Get invited to Fin's accounts — CRM, GHL, Calendly, domain, hosting | Jesse Allan | Weeks 1-2 | high |  |
-| **Mapping & Audit** | | | | |
-| `bss-004` Map & agree the customer journey (before any build) | Jesse Allan | Weeks 1-2 | high | `bss-003` |
-| `bss-005` Audit current CRM + GHL sub-account → written findings | Jesse Allan | Weeks 1-2 | normal | `bss-003` |
-| `bss-006` Map all current enquiry channels | Jesse Allan | Weeks 1-2 | normal | `bss-003` |
-| `bss-007` Map partner / payment / webinar / Calendly setup | Jesse Allan | Weeks 1-2 | normal | `bss-003` |
 
-<details><summary>Guidance for the team (5 tasks)</summary>
+<details><summary>Guidance for the team (1 task)</summary>
 
 **`bss-001` Voice interview — intake**
 
 Mirrors the portal's first task (voice interview). The transcript is saved as this task's note once completed.
+
+</details>
+
+### `bss-002` Kick-off call & portal walkthrough _(hidden in the portal)_
+
+> We set you up here, walk through your journey together, and agree the next steps.
+
+Portal: shown as with the team
+
+### `bss-003` Invite us to your accounts
+
+> Add our team email as an admin on each of your accounts. No passwords change hands: each platform sends us an invite, and you can remove us at any time.
+
+Portal: note · 5 numbered steps · invite email · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-003` Get invited to Fin's accounts — CRM, GHL, Calendly, domain, hosting | Jesse Allan | Weeks 1-2 | high |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
 
 **`bss-003` Get invited to Fin's accounts — CRM, GHL, Calendly, domain, hosting**
 
@@ -63,13 +98,65 @@ Invite-based access. Fin invites admin@allconvos.ai on each platform:
 - Website hosting (admin)
 No passwords change hands; anything that won't accept an invite is sorted on a call.
 
+</details>
+
+### `bss-004` Agree your customer journey
+
+> We map how a lead becomes a paying client, end to end, and agree it with you before any build starts.
+
+Portal: note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-004` Map & agree the customer journey (before any build) | Jesse Allan | Weeks 1-2 | high | `bss-003` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
 **`bss-004` Map & agree the customer journey (before any build)**
 
 Customer journey mapped end to end and agreed with the client before build starts.
 
+</details>
+
+### `bss-005` Audit of your current CRM and GoHighLevel account
+
+> We review what you have and write up what to keep, migrate or replace.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-005` Audit current CRM + GHL sub-account → written findings | Jesse Allan | Weeks 1-2 | normal | `bss-003` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
 **`bss-005` Audit current CRM + GHL sub-account → written findings**
 
 Audit the existing custom CRM and GHL sub-account. Written findings: keep / migrate / replace, and whether the sub-account can be reused.
+
+</details>
+
+### `bss-006` Map where your enquiries come from today
+
+> Every channel a new enquiry arrives through, listed and checked.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-006` Map all current enquiry channels | Jesse Allan | Weeks 1-2 | normal | `bss-003` |
+
+### `bss-007` Map your partner, payment, webinar and Calendly setup
+
+> How partners and payouts work today, how payment is taken after sales calls, your webinar platform, and Calendly.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-007` Map partner / payment / webinar / Calendly setup | Jesse Allan | Weeks 1-2 | normal | `bss-003` |
+
+<details><summary>Guidance for the team (1 task)</summary>
 
 **`bss-007` Map partner / payment / webinar / Calendly setup**
 
@@ -83,41 +170,151 @@ _Weeks 2 to 5: your CRM, your website and your messaging channels are built and 
 
 Status notes the client sees: "Your existing copy, claims and offers stay as they are unless you approve a change."
 
-### Team-only work in Build
+### `bss-008` Install and set up your GoHighLevel system
+
+> The core CRM set-up your pipeline, automations and pages run on.
+
+Portal: shown as with the team
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| **CRM Build** | | | | |
 | `bss-008` Install & configure the GHL snapshot | Jesse Allan | Weeks 2-4 | high | `bss-005` |
-| `bss-009` Set up pipeline stages, tags & custom fields | Jesse Allan | Weeks 2-4 | normal | `bss-008` |
-| `bss-010` Migrate, clean, de-dupe & tag contacts by source | Jesse Allan | Weeks 2-4 | normal | `bss-008` |
-| `bss-011` Create smart lists + lead score (hot / warm / cold) | Jesse Allan | Weeks 2-4 | normal | `bss-009`, `bss-010` |
-| `bss-012` Set up business phone number + missed-call text-back | Jesse Allan | Weeks 2-4 | normal | `bss-008` |
-| `bss-013` Set up calendar, booking, confirmations & reminders | Jesse Allan | Weeks 2-4 | normal | `bss-008` |
-| **Website Build** | | | | |
-| `bss-014` Build 8 core pages (desktop + mobile) | Jesse Allan | Weeks 2-4 | high | `bss-004` |
-| `bss-015` Build 2 webinar pages (registration + thank-you) | Jesse Allan | Weeks 2-4 | normal | `bss-004` |
-| `bss-016` Update partner pages | Jesse Allan | Weeks 2-4 | normal | `bss-007` |
-| `bss-017` Add VSL placeholder slot | Jesse Allan | Weeks 2-4 | low | `bss-014` |
-| `bss-018` Wire all forms, booking buttons & chat widget into GHL | Jesse Allan | Weeks 2-4 | high | `bss-014`, `bss-009` |
-| **Channel Connections** | | | | |
-| `bss-019` Two-way SMS + email + consent capture | Jesse Allan | Week 5 | normal | `bss-012`, `bss-018` |
-| `bss-020` Connect Instagram + Facebook messaging, tag by channel | Jesse Allan | Week 5 | normal | `bss-018` |
-| `bss-021` YouTube trackable lead links + posting | Jesse Allan | Week 5 | low | `bss-018` |
 
-<details><summary>Guidance for the team (4 tasks)</summary>
+### `bss-009` Pipeline stages, tags and custom fields
+
+> So every lead lands in the right place with the right details.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-009` Set up pipeline stages, tags & custom fields | Jesse Allan | Weeks 2-4 | normal | `bss-008` |
+
+### `bss-010` Move and tidy your contacts
+
+> Your contacts migrated, cleaned, de-duplicated and tagged by where they came from.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-010` Migrate, clean, de-dupe & tag contacts by source | Jesse Allan | Weeks 2-4 | normal | `bss-008` |
+
+### `bss-011` Smart lists and lead scoring
+
+> Hot, warm and cold leads sorted automatically.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-011` Create smart lists + lead score (hot / warm / cold) | Jesse Allan | Weeks 2-4 | normal | `bss-009`, `bss-010` |
+
+### `bss-012` Business phone number and missed-call text-back
+
+> A missed call gets a text back straight away.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-012` Set up business phone number + missed-call text-back | Jesse Allan | Weeks 2-4 | normal | `bss-008` |
+
+### `bss-013` Calendar, booking, confirmations and reminders
+
+> Connected to Calendly, without doubled-up reminders.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-013` Set up calendar, booking, confirmations & reminders | Jesse Allan | Weeks 2-4 | normal | `bss-008` |
+
+<details><summary>Guidance for the team (1 task)</summary>
 
 **`bss-013` Set up calendar, booking, confirmations & reminders**
 
 Connected to Calendly without duplicate reminders; needs access to the Calendly account.
 
+</details>
+
+### `bss-014` Review your new website's core pages
+
+> Home, About, Podcast & socials, Book a call, Call booked, Not-qualified, Link-in-bio and Privacy, on desktop and mobile. Two rounds of changes are included.
+
+Portal: note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-014` Build 8 core pages (desktop + mobile) | Jesse Allan | Weeks 2-4 | high | `bss-004` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
 **`bss-014` Build 8 core pages (desktop + mobile)**
 
 Keep existing copy, claims, offers and guarantee unchanged unless the client approves a change. 2 revision rounds on core pages.
 
+</details>
+
+### `bss-015` Review your webinar pages
+
+> Your registration and thank-you pages. Three rounds of changes are included.
+
+Portal: note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-015` Build 2 webinar pages (registration + thank-you) | Jesse Allan | Weeks 2-4 | normal | `bss-004` |
+
+### `bss-016` Review your partner pages
+
+> The exact pages are confirmed in your first two weeks. Two rounds of changes are included.
+
+Portal: note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-016` Update partner pages | Jesse Allan | Weeks 2-4 | normal | `bss-007` |
+
+### `bss-017` A space for your video sales letter
+
+> A placeholder slot on the site, ready for a VSL later.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-017` Add VSL placeholder slot | Jesse Allan | Weeks 2-4 | low | `bss-014` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
 **`bss-017` Add VSL placeholder slot**
 
 Placeholder slot only — the VSL itself is an excluded add-on.
+
+</details>
+
+### `bss-018` Forms, booking buttons and chat connected
+
+> Every form, booking button and the chat widget wired into your CRM.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-018` Wire all forms, booking buttons & chat widget into GHL | Jesse Allan | Weeks 2-4 | high | `bss-014`, `bss-009` |
+
+### `bss-019` Two-way text and email, with consent
+
+> Two-way messaging switched on, with text consent captured on your sign-up forms.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-019` Two-way SMS + email + consent capture | Jesse Allan | Week 5 | normal | `bss-012`, `bss-018` |
+
+<details><summary>Guidance for the team (1 task)</summary>
 
 **`bss-019` Two-way SMS + email + consent capture**
 
@@ -125,32 +322,79 @@ Enable two-way SMS and email plus missed-call text-back; capture phone numbers a
 
 </details>
 
+### `bss-020` Instagram and Facebook messages connected
+
+> Messages from both arrive in your CRM, tagged by channel.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-020` Connect Instagram + Facebook messaging, tag by channel | Jesse Allan | Week 5 | normal | `bss-018` |
+
+### `bss-021` Trackable YouTube links
+
+> Lead links from YouTube you can track back to the source.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-021` YouTube trackable lead links + posting | Jesse Allan | Week 5 | low | `bss-018` |
+
 ## 3. Testing · days 36–39
 
 _Everything is tested end to end before it goes live._
 
 Status notes the client sees: "Your AI lead agent only uses wording you've approved."
 
-### Team-only work in Testing
+### `bss-022` Booked-call sequence tested
+
+> Booking windows, short-notice bookings, reschedules and cancellations all checked.
+
+Portal: shown as with the team
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| **Testing & QA** | | | | |
 | `bss-022` Test call-booked sequence | Jesse Allan | Week 6 | high | `bss-013`, `bss-018` |
-| `bss-023` Test new-lead warm-up (6 emails + texts) | Jesse Allan | Week 6 | high | `bss-018` |
-| `bss-024` Test AI lead agent (qualify → CRM → book, across channels) | Jesse Allan | Week 6 | high | `bss-018`, `bss-009` |
-| `bss-025` Test reactivation + no-show / quiet-lead follow-up | Jesse Allan | Week 6 | normal | `bss-010` |
-| `bss-026` End-to-end journey test (forms → pipeline → dashboard) | Jesse Allan | Week 6 | high | `bss-022`, `bss-023`, `bss-024` |
 
-<details><summary>Guidance for the team (3 tasks)</summary>
+<details><summary>Guidance for the team (1 task)</summary>
 
 **`bss-022` Test call-booked sequence**
 
 5-day booking window, short-notice bookings, reschedules and cancellations, no duplicate Calendly reminders.
 
+</details>
+
+### `bss-023` New-lead warm-up tested
+
+> The six warm-up emails and their texts, drafted with you and approved by you before they go live.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-023` Test new-lead warm-up (6 emails + texts) | Jesse Allan | Week 6 | high | `bss-018` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
 **`bss-023` Test new-lead warm-up (6 emails + texts)**
 
 Six emails drafted with the client and approved before going live, plus matching text follow-ups. Stops on reply / book / becomes a client.
+
+</details>
+
+### `bss-024` AI lead agent tested
+
+> It qualifies a lead, saves the answers to your CRM and books the call, across chat, text, Instagram and Facebook.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-024` Test AI lead agent (qualify → CRM → book, across channels) | Jesse Allan | Week 6 | high | `bss-018`, `bss-009` |
+
+<details><summary>Guidance for the team (1 task)</summary>
 
 **`bss-024` Test AI lead agent (qualify → CRM → book, across channels)**
 
@@ -158,23 +402,79 @@ Qualifies with the booking form's questions, writes answers to the CRM, books Cl
 
 </details>
 
+### `bss-025` Reactivation and no-show follow-up tested
+
+> Reaching past contacts, and following up no-shows and quiet leads.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-025` Test reactivation + no-show / quiet-lead follow-up | Jesse Allan | Week 6 | normal | `bss-010` |
+
+### `bss-026` Full journey tested
+
+> From form to pipeline to dashboard, end to end.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-026` End-to-end journey test (forms → pipeline → dashboard) | Jesse Allan | Week 6 | high | `bss-022`, `bss-023`, `bss-024` |
+
 ## 4. Go-Live · days 40–42
 
 _Week 6: your website launches on your domain and your automations switch on._
 
-### Team-only work in Go-Live
+### `bss-027` Confirm your website launch day
+
+> We launch your core website on your domain on a day we agree together.
+
+Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| **Launch & Automate** | | | | |
 | `bss-027` Launch core website on Fin's domain (agreed day) | Jesse Allan | Week 6 | high | `bss-014`, `bss-018`, `bss-026` |
+
+### `bss-028` Lead nurture sequence live
+
+> New leads are warmed up automatically.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
 | `bss-028` Lead nurture sequence live | Jesse Allan | Week 6 | high | `bss-023` |
+
+### `bss-029` Booked-call sequence live
+
+> Confirmations and reminders run themselves.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
 | `bss-029` Call-booked sequence live | Jesse Allan | Week 6 | high | `bss-022` |
+
+### `bss-030` AI lead agent live
+
+> On chat, text, Instagram and Facebook.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
 | `bss-030` AI lead agent live (chat / text / IG / FB) | Jesse Allan | Week 6 | high | `bss-024` |
+
+### `bss-031` Reactivation text campaign live
+
+> To past contacts who have already given consent.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
 | `bss-031` Reactivation text campaign live | Jesse Allan | Week 6 | normal | `bss-025` |
-| `bss-032` Missed-call text-back + two-way messaging live | Jesse Allan | Week 6 | normal | `bss-019` |
-| `bss-033` Pipeline auto-moves + stop-on-reply/book live | Jesse Allan | Week 6 | normal | `bss-009` |
-| `bss-034` Leads / bookings / conversions dashboard live | Jesse Allan | Week 6 | normal | `bss-009` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
@@ -184,36 +484,130 @@ Past contacts with existing consent only.
 
 </details>
 
+### `bss-032` Missed-call text-back and two-way messaging live
+
+> Every missed call and message gets a reply.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-032` Missed-call text-back + two-way messaging live | Jesse Allan | Week 6 | normal | `bss-019` |
+
+### `bss-033` Pipeline moves itself
+
+> Leads move stage automatically, and follow-ups stop when they reply or book.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-033` Pipeline auto-moves + stop-on-reply/book live | Jesse Allan | Week 6 | normal | `bss-009` |
+
+### `bss-034` Your leads and bookings dashboard live
+
+> Leads, bookings and conversions in one view.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-034` Leads / bookings / conversions dashboard live | Jesse Allan | Week 6 | normal | `bss-009` |
+
 ## 5. Post-Launch · days 43–240 on, ongoing
 
 _Weeks 7 to 10 add partners, webinars and client onboarding. Then we review, tune and support you through month 8._
 
-### Team-only work in Post-Launch
+### `bss-035` Partner and referral tracking live
+
+> See which partners bring paying clients, from their link through to payment.
+
+Portal: shown as with the team
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| **Partners, Webinar & Onboarding** | | | | |
 | `bss-035` Partner / referral tracking live | Jesse Allan | Weeks 7-10 | normal | `bss-016` |
-| `bss-036` Weekly webinar system live | Jesse Allan | Weeks 7-10 | normal | `bss-015` |
-| `bss-037` Client onboarding flow live | Jesse Allan | Weeks 7-10 | normal | `bss-027` |
-| **Refine & Support** | | | | |
-| `bss-038` Deliver walkthrough + written guide | Jesse Allan | Months 2-8 | normal | `bss-027` |
-| `bss-039` Review real leads + AI conversations; tune what isn't working | Jesse Allan | Months 2-8 | normal | `bss-030` |
-| `bss-040` Follow-up after sales calls (no-show / nurture / unpaid-invoice) | Jesse Allan | Months 2-8 | normal | `bss-029` |
-| `bss-041` Ongoing support through month 8 | Jesse Allan | Months 2-8 | low |  |
 
-<details><summary>Guidance for the team (3 tasks)</summary>
+<details><summary>Guidance for the team (1 task)</summary>
 
 **`bss-035` Partner / referral tracking live**
 
 Referral source recorded on each contact from partner link through to payment; reporting on which partners bring paying clients.
 
+</details>
+
+### `bss-036` Weekly webinar system live
+
+> Registration confirmations, reminders and follow-up after every webinar, repeating each week.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-036` Weekly webinar system live | Jesse Allan | Weeks 7-10 | normal | `bss-015` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
 **`bss-036` Weekly webinar system live**
 
 Registration confirmation + daily lead-up, 3–4 days of follow-up after each webinar, tailored to attendees vs no-shows, repeatable weekly. Depends on the webinar platform reporting attendance to GHL.
+
+</details>
+
+### `bss-037` Client onboarding flow live
+
+> When a payment is confirmed, your new client is onboarded and handed to the implementation coach.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-037` Client onboarding flow live | Jesse Allan | Weeks 7-10 | normal | `bss-027` |
+
+### `bss-038` Your walkthrough and written guide
+
+> A live walkthrough plus a short written guide to running everything.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-038` Deliver walkthrough + written guide | Jesse Allan | Months 2-8 | normal | `bss-027` |
+
+### `bss-039` Review real leads and tune
+
+> We look at real leads and AI conversations, and fix what isn't working.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-039` Review real leads + AI conversations; tune what isn't working | Jesse Allan | Months 2-8 | normal | `bss-030` |
+
+### `bss-040` Follow-up after sales calls
+
+> No-show, nurture and unpaid-invoice follow-up.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-040` Follow-up after sales calls (no-show / nurture / unpaid-invoice) | Jesse Allan | Months 2-8 | normal | `bss-029` |
+
+<details><summary>Guidance for the team (1 task)</summary>
 
 **`bss-040` Follow-up after sales calls (no-show / nurture / unpaid-invoice)**
 
 Depends on how payment is taken, confirmed in the first two weeks.
 
 </details>
+
+### `bss-041` Ongoing support through month 8
+
+> We keep reviewing and supporting you through month 8.
+
+Portal: shown as with the team
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bss-041` Ongoing support through month 8 | Jesse Allan | Months 2-8 | low |  |

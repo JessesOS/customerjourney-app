@@ -1,15 +1,15 @@
 {
   "scale": {
-    "version": "2026-10-16.1",
-    "sha256": "73630f1c44b74e64538fd4e17f24c9c90c077493687ca041203ccda70aea327d"
+    "version": "2026-10-17.1",
+    "sha256": "513d9574838ef1f7381dcb335b50e235108129ae94d33d9c922b2704259a88ac"
   },
   "respond": {
-    "version": "2026-10-16.1",
-    "sha256": "bb9bb1c043a03c3981dc0cf19f1883d45ae150d736e8e10bf2baa7ff7e04e4a8"
+    "version": "2026-10-17.1",
+    "sha256": "af121ac74eb5bf618f450ffba4f66a3435f443ebefb10c2f0217ffb5980719a5"
   },
   "bss": {
-    "version": "2026-10-16.1",
-    "sha256": "693c09e99f5e3012bf4a8d802f89db405f19621d2d27e54f891948f5d005b12b"
+    "version": "2026-10-17.1",
+    "sha256": "e78f2e1d47a0819b0aa2a585db8d17c0e9625e6b3c794709bf75d0f971635454"
   },
   "website": {
     "version": "2026-10-16.1",

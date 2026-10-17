@@ -139,3 +139,34 @@ export type PortalLook = "grove" | "groveaurora" | "handoff" | "cobalt" | "auror
 
 /** A video that plays after the welcome's "Get started", before the journey page. */
 export type IntroVideo = { src: string; poster: string; title: string };
+
+/** An option in the admin's product dropdown. */
+export type ClientTypeOption = { value: string; label: string };
+
+/** One stage of the admin's task checklist for a client. */
+export type ChecklistStage = { id: string; name: string; milestones: { id: string; title: string; awaitingTeam: boolean }[] };
+
+/** Everything the client portal needs for one client type. Plain data: built on the
+    server by lib/productRegistry.ts, passed to ClientPortalExperience as a prop.
+    Holds no team tasks, labels or internal ids. Treat as read-only (it is cached). */
+export type PortalJourney = {
+  totalDays: number;              // header "Day x / N" and the current-day cap
+  wordmark: string;               // "Scale" | "CRM": house name when brandName is unset
+  brandName?: string;
+  tagline?: string;
+  introVideo?: IntroVideo;
+  lockedLook?: PortalLook;
+  hidesIncentive: boolean;
+  /** Portal stages in order: team-only stages dropped; hidden and other-channel steps
+      dropped (hidden/channels keys removed); the variant's taskDetails applied. */
+  stages: StageTemplate[];
+  taskNotes: Record<string, string>;
+  hiddenTaskVideos: string[];
+  hiddenTaskBooking: string[];
+  hiddenTaskImportant: string[];
+  playgroundSteps: string[];      // visible steps that show the live AI receptionist test
+  landingPreviewSteps: string[];  // visible steps that show the landing-page preview
+  stageGuides: Record<string, StageGuide>; // only stages that have one
+  askItems: Record<string, AskItem[]>;     // only stages that have items
+  stringPlan: StringPlan | null;
+};

@@ -8,6 +8,7 @@
 // The types live in lib/journeyTypes.ts and the pure builder in
 // lib/journeyBuild.ts (2026-10-17); both are re-exported here unchanged.
 
+import type { ClientType } from "../products/index";
 import type { ClientChannel, JourneyStage, StageTemplate } from "./journeyTypes";
 import { buildStages } from "./journeyBuild";
 
@@ -31,7 +32,9 @@ export { completedStageCount, journeyProgressPercent } from "./journeyBuild";
 // "bss-meta": BSS Meta ads only (Jesse, 2026-10-16). An exact copy of Scale — Meta
 // ads only (same tasks, same ids), with the BSS Launchpad name and locked look.
 // The custom 41-task "bss" journey is paused.
-export type ClientType = "meta" | "google" | "meta-google" | "respond" | "bss" | "bss-meta";
+// Since 2026-10-17 the list comes from the product files: every variant's
+// clientType (products/index.ts).
+export type { ClientType } from "../products/index";
 
 /** Products whose portal look is fixed, whatever look the client record holds.
     BSS (Jesse, 2026-10-15): the Aurora welcome, then Grove Aurora with the
