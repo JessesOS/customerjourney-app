@@ -23,7 +23,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 // that was just deleted or renamed. The product list is passed in, or loaded
 // after the index is written.
 import { allSteps, dueDaysFor, stepTree, stepVisibleFor, teamTasksFor, type StageNode } from "../../products/helpers";
-import type { ClientStep, CustomDerivation, Product, ProductStage, ProductVariant, TeamTask } from "../../products/types";
+import type { ClientStep, CustomDerivation, Product, ProductStage, ProductVariant, StageValue, TeamTask } from "../../products/types";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const PRODUCTS_DIR = join(ROOT, "products");
@@ -282,7 +282,14 @@ export function copyLintNotes(product: Product, products: readonly Product[] = [
 
 const listOr = (items: string[], none = "none") => (items.length ? items.join(", ") : none);
 
-/** The sheet's "Differences" section for a custom product. */
+/** A stage field's value in the sheet: quoted text, notes joined with " · ", "not set". */
+function stageValueText(value: StageValue): string {
+  if (value === null) return "not set";
+  if (Array.isArray(value)) return value.length ? value.map((v) => `"${cell(v)}"`).join(" · ") : "none";
+  return typeof value === "string" ? `"${cell(value)}"` : String(value);
+}
+
+/** The sheet's "Differences" section for a custom product. Every difference from the base variant is listed. */
 function differencesSection(product: Product, custom: CustomDerivation, products: readonly Product[]): string[] {
   const L: string[] = [];
   const base = baseProductOf(custom, products);
@@ -294,9 +301,13 @@ function differencesSection(product: Product, custom: CustomDerivation, products
     return L;
   }
   const from = custom.base.name;
+  const variantId = custom.base.variant;
+  const fromVariant = variantId !== undefined ? `${from}'s \`${variantId}\` variant` : from;
+  const baseVariant = variantId !== undefined ? base?.variants.find((v) => v.id === variantId) : undefined;
+  const variant = product.variants[0];
   L.push(`## Differences from ${baseName(custom)}`);
   L.push("");
-  L.push(`Worked out by \`defineCustomProduct\` from \`products/${product.id}/index.ts\`. Everything not listed here is ${from}'s, as it is${custom.base.variant !== undefined ? ` for its \`${custom.base.variant}\` variant` : ""}.`);
+  L.push(`Worked out by \`defineCustomProduct\` from \`products/${product.id}/index.ts\`. This section lists every difference from ${fromVariant}. Anything it doesn't list is exactly as ${fromVariant} has it: every kept step and team task with its wording, order and settings, every other stage, and the roles.`);
   L.push("");
   L.push("| | |");
   L.push("|---|---|");
@@ -307,6 +318,38 @@ function differencesSection(product: Product, custom: CustomDerivation, products
   L.push(`| Team tasks changed | ${listOr(custom.changedTasks.map((c) => `${code(c.id)} (${c.fields.join(", ")})`))} |`);
   L.push(`| Team tasks added | ${listOr(custom.addedTasks.map(code))} |`);
   L.push(`| Dependencies dropped | ${listOr(custom.droppedDependencies.map((d) => `${code(d.task)} no longer waits on ${code(d.dependsOn)}`))} |`);
+  L.push(`| Completion links dropped | ${listOr(custom.droppedCompletions.map((d) => `${code(d.task)} no longer completes with ${code(d.step)}`))} |`);
+  const stagesBy = (change: string) => custom.stageChanges.filter((c) => c.change === change).map((c) => code(c.id));
+  const stageParts = [
+    ...(stagesBy("changed").length ? [`changed: ${stagesBy("changed").join(", ")}`] : []),
+    ...(stagesBy("added").length ? [`added: ${stagesBy("added").join(", ")}`] : []),
+    ...(stagesBy("dropped").length ? [`dropped: ${stagesBy("dropped").join(", ")}`] : []),
+  ];
+  L.push(`| Stages | ${stageParts.length ? `${stageParts.join("; ")} (below)` : `${from}'s, unchanged`} |`);
+  const roleParts = [
+    ...(custom.roleChanges.added.length ? [`added ${custom.roleChanges.added.map((r) => `"${cell(r)}"`).join(", ")}`] : []),
+    ...(custom.roleChanges.removed.length ? [`removed ${custom.roleChanges.removed.map((r) => `"${cell(r)}"`).join(", ")}`] : []),
+  ];
+  L.push(`| Roles | ${roleParts.length ? roleParts.join("; ") : `${from}'s, unchanged`} |`);
+  // The name, the popup and the variant's portal tweaks.
+  const shownName = variant?.portal.brandName ?? product.portal?.wordmark ?? "";
+  const baseShown = baseVariant?.portal.brandName ?? base?.portal?.wordmark;
+  const vp = custom.variantPortal;
+  const nameSource = variant?.portal.brandName !== undefined
+    ? vp.own.includes("brandName") ? "portal.brandName" : `${variantId}'s brandName`
+    : product.portal?.wordmark === base?.portal?.wordmark ? `${from}'s wordmark` : "portal.wordmark";
+  L.push(`| Name the client sees | **${cell(shownName)}** (${nameSource})${baseShown !== undefined && baseShown !== shownName ? `; ${fromVariant}: **${cell(baseShown)}**` : ""} |`);
+  const popup = (hides: boolean | undefined) => (hides ? "hidden" : "shown");
+  L.push(`| $200 "move fast" popup | ${popup(variant?.portal.hidesIncentive)} (${variant?.portal.hidesIncentive ? "the default for a custom product" : "portal.incentive"})${baseVariant ? `; ${fromVariant}: ${popup(baseVariant.portal.hidesIncentive)}` : ""} |`);
+  const baseTweaks =
+    vp.mode === null
+      ? `none: ${fromVariant} has none`
+      : vp.mode === "none"
+        ? `left out (\`variantPortal: "none"\`)${vp.dropped.length ? `: ${vp.dropped.map(cell).join("; ")}` : ""}`
+        : `kept (\`variantPortal: "inherit"\`): ${listOr(vp.inherited.map(code))}${vp.dropped.length ? `; left out: ${vp.dropped.map(cell).join("; ")}` : ""}`;
+  L.push(`| ${fromVariant[0].toUpperCase()}${fromVariant.slice(1)}'s portal tweaks | ${baseTweaks} |`);
+  const ownTweaks = vp.own.map((k) => (vp.base.includes(k) ? `${code(k)}, replacing ${variantId}'s` : code(k)));
+  L.push(`| Its own portal tweaks | ${ownTweaks.length ? `${ownTweaks.join("; ")} (values under Variants)` : "none"} |`);
   const setting = (key: "voiceGuide" | "askAi" | "features", present: boolean) =>
     custom.inherited[key] ? `inherited from ${from}` : present ? "its own" : "off";
   L.push(`| Voice guide | ${setting("voiceGuide", Boolean(product.portal?.voiceGuide))} |`);
@@ -314,6 +357,23 @@ function differencesSection(product: Product, custom: CustomDerivation, products
   L.push(`| Step features | ${setting("features", Boolean(product.portal?.features))} |`);
   L.push(`| Timeline | ${custom.timelineChanged ? "changed (below)" : `${from}'s, unchanged`} |`);
   L.push("");
+  if (custom.stageChanges.length) {
+    L.push("### Stage changes");
+    L.push("");
+    L.push(`| Stage | Field | ${from} | This product |`);
+    L.push("|---|---|---|---|");
+    for (const c of custom.stageChanges) {
+      if (c.change === "dropped") {
+        L.push(`| ${code(c.id)} | (whole stage) | ${cell(base?.stages.find((s) => s.id === c.id)?.name ?? c.id)} | dropped |`);
+        continue;
+      }
+      if (c.change === "added") {
+        L.push(`| ${code(c.id)} | (whole stage) | no such stage | added |`);
+      }
+      for (const f of c.fields) L.push(`| ${code(c.id)} | ${f.field} | ${stageValueText(f.from)} | ${stageValueText(f.to)} |`);
+    }
+    L.push("");
+  }
   if (custom.timelineChanged) {
     L.push("### Timeline");
     L.push("");

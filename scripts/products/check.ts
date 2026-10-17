@@ -42,7 +42,7 @@ import { buildStages } from "../../lib/journeyBuild";
 import { onboardingFormById } from "../../lib/onboardingForm";
 import { createRegistry } from "../../lib/productRegistry";
 import { defineCustomProduct, type CustomProductSpec } from "../../products/custom";
-import { bss, productList, scale } from "../../products/index";
+import { bss, productList, scale, website } from "../../products/index";
 import { allSteps, appliesToVariant, dueDaysFor, productForClientType, stepVisibleFor, teamTasksFor } from "../../products/load";
 import { STAGE_ORDER, type ClientStep, type Product } from "../../products/types";
 import { runJourneyChecks, type CheckCounts } from "../journeys/run";
@@ -329,6 +329,9 @@ function thrown(spec: CustomProductSpec<string>): string | null {
 
 function customProof(): string {
   const before = contentHash(scale);
+  const metaVariant = scale.variants.find((v) => v.id === "meta")!;
+  // A Scale role no Meta task uses, so the proof can remove it.
+  const unusedRole = scale.roles.find((r) => !teamTasksFor(scale, metaVariant).some((t) => t.role === r));
   const spec: CustomProductSpec<"zz-proof"> = {
     id: "zz-proof", name: "Proof only", version: "2026-10-17.1", status: "live",
     clientType: "zz-proof", label: "Proof — custom", spec: "scripts/products/check.ts",
@@ -345,6 +348,7 @@ function customProof(): string {
       add: [{ task: { id: "zzp-t1", title: "Draft the offer", notes: "", stage: "build", category: "Offer",
         step: "zzp-1", role: "Scale CSM", priority: "normal", due: "Days 8-10", dependencies: [] } }],
     },
+    roles: { add: ["Proof Lead"], remove: unusedRole ? [unusedRole] : [] },
     portal: { brandName: "Proof Portal" },
   };
   const proof = defineCustomProduct(spec);
@@ -429,7 +433,6 @@ function customProof(): string {
 
   // A. The server checks uploads, forms and editable content by step id against
   // every product's steps: an inherited step can't change them.
-  const metaVariant = scale.variants.find((v) => v.id === "meta")!;
   const metaSteps = allSteps(scale).filter((st) => appliesToVariant(st, metaVariant));
   const serverCases: [string | undefined, Partial<ClientStep>][] = [
     [metaSteps.find((st) => st.hasUpload)?.id, { hasUpload: false }],
@@ -471,7 +474,63 @@ function customProof(): string {
   must(changeChannels !== null && changeChannels.includes(`teamTasks.change.${proof.teamTasks[0].id}: sets channels`) && changeChannels.includes("channels don't apply"), `${P}: channels on a changed task must throw (got ${JSON.stringify(changeChannels)})`);
   mistakes += 2;
 
-  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail`;
+  // B. A base variant's portal tweaks (Fin's bss-meta: name, look, notes,
+  // hidden parts, String Theory) are never dropped silently.
+  const finBase: CustomProductSpec<string> = {
+    id: "zz-proof-bss", name: "Proof only", version: "2026-10-17.1", status: "draft",
+    clientType: "zz-proof-bss", label: "Proof — BSS", spec: "scripts/products/check.ts",
+    base: { product: scale, version: scale.version, variant: "bss-meta" }, idPrefix: "zzb-",
+    steps: { remove: ["ob-4"] }, portal: { tagline: "Proof tagline" },
+  };
+  const finJourney = createRegistry(productList).portalJourneyFor("bss-meta");
+  const missing = thrown(finBase);
+  must(missing !== null && missing.includes("variantPortal is required") && missing.includes("bss-meta variant has portal tweaks"), `${P}: a bss-meta base without variantPortal must throw (got ${JSON.stringify(missing)})`);
+  const noVariant = thrown({ ...finBase, base: { product: bss, version: bss.version }, steps: {} });
+  must(noVariant !== null && noVariant.includes("say which variant (base.variant)"), `${P}: a base whose variant has tweaks, with no base.variant, must throw (got ${JSON.stringify(noVariant)})`);
+  const detailClash = thrown({ ...finBase, variantPortal: "inherit", steps: { ...finBase.steps, change: { "ob-2": { detail: "Proof detail." } } } });
+  must(detailClash !== null && detailClash.includes("inherited taskDetails for ob-2"), `${P}: changing the detail of a step with an inherited taskDetails must throw (got ${JSON.stringify(detailClash)})`);
+  mistakes += 3;
+  const kept = defineCustomProduct({ ...finBase, variantPortal: "inherit" });
+  const kj = createRegistry([...productList, kept]).portalJourneyFor("zz-proof-bss");
+  must(kj.brandName === finJourney.brandName && kj.lockedLook === finJourney.lockedLook && kj.introVideo?.src === finJourney.introVideo?.src && kj.tagline === "Proof tagline",
+    `${P}: "inherit" must keep bss-meta's name, look and intro video under the product's own tagline (got ${JSON.stringify([kj.brandName, kj.lockedLook, kj.introVideo?.src, kj.tagline])})`);
+  must(!kj.hiddenTaskVideos.includes("ob-4") && kj.hiddenTaskVideos.includes("ob-6") && kj.taskNotes["ob-2"] === finJourney.taskNotes["ob-2"], `${P}: "inherit" must keep bss-meta's tweaks for the kept steps only (videos ${kj.hiddenTaskVideos.join(", ")})`);
+  must(kj.stringPlan !== null && !kj.stringPlan.workstreams.some((w) => w.taskIds.includes("ob-4")) && kj.stringPlan.workstreams.length === finJourney.stringPlan?.workstreams.length, `${P}: "inherit" must keep bss-meta's String Theory without ob-4`);
+  const kd = kept.custom!.variantPortal;
+  must(kd.mode === "inherit" && kd.inherited.includes("brandName") && kd.inherited.includes("stringPlan") && kd.own.join() === "tagline"
+    && kd.dropped.some((d) => d.startsWith("hiddenTaskVideos ob-4")) && kd.dropped.some((d) => d.startsWith("stringPlan strand connect: ob-4")),
+    `${P}: the derivation must record what was inherited, owned and dropped (got ${JSON.stringify(kd)})`);
+  const keptSheet = renderSheet(kept, productList);
+  must(keptSheet.includes("| Scale's `bss-meta` variant's portal tweaks | kept (`variantPortal: \"inherit\"`)") && keptSheet.includes("left out: ") && keptSheet.includes("hiddenTaskVideos ob-4 (not a step this product shows)") && keptSheet.includes("`tagline`, replacing bss-meta's"),
+    `${P}: the sheet's Differences must list the inherited, dropped and replaced tweaks`);
+  const none = defineCustomProduct({ ...finBase, variantPortal: "none" });
+  const nj = createRegistry([...productList, none]).portalJourneyFor("zz-proof-bss");
+  must(nj.brandName === undefined && nj.stringPlan === null && Object.keys(nj.taskNotes).length === 0 && nj.tagline === "Proof tagline", `${P}: "none" must leave bss-meta's tweaks out`);
+  must(none.custom!.variantPortal.dropped.some((d) => d.startsWith('brandName "BSS Launchpad"')) && renderSheet(none, productList).includes("left out (`variantPortal: \"none\"`)"), `${P}: "none" must record and show what was left out`);
+
+  // C. Stage patches and role changes are recorded and shown old → new.
+  const changes = proof.custom!.stageChanges;
+  must(changes.some((c) => c.id === "onboarding" && c.change === "changed" && c.fields.some((f) => f.field === "statusNotes" && Array.isArray(f.from) && f.from.length > 0 && JSON.stringify(f.to) === '["Proof timeline."]')),
+    `${P}: the onboarding statusNotes patch is not recorded old → new (got ${JSON.stringify(changes)})`);
+  must(changes.some((c) => c.id === "go-live" && c.fields.some((f) => f.field === "dayStart" && f.from === 30 && f.to === 21)), `${P}: the go-live day change is not recorded`);
+  must(!changes.some((c) => c.id === "testing"), `${P}: a patch that changes nothing (testing) must not be recorded`);
+  must(proof.custom!.roleChanges.added.join() === "Proof Lead" && proof.custom!.roleChanges.removed.join() === (unusedRole ?? ""), `${P}: role changes not recorded (got ${JSON.stringify(proof.custom!.roleChanges)})`);
+  const proofSheet = renderSheet(proof, productList);
+  must(proofSheet.includes("| `onboarding` | statusNotes | \"") && proofSheet.includes(" | \"Proof timeline.\" |") && proofSheet.includes("| `go-live` | dayStart | 30 | 21 |"), `${P}: the sheet doesn't show the stage changes old → new`);
+  must(proofSheet.includes(`| Roles | added "Proof Lead"${unusedRole ? `; removed "${unusedRole}"` : ""} |`), `${P}: the sheet doesn't show the role changes`);
+  must(proofSheet.includes("This section lists every difference from Scale's `meta` variant. Anything it doesn't list is exactly as"), `${P}: the sheet's Differences intro is not the accurate one`);
+  const supportTasks = proof.teamTasks.filter((t) => t.stage === "support").map((t) => t.id);
+  const noSupport = defineCustomProduct({ ...spec, id: "zz-nosupport", clientType: "zz-nosupport", teamTasks: { ...spec.teamTasks, remove: supportTasks }, stages: { ...spec.stages, support: null } });
+  must(noSupport.custom!.stageChanges.some((c) => c.id === "support" && c.change === "dropped") && renderSheet(noSupport, productList).includes("| `support` | (whole stage) | Support | dropped |"), `${P}: a dropped stage is not recorded and shown`);
+  const onWebsite = defineCustomProduct({
+    id: "zz-web", name: "Proof only", version: "2026-10-17.1", status: "draft", clientType: "zz-web", label: "Proof — web", spec: "scripts/products/check.ts",
+    base: { product: website, version: website.version }, idPrefix: "zzw-", totalDays: 35,
+    stages: { onboarding: { name: "Proof onboarding", dayStart: 1, dayEnd: 7 } }, portal: { wordmark: "Proof" },
+  });
+  must(onWebsite.custom!.stageChanges.some((c) => c.id === "onboarding" && c.change === "added" && c.fields.some((f) => f.field === "name" && f.to === "Proof onboarding"))
+    && renderSheet(onWebsite, productList).includes("| `onboarding` | (whole stage) | no such stage | added |"), `${P}: an added stage is not recorded and shown`);
+
+  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new`;
 }
 
 // ── 5. Version lock ───────────────────────────────────────────────────────

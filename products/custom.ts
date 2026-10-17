@@ -21,12 +21,15 @@ import {
   type ProductStage,
   type ProductStatus,
   type ProductVariant,
+  type StageChange,
   type StageId,
+  type StageValue,
   type TeamTask,
   type VoiceGuide,
 } from "./types";
 
 type AskAi = NonNullable<ProductPortal["askAi"]>;
+type StringPlan = NonNullable<PortalOverrides["stringPlan"]>;
 
 /** Changes to a stage. A stage the base doesn't have needs name, dayStart and dayEnd. */
 export type StagePatch = Partial<Pick<ProductStage, "name" | "dayStart" | "dayEnd" | "ongoing" | "blurb" | "statusNotes">>;
@@ -47,6 +50,15 @@ export type CustomProductSpec<C extends string> = {
   spec: string;
   /** What it starts from. `version` pins the base: a base change fails until it is reviewed. */
   base: "blank" | { product: Product; version: string; variant?: string };
+  /**
+   * The base variant's portal tweaks (its name, look, intro video, step notes
+   * and hidden parts, String Theory). Required when it has any:
+   * "inherit" keeps them, cut to the steps and stages this product keeps, with
+   * each `portal` key you set replacing the base variant's value for that key;
+   * "none" leaves them out. (hidesIncentive doesn't count: the $200 popup
+   * follows `portal.incentive`.)
+   */
+  variantPortal?: "inherit" | "none";
   /** Every NEW step/task id starts with it, e.g. "bssc-". */
   idPrefix: string;
   /** Default: the base's. Required for blank. */
@@ -133,6 +145,76 @@ function describeTimeline(stages: ProductStage[], totalDays: number | null): str
   return `${totalDays ?? "no"} days to go-live; ${days.join(", ")}`;
 }
 
+type TweakKey = (typeof OVERRIDE_KEYS)[number];
+
+/** The variant tweaks a portal sets (hidesIncentive not counted). */
+function tweakKeys(portal: PortalOverrides): TweakKey[] {
+  return OVERRIDE_KEYS.filter((key) => portal[key] !== undefined);
+}
+
+/** One base-variant tweak in a few words, for the derivation's `dropped`. */
+function describeTweak(key: TweakKey, portal: PortalOverrides): string {
+  const value = portal[key];
+  if (typeof value === "string") return `${key} "${value}"`;
+  if (Array.isArray(value)) return `${key} (${value.join(", ")})`;
+  if (key === "introVideo") return `introVideo "${portal.introVideo?.title}"`;
+  if (key === "stringPlan") return `stringPlan (${portal.stringPlan?.workstreams.length} strands)`;
+  return `${key} on ${Object.keys(value ?? {}).join(", ")}`;
+}
+
+/**
+ * A base-variant tweak cut to this product: step ids it no longer shows and
+ * stages it no longer has are left out, and recorded in `dropped`. Returns
+ * undefined when nothing is left.
+ */
+function keepTweak(key: TweakKey, portal: PortalOverrides, visible: Set<string>, portalStages: Set<string>, dropped: string[]): unknown {
+  const gone = "(not a step this product shows)";
+  const value = structuredClone(portal[key]);
+  if (key === "taskNotes" || key === "taskDetails") {
+    const kept: Record<string, string> = {};
+    for (const [id, text] of Object.entries(value as Record<string, string>)) {
+      if (visible.has(id)) kept[id] = text;
+      else dropped.push(`${key} on ${id} ${gone}`);
+    }
+    return Object.keys(kept).length ? kept : undefined;
+  }
+  if (key === "hiddenTaskVideos" || key === "hiddenTaskBooking" || key === "hiddenTaskImportant" || key === "hiddenTaskPlayground") {
+    const ids = value as string[];
+    for (const id of ids.filter((x) => !visible.has(x))) dropped.push(`${key} ${id} ${gone}`);
+    const kept = ids.filter((x) => visible.has(x));
+    return kept.length ? kept : undefined;
+  }
+  if (key === "hiddenGuideStages") {
+    const ids = value as StageId[];
+    for (const id of ids.filter((x) => !portalStages.has(x))) dropped.push(`hiddenGuideStages ${id} (not a portal stage of this product)`);
+    const kept = ids.filter((x) => portalStages.has(x));
+    return kept.length ? kept : undefined;
+  }
+  if (key === "stringPlan") {
+    const plan = value as StringPlan;
+    const strands = plan.workstreams.map((w) => {
+      for (const id of w.taskIds.filter((x) => !visible.has(x))) dropped.push(`stringPlan strand ${w.id}: ${id} ${gone}`);
+      return { ...w, taskIds: w.taskIds.filter((x) => visible.has(x)) };
+    });
+    const emptied = strands.filter((w) => !w.taskIds.length).map((w) => w.id);
+    for (const id of emptied) dropped.push(`stringPlan strand ${id} (none of its steps are left)`);
+    const kept = strands
+      .filter((w) => w.taskIds.length)
+      .map(({ after, ...w }) => {
+        const still = (after ?? []).filter((a) => !emptied.includes(a));
+        return after === undefined ? w : still.length ? { ...w, after: still } : w;
+      });
+    return kept.length ? { ...plan, workstreams: kept } : undefined;
+  }
+  return value; // brandName, tagline, introVideo, lockedLook
+}
+
+/** A stage field as the derivation records it (null = not set). */
+function stageValue(value: unknown): StageValue {
+  if (value === undefined || value === null) return null;
+  return Array.isArray(value) ? [...(value as string[])] : (value as StageValue);
+}
+
 /** Sets defined fields, deletes fields set to undefined. Returns the field names touched. */
 function merge(target: Record<string, unknown>, patch: Record<string, unknown>): string[] {
   for (const [key, value] of Object.entries(patch)) {
@@ -163,6 +245,7 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
   let baseTotalDays: number | null = null;
   let baseStages: ProductStage[] = [];
   let baseName = "the blank base";
+  let baseVariant: ProductVariant | null = null;
   let derivationBase: CustomDerivation["base"] = "blank";
   const base = spec.base;
   if (base !== "blank") {
@@ -182,6 +265,7 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
       if (!variant) {
         fail(`${bp.name} has no variant "${base.variant}": say which variant: ${orList(variantIds)}`);
       } else {
+        baseVariant = variant;
         stages = stages.map((s) => ({ ...s, steps: s.steps.filter((st) => appliesToVariant(st, variant)) }));
         tasks = tasks.filter((t) => appliesToVariant(t, variant));
         for (const s of stages) for (const st of s.steps) delete st.channels;
@@ -189,6 +273,9 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
       }
     } else if (allSteps(bp).some((st) => st.channels && st.channels.length)) {
       fail(`${bp.name} has channel-specific steps: say which variant: ${orList(variantIds)}`);
+    } else {
+      const tweaked = bp.variants.filter((v) => tweakKeys(v.portal).length);
+      if (tweaked.length) fail(`${bp.name}'s ${orList(tweaked.map((v) => v.id))} variant has portal tweaks: say which variant (base.variant), then whether to keep its tweaks (variantPortal)`);
     }
   }
   const inheritedSteps = new Set(stages.flatMap((s) => s.steps.map((st) => st.id)));
@@ -207,8 +294,10 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
   const addedTasks: string[] = [];
   const removedSteps: string[] = [];
   const droppedDependencies: CustomDerivation["droppedDependencies"] = [];
+  const droppedCompletions: CustomDerivation["droppedCompletions"] = [];
+  const stageChanges: StageChange[] = [];
 
-  // 3. Stage patches.
+  // 3. Stage patches, each recorded field by field (old → new).
   const dropStages = new Set<string>();
   for (const [id, patch] of Object.entries(spec.stages ?? {}) as [string, StagePatch | null | undefined][]) {
     if (!(STAGE_ORDER as readonly string[]).includes(id)) { fail(`stages.${id}: not a stage (stages are ${STAGE_ORDER.join(", ")})`); continue; }
@@ -216,11 +305,17 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
     const existing = stages.find((s) => s.id === id);
     if (patch === null) {
       if (!existing) fail(`stages.${id}: null drops a stage, but there is no ${id} stage`);
+      else stageChanges.push({ id: id as StageId, change: "dropped", fields: [] });
       dropStages.add(id);
       continue;
     }
     if (existing) {
-      merge(existing as unknown as Record<string, unknown>, patch as Record<string, unknown>);
+      const before = existing as unknown as Record<string, unknown>;
+      const fields = Object.entries(patch)
+        .map(([field, value]) => ({ field, from: stageValue(before[field]), to: stageValue(value) }))
+        .filter((f) => JSON.stringify(f.from) !== JSON.stringify(f.to));
+      merge(before, patch as Record<string, unknown>);
+      if (fields.length) stageChanges.push({ id: id as StageId, change: "changed", fields });
       continue;
     }
     if (patch.name === undefined || patch.dayStart === undefined || patch.dayEnd === undefined) {
@@ -230,6 +325,11 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
     const stage: ProductStage = { id: id as StageId, name: patch.name, dayStart: patch.dayStart, dayEnd: patch.dayEnd, statusNotes: patch.statusNotes ?? [], steps: [] };
     if (patch.ongoing !== undefined) stage.ongoing = patch.ongoing;
     if (patch.blurb !== undefined) stage.blurb = patch.blurb;
+    stageChanges.push({
+      id: id as StageId,
+      change: "added",
+      fields: Object.entries(patch).filter(([, value]) => value !== undefined).map(([field, value]) => ({ field, from: null, to: stageValue(value) })),
+    });
     stages.push(stage);
     stages.sort((a, b) => STAGE_ORDER.indexOf(a.id) - STAGE_ORDER.indexOf(b.id));
   }
@@ -310,7 +410,8 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
     for (const t of tasks.filter((task) => task.step === id)) removedTasks.push({ id: t.id, reason: `behind removed step ${id}` });
     tasks = tasks.filter((t) => t.step !== id);
     for (const t of tasks) {
-      if (!t.completesWithSteps) continue;
+      if (!t.completesWithSteps?.includes(id)) continue;
+      droppedCompletions.push({ task: t.id, step: id });
       t.completesWithSteps = t.completesWithSteps.filter((s) => s !== id);
       if (t.completesWithSteps.length === 0) delete t.completesWithSteps;
     }
@@ -341,7 +442,8 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
   }
   stages = stages.filter((s) => !dropStages.has(s.id));
 
-  // 12. Roles.
+  // 12. Roles (recorded as added and removed).
+  const rolesBefore = [...roles];
   if (spec.roles === undefined) {
     if (base === "blank") fail("roles is required for a blank product (a list of role names)");
   } else if (Array.isArray(spec.roles)) {
@@ -354,6 +456,7 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
     }
     for (const r of spec.roles.add ?? []) if (!roles.includes(r)) roles.push(r);
   }
+  const roleChanges = { added: roles.filter((r) => !rolesBefore.includes(r)), removed: rolesBefore.filter((r) => !roles.includes(r)) };
 
   // 13. Portal settings.
   const p = spec.portal ?? {};
@@ -400,12 +503,39 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
   if (askAi) portal.askAi = askAi;
   if (features) portal.features = features;
 
-  // 14. The variant: one client type, the whitelisted portal tweaks, the incentive hidden unless asked for.
-  const overrides: PortalOverrides = {};
-  for (const key of OVERRIDE_KEYS) {
-    const value = p[key];
-    if (value !== undefined) (overrides as Record<string, unknown>)[key] = structuredClone(value);
+  // 14. The variant: one client type; the base variant's tweaks when the spec
+  // says "inherit" (cut to the steps and stages kept), under this product's own
+  // (a key it sets replaces the base variant's); the incentive hidden unless
+  // asked for.
+  const visibleIds = new Set(stages.flatMap((s) => s.steps).filter((st) => !st.hidden).map((st) => st.id));
+  const baseTweaks = baseVariant ? tweakKeys(baseVariant.portal) : [];
+  const own = OVERRIDE_KEYS.filter((key) => p[key] !== undefined);
+  const variantPortal: CustomDerivation["variantPortal"] = { mode: null, base: [...baseTweaks], inherited: [], own: [...own], dropped: [] };
+  const mode = spec.variantPortal;
+  if (mode !== undefined && mode !== "inherit" && mode !== "none") fail(`variantPortal must be "inherit" or "none", not ${JSON.stringify(mode)}`);
+  else if (mode !== undefined && !baseVariant) fail(`variantPortal: there is no base variant to take tweaks from (${base === "blank" ? "the base is blank" : "set base.variant"})`);
+  else if (baseVariant && baseTweaks.length && mode === undefined) {
+    fail(`variantPortal is required: ${baseName}'s ${baseVariant.id} variant has portal tweaks (${baseTweaks.join(", ")}). "inherit" keeps them for the steps and stages this product keeps, with portal on top; "none" leaves them out`);
   }
+  const overrides: PortalOverrides = {};
+  if (baseVariant && baseTweaks.length && (mode === "inherit" || mode === "none")) {
+    variantPortal.mode = mode;
+    for (const key of baseTweaks) {
+      if (own.includes(key)) continue; // this product's own value replaces it
+      if (mode === "none") { variantPortal.dropped.push(describeTweak(key, baseVariant.portal)); continue; }
+      const kept = keepTweak(key, baseVariant.portal, visibleIds, portalStages, variantPortal.dropped);
+      if (kept === undefined) continue;
+      (overrides as Record<string, unknown>)[key] = kept;
+      variantPortal.inherited.push(key);
+    }
+    // An inherited description replaces the step's own in the portal, so a changed detail would never show.
+    for (const c of changedSteps) {
+      if (c.fields.includes("detail") && overrides.taskDetails && Object.hasOwn(overrides.taskDetails, c.id)) {
+        fail(`steps.change.${c.id} changes detail, but the inherited taskDetails for ${c.id} (${baseVariant.id}) replaces it in the portal: set portal.taskDetails instead`);
+      }
+    }
+  }
+  for (const key of own) (overrides as Record<string, unknown>)[key] = structuredClone(p[key]);
   if (p.incentive !== true) overrides.hidesIncentive = true;
   const variant: ProductVariant<C> = { id: spec.clientType, clientType: spec.clientType, label: spec.label, pickerOrder: 100, portal: overrides };
   if (spec.adminLabel !== undefined) variant.adminLabel = spec.adminLabel;
@@ -489,6 +619,10 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
       changedTasks,
       addedTasks,
       droppedDependencies,
+      droppedCompletions: droppedCompletions.filter((d) => tasks.some((t) => t.id === d.task)),
+      stageChanges: [...stageChanges].sort((a, b) => STAGE_ORDER.indexOf(a.id) - STAGE_ORDER.indexOf(b.id)),
+      roleChanges,
+      variantPortal,
       timelineChanged,
       inherited: { voiceGuide: p.voiceGuide === "inherit", askAi: p.askAi === "inherit", features: p.features === "inherit" },
     },

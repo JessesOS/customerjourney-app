@@ -121,6 +121,12 @@ A custom product is a product file written as **differences from a base**: Scale
 
 1. **Save Jesse's spec** as `products/<id>/spec.md`, word for word. `products:check` fails if the file is missing.
 2. **Pick the base and the variant**, and pin the base's version. A Scale base needs a variant (`meta`, `google`, `meta-google` or `bss-meta`): only that variant's steps and tasks are kept. If the base later changes, the product fails to load until someone reviews the change and updates `base.version`.
+   - **The variant's portal tweaks need a decision.** If the variant has any (`bss-meta` does: the BSS Launchpad name, look and intro video, its step notes and descriptions, its hidden videos, booking and "Important" boxes, String Theory), set `variantPortal`, or the product throws:
+     - `"inherit"` keeps them, cut to the steps and stages the product keeps. Each `portal` key you set replaces the variant's value for that key (set `portal.taskNotes` and you own all the notes).
+     - `"none"` leaves them all out.
+   - Either way the sheet lists what was kept and what was left out. The $200 popup doesn't count: it follows `portal.incentive`.
+   - A base with no channel split still needs `base.variant` when one of its variants has tweaks (the paused BSS product does).
+   - With `"inherit"`, a step whose `detail` you change can't also have an inherited description (`taskDetails`): it would hide your change, so it throws. Set `portal.taskDetails` instead.
 3. **Write `products/<id>/index.ts`** with `defineCustomProduct`. It must export the camelCase id (`products/bss-custom/index.ts` exports `bssCustom`). For example:
 
    ```ts
@@ -165,7 +171,7 @@ A custom product is a product file written as **differences from a base**: Scale
    - A product file that throws stops the Worker. Never deploy without `products:check` passing.
 5. **List drafted wording** in `draftCopy`: the ids of steps whose client wording Claude wrote rather than Jesse. Flag it as a draft in the conversation too.
 6. **Run the commands:** `npm run products:render` (it registers the folder in `products/index.ts` and writes the sheet), then `products:lock`, `products:check`, `check:journeys` and `check:fin`. New step ids change `_global.json`, so `check:journeys` fails until you re-save `_global` as part of this approved change (§7). Deleting or renaming a folder is also just `products:render`: it rewrites the index and removes the old sheet.
-7. **Review the sheet** (`docs/products/<id>.md`), starting with "Differences from <base>": removed, changed and added steps and tasks, dropped dependencies, inherited settings and the timeline.
+7. **Review the sheet** (`docs/products/<id>.md`), starting with "Differences from <base>". It lists every difference from the base variant: removed, changed and added steps and tasks, dropped dependencies and completion links, stage and role changes (old → new), the name the client sees, the $200 popup, the variant's tweaks kept and left out, the product's own tweaks, inherited settings and the timeline. Anything it doesn't list is the base variant's, unchanged.
 8. **Preview** with `status: "draft"` on a synthetic client: on staging (`PRODUCT_DRAFTS=1` is set there), or locally with `PRODUCT_DRAFTS=1` in `.dev.vars`. A draft is offered in admin and its board starts only there.
 9. **Go live, with Jesse's OK:** set `status: "live"`, empty `draftCopy` (Jesse approved the wording), bump the version, add the client type to `CLIENT_TYPES` in `scripts/journeys/contract.ts`, freeze it with `npm run check:journeys -- --write <client type> _global`, then send the deploy package. Upload any intro video to both R2 buckets (prod and staging) first.
 10. **Moving an existing client** (for example Fin onto a custom BSS product) is a separate prod data change, with Jesse's OK and its own deploy package. Ticks carry over for every step id the new product kept.

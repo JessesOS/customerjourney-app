@@ -211,10 +211,41 @@ export type CustomDerivation = {
   changedTasks: { id: string; fields: string[] }[];
   addedTasks: string[];
   droppedDependencies: { task: string; dependsOn: string }[];
+  /** Kept tasks that no longer complete with a step the spec removed. */
+  droppedCompletions: { task: string; step: string }[];
+  /** Stages the spec added, changed or dropped, each changed field old → new (null = not set). */
+  stageChanges: StageChange[];
+  /** Roles the spec added and removed. */
+  roleChanges: { added: string[]; removed: string[] };
+  /** The base variant's portal tweaks (name, look, notes, hidden parts, String Theory) and what became of them. */
+  variantPortal: VariantPortalDerivation;
   /** totalDays, the stage list or any stage's days differ from the base. */
   timelineChanged: boolean;
   /** Portal settings taken from the base as they are. */
   inherited: { voiceGuide: boolean; askAi: boolean; features: boolean };
+};
+
+/** A stage field's value in a StageChange. null = not set. */
+export type StageValue = string | number | boolean | string[] | null;
+
+export type StageChange = {
+  id: StageId;
+  change: "added" | "changed" | "dropped";
+  /** Each field the spec set to a new value. Empty for a dropped stage. */
+  fields: { field: string; from: StageValue; to: StageValue }[];
+};
+
+export type VariantPortalDerivation = {
+  /** The spec's `variantPortal`. null: the base variant has no tweaks to keep (or the base is blank). */
+  mode: "inherit" | "none" | null;
+  /** The tweak keys the base variant has (hidesIncentive not counted: the popup follows portal.incentive). */
+  base: string[];
+  /** Keys taken from the base variant ("inherit"), cut to this product's steps and stages. */
+  inherited: string[];
+  /** Keys this product sets itself (portal.*). Each replaces the base variant's value, where it had one. */
+  own: string[];
+  /** What was left out, e.g. "taskNotes on ob-4 (not a step this product shows)". */
+  dropped: string[];
 };
 
 /** The client types a product defines. */
