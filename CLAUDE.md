@@ -65,7 +65,9 @@ npx wrangler deploy --config dist/server/wrangler.staging.json
 - Note it in `docs/customer-journey-master-plan.md`.
 - Keep the copy as it is unless Jesse asks. Flag any copy you draft as a draft.
 
-**Coming in Phase 1:** product files under `products/`, with a generated sheet per product in `docs/products/`. Change those by asking Claude.
+**Product files** (`products/`, branch `team-board`): each product defined once, holding the client steps and the team tasks behind them. Generated sheets live in `docs/products/`. Change them by asking Claude. `npm run products:check` must pass.
+
+**Team board** (`docs/team-board.md`): the back office under `/admin`. It's on staging, behind the `TEAM_BOARD` flag. `npm run check:team-auth` must pass.
 
 ## Working rules
 

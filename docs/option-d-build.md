@@ -49,11 +49,25 @@ This file records progress, decisions and anything the next session must know.
 
 ### Phase 1: product files (branch `team-board`)
 
-Not started.
+Done 2026-10-17 (commit 5108957). Product files for Scale (all variants incl. bss-meta) and Respond, BSS (reference, paused) and a Website add-on (draft). 184 team tasks placed behind client steps. `npm run products:check` passes 6/6 (portal journeys generated from the files equal today's exactly). Sheets and the conversion report are in `docs/products/`. **Waiting on Jesse:** the 8 decisions in the conversion report (unplaced tasks, LaunchBay wording, Respond go-live day, ob-crm timing, stage mismatches, brand names, account-name check, person-named roles).
 
 ### Phase 2: team board on staging (branch `team-board`)
 
-Not started.
+Built 2026-10-17. See `docs/team-board.md`.
+
+- Migration 0015 (team tables, CREATE only), applied to **staging** only.
+- Sign-in: Cloudflare Access token check plus the access code. `npm run check:team-auth`: 19/19.
+- APIs under `/api/admin/team/**` and the screens under `/admin`: Board, client board, task drawer, My tasks, Team. The Clients page has a Team board link.
+- Behind the `TEAM_BOARD` flag. With it off (prod), every team route is 404 and the Clients page is unchanged (tested).
+- Staging deployed (version ce3f7997) with 5 fake clients, one per product, plus a test teammate.
+- Protected-path diff vs `main` is empty, and `check:fin` passes.
+
+**Waiting on Jesse:**
+1. Review staging.
+2. Zero Trust and Access on the staging worker (per-person login).
+3. His sign-in email as `OWNER_EMAIL`.
+4. The team list.
+5. The allconvos.ai DNS move, before go-live.
 
 ## Hand-off notes from the CSM session (2026-10-16)
 
