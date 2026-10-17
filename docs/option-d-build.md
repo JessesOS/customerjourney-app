@@ -155,6 +155,32 @@ A review of Phase 3 found eight latent problems. None affects a current client: 
 
 **Flagged, not fixed:** a stage patch can't set `teamOnly`, so re-adding the team-only `support` stage to a custom product would make it a client stage. No product does this.
 
+### BSS custom: Fin's own product, as a draft (branch `team-board`, 2026-10-17)
+
+The first real custom product. Jesse approved it ("go ahead matey"): Fin's side short, every granular team task behind it, automations on hold, drafts kept as drafts. **Fin stays on `bss-meta`.** Moving him is a separate prod change (README §9 step 10).
+
+**What it is** (`products/bss-custom/`, blank base, status `draft`, version `2026-10-17.3`):
+- **Spec:** `spec.md`, the BSS handover word for word, with the Stripe ids and billing city redacted (the original stays in the client folder).
+- **Fin's side:** 21 client steps over 5 stages (Onboard, map and evaluate days 1-14; Build 8-28; Connect 29-35; Automate and launch 36-42; Partners, webinar and support 43 on, ongoing). Access, questions, content, approvals, calls and tests from spec §4 and the intake form in §5. **All wording is a draft** (`draftCopy` lists all 21).
+- **Team side:** 337 tasks. One per row of every table in spec §3, one per message in §3.E, one per tag group, plus the workflow stop rules (D00) and three tasks §4 implies (`bssc-x-…`). 241 sit behind a client step; 96 are team-only by week. Notes keep the spec's columns word for word, with each item's status on 17 Oct. Out-of-scope items (B240, B703, D26, F14, G03, §3.H, §3.J) are listed in one task; the §3.K commitments sit in A22's notes.
+- **Generated once** by `scripts/products/import-bss-spec.ts` (kept for provenance; from now on the task file is edited by hand).
+- **Portal:** BSS Launchpad name, draft tagline, `groveaurora` (Fin's current look), String Theory with 8 strands. No intro video, voice guide or Ask-AI.
+
+**Commits:**
+1. `99bd6c3` the product, its sheet, the import script, `_global` re-saved (only the 21 new step ids, 5 review cards and 1 upload step were added).
+2. `58e8ad2` the portal opens one step at a time, so each stage puts what Fin can do now first (access, then the website draft). The no-passwords rule became an Important box on both access steps.
+3. `21734d3` button labels on the 14 steps that aren't approvals ("I've sent the invites", "Send my answers"…).
+4. This entry.
+
+**Checks after every commit:** `tsc`, `check:fin`, `check:journeys`, `products:check` 6/6, `check:team-auth`.
+
+**Staging** (version `8ec598e2`): client "Demo — BSS custom" (`c49b7f60-…`). Its board started on create: all 337 tasks seeded in one batch (about 115 statements, no D1 limit hit). Portal 200 with the BSS Launchpad name and the new steps; no team notes and no RT Digital in the page. The same demo client exists locally (port 3334, `PRODUCT_DRAFTS=1` in the worktree's `.dev.vars`).
+
+**Known, for Jesse:**
+- 38 tasks the spec marks DONE start as To do on a new board (boards can't seed a status). Tick them when Fin's board starts, or ask for a "starts done" field.
+- Tasks auto-assign only when one active member covers the role "Jesse Allan". Add yourself on the Team page with that role before Fin's board starts.
+- `--compare bss-meta bss-custom`: none of Fin's 25 current steps carry over (new ids), and his current intro video would go.
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:
@@ -178,3 +204,4 @@ Apply these during the conversion:
    - A client's identity is the portal id, not their name.
 
 - 2026-10-17: Phase 3 (portal reads product files + custom-product tool + review fixes A-H) deployed to **staging** (version 8cb0762f, `PRODUCT_DRAFTS=1`). Every demo client portal, admin and board load (200); admin without the code is 403. Prod untouched.
+- 2026-10-17: BSS custom (draft) deployed to **staging** (version 8ec598e2) with the "Demo — BSS custom" client; its board seeded 337 tasks. Prod untouched.
