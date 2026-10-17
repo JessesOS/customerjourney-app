@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-17.1` |
+| Version | `2026-10-17.2` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 21 (0 client only, 0 hidden in the portal) |
 | Team tasks | 337 (241 behind a client step, 96 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/bss-custom/spec.md](../../products/bss-custom/spec.md) |
-| Draft wording | `bssc-kickoff`, `bssc-access-site`, `bssc-access-tools`, `bssc-review-1`, `bssc-questions`, `bssc-assets`, `bssc-journey-map`, `bssc-crm-plan`, `bssc-review-2`, `bssc-contacts`, `bssc-signoff`, `bssc-test-booking`, `bssc-launch-day`, `bssc-messages`, `bssc-ai-agent`, `bssc-walkthrough`, `bssc-live-check`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `bssc-access-site`, `bssc-review-1`, `bssc-questions`, `bssc-access-tools`, `bssc-kickoff`, `bssc-assets`, `bssc-journey-map`, `bssc-review-2`, `bssc-crm-plan`, `bssc-contacts`, `bssc-signoff`, `bssc-launch-day`, `bssc-test-booking`, `bssc-messages`, `bssc-ai-agent`, `bssc-live-check`, `bssc-walkthrough`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -57,38 +57,11 @@ Each stage lists the client's steps in portal order, with the team tasks behind 
 
 _Weeks 1 and 2: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built._
 
-Status notes the client sees: "We only ever ask for invites. Never send us a password, seed phrase or private key."
-
-### `bssc-kickoff` Your kick-off call
-
-> About 45 minutes with Jesse. We agree your goals, who approves what, and the best way to reach each other.
-
-Portal: note
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other _(done when the client finishes `bssc-kickoff`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a06` |
-
-<details><summary>Guidance for the team (1 task)</summary>
-
-**`bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other**
-
-From the spec: A09 (3.A Onboarding, portal, evaluation and admin).
-Who: Both
-Depends on: A06
-When: W1 to W2
-Done when: Call held; notes in the portal; approver named (default: Fin)
-Needs from Fin: 45 minutes
-Tools: Zoom, portal
-Status on 17 Oct: TODO
-
-</details>
-
 ### `bssc-access-site` Give Jesse access to your website and app
 
-> We build your new pages inside your existing site, so nothing you already have breaks. Invite Jesse to each of these. Never send a password: an invite is all we need.
+> We build your new pages inside your existing site, so nothing you already have breaks. Invite Jesse to each of these.
 
-Portal: note · 3 numbered steps · invite email
+Portal: note · 3 numbered steps · invite email · "Important" box
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -137,69 +110,6 @@ Done when: Jesse can open the code
 Needs from Fin: Invite
 Tools: Lovable, GitHub
 Status on 17 Oct: BLOCKED (asked in the unsent addendum email)
-
-</details>
-
-### `bssc-access-tools` Give Jesse access to your other tools
-
-> So we can check what's there and connect it all to your CRM. Invite Jesse to each one you use. Never send a password.
-
-Portal: note · 7 numbered steps · invite email
-
-Done with: `bssc-a10` (behind `bssc-access-site`)
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `bssc-a14` Audit Fin's existing GHL sub-account | Jesse Allan | Weeks 1-2 (days 1–14) | critical |  |
-| `bssc-b501` Fin: Calendly account (overview account + a sub-account per implementation coach) | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a19` |
-| `bssc-b502` Fin: Invite Jesse as Calendly admin (jesse@allconvos.ai), by invite not password _(done when the client finishes `bssc-access-tools`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | high | `bssc-b501` |
-| `bssc-b507` Fin: Zoom licence per coach (Fin's cost) | Jesse Allan | Week 2 (days 8–14) | normal |  |
-
-<details><summary>Guidance for the team (4 tasks)</summary>
-
-**`bssc-a14` Audit Fin's existing GHL sub-account**
-
-From the spec: A14 (3.A Onboarding, portal, evaluation and admin).
-Task: Audit Fin's existing GHL sub-account: pipelines, workflows, calendars, forms, integrations, contacts, phone numbers, domains, users
-Who: Us
-Depends on: GHL access
-When: W1 to W2
-Done when: Audit written
-Needs from Fin: GHL access
-Tools: GoHighLevel
-Status on 17 Oct: BLOCKED (access)
-
-**`bssc-b501` Fin: Calendly account (overview account + a sub-account per implementation coach)**
-
-From the spec: B501 (3.B5 Booking and calendar embeds).
-Who: Fin (or Us with Fin's OK; owner to agree)
-Depends on: A19
-When: W1 to W2
-Done when: Account live
-Needs from Fin: Sign-up + plan payment
-Tools: Calendly
-Status on 17 Oct: TODO
-
-**`bssc-b502` Fin: Invite Jesse as Calendly admin (jesse@allconvos.ai), by invite not password**
-
-From the spec: B502 (3.B5 Booking and calendar embeds).
-Who: Fin
-Depends on: B501
-When: W1 to W2
-Done when: Admin access works
-Needs from Fin: Invite
-Tools: Calendly
-Status on 17 Oct: BLOCKED
-
-**`bssc-b507` Fin: Zoom licence per coach (Fin's cost)**
-
-From the spec: B507 (3.B5 Booking and calendar embeds).
-Who: Fin
-When: W2
-Done when: Coaches have Zoom
-Needs from Fin: Licences
-Tools: Zoom
-Status on 17 Oct: TODO
 
 </details>
 
@@ -719,6 +629,94 @@ Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of 
 
 </details>
 
+### `bssc-access-tools` Give Jesse access to your other tools
+
+> So we can check what's there and connect it all to your CRM. Invite Jesse to each one you use, and tell us below about anything you couldn't.
+
+Portal: note · 7 numbered steps · invite email · "Important" box
+
+Done with: `bssc-a10` (behind `bssc-access-site`)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bssc-a14` Audit Fin's existing GHL sub-account | Jesse Allan | Weeks 1-2 (days 1–14) | critical |  |
+| `bssc-b501` Fin: Calendly account (overview account + a sub-account per implementation coach) | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a19` |
+| `bssc-b502` Fin: Invite Jesse as Calendly admin (jesse@allconvos.ai), by invite not password _(done when the client finishes `bssc-access-tools`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | high | `bssc-b501` |
+| `bssc-b507` Fin: Zoom licence per coach (Fin's cost) | Jesse Allan | Week 2 (days 8–14) | normal |  |
+
+<details><summary>Guidance for the team (4 tasks)</summary>
+
+**`bssc-a14` Audit Fin's existing GHL sub-account**
+
+From the spec: A14 (3.A Onboarding, portal, evaluation and admin).
+Task: Audit Fin's existing GHL sub-account: pipelines, workflows, calendars, forms, integrations, contacts, phone numbers, domains, users
+Who: Us
+Depends on: GHL access
+When: W1 to W2
+Done when: Audit written
+Needs from Fin: GHL access
+Tools: GoHighLevel
+Status on 17 Oct: BLOCKED (access)
+
+**`bssc-b501` Fin: Calendly account (overview account + a sub-account per implementation coach)**
+
+From the spec: B501 (3.B5 Booking and calendar embeds).
+Who: Fin (or Us with Fin's OK; owner to agree)
+Depends on: A19
+When: W1 to W2
+Done when: Account live
+Needs from Fin: Sign-up + plan payment
+Tools: Calendly
+Status on 17 Oct: TODO
+
+**`bssc-b502` Fin: Invite Jesse as Calendly admin (jesse@allconvos.ai), by invite not password**
+
+From the spec: B502 (3.B5 Booking and calendar embeds).
+Who: Fin
+Depends on: B501
+When: W1 to W2
+Done when: Admin access works
+Needs from Fin: Invite
+Tools: Calendly
+Status on 17 Oct: BLOCKED
+
+**`bssc-b507` Fin: Zoom licence per coach (Fin's cost)**
+
+From the spec: B507 (3.B5 Booking and calendar embeds).
+Who: Fin
+When: W2
+Done when: Coaches have Zoom
+Needs from Fin: Licences
+Tools: Zoom
+Status on 17 Oct: TODO
+
+</details>
+
+### `bssc-kickoff` Book your kick-off call
+
+> About 45 minutes with Jesse: we agree your goals, who approves what, and the best way to reach each other. Tell us when suits you and Jesse will send an invite.
+
+Portal: note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other _(done when the client finishes `bssc-kickoff`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a06` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other**
+
+From the spec: A09 (3.A Onboarding, portal, evaluation and admin).
+Who: Both
+Depends on: A06
+When: W1 to W2
+Done when: Call held; notes in the portal; approver named (default: Fin)
+Needs from Fin: 45 minutes
+Tools: Zoom, portal
+Status on 17 Oct: TODO
+
+</details>
+
 ### `bssc-assets` Send us your website content
 
 > Upload what you have below. For anything still to come, just tell us when to expect it.
@@ -1156,6 +1154,70 @@ From the spec: every item marked NOT IN SCOPE, plus 3.H (ads) and 3.J (add-ons, 
 
 _Weeks 2 to 4: your website is finished page by page, and your CRM is set up and loaded with your contacts._
 
+### `bssc-review-2` Review your updated website
+
+> Your first changes are done. Check the updated review page and tell us what's left. We aim to finish in two rounds, with a third if you need it.
+
+Portal: note · guide link
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bssc-b203` Quiz: Build the chosen question changes | Jesse Allan | Weeks 2-3 (days 8–21) | normal | `bssc-b202` |
+| `bssc-b242` Draft 2 (round 1 changes applied) | Jesse Allan | Week 2 (days 8–14) | normal | `bssc-b241` |
+| `bssc-b243` Draft 3 (round 2) | Jesse Allan | Weeks 3-4 (days 15–28) | normal |  |
+| `bssc-b244` Round 3 (on paper; aim not to need it) | Jesse Allan | If needed | normal |  |
+| `bssc-b802` Test: Copy check line by line against the live site for every "unchanged" line | Jesse Allan | Each round | normal |  |
+
+<details><summary>Guidance for the team (5 tasks)</summary>
+
+**`bssc-b203` Quiz: Build the chosen question changes**
+
+From the spec: B203 (3.B2 Website: page by page).
+Who: Us
+Depends on: B202
+When: W2 to W3
+Done when: Approved
+Needs from Fin: Approval
+Tools: `book.js` → Lovable
+Status on 17 Oct: TODO
+
+**`bssc-b242` Draft 2 (round 1 changes applied)**
+
+From the spec: B242 (3.B2 Website: page by page).
+Who: Us
+Depends on: B241
+When: W2
+Done when: New hub round published
+Tools: `site-build/`
+Status on 17 Oct: TODO
+
+**`bssc-b243` Draft 3 (round 2)**
+
+From the spec: B243 (3.B2 Website: page by page).
+Who: Us
+Depends on: Fin's round-2 feedback
+When: W3 to W4
+Done when: Fin approves pages
+Needs from Fin: Feedback
+Tools: Hub
+Status on 17 Oct: TODO
+
+**`bssc-b244` Round 3 (on paper; aim not to need it)**
+
+From the spec: B244 (3.B2 Website: page by page).
+Who: Us
+When: If needed
+Status on 17 Oct: TODO
+
+**`bssc-b802` Test: Copy check line by line against the live site for every "unchanged" line**
+
+From the spec: B802 (3.B8 Website testing (before launch)).
+Who: Us
+When: Each round
+Done when: Passed (draft 1 DONE)
+
+</details>
+
 ### `bssc-crm-plan` Approve your CRM plan
 
 > One page: your pipelines, the details we store on each contact, your tags and how leads are scored. Approve it, or tell us what to change.
@@ -1462,70 +1524,6 @@ Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of 
 From the spec: 3.C4 Tags (draft), Interest (from the import).
 Tags: `past-client`, `bali`, `merch-buyer`, `phone-enquiry`, `partner`
 Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of the journey (A12).
-
-</details>
-
-### `bssc-review-2` Review your updated website
-
-> Your first changes are done. Check the updated review page and tell us what's left. We aim to finish in two rounds, with a third if you need it.
-
-Portal: note · guide link
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `bssc-b203` Quiz: Build the chosen question changes | Jesse Allan | Weeks 2-3 (days 8–21) | normal | `bssc-b202` |
-| `bssc-b242` Draft 2 (round 1 changes applied) | Jesse Allan | Week 2 (days 8–14) | normal | `bssc-b241` |
-| `bssc-b243` Draft 3 (round 2) | Jesse Allan | Weeks 3-4 (days 15–28) | normal |  |
-| `bssc-b244` Round 3 (on paper; aim not to need it) | Jesse Allan | If needed | normal |  |
-| `bssc-b802` Test: Copy check line by line against the live site for every "unchanged" line | Jesse Allan | Each round | normal |  |
-
-<details><summary>Guidance for the team (5 tasks)</summary>
-
-**`bssc-b203` Quiz: Build the chosen question changes**
-
-From the spec: B203 (3.B2 Website: page by page).
-Who: Us
-Depends on: B202
-When: W2 to W3
-Done when: Approved
-Needs from Fin: Approval
-Tools: `book.js` → Lovable
-Status on 17 Oct: TODO
-
-**`bssc-b242` Draft 2 (round 1 changes applied)**
-
-From the spec: B242 (3.B2 Website: page by page).
-Who: Us
-Depends on: B241
-When: W2
-Done when: New hub round published
-Tools: `site-build/`
-Status on 17 Oct: TODO
-
-**`bssc-b243` Draft 3 (round 2)**
-
-From the spec: B243 (3.B2 Website: page by page).
-Who: Us
-Depends on: Fin's round-2 feedback
-When: W3 to W4
-Done when: Fin approves pages
-Needs from Fin: Feedback
-Tools: Hub
-Status on 17 Oct: TODO
-
-**`bssc-b244` Round 3 (on paper; aim not to need it)**
-
-From the spec: B244 (3.B2 Website: page by page).
-Who: Us
-When: If needed
-Status on 17 Oct: TODO
-
-**`bssc-b802` Test: Copy check line by line against the live site for every "unchanged" line**
-
-From the spec: B802 (3.B8 Website testing (before launch)).
-Who: Us
-When: Each round
-Done when: Passed (draft 1 DONE)
 
 </details>
 
@@ -1843,6 +1841,33 @@ Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of 
 
 _Week 5: your forms, chat, phone, texting, social channels and Calendly are connected to your CRM and tested._
 
+### `bssc-launch-day` Agree your launch day
+
+> We launch your new website on your domain on a day that suits you. Your current site stays live until then.
+
+Portal: note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bssc-b608` Keep the old site live until launch day | Jesse Allan | Until launch (week 6) (days 1–42) | normal |  |
+| `bssc-x-launch-date` Propose a launch day to Fin | Jesse Allan | Week 5 (days 29–35) | normal |  |
+
+<details><summary>Guidance for the team (2 tasks)</summary>
+
+**`bssc-b608` Keep the old site live until launch day**
+
+From the spec: B608 (3.B6 Domain, DNS and hosting).
+Who: Us
+When: To W6
+Status on 17 Oct: Ongoing
+
+**`bssc-x-launch-date` Propose a launch day to Fin**
+
+From the spec: 4.4 approval 11 ("Launch day", shown a proposed date, week 5) and B607 ("Fin agrees the day"; rollback plan ready).
+Fin's current site stays live until launch day (B608).
+
+</details>
+
 ### `bssc-test-booking` Book a test Clarity Call through your new site
 
 > Go through the booking quiz like a real lead and book a test call in Calendly. Check it lands in your CRM and you get the right emails.
@@ -2016,33 +2041,6 @@ Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of 
 From the spec: G01 (3.G Funnels, webinars and lead magnets).
 What's agreed: In scope (B201–B205, D03–D07)
 Status on 17 Oct: Draft visual DONE
-
-</details>
-
-### `bssc-launch-day` Agree your launch day
-
-> We launch your new website on your domain on a day that suits you. Your current site stays live until then.
-
-Portal: note
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `bssc-b608` Keep the old site live until launch day | Jesse Allan | Until launch (week 6) (days 1–42) | normal |  |
-| `bssc-x-launch-date` Propose a launch day to Fin | Jesse Allan | Week 5 (days 29–35) | normal |  |
-
-<details><summary>Guidance for the team (2 tasks)</summary>
-
-**`bssc-b608` Keep the old site live until launch day**
-
-From the spec: B608 (3.B6 Domain, DNS and hosting).
-Who: Us
-When: To W6
-Status on 17 Oct: Ongoing
-
-**`bssc-x-launch-date` Propose a launch day to Fin**
-
-From the spec: 4.4 approval 11 ("Launch day", shown a proposed date, week 5) and B607 ("Fin agrees the day"; rollback plan ready).
-Fin's current site stays live until launch day (B608).
 
 </details>
 
@@ -2898,73 +2896,6 @@ Status on 17 Oct: DEFERRED
 
 </details>
 
-### `bssc-walkthrough` Your launch walkthrough
-
-> A recorded session for you and your coaches: the inbox, pipeline, contact records, bookings and dashboard. A short written guide follows, including how to edit your website.
-
-Portal: note
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `bssc-b113` Fin gets admin access so he can change the site himself, and owns it (WA promise) | Jesse Allan | Launch (week 6) (days 36–42) | normal | `bssc-b602` |
-| `bssc-c503` Dashboard: leads by source, bookings, show rate, conversions, partners, webinar | Jesse Allan | Week 6 (partners week 10) (days 36–42) | normal |  |
-| `bssc-i01` Walkthrough session for Fin _(done when the client finishes `bssc-walkthrough`)_ | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-i02` Short written guide (how to do the everyday things) | Jesse Allan | Weeks 6-7 (days 36–49) | normal | `bssc-i01` |
-| `bssc-i05` Website editing guide (Lovable), since Fin edits the site himself | Jesse Allan | Week 6 (days 36–42) | normal | `bssc-b113` |
-
-<details><summary>Guidance for the team (5 tasks)</summary>
-
-**`bssc-b113` Fin gets admin access so he can change the site himself, and owns it (WA promise)**
-
-From the spec: B113 (3.B1 Website: global items).
-Who: Us
-Depends on: Lovable route (B602)
-When: Launch
-Done when: Fin can edit text/images in his Lovable project
-Tools: Lovable
-Status on 17 Oct: TODO
-
-**`bssc-c503` Dashboard: leads by source, bookings, show rate, conversions, partners, webinar**
-
-From the spec: C503 (3.C5 Smart lists, lead score, dashboard).
-Task: Dashboard: leads by source, bookings, show rate, conversions to client, partner performance, webinar registrations and attendance
-Who: Us
-Depends on: C2 to C5
-When: W6 (partners W10)
-Done when: Fin can read it without help
-Status on 17 Oct: TODO
-Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of the journey (A12).
-
-**`bssc-i01` Walkthrough session for Fin**
-
-From the spec: I01 (3.I Training, walkthroughs, handover and support).
-Task: Walkthrough session for Fin (and coaches): the inbox, pipeline, contact record, qualification summary, booking, dashboard
-Who: Both
-Depends on: Core live
-When: W6
-Done when: Session held and recorded
-Status on 17 Oct: TODO
-
-**`bssc-i02` Short written guide (how to do the everyday things)**
-
-From the spec: I02 (3.I Training, walkthroughs, handover and support).
-Who: Us
-Depends on: I01
-When: W6 to W7
-Done when: Guide in the portal
-Status on 17 Oct: TODO
-
-**`bssc-i05` Website editing guide (Lovable), since Fin edits the site himself**
-
-From the spec: I05 (3.I Training, walkthroughs, handover and support).
-Who: Us
-Depends on: B113
-When: W6
-Done when: Guide in the portal
-Status on 17 Oct: TODO
-
-</details>
-
 ### `bssc-live-check` Click through your live site
 
 > On launch day, click through every page and book a test call. Tell us anything that looks wrong.
@@ -3041,6 +2972,73 @@ Done when: Pass (draft DONE)
 From the spec: G07 (3.G Funnels, webinars and lead magnets).
 What's agreed: Replaced by the new weekly webinar pages (it shows a stale 23 April date today)
 Status on 17 Oct: Draft replacement DONE
+
+</details>
+
+### `bssc-walkthrough` Your launch walkthrough
+
+> A recorded session for you and your coaches: the inbox, pipeline, contact records, bookings and dashboard. A short written guide follows, including how to edit your website.
+
+Portal: note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bssc-b113` Fin gets admin access so he can change the site himself, and owns it (WA promise) | Jesse Allan | Launch (week 6) (days 36–42) | normal | `bssc-b602` |
+| `bssc-c503` Dashboard: leads by source, bookings, show rate, conversions, partners, webinar | Jesse Allan | Week 6 (partners week 10) (days 36–42) | normal |  |
+| `bssc-i01` Walkthrough session for Fin _(done when the client finishes `bssc-walkthrough`)_ | Jesse Allan | Week 6 (days 36–42) | normal |  |
+| `bssc-i02` Short written guide (how to do the everyday things) | Jesse Allan | Weeks 6-7 (days 36–49) | normal | `bssc-i01` |
+| `bssc-i05` Website editing guide (Lovable), since Fin edits the site himself | Jesse Allan | Week 6 (days 36–42) | normal | `bssc-b113` |
+
+<details><summary>Guidance for the team (5 tasks)</summary>
+
+**`bssc-b113` Fin gets admin access so he can change the site himself, and owns it (WA promise)**
+
+From the spec: B113 (3.B1 Website: global items).
+Who: Us
+Depends on: Lovable route (B602)
+When: Launch
+Done when: Fin can edit text/images in his Lovable project
+Tools: Lovable
+Status on 17 Oct: TODO
+
+**`bssc-c503` Dashboard: leads by source, bookings, show rate, conversions, partners, webinar**
+
+From the spec: C503 (3.C5 Smart lists, lead score, dashboard).
+Task: Dashboard: leads by source, bookings, show rate, conversions to client, partner performance, webinar registrations and attendance
+Who: Us
+Depends on: C2 to C5
+When: W6 (partners W10)
+Done when: Fin can read it without help
+Status on 17 Oct: TODO
+Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of the journey (A12).
+
+**`bssc-i01` Walkthrough session for Fin**
+
+From the spec: I01 (3.I Training, walkthroughs, handover and support).
+Task: Walkthrough session for Fin (and coaches): the inbox, pipeline, contact record, qualification summary, booking, dashboard
+Who: Both
+Depends on: Core live
+When: W6
+Done when: Session held and recorded
+Status on 17 Oct: TODO
+
+**`bssc-i02` Short written guide (how to do the everyday things)**
+
+From the spec: I02 (3.I Training, walkthroughs, handover and support).
+Who: Us
+Depends on: I01
+When: W6 to W7
+Done when: Guide in the portal
+Status on 17 Oct: TODO
+
+**`bssc-i05` Website editing guide (Lovable), since Fin edits the site himself**
+
+From the spec: I05 (3.I Training, walkthroughs, handover and support).
+Who: Us
+Depends on: B113
+When: W6
+Done when: Guide in the portal
+Status on 17 Oct: TODO
 
 </details>
 

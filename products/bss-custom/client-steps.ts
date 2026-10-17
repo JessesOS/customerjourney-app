@@ -6,12 +6,16 @@
 // draftCopy, so the product can't go live until Jesse approves the wording.
 // Timings follow section 2 of the spec: week 1 starts on the day the client
 // starts. Post-launch is ongoing: support runs to month 8.
+// The portal opens one step at a time, so each stage's order puts what Fin can
+// do straight away first (access, then the website draft that's ready now),
+// and steps that wait on our work later.
 
 import type { StagePatch } from "../custom";
 import type { ClientStep, StageId } from "../types";
 
 const INVITE = "jesse@allconvos.ai";
 const REVIEW_HUB = "https://bss-website-draft.vercel.app/review.html";
+const NO_PASSWORDS = "Never send us a password, seed phrase or private key. An invite is all we need.";
 
 export const bssCustomStages: Partial<Record<StageId, StagePatch>> = {
   onboarding: {
@@ -19,7 +23,7 @@ export const bssCustomStages: Partial<Record<StageId, StagePatch>> = {
     dayStart: 1,
     dayEnd: 14,
     blurb: "Weeks 1 and 2: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built.",
-    statusNotes: ["We only ever ask for invites. Never send us a password, seed phrase or private key."],
+    statusNotes: [],
   },
   build: {
     name: "Build",
@@ -57,43 +61,15 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
-      id: "bssc-kickoff",
-      title: "Your kick-off call",
-      detail: "About 45 minutes with Jesse. We agree your goals, who approves what, and the best way to reach each other.",
-      notePrompt: "Days and times that suit you",
-      notePlaceholder: "e.g. Tuesday or Wednesday afternoon",
-    },
-  },
-  {
-    stage: "onboarding",
-    step: {
       id: "bssc-access-site",
       title: "Give Jesse access to your website and app",
-      detail: "We build your new pages inside your existing site, so nothing you already have breaks. Invite Jesse to each of these. Never send a password: an invite is all we need.",
+      detail: "We build your new pages inside your existing site, so nothing you already have breaks. Invite Jesse to each of these.",
+      important: NO_PASSWORDS,
       inviteEmail: INVITE,
       steps: [
         "Lovable (your website): add jesse@allconvos.ai to your project, or connect it to GitHub and add Jesse there.",
         "Supabase (your app's database): add Jesse as a team member, so we can see what your current system stores.",
         "Your existing client portal: invite Jesse as a test client, so new clients can be pointed to it.",
-      ],
-      notePrompt: "Anything you couldn't invite us to?",
-    },
-  },
-  {
-    stage: "onboarding",
-    step: {
-      id: "bssc-access-tools",
-      title: "Give Jesse access to your other tools",
-      detail: "So we can check what's there and connect it all to your CRM. Invite Jesse to each one you use. Never send a password.",
-      inviteEmail: INVITE,
-      steps: [
-        "GoHighLevel: add Jesse as an admin user on your current sub-account.",
-        "Calendly: invite Jesse as an admin, once your account is set up.",
-        "Zoom (if you run webinars on it): add Jesse as an admin, or tell us your plan type.",
-        "Payments (for example Stripe): give Jesse access, so a confirmed payment can start client onboarding.",
-        "Meta (Instagram and Facebook): add Jesse to your Meta Business account.",
-        "YouTube (optional): add Jesse as a channel manager.",
-        "Porkbun and Cloudflare (your domain): add Jesse, or be ready to add a few records we send you.",
       ],
       notePrompt: "Anything you couldn't invite us to?",
     },
@@ -139,6 +115,36 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
+      id: "bssc-access-tools",
+      title: "Give Jesse access to your other tools",
+      detail: "So we can check what's there and connect it all to your CRM. Invite Jesse to each one you use, and tell us below about anything you couldn't.",
+      important: NO_PASSWORDS,
+      inviteEmail: INVITE,
+      steps: [
+        "GoHighLevel: add Jesse as an admin user on your current sub-account.",
+        "Calendly: invite Jesse as an admin, once your account is set up.",
+        "Zoom (if you run webinars on it): add Jesse as an admin, or tell us your plan type.",
+        "Payments (for example Stripe): give Jesse access, so a confirmed payment can start client onboarding.",
+        "Meta (Instagram and Facebook): add Jesse to your Meta Business account.",
+        "YouTube (optional): add Jesse as a channel manager.",
+        "Porkbun and Cloudflare (your domain): add Jesse, or be ready to add a few records we send you.",
+      ],
+      notePrompt: "Anything you couldn't invite us to?",
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
+      id: "bssc-kickoff",
+      title: "Book your kick-off call",
+      detail: "About 45 minutes with Jesse: we agree your goals, who approves what, and the best way to reach each other. Tell us when suits you and Jesse will send an invite.",
+      notePrompt: "Days and times that suit you",
+      notePlaceholder: "e.g. Tuesday or Wednesday afternoon",
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
       id: "bssc-assets",
       title: "Send us your website content",
       detail: "Upload what you have below. For anything still to come, just tell us when to expect it.",
@@ -174,22 +180,22 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "build",
     step: {
-      id: "bssc-crm-plan",
-      title: "Approve your CRM plan",
-      detail: "One page: your pipelines, the details we store on each contact, your tags and how leads are scored. Approve it, or tell us what to change.",
-      hasEditableContent: true,
-      notePrompt: "Anything you'd like changed?",
-    },
-  },
-  {
-    stage: "build",
-    step: {
       id: "bssc-review-2",
       title: "Review your updated website",
       detail: "Your first changes are done. Check the updated review page and tell us what's left. We aim to finish in two rounds, with a third if you need it.",
       guideUrl: REVIEW_HUB,
       guideLabel: "Open the review page",
       notePrompt: "What's left to change?",
+    },
+  },
+  {
+    stage: "build",
+    step: {
+      id: "bssc-crm-plan",
+      title: "Approve your CRM plan",
+      detail: "One page: your pipelines, the details we store on each contact, your tags and how leads are scored. Approve it, or tell us what to change.",
+      hasEditableContent: true,
+      notePrompt: "Anything you'd like changed?",
     },
   },
   {
@@ -215,20 +221,20 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "testing",
     step: {
-      id: "bssc-test-booking",
-      title: "Book a test Clarity Call through your new site",
-      detail: "Go through the booking quiz like a real lead and book a test call in Calendly. Check it lands in your CRM and you get the right emails.",
-      notePrompt: "Anything that didn't work as expected?",
-    },
-  },
-  {
-    stage: "testing",
-    step: {
       id: "bssc-launch-day",
       title: "Agree your launch day",
       detail: "We launch your new website on your domain on a day that suits you. Your current site stays live until then.",
       notePrompt: "Your preferred launch day",
       notePlaceholder: "e.g. a weekday morning",
+    },
+  },
+  {
+    stage: "testing",
+    step: {
+      id: "bssc-test-booking",
+      title: "Book a test Clarity Call through your new site",
+      detail: "Go through the booking quiz like a real lead and book a test call in Calendly. Check it lands in your CRM and you get the right emails.",
+      notePrompt: "Anything that didn't work as expected?",
     },
   },
 
@@ -255,19 +261,19 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "go-live",
     step: {
-      id: "bssc-walkthrough",
-      title: "Your launch walkthrough",
-      detail: "A recorded session for you and your coaches: the inbox, pipeline, contact records, bookings and dashboard. A short written guide follows, including how to edit your website.",
-      notePrompt: "Days and times that suit you",
+      id: "bssc-live-check",
+      title: "Click through your live site",
+      detail: "On launch day, click through every page and book a test call. Tell us anything that looks wrong.",
+      notePrompt: "Anything that looks wrong?",
     },
   },
   {
     stage: "go-live",
     step: {
-      id: "bssc-live-check",
-      title: "Click through your live site",
-      detail: "On launch day, click through every page and book a test call. Tell us anything that looks wrong.",
-      notePrompt: "Anything that looks wrong?",
+      id: "bssc-walkthrough",
+      title: "Your launch walkthrough",
+      detail: "A recorded session for you and your coaches: the inbox, pipeline, contact records, bookings and dashboard. A short written guide follows, including how to edit your website.",
+      notePrompt: "Days and times that suit you",
     },
   },
 
