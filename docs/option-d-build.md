@@ -41,8 +41,8 @@ This file records progress, decisions and anything the next session must know.
 
 **Waiting on Jesse:**
 1. ~~OK to deploy the security batch and the sync retirement to prod.~~ Done 2026-10-16.
-2. Switch off CSM's public address: Workers & Pages → `csm-dashboard` → Settings → Domains & Routes → turn off workers.dev and Preview URLs. **Don't delete the worker.**
-3. Rotate the Fish Audio key. Then delete the stray `.env.local<key>` file in the repo root.
+2. ~~Switch off CSM's public address.~~ Done 2026-10-17 via the Cloudflare API (workers.dev + previews off; worker and D1 kept; reversible by re-enabling the subdomain).
+3. ~~Rotate the Fish Audio key.~~ Jesse: not needed, the key is unused. Then delete the stray `.env.local<key>` file in the repo root.
 4. Create a Zero Trust organisation (Free) and turn on Access for the **staging** worker's workers.dev address. Add the team's emails, and copy the AUD tag into `scripts/deploy-envs.mjs`.
 5. Move allconvos.ai DNS from Porkbun to Cloudflare. Needed before go-live, not before staging.
 6. The team list: names, sign-in emails, roles, admins.
