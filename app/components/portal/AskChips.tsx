@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { AskItem } from "@/lib/askAi";
+import type { AskItem } from "@/lib/journeyTypes";
 
 /**
  * "Ask about your journey" — Imprint-style example-question chips with

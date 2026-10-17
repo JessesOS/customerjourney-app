@@ -1,13 +1,8 @@
 import { bssWorkstreams } from "./bssJourney";
+import type { StringPlan } from "./journeyTypes";
 
-/**
- * Plans for the "String Theory" view in the progress panel: a product's work
- * as parallel workstreams across its timeline. Days are journey days (day 1 =
- * the client's start). `ongoing` strings run past the end of the axis.
- * `after` names the workstreams that feed this one (drawn as threads).
- */
-export type StringWorkstream = { id: string; name: string; dayStart: number; dayEnd: number; ongoing?: boolean; taskIds: string[]; after?: string[] };
-export type StringPlan = { weeks: number; goLiveDay: number; tailLabel: string; workstreams: StringWorkstream[] };
+// The StringPlan and StringWorkstream types live in lib/journeyTypes.ts (2026-10-17).
+export type { StringPlan, StringWorkstream } from "./journeyTypes";
 
 // BSS (paused custom product): the CSM board's categories and windows, in weeks.
 export const bssStringPlan: StringPlan = {

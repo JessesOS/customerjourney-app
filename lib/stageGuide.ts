@@ -1,14 +1,8 @@
 import type { ClientType } from "@/lib/journeyEngine";
+import type { StageGuide } from "@/lib/journeyTypes";
 
-/**
- * Per-stage voice-guide scripts (Imprint-style breathing orb + narration).
- * The caption bubble shows this exact text while the audio plays, so script
- * and audio must be regenerated together — see scripts/generate-voice.sh.
- * Audio files live in public/portal/voice/{scale|respond}-{stageId}.m4a and
- * are placeholder macOS TTS (Karen, en_AU) until a branded voice replaces
- * them — swapping the files requires no code change.
- */
-export type StageGuide = { script: string; audioSrc: string };
+// The StageGuide type lives in lib/journeyTypes.ts (2026-10-17).
+export type { StageGuide };
 
 const scaleScripts: Record<string, string> = {
   onboarding:

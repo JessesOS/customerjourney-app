@@ -6,7 +6,8 @@
 // the browser. The readable sheets in docs/products/ are generated from these
 // files (npm run products:render). Change a product by asking Claude.
 
-import type { ClientChannel, ClientType, MilestoneTemplate } from "../lib/journeyEngine";
+import type { ClientType } from "../lib/journeyEngine";
+import type { ClientChannel, MilestoneTemplate } from "../lib/journeyTypes";
 
 export type { ClientChannel, ClientType };
 

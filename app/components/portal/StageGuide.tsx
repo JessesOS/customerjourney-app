@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { StageGuide as StageGuideData } from "@/lib/stageGuide";
+import type { StageGuide as StageGuideData } from "@/lib/journeyTypes";
 
 /**
  * Imprint-style stage narrator: a small breathing orb that speaks a short

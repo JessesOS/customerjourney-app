@@ -5,7 +5,7 @@
 // lib/respondJourney.ts). portalTemplate() rebuilds exactly that shape from a
 // product file, and npm run products:check proves the two are equal.
 
-import type { StageTemplate } from "../lib/journeyEngine";
+import type { StageTemplate } from "../lib/journeyTypes";
 import { productList } from "./index";
 import type {
   ClientStep,

@@ -1,6 +1,6 @@
 "use client";
 
-import { JourneyStage } from "@/lib/onboardingJourney";
+import type { JourneyStage } from "@/lib/journeyTypes";
 
 function dayLabel(start: number, end: number) {
   return start === end ? `Day ${start}` : `Days ${start}–${end}`;

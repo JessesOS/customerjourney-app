@@ -2,8 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { ProgressOverview } from "@/app/components/portal/ProgressOverview";
-import type { StringPlan } from "@/lib/stringPlans";
-import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
+import type { JourneyMilestone, JourneyStage, StringPlan } from "@/lib/journeyTypes";
 import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 import { AURORA_PALETTES, WaveField } from "@/app/components/portal/AuroraHub";
 

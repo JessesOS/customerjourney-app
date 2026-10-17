@@ -1,14 +1,8 @@
 import type { ClientType } from "@/lib/journeyEngine";
+import type { AskItem } from "@/lib/journeyTypes";
 
-/**
- * "Ask AI" chips — Imprint-style example questions per stage, with scripted
- * answers. This is the placeholder generation of the assistant: real questions
- * clients actually ask, answered in an AI-chat-shaped bubble, so the UI shell
- * is already the one a live assistant plugs into later. Answers stay
- * process-oriented — they point at the portal, the tasks, and the team, and
- * promise nothing the journey templates don't already say.
- */
-export type AskItem = { q: string; a: string };
+// The AskItem type lives in lib/journeyTypes.ts (2026-10-17).
+export type { AskItem };
 
 const scaleAsk: Record<string, AskItem[]> = {
   onboarding: [

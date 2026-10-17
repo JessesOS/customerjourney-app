@@ -4,9 +4,23 @@
 // calls buildStagesFromTemplate() with its own data. The portal UI
 // (ClientPortalExperience.tsx and friends) only ever touches JourneyStage /
 // JourneyMilestone, so it never needs to know which product it's rendering.
+//
+// The types live in lib/journeyTypes.ts and the pure builder in
+// lib/journeyBuild.ts (2026-10-17); both are re-exported here unchanged.
 
-export type MilestoneStatus = "done" | "current" | "upcoming";
-export type StageStatus = "done" | "current" | "locked";
+import type { ClientChannel, JourneyStage, StageTemplate } from "./journeyTypes";
+import { buildStages } from "./journeyBuild";
+
+export type {
+  ClientChannel,
+  JourneyMilestone,
+  JourneyStage,
+  MilestoneStatus,
+  MilestoneTemplate,
+  StageStatus,
+  StageTemplate,
+} from "./journeyTypes";
+export { completedStageCount, journeyProgressPercent } from "./journeyBuild";
 
 /** Which product + ad channel(s) a client is on. Stored on the client record
     (portal_clients.client_type); chosen in admin. Scale clients pick a channel
@@ -18,7 +32,6 @@ export type StageStatus = "done" | "current" | "locked";
 // ads only (same tasks, same ids), with the BSS Launchpad name and locked look.
 // The custom 41-task "bss" journey is paused.
 export type ClientType = "meta" | "google" | "meta-google" | "respond" | "bss" | "bss-meta";
-export type ClientChannel = "meta" | "google";
 
 /** Products whose portal look is fixed, whatever look the client record holds.
     BSS (Jesse, 2026-10-15): the Aurora welcome, then Grove Aurora with the
@@ -118,104 +131,6 @@ export const clientTypeLabels: Record<ClientType, string> = {
   "bss-meta": "BSS Meta ads only",
 };
 
-export type JourneyMilestone = {
-  id: string;
-  title: string;
-  detail: string;
-  status: MilestoneStatus;
-  formId?: string;
-  notePrompt?: string;
-  notePlaceholder?: string;
-  noteRequired?: boolean;
-  hasEditableContent?: boolean;
-  videoUrl?: string;
-  hasUpload?: boolean;
-  awaitingTeam?: boolean;
-  bookingUrl?: string;
-  /** Generic embedded page (e.g. a testimonial form) with its own heading/note. */
-  embedUrl?: string;
-  embedTitle?: string;
-  embedNote?: string;
-  guideUrl?: string;
-  guideLabel?: string;
-  important?: string;
-  /** Numbered action steps shown in a card, e.g. "1. Check your inbox, 2. Go
-      to the login page, 3. Log in." */
-  steps?: string[];
-  /** Shows a "copy your portal link" card instead of the usual content — for
-      tasks that just ask the client to bookmark where they already are. */
-  showPortalLink?: boolean;
-  /** Voice interview: questions asked one at a time; the answers are saved
-      as the task's note. */
-  interview?: string[];
-  /** An email the client invites to their accounts, shown with a copy button. */
-  inviteEmail?: string;
-  /** The finish button's wording, in place of "Approve & continue". */
-  doneLabel?: string;
-  /** Hosted voice agent that runs the interview as a live call; the
-      `interview` questions remain as the typed fallback. */
-  interviewAgentId?: string;
-};
-
-export type JourneyStage = {
-  id: string;
-  name: string;
-  dayStart: number;
-  dayEnd: number;
-  ongoing?: boolean;
-  status: StageStatus;
-  blurb?: string;
-  milestones: JourneyMilestone[];
-  statusNotes: string[];
-};
-
-export type MilestoneTemplate = {
-  id: string;
-  title: string;
-  detail: string;
-  formId?: string;
-  notePrompt?: string;
-  notePlaceholder?: string;
-  noteRequired?: boolean;
-  hasEditableContent?: boolean;
-  videoUrl?: string;
-  hasUpload?: boolean;
-  awaitingTeam?: boolean;
-  bookingUrl?: string;
-  embedUrl?: string;
-  embedTitle?: string;
-  embedNote?: string;
-  guideUrl?: string;
-  guideLabel?: string;
-  important?: string;
-  steps?: string[];
-  showPortalLink?: boolean;
-  interview?: string[];
-  interviewAgentId?: string;
-  inviteEmail?: string;
-  doneLabel?: string;
-  /** Hidden from the client flow entirely (not rendered, not counted). Flip to
-      re-enable a task without deleting it. */
-  hidden?: boolean;
-  /** Restrict a task to specific ad channels (Scale only). Omit = shown to
-      every client of the product. ["meta"] = Meta clients (and Meta+Google);
-      ["google"] = Google clients (and Meta+Google). Irrelevant for Respond. */
-  channels?: ClientChannel[];
-};
-
-export type StageTemplate = {
-  id: string;
-  name: string;
-  dayStart: number;
-  dayEnd: number;
-  /** An open-ended stage (support after launch): shown without days, and
-      outside the day count in the portal header. */
-  ongoing?: boolean;
-  blurb?: string;
-  milestones: MilestoneTemplate[];
-  statusNotes: string[];
-};
-
 /** True when a milestone should appear for a client of the given type.
     Applies both the hidden flag and the channel restriction. Channel
     restrictions only ever apply within Scale — a Respond client never has
@@ -231,9 +146,8 @@ export function milestoneVisibleFor(m: { hidden?: boolean; channels?: ClientChan
 
 /**
  * Builds the full stage/milestone status tree from a set of completed
- * milestone ids and the client's current day. A stage is "done" once every
- * visible milestone in it is completed; the first stage with any incomplete
- * milestone is "current"; everything after that is "locked".
+ * milestone ids and the client's current day (lib/journeyBuild.ts), with this
+ * client type's visibility and per-product step descriptions.
  */
 export function buildStagesFromTemplate(
   template: StageTemplate[],
@@ -241,66 +155,8 @@ export function buildStagesFromTemplate(
   currentDay: number,
   clientType: ClientType,
 ): JourneyStage[] {
-  let currentAssigned = false;
-
-  return template.map((stageTemplate) => {
-    const visible = stageTemplate.milestones.filter((m) => milestoneVisibleFor(m, clientType));
-    const allDone = visible.every((m) => completedIds.has(m.id));
-    const isCurrent = !allDone && !currentAssigned;
-    if (isCurrent) currentAssigned = true;
-
-    const status: StageStatus = allDone ? "done" : isCurrent ? "current" : "locked";
-    const firstOpenIndex = Math.max(
-      0,
-      visible.findIndex((m) => !completedIds.has(m.id)),
-    );
-
-    const milestones: JourneyMilestone[] = visible.map((m, i) => ({
-      id: m.id,
-      title: m.title,
-      detail: productTaskDetails[clientType]?.[m.id] ?? m.detail,
-      formId: m.formId,
-      notePrompt: m.notePrompt,
-      interview: m.interview,
-      interviewAgentId: m.interviewAgentId,
-      inviteEmail: m.inviteEmail,
-      doneLabel: m.doneLabel,
-      notePlaceholder: m.notePlaceholder,
-      noteRequired: m.noteRequired,
-      hasEditableContent: m.hasEditableContent,
-      videoUrl: m.videoUrl,
-      hasUpload: m.hasUpload,
-      awaitingTeam: m.awaitingTeam,
-      bookingUrl: m.bookingUrl,
-      embedUrl: m.embedUrl,
-      embedTitle: m.embedTitle,
-      embedNote: m.embedNote,
-      guideUrl: m.guideUrl,
-      guideLabel: m.guideLabel,
-      important: m.important,
-      steps: m.steps,
-      showPortalLink: m.showPortalLink,
-      status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
-    }));
-
-    return {
-      id: stageTemplate.id,
-      name: stageTemplate.name,
-      dayStart: stageTemplate.dayStart,
-      dayEnd: stageTemplate.dayEnd,
-      ongoing: stageTemplate.ongoing,
-      blurb: stageTemplate.blurb,
-      statusNotes: stageTemplate.statusNotes,
-      status,
-      milestones,
-    };
+  return buildStages(template, completedIds, currentDay, {
+    visible: (m) => milestoneVisibleFor(m, clientType),
+    detail: (m) => productTaskDetails[clientType]?.[m.id] ?? m.detail,
   });
-}
-
-export function journeyProgressPercent(currentDay: number, totalDays: number): number {
-  return Math.round((Math.min(currentDay, totalDays) / totalDays) * 100);
-}
-
-export function completedStageCount(stages: JourneyStage[]): number {
-  return stages.filter((s) => s.status === "done").length;
 }

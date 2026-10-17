@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { JourneyStage } from "@/lib/onboardingJourney";
+import type { JourneyStage } from "@/lib/journeyTypes";
 
 /** One-shot confetti rain for the journey-complete moment. Pure CSS pieces in
     theme colours; clears itself after the show. */

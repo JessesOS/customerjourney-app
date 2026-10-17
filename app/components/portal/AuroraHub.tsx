@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
-import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
+import type { JourneyMilestone, JourneyStage } from "@/lib/journeyTypes";
 import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 
 /**

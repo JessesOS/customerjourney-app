@@ -14,6 +14,7 @@ import { journeyTemplate, journeyTotalDays, milestoneVisibleFor, type ClientType
 import { respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
 import { bssJourneyTemplate, bssJourneyTotalDays } from "@/lib/bssJourney";
 import type { PortalFormResponses } from "@/lib/onboardingForm";
+import type { PortalLook } from "@/lib/journeyTypes";
 
 function totalMilestoneCountFor(clientType: ClientType): number {
   if (clientType === "respond") {
@@ -74,6 +75,12 @@ export async function recordPortalOpen(clientId: string) {
 // Every look on the demo switcher is assignable from the admin (Jesse 2026-10-12).
 export const PORTAL_THEME_VARIANTS = ["grove", "groveaurora", "handoff", "cobalt", "aurora", "calm", "warm", "cool", "neutral"] as const;
 export type PortalThemeVariant = (typeof PORTAL_THEME_VARIANTS)[number];
+
+// Compile-time check: the looks a product file can lock (PortalLook in
+// lib/journeyTypes.ts) are exactly these.
+type SameType<A, B> = [A] extends [B] ? ([B] extends [A] ? true : false) : false;
+const portalLookMatchesThemeVariants: SameType<PortalLook, PortalThemeVariant> = true;
+void portalLookMatchesThemeVariants;
 
 export function isPortalThemeVariant(value: unknown): value is PortalThemeVariant {
   return typeof value === "string" && (PORTAL_THEME_VARIANTS as readonly string[]).includes(value);

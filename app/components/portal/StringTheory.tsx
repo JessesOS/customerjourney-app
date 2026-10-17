@@ -1,7 +1,6 @@
 "use client";
 
-import type { JourneyMilestone } from "@/lib/onboardingJourney";
-import type { StringPlan, StringWorkstream } from "@/lib/stringPlans";
+import type { JourneyMilestone, StringPlan, StringWorkstream } from "@/lib/journeyTypes";
 import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
 
 /**

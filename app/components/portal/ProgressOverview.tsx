@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { JourneyMilestone, JourneyStage } from "@/lib/onboardingJourney";
+import type { JourneyMilestone, JourneyStage, StringPlan } from "@/lib/journeyTypes";
 import type { TaskDisplayStatus } from "@/app/components/portal/StatusChip";
-import type { StringPlan } from "@/lib/stringPlans";
 import { StringTheory } from "@/app/components/portal/StringTheory";
 
 /**
