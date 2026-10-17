@@ -188,6 +188,33 @@ export type Product<C extends string = string> = {
   /** Portal settings. Required once the product has variants (products:check enforces it). */
   portal?: ProductPortal;
   source: ProductSource;
+  /** Set by defineCustomProduct (products/custom.ts): what this product changed from its base. */
+  custom?: CustomDerivation;
+};
+
+/**
+ * How a custom product differs from its base, worked out by
+ * defineCustomProduct. The sheet's "Differences" section is rendered from it.
+ */
+export type CustomDerivation = {
+  base: { id: string; name: string; version: string; variant?: string } | "blank";
+  /** Repo path of the Markdown spec Jesse wrote, e.g. "products/bss-custom/spec.md". */
+  spec: string;
+  /** Every new step and task id starts with it. */
+  idPrefix: string;
+  /** Step ids whose client wording Claude drafted (must be empty before going live). */
+  draftCopy: string[];
+  removedSteps: string[];
+  changedSteps: { id: string; fields: string[] }[];
+  addedSteps: string[];
+  removedTasks: { id: string; reason: string }[];
+  changedTasks: { id: string; fields: string[] }[];
+  addedTasks: string[];
+  droppedDependencies: { task: string; dependsOn: string }[];
+  /** totalDays, the stage list or any stage's days differ from the base. */
+  timelineChanged: boolean;
+  /** Portal settings taken from the base as they are. */
+  inherited: { voiceGuide: boolean; askAi: boolean; features: boolean };
 };
 
 /** The client types a product defines. */
