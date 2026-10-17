@@ -3,7 +3,7 @@
 import { AdminTaskChecklist } from "@/app/components/admin/AdminTaskChecklist";
 import { useMe } from "@/app/components/admin/teamClient";
 
-import type { ClientType } from "@/lib/journeyEngine";
+import type { ClientTypeOption } from "@/lib/journeyTypes";
 
 import { useEffect, useMemo, useState } from "react";
 import { decodePortalFileValue, onboardingFormById, formatFieldValue, type PortalFormResponses } from "@/lib/onboardingForm";
@@ -39,15 +39,11 @@ type PortalClient = {
   currentDay: number;
   completedMilestoneCount: number;
   totalMilestoneCount: number;
+  /** From the client's product file (lib/productRegistry.ts, via the list API). */
+  totalDays: number;
+  clientTypeLabel: string;
+  lockedLook: string | null;
 };
-
-const clientTypeOptions = [
-  { value: "meta-google", label: "Scale — Meta + Google Ads" },
-  { value: "meta", label: "Scale — Meta ads only" },
-  { value: "google", label: "Scale — Google Ads only" },
-  { value: "respond", label: "CRM — Respond" },
-  { value: "bss-meta", label: "BSS Meta ads only" },
-];
 
 const themeOptions = [
   { value: "grove", label: "Grove — clean green (default)" },
@@ -61,13 +57,13 @@ const themeOptions = [
   { value: "neutral", label: "Current — neutral white" },
 ];
 
-function clientTypeLabel(value?: string) {
-  // Products no longer offered for new clients (the paused "bss") still show their name.
-  if (value === "bss") return "BSS Fin Creighton (paused)";
-  return clientTypeOptions.find((o) => o.value === value)?.label ?? "Scale — Meta + Google Ads";
+/** "Grove Aurora — Grove with aurora accents" → "Grove Aurora". */
+function lookName(value: string) {
+  return (themeOptions.find((o) => o.value === value)?.label ?? value).split(" —")[0];
 }
 
-type ListResponse = { ok: boolean; clients?: PortalClient[]; error?: string };
+// The product dropdown's options and default come from the product files, with the client list.
+type ListResponse = { ok: boolean; clients?: PortalClient[]; clientTypeOptions?: ClientTypeOption[]; defaultClientType?: string; error?: string };
 type CreateResponse = { ok: boolean; id?: string; portalToken?: string; error?: string };
 type ClientForm = { formId: string; responses: PortalFormResponses | null; completedAt: string | null };
 type MilestoneNote = { milestoneId: string; title: string; note: string };
@@ -225,7 +221,8 @@ export function AdminClientsPanel() {
   const [name, setName] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [startDate, setStartDate] = useState(todayIso());
-  const [clientType, setClientType] = useState("meta-google");
+  const [clientTypeOptions, setClientTypeOptions] = useState<ClientTypeOption[]>([]);
+  const [clientType, setClientType] = useState("");
   const [themeVariant, setThemeVariant] = useState("grove");
 
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -257,6 +254,10 @@ export function AdminClientsPanel() {
       }
       setForbidden(false);
       setClients(payload.clients);
+      const options = payload.clientTypeOptions ?? [];
+      setClientTypeOptions(options);
+      // Keep the current choice while it's still offered; otherwise the default.
+      setClientType((current) => (options.some((o) => o.value === current) ? current : payload.defaultClientType ?? options[0]?.value ?? ""));
     } catch {
       setError("Could not reach the server.");
     } finally {
@@ -292,7 +293,7 @@ export function AdminClientsPanel() {
       const res = await fetch("/api/admin/portal-clients", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...authHeaders },
-        body: JSON.stringify({ name, companyName, startDate, clientType, themeVariant }),
+        body: JSON.stringify({ name, companyName, startDate, clientType: clientType || undefined, themeVariant }),
       });
       const payload = (await res.json()) as CreateResponse;
       if (!payload.ok) {
@@ -603,7 +604,7 @@ export function AdminClientsPanel() {
                       {client.name} {client.companyName && <span style={{ color: "rgba(252,250,246,0.5)", fontWeight: 400 }}>· {client.companyName}</span>}
                     </div>
                     <div style={{ fontSize: 13, color: "rgba(252,250,246,0.5)", marginTop: 2 }}>
-                      <span style={{ color: "#e5b34a" }}>{clientTypeLabel(client.clientType)}</span>
+                      <span style={{ color: "#e5b34a" }}>{client.clientTypeLabel}</span>
                       {client.clientTypeConfirmed === false && (
                         <>
                           {" "}
@@ -621,7 +622,7 @@ export function AdminClientsPanel() {
                           </button>
                         </>
                       )}
-                      {" · "}Day {client.currentDay} / {client.clientType === "respond" ? 10 : client.clientType === "bss" ? 42 : 30} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)} · {client.lastOpenedAt ? `opened ${timeAgo(client.lastOpenedAt)}${client.firstOpenedAt && client.firstOpenedAt !== client.lastOpenedAt ? ` (first ${timeAgo(client.firstOpenedAt)})` : ""}` : "not opened yet"}
+                      {" · "}Day {client.currentDay} / {client.totalDays} · {client.completedMilestoneCount} of {client.totalMilestoneCount} milestones done · started {client.startDate.slice(0, 10)} · {client.lastOpenedAt ? `opened ${timeAgo(client.lastOpenedAt)}${client.firstOpenedAt && client.firstOpenedAt !== client.lastOpenedAt ? ` (first ${timeAgo(client.firstOpenedAt)})` : ""}` : "not opened yet"}
                       {client.journeyState && client.journeyState !== "active" && (
                         <>
                           {" · "}
@@ -645,10 +646,10 @@ export function AdminClientsPanel() {
                     </div>
                   </div>
                   <select
-                    value={client.clientType === "bss" || client.clientType === "bss-meta" ? "groveaurora" : themeOptions.some((o) => o.value === client.themeVariant) ? (client.themeVariant as string) : "handoff"}
+                    value={client.lockedLook ?? (themeOptions.some((o) => o.value === client.themeVariant) ? (client.themeVariant as string) : "handoff")}
                     onChange={(e) => handleThemeChange(client.id, e.target.value)}
-                    disabled={client.clientType === "bss" || client.clientType === "bss-meta"}
-                    title={client.clientType === "bss" || client.clientType === "bss-meta" ? "Locked by the product: BSS always uses Grove Aurora" : "Portal look — changes what this client sees on their next load; their link stays the same"}
+                    disabled={Boolean(client.lockedLook)}
+                    title={client.lockedLook ? `Locked by the product (${client.clientTypeLabel}): always uses ${lookName(client.lockedLook)}` : "Portal look — changes what this client sees on their next load; their link stays the same"}
                     style={{ padding: "7px 10px", borderRadius: 7, border: "1px solid #444", background: "transparent", color: "#fcfaf6", cursor: "pointer", fontSize: 13 }}
                   >
                     {themeOptions.map((o) => (
@@ -685,7 +686,7 @@ export function AdminClientsPanel() {
 
                 {isExpanded && (
                   <div style={{ borderTop: "1px solid #2a2c27", padding: "16px 18px" }}>
-                    <AdminTaskChecklist clientId={client.id} clientType={(client.clientType as ClientType) ?? "meta-google"} adminToken={adminToken} onChanged={() => void loadClients()} />
+                    <AdminTaskChecklist clientId={client.id} adminToken={adminToken} onChanged={() => void loadClients()} />
                     {detail === "loading" && <p style={{ color: "rgba(252,250,246,0.5)", fontSize: 13 }}>Loading answers…</p>}
                     {detail === "error" && <p style={{ color: "#ff9a90", fontSize: 13 }}>Could not load form answers.</p>}
                     {detail && typeof detail === "object" && detail.editableContent.map((item) => (

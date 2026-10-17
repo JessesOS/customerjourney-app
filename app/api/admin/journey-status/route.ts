@@ -1,8 +1,6 @@
 import { requestCanAdmin } from "@/lib/adminAuth";
 import { formFields, onboardingFormById } from "@/lib/onboardingForm";
-import { journeyTemplate, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
-import { respondJourneyTemplate } from "@/lib/respondJourney";
-import { bssJourneyTemplate } from "@/lib/bssJourney";
+import { journeyStatusPlan } from "@/lib/productRegistry";
 import {
   getAllFormUploadsMeta,
   getCompletedMilestoneIds,
@@ -22,16 +20,9 @@ import {
 
 const PORTAL_BASE = "https://scale-onboarding-portal.jesse-b4e.workers.dev";
 
-/** Tasks that gate quality but should never stop a client moving on. */
-const NON_BLOCKING_TASK_IDS = new Set([
-  "ob-6",    // connect calendar
-  "ob-6b",   // connect social
-  "ob-6c",   // payment mechanism
-  "ob-crm",  // CRM login
-  "ob-7",    // past leads CSV
-  "bd-3",    // Meta partner access
-  "bd-g1",   // Google Ads account link
-]);
+// Which steps a client sees, and which never block them (a product's
+// features.nonBlockingSteps, e.g. Scale's in products/scale/portal.ts), come
+// from the product files via lib/productRegistry.ts.
 
 export async function GET(request: Request) {
   if (!requestCanAdmin(request)) {
@@ -44,24 +35,20 @@ export async function GET(request: Request) {
 
     const rows = await Promise.all(
       clients.map(async (client) => {
-        const clientType = (client.clientType as ClientType) ?? "meta-google";
-        const isRespond = clientType === "respond";
-        const template = isRespond ? respondJourneyTemplate : clientType === "bss" ? bssJourneyTemplate : journeyTemplate;
+        const clientType = client.clientType;
+        const plan = journeyStatusPlan(clientType);
+        const nonBlocking = new Set(plan.nonBlocking);
         const completed = await getCompletedMilestoneIds(client.id);
 
         // Visible milestones in journey order.
-        const visible = template.flatMap((stage) =>
-          stage.milestones
-            .filter((m) => !m.hidden && milestoneVisibleFor(m, clientType))
-            .map((m) => ({ ...m, stageName: stage.name })),
-        );
+        const visible = plan.visible;
         const openMilestone = visible.find((m) => !completed.has(m.id)) ?? null;
 
         // What's outstanding but NOT blocking their progress.
         const missing: { kind: string; id: string; label: string }[] = [];
         for (const m of visible) {
           if (completed.has(m.id)) continue;
-          if (NON_BLOCKING_TASK_IDS.has(m.id)) {
+          if (nonBlocking.has(m.id)) {
             missing.push({ kind: "task", id: m.id, label: m.title });
           }
         }

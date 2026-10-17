@@ -1,26 +1,18 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { buildJourneyStages } from "@/lib/onboardingJourney";
-import { buildRespondJourneyStages } from "@/lib/respondJourney";
-import { buildBssJourneyStages } from "@/lib/bssJourney";
-import type { ClientType, JourneyStage } from "@/lib/journeyEngine";
+import type { ChecklistStage } from "@/lib/journeyTypes";
 
 /**
  * The team's checklist for one client: every task in their journey, grouped
  * by stage, ticked when done. Tasks the team does are marked "Team"; ticking
  * them is the only way they get done. Ticking a client's own task here marks
  * it done for them too, so use that only when they've done it another way.
+ * The stages come from the server (the client's product file), with the ticks.
  */
-function stagesFor(clientType: ClientType): JourneyStage[] {
-  const none = new Set<string>();
-  if (clientType === "respond") return buildRespondJourneyStages(none, 1);
-  if (clientType === "bss") return buildBssJourneyStages(none, 1);
-  return buildJourneyStages(none, 1, clientType);
-}
-
-export function AdminTaskChecklist({ clientId, clientType, adminToken, onChanged }: { clientId: string; clientType: ClientType; adminToken?: string; onChanged?: () => void }) {
+export function AdminTaskChecklist({ clientId, adminToken, onChanged }: { clientId: string; adminToken?: string; onChanged?: () => void }) {
   const [done, setDone] = useState<Set<string> | null>(null);
+  const [stages, setStages] = useState<ChecklistStage[]>([]);
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState("");
   const headers: HeadersInit = { "Content-Type": "application/json", ...(adminToken ? { "x-admin-token": adminToken } : {}) };
@@ -28,8 +20,9 @@ export function AdminTaskChecklist({ clientId, clientType, adminToken, onChanged
   const load = useCallback(async () => {
     try {
       const res = await fetch(`/api/admin/portal-clients/${clientId}/milestones`, { headers: adminToken ? { "x-admin-token": adminToken } : {}, cache: "no-store" });
-      const payload = (await res.json()) as { ok: boolean; completed?: string[]; error?: string };
+      const payload = (await res.json()) as { ok: boolean; completed?: string[]; stages?: ChecklistStage[]; error?: string };
       if (!payload.ok) throw new Error(payload.error ?? "Could not load tasks.");
+      setStages(payload.stages ?? []);
       setDone(new Set(payload.completed ?? []));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not load tasks.");
@@ -58,7 +51,6 @@ export function AdminTaskChecklist({ clientId, clientType, adminToken, onChanged
     }
   }
 
-  const stages = stagesFor(clientType);
   const total = stages.reduce((n, s) => n + s.milestones.length, 0);
   const count = done ? stages.reduce((n, s) => n + s.milestones.filter((m) => done.has(m.id)).length, 0) : 0;
 

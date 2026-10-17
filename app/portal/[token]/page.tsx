@@ -9,16 +9,15 @@ import {
   getPortalClientByToken,
   isPortalThemeVariant,
 } from "@/lib/portalClientStore";
-import { productBrandName, productLockedLook, type ClientType } from "@/lib/journeyEngine";
-import { respondJourneyTotalDays } from "@/lib/respondJourney";
-import { bssJourneyTotalDays } from "@/lib/bssJourney";
+import { tabTitle } from "@/lib/journeyBuild";
+import { portalJourneyFor } from "@/lib/productRegistry";
+import type { ClientType } from "@/products";
 
 // The browser tab: a custom product shows its own name (BSS: "BSS Launchpad").
 export async function generateMetadata({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;
   const client = await getPortalClientByToken(token);
-  const brand = client ? productBrandName[(client.clientType as ClientType) ?? "meta-google"] : undefined;
-  return { title: brand ?? "Client Portal" };
+  return { title: client ? tabTitle(portalJourneyFor(client.clientType)) : "Client Portal" };
 }
 
 export default async function PortalPage({
@@ -33,12 +32,12 @@ export default async function PortalPage({
     notFound();
   }
 
-  const clientType: ClientType = (client.clientType as ClientType) ?? "meta-google";
-  const totalDaysForClient = clientType === "respond" ? respondJourneyTotalDays : clientType === "bss" ? bssJourneyTotalDays : undefined;
+  // Everything the portal shows for this client's product, from its product file.
+  const journey = portalJourneyFor(client.clientType);
 
   const [completedIds, currentDay, milestoneNotes, milestoneContent, milestoneUploads] = await Promise.all([
     getCompletedMilestoneIds(client.id),
-    Promise.resolve(computeCurrentDay(client.startDate, totalDaysForClient)),
+    Promise.resolve(computeCurrentDay(client.startDate, journey.totalDays)),
     getMilestoneNotes(client.id),
     getAllMilestoneContent(client.id),
     getAllMilestoneUploadsMeta(client.id),
@@ -58,7 +57,7 @@ export default async function PortalPage({
       <style>{`html[data-welcome-pending] body{visibility:hidden;background:#f6f3ec}`}</style>
       <ClientPortalExperience
         name={client.name}
-        clientType={clientType}
+        clientType={client.clientType as ClientType}
         currentDay={currentDay}
         calendarDay={computeCurrentDay(client.startDate, 100000)}
         initialCompletedMilestoneIds={[...completedIds]}
@@ -66,7 +65,7 @@ export default async function PortalPage({
         milestoneContent={milestoneContent}
         milestoneUploads={milestoneUploads}
         portalToken={token}
-        themeVariant={productLockedLook[clientType] ?? (isPortalThemeVariant(client.themeVariant) ? client.themeVariant : "handoff")}
+        themeVariant={journey.lockedLook ?? (isPortalThemeVariant(client.themeVariant) ? client.themeVariant : "handoff")}
       />
     </>
   );

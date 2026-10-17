@@ -1,10 +1,6 @@
-import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { formMissingRequired, onboardingFormById, sanitizeFormResponses } from "@/lib/onboardingForm";
 import { getFormResponses, getPortalClientByToken, markMilestoneComplete, saveFormResponses } from "@/lib/portalClientStore";
-
-const milestoneIdByFormId = new Map(
-  allMilestoneTemplates.filter((m) => m.formId).map((m) => [m.formId!, m.id]),
-);
+import { formStepFor } from "@/lib/productRegistry";
 
 export async function GET(request: Request, { params }: { params: Promise<{ token: string; formId: string }> }) {
   const { token, formId } = await params;
@@ -52,7 +48,9 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
     await saveFormResponses(client.id, formId, responses, submitted);
 
     if (submitted) {
-      const milestoneId = milestoneIdByFormId.get(formId);
+      // The step this form completes for THIS client's product (a custom
+      // product may reuse a form id on a different step).
+      const milestoneId = formStepFor(client.clientType, formId);
       if (milestoneId) {
         await markMilestoneComplete(client.id, milestoneId);
       }

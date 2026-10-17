@@ -1,10 +1,12 @@
 import { env } from "cloudflare:workers";
 import { getMilestoneContent, getPortalClientByToken } from "@/lib/portalClientStore";
+import { receptionistScriptStepFor } from "@/lib/productRegistry";
 
 /**
  * The AI receptionist test playground. Token-scoped: chats as THIS client's
  * receptionist, running the exact qualification script generated from their
- * website (ob-3 / rsp-018 content). Powers the "Test your AI receptionist
+ * website (the product's receptionistScriptStep content: Scale ob-3, Respond
+ * rsp-018). Powers the "Test your AI receptionist
  * live" task — same brain the production GHL bot will get, demo body.
  */
 
@@ -25,8 +27,9 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
     return Response.json({ ok: false, error: "The test line isn't connected yet." }, { status: 503 });
   }
 
-  const qualifierMilestone = client.clientType === "respond" ? "rsp-018" : "ob-3";
-  const script = await getMilestoneContent(client.id, qualifierMilestone);
+  // A product with no script step answers as if the script were still empty.
+  const qualifierMilestone = receptionistScriptStepFor(client.clientType);
+  const script = qualifierMilestone ? await getMilestoneContent(client.id, qualifierMilestone) : "";
   if (!script.trim()) {
     return Response.json({ ok: false, error: "Your AI is still being set up — its questions are being finalized. Check back shortly." }, { status: 409 });
   }

@@ -1,7 +1,7 @@
 import { and, desc, eq, inArray } from "drizzle-orm";
 import { getDb } from "@/db";
 import { portalClients, portalMilestoneProgress, portalMilestoneUploads, teamBoards, teamMembers, teamTaskEvents, teamTasks } from "@/db/schema";
-import { clientTypeLabels, type ClientType } from "@/lib/journeyEngine";
+import { boardSeedFor, labelFor, liveRoles } from "@/lib/productRegistry";
 import { computeCurrentDay, getLastActivityAt } from "@/lib/portalClientStore";
 import { setting } from "@/lib/settings";
 import { teamBoardEnabled, type TeamActor } from "@/lib/teamAuth";
@@ -30,7 +30,7 @@ function now() {
 }
 
 /** The product a client's board runs on: the stamped one if started, else the current one for their type. */
-function productAndVariant(clientType: ClientType, board?: { productId: string; variant: string } | null): { product: Product; variant: ProductVariant } | null {
+function productAndVariant(clientType: string, board?: { productId: string; variant: string } | null): { product: Product; variant: ProductVariant } | null {
   if (board) {
     const product = productById(board.productId);
     const variant = product?.variants.find((v) => v.id === board.variant);
@@ -41,12 +41,10 @@ function productAndVariant(clientType: ClientType, board?: { productId: string; 
   return { product, variant: variantFor(product, clientType) };
 }
 
-/** Why a client's board can't start, or null when it can. */
-export function startBlockedReason(clientType: ClientType): string | null {
-  const product = productForClientType(clientType);
-  if (!product) return clientType === "bss" ? "The custom BSS product is paused." : "This client's product has no team task list yet.";
-  if (product.status !== "live") return `${product.name} is ${product.status}.`;
-  return null;
+/** Why a client's board can't start, or null when it can (unknown type, or a paused or draft product). */
+export function startBlockedReason(clientType: string): string | null {
+  const seed = boardSeedFor(clientType, { drafts: false });
+  return seed.ok ? null : seed.reason;
 }
 
 // ---- Starting a board ----
@@ -55,15 +53,12 @@ export async function seedTeamBoard(clientId: string, actor: TeamActor): Promise
   const db = getDb();
   const client = (await db.select().from(portalClients).where(eq(portalClients.id, clientId)).limit(1))[0];
   if (!client) return { ok: false, error: "Unknown client.", status: 404 };
-  const clientType = client.clientType as ClientType;
-  const blocked = startBlockedReason(clientType);
-  if (blocked) return { ok: false, error: blocked, status: 409 };
+  const seed = boardSeedFor(client.clientType, { drafts: false });
+  if (!seed.ok) return { ok: false, error: seed.reason, status: 409 };
   const existing = (await db.select().from(teamBoards).where(eq(teamBoards.clientId, clientId)).limit(1))[0];
   if (existing) return { ok: true, created: 0 };
 
-  const product = productForClientType(clientType)!;
-  const variant = variantFor(product, clientType);
-  const tasks = teamTasksFor(product, variant);
+  const { product, variant, tasks } = seed;
 
   // Auto-assign only when exactly one active member covers the role.
   const members = (await db.select().from(teamMembers).where(eq(teamMembers.active, true))).map((m) => ({ email: m.email, roles: json<string[]>(m.roles, []) }));
@@ -202,7 +197,7 @@ export async function getBoard(clientId: string) {
   const db = getDb();
   const client = (await db.select().from(portalClients).where(eq(portalClients.id, clientId)).limit(1))[0];
   if (!client) return null;
-  const clientType = client.clientType as ClientType;
+  const clientType = client.clientType;
   const board = (await db.select().from(teamBoards).where(eq(teamBoards.clientId, clientId)).limit(1))[0] ?? null;
   const pv = productAndVariant(clientType, board);
 
@@ -250,7 +245,7 @@ export async function getBoard(clientId: string) {
       name: client.name,
       companyName: client.companyName,
       clientType,
-      label: clientTypeLabels[clientType] ?? clientType,
+      label: labelFor(clientType) ?? clientType,
       startDate: client.startDate,
       day,
       calendarDay,
@@ -440,7 +435,7 @@ export async function teamOverview() {
   const STUCK_DAYS = 5;
   const rows = await Promise.all(
     clients.map(async (c) => {
-      const clientType = c.clientType as ClientType;
+      const clientType = c.clientType;
       const board = boards.get(c.id) ?? null;
       const pv = productAndVariant(clientType, board);
       const completed = completedByClient.get(c.id) ?? new Set<string>();
@@ -464,7 +459,7 @@ export async function teamOverview() {
         id: c.id,
         name: c.name,
         companyName: c.companyName,
-        label: clientTypeLabels[clientType] ?? clientType,
+        label: labelFor(clientType) ?? clientType,
         day: computeCurrentDay(c.startDate, pv?.product.totalDays ?? 30),
         totalDays: pv?.product.totalDays ?? 30,
         journeyState: c.journeyState,
@@ -532,9 +527,7 @@ export async function upsertMember(input: { email: string; name: string; roles?:
 
 /** Every role any live product uses, for the Team page's pickers. */
 export function allRoles(): string[] {
-  const roles = new Set<string>();
-  for (const id of ["scale", "respond"]) productById(id)?.roles.forEach((r) => roles.add(r));
-  return [...roles].sort();
+  return liveRoles();
 }
 
 /** Removes a client's team data (called when the client is deleted). */

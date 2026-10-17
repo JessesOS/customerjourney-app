@@ -7,9 +7,7 @@ import {
   setPortalClientTheme,
   updatePortalClientAdminFields,
 } from "@/lib/portalClientStore";
-import type { ClientType } from "@/lib/journeyEngine";
-
-const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond", "bss", "bss-meta"];
+import { acceptedClientTypes, isAcceptedClientType } from "@/lib/productRegistry";
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!(await requestCanAdminAsync(request))) {
@@ -54,11 +52,12 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       }
       adminFields.journeyState = body.journeyState;
     }
-    if (body.clientType !== undefined) {
-      if (!validClientTypes.includes(body.clientType as ClientType)) {
-        return Response.json({ ok: false, error: "Client type must be meta, google, meta-google, respond, bss or bss-meta." }, { status: 400 });
+    const requestedType = body.clientType;
+    if (requestedType !== undefined) {
+      if (!isAcceptedClientType(requestedType, { drafts: false })) {
+        return Response.json({ ok: false, error: `Client type must be one of: ${acceptedClientTypes({ drafts: false }).join(", ")}.` }, { status: 400 });
       }
-      adminFields.clientType = body.clientType as ClientType;
+      adminFields.clientType = requestedType;
       // Explicitly choosing a type is what "confirming" means (Decision 2).
       adminFields.clientTypeConfirmed = true;
     }

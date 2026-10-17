@@ -1,8 +1,6 @@
-import { allMilestoneTemplates } from "@/lib/allJourneys";
+import { uploadMilestoneIds } from "@/lib/allJourneys";
 import { addMilestoneUpload, deleteMilestoneUpload, getAllMilestoneUploadsMeta, getCompletedMilestoneIds, getPortalClientByToken } from "@/lib/portalClientStore";
 import { getUploadsBucket } from "@/lib/uploadsBucket";
-
-const uploadMilestoneIds = new Set(allMilestoneTemplates.filter((m) => m.hasUpload).map((m) => m.id));
 
 // A task takes several files (a lead list can come in parts). Files go to R2
 // when it's bound, so they can be bigger; without it they sit in D1.

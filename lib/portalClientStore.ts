@@ -10,24 +10,10 @@ import {
   portalWebhookLog,
 } from "@/db/schema";
 import { formUploadObjectKey, getUploadsBucket, uploadFileObjectKey } from "@/lib/uploadsBucket";
-import { journeyTemplate, journeyTotalDays, milestoneVisibleFor, type ClientType } from "@/lib/onboardingJourney";
-import { respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
-import { bssJourneyTemplate, bssJourneyTotalDays } from "@/lib/bssJourney";
+import { adminLabelFor, DEFAULT_CLIENT_TYPE, lockedLookFor, totalDaysFor, totalMilestoneCountFor } from "@/lib/productRegistry";
 import type { PortalFormResponses } from "@/lib/onboardingForm";
 import type { PortalLook } from "@/lib/journeyTypes";
-
-function totalMilestoneCountFor(clientType: ClientType): number {
-  if (clientType === "respond") {
-    return respondJourneyTemplate.reduce((sum, stage) => sum + stage.milestones.length, 0);
-  }
-  if (clientType === "bss") {
-    return bssJourneyTemplate.reduce((sum, stage) => sum + stage.milestones.filter((m) => !m.hidden).length, 0);
-  }
-  return journeyTemplate.reduce(
-    (sum, stage) => sum + stage.milestones.filter((m) => milestoneVisibleFor(m, clientType)).length,
-    0,
-  );
-}
+import type { ClientType } from "@/products";
 
 export async function getPortalClientByToken(token: string) {
   const db = getDb();
@@ -49,12 +35,17 @@ export async function listPortalClients() {
   return clients
     .map((client) => {
       const completedCount = progress.filter((p) => p.clientId === client.id && p.completedAt).length;
-      const type = (client.clientType as ClientType) ?? "meta-google";
+      // Days, counts, label and look all come from the client's product file (lib/productRegistry.ts).
+      const type = client.clientType;
+      const totalDays = totalDaysFor(type);
       return {
         ...client,
-        currentDay: computeCurrentDay(client.startDate, type === "respond" ? respondJourneyTotalDays : type === "bss" ? bssJourneyTotalDays : undefined),
+        currentDay: computeCurrentDay(client.startDate, totalDays),
         completedMilestoneCount: completedCount,
-        totalMilestoneCount: totalMilestoneCountFor((client.clientType as ClientType) ?? "meta-google"),
+        totalMilestoneCount: totalMilestoneCountFor(type),
+        totalDays,
+        clientTypeLabel: adminLabelFor(type),
+        lockedLook: lockedLookFor(type) ?? null,
       };
     })
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
@@ -103,7 +94,7 @@ export async function createPortalClient(input: {
     companyName: input.companyName,
     portalToken: token,
     startDate: input.startDate,
-    clientType: input.clientType ?? "meta-google",
+    clientType: input.clientType ?? DEFAULT_CLIENT_TYPE,
     themeVariant: input.themeVariant ?? "grove",
   });
 
@@ -617,8 +608,8 @@ export async function getAllFormUploadsMeta(clientId: string): Promise<Record<st
   return Object.fromEntries(rows.map((r) => [r.fieldId, { fileName: r.fileName, contentType: r.contentType, size: r.size, uploadedAt: r.uploadedAt }]));
 }
 
-/** Day 1 = the client's start date. Clamped to the 30-day journey length. */
-export function computeCurrentDay(startDate: string, totalDays: number = journeyTotalDays): number {
+/** Day 1 = the client's start date. Clamped to the journey length (totalDaysFor in lib/productRegistry.ts). */
+export function computeCurrentDay(startDate: string, totalDays: number): number {
   const start = new Date(startDate);
   if (Number.isNaN(start.getTime())) return 1;
 

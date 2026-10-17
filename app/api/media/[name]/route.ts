@@ -1,12 +1,13 @@
 import { env } from "cloudflare:workers";
+import { mediaAllowlist } from "@/lib/productRegistry";
 
 // Large portal media (videos too big for static assets, 25 MiB cap) served
 // from the R2 bucket under media/, with Range support so the player can seek
-// and start before the whole file arrives. Only names on this list are served.
-const MEDIA: Record<string, { key: string; type: string }> = {
-  // Jesse's BSS Launchpad walkthrough (3:56), from the Pitchstage project, 2026-10-16.
-  "bss-launch-walkthrough.mp4": { key: "media/bss-launch-walkthrough.mp4", type: "video/mp4" },
-};
+// and start before the whole file arrives. Only names on this list are served:
+// every product variant's /api/media/ intro video (e.g. bss-meta's
+// bss-launch-walkthrough.mp4, Jesse's BSS Launchpad walkthrough, 2026-10-16).
+// A new video still has to be uploaded to the R2 bucket (prod and staging).
+const MEDIA: Record<string, { key: string; type: string }> = mediaAllowlist();
 
 type R2Range = { offset: number; length?: number } | { suffix: number };
 type R2Obj = { size: number; body: ReadableStream; httpEtag?: string; range?: { offset?: number; length?: number } };
