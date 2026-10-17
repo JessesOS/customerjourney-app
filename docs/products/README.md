@@ -30,6 +30,7 @@ A **custom product** is a folder too, but its `index.ts` describes only how it d
 | `npm run products:render` | Writes `products/index.ts` (the list of product folders), then every sheet in `docs/products/`. A new folder is registered here. |
 | `npm run products:lock` | Records each product's version and content hash in `products/versions.lock.json`. Refuses a changed product whose version wasn't bumped. |
 | `npm run products:check` | All six product checks: frozen journeys, integrity, the custom-product proof, code boundaries, version lock, sheets and index (see the header of `scripts/products/check.ts`). |
+| `npm run products:check -- --compare <old> <new>` | Prints what a client moved from one client type to another would see change: days, name and look, steps kept (ticks carry over), steps they'd lose, new steps, wording, per-step tweaks, voice guide, Ask-AI and String Theory. Runs no checks, moves no one. |
 | `npm run check:journeys` | Proves no client type's portal changed (§7). |
 | `npm run check:fin` | Proves Fin's portal (`bss-meta`) is unchanged. |
 
@@ -181,3 +182,5 @@ A custom product is a product file written as **differences from a base**: Scale
 8. **Preview** with `status: "draft"` on a synthetic client: on staging (`PRODUCT_DRAFTS=1` is set there), or locally with `PRODUCT_DRAFTS=1` in `.dev.vars`. A draft is offered in admin and its board starts only there.
 9. **Go live, with Jesse's OK:** set `status: "live"`, empty `draftCopy` (Jesse approved the wording), bump the version, add the client type to `CLIENT_TYPES` in `scripts/journeys/contract.ts`, freeze it with `npm run check:journeys -- --write <client type> _global`, then send the deploy package. Adding the type and re-saving `_global` are part of this approved change (§7): the type is now accepted and offered, so `_global` changes. Upload any intro video to both R2 buckets (prod and staging) first.
 10. **Moving an existing client** (for example Fin onto a custom BSS product) is a separate prod data change, with Jesse's OK and its own deploy package. Ticks carry over for every step id the new product kept.
+    - First compare the two portals: `npm run products:check -- --compare <old type> <new type>` (e.g. `bss-meta bss-custom`). It prints `portalJourneyFor(old)` against `portalJourneyFor(new)`: what the client would stop seeing, what is new, and every wording, tweak and date change.
+    - Read it with Jesse, and put it in the deploy package. A step the client would no longer see keeps its stored tick but no longer counts.

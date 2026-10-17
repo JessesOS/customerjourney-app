@@ -32,6 +32,9 @@
  *   npm run products:check
  *   npm run products:lock     record the current versions in products/versions.lock.json
  *                             (refuses a changed product whose version wasn't bumped)
+ *   npm run products:check -- --compare <old type> <new type>
+ *                             print what a client moved between the two client types
+ *                             would see change (scripts/products/compare.ts); no checks run
  */
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -43,7 +46,7 @@ import { ClientPortalExperience } from "../../app/components/portal/ClientPortal
 import { buildStages } from "../../lib/journeyBuild";
 import { onboardingFormById } from "../../lib/onboardingForm";
 import { mapProductToJourney } from "../../lib/productMapping";
-import { createRegistry } from "../../lib/productRegistry";
+import { createRegistry, registry } from "../../lib/productRegistry";
 import { defineCustomProduct, type CustomProductSpec } from "../../products/custom";
 import { bss, productList, scale, website } from "../../products/index";
 import { allSteps, appliesToVariant, dueDaysFor, productForClientType, stepVisibleFor, teamTasksFor } from "../../products/load";
@@ -52,6 +55,7 @@ import { GHL_SAMPLES, type GlobalContract } from "../journeys/contract";
 import { registryProducer } from "../journeys/registry-producer";
 import { FIXTURE_DIR, finGlobalChanges, guardGlobalWrite, runJourneyChecks, type CheckCounts, type Fixture } from "../journeys/run";
 import { copyLintNotes, indexCurrent, renderProductIndex, renderSheet, scanProductIds, staleSheets } from "./render";
+import { compareJourneys } from "./compare";
 import { codeBoundaries } from "./static-checks";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -632,7 +636,21 @@ function customProof(): string {
     must(refused(noMedia, false)?.includes("his intro video"), `${P}: losing Fin's intro video from the media list must be refused without --yes-fin`);
   }
 
-  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new; a new timeline notes tasks and String Theory dates that no longer fit; GHL to a paused or unknown type fails; re-saving _global over Fin's forms, uploads or video needs --yes-fin`;
+  // H. Moving a client: portalJourneyFor(old) against (new), as --compare prints it.
+  const moved = compareJourneys(reg, "meta", "zz-proof");
+  const has = (text: string) => moved.some((l) => l.includes(text));
+  must(has("Days to go-live: 30 → 21") && has('Name the client sees: "Scale" → "Proof Portal"'), `${P}: --compare meta zz-proof doesn't show the days and name (got ${JSON.stringify(moved)})`);
+  must(has("Steps the client would no longer see") && moved.some((l) => l.trim().startsWith("- ob-4 ")), `${P}: --compare doesn't list ob-4 as no longer shown`);
+  must(has("New steps") && moved.some((l) => l.trim().startsWith("- zzp-1 ")), `${P}: --compare doesn't list zzp-1 as new`);
+  must(has('ob-2 title: "') && has('→ "Proof welcome call"') && has("their ticks carry over"), `${P}: --compare doesn't show ob-2's new title or the kept steps`);
+  must(compareJourneys(reg, "meta", "meta").some((l) => l.includes("No differences")), `${P}: --compare of a type with itself must say no differences`);
+  const finMove = compareJourneys(createRegistry([...productList, kept]), "bss-meta", "zz-proof-bss");
+  must(finMove.some((l) => l.includes('Tagline: "Onboarding & delivery" → "Proof tagline"')) && !finMove.some((l) => l.includes("Name the client sees")), `${P}: --compare bss-meta to its "inherit" copy must show only the real changes (got ${JSON.stringify(finMove)})`);
+  let unknownType: string | null = null;
+  try { compareJourneys(reg, "meta", "zz-nowhere"); } catch (error) { unknownType = error instanceof Error ? error.message : String(error); }
+  must(unknownType?.includes("zz-nowhere"), `${P}: --compare with an unknown client type must throw`);
+
+  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new; a new timeline notes tasks and String Theory dates that no longer fit; GHL to a paused or unknown type fails; re-saving _global over Fin's forms, uploads or video needs --yes-fin; --compare lists a move's changes`;
 }
 
 // ── 5. Version lock ───────────────────────────────────────────────────────
@@ -723,6 +741,19 @@ const isMain = process.argv[1] && fileURLToPath(import.meta.url) === resolve(pro
 if (isMain) {
   if (process.argv.includes("--write-lock")) {
     writeLock();
+  } else if (process.argv.includes("--compare")) {
+    const at = process.argv.indexOf("--compare");
+    const [from, to] = process.argv.slice(at + 1, at + 3);
+    if (!from || !to || from.startsWith("--") || to.startsWith("--")) {
+      console.error("FAIL --compare needs two client types: --compare <old type> <new type>");
+      process.exit(1);
+    }
+    try {
+      for (const line of compareJourneys(registry, from, to)) console.log(line);
+    } catch (error) {
+      console.error(`FAIL ${error instanceof Error ? error.message : String(error)}`);
+      process.exit(1);
+    }
   } else {
     const checks: [string, () => string][] = [
       ["1 frozen journeys", frozenJourneys],
