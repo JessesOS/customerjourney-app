@@ -176,3 +176,5 @@ Apply these during the conversion:
    - Cloudflare error 1042: worker-to-worker calls need a service binding.
    - A just-deployed change can look unapplied for a few seconds.
    - A client's identity is the portal id, not their name.
+
+- 2026-10-17: Phase 3 (portal reads product files + custom-product tool + review fixes A-H) deployed to **staging** (version 8cb0762f, `PRODUCT_DRAFTS=1`). Every demo client portal, admin and board load (200); admin without the code is 403. Prod untouched.
