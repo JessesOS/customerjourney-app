@@ -111,7 +111,7 @@ A product file can only switch on what already exists. These stay in code:
 - The **live AI receptionist test**, the **landing-page preview** and the `"landing-page"` content slot behind it.
 - **Stages**: the five client stages and the team-only `support` stage (`STAGE_ORDER` in `products/types.ts`). A sixth client stage needs code.
 - **Interview audio** is keyed by step id (`public/portal/voice/interview-<step>-<n>.m4a`). Changing an inherited interview needs a new step id.
-- **GHL mapping** (`lib/productMapping.ts`): which product a sale provisions. Custom products are never provisioned automatically.
+- **GHL mapping** (`lib/productMapping.ts`): which product a sale provisions. Custom products are never provisioned automatically. `products:check` fails if the mapping can return a client type whose product isn't live (pausing Scale or Respond means changing the mapping first; it belongs to the brain session).
 - The incentive popup's and the stage-complete screen's wording, the list of portal looks, and the journey-status report's portal address.
 - **Media**: an intro video served from `/api/media/` is allowed automatically, but the file must be uploaded to both R2 buckets (prod and staging).
 

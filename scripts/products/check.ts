@@ -14,6 +14,8 @@
  *      step id in two products agrees on hasUpload, hasEditableContent and
  *      formId, and a custom product's added ids and idPrefix clash with no
  *      other product's ids (the server checks ids against every product).
+ *      Every client type GHL provisioning (lib/productMapping.ts) can return
+ *      belongs to a live product.
  *   3. Custom-product proof: an in-memory custom product (Scale Meta, changed;
  *      never written to disk) resolves, registers, renders in the portal, seeds
  *      a board and gets a sheet and an index line, without touching Scale; a
@@ -40,11 +42,13 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { ClientPortalExperience } from "../../app/components/portal/ClientPortalExperience";
 import { buildStages } from "../../lib/journeyBuild";
 import { onboardingFormById } from "../../lib/onboardingForm";
+import { mapProductToJourney } from "../../lib/productMapping";
 import { createRegistry } from "../../lib/productRegistry";
 import { defineCustomProduct, type CustomProductSpec } from "../../products/custom";
 import { bss, productList, scale, website } from "../../products/index";
 import { allSteps, appliesToVariant, dueDaysFor, productForClientType, stepVisibleFor, teamTasksFor } from "../../products/load";
 import { STAGE_ORDER, type ClientStep, type Product } from "../../products/types";
+import { GHL_SAMPLES } from "../journeys/contract";
 import { runJourneyChecks, type CheckCounts } from "../journeys/run";
 import { copyLintNotes, indexCurrent, renderProductIndex, renderSheet, scanProductIds, staleSheets } from "./render";
 import { codeBoundaries } from "./static-checks";
@@ -248,9 +252,39 @@ function integrity(): string {
     for (const n of copyLintNotes(p, productList)) notes.push(`${p.id}: ${n.replace(/`/g, "")}`);
   }
   for (const f of crossProductIdFailures(productList)) must(false, f);
+  const ghlTypes = ghlClientTypes();
+  for (const f of ghlMappingFailures(productList, ghlTypes)) must(false, f);
   const bssProduct = productForClientType("bss");
   must(bssProduct?.id === "bss" && bssProduct.status === "paused", `"bss" must resolve to the paused bss product`);
-  return `${productList.length} products, ${taskCount} team tasks, ${stepCount} client steps, ${clientTypes.size} variants; ${openWindows} tasks have open due windows ("As needed", "Ongoing"...)`;
+  return `${productList.length} products, ${taskCount} team tasks, ${stepCount} client steps, ${clientTypes.size} variants; ${openWindows} tasks have open due windows ("As needed", "Ongoing"...); GHL provisions only live client types (${ghlTypes.join(", ")})`;
+}
+
+/**
+ * Every client type GHL provisioning (lib/productMapping.ts) can return: each
+ * `clientType: "…"` literal in its source, plus what the GHL sample names
+ * (scripts/journeys/contract.ts) map to.
+ */
+export function ghlClientTypes(): string[] {
+  const source = readFileSync(join(ROOT, "lib", "productMapping.ts"), "utf8");
+  const literals = [...source.matchAll(/clientType:\s*"([^"]+)"/g)].map((m) => m[1]);
+  const sampled = GHL_SAMPLES.map((name) => mapProductToJourney(name)?.clientType).filter((ct): ct is NonNullable<typeof ct> => Boolean(ct));
+  return [...new Set([...literals, ...sampled])];
+}
+
+/**
+ * A GHL sale must only ever provision a live product: every client type
+ * lib/productMapping.ts can return belongs to a live product. Returns the
+ * failures (empty = fine).
+ */
+export function ghlMappingFailures(products: readonly Product[], types: string[]): string[] {
+  const out: string[] = [];
+  if (!types.length) out.push("lib/productMapping.ts: no client type found in it: update ghlClientTypes() in scripts/products/check.ts to read it");
+  for (const ct of types) {
+    const product = products.find((p) => p.variants.some((v) => v.clientType === ct));
+    if (!product) out.push(`lib/productMapping.ts returns client type "${ct}", which no product defines: a GHL sale would provision an unknown journey. Fix lib/productMapping.ts`);
+    else if (product.status !== "live") out.push(`lib/productMapping.ts returns client type "${ct}", but products/${product.id} is ${product.status}: a GHL sale would provision a ${product.status} product. Fix lib/productMapping.ts, or make the product live`);
+  }
+  return out;
 }
 
 /** Step fields the server checks by step id against every product's steps (lib/allJourneys.ts, first id wins). */
@@ -550,7 +584,16 @@ function customProof(): string {
   must(renderSheet(timed, productList).includes("String Theory strand `golive`"), `${P}: the sheet doesn't list the String Theory notes`);
   must(copyLintNotes(kept, productList).length === 0, `${P}: an unchanged timeline must give no wording or date notes (got ${JSON.stringify(copyLintNotes(kept, productList))})`);
 
-  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new; a new timeline notes tasks and String Theory dates that no longer fit`;
+  // E. GHL provisioning only ever lands on a live product.
+  const ghlTypes = ghlClientTypes();
+  must(ghlTypes.includes("respond") && ghlTypes.includes("meta-google"), `${P}: ghlClientTypes() doesn't find respond and meta-google in lib/productMapping.ts (got ${ghlTypes.join(", ")})`);
+  must(ghlMappingFailures(productList, ghlTypes).length === 0, `${P}: GHL maps to a product that isn't live today`);
+  const pausedRespond = productList.map((p): Product => (p.id === "respond" ? { ...p, status: "paused" } : p));
+  const ghlFails = ghlMappingFailures(pausedRespond, ghlTypes);
+  must(ghlFails.some((f) => f.startsWith(`lib/productMapping.ts returns client type "respond", but products/respond is paused`)), `${P}: GHL mapping to a paused product must fail (got ${JSON.stringify(ghlFails)})`);
+  must(ghlMappingFailures(productList, ["zz-nowhere"]).some((f) => f.includes(`"zz-nowhere", which no product defines`)), `${P}: GHL mapping to an unknown client type must fail`);
+
+  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new; a new timeline notes tasks and String Theory dates that no longer fit; GHL to a paused or unknown type fails`;
 }
 
 // ── 5. Version lock ───────────────────────────────────────────────────────
