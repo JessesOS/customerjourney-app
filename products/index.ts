@@ -2,15 +2,16 @@
 // A product is a folder products/<id>/ whose index.ts exports `<camelCaseId>`. See docs/products/README.md.
 
 import { bss } from "./bss";
+import { bssCustom } from "./bss-custom";
 import { respond } from "./respond";
 import { scale } from "./scale";
 import { website } from "./website";
 import type { ClientTypeOf, Product } from "./types";
 
-export { bss, respond, scale, website };
+export { bss, bssCustom, respond, scale, website };
 
 /** Every product, in sheet order. */
-export const productList = [scale, respond, bss, website] as const satisfies readonly Product[];
+export const productList = [scale, respond, bss, website, bssCustom] as const satisfies readonly Product[];
 
 /** Every client type a product file defines (live, paused or draft). */
 export type ClientType = ClientTypeOf<(typeof productList)[number]>;

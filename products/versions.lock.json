@@ -14,5 +14,9 @@
   "website": {
     "version": "2026-10-16.1",
     "sha256": "dc3d10c4a5b29762a5a086937db10da183085a05b99651757f6eda0cced63b89"
+  },
+  "bss-custom": {
+    "version": "2026-10-17.1",
+    "sha256": "3a2f8bc72564dad6922e154633575b3ad9cb8f69a99949838649b179a94c20c5"
   }
 }

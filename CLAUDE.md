@@ -59,6 +59,7 @@ npx wrangler deploy --config dist/server/wrangler.staging.json
 
 - **Each product is one folder in `products/`:** client steps, team tasks and portal settings (wording, timeline, branding, voice guide, Ask-AI, String Theory). The portal, admin and board read it through `lib/productRegistry.ts`. The how-to is `docs/products/README.md`; the sheets in `docs/products/<id>.md` are generated.
 - **Custom products** use `defineCustomProduct` (`products/custom.ts`): start from Scale, Respond or blank and describe only what differs.
+- **`bss-custom` (draft):** Fin's own product, built from scratch from Jesse's BSS spec (`products/bss-custom/spec.md`). 21 client steps, 337 team tasks. Fin stays on `bss-meta` until Jesse moves him (a separate prod change, README §9 step 10).
 - **After any product change:**
   1. Bump the version.
   2. Run `npm run products:lock`, `products:render`, `products:check`, `check:journeys` and `check:fin`.

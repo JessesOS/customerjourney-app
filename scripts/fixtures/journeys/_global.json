@@ -16,7 +16,12 @@
       "bd-3",
       "bd-g3",
       "bd-g2",
-      "gl-1"
+      "gl-1",
+      "bssc-journey-map",
+      "bssc-crm-plan",
+      "bssc-messages",
+      "bssc-onboarding-map",
+      "bssc-reactivation"
     ],
     "formIds": [
       "scale-onboarding-intake-v1",
@@ -129,7 +134,28 @@
     "bss-038",
     "bss-039",
     "bss-040",
-    "bss-041"
+    "bss-041",
+    "bssc-kickoff",
+    "bssc-access-site",
+    "bssc-access-tools",
+    "bssc-review-1",
+    "bssc-questions",
+    "bssc-assets",
+    "bssc-journey-map",
+    "bssc-crm-plan",
+    "bssc-review-2",
+    "bssc-contacts",
+    "bssc-signoff",
+    "bssc-test-booking",
+    "bssc-launch-day",
+    "bssc-messages",
+    "bssc-ai-agent",
+    "bssc-walkthrough",
+    "bssc-live-check",
+    "bssc-webinar",
+    "bssc-onboarding-map",
+    "bssc-reactivation",
+    "bssc-check-ins"
   ],
   "defaultClientType": "meta-google",
   "forms": {
@@ -534,6 +560,7 @@
     "Voice AI Specialist"
   ],
   "uploadStepIds": [
+    "bssc-assets",
     "ob-7",
     "rsp-017"
   ]

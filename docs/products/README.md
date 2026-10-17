@@ -156,7 +156,7 @@ A custom product is a product file written as **differences from a base**: Scale
    });
    ```
 
-   `npm run products:check` builds a product just like this one in memory on every run (the "custom-product proof"), so the pattern is known to work. The example above is not a real product: none has been added yet.
+   `npm run products:check` builds a product just like this one in memory on every run (the "custom-product proof"), so the pattern is known to work. The example above is not a real product. The first real one is `products/bss-custom/` (blank base, draft): Fin's own product, written from Jesse's BSS spec. Its team tasks were generated from the spec's tables by `scripts/products/import-bss-spec.ts`, a one-off kept for provenance.
 4. **Follow the rules:**
    - Keep the base's ids for the steps you keep. Clients' ticks are stored by step id.
    - Every new step and task id starts with `idPrefix` (e.g. `bssc-`).
