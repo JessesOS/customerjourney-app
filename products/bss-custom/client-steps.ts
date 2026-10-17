@@ -70,7 +70,6 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
       steps: [
         "Lovable (your website): add jesse@allconvos.ai to your project, or connect it to GitHub and add Jesse there.",
         "Supabase (your app's database): add Jesse as a team member, so we can see what your current system stores.",
-        "Your existing client portal: invite Jesse as a test client, so new clients can be pointed to it.",
       ],
       doneLabel: "I've sent the invites",
       notePrompt: "Anything you couldn't invite us to?",
@@ -312,6 +311,7 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
       id: "bssc-onboarding-map",
       title: "Agree your client onboarding map",
       detail: "What happens when someone pays: welcome, portal access, their coach and their first implementation call. Each step is marked \"automated\" or \"needs you\". We walk through it together, then you approve it here.",
+      steps: ["Set up a test account for Jesse in your members' area, so we can link new clients straight to it."],
       hasEditableContent: true,
       notePrompt: "Anything you'd like changed?",
     },

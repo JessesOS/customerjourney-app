@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-17.3` |
+| Version | `2026-10-18.1` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 21 (0 client only, 0 hidden in the portal) |
@@ -61,7 +61,7 @@ _Weeks 1 and 2: give us access, answer a few questions and review your first web
 
 > We build your new pages inside your existing site, so nothing you already have breaks. Invite Jesse to each of these.
 
-Portal: note · 3 numbered steps · invite email · "Important" box
+Portal: note · 2 numbered steps · invite email · "Important" box
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -3624,7 +3624,7 @@ For every sequence: we write in the portal → Fin approves each message → we 
 
 > What happens when someone pays: welcome, portal access, their coach and their first implementation call. Each step is marked "automated" or "needs you". We walk through it together, then you approve it here.
 
-Portal: work to review · note
+Portal: work to review · note · 1 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
