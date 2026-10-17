@@ -1,4 +1,5 @@
-import { requestCanAdmin } from "@/lib/adminAuth";
+import { requestCanAdminAsync, teamBoardEnabled } from "@/lib/teamAuth";
+import { deleteTeamDataForClient } from "@/lib/teamStore";
 import {
   deletePortalClient,
   isJourneyState,
@@ -11,7 +12,7 @@ import type { ClientType } from "@/lib/journeyEngine";
 const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond", "bss", "bss-meta"];
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  if (!requestCanAdmin(request)) {
+  if (!(await requestCanAdminAsync(request))) {
     return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
 
@@ -82,13 +83,15 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
 }
 
 export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  if (!requestCanAdmin(request)) {
+  if (!(await requestCanAdminAsync(request))) {
     return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
 
   try {
     const { id } = await params;
     await deletePortalClient(id);
+    // The client's team board goes with them (only exists where the board is on).
+    if (teamBoardEnabled()) await deleteTeamDataForClient(id);
     return Response.json({ ok: true });
   } catch (error) {
     return Response.json(

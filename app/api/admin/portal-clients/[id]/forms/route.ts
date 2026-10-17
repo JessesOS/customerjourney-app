@@ -1,4 +1,4 @@
-import { requestCanAdmin } from "@/lib/adminAuth";
+import { requestCanAdminAsync } from "@/lib/teamAuth";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { getAllMilestoneContent, getAllMilestoneUploadsMeta, getFormResponses, getMilestoneNotes } from "@/lib/portalClientStore";
 
@@ -7,7 +7,7 @@ const formIdsInJourney = Array.from(new Set(allMilestones.map((m) => m.formId).f
 const editableMilestones = allMilestones.filter((m) => m.hasEditableContent);
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  if (!requestCanAdmin(request)) {
+  if (!(await requestCanAdminAsync(request))) {
     return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
 

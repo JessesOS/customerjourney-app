@@ -1,4 +1,4 @@
-import { requestCanAdmin } from "@/lib/adminAuth";
+import { requestCanAdminAsync } from "@/lib/teamAuth";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { getCompletedMilestoneIds, setMilestoneDone } from "@/lib/portalClientStore";
 
@@ -8,7 +8,7 @@ import { getCompletedMilestoneIds, setMilestoneDone } from "@/lib/portalClientSt
 const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  if (!requestCanAdmin(request)) {
+  if (!(await requestCanAdminAsync(request))) {
     return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
   const { id } = await params;
@@ -21,7 +21,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
 }
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
-  if (!requestCanAdmin(request)) {
+  if (!(await requestCanAdminAsync(request))) {
     return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
   const { id } = await params;

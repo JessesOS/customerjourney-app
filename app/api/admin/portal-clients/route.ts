@@ -1,11 +1,12 @@
-import { requestCanAdmin } from "@/lib/adminAuth";
+import { requestCanAdminAsync } from "@/lib/teamAuth";
+import { autoStartBoard } from "@/lib/teamStore";
 import { createPortalClient, isPortalThemeVariant, listPortalClients } from "@/lib/portalClientStore";
 import { productLockedLook, type ClientType } from "@/lib/journeyEngine";
 
 const validClientTypes: ClientType[] = ["meta", "google", "meta-google", "respond", "bss", "bss-meta"];
 
 export async function GET(request: Request) {
-  if (!requestCanAdmin(request)) {
+  if (!(await requestCanAdminAsync(request))) {
     return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
 
@@ -21,7 +22,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  if (!requestCanAdmin(request)) {
+  if (!(await requestCanAdminAsync(request))) {
     return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
 
@@ -49,7 +50,9 @@ export async function POST(request: Request) {
     }
 
     const created = await createPortalClient({ name, companyName, startDate, clientType: clientType as ClientType, themeVariant });
-    return Response.json({ ok: true, ...created });
+    // Staging (and, after go-live, prod): start the team board straight away.
+    const teamBoard = await autoStartBoard(created.id, "created in admin");
+    return Response.json({ ok: true, ...created, teamBoard });
   } catch (error) {
     return Response.json(
       { ok: false, error: error instanceof Error ? error.message : "Could not create client." },

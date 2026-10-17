@@ -1,4 +1,5 @@
 import { notifyHook } from "@/lib/hookNotify";
+import { autoStartBoard } from "@/lib/teamStore";
 import { mapProductToJourney } from "@/lib/productMapping";
 import {
   getPortalClientByGhlContactId,
@@ -177,6 +178,11 @@ export async function POST(request: Request) {
     });
 
     const portalLink = portalLinkFor(request, created.portalToken);
+    // Outside the provisioning batch: a board failure never stops the portal.
+    const teamBoard = await autoStartBoard(created.id, "GHL webhook");
+    if (teamBoard !== "started" && teamBoard !== "skipped") {
+      await notifyHook(`:warning: Team board not started for *${clientName}*: ${teamBoard}. Start it from /admin.`);
+    }
     const confirmNote = mapped.clientTypeConfirmed
       ? ""
       : `\nJourney defaulted to *${mapped.clientType}* (product name doesn't carry the ad-channel split) — confirm it in /admin/clients.`;
@@ -192,6 +198,7 @@ export async function POST(request: Request) {
       portalLink,
       clientType: mapped.clientType,
       clientTypeConfirmed: mapped.clientTypeConfirmed,
+      teamBoard,
       notified,
     });
   } catch (error) {

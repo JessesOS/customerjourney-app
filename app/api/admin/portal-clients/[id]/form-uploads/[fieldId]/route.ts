@@ -1,9 +1,9 @@
-import { requestCanAdmin } from "@/lib/adminAuth";
+import { requestCanAdminAsync } from "@/lib/teamAuth";
 import { getFormUpload } from "@/lib/portalClientStore";
 
 /** Admin download of a client's guided-form file upload, served from R2. */
 export async function GET(request: Request, { params }: { params: Promise<{ id: string; fieldId: string }> }) {
-  if (!requestCanAdmin(request)) {
+  if (!(await requestCanAdminAsync(request))) {
     return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
 

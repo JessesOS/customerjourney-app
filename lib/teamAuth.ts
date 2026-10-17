@@ -2,7 +2,7 @@ import { eq } from "drizzle-orm";
 import { getDb } from "@/db";
 import { teamMembers } from "@/db/schema";
 import { verifyAccessToken } from "@/lib/accessJwt";
-import { isAdminToken, isLocalDevelopmentHost } from "@/lib/adminAuth";
+import { isAdminToken, isLocalDevelopmentHost, requestCanAdmin } from "@/lib/adminAuth";
 import { setting } from "@/lib/settings";
 
 /**
@@ -89,4 +89,16 @@ export async function requireTeam(request: Request, { admin = false }: { admin?:
   if (!actor) return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   if (admin && !actor.isAdmin) return Response.json({ ok: false, error: "Admins only" }, { status: 403 });
   return actor;
+}
+
+/**
+ * The admin gate for the existing admin routes (clients, forms, uploads...):
+ * the access code or localhost as before, or — when the team board is on — a
+ * signed-in team admin, so the Clients page works on the team address too.
+ */
+export async function requestCanAdminAsync(request: Request): Promise<boolean> {
+  if (requestCanAdmin(request)) return true;
+  if (!teamBoardEnabled()) return false;
+  const actor = await getTeamActor(request);
+  return Boolean(actor?.isAdmin);
 }

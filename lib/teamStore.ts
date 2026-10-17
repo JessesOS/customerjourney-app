@@ -3,7 +3,8 @@ import { getDb } from "@/db";
 import { portalClients, portalMilestoneProgress, portalMilestoneUploads, teamBoards, teamMembers, teamTaskEvents, teamTasks } from "@/db/schema";
 import { clientTypeLabels, type ClientType } from "@/lib/journeyEngine";
 import { computeCurrentDay, getLastActivityAt } from "@/lib/portalClientStore";
-import type { TeamActor } from "@/lib/teamAuth";
+import { setting } from "@/lib/settings";
+import { teamBoardEnabled, type TeamActor } from "@/lib/teamAuth";
 import { productById } from "@/products";
 import { dueDaysFor, productForClientType, stepTree, teamTasksFor, variantFor } from "@/products/load";
 import type { Product, ProductVariant } from "@/products/types";
@@ -551,4 +552,19 @@ export async function boardsByClient(clientIds: string[]) {
   const db = getDb();
   const rows = await db.select().from(teamBoards).where(inArray(teamBoards.clientId, clientIds));
   return new Map(rows.map((b) => [b.clientId, b]));
+}
+
+/**
+ * Starts a new client's board automatically when TEAM_BOARD_AUTOSEED=1 (and the
+ * board is on). Never throws: a failure must not stop the client getting their
+ * portal. Returns what happened, for the caller to report.
+ */
+export async function autoStartBoard(clientId: string, by: string): Promise<"started" | "skipped" | string> {
+  if (!teamBoardEnabled() || setting("TEAM_BOARD_AUTOSEED") !== "1") return "skipped";
+  try {
+    const result = await seedTeamBoard(clientId, { email: "system", name: `Automatic (${by})`, isAdmin: true, roles: [], via: "local" });
+    return result.ok ? "started" : result.status === 409 ? "skipped" : result.error;
+  } catch (error) {
+    return error instanceof Error ? error.message : String(error);
+  }
 }

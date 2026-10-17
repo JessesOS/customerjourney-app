@@ -1,8 +1,8 @@
-import { requestCanAdmin } from "@/lib/adminAuth";
+import { requestCanAdminAsync } from "@/lib/teamAuth";
 import { getMilestoneUpload } from "@/lib/portalClientStore";
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string; milestoneId: string }> }) {
-  if (!requestCanAdmin(request)) {
+  if (!(await requestCanAdminAsync(request))) {
     return Response.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
 
