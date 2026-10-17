@@ -1,6 +1,7 @@
 "use client";
 
 import { AdminTaskChecklist } from "@/app/components/admin/AdminTaskChecklist";
+import { useMe } from "@/app/components/admin/teamClient";
 
 import type { ClientType } from "@/lib/journeyEngine";
 
@@ -203,6 +204,9 @@ function todayIso() {
 }
 
 export function AdminClientsPanel() {
+  // With the team board on, `me` says who is signed in and where client links
+  // point (the public portal address, even on the team's login-protected one).
+  const { me, state: teamState } = useMe();
   const [adminToken, setAdminToken] = useState<string | undefined>(undefined);
   const authHeaders: HeadersInit = adminToken ? { "x-admin-token": adminToken } : {};
   const [clients, setClients] = useState<PortalClient[]>([]);
@@ -409,7 +413,7 @@ export function AdminClientsPanel() {
   }
 
   function copyLink(client: PortalClient) {
-    const url = `${window.location.origin}/portal/${client.portalToken}`;
+    const url = `${me?.portalBase ?? window.location.origin}/portal/${client.portalToken}`;
     navigator.clipboard.writeText(url).then(() => {
       setCopiedId(client.id);
       setTimeout(() => setCopiedId(null), 1800);
@@ -593,8 +597,8 @@ export function AdminClientsPanel() {
 
             return (
               <div key={client.id} style={{ border: "1px solid #2a2c27", borderRadius: 10, background: "#111310" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 16, padding: "14px 18px" }}>
-                  <div style={{ flex: 1 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 16, padding: "14px 18px", flexWrap: "wrap" }}>
+                  <div style={{ flex: "1 1 300px", minWidth: 260 }}>
                     <div style={{ fontWeight: 600 }}>
                       {client.name} {client.companyName && <span style={{ color: "rgba(252,250,246,0.5)", fontWeight: 400 }}>· {client.companyName}</span>}
                     </div>
@@ -657,6 +661,14 @@ export function AdminClientsPanel() {
                   >
                     {isExpanded ? "Hide answers ▴" : "View form answers ▾"}
                   </button>
+                  {teamState === "ok" ? (
+                    <a
+                      href={`/admin/clients/${client.id}/board`}
+                      style={{ padding: "7px 14px", borderRadius: 7, border: "1px solid #2fd0b5", background: "transparent", color: "#2fd0b5", fontSize: 13, textDecoration: "none" }}
+                    >
+                      Team board
+                    </a>
+                  ) : null}
                   <button
                     onClick={() => copyLink(client)}
                     style={{ padding: "7px 14px", borderRadius: 7, border: "1px solid #444", background: "#fcfaf6", color: "#111", cursor: "pointer", fontSize: 13, fontWeight: 500 }}
