@@ -48,8 +48,9 @@ import { defineCustomProduct, type CustomProductSpec } from "../../products/cust
 import { bss, productList, scale, website } from "../../products/index";
 import { allSteps, appliesToVariant, dueDaysFor, productForClientType, stepVisibleFor, teamTasksFor } from "../../products/load";
 import { STAGE_ORDER, type ClientStep, type Product } from "../../products/types";
-import { GHL_SAMPLES } from "../journeys/contract";
-import { runJourneyChecks, type CheckCounts } from "../journeys/run";
+import { GHL_SAMPLES, type GlobalContract } from "../journeys/contract";
+import { registryProducer } from "../journeys/registry-producer";
+import { FIXTURE_DIR, finGlobalChanges, guardGlobalWrite, runJourneyChecks, type CheckCounts, type Fixture } from "../journeys/run";
 import { copyLintNotes, indexCurrent, renderProductIndex, renderSheet, scanProductIds, staleSheets } from "./render";
 import { codeBoundaries } from "./static-checks";
 
@@ -593,7 +594,45 @@ function customProof(): string {
   must(ghlFails.some((f) => f.startsWith(`lib/productMapping.ts returns client type "respond", but products/respond is paused`)), `${P}: GHL mapping to a paused product must fail (got ${JSON.stringify(ghlFails)})`);
   must(ghlMappingFailures(productList, ["zz-nowhere"]).some((f) => f.includes(`"zz-nowhere", which no product defines`)), `${P}: GHL mapping to an unknown client type must fail`);
 
-  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new; a new timeline notes tasks and String Theory dates that no longer fit; GHL to a paused or unknown type fails`;
+  // G. Fin's form questions, upload steps and intro video are frozen only in
+  // _global.json: re-saving it when they change needs --yes-fin.
+  const frozenGlobal = JSON.parse(readFileSync(join(FIXTURE_DIR, "_global.json"), "utf8")) as GlobalContract;
+  const finFixture = (JSON.parse(readFileSync(join(FIXTURE_DIR, "bss-meta.json"), "utf8")) as Fixture).data;
+  const refused = (now: GlobalContract, yesFin: boolean): string | null => {
+    try { guardGlobalWrite(now, { yesFin }, frozenGlobal); return null; } catch (error) { return error instanceof Error ? error.message : String(error); }
+  };
+  must(finGlobalChanges(frozenGlobal, frozenGlobal).length === 0, `${P}: the frozen _global differs from itself for Fin`);
+  must(refused(registryProducer.global(), false) === null, `${P}: today's _global (unchanged) would be refused: ${refused(registryProducer.global(), false)}`);
+  const finForm = Object.keys(finFixture.formSteps)[0];
+  if (!finForm || !frozenGlobal.forms[finForm]) must(false, `${P}: no form on Fin's steps to prove with`);
+  else {
+    const reworded = structuredClone(frozenGlobal);
+    reworded.forms[finForm].sections[0].fields[0].label = "Proof question?";
+    must(finGlobalChanges(reworded, frozenGlobal).some((c) => c.startsWith(`the questions of form ${finForm}`)), `${P}: a reworded question on Fin's form ${finForm} is not seen`);
+    const message = refused(reworded, false);
+    must(message !== null && message.includes("--yes-fin") && message.includes(finForm), `${P}: re-saving _global with Fin's form changed must be refused without --yes-fin (got ${JSON.stringify(message)})`);
+    must(refused(reworded, true) === null, `${P}: --yes-fin must allow it`);
+  }
+  const otherForm = Object.keys(frozenGlobal.forms).find((id) => !(id in finFixture.formSteps));
+  if (otherForm) {
+    const other = structuredClone(frozenGlobal);
+    other.forms[otherForm].sections[0].fields[0].label = "Proof question?";
+    must(refused(other, false) === null, `${P}: a change to ${otherForm} (not Fin's) must not need --yes-fin`);
+  }
+  const finUpload = finFixture.visibleIds.find((id) => frozenGlobal.uploadStepIds.includes(id));
+  if (finUpload) {
+    const noUpload = structuredClone(frozenGlobal);
+    noUpload.uploadStepIds = noUpload.uploadStepIds.filter((id) => id !== finUpload);
+    must(refused(noUpload, false)?.includes("his upload steps"), `${P}: losing Fin's upload step ${finUpload} must be refused without --yes-fin`);
+  }
+  const finMedia = finFixture.introVideo?.src.replace("/api/media/", "");
+  if (finMedia && frozenGlobal.media[finMedia]) {
+    const noMedia = structuredClone(frozenGlobal);
+    delete noMedia.media[finMedia];
+    must(refused(noMedia, false)?.includes("his intro video"), `${P}: losing Fin's intro video from the media list must be refused without --yes-fin`);
+  }
+
+  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new; a new timeline notes tasks and String Theory dates that no longer fit; GHL to a paused or unknown type fails; re-saving _global over Fin's forms, uploads or video needs --yes-fin`;
 }
 
 // ── 5. Version lock ───────────────────────────────────────────────────────

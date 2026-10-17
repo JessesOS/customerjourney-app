@@ -12,7 +12,8 @@
  *
  *   npm run check:journeys                          check (exit 1 on any difference)
  *   npm run check:journeys -- --dump <dir>          write full contracts and markup, to diff two commits
- *   npm run check:journeys -- --write <type…>       re-save (only for a change Jesse approved; bss-meta needs --yes-fin)
+ *   npm run check:journeys -- --write <type…>       re-save (only for a change Jesse approved; bss-meta needs --yes-fin,
+ *                                                   and so does _global when Fin's forms, uploads or video in it change)
  *   npm run check:journeys -- --write-all           first freeze only (refused once any fixture exists)
  *
  * Added 2026-10-17 (Option D, Phase 3), before the portal moved to products/.

@@ -17,6 +17,7 @@ This one session owns the portal and the back office. GHL automation belongs to 
 - **Fin Creighton** (Bitcoin Success School) has used the live portal since 2026-10-16. His product is `bss-meta` ("BSS Meta ads only"): the Scale journey for Meta only, plus the variant's notes and hides in `products/scale/index.ts`.
 - **Every deploy to the live worker needs Jesse's explicit OK.** Send it as a package: the commits, the checks run, the version currently live, a D1 time-travel bookmark, and the rollback command.
 - **`npm run check:fin` and `npm run check:journeys` must pass before every commit and deploy.** check:fin proves everything Fin's portal is built from is unchanged; check:journeys does the same for every client type, Fin's included. Only re-save a baseline (`-- --write`) for a change Jesse approved.
+- **Fin's form questions live in `_global.json`**, not in `bss-meta.json` (so do his upload steps and his intro video's media entry). `check:journeys -- --write _global` refuses to re-save them changed without `--yes-fin`.
 - **Never open Fin's link in a normal browser.** It records a visit as his. Use `curl`, or a browser where admin is unlocked.
 - **Never put Cloudflare Access on `scale-onboarding-portal.jesse-b4e.workers.dev`.** That address is every client's link. Access goes on team hostnames only.
 
