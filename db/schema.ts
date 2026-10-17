@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { index, integer, sqliteTable, text, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 export const knowledgeState = sqliteTable("knowledge_state", {
   id: integer("id").primaryKey(),
@@ -170,3 +170,88 @@ export const portalFormUploads = sqliteTable("portal_form_uploads", {
   size: integer("size").notNull().default(0),
   uploadedAt: text("uploaded_at").notNull().default(sql`CURRENT_TIMESTAMP`),
 });
+
+// ---- Team back office (Option D, 2026-10-17) ----
+// The team's task board lives in this app (it replaces the CSM dashboard).
+// Additive tables only: nothing here changes what a client's portal reads.
+// Team tasks are COPIED from a product file (products/) when a client's board
+// starts, stamped with the product version, so later edits to a product file
+// never change an existing client's board.
+
+/** People who can sign in to the back office (Cloudflare Access email). */
+export const teamMembers = sqliteTable("team_members", {
+  id: integer("id").primaryKey(),
+  email: text("email").notNull().unique(), // stored lowercase
+  name: text("name").notNull(),
+  roles: text("roles").notNull().default("[]"), // JSON string[]: product roles they cover
+  isAdmin: integer("is_admin", { mode: "boolean" }).notNull().default(false),
+  active: integer("active", { mode: "boolean" }).notNull().default(true),
+  lastSeenAt: text("last_seen_at"),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});
+
+/** One per client whose team board has been started. */
+export const teamBoards = sqliteTable("team_boards", {
+  clientId: text("client_id").primaryKey(),
+  productId: text("product_id").notNull(),
+  productVersion: text("product_version").notNull(),
+  variant: text("variant").notNull(),
+  startedAt: text("started_at").notNull(),
+  startedBy: text("started_by").notNull(),
+});
+
+/** A team task on one client's board. */
+export const teamTasks = sqliteTable(
+  "team_tasks",
+  {
+    id: integer("id").primaryKey(),
+    clientId: text("client_id").notNull(),
+    templateId: text("template_id").notNull(), // scl-018, or custom-xxxxxxxx
+    productVersion: text("product_version").notNull(),
+    isCustom: integer("is_custom", { mode: "boolean" }).notNull().default(false),
+    title: text("title").notNull(),
+    notes: text("notes").notNull().default(""),
+    stageId: text("stage_id").notNull(),
+    category: text("category").notNull().default(""),
+    stepId: text("step_id"), // client step it sits behind; null = team-only
+    completesWithSteps: text("completes_with_steps").notNull().default("[]"), // JSON string[]
+    role: text("role").notNull().default(""),
+    assigneeEmail: text("assignee_email"),
+    status: text("status").notNull().default("queued"), // queued | in_progress | complete
+    blockedReason: text("blocked_reason").notNull().default(""),
+    priority: text("priority").notNull().default("normal"), // low | normal | high | critical
+    dueWindow: text("due_window").notNull().default(""),
+    dueDayStart: integer("due_day_start"),
+    dueDayEnd: integer("due_day_end"),
+    dependencies: text("dependencies").notNull().default("[]"), // JSON template ids
+    loomUrl: text("loom_url").notNull().default(""),
+    sortOrder: integer("sort_order").notNull().default(0),
+    statusChangedAt: text("status_changed_at"),
+    completedAt: text("completed_at"),
+    completedBy: text("completed_by"),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [
+    uniqueIndex("team_tasks_client_template_unique").on(table.clientId, table.templateId),
+    index("team_tasks_assignee_idx").on(table.assigneeEmail),
+  ],
+);
+
+/** Who did what on a board. Comments are events too. */
+export const teamTaskEvents = sqliteTable(
+  "team_task_events",
+  {
+    id: integer("id").primaryKey(),
+    clientId: text("client_id").notNull(),
+    taskId: integer("task_id"), // null = board-level (board started)
+    actorEmail: text("actor_email").notNull(),
+    actorName: text("actor_name").notNull(),
+    kind: text("kind").notNull(), // seed | status | assign | blocked | notes | loom | priority | due | comment | create | delete
+    fromValue: text("from_value"),
+    toValue: text("to_value"),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [index("team_task_events_client_idx").on(table.clientId, table.createdAt), index("team_task_events_task_idx").on(table.taskId)],
+);

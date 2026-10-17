@@ -15,7 +15,8 @@
     "check:fin": "tsx scripts/check-fin-journey.ts",
     "products:check": "tsx scripts/products/check.ts",
     "products:render": "tsx scripts/products/render.ts",
-    "products:lock": "tsx scripts/products/check.ts --write-lock"
+    "products:lock": "tsx scripts/products/check.ts --write-lock",
+    "check:team-auth": "tsx scripts/check-team-auth.ts"
   },
   "dependencies": {
     "@elevenlabs/client": "^1.27.0",
