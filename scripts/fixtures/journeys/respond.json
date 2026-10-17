@@ -1,0 +1,977 @@
+{
+  "data": {
+    "adminChecklist": [
+      {
+        "id": "onboarding",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "rsp-000",
+            "title": "Your voice interview"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "rsp-012",
+            "title": "Tell us about your business"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "rsp-014",
+            "title": "Attend your Welcome Call & portal walkthrough"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "rsp-015",
+            "title": "Bookmark your portal link"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "rsp-017",
+            "title": "Upload your client database (CSV)"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "rsp-018",
+            "title": "Review & approve your AI qualification questions"
+          }
+        ],
+        "name": "Onboarding"
+      },
+      {
+        "id": "testing",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "rsp-048",
+            "title": "Test your AI receptionist live"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "rsp-049",
+            "title": "Download the LeadConnector app"
+          }
+        ],
+        "name": "Testing"
+      },
+      {
+        "id": "go-live",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "rsp-059",
+            "title": "Your Go-Live walkthrough"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "rsp-062",
+            "title": "Approve updating your website & Google Business Profile"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "rsp-064",
+            "title": "You're live! Access your recording & support links"
+          }
+        ],
+        "name": "Go-Live"
+      },
+      {
+        "id": "post-launch",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "rsp-072",
+            "title": "Share your experience — send us a testimonial"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "rsp-073",
+            "title": "Your check-in calls"
+          }
+        ],
+        "name": "Post-Launch"
+      }
+    ],
+    "adminDayTotal": 10,
+    "adminLabel": "CRM — Respond",
+    "askItems": {
+      "go-live": [
+        {
+          "a": "Your team gets a walkthrough as we switch on, and you'll see every caught call and enquiry in your CRM. We're watching closely from our side through launch.",
+          "q": "How do I know it's working?"
+        },
+        {
+          "a": "That's the point — your AI receptionist picks up when you can't, captures the job details, and nothing slips through to voicemail.",
+          "q": "Does it answer every call?"
+        }
+      ],
+      "onboarding": [
+        {
+          "a": "Respond runs on a 10-day journey. Onboarding is the first day or two — your business details and access — then we set up your AI receptionist behind the scenes.",
+          "q": "How long does setup take?"
+        },
+        {
+          "a": "Only the team working on your account. Your details go straight into setting up your AI receptionist — nothing is shared outside your project.",
+          "q": "Who sees what I submit?"
+        }
+      ],
+      "post-launch": [
+        {
+          "a": "Your dedicated Slack channel is the quickest line to the team, and your account manager is across everything. This portal always shows where things stand.",
+          "q": "How do I get help fast?"
+        }
+      ],
+      "testing": [
+        {
+          "a": "You'll call your own number and talk to your AI receptionist exactly as a customer would — how it answers, what it says, how it captures the enquiry — before any real customer hears it.",
+          "q": "What happens in the test call?"
+        },
+        {
+          "a": "That's what the test is for. Note anything that sounds off and we'll tune it before your system goes live.",
+          "q": "What if the AI gets something wrong?"
+        }
+      ]
+    },
+    "brandName": null,
+    "clientType": "respond",
+    "currentDayCap": 10,
+    "formSteps": {
+      "respond-onboarding-intake-v1": "rsp-012"
+    },
+    "headerName": {
+      "aurora": "CRM",
+      "calm": "CRM",
+      "cobalt": "CRM",
+      "current": "crm",
+      "grove": "CRM",
+      "groveaurora": "CRM",
+      "handoff": "crm"
+    },
+    "hidesIncentive": false,
+    "hubBrand": {
+      "aurora": "CRM",
+      "cobalt": "CRM",
+      "grove": "CRM",
+      "handoff": "crm"
+    },
+    "introVideo": null,
+    "journeyStatus": {
+      "formStepId": "rsp-012",
+      "nonBlocking": [],
+      "visible": [
+        {
+          "id": "rsp-000",
+          "stageName": "Onboarding",
+          "title": "Your voice interview"
+        },
+        {
+          "id": "rsp-012",
+          "stageName": "Onboarding",
+          "title": "Tell us about your business"
+        },
+        {
+          "id": "rsp-014",
+          "stageName": "Onboarding",
+          "title": "Attend your Welcome Call & portal walkthrough"
+        },
+        {
+          "id": "rsp-015",
+          "stageName": "Onboarding",
+          "title": "Bookmark your portal link"
+        },
+        {
+          "id": "rsp-017",
+          "stageName": "Onboarding",
+          "title": "Upload your client database (CSV)"
+        },
+        {
+          "id": "rsp-018",
+          "stageName": "Onboarding",
+          "title": "Review & approve your AI qualification questions"
+        },
+        {
+          "id": "rsp-048",
+          "stageName": "Testing",
+          "title": "Test your AI receptionist live"
+        },
+        {
+          "id": "rsp-049",
+          "stageName": "Testing",
+          "title": "Download the LeadConnector app"
+        },
+        {
+          "id": "rsp-059",
+          "stageName": "Go-Live",
+          "title": "Your Go-Live walkthrough"
+        },
+        {
+          "id": "rsp-062",
+          "stageName": "Go-Live",
+          "title": "Approve updating your website & Google Business Profile"
+        },
+        {
+          "id": "rsp-064",
+          "stageName": "Go-Live",
+          "title": "You're live! Access your recording & support links"
+        },
+        {
+          "id": "rsp-072",
+          "stageName": "Post-Launch",
+          "title": "Share your experience — send us a testimonial"
+        },
+        {
+          "id": "rsp-073",
+          "stageName": "Post-Launch",
+          "title": "Your check-in calls"
+        }
+      ]
+    },
+    "journeyTemplate": [
+      {
+        "dayEnd": 2,
+        "dayStart": 1,
+        "id": "onboarding",
+        "milestones": [
+          {
+            "detail": "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+            "id": "rsp-000",
+            "interview": [
+              "What does your business do, and who do you do it for?",
+              "Which services or products do you most want more enquiries for?",
+              "Who is your ideal customer, and where are they?",
+              "Why do customers choose you over someone else?",
+              "What happens today when a new enquiry comes in?",
+              "What would a great result look like 90 days from now?"
+            ],
+            "interviewAgentId": "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+            "noteRequired": true,
+            "title": "Your voice interview"
+          },
+          {
+            "detail": "A few details so we can set up your AI receptionist — about 10 minutes, before your Welcome Call.",
+            "formId": "respond-onboarding-intake-v1",
+            "id": "rsp-012",
+            "title": "Tell us about your business"
+          },
+          {
+            "bookingUrl": "https://go.rt-d.com/jesse30",
+            "detail": "We'll walk you through your portal, your project milestones, and the messaging center on the call. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.",
+            "id": "rsp-014",
+            "title": "Attend your Welcome Call & portal walkthrough"
+          },
+          {
+            "detail": "Save your portal link so you can get back to it anytime — this is the one place to track your progress and message our team.",
+            "id": "rsp-015",
+            "showPortalLink": true,
+            "title": "Bookmark your portal link"
+          },
+          {
+            "detail": "Prepare a CSV of your past customers and leads — we'll walk you through the upload.",
+            "hasUpload": true,
+            "id": "rsp-017",
+            "title": "Upload your client database (CSV)"
+          },
+          {
+            "detail": "We'll go through your AI receptionist's qualifying questions together on the Welcome Call.",
+            "id": "rsp-018",
+            "title": "Review & approve your AI qualification questions"
+          }
+        ],
+        "name": "Onboarding",
+        "statusNotes": []
+      },
+      {
+        "blurb": "We're setting up your AI receptionist and CRM behind the scenes — a live test call before we go live.",
+        "dayEnd": 8,
+        "dayStart": 3,
+        "id": "testing",
+        "milestones": [
+          {
+            "detail": "On the AI Test Call we'll have you chat and speak with your AI to make sure it's ready to go.",
+            "id": "rsp-048",
+            "title": "Test your AI receptionist live"
+          },
+          {
+            "detail": "Search \"LeadConnector\" in the App Store or Google Play and install it before your Go-Live call.",
+            "id": "rsp-049",
+            "title": "Download the LeadConnector app",
+            "videoUrl": "/portal/download-app-walkthrough.mp4"
+          }
+        ],
+        "name": "Testing",
+        "statusNotes": [
+          "Your AI receptionist is being configured — no action needed from you yet.",
+          "Your CRM and pipeline access is being set up — you'll get a login once it's ready."
+        ]
+      },
+      {
+        "blurb": "Your system goes live — we'll walk your team through everything.",
+        "dayEnd": 10,
+        "dayStart": 10,
+        "id": "go-live",
+        "milestones": [
+          {
+            "detail": "On the Go-Live call we'll show you how to handle calls, contacts, AI summaries, and notifications.",
+            "id": "rsp-059",
+            "title": "Your Go-Live walkthrough"
+          },
+          {
+            "detail": "We'll switch your website and Google listing to your new AI phone number — we just need your go-ahead.",
+            "id": "rsp-062",
+            "notePrompt": "Anything to flag before we make the switch?",
+            "title": "Approve updating your website & Google Business Profile"
+          },
+          {
+            "detail": "Your system is live. Check your portal messages for your call recording, user manual, and support resources.",
+            "id": "rsp-064",
+            "title": "You're live! Access your recording & support links"
+          }
+        ],
+        "name": "Go-Live",
+        "statusNotes": [
+          "Your subscription fees have now officially commenced."
+        ]
+      },
+      {
+        "blurb": "Ongoing support once you're live.",
+        "dayEnd": 11,
+        "dayStart": 11,
+        "id": "post-launch",
+        "milestones": [
+          {
+            "detail": "We'd love to hear how it's going. A short video or written testimonial means the world to us!",
+            "id": "rsp-072",
+            "notePrompt": "Paste your testimonial here, or a link to your video",
+            "title": "Share your experience — send us a testimonial"
+          },
+          {
+            "detail": "We'll schedule regular check-ins to review performance and answer questions — we'll confirm times in your portal (weekly, then monthly).",
+            "id": "rsp-073",
+            "title": "Your check-in calls"
+          }
+        ],
+        "name": "Post-Launch",
+        "statusNotes": [
+          "Your account is actively monitored — performance reports available monthly."
+        ]
+      }
+    ],
+    "label": "CRM — Respond",
+    "lockedLook": null,
+    "receptionistScriptStep": "rsp-018",
+    "renderSamples": {
+      "all@day30": [
+        {
+          "dayEnd": 2,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+              "id": "rsp-000",
+              "interview": [
+                "What does your business do, and who do you do it for?",
+                "Which services or products do you most want more enquiries for?",
+                "Who is your ideal customer, and where are they?",
+                "Why do customers choose you over someone else?",
+                "What happens today when a new enquiry comes in?",
+                "What would a great result look like 90 days from now?"
+              ],
+              "interviewAgentId": "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Your voice interview"
+            },
+            {
+              "detail": "A few details so we can set up your AI receptionist — about 10 minutes, before your Welcome Call.",
+              "formId": "respond-onboarding-intake-v1",
+              "id": "rsp-012",
+              "status": "done",
+              "title": "Tell us about your business"
+            },
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "We'll walk you through your portal, your project milestones, and the messaging center on the call. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.",
+              "id": "rsp-014",
+              "status": "done",
+              "title": "Attend your Welcome Call & portal walkthrough"
+            },
+            {
+              "detail": "Save your portal link so you can get back to it anytime — this is the one place to track your progress and message our team.",
+              "id": "rsp-015",
+              "showPortalLink": true,
+              "status": "done",
+              "title": "Bookmark your portal link"
+            },
+            {
+              "detail": "Prepare a CSV of your past customers and leads — we'll walk you through the upload.",
+              "hasUpload": true,
+              "id": "rsp-017",
+              "status": "done",
+              "title": "Upload your client database (CSV)"
+            },
+            {
+              "detail": "We'll go through your AI receptionist's qualifying questions together on the Welcome Call.",
+              "id": "rsp-018",
+              "status": "done",
+              "title": "Review & approve your AI qualification questions"
+            }
+          ],
+          "name": "Onboarding",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "We're setting up your AI receptionist and CRM behind the scenes — a live test call before we go live.",
+          "dayEnd": 8,
+          "dayStart": 3,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "On the AI Test Call we'll have you chat and speak with your AI to make sure it's ready to go.",
+              "id": "rsp-048",
+              "status": "done",
+              "title": "Test your AI receptionist live"
+            },
+            {
+              "detail": "Search \"LeadConnector\" in the App Store or Google Play and install it before your Go-Live call.",
+              "id": "rsp-049",
+              "status": "done",
+              "title": "Download the LeadConnector app",
+              "videoUrl": "/portal/download-app-walkthrough.mp4"
+            }
+          ],
+          "name": "Testing",
+          "status": "done",
+          "statusNotes": [
+            "Your AI receptionist is being configured — no action needed from you yet.",
+            "Your CRM and pipeline access is being set up — you'll get a login once it's ready."
+          ]
+        },
+        {
+          "blurb": "Your system goes live — we'll walk your team through everything.",
+          "dayEnd": 10,
+          "dayStart": 10,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "On the Go-Live call we'll show you how to handle calls, contacts, AI summaries, and notifications.",
+              "id": "rsp-059",
+              "status": "done",
+              "title": "Your Go-Live walkthrough"
+            },
+            {
+              "detail": "We'll switch your website and Google listing to your new AI phone number — we just need your go-ahead.",
+              "id": "rsp-062",
+              "notePrompt": "Anything to flag before we make the switch?",
+              "status": "done",
+              "title": "Approve updating your website & Google Business Profile"
+            },
+            {
+              "detail": "Your system is live. Check your portal messages for your call recording, user manual, and support resources.",
+              "id": "rsp-064",
+              "status": "done",
+              "title": "You're live! Access your recording & support links"
+            }
+          ],
+          "name": "Go-Live",
+          "status": "done",
+          "statusNotes": [
+            "Your subscription fees have now officially commenced."
+          ]
+        },
+        {
+          "blurb": "Ongoing support once you're live.",
+          "dayEnd": 11,
+          "dayStart": 11,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "detail": "We'd love to hear how it's going. A short video or written testimonial means the world to us!",
+              "id": "rsp-072",
+              "notePrompt": "Paste your testimonial here, or a link to your video",
+              "status": "done",
+              "title": "Share your experience — send us a testimonial"
+            },
+            {
+              "detail": "We'll schedule regular check-ins to review performance and answer questions — we'll confirm times in your portal (weekly, then monthly).",
+              "id": "rsp-073",
+              "status": "done",
+              "title": "Your check-in calls"
+            }
+          ],
+          "name": "Post-Launch",
+          "status": "done",
+          "statusNotes": [
+            "Your account is actively monitored — performance reports available monthly."
+          ]
+        }
+      ],
+      "none@day1": [
+        {
+          "dayEnd": 2,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+              "id": "rsp-000",
+              "interview": [
+                "What does your business do, and who do you do it for?",
+                "Which services or products do you most want more enquiries for?",
+                "Who is your ideal customer, and where are they?",
+                "Why do customers choose you over someone else?",
+                "What happens today when a new enquiry comes in?",
+                "What would a great result look like 90 days from now?"
+              ],
+              "interviewAgentId": "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+              "noteRequired": true,
+              "status": "current",
+              "title": "Your voice interview"
+            },
+            {
+              "detail": "A few details so we can set up your AI receptionist — about 10 minutes, before your Welcome Call.",
+              "formId": "respond-onboarding-intake-v1",
+              "id": "rsp-012",
+              "status": "upcoming",
+              "title": "Tell us about your business"
+            },
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "We'll walk you through your portal, your project milestones, and the messaging center on the call. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.",
+              "id": "rsp-014",
+              "status": "upcoming",
+              "title": "Attend your Welcome Call & portal walkthrough"
+            },
+            {
+              "detail": "Save your portal link so you can get back to it anytime — this is the one place to track your progress and message our team.",
+              "id": "rsp-015",
+              "showPortalLink": true,
+              "status": "upcoming",
+              "title": "Bookmark your portal link"
+            },
+            {
+              "detail": "Prepare a CSV of your past customers and leads — we'll walk you through the upload.",
+              "hasUpload": true,
+              "id": "rsp-017",
+              "status": "upcoming",
+              "title": "Upload your client database (CSV)"
+            },
+            {
+              "detail": "We'll go through your AI receptionist's qualifying questions together on the Welcome Call.",
+              "id": "rsp-018",
+              "status": "upcoming",
+              "title": "Review & approve your AI qualification questions"
+            }
+          ],
+          "name": "Onboarding",
+          "status": "current",
+          "statusNotes": []
+        },
+        {
+          "blurb": "We're setting up your AI receptionist and CRM behind the scenes — a live test call before we go live.",
+          "dayEnd": 8,
+          "dayStart": 3,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "On the AI Test Call we'll have you chat and speak with your AI to make sure it's ready to go.",
+              "id": "rsp-048",
+              "status": "upcoming",
+              "title": "Test your AI receptionist live"
+            },
+            {
+              "detail": "Search \"LeadConnector\" in the App Store or Google Play and install it before your Go-Live call.",
+              "id": "rsp-049",
+              "status": "upcoming",
+              "title": "Download the LeadConnector app",
+              "videoUrl": "/portal/download-app-walkthrough.mp4"
+            }
+          ],
+          "name": "Testing",
+          "status": "locked",
+          "statusNotes": [
+            "Your AI receptionist is being configured — no action needed from you yet.",
+            "Your CRM and pipeline access is being set up — you'll get a login once it's ready."
+          ]
+        },
+        {
+          "blurb": "Your system goes live — we'll walk your team through everything.",
+          "dayEnd": 10,
+          "dayStart": 10,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "On the Go-Live call we'll show you how to handle calls, contacts, AI summaries, and notifications.",
+              "id": "rsp-059",
+              "status": "upcoming",
+              "title": "Your Go-Live walkthrough"
+            },
+            {
+              "detail": "We'll switch your website and Google listing to your new AI phone number — we just need your go-ahead.",
+              "id": "rsp-062",
+              "notePrompt": "Anything to flag before we make the switch?",
+              "status": "upcoming",
+              "title": "Approve updating your website & Google Business Profile"
+            },
+            {
+              "detail": "Your system is live. Check your portal messages for your call recording, user manual, and support resources.",
+              "id": "rsp-064",
+              "status": "upcoming",
+              "title": "You're live! Access your recording & support links"
+            }
+          ],
+          "name": "Go-Live",
+          "status": "locked",
+          "statusNotes": [
+            "Your subscription fees have now officially commenced."
+          ]
+        },
+        {
+          "blurb": "Ongoing support once you're live.",
+          "dayEnd": 11,
+          "dayStart": 11,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "detail": "We'd love to hear how it's going. A short video or written testimonial means the world to us!",
+              "id": "rsp-072",
+              "notePrompt": "Paste your testimonial here, or a link to your video",
+              "status": "upcoming",
+              "title": "Share your experience — send us a testimonial"
+            },
+            {
+              "detail": "We'll schedule regular check-ins to review performance and answer questions — we'll confirm times in your portal (weekly, then monthly).",
+              "id": "rsp-073",
+              "status": "upcoming",
+              "title": "Your check-in calls"
+            }
+          ],
+          "name": "Post-Launch",
+          "status": "locked",
+          "statusNotes": [
+            "Your account is actively monitored — performance reports available monthly."
+          ]
+        }
+      ]
+    },
+    "renders": {
+      "all@day1": "f0a89526fa975d4ad72f9818844a9b54c063b21298e53ca82e1cdcbe6d29faf2",
+      "all@day12": "f0a89526fa975d4ad72f9818844a9b54c063b21298e53ca82e1cdcbe6d29faf2",
+      "all@day30": "f0a89526fa975d4ad72f9818844a9b54c063b21298e53ca82e1cdcbe6d29faf2",
+      "alternate@day1": "299c62b52fa36590b4e327b379fa9d9781aa103c0b087a96bdf6fabf63c66e06",
+      "alternate@day12": "299c62b52fa36590b4e327b379fa9d9781aa103c0b087a96bdf6fabf63c66e06",
+      "alternate@day30": "299c62b52fa36590b4e327b379fa9d9781aa103c0b087a96bdf6fabf63c66e06",
+      "first-10@day1": "477c233506e41cb079e5eccd5a62c99cb485c9db32eb41ecaa3c17e8a4161c1a",
+      "first-10@day12": "477c233506e41cb079e5eccd5a62c99cb485c9db32eb41ecaa3c17e8a4161c1a",
+      "first-10@day30": "477c233506e41cb079e5eccd5a62c99cb485c9db32eb41ecaa3c17e8a4161c1a",
+      "first-11@day1": "ad5273a56e08a1f05bada227ba802c61b10a58788108beb9aad056c094713fca",
+      "first-11@day12": "ad5273a56e08a1f05bada227ba802c61b10a58788108beb9aad056c094713fca",
+      "first-11@day30": "ad5273a56e08a1f05bada227ba802c61b10a58788108beb9aad056c094713fca",
+      "first-12@day1": "de331177ad0a374080b868672475a31ebddb178bf5371f204b209008cd2115ef",
+      "first-12@day12": "de331177ad0a374080b868672475a31ebddb178bf5371f204b209008cd2115ef",
+      "first-12@day30": "de331177ad0a374080b868672475a31ebddb178bf5371f204b209008cd2115ef",
+      "first-13@day1": "f0a89526fa975d4ad72f9818844a9b54c063b21298e53ca82e1cdcbe6d29faf2",
+      "first-13@day12": "f0a89526fa975d4ad72f9818844a9b54c063b21298e53ca82e1cdcbe6d29faf2",
+      "first-13@day30": "f0a89526fa975d4ad72f9818844a9b54c063b21298e53ca82e1cdcbe6d29faf2",
+      "first-1@day1": "a58cf1bf34156e9c393eb819809c0a4252d135b4093ac1b0e2f080ec24fea25e",
+      "first-1@day12": "a58cf1bf34156e9c393eb819809c0a4252d135b4093ac1b0e2f080ec24fea25e",
+      "first-1@day30": "a58cf1bf34156e9c393eb819809c0a4252d135b4093ac1b0e2f080ec24fea25e",
+      "first-2@day1": "f908f1fe0e4849e83545398a8dfe7ad9c50ebcec9fedd31477a48aa29d8e88c3",
+      "first-2@day12": "f908f1fe0e4849e83545398a8dfe7ad9c50ebcec9fedd31477a48aa29d8e88c3",
+      "first-2@day30": "f908f1fe0e4849e83545398a8dfe7ad9c50ebcec9fedd31477a48aa29d8e88c3",
+      "first-3@day1": "685bc386835755d263083ced40afa77e38ffdd697525dc0b4e71c1a786cd6ed3",
+      "first-3@day12": "685bc386835755d263083ced40afa77e38ffdd697525dc0b4e71c1a786cd6ed3",
+      "first-3@day30": "685bc386835755d263083ced40afa77e38ffdd697525dc0b4e71c1a786cd6ed3",
+      "first-4@day1": "0d0471bcafd69fdd55cf6cb09cf9a92e01ac591d551233b5ad673585091bc7fe",
+      "first-4@day12": "0d0471bcafd69fdd55cf6cb09cf9a92e01ac591d551233b5ad673585091bc7fe",
+      "first-4@day30": "0d0471bcafd69fdd55cf6cb09cf9a92e01ac591d551233b5ad673585091bc7fe",
+      "first-5@day1": "6ca5af86998b946f269f31732af0ff8d661b0a30b7dea79d141bcdce8e8dde90",
+      "first-5@day12": "6ca5af86998b946f269f31732af0ff8d661b0a30b7dea79d141bcdce8e8dde90",
+      "first-5@day30": "6ca5af86998b946f269f31732af0ff8d661b0a30b7dea79d141bcdce8e8dde90",
+      "first-6@day1": "237f60e89c99ea9119c8775b776d42b982792be682f4f65ea61d228da2ccc8a2",
+      "first-6@day12": "237f60e89c99ea9119c8775b776d42b982792be682f4f65ea61d228da2ccc8a2",
+      "first-6@day30": "237f60e89c99ea9119c8775b776d42b982792be682f4f65ea61d228da2ccc8a2",
+      "first-7@day1": "80553159ccb4797a385b4abb5dee23e0653c729c41bdb4986fcb4bc6aad9ad4a",
+      "first-7@day12": "80553159ccb4797a385b4abb5dee23e0653c729c41bdb4986fcb4bc6aad9ad4a",
+      "first-7@day30": "80553159ccb4797a385b4abb5dee23e0653c729c41bdb4986fcb4bc6aad9ad4a",
+      "first-8@day1": "854efe0357f620b3931e728b3f156231a1b93eab5a6fbd5d8143d67d15c91df4",
+      "first-8@day12": "854efe0357f620b3931e728b3f156231a1b93eab5a6fbd5d8143d67d15c91df4",
+      "first-8@day30": "854efe0357f620b3931e728b3f156231a1b93eab5a6fbd5d8143d67d15c91df4",
+      "first-9@day1": "ae7c209f370817ccb033fd0e3a867bee90188341f143e9314ae289a5d650cff4",
+      "first-9@day12": "ae7c209f370817ccb033fd0e3a867bee90188341f143e9314ae289a5d650cff4",
+      "first-9@day30": "ae7c209f370817ccb033fd0e3a867bee90188341f143e9314ae289a5d650cff4",
+      "last@day1": "372028e771f37789d581b7343869c4df8d22c0763e449255ec351adb3535bfe2",
+      "last@day12": "372028e771f37789d581b7343869c4df8d22c0763e449255ec351adb3535bfe2",
+      "last@day30": "372028e771f37789d581b7343869c4df8d22c0763e449255ec351adb3535bfe2",
+      "none@day1": "ca9e4904d18481ec494ea184b732723c5218c4e67955b886165c379a23af0f56",
+      "none@day12": "ca9e4904d18481ec494ea184b732723c5218c4e67955b886165c379a23af0f56",
+      "none@day30": "ca9e4904d18481ec494ea184b732723c5218c4e67955b886165c379a23af0f56"
+    },
+    "stageCompletedBy": {
+      "half": {
+        "rsp-000": "onboarding",
+        "rsp-012": "onboarding",
+        "rsp-014": "onboarding",
+        "rsp-015": "onboarding",
+        "rsp-017": "onboarding",
+        "rsp-018": "onboarding",
+        "rsp-048": null,
+        "rsp-049": "testing",
+        "rsp-059": null,
+        "rsp-062": null,
+        "rsp-064": null,
+        "rsp-072": null,
+        "rsp-073": null
+      },
+      "none": {
+        "rsp-000": null,
+        "rsp-012": null,
+        "rsp-014": null,
+        "rsp-015": null,
+        "rsp-017": null,
+        "rsp-018": null,
+        "rsp-048": null,
+        "rsp-049": null,
+        "rsp-059": null,
+        "rsp-062": null,
+        "rsp-064": null,
+        "rsp-072": null,
+        "rsp-073": null
+      }
+    },
+    "stageGuides": {
+      "go-live": {
+        "audioSrc": "/portal/voice/respond-go-live.m4a",
+        "script": "It's launch day. Your AI receptionist switches on and starts catching every call. We'll walk your team through everything."
+      },
+      "onboarding": {
+        "audioSrc": "/portal/voice/respond-onboarding.m4a",
+        "script": "Welcome aboard — great to have you. This first stage is about the essentials: your business details and access, so we can set up your AI receptionist. Work through the tasks at your own pace."
+      },
+      "post-launch": {
+        "audioSrc": "/portal/voice/respond-post-launch.m4a",
+        "script": "You're live — nice work getting here. From here we keep an eye on things, fine-tune, and stay in your corner. Anything you need, we're one message away."
+      },
+      "testing": {
+        "audioSrc": "/portal/voice/respond-testing.m4a",
+        "script": "We're setting up your AI receptionist and CRM behind the scenes. The main event here is a live test call — you'll hear it in action before a single customer does."
+      }
+    },
+    "steps": {
+      "rsp-000": {
+        "detail": "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+        "interviewAudioBase": "/portal/voice/interview-rsp-000",
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-012": {
+        "detail": "A few details so we can set up your AI receptionist — about 10 minutes, before your Welcome Call.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-014": {
+        "detail": "We'll walk you through your portal, your project milestones, and the messaging center on the call. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": true,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-015": {
+        "detail": "Save your portal link so you can get back to it anytime — this is the one place to track your progress and message our team.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-017": {
+        "detail": "Prepare a CSV of your past customers and leads — we'll walk you through the upload.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-018": {
+        "detail": "We'll go through your AI receptionist's qualifying questions together on the Welcome Call.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-048": {
+        "detail": "On the AI Test Call we'll have you chat and speak with your AI to make sure it's ready to go.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": true,
+        "showsVideo": false
+      },
+      "rsp-049": {
+        "detail": "Search \"LeadConnector\" in the App Store or Google Play and install it before your Go-Live call.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": true
+      },
+      "rsp-059": {
+        "detail": "On the Go-Live call we'll show you how to handle calls, contacts, AI summaries, and notifications.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-062": {
+        "detail": "We'll switch your website and Google listing to your new AI phone number — we just need your go-ahead.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-064": {
+        "detail": "Your system is live. Check your portal messages for your call recording, user manual, and support resources.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-072": {
+        "detail": "We'd love to hear how it's going. A short video or written testimonial means the world to us!",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "rsp-073": {
+        "detail": "We'll schedule regular check-ins to review performance and answer questions — we'll confirm times in your portal (weekly, then monthly).",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      }
+    },
+    "stringPlan": null,
+    "tabTitle": "Client Portal",
+    "tagline": null,
+    "totalDays": 10,
+    "totalMilestoneCount": 13,
+    "visibleIds": [
+      "rsp-000",
+      "rsp-012",
+      "rsp-014",
+      "rsp-015",
+      "rsp-017",
+      "rsp-018",
+      "rsp-048",
+      "rsp-049",
+      "rsp-059",
+      "rsp-062",
+      "rsp-064",
+      "rsp-072",
+      "rsp-073"
+    ],
+    "wordmark": "CRM"
+  },
+  "ssr": {
+    "aurora|all|day1": "5eef80ad93f748f40bacab3f9d22cde5ead8405585193abaebd75dae1c036401",
+    "aurora|all|day30": "f4c5729174ceeef34d7aa72e3f3abf7396d8b603b001fb5ce117af51d8065b61",
+    "aurora|half|day1": "4aa1ea7873c2588550812fd96374334efa745a6c842b56caab920d5ac3f606dc",
+    "aurora|half|day30": "a7fc807ecabb74845c9beb58dc84d48e3248e13e11c364f6fff73c5adc90224a",
+    "aurora|none|day1": "77d8145932b9a4d99b012dc4dbaf2e290c1f874142273bb3649d8ea2e43bb867",
+    "aurora|none|day30": "ae4c2c26fc481244b8ed1e78d5d4c19b435523e453aeb9ac299561874bf0fbd5",
+    "calm|all|day1": "388c9f8f0a230e0525fd99ae8da9afa9758e45198de71e5abd9aaeedfab0d1df",
+    "calm|all|day30": "a3d2f5601de892c16115113d14a39711be0aa5c0c4fbec4772c0ca1c73c0782c",
+    "calm|half|day1": "75c5c0440a9963e7005f55aaacc0d01125df687cc715a2ced32d2b4e7a582927",
+    "calm|half|day30": "8f099d2eab3621c6032c5b3e0bc795d9d151e0d0fed01f0c931cfb7f2c8b0f9f",
+    "calm|none|day1": "c4a0426bdc08ef8ac8fdced2080bdb284effd5222beee9a886cc88413ec90738",
+    "calm|none|day30": "138ee25fb835d81a7d13dbe8f556c52dedb34742c212317bd4648a75926e458e",
+    "cobalt|all|day1": "9bc911f066fed62f3811a604f91c615803bfa81a0b784180fd773db43bdb4cc2",
+    "cobalt|all|day30": "468dc6d064e128d37ae8781363dbb125064370a3c488124eccf6fa623feccf68",
+    "cobalt|half|day1": "205cc25ef6e52221dbae87c28eeb84659b750edb17c8ec6e84fcbe91697c131f",
+    "cobalt|half|day30": "8c902da203cd3d170bd95a342327b76296f0254ce79552d55ffd85bedcc0e65f",
+    "cobalt|none|day1": "7747897c3862745d7aba506f5f5334a84e21ec993eebc5b3425a4494efa626f4",
+    "cobalt|none|day30": "fcd3682e8481ec3f226eadb9b3e2a01768937cd72a836dce3c2cdad936d00701",
+    "cool|all|day1": "5b47b0748e7c5684fb802c5e3bc156e9ac39f2c3d89d53adb5e0f3786215c89b",
+    "cool|all|day30": "3c9d8702caf16e29dcf27821cb9d1cb8455380041f49062b5d622a3e689866d2",
+    "cool|half|day1": "028aea45a23feaa1bfde0076e4ca5089ddb04bbfe281f7ca70712ef6b9daa74f",
+    "cool|half|day30": "4e5d73ff2b480a52ee70c4bc083065d6f1ead69313f794916c0f1387add58525",
+    "cool|none|day1": "d973b987660f3363e43349b3ad49940ecedd3c865f190aa07b102639ec4fbcb9",
+    "cool|none|day30": "d8e5a4c8aa82a3c718ae80ac1ca1c9b7752186dbd88848e10a60c672bb3a5b34",
+    "groveaurora|all|day1": "cc5bde53b2cb67a4393065b06033b2b0a68c43f738de995e61a50c239ba96578",
+    "groveaurora|all|day30": "bb04efcc0b4be4adda5c9ec755dd1ea54b0df9536ec36b602e34d3c4cf93e909",
+    "groveaurora|half|day1": "a6811dea79364b1ed87df4fd08d8ceaa1560cfffac726836b9de7d78886b698a",
+    "groveaurora|half|day30": "bf5c20b928365295fc1df1d649b844308672099cb650a7ac83e315baa74e8414",
+    "groveaurora|none|day1": "0b6fc5c63ff97373ab77d6c1ea093f3cb19e6a950a11145cd144e10290a8472b",
+    "groveaurora|none|day30": "2ba67a4bf7b0c5b23e3f9c7fdfdeb5f196e820d11ab11dc8f25c0fd1c2537bfb",
+    "grove|all|day1": "6dc333155440b35862a682c559345b91e9b20b65219f988273ae3fc1f5f3836f",
+    "grove|all|day30": "43b36f3c76f4dd3c9070f638e4233be4cc5bec73b193c8cc98514a958d0e04cc",
+    "grove|half|day1": "d5012e7381ce53dadceab8b79ba93368cd78cedc65dabd896a08fcc01ab152eb",
+    "grove|half|day30": "bdaf56ae61ce9bae1a31b1d37647f2226f940cf1ea9aac5c3117f4757d0851d2",
+    "grove|none|day1": "4eb88a36ba976e5cc45a7fa2267b6fcee69cb045e9a163de5ec994c61690cb5f",
+    "grove|none|day30": "2dbabd951e2dd08859951d7878ba4fbe898696530decc62412a93c4c9f3c382e",
+    "handoff|all|day1": "41f69cb43efcb84f4942df6b9ce37ea9e6fb4302615551cc2c5813c23dbd36ae",
+    "handoff|all|day30": "71f7d7e47b844d205dd5159facfc2bdf6233bff11ea1895f0ddf486d5ac0a4b0",
+    "handoff|half|day1": "b89bfc7eaf431063bc177e17263ffd509591ad75c8f45cdcf7209fb0e3e856ac",
+    "handoff|half|day30": "5a66f9f0550574861dd0bc7847c891fc72979c6608b927f16439030a62500e07",
+    "handoff|none|day1": "8c96aa90005ad191ca0dd8b321b297ef3e1b53164bff429688d51c7855eabc24",
+    "handoff|none|day30": "fbdd00dd9496a373768e89e807a66c9e2ab42923c872a159eef9c6665ea52b64",
+    "neutral|all|day1": "b43df42ef557012e5f285b1d26e34ce1c9c6789d034a4479e2abc2ba7eaed874",
+    "neutral|all|day30": "2096b4209004f6e10f72bdc379d3b56fbc62b11a7503bdbc655d7f1a29086522",
+    "neutral|half|day1": "56d1490339b68c7c0b2c30aa24c6cafe7d9e320c0ae493c25bf6520b30b27926",
+    "neutral|half|day30": "172c42782d8f82637e7887a434463f1b4a8fef5ecfa6baf43c06e6ac8aea6621",
+    "neutral|none|day1": "4ad57d150310952ab070861d5ae56ae53ae5c6c326a2cb07147715146167a2a2",
+    "neutral|none|day30": "99ec14f78a98ef3d365fbcb937e7ab1fb957a387baed350651567b7162436354",
+    "warm|all|day1": "cfac9a93ab485d05ba42175f588166dd1d22cc5cbbd8e264b0f2ec901abc7bcd",
+    "warm|all|day30": "ecd23526efca84806bbba9b406221d7dfafafe883eaead51637441946123aa6e",
+    "warm|half|day1": "452660ef3e89c71fdc155e67d6fa9c1a114062e5ff2b342d2b52087dc8394ead",
+    "warm|half|day30": "76f57b213ce8efda8321861e64b7e0db9f5b9a7e83328d86dae22c1a0c80bd24",
+    "warm|none|day1": "76c018ab5557d0473096e0b255a60ad63fd67b58b59fe9b2760c5215a43d397d",
+    "warm|none|day30": "d9384256c2257df0192c9e9279808a2ad56a2ac62d5e61b33c4525e5a2e69ca5"
+  },
+  "welcome": {
+    "aurora": "4cdab5058f3696803e9a114810eddfa7bc395d56c685f0e03b7bf2c8d4c00e7e",
+    "funnel": "8797fa22b09594abc608729c0734b1b73f97d418908ddc0b1b03e4040fcfbf81",
+    "funnel-grove": "0d1447612d9a1f79c7b06935b0e8d7900c839c6e5028fc74d78015be7c2fcc13",
+    "marquee": "9f2a5a647f8e6189a7df294b27d4a0454b676639f91b63841daed03b5b28f166",
+    "mosaic": "8d35043c64346b40b32a1cc69b6f4980134b74235be115a96cc33f0ba019e657"
+  }
+}

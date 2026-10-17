@@ -13,6 +13,7 @@
     "db:generate": "drizzle-kit generate",
     "sync:live-dashboard": "node scripts/sync-live-dashboard.mjs",
     "check:fin": "tsx scripts/check-fin-journey.ts",
+    "check:journeys": "tsx scripts/check-journeys.ts",
     "products:check": "tsx scripts/products/check.ts",
     "products:render": "tsx scripts/products/render.ts",
     "products:lock": "tsx scripts/products/check.ts --write-lock",

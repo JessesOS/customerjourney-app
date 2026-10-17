@@ -16,7 +16,7 @@ This one session owns the portal and the back office. GHL automation belongs to 
 
 - **Fin Creighton** (Bitcoin Success School) has used the live portal since 2026-10-16. His product is `bss-meta` ("BSS Meta ads only"): the Scale journey for Meta only, plus product-level notes and hides in `lib/journeyEngine.ts`.
 - **Every deploy to the live worker needs Jesse's explicit OK.** Send it as a package: the commits, the checks run, the version currently live, a D1 time-travel bookmark, and the rollback command.
-- **`npm run check:fin` must pass before every commit and deploy.** It proves everything Fin's portal is built from is unchanged. Only re-save its baseline (`-- --write`) for a change Jesse approved.
+- **`npm run check:fin` and `npm run check:journeys` must pass before every commit and deploy.** check:fin proves everything Fin's portal is built from is unchanged; check:journeys does the same for every client type, Fin's included. Only re-save a baseline (`-- --write`) for a change Jesse approved.
 - **Never open Fin's link in a normal browser.** It records a visit as his. Use `curl`, or a browser where admin is unlocked.
 - **Never put Cloudflare Access on `scale-onboarding-portal.jesse-b4e.workers.dev`.** That address is every client's link. Access goes on team hostnames only.
 
@@ -51,10 +51,7 @@ npx wrangler deploy --config dist/server/wrangler.staging.json
 
 - **`main` (with `motion-redesign`) is the live line.**
 - **Back-office work goes on branch `team-board`.**
-- Keep this `git diff main...team-board` empty, so Fin's portal can't change by accident:
-  - `app/portal/**`, `app/components/portal/**`, `app/api/portal/**`
-  - `lib/{onboardingJourney,respondJourney,bssJourney,journeyEngine,onboardingForm,stageGuide,stringPlans}.ts`
-  - `app/layout.tsx`, `app/globals.css`
+- **Frozen journeys, not frozen files (2026-10-17).** The portal now reads its journeys from `products/`, so `app/portal/**`, `app/components/portal/**` and `lib/journey*.ts` differ from `main` on purpose; the empty-diff rule no longer applies. What protects clients is their output. `npm run check:journeys` freezes, for every client type (meta, google, meta-google, bss-meta, respond, bss and an unknown type), everything the portal is built from and shows: steps and wording, every stage render, days, branding, per-step tweaks, voice guides, Ask-AI, String Theory, admin counts and labels, and the portal's server-rendered markup in every look (`scripts/fixtures/journeys/`). `npm run check:fin` still guards Fin's own baseline. Both must pass before every commit, merge and deploy. Re-save a fixture (`npm run check:journeys -- --write <type>`) only for a change Jesse approved; `bss-meta` also needs `--yes-fin`. The fixtures can't see CSS: `app/globals.css` and `app/layout.tsx` still need Jesse's OK. After merging `main`: if a fixture differs only because of a portal change already approved on `main`, inspect it with `--dump <dir>`, re-save it and say so in the commit message.
 - **Feature flags** `TEAM_BOARD` / `TEAM_BOARD_AUTOSEED` (Worker vars): on in staging, off in prod until go-live.
 
 ## Products

@@ -1,0 +1,1597 @@
+{
+  "data": {
+    "adminChecklist": [
+      {
+        "id": "onboarding",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "ob-0",
+            "title": "Your voice interview"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-1",
+            "title": "Tell us about your business"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-2",
+            "title": "Book your Welcome Call & portal walkthrough"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-3",
+            "title": "Review & approve your AI receptionist's qualification questions"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-5",
+            "title": "Review your SMS/Email message copy"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-4",
+            "title": "Download the mobile app"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-crm",
+            "title": "Log into your CRM"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-6",
+            "title": "Connect your calendar"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-6b",
+            "title": "Connect your social accounts"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-6c",
+            "title": "Set up a payment mechanism"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ob-7",
+            "title": "Upload your past leads (CSV)"
+          }
+        ],
+        "name": "Onboarding"
+      },
+      {
+        "id": "build",
+        "milestones": [],
+        "name": "Build"
+      },
+      {
+        "id": "testing",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "ts-1",
+            "title": "Confirm your app, calendar & social accounts are connected"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ts-2",
+            "title": "Test your AI receptionist live"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "ts-3",
+            "title": "Book your Go-Live Call"
+          }
+        ],
+        "name": "Testing"
+      },
+      {
+        "id": "go-live",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "gl-1",
+            "title": "Attend your Go-Live walkthrough call"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "gl-2",
+            "title": "Learn your live system"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "gl-3",
+            "title": "See your AI in action"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "gl-4",
+            "title": "Set your team's usage standards"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "gl-5",
+            "title": "You're live — access your recording & support links"
+          }
+        ],
+        "name": "Go-Live"
+      },
+      {
+        "id": "post-launch",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "pl-1",
+            "title": "Book your Week 1 check-in call"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "pl-2",
+            "title": "Book your Week 2 check-in call"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "pl-3",
+            "title": "Send us a testimonial"
+          }
+        ],
+        "name": "Post-Launch"
+      }
+    ],
+    "adminDayTotal": 30,
+    "adminLabel": "Scale — Meta + Google Ads",
+    "askItems": {
+      "build": [
+        {
+          "a": "Ads switch on at Go-Live, around day 30 of your journey. Build runs days 2–13 — you'll approve your campaigns and creative here first, so nothing goes live without your sign-off.",
+          "q": "When do my ads go live?"
+        },
+        {
+          "a": "Your ad strategy, your creative assets, and how your AI receptionist speaks. Each approval task shows you the work below it — have a look, and approve or leave a note for changes.",
+          "q": "What exactly am I approving?"
+        },
+        {
+          "a": "Absolutely. Every approval task has a notes box — tell us what you'd like different and we'll revise before anything ships. It's your brand; we want it right.",
+          "q": "Can I ask for changes?"
+        }
+      ],
+      "go-live": [
+        {
+          "a": "Your team gets a walkthrough as we switch on, and you'll see enquiries land in your CRM in real time. We're watching closely from our side through launch week.",
+          "q": "How do I know it's working?"
+        },
+        {
+          "a": "Campaigns start delivering as soon as they're live, and lead flow typically builds over the first weeks as the ads optimise. Post-Launch is where we review the numbers together.",
+          "q": "When will I see leads?"
+        }
+      ],
+      "onboarding": [
+        {
+          "a": "Onboarding is the first couple of days of your 30-day journey — mostly telling us about your business, plus a few access tasks. Knock them out in one sitting if you like; the moment they're done, our build starts.",
+          "q": "How long does onboarding take?"
+        },
+        {
+          "a": "No stress — complete what you can and leave a note on the task about the one that's stuck. Your account manager will help you track it down, and it won't hold up the rest of the build.",
+          "q": "What if I can't find a login?"
+        },
+        {
+          "a": "Only the team working on your account. Your details go straight into building your campaigns and AI receptionist — nothing is shared outside your project.",
+          "q": "Who sees what I submit?"
+        }
+      ],
+      "post-launch": [
+        {
+          "a": "We review performance with you — what's coming in, what it's costing, what we're tuning next. You don't need to decode dashboards alone; that's our job.",
+          "q": "How do I read my results?"
+        },
+        {
+          "a": "Your dedicated Slack channel is the quickest line to the team, and your account manager is across everything. This portal always shows where things stand.",
+          "q": "How do I get help fast?"
+        }
+      ],
+      "testing": [
+        {
+          "a": "Around day 14 you'll call your own number and talk to your AI receptionist exactly as a customer would. You'll hear how it answers, books, and handles questions — before any real customer does.",
+          "q": "What happens in the test call?"
+        },
+        {
+          "a": "That's what the test is for. Note anything that sounds off — wording, pricing, how it handles a question — and we'll tune it before Go-Live.",
+          "q": "What if the AI gets something wrong?"
+        }
+      ]
+    },
+    "brandName": null,
+    "clientType": "zz-unknown",
+    "currentDayCap": 30,
+    "formSteps": {
+      "scale-onboarding-intake-v1": "ob-1"
+    },
+    "headerName": {
+      "aurora": "Scale",
+      "calm": "Scale",
+      "cobalt": "Scale",
+      "current": "scale",
+      "grove": "Scale",
+      "groveaurora": "Scale",
+      "handoff": "scale"
+    },
+    "hidesIncentive": false,
+    "hubBrand": {
+      "aurora": "Scale",
+      "cobalt": "Scale",
+      "grove": "Scale",
+      "handoff": "scale"
+    },
+    "introVideo": null,
+    "journeyStatus": {
+      "formStepId": "ob-1",
+      "nonBlocking": [
+        "ob-crm",
+        "ob-6",
+        "ob-6b",
+        "ob-6c",
+        "ob-7"
+      ],
+      "visible": [
+        {
+          "id": "ob-0",
+          "stageName": "Onboarding",
+          "title": "Your voice interview"
+        },
+        {
+          "id": "ob-1",
+          "stageName": "Onboarding",
+          "title": "Tell us about your business"
+        },
+        {
+          "id": "ob-2",
+          "stageName": "Onboarding",
+          "title": "Book your Welcome Call & portal walkthrough"
+        },
+        {
+          "id": "ob-3",
+          "stageName": "Onboarding",
+          "title": "Review & approve your AI receptionist's qualification questions"
+        },
+        {
+          "id": "ob-5",
+          "stageName": "Onboarding",
+          "title": "Review your SMS/Email message copy"
+        },
+        {
+          "id": "ob-4",
+          "stageName": "Onboarding",
+          "title": "Download the mobile app"
+        },
+        {
+          "id": "ob-crm",
+          "stageName": "Onboarding",
+          "title": "Log into your CRM"
+        },
+        {
+          "id": "ob-6",
+          "stageName": "Onboarding",
+          "title": "Connect your calendar"
+        },
+        {
+          "id": "ob-6b",
+          "stageName": "Onboarding",
+          "title": "Connect your social accounts"
+        },
+        {
+          "id": "ob-6c",
+          "stageName": "Onboarding",
+          "title": "Set up a payment mechanism"
+        },
+        {
+          "id": "ob-7",
+          "stageName": "Onboarding",
+          "title": "Upload your past leads (CSV)"
+        },
+        {
+          "id": "ts-1",
+          "stageName": "Testing",
+          "title": "Confirm your app, calendar & social accounts are connected"
+        },
+        {
+          "id": "ts-2",
+          "stageName": "Testing",
+          "title": "Test your AI receptionist live"
+        },
+        {
+          "id": "ts-3",
+          "stageName": "Testing",
+          "title": "Book your Go-Live Call"
+        },
+        {
+          "id": "gl-1",
+          "stageName": "Go-Live",
+          "title": "Attend your Go-Live walkthrough call"
+        },
+        {
+          "id": "gl-2",
+          "stageName": "Go-Live",
+          "title": "Learn your live system"
+        },
+        {
+          "id": "gl-3",
+          "stageName": "Go-Live",
+          "title": "See your AI in action"
+        },
+        {
+          "id": "gl-4",
+          "stageName": "Go-Live",
+          "title": "Set your team's usage standards"
+        },
+        {
+          "id": "gl-5",
+          "stageName": "Go-Live",
+          "title": "You're live — access your recording & support links"
+        },
+        {
+          "id": "pl-1",
+          "stageName": "Post-Launch",
+          "title": "Book your Week 1 check-in call"
+        },
+        {
+          "id": "pl-2",
+          "stageName": "Post-Launch",
+          "title": "Book your Week 2 check-in call"
+        },
+        {
+          "id": "pl-3",
+          "stageName": "Post-Launch",
+          "title": "Send us a testimonial"
+        }
+      ]
+    },
+    "journeyTemplate": [
+      {
+        "dayEnd": 2,
+        "dayStart": 1,
+        "id": "onboarding",
+        "milestones": [
+          {
+            "detail": "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+            "id": "ob-0",
+            "interview": [
+              "What does your business do, and who do you do it for?",
+              "Which services or products do you most want more enquiries for?",
+              "Who is your ideal customer, and where are they?",
+              "Why do customers choose you over someone else?",
+              "What happens today when a new enquiry comes in?",
+              "What would a great result look like 90 days from now?"
+            ],
+            "interviewAgentId": "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+            "noteRequired": true,
+            "title": "Your voice interview"
+          },
+          {
+            "detail": "Your details, access and branding — about 15 minutes, best done in one sitting.",
+            "formId": "scale-onboarding-intake-v1",
+            "id": "ob-1",
+            "title": "Tell us about your business"
+          },
+          {
+            "bookingUrl": "https://go.rt-d.com/jesse30",
+            "detail": "A live 30-minute walkthrough of your portal, your milestones, and your messaging center. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.",
+            "id": "ob-2",
+            "title": "Book your Welcome Call & portal walkthrough"
+          },
+          {
+            "detail": "Our team has drafted the qualification questions your AI will ask incoming leads, based on how you'd train a new team member. Take a look below and approve, or leave a note if you'd like anything adjusted.",
+            "hasEditableContent": true,
+            "id": "ob-3",
+            "notePrompt": "Any adjustments or requests for these questions?",
+            "title": "Review & approve your AI receptionist's qualification questions"
+          },
+          {
+            "detail": "Our team has drafted the SMS and email messages your AI will send on your behalf. Take a look below and approve, or leave a note if you'd like anything changed.",
+            "hasEditableContent": true,
+            "id": "ob-5",
+            "notePrompt": "Any changes you'd like to this messaging?",
+            "title": "Review your SMS/Email message copy"
+          },
+          {
+            "detail": "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.",
+            "id": "ob-4",
+            "title": "Download the mobile app",
+            "videoUrl": "/portal/download-app-walkthrough.mp4"
+          },
+          {
+            "detail": "Before you can complete your Build-Phase action steps, you need to successfully log into your new CRM dashboard.",
+            "guideLabel": "Open your CRM login",
+            "guideUrl": "https://crm.rtdigital.agency/",
+            "id": "ob-crm",
+            "important": "Forgot your password? Click \"Forgot password\" on the login page to reset it. Still stuck? Ask for help in your dedicated Slack channel, or right here in the messaging center.",
+            "steps": [
+              "Check your inbox — look for a welcome email from our team containing your login details.",
+              "Open your CRM login page with the button above.",
+              "When prompted, sign in with your email address and create your password — use the main password you shared with us on your initial sales call."
+            ],
+            "title": "Log into your CRM"
+          },
+          {
+            "detail": "Connect your calendar so your AI can see your availability and book appointments straight into it. Follow the step-by-step guide below.",
+            "guideLabel": "Step-by-step guide",
+            "guideUrl": "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Set_Up_Calendars_and_Availability_in_your_CRM__7GRN6aWmSHSHoV8rVvqyzw",
+            "id": "ob-6",
+            "title": "Connect your calendar",
+            "videoUrl": "/portal/connect-accounts-walkthrough.mp4"
+          },
+          {
+            "detail": "Connect your social accounts so your AI can respond to messages and comments across your channels. Follow the step-by-step guide below.",
+            "guideLabel": "Step-by-step guide",
+            "guideUrl": "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Connecting_Facebook_in_your_CRM__W7guqe5_Sy6-nMadYtAPyw",
+            "id": "ob-6b",
+            "title": "Connect your social accounts",
+            "videoUrl": "/portal/connect-accounts-walkthrough.mp4"
+          },
+          {
+            "detail": "Go to Settings → Billing to connect your preferred payment mechanism for seamless transactions.",
+            "id": "ob-6c",
+            "important": "Without this we can't send SMS or emails, which will stall your build progress.",
+            "title": "Set up a payment mechanism"
+          },
+          {
+            "detail": "Helps train your AI on what a good lead looks like for you.",
+            "hasUpload": true,
+            "id": "ob-7",
+            "title": "Upload your past leads (CSV)"
+          },
+          {
+            "detail": "Google My Business, domain, and website builder access.",
+            "hidden": true,
+            "id": "ob-8",
+            "title": "Grant access to your accounts",
+            "videoUrl": "/portal/grant-access-walkthrough.mp4"
+          }
+        ],
+        "name": "Onboarding",
+        "statusNotes": [
+          "Your project timeline: Days 2-13 Build, Day 14 AI Test, Day 30 Go-Live.",
+          "Your subscription fees begin 14-30 days from purchase."
+        ]
+      },
+      {
+        "blurb": "We're building your campaigns, assets, and AI receptionist — a few approvals needed along the way.",
+        "dayEnd": 13,
+        "dayStart": 2,
+        "id": "build",
+        "milestones": [
+          {
+            "channels": [
+              "meta"
+            ],
+            "detail": "We've drafted your lead magnet — take a look at the doc below and approve it, or leave a note if you'd like any revisions, before we build the landing page.",
+            "hasEditableContent": true,
+            "id": "bd-1",
+            "notePrompt": "Any revisions or amendments you'd like?",
+            "title": "Review & approve your eBook lead magnet content"
+          },
+          {
+            "channels": [
+              "meta"
+            ],
+            "detail": "Your ad strategy doc and creatives are ready below for final sign-off. Take a look and approve, or leave a note if you'd like anything changed.",
+            "hasEditableContent": true,
+            "id": "bd-2",
+            "notePrompt": "Any changes you'd like to the strategy or creative?",
+            "title": "Approve your Meta ad campaigns & creative assets"
+          },
+          {
+            "channels": [
+              "meta"
+            ],
+            "detail": "Add us as a Partner in Meta Business Suite so we can launch your campaigns. Watch the walkthrough below, then use our Business ID and step-by-step guide.",
+            "guideLabel": "Step-by-step guide",
+            "guideUrl": "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/How_to_Add_RT_Digital_as_a_Partner_on_Meta_Business_Suite__9EIRy1GpRLSzuofqDb0XYQ",
+            "hasEditableContent": true,
+            "id": "bd-3",
+            "title": "Grant us partner access to your Meta Business Suite",
+            "videoUrl": "/portal/meta-partner-access-walkthrough.mp4"
+          },
+          {
+            "channels": [
+              "google"
+            ],
+            "detail": "We connect your Google Ads account to our manager account so we can build and run your campaigns — no passwords needed. Share your Google Ads Customer ID below (you'll find it in the top-right corner of your Google Ads account) and we'll send the link request. Don't have a Google Ads account yet? Just tell us in the same box and we'll set one up with you.",
+            "id": "bd-g1",
+            "important": "After we send the request, Google will email you to approve it. Keep an eye on your inbox and click Accept — we can't start building until the link is approved.",
+            "notePlaceholder": "e.g. 123-456-7890 — from the top-right of your Google Ads account",
+            "notePrompt": "Your Google Ads Customer ID",
+            "noteRequired": true,
+            "title": "Link your Google Ads account to ours"
+          },
+          {
+            "channels": [
+              "google"
+            ],
+            "detail": "These are the searches we'll put you in front of — the exact phrases people type when they're ready to call someone like you. This first list is built from your website so you can steer us early; our ads team is checking it against live search volumes and will confirm the final plan with you. Tell us anything to add or cut.",
+            "hasEditableContent": true,
+            "id": "bd-g3",
+            "notePlaceholder": "e.g. add \"emergency hot water\", drop anything about commercial jobs",
+            "notePrompt": "Any keywords to add, or work you don't want to bid on?",
+            "title": "Review & approve your Google Ads keywords"
+          },
+          {
+            "channels": [
+              "google"
+            ],
+            "detail": "We've drafted the landing page your Google ads will send visitors to. Read it through below and approve, or leave a note if you'd like anything changed before we build the page.",
+            "hasEditableContent": true,
+            "id": "bd-g2",
+            "notePrompt": "Any changes you'd like to the landing page copy?",
+            "title": "Review & approve your Google Ads landing page copy"
+          },
+          {
+            "channels": [
+              "meta"
+            ],
+            "detail": "A short recorded walkthrough showing exactly what's going live and how leads will flow in.",
+            "hidden": true,
+            "id": "bd-4",
+            "title": "Watch your ad campaign walkthrough video",
+            "videoUrl": "/portal/ad-campaign-walkthrough.mp4"
+          }
+        ],
+        "name": "Build",
+        "statusNotes": [
+          "Your AI receptionist is being configured — no action needed from you yet.",
+          "Your CRM access is being set up — you'll get a login once it's ready."
+        ]
+      },
+      {
+        "blurb": "A live test of your AI receptionist before we go live.",
+        "dayEnd": 14,
+        "dayStart": 14,
+        "id": "testing",
+        "milestones": [
+          {
+            "detail": "A quick check that everything is linked correctly before the test.",
+            "id": "ts-1",
+            "title": "Confirm your app, calendar & social accounts are connected"
+          },
+          {
+            "detail": "Try to stump it with different scenarios — this is how we make it better for you.",
+            "id": "ts-2",
+            "title": "Test your AI receptionist live"
+          },
+          {
+            "bookingUrl": "https://go.rt-d.com/jesse30",
+            "detail": "Testing looks good — time to lock in your go-live walkthrough. Pick a time that suits you below and we'll send a calendar invite with everything you need to join.",
+            "id": "ts-3",
+            "title": "Book your Go-Live Call"
+          }
+        ],
+        "name": "Testing",
+        "statusNotes": [
+          "We'll fine-tune your AI based on your test feedback — no action needed from you."
+        ]
+      },
+      {
+        "blurb": "Your system goes live — we'll walk your team through everything.",
+        "dayEnd": 30,
+        "dayStart": 30,
+        "id": "go-live",
+        "milestones": [
+          {
+            "detail": "Your booking details are below — they're also in your calendar invite. We'll get your team confident using the live system before we finish.",
+            "hasEditableContent": true,
+            "id": "gl-1",
+            "title": "Attend your Go-Live walkthrough call"
+          },
+          {
+            "detail": "Calls, texts, missed-call handling — all in one app.",
+            "id": "gl-2",
+            "title": "Learn your live system"
+          },
+          {
+            "detail": "Live call summaries, coaching notes, and real lead handling, demoed live.",
+            "id": "gl-3",
+            "title": "See your AI in action"
+          },
+          {
+            "detail": "How your team should use the app day-to-day, so nothing falls through the cracks.",
+            "id": "gl-4",
+            "title": "Set your team's usage standards"
+          },
+          {
+            "detail": "Everything you need in one message: call recording, user manual, and support contact.",
+            "id": "gl-5",
+            "title": "You're live — access your recording & support links"
+          }
+        ],
+        "name": "Go-Live",
+        "statusNotes": [
+          "Your subscription fees have now officially commenced."
+        ]
+      },
+      {
+        "blurb": "Ongoing support once you're live.",
+        "dayEnd": 31,
+        "dayStart": 31,
+        "id": "post-launch",
+        "milestones": [
+          {
+            "bookingUrl": "https://go.rt-d.com/jesse30",
+            "detail": "A quick check-in to make sure everything's running smoothly. Pick a time that suits you below.",
+            "id": "pl-1",
+            "title": "Book your Week 1 check-in call"
+          },
+          {
+            "bookingUrl": "https://go.rt-d.com/jesse30",
+            "detail": "Another check-in before we move to monthly calls. Pick a time that suits you below.",
+            "id": "pl-2",
+            "title": "Book your Week 2 check-in call"
+          },
+          {
+            "detail": "We'd love to hear how it's going — this helps us and future clients like you.",
+            "embedNote": "Two minutes, means the world — written or video, whatever suits you.",
+            "embedTitle": "Leave your testimonial",
+            "embedUrl": "https://senja.io/p/tradeai/r/ssh63o",
+            "id": "pl-3",
+            "title": "Send us a testimonial"
+          }
+        ],
+        "name": "Post-Launch",
+        "statusNotes": [
+          "Your account is actively monitored — performance reports available monthly."
+        ]
+      }
+    ],
+    "label": null,
+    "lockedLook": null,
+    "receptionistScriptStep": "ob-3",
+    "renderSamples": {
+      "all@day30": [
+        {
+          "dayEnd": 2,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+              "id": "ob-0",
+              "interview": [
+                "What does your business do, and who do you do it for?",
+                "Which services or products do you most want more enquiries for?",
+                "Who is your ideal customer, and where are they?",
+                "Why do customers choose you over someone else?",
+                "What happens today when a new enquiry comes in?",
+                "What would a great result look like 90 days from now?"
+              ],
+              "interviewAgentId": "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Your voice interview"
+            },
+            {
+              "detail": "Your details, access and branding — about 15 minutes, best done in one sitting.",
+              "formId": "scale-onboarding-intake-v1",
+              "id": "ob-1",
+              "status": "done",
+              "title": "Tell us about your business"
+            },
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "A live 30-minute walkthrough of your portal, your milestones, and your messaging center. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.",
+              "id": "ob-2",
+              "status": "done",
+              "title": "Book your Welcome Call & portal walkthrough"
+            },
+            {
+              "detail": "Our team has drafted the qualification questions your AI will ask incoming leads, based on how you'd train a new team member. Take a look below and approve, or leave a note if you'd like anything adjusted.",
+              "hasEditableContent": true,
+              "id": "ob-3",
+              "notePrompt": "Any adjustments or requests for these questions?",
+              "status": "done",
+              "title": "Review & approve your AI receptionist's qualification questions"
+            },
+            {
+              "detail": "Our team has drafted the SMS and email messages your AI will send on your behalf. Take a look below and approve, or leave a note if you'd like anything changed.",
+              "hasEditableContent": true,
+              "id": "ob-5",
+              "notePrompt": "Any changes you'd like to this messaging?",
+              "status": "done",
+              "title": "Review your SMS/Email message copy"
+            },
+            {
+              "detail": "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.",
+              "id": "ob-4",
+              "status": "done",
+              "title": "Download the mobile app",
+              "videoUrl": "/portal/download-app-walkthrough.mp4"
+            },
+            {
+              "detail": "Before you can complete your Build-Phase action steps, you need to successfully log into your new CRM dashboard.",
+              "guideLabel": "Open your CRM login",
+              "guideUrl": "https://crm.rtdigital.agency/",
+              "id": "ob-crm",
+              "important": "Forgot your password? Click \"Forgot password\" on the login page to reset it. Still stuck? Ask for help in your dedicated Slack channel, or right here in the messaging center.",
+              "status": "done",
+              "steps": [
+                "Check your inbox — look for a welcome email from our team containing your login details.",
+                "Open your CRM login page with the button above.",
+                "When prompted, sign in with your email address and create your password — use the main password you shared with us on your initial sales call."
+              ],
+              "title": "Log into your CRM"
+            },
+            {
+              "detail": "Connect your calendar so your AI can see your availability and book appointments straight into it. Follow the step-by-step guide below.",
+              "guideLabel": "Step-by-step guide",
+              "guideUrl": "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Set_Up_Calendars_and_Availability_in_your_CRM__7GRN6aWmSHSHoV8rVvqyzw",
+              "id": "ob-6",
+              "status": "done",
+              "title": "Connect your calendar",
+              "videoUrl": "/portal/connect-accounts-walkthrough.mp4"
+            },
+            {
+              "detail": "Connect your social accounts so your AI can respond to messages and comments across your channels. Follow the step-by-step guide below.",
+              "guideLabel": "Step-by-step guide",
+              "guideUrl": "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Connecting_Facebook_in_your_CRM__W7guqe5_Sy6-nMadYtAPyw",
+              "id": "ob-6b",
+              "status": "done",
+              "title": "Connect your social accounts",
+              "videoUrl": "/portal/connect-accounts-walkthrough.mp4"
+            },
+            {
+              "detail": "Go to Settings → Billing to connect your preferred payment mechanism for seamless transactions.",
+              "id": "ob-6c",
+              "important": "Without this we can't send SMS or emails, which will stall your build progress.",
+              "status": "done",
+              "title": "Set up a payment mechanism"
+            },
+            {
+              "detail": "Helps train your AI on what a good lead looks like for you.",
+              "hasUpload": true,
+              "id": "ob-7",
+              "status": "done",
+              "title": "Upload your past leads (CSV)"
+            }
+          ],
+          "name": "Onboarding",
+          "status": "done",
+          "statusNotes": [
+            "Your project timeline: Days 2-13 Build, Day 14 AI Test, Day 30 Go-Live.",
+            "Your subscription fees begin 14-30 days from purchase."
+          ]
+        },
+        {
+          "blurb": "We're building your campaigns, assets, and AI receptionist — a few approvals needed along the way.",
+          "dayEnd": 13,
+          "dayStart": 2,
+          "id": "build",
+          "milestones": [],
+          "name": "Build",
+          "status": "done",
+          "statusNotes": [
+            "Your AI receptionist is being configured — no action needed from you yet.",
+            "Your CRM access is being set up — you'll get a login once it's ready."
+          ]
+        },
+        {
+          "blurb": "A live test of your AI receptionist before we go live.",
+          "dayEnd": 14,
+          "dayStart": 14,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "A quick check that everything is linked correctly before the test.",
+              "id": "ts-1",
+              "status": "done",
+              "title": "Confirm your app, calendar & social accounts are connected"
+            },
+            {
+              "detail": "Try to stump it with different scenarios — this is how we make it better for you.",
+              "id": "ts-2",
+              "status": "done",
+              "title": "Test your AI receptionist live"
+            },
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "Testing looks good — time to lock in your go-live walkthrough. Pick a time that suits you below and we'll send a calendar invite with everything you need to join.",
+              "id": "ts-3",
+              "status": "done",
+              "title": "Book your Go-Live Call"
+            }
+          ],
+          "name": "Testing",
+          "status": "done",
+          "statusNotes": [
+            "We'll fine-tune your AI based on your test feedback — no action needed from you."
+          ]
+        },
+        {
+          "blurb": "Your system goes live — we'll walk your team through everything.",
+          "dayEnd": 30,
+          "dayStart": 30,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "Your booking details are below — they're also in your calendar invite. We'll get your team confident using the live system before we finish.",
+              "hasEditableContent": true,
+              "id": "gl-1",
+              "status": "done",
+              "title": "Attend your Go-Live walkthrough call"
+            },
+            {
+              "detail": "Calls, texts, missed-call handling — all in one app.",
+              "id": "gl-2",
+              "status": "done",
+              "title": "Learn your live system"
+            },
+            {
+              "detail": "Live call summaries, coaching notes, and real lead handling, demoed live.",
+              "id": "gl-3",
+              "status": "done",
+              "title": "See your AI in action"
+            },
+            {
+              "detail": "How your team should use the app day-to-day, so nothing falls through the cracks.",
+              "id": "gl-4",
+              "status": "done",
+              "title": "Set your team's usage standards"
+            },
+            {
+              "detail": "Everything you need in one message: call recording, user manual, and support contact.",
+              "id": "gl-5",
+              "status": "done",
+              "title": "You're live — access your recording & support links"
+            }
+          ],
+          "name": "Go-Live",
+          "status": "done",
+          "statusNotes": [
+            "Your subscription fees have now officially commenced."
+          ]
+        },
+        {
+          "blurb": "Ongoing support once you're live.",
+          "dayEnd": 31,
+          "dayStart": 31,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "A quick check-in to make sure everything's running smoothly. Pick a time that suits you below.",
+              "id": "pl-1",
+              "status": "done",
+              "title": "Book your Week 1 check-in call"
+            },
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "Another check-in before we move to monthly calls. Pick a time that suits you below.",
+              "id": "pl-2",
+              "status": "done",
+              "title": "Book your Week 2 check-in call"
+            },
+            {
+              "detail": "We'd love to hear how it's going — this helps us and future clients like you.",
+              "embedNote": "Two minutes, means the world — written or video, whatever suits you.",
+              "embedTitle": "Leave your testimonial",
+              "embedUrl": "https://senja.io/p/tradeai/r/ssh63o",
+              "id": "pl-3",
+              "status": "done",
+              "title": "Send us a testimonial"
+            }
+          ],
+          "name": "Post-Launch",
+          "status": "done",
+          "statusNotes": [
+            "Your account is actively monitored — performance reports available monthly."
+          ]
+        }
+      ],
+      "none@day1": [
+        {
+          "dayEnd": 2,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+              "id": "ob-0",
+              "interview": [
+                "What does your business do, and who do you do it for?",
+                "Which services or products do you most want more enquiries for?",
+                "Who is your ideal customer, and where are they?",
+                "Why do customers choose you over someone else?",
+                "What happens today when a new enquiry comes in?",
+                "What would a great result look like 90 days from now?"
+              ],
+              "interviewAgentId": "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+              "noteRequired": true,
+              "status": "current",
+              "title": "Your voice interview"
+            },
+            {
+              "detail": "Your details, access and branding — about 15 minutes, best done in one sitting.",
+              "formId": "scale-onboarding-intake-v1",
+              "id": "ob-1",
+              "status": "upcoming",
+              "title": "Tell us about your business"
+            },
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "A live 30-minute walkthrough of your portal, your milestones, and your messaging center. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.",
+              "id": "ob-2",
+              "status": "upcoming",
+              "title": "Book your Welcome Call & portal walkthrough"
+            },
+            {
+              "detail": "Our team has drafted the qualification questions your AI will ask incoming leads, based on how you'd train a new team member. Take a look below and approve, or leave a note if you'd like anything adjusted.",
+              "hasEditableContent": true,
+              "id": "ob-3",
+              "notePrompt": "Any adjustments or requests for these questions?",
+              "status": "upcoming",
+              "title": "Review & approve your AI receptionist's qualification questions"
+            },
+            {
+              "detail": "Our team has drafted the SMS and email messages your AI will send on your behalf. Take a look below and approve, or leave a note if you'd like anything changed.",
+              "hasEditableContent": true,
+              "id": "ob-5",
+              "notePrompt": "Any changes you'd like to this messaging?",
+              "status": "upcoming",
+              "title": "Review your SMS/Email message copy"
+            },
+            {
+              "detail": "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.",
+              "id": "ob-4",
+              "status": "upcoming",
+              "title": "Download the mobile app",
+              "videoUrl": "/portal/download-app-walkthrough.mp4"
+            },
+            {
+              "detail": "Before you can complete your Build-Phase action steps, you need to successfully log into your new CRM dashboard.",
+              "guideLabel": "Open your CRM login",
+              "guideUrl": "https://crm.rtdigital.agency/",
+              "id": "ob-crm",
+              "important": "Forgot your password? Click \"Forgot password\" on the login page to reset it. Still stuck? Ask for help in your dedicated Slack channel, or right here in the messaging center.",
+              "status": "upcoming",
+              "steps": [
+                "Check your inbox — look for a welcome email from our team containing your login details.",
+                "Open your CRM login page with the button above.",
+                "When prompted, sign in with your email address and create your password — use the main password you shared with us on your initial sales call."
+              ],
+              "title": "Log into your CRM"
+            },
+            {
+              "detail": "Connect your calendar so your AI can see your availability and book appointments straight into it. Follow the step-by-step guide below.",
+              "guideLabel": "Step-by-step guide",
+              "guideUrl": "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Set_Up_Calendars_and_Availability_in_your_CRM__7GRN6aWmSHSHoV8rVvqyzw",
+              "id": "ob-6",
+              "status": "upcoming",
+              "title": "Connect your calendar",
+              "videoUrl": "/portal/connect-accounts-walkthrough.mp4"
+            },
+            {
+              "detail": "Connect your social accounts so your AI can respond to messages and comments across your channels. Follow the step-by-step guide below.",
+              "guideLabel": "Step-by-step guide",
+              "guideUrl": "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Connecting_Facebook_in_your_CRM__W7guqe5_Sy6-nMadYtAPyw",
+              "id": "ob-6b",
+              "status": "upcoming",
+              "title": "Connect your social accounts",
+              "videoUrl": "/portal/connect-accounts-walkthrough.mp4"
+            },
+            {
+              "detail": "Go to Settings → Billing to connect your preferred payment mechanism for seamless transactions.",
+              "id": "ob-6c",
+              "important": "Without this we can't send SMS or emails, which will stall your build progress.",
+              "status": "upcoming",
+              "title": "Set up a payment mechanism"
+            },
+            {
+              "detail": "Helps train your AI on what a good lead looks like for you.",
+              "hasUpload": true,
+              "id": "ob-7",
+              "status": "upcoming",
+              "title": "Upload your past leads (CSV)"
+            }
+          ],
+          "name": "Onboarding",
+          "status": "current",
+          "statusNotes": [
+            "Your project timeline: Days 2-13 Build, Day 14 AI Test, Day 30 Go-Live.",
+            "Your subscription fees begin 14-30 days from purchase."
+          ]
+        },
+        {
+          "blurb": "We're building your campaigns, assets, and AI receptionist — a few approvals needed along the way.",
+          "dayEnd": 13,
+          "dayStart": 2,
+          "id": "build",
+          "milestones": [],
+          "name": "Build",
+          "status": "done",
+          "statusNotes": [
+            "Your AI receptionist is being configured — no action needed from you yet.",
+            "Your CRM access is being set up — you'll get a login once it's ready."
+          ]
+        },
+        {
+          "blurb": "A live test of your AI receptionist before we go live.",
+          "dayEnd": 14,
+          "dayStart": 14,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "A quick check that everything is linked correctly before the test.",
+              "id": "ts-1",
+              "status": "upcoming",
+              "title": "Confirm your app, calendar & social accounts are connected"
+            },
+            {
+              "detail": "Try to stump it with different scenarios — this is how we make it better for you.",
+              "id": "ts-2",
+              "status": "upcoming",
+              "title": "Test your AI receptionist live"
+            },
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "Testing looks good — time to lock in your go-live walkthrough. Pick a time that suits you below and we'll send a calendar invite with everything you need to join.",
+              "id": "ts-3",
+              "status": "upcoming",
+              "title": "Book your Go-Live Call"
+            }
+          ],
+          "name": "Testing",
+          "status": "locked",
+          "statusNotes": [
+            "We'll fine-tune your AI based on your test feedback — no action needed from you."
+          ]
+        },
+        {
+          "blurb": "Your system goes live — we'll walk your team through everything.",
+          "dayEnd": 30,
+          "dayStart": 30,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "Your booking details are below — they're also in your calendar invite. We'll get your team confident using the live system before we finish.",
+              "hasEditableContent": true,
+              "id": "gl-1",
+              "status": "upcoming",
+              "title": "Attend your Go-Live walkthrough call"
+            },
+            {
+              "detail": "Calls, texts, missed-call handling — all in one app.",
+              "id": "gl-2",
+              "status": "upcoming",
+              "title": "Learn your live system"
+            },
+            {
+              "detail": "Live call summaries, coaching notes, and real lead handling, demoed live.",
+              "id": "gl-3",
+              "status": "upcoming",
+              "title": "See your AI in action"
+            },
+            {
+              "detail": "How your team should use the app day-to-day, so nothing falls through the cracks.",
+              "id": "gl-4",
+              "status": "upcoming",
+              "title": "Set your team's usage standards"
+            },
+            {
+              "detail": "Everything you need in one message: call recording, user manual, and support contact.",
+              "id": "gl-5",
+              "status": "upcoming",
+              "title": "You're live — access your recording & support links"
+            }
+          ],
+          "name": "Go-Live",
+          "status": "locked",
+          "statusNotes": [
+            "Your subscription fees have now officially commenced."
+          ]
+        },
+        {
+          "blurb": "Ongoing support once you're live.",
+          "dayEnd": 31,
+          "dayStart": 31,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "A quick check-in to make sure everything's running smoothly. Pick a time that suits you below.",
+              "id": "pl-1",
+              "status": "upcoming",
+              "title": "Book your Week 1 check-in call"
+            },
+            {
+              "bookingUrl": "https://go.rt-d.com/jesse30",
+              "detail": "Another check-in before we move to monthly calls. Pick a time that suits you below.",
+              "id": "pl-2",
+              "status": "upcoming",
+              "title": "Book your Week 2 check-in call"
+            },
+            {
+              "detail": "We'd love to hear how it's going — this helps us and future clients like you.",
+              "embedNote": "Two minutes, means the world — written or video, whatever suits you.",
+              "embedTitle": "Leave your testimonial",
+              "embedUrl": "https://senja.io/p/tradeai/r/ssh63o",
+              "id": "pl-3",
+              "status": "upcoming",
+              "title": "Send us a testimonial"
+            }
+          ],
+          "name": "Post-Launch",
+          "status": "locked",
+          "statusNotes": [
+            "Your account is actively monitored — performance reports available monthly."
+          ]
+        }
+      ]
+    },
+    "renders": {
+      "all@day1": "3461e85444c026ab63ef736754218581e6b3ecd217e43dd04e961a61433b87ab",
+      "all@day12": "3461e85444c026ab63ef736754218581e6b3ecd217e43dd04e961a61433b87ab",
+      "all@day30": "3461e85444c026ab63ef736754218581e6b3ecd217e43dd04e961a61433b87ab",
+      "alternate@day1": "7382f12e0b56edd6217a8fc9e1147912ab1a7a228ad986405498bf49b1407e30",
+      "alternate@day12": "7382f12e0b56edd6217a8fc9e1147912ab1a7a228ad986405498bf49b1407e30",
+      "alternate@day30": "7382f12e0b56edd6217a8fc9e1147912ab1a7a228ad986405498bf49b1407e30",
+      "first-10@day1": "1d6f81ef297d1b5f50506cdf491ce9e6bb3111430a5adf8afafedee4f5425eed",
+      "first-10@day12": "1d6f81ef297d1b5f50506cdf491ce9e6bb3111430a5adf8afafedee4f5425eed",
+      "first-10@day30": "1d6f81ef297d1b5f50506cdf491ce9e6bb3111430a5adf8afafedee4f5425eed",
+      "first-11@day1": "e47ff282315bf74b580eccbd3429c6b40b68eaf78dd7d299a1e8a809656f566f",
+      "first-11@day12": "e47ff282315bf74b580eccbd3429c6b40b68eaf78dd7d299a1e8a809656f566f",
+      "first-11@day30": "e47ff282315bf74b580eccbd3429c6b40b68eaf78dd7d299a1e8a809656f566f",
+      "first-12@day1": "f8b8f4c081b4dbe99eb5630b48ac8edd2f1c8ef32db15b0a20865391c3637d36",
+      "first-12@day12": "f8b8f4c081b4dbe99eb5630b48ac8edd2f1c8ef32db15b0a20865391c3637d36",
+      "first-12@day30": "f8b8f4c081b4dbe99eb5630b48ac8edd2f1c8ef32db15b0a20865391c3637d36",
+      "first-13@day1": "6a5bb954457426ebe8f7bfe5a9749bc0d0bd1223c73d2e437f7cd1398b716596",
+      "first-13@day12": "6a5bb954457426ebe8f7bfe5a9749bc0d0bd1223c73d2e437f7cd1398b716596",
+      "first-13@day30": "6a5bb954457426ebe8f7bfe5a9749bc0d0bd1223c73d2e437f7cd1398b716596",
+      "first-14@day1": "b70a9c441239e1524c62ab4eac0c1ebb7526f4965b4401aeed31a2a34fe29d1e",
+      "first-14@day12": "b70a9c441239e1524c62ab4eac0c1ebb7526f4965b4401aeed31a2a34fe29d1e",
+      "first-14@day30": "b70a9c441239e1524c62ab4eac0c1ebb7526f4965b4401aeed31a2a34fe29d1e",
+      "first-15@day1": "c792a19e4c779016b71de4b2d639251ed416e9ce35fbe5856c65cd769ec51dce",
+      "first-15@day12": "c792a19e4c779016b71de4b2d639251ed416e9ce35fbe5856c65cd769ec51dce",
+      "first-15@day30": "c792a19e4c779016b71de4b2d639251ed416e9ce35fbe5856c65cd769ec51dce",
+      "first-16@day1": "a8427a66dafd3b6eef989b43c5cb8820d3de06b260070d98bcf6aae5298ea9c8",
+      "first-16@day12": "a8427a66dafd3b6eef989b43c5cb8820d3de06b260070d98bcf6aae5298ea9c8",
+      "first-16@day30": "a8427a66dafd3b6eef989b43c5cb8820d3de06b260070d98bcf6aae5298ea9c8",
+      "first-17@day1": "04e98d8b7b6894b34f95869616c213b0041248e4a6a17f1921a2236f577a81cf",
+      "first-17@day12": "04e98d8b7b6894b34f95869616c213b0041248e4a6a17f1921a2236f577a81cf",
+      "first-17@day30": "04e98d8b7b6894b34f95869616c213b0041248e4a6a17f1921a2236f577a81cf",
+      "first-18@day1": "f955aa80cc2cacca254f5b69fa8cfb32a9704e4d0d195d00115dce654d7886b2",
+      "first-18@day12": "f955aa80cc2cacca254f5b69fa8cfb32a9704e4d0d195d00115dce654d7886b2",
+      "first-18@day30": "f955aa80cc2cacca254f5b69fa8cfb32a9704e4d0d195d00115dce654d7886b2",
+      "first-19@day1": "471e4237b6d32a2e7fab89826489d8a4e590841018680d625d9767e4b7e143ba",
+      "first-19@day12": "471e4237b6d32a2e7fab89826489d8a4e590841018680d625d9767e4b7e143ba",
+      "first-19@day30": "471e4237b6d32a2e7fab89826489d8a4e590841018680d625d9767e4b7e143ba",
+      "first-1@day1": "5c015e25dd985e94fc9e3efd01a2c7fac21237f4e7a58bca7a8a8e76f4570efd",
+      "first-1@day12": "5c015e25dd985e94fc9e3efd01a2c7fac21237f4e7a58bca7a8a8e76f4570efd",
+      "first-1@day30": "5c015e25dd985e94fc9e3efd01a2c7fac21237f4e7a58bca7a8a8e76f4570efd",
+      "first-20@day1": "8099375ca76079dd646886096d8ebabb61199d283c902f2471819f5fff703916",
+      "first-20@day12": "8099375ca76079dd646886096d8ebabb61199d283c902f2471819f5fff703916",
+      "first-20@day30": "8099375ca76079dd646886096d8ebabb61199d283c902f2471819f5fff703916",
+      "first-21@day1": "fbf6db5d8fd9cf6e66cf1c77a21be37683bcff77c37ae9af040a76f786da2a4e",
+      "first-21@day12": "fbf6db5d8fd9cf6e66cf1c77a21be37683bcff77c37ae9af040a76f786da2a4e",
+      "first-21@day30": "fbf6db5d8fd9cf6e66cf1c77a21be37683bcff77c37ae9af040a76f786da2a4e",
+      "first-22@day1": "3461e85444c026ab63ef736754218581e6b3ecd217e43dd04e961a61433b87ab",
+      "first-22@day12": "3461e85444c026ab63ef736754218581e6b3ecd217e43dd04e961a61433b87ab",
+      "first-22@day30": "3461e85444c026ab63ef736754218581e6b3ecd217e43dd04e961a61433b87ab",
+      "first-2@day1": "b3d841cdd704a6910c7ca32e625fcd6647da9878fd6a6f23f42c49d31461b9ab",
+      "first-2@day12": "b3d841cdd704a6910c7ca32e625fcd6647da9878fd6a6f23f42c49d31461b9ab",
+      "first-2@day30": "b3d841cdd704a6910c7ca32e625fcd6647da9878fd6a6f23f42c49d31461b9ab",
+      "first-3@day1": "02c6ea321079f4ceea209a4a742cb805656a45a082a7665a470df2a72089df8b",
+      "first-3@day12": "02c6ea321079f4ceea209a4a742cb805656a45a082a7665a470df2a72089df8b",
+      "first-3@day30": "02c6ea321079f4ceea209a4a742cb805656a45a082a7665a470df2a72089df8b",
+      "first-4@day1": "abe66a705770a92842474d518918e0caffcedd558a906d1ba629940405754f53",
+      "first-4@day12": "abe66a705770a92842474d518918e0caffcedd558a906d1ba629940405754f53",
+      "first-4@day30": "abe66a705770a92842474d518918e0caffcedd558a906d1ba629940405754f53",
+      "first-5@day1": "8601413becb84441a844138a3247382fffe0d127ede3f8399f75a6ef5772589f",
+      "first-5@day12": "8601413becb84441a844138a3247382fffe0d127ede3f8399f75a6ef5772589f",
+      "first-5@day30": "8601413becb84441a844138a3247382fffe0d127ede3f8399f75a6ef5772589f",
+      "first-6@day1": "ae2cafd1c3aa8cdb3aff01ca21712f8f21ee22ec919273c96e6ca2ab339c77ff",
+      "first-6@day12": "ae2cafd1c3aa8cdb3aff01ca21712f8f21ee22ec919273c96e6ca2ab339c77ff",
+      "first-6@day30": "ae2cafd1c3aa8cdb3aff01ca21712f8f21ee22ec919273c96e6ca2ab339c77ff",
+      "first-7@day1": "566d5a68e6f3fead8f09acc5cecc9793885d81936b2e629f6c16e5cfb6f9549c",
+      "first-7@day12": "566d5a68e6f3fead8f09acc5cecc9793885d81936b2e629f6c16e5cfb6f9549c",
+      "first-7@day30": "566d5a68e6f3fead8f09acc5cecc9793885d81936b2e629f6c16e5cfb6f9549c",
+      "first-8@day1": "e570638de1f7738dd01d945ae38ae8a92a3455d06562afe6c0dbeff515e6aa0b",
+      "first-8@day12": "e570638de1f7738dd01d945ae38ae8a92a3455d06562afe6c0dbeff515e6aa0b",
+      "first-8@day30": "e570638de1f7738dd01d945ae38ae8a92a3455d06562afe6c0dbeff515e6aa0b",
+      "first-9@day1": "0cd86c1bb3329aa0c75561f78221b2787a7ac8940ffbd1ff393eead3dde8daf8",
+      "first-9@day12": "0cd86c1bb3329aa0c75561f78221b2787a7ac8940ffbd1ff393eead3dde8daf8",
+      "first-9@day30": "0cd86c1bb3329aa0c75561f78221b2787a7ac8940ffbd1ff393eead3dde8daf8",
+      "last@day1": "5f7e89a623b2f27d82589425b536c9bf7d177beb7ff63e06c52321952e2c5af2",
+      "last@day12": "5f7e89a623b2f27d82589425b536c9bf7d177beb7ff63e06c52321952e2c5af2",
+      "last@day30": "5f7e89a623b2f27d82589425b536c9bf7d177beb7ff63e06c52321952e2c5af2",
+      "none@day1": "5ddb731e0b53bc136f8666d98264bc50e5fbd80e7cd76a2cce8a8bc7444d471d",
+      "none@day12": "5ddb731e0b53bc136f8666d98264bc50e5fbd80e7cd76a2cce8a8bc7444d471d",
+      "none@day30": "5ddb731e0b53bc136f8666d98264bc50e5fbd80e7cd76a2cce8a8bc7444d471d"
+    },
+    "stageCompletedBy": {
+      "half": {
+        "gl-1": null,
+        "gl-2": null,
+        "gl-3": null,
+        "gl-4": null,
+        "gl-5": null,
+        "ob-0": "onboarding",
+        "ob-1": "onboarding",
+        "ob-2": "onboarding",
+        "ob-3": "onboarding",
+        "ob-4": "onboarding",
+        "ob-5": "onboarding",
+        "ob-6": "onboarding",
+        "ob-6b": "onboarding",
+        "ob-6c": "onboarding",
+        "ob-7": "onboarding",
+        "ob-crm": "onboarding",
+        "pl-1": null,
+        "pl-2": null,
+        "pl-3": null,
+        "ts-1": null,
+        "ts-2": null,
+        "ts-3": null
+      },
+      "none": {
+        "gl-1": null,
+        "gl-2": null,
+        "gl-3": null,
+        "gl-4": null,
+        "gl-5": null,
+        "ob-0": null,
+        "ob-1": null,
+        "ob-2": null,
+        "ob-3": null,
+        "ob-4": null,
+        "ob-5": null,
+        "ob-6": null,
+        "ob-6b": null,
+        "ob-6c": null,
+        "ob-7": null,
+        "ob-crm": null,
+        "pl-1": null,
+        "pl-2": null,
+        "pl-3": null,
+        "ts-1": null,
+        "ts-2": null,
+        "ts-3": null
+      }
+    },
+    "stageGuides": {
+      "build": {
+        "audioSrc": "/portal/voice/scale-build.m4a",
+        "script": "This is where we get to work. Behind the scenes we're building your campaigns, your creative, and your AI receptionist. You'll see a few approvals land here — that's your chance to shape anything before it goes live."
+      },
+      "go-live": {
+        "audioSrc": "/portal/voice/scale-go-live.m4a",
+        "script": "It's launch day. Your campaigns switch on and real enquiries start flowing in. We'll walk your team through everything, and we're watching closely from our side."
+      },
+      "onboarding": {
+        "audioSrc": "/portal/voice/scale-onboarding.m4a",
+        "script": "Welcome aboard — great to have you. This first stage is about getting the essentials from you: your business details, account access, and branding. Work through the tasks at your own pace, and we'll take it from there."
+      },
+      "post-launch": {
+        "audioSrc": "/portal/voice/scale-post-launch.m4a",
+        "script": "You're live — nice work getting here. From now on it's about performance: we review the numbers, tune what's working, and stay in your corner. Anything you need, we're one message away."
+      },
+      "testing": {
+        "audioSrc": "/portal/voice/scale-testing.m4a",
+        "script": "Nearly there. This stage is one big dress rehearsal — you'll take a live test call from your AI receptionist and make sure everything feels right before launch."
+      }
+    },
+    "steps": {
+      "gl-1": {
+        "detail": "Your booking details are below — they're also in your calendar invite. We'll get your team confident using the live system before we finish.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "gl-2": {
+        "detail": "Calls, texts, missed-call handling — all in one app.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "gl-3": {
+        "detail": "Live call summaries, coaching notes, and real lead handling, demoed live.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "gl-4": {
+        "detail": "How your team should use the app day-to-day, so nothing falls through the cracks.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "gl-5": {
+        "detail": "Everything you need in one message: call recording, user manual, and support contact.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ob-0": {
+        "detail": "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
+        "interviewAudioBase": "/portal/voice/interview-ob-0",
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ob-1": {
+        "detail": "Your details, access and branding — about 15 minutes, best done in one sitting.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ob-2": {
+        "detail": "A live 30-minute walkthrough of your portal, your milestones, and your messaging center. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": true,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ob-3": {
+        "detail": "Our team has drafted the qualification questions your AI will ask incoming leads, based on how you'd train a new team member. Take a look below and approve, or leave a note if you'd like anything adjusted.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ob-4": {
+        "detail": "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": true
+      },
+      "ob-5": {
+        "detail": "Our team has drafted the SMS and email messages your AI will send on your behalf. Take a look below and approve, or leave a note if you'd like anything changed.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ob-6": {
+        "detail": "Connect your calendar so your AI can see your availability and book appointments straight into it. Follow the step-by-step guide below.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": true
+      },
+      "ob-6b": {
+        "detail": "Connect your social accounts so your AI can respond to messages and comments across your channels. Follow the step-by-step guide below.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": true
+      },
+      "ob-6c": {
+        "detail": "Go to Settings → Billing to connect your preferred payment mechanism for seamless transactions.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ob-7": {
+        "detail": "Helps train your AI on what a good lead looks like for you.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ob-crm": {
+        "detail": "Before you can complete your Build-Phase action steps, you need to successfully log into your new CRM dashboard.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "pl-1": {
+        "detail": "A quick check-in to make sure everything's running smoothly. Pick a time that suits you below.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": true,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "pl-2": {
+        "detail": "Another check-in before we move to monthly calls. Pick a time that suits you below.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": true,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "pl-3": {
+        "detail": "We'd love to hear how it's going — this helps us and future clients like you.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ts-1": {
+        "detail": "A quick check that everything is linked correctly before the test.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "ts-2": {
+        "detail": "Try to stump it with different scenarios — this is how we make it better for you.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": true,
+        "showsVideo": false
+      },
+      "ts-3": {
+        "detail": "Testing looks good — time to lock in your go-live walkthrough. Pick a time that suits you below and we'll send a calendar invite with everything you need to join.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": true,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      }
+    },
+    "stringPlan": null,
+    "tabTitle": "Client Portal",
+    "tagline": null,
+    "totalDays": 30,
+    "totalMilestoneCount": 22,
+    "visibleIds": [
+      "ob-0",
+      "ob-1",
+      "ob-2",
+      "ob-3",
+      "ob-5",
+      "ob-4",
+      "ob-crm",
+      "ob-6",
+      "ob-6b",
+      "ob-6c",
+      "ob-7",
+      "ts-1",
+      "ts-2",
+      "ts-3",
+      "gl-1",
+      "gl-2",
+      "gl-3",
+      "gl-4",
+      "gl-5",
+      "pl-1",
+      "pl-2",
+      "pl-3"
+    ],
+    "wordmark": "Scale"
+  },
+  "ssr": {
+    "aurora|all|day1": "18867312a516e4ccda60743c23addc2b88d3774bd1606119b35f025ee0c2cd68",
+    "aurora|all|day30": "e29118a4abfdc8fb88c6a3bd15f1b82acd6139ca9250199f2322168ae90f8bfe",
+    "aurora|half|day1": "c610f0dcea3639cbf24898814e78a950efb3c241f356d659d17765f5d5b69a63",
+    "aurora|half|day30": "bad746ad3921af12fea177d097a79dea038d2f5b6d4af7d3958c3ac74b004d54",
+    "aurora|none|day1": "32e6465cd2cc85390c6bbc6a58723490834a3d6ef437d7f657b49c43b21366e6",
+    "aurora|none|day30": "d670b37385bc33e9067e503c45da62b5ece7b633f4d51c5cf5f92f5cab222866",
+    "calm|all|day1": "0a061d9a8858ee93bd7a00309cd377e74f52da22ff351484fadecd1e5b16135e",
+    "calm|all|day30": "945b6dd819c62d4b92c78993d817dae7e9e0614b15e72ea567869ee905291046",
+    "calm|half|day1": "2584ec7789cca6b6b1db0f17a479106e05436f844d00cefbcb2574d9852c4d63",
+    "calm|half|day30": "84d9996c359141465cbb10628007039e0e28c286cb302b6e4560a1d71655d949",
+    "calm|none|day1": "02c57ccc63aebdac48a857bc71cbeea93b42a1319bb59ab912d482b48f5edd18",
+    "calm|none|day30": "eca40ffacf39576baec7823f52fee64923782bfd316e9702c6eb88fc5ffa1d0f",
+    "cobalt|all|day1": "4f40bdbb72157de6a4044b9dd0fb443dace8ecd2a308743e74f0ef2b3fb8bbf1",
+    "cobalt|all|day30": "ba726d336940167ab6ba4df76cbe3a93ca821abef09f0009f35dce3d5a0369d2",
+    "cobalt|half|day1": "9341bddfa7f58dbac5c641aa12bb986bfaacae009f438a31309e06ea94278be4",
+    "cobalt|half|day30": "50d1582e9ddbd29f9ede7e8ad19841fd1036dec6b85e8e61c47543c450596de6",
+    "cobalt|none|day1": "70c05b403298a4eff83e31be4b4a525880575dd2eb54db3034f70d2e112ddb61",
+    "cobalt|none|day30": "0310286e42b2f12ae0e0f09f2154e3d0f1b341792472d8158b794ea73bd3cee1",
+    "cool|all|day1": "0c7fece409a9d79b671f065b8ecbca06e7c1db5cac0cc548ec699ffdf1dea04f",
+    "cool|all|day30": "7500b6a99d4863591bf426e9a39345acdca578310b5750b040c07ff73b46553b",
+    "cool|half|day1": "79bbb47bb029af4e5089c10172163e757044cb899841dc7224c35e01f95b91cb",
+    "cool|half|day30": "49989ee7b952c5d8e83162e2497bcf4436cd8b62271e982f5e9558ce11a0af99",
+    "cool|none|day1": "81445dbef22a8bc0a025fd6d01c507b598b51ac6bf823e00a6965449ec34f845",
+    "cool|none|day30": "3021088fe7aad0733fefded41bbde2436ae674dcba72c0f4ab3c7af261d5ec41",
+    "groveaurora|all|day1": "35bcfef1bb2a2333a55637d2c097ac85feeefa610ecdb8db76be169df8f036cf",
+    "groveaurora|all|day30": "f05380a24a5b654e5678602a7ea0faf952751a3ce534fb4a050b2fa6553fdf0c",
+    "groveaurora|half|day1": "b74522a34ddf1d82ef1d3bfc71514fe543d031cc058d76c9af8b250682c93b26",
+    "groveaurora|half|day30": "3813c90facd12f392b595848af25fcc083a438c54ad9f09d853b09e2406fda15",
+    "groveaurora|none|day1": "121d2af04c22dad2c4be6e33574f2d0bc6b646db33a3c5047b0cbab38b2e8e65",
+    "groveaurora|none|day30": "54d8642ddf152b92a71f48a54c302b86354b1036c02d640db3770ca55bb71af0",
+    "grove|all|day1": "d083e3546fdbc4296ed6da6adb43273b940fa59650d8daad044dded593030b67",
+    "grove|all|day30": "6c31c14c5e6078a79cd6f0152e0af0a5184ac29d0c393a7837b352c7b513f217",
+    "grove|half|day1": "10df7097505f4ca29a740fa4e39cf73dd28012178ee021ad17d61123f0acbd72",
+    "grove|half|day30": "b25d93b3adb4295cb1d6cba7b89b4037f6e901695090042b4a41e53bae053182",
+    "grove|none|day1": "32b79d6d474a1d1c236533b11df1fcdfbff418be420dd049bec4ce13f92956f6",
+    "grove|none|day30": "4da7917149ac432bf3b1b630c7a024ef6d728f27b818a3ceb1d504f7b77930e4",
+    "handoff|all|day1": "6ba396dac795bae8c678471dc302844a4ff2cd97605414f534551b0d9f37f9d7",
+    "handoff|all|day30": "d329b263c92465764d4e8d4958715d099537024277d995c7c2222b03cb61ab8b",
+    "handoff|half|day1": "59d8420d8c62e8a14f52c846cc958183556f0ba4dc6e55b6f2c9c357098329ed",
+    "handoff|half|day30": "0d2ba3354050bae59d96f23d4f31083d6365e2a6289b84ffb7af49b4ff5b546a",
+    "handoff|none|day1": "949465be6972b8dfd6055d5d606e1df4487d02ca964d37c9dd27435f68b7e8dc",
+    "handoff|none|day30": "3e61d7aa266a26a13f6b6d5ece86cb7f3bc7c756266cd5e7a31f344485498f8e",
+    "neutral|all|day1": "83a9eb9714528878f0cb8e1880fe1d98fcdadbf05750cfaea3d5810f07042f58",
+    "neutral|all|day30": "0f7f7bb5cdcc9bc33eb872c3219d1d52c6791d8f54368c06823b992b6c4b0dd4",
+    "neutral|half|day1": "8ce19fb2df5d854f6ae10b86f9b76454c095d7af9e490d9295e4b206d6411433",
+    "neutral|half|day30": "e80f092173cd028f98cd7fc93eee8f8b1580ec3f12982b9f2f660a70a27c4f84",
+    "neutral|none|day1": "1f8747bdc33477ecd7692c0bb37063aa92c90e33dd59ca4b85843bc4cb49837b",
+    "neutral|none|day30": "c1f3701335ccd875bc2c73632906bdafe2f6c84699c2044ee2c03f9525865a5b",
+    "warm|all|day1": "b53fe83035eb68a87c5f72c9e7bc57248702b466dc79b51db5cf2bc85bec1649",
+    "warm|all|day30": "4c73f342065e8f67eddc14df13386e9e2844978403425e4e11ca63808b30ba2c",
+    "warm|half|day1": "e0b1d64adc91aaae72694ac197010e8753536a8478e4af25ebec91d0de6199ba",
+    "warm|half|day30": "a02db82e4d9a4137faa2b5a0e8a3c8fb1ef2aa613431e48781a754b3ca3e069f",
+    "warm|none|day1": "7206a46d23f1bb30aa21dbd3516163b28f953841879ff0598c3df97a13aa9280",
+    "warm|none|day30": "9691dc64ba505079031651db61889674dae0004c9cd94e54b7d9e9883c5dd528"
+  },
+  "welcome": {
+    "aurora": "9be6ba30b090b8c87eebc000599fa33e73892976fab01abff85479b247283302",
+    "funnel": "812656cb38f1b5be026ce3ed0ea6f6bfe75cb368e7df1fd06283a85c96b230a6",
+    "funnel-grove": "8baa97f3a58c74fd875a11f9e7cf849cfa449eb2dc7731850707bffdee8c70bc",
+    "marquee": "de60273a756173c853e5d56a9e9338782354ea9870cc92c519a323c3a4474fe7",
+    "mosaic": "5e0d64b24b8dcf02f186bf26b56d8a123f322d3ff1958abfd27fa3666e15c538"
+  }
+}

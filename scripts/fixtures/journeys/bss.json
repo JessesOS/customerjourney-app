@@ -1,0 +1,2434 @@
+{
+  "data": {
+    "adminChecklist": [
+      {
+        "id": "onboarding",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "bss-001",
+            "title": "Your intake interview"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bss-003",
+            "title": "Invite us to your accounts"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bss-004",
+            "title": "Agree your customer journey"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-005",
+            "title": "Audit of your current CRM and GoHighLevel account"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-006",
+            "title": "Map where your enquiries come from today"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-007",
+            "title": "Map your partner, payment, webinar and Calendly setup"
+          }
+        ],
+        "name": "Onboarding"
+      },
+      {
+        "id": "build",
+        "milestones": [
+          {
+            "awaitingTeam": true,
+            "id": "bss-008",
+            "title": "Install and set up your GoHighLevel system"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-009",
+            "title": "Pipeline stages, tags and custom fields"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-010",
+            "title": "Move and tidy your contacts"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-011",
+            "title": "Smart lists and lead scoring"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-012",
+            "title": "Business phone number and missed-call text-back"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-013",
+            "title": "Calendar, booking, confirmations and reminders"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bss-014",
+            "title": "Review your new website's core pages"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bss-015",
+            "title": "Review your webinar pages"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bss-016",
+            "title": "Review your partner pages"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-017",
+            "title": "A space for your video sales letter"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-018",
+            "title": "Forms, booking buttons and chat connected"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-019",
+            "title": "Two-way text and email, with consent"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-020",
+            "title": "Instagram and Facebook messages connected"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-021",
+            "title": "Trackable YouTube links"
+          }
+        ],
+        "name": "Build"
+      },
+      {
+        "id": "testing",
+        "milestones": [
+          {
+            "awaitingTeam": true,
+            "id": "bss-022",
+            "title": "Booked-call sequence tested"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-023",
+            "title": "New-lead warm-up tested"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-024",
+            "title": "AI lead agent tested"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-025",
+            "title": "Reactivation and no-show follow-up tested"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-026",
+            "title": "Full journey tested"
+          }
+        ],
+        "name": "Testing"
+      },
+      {
+        "id": "go-live",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "bss-027",
+            "title": "Confirm your website launch day"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-028",
+            "title": "Lead nurture sequence live"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-029",
+            "title": "Booked-call sequence live"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-030",
+            "title": "AI lead agent live"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-031",
+            "title": "Reactivation text campaign live"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-032",
+            "title": "Missed-call text-back and two-way messaging live"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-033",
+            "title": "Pipeline moves itself"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-034",
+            "title": "Your leads and bookings dashboard live"
+          }
+        ],
+        "name": "Go-Live"
+      },
+      {
+        "id": "post-launch",
+        "milestones": [
+          {
+            "awaitingTeam": true,
+            "id": "bss-035",
+            "title": "Partner and referral tracking live"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-036",
+            "title": "Weekly webinar system live"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-037",
+            "title": "Client onboarding flow live"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-038",
+            "title": "Your walkthrough and written guide"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-039",
+            "title": "Review real leads and tune"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-040",
+            "title": "Follow-up after sales calls"
+          },
+          {
+            "awaitingTeam": true,
+            "id": "bss-041",
+            "title": "Ongoing support through month 8"
+          }
+        ],
+        "name": "Post-Launch"
+      }
+    ],
+    "adminDayTotal": 42,
+    "adminLabel": "BSS Fin Creighton (paused)",
+    "askItems": {
+      "build": [],
+      "go-live": [],
+      "onboarding": [],
+      "post-launch": [],
+      "testing": []
+    },
+    "brandName": "BSS Launchpad",
+    "clientType": "bss",
+    "currentDayCap": 42,
+    "formSteps": {},
+    "headerName": {
+      "aurora": "BSS Launchpad",
+      "calm": "BSS Launchpad",
+      "cobalt": "BSS Launchpad",
+      "current": "BSS Launchpad",
+      "grove": "BSS Launchpad",
+      "groveaurora": "BSS Launchpad",
+      "handoff": "BSS Launchpad"
+    },
+    "hidesIncentive": true,
+    "hubBrand": {
+      "aurora": "BSS Launchpad",
+      "cobalt": "BSS Launchpad",
+      "grove": "BSS Launchpad",
+      "handoff": "BSS Launchpad"
+    },
+    "introVideo": null,
+    "journeyStatus": {
+      "formStepId": null,
+      "nonBlocking": [],
+      "visible": [
+        {
+          "id": "bss-001",
+          "stageName": "Onboarding",
+          "title": "Your intake interview"
+        },
+        {
+          "id": "bss-003",
+          "stageName": "Onboarding",
+          "title": "Invite us to your accounts"
+        },
+        {
+          "id": "bss-004",
+          "stageName": "Onboarding",
+          "title": "Agree your customer journey"
+        },
+        {
+          "id": "bss-005",
+          "stageName": "Onboarding",
+          "title": "Audit of your current CRM and GoHighLevel account"
+        },
+        {
+          "id": "bss-006",
+          "stageName": "Onboarding",
+          "title": "Map where your enquiries come from today"
+        },
+        {
+          "id": "bss-007",
+          "stageName": "Onboarding",
+          "title": "Map your partner, payment, webinar and Calendly setup"
+        },
+        {
+          "id": "bss-008",
+          "stageName": "Build",
+          "title": "Install and set up your GoHighLevel system"
+        },
+        {
+          "id": "bss-009",
+          "stageName": "Build",
+          "title": "Pipeline stages, tags and custom fields"
+        },
+        {
+          "id": "bss-010",
+          "stageName": "Build",
+          "title": "Move and tidy your contacts"
+        },
+        {
+          "id": "bss-011",
+          "stageName": "Build",
+          "title": "Smart lists and lead scoring"
+        },
+        {
+          "id": "bss-012",
+          "stageName": "Build",
+          "title": "Business phone number and missed-call text-back"
+        },
+        {
+          "id": "bss-013",
+          "stageName": "Build",
+          "title": "Calendar, booking, confirmations and reminders"
+        },
+        {
+          "id": "bss-014",
+          "stageName": "Build",
+          "title": "Review your new website's core pages"
+        },
+        {
+          "id": "bss-015",
+          "stageName": "Build",
+          "title": "Review your webinar pages"
+        },
+        {
+          "id": "bss-016",
+          "stageName": "Build",
+          "title": "Review your partner pages"
+        },
+        {
+          "id": "bss-017",
+          "stageName": "Build",
+          "title": "A space for your video sales letter"
+        },
+        {
+          "id": "bss-018",
+          "stageName": "Build",
+          "title": "Forms, booking buttons and chat connected"
+        },
+        {
+          "id": "bss-019",
+          "stageName": "Build",
+          "title": "Two-way text and email, with consent"
+        },
+        {
+          "id": "bss-020",
+          "stageName": "Build",
+          "title": "Instagram and Facebook messages connected"
+        },
+        {
+          "id": "bss-021",
+          "stageName": "Build",
+          "title": "Trackable YouTube links"
+        },
+        {
+          "id": "bss-022",
+          "stageName": "Testing",
+          "title": "Booked-call sequence tested"
+        },
+        {
+          "id": "bss-023",
+          "stageName": "Testing",
+          "title": "New-lead warm-up tested"
+        },
+        {
+          "id": "bss-024",
+          "stageName": "Testing",
+          "title": "AI lead agent tested"
+        },
+        {
+          "id": "bss-025",
+          "stageName": "Testing",
+          "title": "Reactivation and no-show follow-up tested"
+        },
+        {
+          "id": "bss-026",
+          "stageName": "Testing",
+          "title": "Full journey tested"
+        },
+        {
+          "id": "bss-027",
+          "stageName": "Go-Live",
+          "title": "Confirm your website launch day"
+        },
+        {
+          "id": "bss-028",
+          "stageName": "Go-Live",
+          "title": "Lead nurture sequence live"
+        },
+        {
+          "id": "bss-029",
+          "stageName": "Go-Live",
+          "title": "Booked-call sequence live"
+        },
+        {
+          "id": "bss-030",
+          "stageName": "Go-Live",
+          "title": "AI lead agent live"
+        },
+        {
+          "id": "bss-031",
+          "stageName": "Go-Live",
+          "title": "Reactivation text campaign live"
+        },
+        {
+          "id": "bss-032",
+          "stageName": "Go-Live",
+          "title": "Missed-call text-back and two-way messaging live"
+        },
+        {
+          "id": "bss-033",
+          "stageName": "Go-Live",
+          "title": "Pipeline moves itself"
+        },
+        {
+          "id": "bss-034",
+          "stageName": "Go-Live",
+          "title": "Your leads and bookings dashboard live"
+        },
+        {
+          "id": "bss-035",
+          "stageName": "Post-Launch",
+          "title": "Partner and referral tracking live"
+        },
+        {
+          "id": "bss-036",
+          "stageName": "Post-Launch",
+          "title": "Weekly webinar system live"
+        },
+        {
+          "id": "bss-037",
+          "stageName": "Post-Launch",
+          "title": "Client onboarding flow live"
+        },
+        {
+          "id": "bss-038",
+          "stageName": "Post-Launch",
+          "title": "Your walkthrough and written guide"
+        },
+        {
+          "id": "bss-039",
+          "stageName": "Post-Launch",
+          "title": "Review real leads and tune"
+        },
+        {
+          "id": "bss-040",
+          "stageName": "Post-Launch",
+          "title": "Follow-up after sales calls"
+        },
+        {
+          "id": "bss-041",
+          "stageName": "Post-Launch",
+          "title": "Ongoing support through month 8"
+        }
+      ]
+    },
+    "journeyTemplate": [
+      {
+        "blurb": "Two weeks to get to know your business, gather access, and map your customer journey before anything is built.",
+        "dayEnd": 14,
+        "dayStart": 1,
+        "id": "onboarding",
+        "milestones": [
+          {
+            "detail": "Tell us about your business in your own words, out loud or typed. About 5 minutes. It shapes your CRM, website and AI agent.",
+            "id": "bss-001",
+            "interview": [
+              "What does your business do, and who do you do it for?",
+              "Which services or products do you most want more enquiries for?",
+              "Who is your ideal customer, and where are they?",
+              "Why do customers choose you over someone else?",
+              "What happens today when a new enquiry comes in?",
+              "What would a great result look like 90 days from now?"
+            ],
+            "interviewAgentId": "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+            "noteRequired": true,
+            "title": "Your intake interview"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "We set you up here, walk through your journey together, and agree the next steps.",
+            "hidden": true,
+            "id": "bss-002",
+            "title": "Kick-off call & portal walkthrough"
+          },
+          {
+            "detail": "Add our team email as an admin on each of your accounts. No passwords change hands: each platform sends us an invite, and you can remove us at any time.",
+            "doneLabel": "I've sent the invites",
+            "id": "bss-003",
+            "important": "If a platform won't let you invite us, tell us below and we'll sort it out with you on a call.",
+            "inviteEmail": "admin@allconvos.ai",
+            "notePlaceholder": "Optional. For example, which ones are done, or one that won't let you invite us.",
+            "notePrompt": "Anything we should know?",
+            "steps": [
+              "Your current CRM: add admin@allconvos.ai as an admin user.",
+              "GoHighLevel: in your sub-account, add admin@allconvos.ai as a team member with admin access.",
+              "Calendly: invite admin@allconvos.ai as an admin.",
+              "Your domain: at your domain provider, give admin@allconvos.ai access (often called delegate or shared access).",
+              "Your website hosting: add admin@allconvos.ai as a user with admin access."
+            ],
+            "title": "Invite us to your accounts"
+          },
+          {
+            "detail": "We map how a lead becomes a paying client, end to end, and agree it with you before any build starts.",
+            "id": "bss-004",
+            "notePlaceholder": "Optional — leave blank if it looks right.",
+            "notePrompt": "Anything you'd like changed in the journey?",
+            "title": "Agree your customer journey"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "We review what you have and write up what to keep, migrate or replace.",
+            "id": "bss-005",
+            "title": "Audit of your current CRM and GoHighLevel account"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Every channel a new enquiry arrives through, listed and checked.",
+            "id": "bss-006",
+            "title": "Map where your enquiries come from today"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "How partners and payouts work today, how payment is taken after sales calls, your webinar platform, and Calendly.",
+            "id": "bss-007",
+            "title": "Map your partner, payment, webinar and Calendly setup"
+          }
+        ],
+        "name": "Onboarding",
+        "statusNotes": [
+          "Nothing is built until your customer journey is mapped and agreed with you.",
+          "We'll confirm your partner pages and how payment is taken in these first two weeks."
+        ]
+      },
+      {
+        "blurb": "Weeks 2 to 5: your CRM, your website and your messaging channels are built and connected.",
+        "dayEnd": 35,
+        "dayStart": 8,
+        "id": "build",
+        "milestones": [
+          {
+            "awaitingTeam": true,
+            "detail": "The core CRM set-up your pipeline, automations and pages run on.",
+            "id": "bss-008",
+            "title": "Install and set up your GoHighLevel system"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "So every lead lands in the right place with the right details.",
+            "id": "bss-009",
+            "title": "Pipeline stages, tags and custom fields"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Your contacts migrated, cleaned, de-duplicated and tagged by where they came from.",
+            "id": "bss-010",
+            "title": "Move and tidy your contacts"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Hot, warm and cold leads sorted automatically.",
+            "id": "bss-011",
+            "title": "Smart lists and lead scoring"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "A missed call gets a text back straight away.",
+            "id": "bss-012",
+            "title": "Business phone number and missed-call text-back"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Connected to Calendly, without doubled-up reminders.",
+            "id": "bss-013",
+            "title": "Calendar, booking, confirmations and reminders"
+          },
+          {
+            "detail": "Home, About, Podcast & socials, Book a call, Call booked, Not-qualified, Link-in-bio and Privacy, on desktop and mobile. Two rounds of changes are included.",
+            "id": "bss-014",
+            "notePlaceholder": "Optional — leave blank if they look right.",
+            "notePrompt": "Any changes you'd like to the core pages?",
+            "title": "Review your new website's core pages"
+          },
+          {
+            "detail": "Your registration and thank-you pages. Three rounds of changes are included.",
+            "id": "bss-015",
+            "notePlaceholder": "Optional — leave blank if they look right.",
+            "notePrompt": "Any changes you'd like to the webinar pages?",
+            "title": "Review your webinar pages"
+          },
+          {
+            "detail": "The exact pages are confirmed in your first two weeks. Two rounds of changes are included.",
+            "id": "bss-016",
+            "notePlaceholder": "Optional — leave blank if they look right.",
+            "notePrompt": "Any changes you'd like to the partner pages?",
+            "title": "Review your partner pages"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "A placeholder slot on the site, ready for a VSL later.",
+            "id": "bss-017",
+            "title": "A space for your video sales letter"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Every form, booking button and the chat widget wired into your CRM.",
+            "id": "bss-018",
+            "title": "Forms, booking buttons and chat connected"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Two-way messaging switched on, with text consent captured on your sign-up forms.",
+            "id": "bss-019",
+            "title": "Two-way text and email, with consent"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Messages from both arrive in your CRM, tagged by channel.",
+            "id": "bss-020",
+            "title": "Instagram and Facebook messages connected"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Lead links from YouTube you can track back to the source.",
+            "id": "bss-021",
+            "title": "Trackable YouTube links"
+          }
+        ],
+        "name": "Build",
+        "statusNotes": [
+          "Your existing copy, claims and offers stay as they are unless you approve a change."
+        ]
+      },
+      {
+        "blurb": "Everything is tested end to end before it goes live.",
+        "dayEnd": 39,
+        "dayStart": 36,
+        "id": "testing",
+        "milestones": [
+          {
+            "awaitingTeam": true,
+            "detail": "Booking windows, short-notice bookings, reschedules and cancellations all checked.",
+            "id": "bss-022",
+            "title": "Booked-call sequence tested"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "The six warm-up emails and their texts, drafted with you and approved by you before they go live.",
+            "id": "bss-023",
+            "title": "New-lead warm-up tested"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "It qualifies a lead, saves the answers to your CRM and books the call, across chat, text, Instagram and Facebook.",
+            "id": "bss-024",
+            "title": "AI lead agent tested"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Reaching past contacts, and following up no-shows and quiet leads.",
+            "id": "bss-025",
+            "title": "Reactivation and no-show follow-up tested"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "From form to pipeline to dashboard, end to end.",
+            "id": "bss-026",
+            "title": "Full journey tested"
+          }
+        ],
+        "name": "Testing",
+        "statusNotes": [
+          "Your AI lead agent only uses wording you've approved."
+        ]
+      },
+      {
+        "blurb": "Week 6: your website launches on your domain and your automations switch on.",
+        "dayEnd": 42,
+        "dayStart": 40,
+        "id": "go-live",
+        "milestones": [
+          {
+            "detail": "We launch your core website on your domain on a day we agree together.",
+            "id": "bss-027",
+            "notePlaceholder": "e.g. a weekday that suits you",
+            "notePrompt": "Your preferred launch day",
+            "title": "Confirm your website launch day"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "New leads are warmed up automatically.",
+            "id": "bss-028",
+            "title": "Lead nurture sequence live"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Confirmations and reminders run themselves.",
+            "id": "bss-029",
+            "title": "Booked-call sequence live"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "On chat, text, Instagram and Facebook.",
+            "id": "bss-030",
+            "title": "AI lead agent live"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "To past contacts who have already given consent.",
+            "id": "bss-031",
+            "title": "Reactivation text campaign live"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Every missed call and message gets a reply.",
+            "id": "bss-032",
+            "title": "Missed-call text-back and two-way messaging live"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Leads move stage automatically, and follow-ups stop when they reply or book.",
+            "id": "bss-033",
+            "title": "Pipeline moves itself"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Leads, bookings and conversions in one view.",
+            "id": "bss-034",
+            "title": "Your leads and bookings dashboard live"
+          }
+        ],
+        "name": "Go-Live",
+        "statusNotes": []
+      },
+      {
+        "blurb": "Weeks 7 to 10 add partners, webinars and client onboarding. Then we review, tune and support you through month 8.",
+        "dayEnd": 240,
+        "dayStart": 43,
+        "id": "post-launch",
+        "milestones": [
+          {
+            "awaitingTeam": true,
+            "detail": "See which partners bring paying clients, from their link through to payment.",
+            "id": "bss-035",
+            "title": "Partner and referral tracking live"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "Registration confirmations, reminders and follow-up after every webinar, repeating each week.",
+            "id": "bss-036",
+            "title": "Weekly webinar system live"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "When a payment is confirmed, your new client is onboarded and handed to the implementation coach.",
+            "id": "bss-037",
+            "title": "Client onboarding flow live"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "A live walkthrough plus a short written guide to running everything.",
+            "id": "bss-038",
+            "title": "Your walkthrough and written guide"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "We look at real leads and AI conversations, and fix what isn't working.",
+            "id": "bss-039",
+            "title": "Review real leads and tune"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "No-show, nurture and unpaid-invoice follow-up.",
+            "id": "bss-040",
+            "title": "Follow-up after sales calls"
+          },
+          {
+            "awaitingTeam": true,
+            "detail": "We keep reviewing and supporting you through month 8.",
+            "id": "bss-041",
+            "title": "Ongoing support through month 8"
+          }
+        ],
+        "name": "Post-Launch",
+        "ongoing": true,
+        "statusNotes": []
+      }
+    ],
+    "label": "BSS Fin Creighton",
+    "lockedLook": "groveaurora",
+    "receptionistScriptStep": null,
+    "renderSamples": {
+      "all@day30": [
+        {
+          "blurb": "Two weeks to get to know your business, gather access, and map your customer journey before anything is built.",
+          "dayEnd": 14,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "Tell us about your business in your own words, out loud or typed. About 5 minutes. It shapes your CRM, website and AI agent.",
+              "id": "bss-001",
+              "interview": [
+                "What does your business do, and who do you do it for?",
+                "Which services or products do you most want more enquiries for?",
+                "Who is your ideal customer, and where are they?",
+                "Why do customers choose you over someone else?",
+                "What happens today when a new enquiry comes in?",
+                "What would a great result look like 90 days from now?"
+              ],
+              "interviewAgentId": "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Your intake interview"
+            },
+            {
+              "detail": "Add our team email as an admin on each of your accounts. No passwords change hands: each platform sends us an invite, and you can remove us at any time.",
+              "doneLabel": "I've sent the invites",
+              "id": "bss-003",
+              "important": "If a platform won't let you invite us, tell us below and we'll sort it out with you on a call.",
+              "inviteEmail": "admin@allconvos.ai",
+              "notePlaceholder": "Optional. For example, which ones are done, or one that won't let you invite us.",
+              "notePrompt": "Anything we should know?",
+              "status": "done",
+              "steps": [
+                "Your current CRM: add admin@allconvos.ai as an admin user.",
+                "GoHighLevel: in your sub-account, add admin@allconvos.ai as a team member with admin access.",
+                "Calendly: invite admin@allconvos.ai as an admin.",
+                "Your domain: at your domain provider, give admin@allconvos.ai access (often called delegate or shared access).",
+                "Your website hosting: add admin@allconvos.ai as a user with admin access."
+              ],
+              "title": "Invite us to your accounts"
+            },
+            {
+              "detail": "We map how a lead becomes a paying client, end to end, and agree it with you before any build starts.",
+              "id": "bss-004",
+              "notePlaceholder": "Optional — leave blank if it looks right.",
+              "notePrompt": "Anything you'd like changed in the journey?",
+              "status": "done",
+              "title": "Agree your customer journey"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "We review what you have and write up what to keep, migrate or replace.",
+              "id": "bss-005",
+              "status": "done",
+              "title": "Audit of your current CRM and GoHighLevel account"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Every channel a new enquiry arrives through, listed and checked.",
+              "id": "bss-006",
+              "status": "done",
+              "title": "Map where your enquiries come from today"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "How partners and payouts work today, how payment is taken after sales calls, your webinar platform, and Calendly.",
+              "id": "bss-007",
+              "status": "done",
+              "title": "Map your partner, payment, webinar and Calendly setup"
+            }
+          ],
+          "name": "Onboarding",
+          "status": "done",
+          "statusNotes": [
+            "Nothing is built until your customer journey is mapped and agreed with you.",
+            "We'll confirm your partner pages and how payment is taken in these first two weeks."
+          ]
+        },
+        {
+          "blurb": "Weeks 2 to 5: your CRM, your website and your messaging channels are built and connected.",
+          "dayEnd": 35,
+          "dayStart": 8,
+          "id": "build",
+          "milestones": [
+            {
+              "awaitingTeam": true,
+              "detail": "The core CRM set-up your pipeline, automations and pages run on.",
+              "id": "bss-008",
+              "status": "done",
+              "title": "Install and set up your GoHighLevel system"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "So every lead lands in the right place with the right details.",
+              "id": "bss-009",
+              "status": "done",
+              "title": "Pipeline stages, tags and custom fields"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Your contacts migrated, cleaned, de-duplicated and tagged by where they came from.",
+              "id": "bss-010",
+              "status": "done",
+              "title": "Move and tidy your contacts"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Hot, warm and cold leads sorted automatically.",
+              "id": "bss-011",
+              "status": "done",
+              "title": "Smart lists and lead scoring"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "A missed call gets a text back straight away.",
+              "id": "bss-012",
+              "status": "done",
+              "title": "Business phone number and missed-call text-back"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Connected to Calendly, without doubled-up reminders.",
+              "id": "bss-013",
+              "status": "done",
+              "title": "Calendar, booking, confirmations and reminders"
+            },
+            {
+              "detail": "Home, About, Podcast & socials, Book a call, Call booked, Not-qualified, Link-in-bio and Privacy, on desktop and mobile. Two rounds of changes are included.",
+              "id": "bss-014",
+              "notePlaceholder": "Optional — leave blank if they look right.",
+              "notePrompt": "Any changes you'd like to the core pages?",
+              "status": "done",
+              "title": "Review your new website's core pages"
+            },
+            {
+              "detail": "Your registration and thank-you pages. Three rounds of changes are included.",
+              "id": "bss-015",
+              "notePlaceholder": "Optional — leave blank if they look right.",
+              "notePrompt": "Any changes you'd like to the webinar pages?",
+              "status": "done",
+              "title": "Review your webinar pages"
+            },
+            {
+              "detail": "The exact pages are confirmed in your first two weeks. Two rounds of changes are included.",
+              "id": "bss-016",
+              "notePlaceholder": "Optional — leave blank if they look right.",
+              "notePrompt": "Any changes you'd like to the partner pages?",
+              "status": "done",
+              "title": "Review your partner pages"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "A placeholder slot on the site, ready for a VSL later.",
+              "id": "bss-017",
+              "status": "done",
+              "title": "A space for your video sales letter"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Every form, booking button and the chat widget wired into your CRM.",
+              "id": "bss-018",
+              "status": "done",
+              "title": "Forms, booking buttons and chat connected"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Two-way messaging switched on, with text consent captured on your sign-up forms.",
+              "id": "bss-019",
+              "status": "done",
+              "title": "Two-way text and email, with consent"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Messages from both arrive in your CRM, tagged by channel.",
+              "id": "bss-020",
+              "status": "done",
+              "title": "Instagram and Facebook messages connected"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Lead links from YouTube you can track back to the source.",
+              "id": "bss-021",
+              "status": "done",
+              "title": "Trackable YouTube links"
+            }
+          ],
+          "name": "Build",
+          "status": "done",
+          "statusNotes": [
+            "Your existing copy, claims and offers stay as they are unless you approve a change."
+          ]
+        },
+        {
+          "blurb": "Everything is tested end to end before it goes live.",
+          "dayEnd": 39,
+          "dayStart": 36,
+          "id": "testing",
+          "milestones": [
+            {
+              "awaitingTeam": true,
+              "detail": "Booking windows, short-notice bookings, reschedules and cancellations all checked.",
+              "id": "bss-022",
+              "status": "done",
+              "title": "Booked-call sequence tested"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "The six warm-up emails and their texts, drafted with you and approved by you before they go live.",
+              "id": "bss-023",
+              "status": "done",
+              "title": "New-lead warm-up tested"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "It qualifies a lead, saves the answers to your CRM and books the call, across chat, text, Instagram and Facebook.",
+              "id": "bss-024",
+              "status": "done",
+              "title": "AI lead agent tested"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Reaching past contacts, and following up no-shows and quiet leads.",
+              "id": "bss-025",
+              "status": "done",
+              "title": "Reactivation and no-show follow-up tested"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "From form to pipeline to dashboard, end to end.",
+              "id": "bss-026",
+              "status": "done",
+              "title": "Full journey tested"
+            }
+          ],
+          "name": "Testing",
+          "status": "done",
+          "statusNotes": [
+            "Your AI lead agent only uses wording you've approved."
+          ]
+        },
+        {
+          "blurb": "Week 6: your website launches on your domain and your automations switch on.",
+          "dayEnd": 42,
+          "dayStart": 40,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "We launch your core website on your domain on a day we agree together.",
+              "id": "bss-027",
+              "notePlaceholder": "e.g. a weekday that suits you",
+              "notePrompt": "Your preferred launch day",
+              "status": "done",
+              "title": "Confirm your website launch day"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "New leads are warmed up automatically.",
+              "id": "bss-028",
+              "status": "done",
+              "title": "Lead nurture sequence live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Confirmations and reminders run themselves.",
+              "id": "bss-029",
+              "status": "done",
+              "title": "Booked-call sequence live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "On chat, text, Instagram and Facebook.",
+              "id": "bss-030",
+              "status": "done",
+              "title": "AI lead agent live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "To past contacts who have already given consent.",
+              "id": "bss-031",
+              "status": "done",
+              "title": "Reactivation text campaign live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Every missed call and message gets a reply.",
+              "id": "bss-032",
+              "status": "done",
+              "title": "Missed-call text-back and two-way messaging live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Leads move stage automatically, and follow-ups stop when they reply or book.",
+              "id": "bss-033",
+              "status": "done",
+              "title": "Pipeline moves itself"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Leads, bookings and conversions in one view.",
+              "id": "bss-034",
+              "status": "done",
+              "title": "Your leads and bookings dashboard live"
+            }
+          ],
+          "name": "Go-Live",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Weeks 7 to 10 add partners, webinars and client onboarding. Then we review, tune and support you through month 8.",
+          "dayEnd": 240,
+          "dayStart": 43,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "awaitingTeam": true,
+              "detail": "See which partners bring paying clients, from their link through to payment.",
+              "id": "bss-035",
+              "status": "done",
+              "title": "Partner and referral tracking live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Registration confirmations, reminders and follow-up after every webinar, repeating each week.",
+              "id": "bss-036",
+              "status": "done",
+              "title": "Weekly webinar system live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "When a payment is confirmed, your new client is onboarded and handed to the implementation coach.",
+              "id": "bss-037",
+              "status": "done",
+              "title": "Client onboarding flow live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "A live walkthrough plus a short written guide to running everything.",
+              "id": "bss-038",
+              "status": "done",
+              "title": "Your walkthrough and written guide"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "We look at real leads and AI conversations, and fix what isn't working.",
+              "id": "bss-039",
+              "status": "done",
+              "title": "Review real leads and tune"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "No-show, nurture and unpaid-invoice follow-up.",
+              "id": "bss-040",
+              "status": "done",
+              "title": "Follow-up after sales calls"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "We keep reviewing and supporting you through month 8.",
+              "id": "bss-041",
+              "status": "done",
+              "title": "Ongoing support through month 8"
+            }
+          ],
+          "name": "Post-Launch",
+          "ongoing": true,
+          "status": "done",
+          "statusNotes": []
+        }
+      ],
+      "none@day1": [
+        {
+          "blurb": "Two weeks to get to know your business, gather access, and map your customer journey before anything is built.",
+          "dayEnd": 14,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "Tell us about your business in your own words, out loud or typed. About 5 minutes. It shapes your CRM, website and AI agent.",
+              "id": "bss-001",
+              "interview": [
+                "What does your business do, and who do you do it for?",
+                "Which services or products do you most want more enquiries for?",
+                "Who is your ideal customer, and where are they?",
+                "Why do customers choose you over someone else?",
+                "What happens today when a new enquiry comes in?",
+                "What would a great result look like 90 days from now?"
+              ],
+              "interviewAgentId": "agent_3001m4pqxn11ecs9s47qarwvsbp1",
+              "noteRequired": true,
+              "status": "current",
+              "title": "Your intake interview"
+            },
+            {
+              "detail": "Add our team email as an admin on each of your accounts. No passwords change hands: each platform sends us an invite, and you can remove us at any time.",
+              "doneLabel": "I've sent the invites",
+              "id": "bss-003",
+              "important": "If a platform won't let you invite us, tell us below and we'll sort it out with you on a call.",
+              "inviteEmail": "admin@allconvos.ai",
+              "notePlaceholder": "Optional. For example, which ones are done, or one that won't let you invite us.",
+              "notePrompt": "Anything we should know?",
+              "status": "upcoming",
+              "steps": [
+                "Your current CRM: add admin@allconvos.ai as an admin user.",
+                "GoHighLevel: in your sub-account, add admin@allconvos.ai as a team member with admin access.",
+                "Calendly: invite admin@allconvos.ai as an admin.",
+                "Your domain: at your domain provider, give admin@allconvos.ai access (often called delegate or shared access).",
+                "Your website hosting: add admin@allconvos.ai as a user with admin access."
+              ],
+              "title": "Invite us to your accounts"
+            },
+            {
+              "detail": "We map how a lead becomes a paying client, end to end, and agree it with you before any build starts.",
+              "id": "bss-004",
+              "notePlaceholder": "Optional — leave blank if it looks right.",
+              "notePrompt": "Anything you'd like changed in the journey?",
+              "status": "upcoming",
+              "title": "Agree your customer journey"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "We review what you have and write up what to keep, migrate or replace.",
+              "id": "bss-005",
+              "status": "upcoming",
+              "title": "Audit of your current CRM and GoHighLevel account"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Every channel a new enquiry arrives through, listed and checked.",
+              "id": "bss-006",
+              "status": "upcoming",
+              "title": "Map where your enquiries come from today"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "How partners and payouts work today, how payment is taken after sales calls, your webinar platform, and Calendly.",
+              "id": "bss-007",
+              "status": "upcoming",
+              "title": "Map your partner, payment, webinar and Calendly setup"
+            }
+          ],
+          "name": "Onboarding",
+          "status": "current",
+          "statusNotes": [
+            "Nothing is built until your customer journey is mapped and agreed with you.",
+            "We'll confirm your partner pages and how payment is taken in these first two weeks."
+          ]
+        },
+        {
+          "blurb": "Weeks 2 to 5: your CRM, your website and your messaging channels are built and connected.",
+          "dayEnd": 35,
+          "dayStart": 8,
+          "id": "build",
+          "milestones": [
+            {
+              "awaitingTeam": true,
+              "detail": "The core CRM set-up your pipeline, automations and pages run on.",
+              "id": "bss-008",
+              "status": "upcoming",
+              "title": "Install and set up your GoHighLevel system"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "So every lead lands in the right place with the right details.",
+              "id": "bss-009",
+              "status": "upcoming",
+              "title": "Pipeline stages, tags and custom fields"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Your contacts migrated, cleaned, de-duplicated and tagged by where they came from.",
+              "id": "bss-010",
+              "status": "upcoming",
+              "title": "Move and tidy your contacts"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Hot, warm and cold leads sorted automatically.",
+              "id": "bss-011",
+              "status": "upcoming",
+              "title": "Smart lists and lead scoring"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "A missed call gets a text back straight away.",
+              "id": "bss-012",
+              "status": "upcoming",
+              "title": "Business phone number and missed-call text-back"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Connected to Calendly, without doubled-up reminders.",
+              "id": "bss-013",
+              "status": "upcoming",
+              "title": "Calendar, booking, confirmations and reminders"
+            },
+            {
+              "detail": "Home, About, Podcast & socials, Book a call, Call booked, Not-qualified, Link-in-bio and Privacy, on desktop and mobile. Two rounds of changes are included.",
+              "id": "bss-014",
+              "notePlaceholder": "Optional — leave blank if they look right.",
+              "notePrompt": "Any changes you'd like to the core pages?",
+              "status": "upcoming",
+              "title": "Review your new website's core pages"
+            },
+            {
+              "detail": "Your registration and thank-you pages. Three rounds of changes are included.",
+              "id": "bss-015",
+              "notePlaceholder": "Optional — leave blank if they look right.",
+              "notePrompt": "Any changes you'd like to the webinar pages?",
+              "status": "upcoming",
+              "title": "Review your webinar pages"
+            },
+            {
+              "detail": "The exact pages are confirmed in your first two weeks. Two rounds of changes are included.",
+              "id": "bss-016",
+              "notePlaceholder": "Optional — leave blank if they look right.",
+              "notePrompt": "Any changes you'd like to the partner pages?",
+              "status": "upcoming",
+              "title": "Review your partner pages"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "A placeholder slot on the site, ready for a VSL later.",
+              "id": "bss-017",
+              "status": "upcoming",
+              "title": "A space for your video sales letter"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Every form, booking button and the chat widget wired into your CRM.",
+              "id": "bss-018",
+              "status": "upcoming",
+              "title": "Forms, booking buttons and chat connected"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Two-way messaging switched on, with text consent captured on your sign-up forms.",
+              "id": "bss-019",
+              "status": "upcoming",
+              "title": "Two-way text and email, with consent"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Messages from both arrive in your CRM, tagged by channel.",
+              "id": "bss-020",
+              "status": "upcoming",
+              "title": "Instagram and Facebook messages connected"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Lead links from YouTube you can track back to the source.",
+              "id": "bss-021",
+              "status": "upcoming",
+              "title": "Trackable YouTube links"
+            }
+          ],
+          "name": "Build",
+          "status": "locked",
+          "statusNotes": [
+            "Your existing copy, claims and offers stay as they are unless you approve a change."
+          ]
+        },
+        {
+          "blurb": "Everything is tested end to end before it goes live.",
+          "dayEnd": 39,
+          "dayStart": 36,
+          "id": "testing",
+          "milestones": [
+            {
+              "awaitingTeam": true,
+              "detail": "Booking windows, short-notice bookings, reschedules and cancellations all checked.",
+              "id": "bss-022",
+              "status": "upcoming",
+              "title": "Booked-call sequence tested"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "The six warm-up emails and their texts, drafted with you and approved by you before they go live.",
+              "id": "bss-023",
+              "status": "upcoming",
+              "title": "New-lead warm-up tested"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "It qualifies a lead, saves the answers to your CRM and books the call, across chat, text, Instagram and Facebook.",
+              "id": "bss-024",
+              "status": "upcoming",
+              "title": "AI lead agent tested"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Reaching past contacts, and following up no-shows and quiet leads.",
+              "id": "bss-025",
+              "status": "upcoming",
+              "title": "Reactivation and no-show follow-up tested"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "From form to pipeline to dashboard, end to end.",
+              "id": "bss-026",
+              "status": "upcoming",
+              "title": "Full journey tested"
+            }
+          ],
+          "name": "Testing",
+          "status": "locked",
+          "statusNotes": [
+            "Your AI lead agent only uses wording you've approved."
+          ]
+        },
+        {
+          "blurb": "Week 6: your website launches on your domain and your automations switch on.",
+          "dayEnd": 42,
+          "dayStart": 40,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "We launch your core website on your domain on a day we agree together.",
+              "id": "bss-027",
+              "notePlaceholder": "e.g. a weekday that suits you",
+              "notePrompt": "Your preferred launch day",
+              "status": "upcoming",
+              "title": "Confirm your website launch day"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "New leads are warmed up automatically.",
+              "id": "bss-028",
+              "status": "upcoming",
+              "title": "Lead nurture sequence live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Confirmations and reminders run themselves.",
+              "id": "bss-029",
+              "status": "upcoming",
+              "title": "Booked-call sequence live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "On chat, text, Instagram and Facebook.",
+              "id": "bss-030",
+              "status": "upcoming",
+              "title": "AI lead agent live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "To past contacts who have already given consent.",
+              "id": "bss-031",
+              "status": "upcoming",
+              "title": "Reactivation text campaign live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Every missed call and message gets a reply.",
+              "id": "bss-032",
+              "status": "upcoming",
+              "title": "Missed-call text-back and two-way messaging live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Leads move stage automatically, and follow-ups stop when they reply or book.",
+              "id": "bss-033",
+              "status": "upcoming",
+              "title": "Pipeline moves itself"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Leads, bookings and conversions in one view.",
+              "id": "bss-034",
+              "status": "upcoming",
+              "title": "Your leads and bookings dashboard live"
+            }
+          ],
+          "name": "Go-Live",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Weeks 7 to 10 add partners, webinars and client onboarding. Then we review, tune and support you through month 8.",
+          "dayEnd": 240,
+          "dayStart": 43,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "awaitingTeam": true,
+              "detail": "See which partners bring paying clients, from their link through to payment.",
+              "id": "bss-035",
+              "status": "upcoming",
+              "title": "Partner and referral tracking live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "Registration confirmations, reminders and follow-up after every webinar, repeating each week.",
+              "id": "bss-036",
+              "status": "upcoming",
+              "title": "Weekly webinar system live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "When a payment is confirmed, your new client is onboarded and handed to the implementation coach.",
+              "id": "bss-037",
+              "status": "upcoming",
+              "title": "Client onboarding flow live"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "A live walkthrough plus a short written guide to running everything.",
+              "id": "bss-038",
+              "status": "upcoming",
+              "title": "Your walkthrough and written guide"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "We look at real leads and AI conversations, and fix what isn't working.",
+              "id": "bss-039",
+              "status": "upcoming",
+              "title": "Review real leads and tune"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "No-show, nurture and unpaid-invoice follow-up.",
+              "id": "bss-040",
+              "status": "upcoming",
+              "title": "Follow-up after sales calls"
+            },
+            {
+              "awaitingTeam": true,
+              "detail": "We keep reviewing and supporting you through month 8.",
+              "id": "bss-041",
+              "status": "upcoming",
+              "title": "Ongoing support through month 8"
+            }
+          ],
+          "name": "Post-Launch",
+          "ongoing": true,
+          "status": "locked",
+          "statusNotes": []
+        }
+      ]
+    },
+    "renders": {
+      "all@day1": "9b5ff1bff86b01092e23486f9523e384a01f8539dae6e815f7c6e6e4b5bca41b",
+      "all@day12": "9b5ff1bff86b01092e23486f9523e384a01f8539dae6e815f7c6e6e4b5bca41b",
+      "all@day30": "9b5ff1bff86b01092e23486f9523e384a01f8539dae6e815f7c6e6e4b5bca41b",
+      "alternate@day1": "2f8602b003a5db8403de67c51498a50fcb3217d8fdb51e6c8bbb91bc881f12cc",
+      "alternate@day12": "2f8602b003a5db8403de67c51498a50fcb3217d8fdb51e6c8bbb91bc881f12cc",
+      "alternate@day30": "2f8602b003a5db8403de67c51498a50fcb3217d8fdb51e6c8bbb91bc881f12cc",
+      "first-10@day1": "3a73839d3c28563276eb458d6273b03e39d915aae8e6e6af907df325c8ca0344",
+      "first-10@day12": "3a73839d3c28563276eb458d6273b03e39d915aae8e6e6af907df325c8ca0344",
+      "first-10@day30": "3a73839d3c28563276eb458d6273b03e39d915aae8e6e6af907df325c8ca0344",
+      "first-11@day1": "18db7b1ed0a2f2549928c4831a9f82689a94c864d930eb99748d8d8ec336a431",
+      "first-11@day12": "18db7b1ed0a2f2549928c4831a9f82689a94c864d930eb99748d8d8ec336a431",
+      "first-11@day30": "18db7b1ed0a2f2549928c4831a9f82689a94c864d930eb99748d8d8ec336a431",
+      "first-12@day1": "19f23c7a7706a7a561dcd220ff0c09d04208f5a653185fc0fcb5dffba78d8041",
+      "first-12@day12": "19f23c7a7706a7a561dcd220ff0c09d04208f5a653185fc0fcb5dffba78d8041",
+      "first-12@day30": "19f23c7a7706a7a561dcd220ff0c09d04208f5a653185fc0fcb5dffba78d8041",
+      "first-13@day1": "88241d97588da57422f566eac26a38bd7d32ac8a9ee35148f5311a30b09dd68f",
+      "first-13@day12": "88241d97588da57422f566eac26a38bd7d32ac8a9ee35148f5311a30b09dd68f",
+      "first-13@day30": "88241d97588da57422f566eac26a38bd7d32ac8a9ee35148f5311a30b09dd68f",
+      "first-14@day1": "dd72cb854c6035b59fd75ce283b3ebc268b1e12d1e9274d9332ec8bb80fdebca",
+      "first-14@day12": "dd72cb854c6035b59fd75ce283b3ebc268b1e12d1e9274d9332ec8bb80fdebca",
+      "first-14@day30": "dd72cb854c6035b59fd75ce283b3ebc268b1e12d1e9274d9332ec8bb80fdebca",
+      "first-15@day1": "6884547f7d19f07428a16bb082ccccb2501b328c9b3ec08b429e28c59b30ee0e",
+      "first-15@day12": "6884547f7d19f07428a16bb082ccccb2501b328c9b3ec08b429e28c59b30ee0e",
+      "first-15@day30": "6884547f7d19f07428a16bb082ccccb2501b328c9b3ec08b429e28c59b30ee0e",
+      "first-16@day1": "f32b963a9f6030ffb979a0eee24e9267eec29896a54f9f6c98bb5c51da70ea61",
+      "first-16@day12": "f32b963a9f6030ffb979a0eee24e9267eec29896a54f9f6c98bb5c51da70ea61",
+      "first-16@day30": "f32b963a9f6030ffb979a0eee24e9267eec29896a54f9f6c98bb5c51da70ea61",
+      "first-17@day1": "1eefe7259f722efcc5ec3bb0db15a4403fbffe8e70bda97e5cd9ab8c9d690cbf",
+      "first-17@day12": "1eefe7259f722efcc5ec3bb0db15a4403fbffe8e70bda97e5cd9ab8c9d690cbf",
+      "first-17@day30": "1eefe7259f722efcc5ec3bb0db15a4403fbffe8e70bda97e5cd9ab8c9d690cbf",
+      "first-18@day1": "dc2928d4e43939c44142e04ddcbf29dc551f6e30585a3406bf2621d77ce96282",
+      "first-18@day12": "dc2928d4e43939c44142e04ddcbf29dc551f6e30585a3406bf2621d77ce96282",
+      "first-18@day30": "dc2928d4e43939c44142e04ddcbf29dc551f6e30585a3406bf2621d77ce96282",
+      "first-19@day1": "14dcf6a85dbd0e5097024dda291f425906633e1b784ff5dd27b8ad3df7da93a3",
+      "first-19@day12": "14dcf6a85dbd0e5097024dda291f425906633e1b784ff5dd27b8ad3df7da93a3",
+      "first-19@day30": "14dcf6a85dbd0e5097024dda291f425906633e1b784ff5dd27b8ad3df7da93a3",
+      "first-1@day1": "5f3d321b5936c6e08668b1e4292414aeb9c2b3f9143e86afc5f274041bee2a2a",
+      "first-1@day12": "5f3d321b5936c6e08668b1e4292414aeb9c2b3f9143e86afc5f274041bee2a2a",
+      "first-1@day30": "5f3d321b5936c6e08668b1e4292414aeb9c2b3f9143e86afc5f274041bee2a2a",
+      "first-20@day1": "94d2c072640a028de70c56fcb8b449f310f0c6eae7a0aef279bb05f53f4633d1",
+      "first-20@day12": "94d2c072640a028de70c56fcb8b449f310f0c6eae7a0aef279bb05f53f4633d1",
+      "first-20@day30": "94d2c072640a028de70c56fcb8b449f310f0c6eae7a0aef279bb05f53f4633d1",
+      "first-21@day1": "1e784d5b5c64da39faccb94ed841040821c83a4ca92a78d6e754ac459c259a55",
+      "first-21@day12": "1e784d5b5c64da39faccb94ed841040821c83a4ca92a78d6e754ac459c259a55",
+      "first-21@day30": "1e784d5b5c64da39faccb94ed841040821c83a4ca92a78d6e754ac459c259a55",
+      "first-22@day1": "9e13c67e46516d55c03f2bf8c966c64662773468f079d3220e403fd4c0732475",
+      "first-22@day12": "9e13c67e46516d55c03f2bf8c966c64662773468f079d3220e403fd4c0732475",
+      "first-22@day30": "9e13c67e46516d55c03f2bf8c966c64662773468f079d3220e403fd4c0732475",
+      "first-23@day1": "44ad97f6b9e59cc26e3dbdfe0f59947de850cd503be5672f473fd36c2ffa46a2",
+      "first-23@day12": "44ad97f6b9e59cc26e3dbdfe0f59947de850cd503be5672f473fd36c2ffa46a2",
+      "first-23@day30": "44ad97f6b9e59cc26e3dbdfe0f59947de850cd503be5672f473fd36c2ffa46a2",
+      "first-24@day1": "36a9799733c986eb04247d750c37a478efa381d5792a805f9310ff717fe29d4c",
+      "first-24@day12": "36a9799733c986eb04247d750c37a478efa381d5792a805f9310ff717fe29d4c",
+      "first-24@day30": "36a9799733c986eb04247d750c37a478efa381d5792a805f9310ff717fe29d4c",
+      "first-25@day1": "5f18e200877da0c3f85161cfd4f6b595d6100eb12e38c1a4690d8682d49d7721",
+      "first-25@day12": "5f18e200877da0c3f85161cfd4f6b595d6100eb12e38c1a4690d8682d49d7721",
+      "first-25@day30": "5f18e200877da0c3f85161cfd4f6b595d6100eb12e38c1a4690d8682d49d7721",
+      "first-26@day1": "90887c76a575213280673bdb969e4259040107bca80095a84c28a567ac1e57c9",
+      "first-26@day12": "90887c76a575213280673bdb969e4259040107bca80095a84c28a567ac1e57c9",
+      "first-26@day30": "90887c76a575213280673bdb969e4259040107bca80095a84c28a567ac1e57c9",
+      "first-27@day1": "a1867c596c090e944b7024129be127961c5735f5a71e22a7c8017b5d2193cd57",
+      "first-27@day12": "a1867c596c090e944b7024129be127961c5735f5a71e22a7c8017b5d2193cd57",
+      "first-27@day30": "a1867c596c090e944b7024129be127961c5735f5a71e22a7c8017b5d2193cd57",
+      "first-28@day1": "35cc3efa1cdd4ba482c96a3094e04581997e75dd512efd4dd6f1d443d49c4d2f",
+      "first-28@day12": "35cc3efa1cdd4ba482c96a3094e04581997e75dd512efd4dd6f1d443d49c4d2f",
+      "first-28@day30": "35cc3efa1cdd4ba482c96a3094e04581997e75dd512efd4dd6f1d443d49c4d2f",
+      "first-29@day1": "8f97cee6d820b01d21d9c53b07f504a450b7f37c81c77f644445e94e524003df",
+      "first-29@day12": "8f97cee6d820b01d21d9c53b07f504a450b7f37c81c77f644445e94e524003df",
+      "first-29@day30": "8f97cee6d820b01d21d9c53b07f504a450b7f37c81c77f644445e94e524003df",
+      "first-2@day1": "469481d492b4e494d8c50e2a262a867dc21c862e1301404958307b8c391fa3e4",
+      "first-2@day12": "469481d492b4e494d8c50e2a262a867dc21c862e1301404958307b8c391fa3e4",
+      "first-2@day30": "469481d492b4e494d8c50e2a262a867dc21c862e1301404958307b8c391fa3e4",
+      "first-30@day1": "d5fc23e4cfd8f8aee2eb5e2002aab7a14d10b1952ea865ad51780ae8f3fb4999",
+      "first-30@day12": "d5fc23e4cfd8f8aee2eb5e2002aab7a14d10b1952ea865ad51780ae8f3fb4999",
+      "first-30@day30": "d5fc23e4cfd8f8aee2eb5e2002aab7a14d10b1952ea865ad51780ae8f3fb4999",
+      "first-31@day1": "a52245a3a368c693f8c0cbee3e906cb3e04f395f9d19b1d9e5f1bf018e677472",
+      "first-31@day12": "a52245a3a368c693f8c0cbee3e906cb3e04f395f9d19b1d9e5f1bf018e677472",
+      "first-31@day30": "a52245a3a368c693f8c0cbee3e906cb3e04f395f9d19b1d9e5f1bf018e677472",
+      "first-32@day1": "a6fc9ab5fbd24967fc301129c4efb9ab279e337613fd71e2ae27326276551a4e",
+      "first-32@day12": "a6fc9ab5fbd24967fc301129c4efb9ab279e337613fd71e2ae27326276551a4e",
+      "first-32@day30": "a6fc9ab5fbd24967fc301129c4efb9ab279e337613fd71e2ae27326276551a4e",
+      "first-33@day1": "db26fda7dc1b1ca747a4baf8b045765dce3a04032b7ce11978018abf1d2a8059",
+      "first-33@day12": "db26fda7dc1b1ca747a4baf8b045765dce3a04032b7ce11978018abf1d2a8059",
+      "first-33@day30": "db26fda7dc1b1ca747a4baf8b045765dce3a04032b7ce11978018abf1d2a8059",
+      "first-34@day1": "0b31e8b395e870cb4de032ce8db2db4a1000d1b3abcd8e42c3d83b5fde4d02cc",
+      "first-34@day12": "0b31e8b395e870cb4de032ce8db2db4a1000d1b3abcd8e42c3d83b5fde4d02cc",
+      "first-34@day30": "0b31e8b395e870cb4de032ce8db2db4a1000d1b3abcd8e42c3d83b5fde4d02cc",
+      "first-35@day1": "044e81118d8ed1cb95438ea8748d8d4b2c824c5e6d2f11a1fb03256e42607d9e",
+      "first-35@day12": "044e81118d8ed1cb95438ea8748d8d4b2c824c5e6d2f11a1fb03256e42607d9e",
+      "first-35@day30": "044e81118d8ed1cb95438ea8748d8d4b2c824c5e6d2f11a1fb03256e42607d9e",
+      "first-36@day1": "c1c22b0a1ef686c49e2ed728e469fd9fed64b43e32b9284623dcf285135b8ead",
+      "first-36@day12": "c1c22b0a1ef686c49e2ed728e469fd9fed64b43e32b9284623dcf285135b8ead",
+      "first-36@day30": "c1c22b0a1ef686c49e2ed728e469fd9fed64b43e32b9284623dcf285135b8ead",
+      "first-37@day1": "1b7f07a0d7db954f8254a741970bbd8bf15c1b679eb8d71552eaba0bc635d922",
+      "first-37@day12": "1b7f07a0d7db954f8254a741970bbd8bf15c1b679eb8d71552eaba0bc635d922",
+      "first-37@day30": "1b7f07a0d7db954f8254a741970bbd8bf15c1b679eb8d71552eaba0bc635d922",
+      "first-38@day1": "1043e41589fb9a422b61d2cdcaabaf81ad49f06e2fda575078e343734992a2f7",
+      "first-38@day12": "1043e41589fb9a422b61d2cdcaabaf81ad49f06e2fda575078e343734992a2f7",
+      "first-38@day30": "1043e41589fb9a422b61d2cdcaabaf81ad49f06e2fda575078e343734992a2f7",
+      "first-39@day1": "61a64a17f057adc42ba9107453468fbe5b2ca606f97e6f2a2ca4f5941bd53178",
+      "first-39@day12": "61a64a17f057adc42ba9107453468fbe5b2ca606f97e6f2a2ca4f5941bd53178",
+      "first-39@day30": "61a64a17f057adc42ba9107453468fbe5b2ca606f97e6f2a2ca4f5941bd53178",
+      "first-3@day1": "1c98e2e6a6022ed66e9945977eda8b37b2499ee865ffde653a7094a67b29681e",
+      "first-3@day12": "1c98e2e6a6022ed66e9945977eda8b37b2499ee865ffde653a7094a67b29681e",
+      "first-3@day30": "1c98e2e6a6022ed66e9945977eda8b37b2499ee865ffde653a7094a67b29681e",
+      "first-40@day1": "9b5ff1bff86b01092e23486f9523e384a01f8539dae6e815f7c6e6e4b5bca41b",
+      "first-40@day12": "9b5ff1bff86b01092e23486f9523e384a01f8539dae6e815f7c6e6e4b5bca41b",
+      "first-40@day30": "9b5ff1bff86b01092e23486f9523e384a01f8539dae6e815f7c6e6e4b5bca41b",
+      "first-4@day1": "fe405b496e2bab9c919a4fb4a62e19e3928f06a77b2134d56c221627870bf98d",
+      "first-4@day12": "fe405b496e2bab9c919a4fb4a62e19e3928f06a77b2134d56c221627870bf98d",
+      "first-4@day30": "fe405b496e2bab9c919a4fb4a62e19e3928f06a77b2134d56c221627870bf98d",
+      "first-5@day1": "b449c7c9aaed3f2f72dfd0788349902b3318bc2d6932e189191e58f901f0e345",
+      "first-5@day12": "b449c7c9aaed3f2f72dfd0788349902b3318bc2d6932e189191e58f901f0e345",
+      "first-5@day30": "b449c7c9aaed3f2f72dfd0788349902b3318bc2d6932e189191e58f901f0e345",
+      "first-6@day1": "9eb27e9356c6dd80299d26b07f8cafcf2244d59a557fe0e19c63dfcb68c8cd06",
+      "first-6@day12": "9eb27e9356c6dd80299d26b07f8cafcf2244d59a557fe0e19c63dfcb68c8cd06",
+      "first-6@day30": "9eb27e9356c6dd80299d26b07f8cafcf2244d59a557fe0e19c63dfcb68c8cd06",
+      "first-7@day1": "89e321ae9c7e79989c8da3e13bb5a9e44b45a263712d61bc34b3f2eaa03da133",
+      "first-7@day12": "89e321ae9c7e79989c8da3e13bb5a9e44b45a263712d61bc34b3f2eaa03da133",
+      "first-7@day30": "89e321ae9c7e79989c8da3e13bb5a9e44b45a263712d61bc34b3f2eaa03da133",
+      "first-8@day1": "fa2010d5405b098ffbea7bb3ebfa775e69952c3c19acd643c0ddc77e3830e903",
+      "first-8@day12": "fa2010d5405b098ffbea7bb3ebfa775e69952c3c19acd643c0ddc77e3830e903",
+      "first-8@day30": "fa2010d5405b098ffbea7bb3ebfa775e69952c3c19acd643c0ddc77e3830e903",
+      "first-9@day1": "5c6ab85a3f6fc0f24438ffb42d1b8959479d5997b02151e817e03e9461bb8aea",
+      "first-9@day12": "5c6ab85a3f6fc0f24438ffb42d1b8959479d5997b02151e817e03e9461bb8aea",
+      "first-9@day30": "5c6ab85a3f6fc0f24438ffb42d1b8959479d5997b02151e817e03e9461bb8aea",
+      "last@day1": "768a813ef87d6f6dae191d6b57c20f91c45110c6a03c2dac266e5ed2b8145384",
+      "last@day12": "768a813ef87d6f6dae191d6b57c20f91c45110c6a03c2dac266e5ed2b8145384",
+      "last@day30": "768a813ef87d6f6dae191d6b57c20f91c45110c6a03c2dac266e5ed2b8145384",
+      "none@day1": "f551ae3c176be7c4b6d13fc6735941c760dc65b610d666ed81a185197da28f8f",
+      "none@day12": "f551ae3c176be7c4b6d13fc6735941c760dc65b610d666ed81a185197da28f8f",
+      "none@day30": "f551ae3c176be7c4b6d13fc6735941c760dc65b610d666ed81a185197da28f8f"
+    },
+    "stageCompletedBy": {
+      "half": {
+        "bss-001": "onboarding",
+        "bss-003": "onboarding",
+        "bss-004": "onboarding",
+        "bss-005": "onboarding",
+        "bss-006": "onboarding",
+        "bss-007": "onboarding",
+        "bss-008": "build",
+        "bss-009": "build",
+        "bss-010": "build",
+        "bss-011": "build",
+        "bss-012": "build",
+        "bss-013": "build",
+        "bss-014": "build",
+        "bss-015": "build",
+        "bss-016": "build",
+        "bss-017": "build",
+        "bss-018": "build",
+        "bss-019": "build",
+        "bss-020": "build",
+        "bss-021": "build",
+        "bss-022": null,
+        "bss-023": null,
+        "bss-024": null,
+        "bss-025": null,
+        "bss-026": null,
+        "bss-027": null,
+        "bss-028": null,
+        "bss-029": null,
+        "bss-030": null,
+        "bss-031": null,
+        "bss-032": null,
+        "bss-033": null,
+        "bss-034": null,
+        "bss-035": null,
+        "bss-036": null,
+        "bss-037": null,
+        "bss-038": null,
+        "bss-039": null,
+        "bss-040": null,
+        "bss-041": null
+      },
+      "none": {
+        "bss-001": null,
+        "bss-003": null,
+        "bss-004": null,
+        "bss-005": null,
+        "bss-006": null,
+        "bss-007": null,
+        "bss-008": null,
+        "bss-009": null,
+        "bss-010": null,
+        "bss-011": null,
+        "bss-012": null,
+        "bss-013": null,
+        "bss-014": null,
+        "bss-015": null,
+        "bss-016": null,
+        "bss-017": null,
+        "bss-018": null,
+        "bss-019": null,
+        "bss-020": null,
+        "bss-021": null,
+        "bss-022": null,
+        "bss-023": null,
+        "bss-024": null,
+        "bss-025": null,
+        "bss-026": null,
+        "bss-027": null,
+        "bss-028": null,
+        "bss-029": null,
+        "bss-030": null,
+        "bss-031": null,
+        "bss-032": null,
+        "bss-033": null,
+        "bss-034": null,
+        "bss-035": null,
+        "bss-036": null,
+        "bss-037": null,
+        "bss-038": null,
+        "bss-039": null,
+        "bss-040": null,
+        "bss-041": null
+      }
+    },
+    "stageGuides": {
+      "build": null,
+      "go-live": null,
+      "onboarding": null,
+      "post-launch": null,
+      "testing": null
+    },
+    "steps": {
+      "bss-001": {
+        "detail": "Tell us about your business in your own words, out loud or typed. About 5 minutes. It shapes your CRM, website and AI agent.",
+        "interviewAudioBase": "/portal/voice/interview-bss-001",
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-003": {
+        "detail": "Add our team email as an admin on each of your accounts. No passwords change hands: each platform sends us an invite, and you can remove us at any time.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-004": {
+        "detail": "We map how a lead becomes a paying client, end to end, and agree it with you before any build starts.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-005": {
+        "detail": "We review what you have and write up what to keep, migrate or replace.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-006": {
+        "detail": "Every channel a new enquiry arrives through, listed and checked.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-007": {
+        "detail": "How partners and payouts work today, how payment is taken after sales calls, your webinar platform, and Calendly.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-008": {
+        "detail": "The core CRM set-up your pipeline, automations and pages run on.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-009": {
+        "detail": "So every lead lands in the right place with the right details.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-010": {
+        "detail": "Your contacts migrated, cleaned, de-duplicated and tagged by where they came from.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-011": {
+        "detail": "Hot, warm and cold leads sorted automatically.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-012": {
+        "detail": "A missed call gets a text back straight away.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-013": {
+        "detail": "Connected to Calendly, without doubled-up reminders.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-014": {
+        "detail": "Home, About, Podcast & socials, Book a call, Call booked, Not-qualified, Link-in-bio and Privacy, on desktop and mobile. Two rounds of changes are included.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-015": {
+        "detail": "Your registration and thank-you pages. Three rounds of changes are included.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-016": {
+        "detail": "The exact pages are confirmed in your first two weeks. Two rounds of changes are included.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-017": {
+        "detail": "A placeholder slot on the site, ready for a VSL later.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-018": {
+        "detail": "Every form, booking button and the chat widget wired into your CRM.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-019": {
+        "detail": "Two-way messaging switched on, with text consent captured on your sign-up forms.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-020": {
+        "detail": "Messages from both arrive in your CRM, tagged by channel.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-021": {
+        "detail": "Lead links from YouTube you can track back to the source.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-022": {
+        "detail": "Booking windows, short-notice bookings, reschedules and cancellations all checked.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-023": {
+        "detail": "The six warm-up emails and their texts, drafted with you and approved by you before they go live.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-024": {
+        "detail": "It qualifies a lead, saves the answers to your CRM and books the call, across chat, text, Instagram and Facebook.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-025": {
+        "detail": "Reaching past contacts, and following up no-shows and quiet leads.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-026": {
+        "detail": "From form to pipeline to dashboard, end to end.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-027": {
+        "detail": "We launch your core website on your domain on a day we agree together.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-028": {
+        "detail": "New leads are warmed up automatically.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-029": {
+        "detail": "Confirmations and reminders run themselves.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-030": {
+        "detail": "On chat, text, Instagram and Facebook.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-031": {
+        "detail": "To past contacts who have already given consent.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-032": {
+        "detail": "Every missed call and message gets a reply.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-033": {
+        "detail": "Leads move stage automatically, and follow-ups stop when they reply or book.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-034": {
+        "detail": "Leads, bookings and conversions in one view.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-035": {
+        "detail": "See which partners bring paying clients, from their link through to payment.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-036": {
+        "detail": "Registration confirmations, reminders and follow-up after every webinar, repeating each week.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-037": {
+        "detail": "When a payment is confirmed, your new client is onboarded and handed to the implementation coach.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-038": {
+        "detail": "A live walkthrough plus a short written guide to running everything.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-039": {
+        "detail": "We look at real leads and AI conversations, and fix what isn't working.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-040": {
+        "detail": "No-show, nurture and unpaid-invoice follow-up.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bss-041": {
+        "detail": "We keep reviewing and supporting you through month 8.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      }
+    },
+    "stringPlan": {
+      "goLiveDay": 42,
+      "tailLabel": "→ M8",
+      "weeks": 10,
+      "workstreams": [
+        {
+          "dayEnd": 14,
+          "dayStart": 1,
+          "id": "intake",
+          "name": "Intake & kick-off",
+          "taskIds": [
+            "bss-001",
+            "bss-002",
+            "bss-003"
+          ]
+        },
+        {
+          "after": [
+            "intake"
+          ],
+          "dayEnd": 14,
+          "dayStart": 1,
+          "id": "mapping",
+          "name": "Mapping & audit",
+          "taskIds": [
+            "bss-004",
+            "bss-005",
+            "bss-006",
+            "bss-007"
+          ]
+        },
+        {
+          "after": [
+            "mapping"
+          ],
+          "dayEnd": 28,
+          "dayStart": 8,
+          "id": "crm",
+          "name": "CRM build",
+          "taskIds": [
+            "bss-008",
+            "bss-009",
+            "bss-010",
+            "bss-011",
+            "bss-012",
+            "bss-013"
+          ]
+        },
+        {
+          "after": [
+            "mapping"
+          ],
+          "dayEnd": 28,
+          "dayStart": 8,
+          "id": "website",
+          "name": "Website build",
+          "taskIds": [
+            "bss-014",
+            "bss-015",
+            "bss-016",
+            "bss-017",
+            "bss-018"
+          ]
+        },
+        {
+          "after": [
+            "crm",
+            "website"
+          ],
+          "dayEnd": 35,
+          "dayStart": 29,
+          "id": "channels",
+          "name": "Channel connections",
+          "taskIds": [
+            "bss-019",
+            "bss-020",
+            "bss-021"
+          ]
+        },
+        {
+          "after": [
+            "channels"
+          ],
+          "dayEnd": 42,
+          "dayStart": 36,
+          "id": "testing",
+          "name": "Testing & QA",
+          "taskIds": [
+            "bss-022",
+            "bss-023",
+            "bss-024",
+            "bss-025",
+            "bss-026"
+          ]
+        },
+        {
+          "after": [
+            "testing"
+          ],
+          "dayEnd": 42,
+          "dayStart": 36,
+          "id": "launch",
+          "name": "Launch & automate",
+          "taskIds": [
+            "bss-027",
+            "bss-028",
+            "bss-029",
+            "bss-030",
+            "bss-031",
+            "bss-032",
+            "bss-033",
+            "bss-034"
+          ]
+        },
+        {
+          "after": [
+            "launch"
+          ],
+          "dayEnd": 70,
+          "dayStart": 43,
+          "id": "partners",
+          "name": "Partners, webinar & onboarding",
+          "taskIds": [
+            "bss-035",
+            "bss-036",
+            "bss-037"
+          ]
+        },
+        {
+          "after": [
+            "launch"
+          ],
+          "dayEnd": 70,
+          "dayStart": 43,
+          "id": "support",
+          "name": "Refine & support",
+          "ongoing": true,
+          "taskIds": [
+            "bss-038",
+            "bss-039",
+            "bss-040",
+            "bss-041"
+          ]
+        }
+      ]
+    },
+    "tabTitle": "BSS Launchpad",
+    "tagline": "Onboarding & delivery",
+    "totalDays": 42,
+    "totalMilestoneCount": 40,
+    "visibleIds": [
+      "bss-001",
+      "bss-003",
+      "bss-004",
+      "bss-005",
+      "bss-006",
+      "bss-007",
+      "bss-008",
+      "bss-009",
+      "bss-010",
+      "bss-011",
+      "bss-012",
+      "bss-013",
+      "bss-014",
+      "bss-015",
+      "bss-016",
+      "bss-017",
+      "bss-018",
+      "bss-019",
+      "bss-020",
+      "bss-021",
+      "bss-022",
+      "bss-023",
+      "bss-024",
+      "bss-025",
+      "bss-026",
+      "bss-027",
+      "bss-028",
+      "bss-029",
+      "bss-030",
+      "bss-031",
+      "bss-032",
+      "bss-033",
+      "bss-034",
+      "bss-035",
+      "bss-036",
+      "bss-037",
+      "bss-038",
+      "bss-039",
+      "bss-040",
+      "bss-041"
+    ],
+    "wordmark": "Scale"
+  },
+  "ssr": {
+    "aurora|all|day1": "8b15832fa352a8f01e5c981e604e0cac12ba6464f4f5c220cd16e02c0482e844",
+    "aurora|all|day30": "ac7f3d90f738c1f416521748117cc0f20f40584bb9e92126942b8e09a2e1e6ef",
+    "aurora|half|day1": "813a6d6b2f3be708b3edf338deb2bffd2262f5dfa5b13e42661e5f1092090ea7",
+    "aurora|half|day30": "16924b4f03867d9a2bde9bbf04f3fd6e281ede836dbc177a38a3142ee41a0534",
+    "aurora|none|day1": "c12b7abb2e9933de33424212bdcd2f2647322edb791dd6d6d315595d20b6c5eb",
+    "aurora|none|day30": "76d93ebe13fc2d1b0782bb7a5df6925ac39502fa8c13cd7382b6be23504affab",
+    "calm|all|day1": "bff6769c1755d9c78d19bd92c58ca82a128026e8c6e87e085254d08be2b85dc0",
+    "calm|all|day30": "b394c337b6fb2e4be50931d5b1daf2b563e566e0fa0cda2d3ec7e00b4f3b018b",
+    "calm|half|day1": "f9a0bc854cbcb6dfc99a5d3cc05a5e509a79bfaf042b69dba0490002c04c01be",
+    "calm|half|day30": "156c7561436f063473cce83b8ab60439d1e1a32bc4d961b7f0bfe4ee6bb6ec76",
+    "calm|none|day1": "f0ecd3a59852cf723b8640d48d44dc6e857432edc5e52c455120d189de60eef5",
+    "calm|none|day30": "58a2f4e57c4783dbc29ca1a361e78ba2db56a31ddf44185bcf1d9f5fdfb64e42",
+    "cobalt|all|day1": "8199015778ffb4856635aae5c7dc3bda2c2c7ecef0904cb64b4bbd0774bfecc1",
+    "cobalt|all|day30": "c12db6f4e484f438dec219e952fcec8de95797ae0da686a2a5ad119ef53c2133",
+    "cobalt|half|day1": "603bb1b32ba53b51cfc8da1d4d0d0995b5731bfdf7e3a94b45b06c5b932931fa",
+    "cobalt|half|day30": "2dfed085b8e017649fa66a752acb0d68bd4a8ae8bbab6045e93bd2c22eb657d1",
+    "cobalt|none|day1": "d87d52c7ad375d1bbba15fb5a29c724e8b06600d51b650b2e96659c33412b0af",
+    "cobalt|none|day30": "d1596b623dba0fdd5691858ced4702d326281c7172da99645ea680a1e45c34c7",
+    "cool|all|day1": "d4f7f0dd390f73f1e26bb324e1bd41bb734e87adc7025160809f8bb2f43fe2f8",
+    "cool|all|day30": "bfbce42644b6dcde35f93ac1e1493065728aca76a95dc20d5aa863a7c0409ebe",
+    "cool|half|day1": "7d6fa9d2853600307bb8ab0087155b0b5ed05176eddfd8c70f058fc48eaf8e19",
+    "cool|half|day30": "8be6a9c24d57959e83bea0f0f9b4f7fdf0c8fc30a4e46912d61876b8ed4bc89a",
+    "cool|none|day1": "6fcb6a543c8b33101dd5df7139e5ae1e48f16d4db3d27c57ef7d35b269723bcf",
+    "cool|none|day30": "8bcb20ff7e8c57199cc8ca9ab252b7ac7a011500a7662370e2b1f1bafc0bf4f9",
+    "groveaurora|all|day1": "5f1684b26078a9f7ef0ad2acc4ec1aceaa3dd47daa13f8bffcb377c1a7be52a9",
+    "groveaurora|all|day30": "7f5b56ac4d7e387006f544b7a6da17f935e2a36fe425403927aca06a92716e56",
+    "groveaurora|half|day1": "82be7d2abc41a493d6bdec91a238c8a3cc5c74e038c39b0618496d8381ef4bed",
+    "groveaurora|half|day30": "bcf652c1ec91a8f7c2f63d9a8385781ccabfdee77ab6924b28cf811f767f801b",
+    "groveaurora|none|day1": "e8b32c1afddf1fca8f5e548639e64044340bae5d39a144acded76f73ee0dd5a4",
+    "groveaurora|none|day30": "fce2965fcf874e4d03d7117b5cc0fc8e56c0318f15302808ab2533d8d5171c97",
+    "grove|all|day1": "9b6ecca8b14b41982c027cfbee17290e13cf99878e89f2bb6b2d9c5a115bafd0",
+    "grove|all|day30": "b9652e825f0343556d852e0f595beb5a51dbfdc33cb4b64fa18e2612907d3c61",
+    "grove|half|day1": "61d7ae84ff3193ebb5bee371604abfdc2b35818dbabd55fcc8d71242d60d10af",
+    "grove|half|day30": "1ab557f329509922151840e0027b1747671b9677e5bead601588c36b44301ba2",
+    "grove|none|day1": "a181b70f2925adc93db6ae76e9294fe15bfe5025d5f02d57e35fec6b271970ac",
+    "grove|none|day30": "6f9f28bb2de1dafef89befcddbb93a8d34fbfd34e177520c99b5dace09d8e759",
+    "handoff|all|day1": "a52e93decfa6784c8895f6e684d3735f3a83aae2acb8804e089034968618655e",
+    "handoff|all|day30": "094b2a6bbfcb4898fc7ca4d283ac3613305c2af74d080a435fe50a1680c3a16f",
+    "handoff|half|day1": "11464d7166f80ad04c9edb045e350605f61fe007a9e030739fff24b8732d0194",
+    "handoff|half|day30": "9116af4488e2ca4c24a83486709d78a720983817ae11e1a4c8b145b2c088b6a0",
+    "handoff|none|day1": "723463c52f2dbfb3aa83f83346b83a347073cceaeb0d93070bd7045c99348ae9",
+    "handoff|none|day30": "741502d0a15739bfd4204c9f636d4089946ade2ae20985a8916b5466a4d5859c",
+    "neutral|all|day1": "35e1c6da4c0ab422465c478f76bc615106d192b340b5fa80c362754e7ef9d98a",
+    "neutral|all|day30": "5d4f7e4a17c26baa3bc4e820e00499ee126b8457fec92d5f7a24138d0b57e60f",
+    "neutral|half|day1": "68489b357b10694903cfefa2f86b6235ed41e086949de71c2351a85f905b46ee",
+    "neutral|half|day30": "4af1722441eda5bc3524b3e7445dab301a9ba132aa9b598d3b3b62bb35ecdad7",
+    "neutral|none|day1": "bda4df833f27d1155845363d3fa3b5baa44b3dd91c40855f2e1127d65368fefa",
+    "neutral|none|day30": "e18461f48ee8eb5361af96180ff209163a6eceac402b5d69cd75c3da2a8c6fcd",
+    "warm|all|day1": "7f348404fe8cea7f957a409c920049679cd07e8c3c3d9c774639e87aa9d78fc6",
+    "warm|all|day30": "b1cd43a93a606d11d76e8c9a6ed5b9e064ca87dafdaf194951ae6b09257b80eb",
+    "warm|half|day1": "15531a7a2bb64fa62e3fae9a3b8d2d36f6d4a25cd3228d57245c08a0e936b3a4",
+    "warm|half|day30": "66b1072d8a01008f424165221db38257c64c6b6d6635d01296da6051a973cb98",
+    "warm|none|day1": "4c090cabdab0d0c4a7b1c867343a43d0e478a3c8037053d70af459205077bf60",
+    "warm|none|day30": "1d8cc826d610d00ec1f0a4196ea71a9f77062e85f0273c200e86bdf57b091a4d"
+  },
+  "welcome": {
+    "aurora": "e9d34b96187c8d2292e7885f3c793da894a5f322c0b231a2ccd9aec517d6ea89",
+    "funnel": "a3868befd41b483626e4577fa85a03609e434202c46b2b8a4d43b8f528855650",
+    "funnel-grove": "61fea2746cd2824fc849ceabdc52a9f2219671834bd6cf9cc507846d70a6ace1",
+    "marquee": "96609d21cec768d6364c67adc272aab9aa318b765d5915c494ac230a44c6ae53",
+    "mosaic": "1e3b4e01c05b99eb1f7ff3fe62e3a59de582d14201a3c7e8ffd5beeab51292e0"
+  }
+}

@@ -12,14 +12,14 @@ steady-tuned Natasha AU and Jenny US). Brief for a future ElevenLabs
 upgrade: "William's steadiness, female".
 
 Usage: python3 scripts/generate-voice.py   (needs: pip3 install edge-tts)
+       python3 scripts/generate-voice.py --list   print "<file>\t<text>" per clip, sorted; no TTS, network or ffmpeg
 """
 import asyncio
 import pathlib
 import re
 import subprocess
+import sys
 import tempfile
-
-import edge_tts
 
 VOICE = "en-GB-SoniaNeural"
 RATE = "-4%"  # a touch slower than default for warmth
@@ -38,6 +38,8 @@ def parse_map(name: str) -> dict[str, str]:
     }
 
 async def render(text: str, target: pathlib.Path) -> None:
+    import edge_tts  # only needed to render, not for --list
+
     # "AI" reads better spelled out for TTS.
     spoken = text.replace("AI ", "A.I. ")
     with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
@@ -47,6 +49,16 @@ async def render(text: str, target: pathlib.Path) -> None:
             check=True,
         )
     pathlib.Path(tmp.name).unlink(missing_ok=True)
+
+def clips() -> list[tuple[str, str]]:
+    """(file name, text) for every voice-guide clip, sorted by file name."""
+    maps = {"scale": parse_map("scaleScripts"), "respond": parse_map("respondScripts")}
+    return sorted((f"{prefix}-{stage_id}.m4a", text) for prefix, scripts in maps.items() for stage_id, text in scripts.items())
+
+if "--list" in sys.argv:
+    for name, text in clips():
+        print(f"{name}\t{text}")
+    raise SystemExit(0)
 
 async def main() -> None:
     maps = {"scale": parse_map("scaleScripts"), "respond": parse_map("respondScripts")}

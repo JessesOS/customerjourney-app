@@ -20,6 +20,7 @@ Re-run whenever a question's wording changes, or the clip and the text on
 screen will disagree.
 
 Usage: python3 scripts/generate-interview-voice.py [--free]   (needs ffmpeg; --free needs edge-tts)
+       python3 scripts/generate-interview-voice.py --list   print "<file>\t<text>" per clip, sorted; no TTS, network or ffmpeg
 """
 import asyncio
 import json
@@ -61,6 +62,18 @@ async def edge(text: str, target: pathlib.Path) -> None:
     import edge_tts
     await edge_tts.Communicate(text.replace("AI ", "A.I. "), voice=EDGE_VOICE, rate=EDGE_RATE).save(str(target))
 
+def interview_lists() -> list[tuple[str, list[str]]]:
+    """(milestone id, questions) for every interview in the journey files."""
+    found = re.findall(r'id: "([\w-]+)",(?:(?!\bid: ").)*?interview: \[(.*?)\]', src, re.S)
+    if not found:
+        raise SystemExit("no interview lists found in the journey files")
+    return [(milestone_id, re.findall(r'"((?:[^"\\]|\\.)*)"', block)) for milestone_id, block in found]
+
+def list_clips() -> None:
+    rows = sorted((f"interview-{mid}-{n}.m4a", q) for mid, questions in interview_lists() for n, q in enumerate(questions, 1))
+    for name, text in rows:
+        print(f"{name}\t{text}")
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     found = re.findall(r'id: "([\w-]+)",(?:(?!\bid: ").)*?interview: \[(.*?)\]', src, re.S)
@@ -82,4 +95,7 @@ def main() -> None:
             print(f"{target.name}: {target.stat().st_size // 1024} KB  {q}")
     print("done")
 
-main()
+if "--list" in sys.argv:
+    list_clips()
+else:
+    main()
