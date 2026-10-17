@@ -203,7 +203,7 @@ const TILES: Tile[] = [
   },
 ];
 
-export function WelcomeScreen({ name, brand, brandName, onStart }: { name: string; brand: "scale" | "respond"; brandName?: string; onStart: () => void }) {
+export function WelcomeScreen({ name, wordmark, brandName, onStart }: { name: string; wordmark: string; brandName?: string; onStart: () => void }) {
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", flexDirection: "column", background: "var(--pj-ink)" }}>
       {/* Letterbox above and below the band — ~120px on desktop (split the
@@ -248,7 +248,7 @@ export function WelcomeScreen({ name, brand, brandName, onStart }: { name: strin
         }}
       >
         <div style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: "clamp(34px, 4.5vw, 46px)", fontWeight: 800, letterSpacing: "-0.03em", color: "var(--pj-ink)", lineHeight: 1 }}>
-          {brandName ?? (brand === "respond" ? "crm" : brand)}
+          {brandName ?? wordmark.toLowerCase()}
         </div>
         <p style={{ margin: "12px 0 22px", fontSize: 15, color: "var(--pj-muted)" }}>
           Welcome, {name} — your journey starts here.

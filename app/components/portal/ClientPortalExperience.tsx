@@ -1,31 +1,31 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { JourneyMilestone, PortalJourney } from "@/lib/journeyTypes";
 import {
-  buildJourneyStages,
-  defaultCompletedMilestoneIds,
-  defaultCurrentDay,
-  journeyTemplate,
-  journeyTotalDays,
-  milestoneVisibleFor,
-  type ClientType,
-  type JourneyMilestone,
-} from "@/lib/onboardingJourney";
-import { buildRespondJourneyStages, respondJourneyTemplate, respondJourneyTotalDays } from "@/lib/respondJourney";
-import { bssJourneyTemplate, bssJourneyTotalDays, buildBssJourneyStages } from "@/lib/bssJourney";
+  askItemsOf,
+  buildStages,
+  headerName,
+  hubBrand,
+  interviewAudioBase,
+  showsLandingPreview,
+  showsPlayground,
+  showsTaskBooking,
+  showsTaskImportant,
+  showsTaskVideo,
+  stageCompletedBy as stageCompletedByStep,
+  stageGuideOf,
+  taskNote,
+} from "@/lib/journeyBuild";
 import { formSizeLabel, onboardingFormById } from "@/lib/onboardingForm";
 import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormStepper";
 import { MicButton } from "@/app/components/portal/MicButton";
-import { productBrandName, productHiddenTaskBooking, productHiddenTaskImportant, productHiddenTaskPlayground, productHiddenTaskVideos, productHidesIncentive, productIntroVideo, productTagline, productTaskNotes } from "@/lib/journeyEngine";
 import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
-import { bssStringPlan, scaleMetaStringPlan } from "@/lib/stringPlans";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
 import { StageGuide } from "@/app/components/portal/StageGuide";
-import { stageGuideFor } from "@/lib/stageGuide";
 import { AskChips } from "@/app/components/portal/AskChips";
-import { askItemsFor } from "@/lib/askAi";
 import { WelcomeScreen } from "@/app/components/portal/WelcomeScreen";
 import { WelcomeMarquee } from "@/app/components/portal/WelcomeMarquee";
 import { WelcomeFunnel } from "@/app/components/portal/WelcomeFunnel";
@@ -46,11 +46,13 @@ export type UploadMeta = { id?: number; fileName: string; uploadedAt: string };
 
 export type ClientPortalExperienceProps = {
   name?: string;
-  clientType?: ClientType;
-  currentDay?: number;
+  /** Everything this client's product shows (steps, wording, days, branding,
+      guides): built on the server by lib/productRegistry.ts (portalJourneyFor). */
+  journey: PortalJourney;
+  currentDay: number;
   /** Days since the start, not capped at the journey length (String Theory's Today line). */
   calendarDay?: number;
-  initialCompletedMilestoneIds?: string[];
+  initialCompletedMilestoneIds: string[];
   initialMilestoneNotes?: Record<string, string>;
   milestoneContent?: Record<string, string>;
   milestoneUploads?: Record<string, UploadMeta[]>;
@@ -134,10 +136,10 @@ function PortalLinkCard({ portalToken }: { portalToken?: string }) {
 
 export function ClientPortalExperience({
   name = "Chris",
-  clientType = "meta-google",
-  currentDay = defaultCurrentDay,
+  journey,
+  currentDay,
   calendarDay,
-  initialCompletedMilestoneIds = defaultCompletedMilestoneIds,
+  initialCompletedMilestoneIds,
   initialMilestoneNotes = {},
   milestoneContent = {},
   milestoneUploads = {},
@@ -177,26 +179,17 @@ export function ClientPortalExperience({
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [uploadingId, setUploadingId] = useState<string | null>(null);
 
-  const isRespond = clientType === "respond";
-  // The name the client sees: a custom product's own name, else the house product name.
-  const brandName = productBrandName[clientType];
-  const brandTagline = productTagline[clientType];
+  // The name the client sees: a custom product's own name, else the product's wordmark.
+  const brandName = journey.brandName;
+  const brandTagline = journey.tagline;
   // A product's intro video plays after the welcome, then the journey page.
-  const introVideo = productIntroVideo[clientType];
+  const introVideo = journey.introVideo;
   const introRef = useRef<IntroVideoHandle | null>(null);
   const [introPlaying, setIntroPlaying] = useState(false);
-  const isBss = clientType === "bss";
-  const activeJourneyTemplate = isRespond ? respondJourneyTemplate : isBss ? bssJourneyTemplate : journeyTemplate;
-  const activeJourneyTotalDays = isRespond ? respondJourneyTotalDays : isBss ? bssJourneyTotalDays : journeyTotalDays;
 
   const journeyStages = useMemo(
-    () =>
-      isRespond
-        ? buildRespondJourneyStages(completedIds, currentDay)
-        : isBss
-          ? buildBssJourneyStages(completedIds, currentDay)
-          : buildJourneyStages(completedIds, currentDay, clientType),
-    [completedIds, currentDay, clientType, isRespond, isBss],
+    () => buildStages(journey.stages, completedIds, currentDay),
+    [journey, completedIds, currentDay],
   );
 
   const defaultStage = useMemo(() => journeyStages.find((s) => s.status === "current"), [journeyStages]);
@@ -403,12 +396,7 @@ export function ClientPortalExperience({
 
   // Returns the stage id if approving `milestoneId` completes its whole stage.
   function stageCompletedBy(milestoneId: string): string | null {
-    const stage = activeJourneyTemplate.find((s) => s.milestones.some((mm) => mm.id === milestoneId));
-    if (!stage) return null;
-    const willAllBeDone = stage.milestones
-      .filter((mm) => milestoneVisibleFor(mm, clientType))
-      .every((mm) => mm.id === milestoneId || completedIds.has(mm.id));
-    return willAllBeDone ? stage.id : null;
+    return stageCompletedByStep(journey.stages, completedIds, milestoneId);
   }
 
   function approveMilestone(milestoneId: string, note?: string) {
@@ -623,10 +611,10 @@ export function ClientPortalExperience({
     >
       {showWelcome &&
         (welcomeVersion === "funnel" && designSkin !== "groveaurora" ? (
-          <WelcomeFunnel brand={isRespond ? "respond" : "scale"} brandName={brandName} color={designSkin === "grove" ? "#0f6b4b" : undefined} onStart={dismissWelcome} />
+          <WelcomeFunnel wordmark={journey.wordmark} brandName={brandName} color={designSkin === "grove" ? "#0f6b4b" : undefined} onStart={dismissWelcome} />
         ) : welcomeVersion === "aurora" || (welcomeVersion === "funnel" && designSkin === "groveaurora") ? (
           <WelcomeAurora
-            brand={isRespond ? "respond" : "scale"}
+            wordmark={journey.wordmark}
             brandName={brandName}
             tagline={brandTagline}
             stages={journeyStages.map((s) => s.name)}
@@ -634,9 +622,9 @@ export function ClientPortalExperience({
             onStart={dismissWelcome}
           />
         ) : welcomeVersion === "marquee" ? (
-          <WelcomeMarquee brand={isRespond ? "respond" : "scale"} brandName={brandName} onStart={dismissWelcome} />
+          <WelcomeMarquee wordmark={journey.wordmark} brandName={brandName} onStart={dismissWelcome} />
         ) : (
-          <WelcomeScreen name={name} brand={isRespond ? "respond" : "scale"} brandName={brandName} onStart={dismissWelcome} />
+          <WelcomeScreen name={name} wordmark={journey.wordmark} brandName={brandName} onStart={dismissWelcome} />
         ))}
       {/* Mounted while the welcome is up (hidden), so "Get started" can start it with sound. */}
       {introVideo && (showWelcome || introPlaying) ? (
@@ -649,7 +637,7 @@ export function ClientPortalExperience({
           onDone={() => setIntroPlaying(false)}
         />
       ) : null}
-      {!showWelcome && !introPlaying && showIncentive && !productHidesIncentive[clientType] && <IncentiveModal onClose={dismissIncentive} />}
+      {!showWelcome && !introPlaying && showIncentive && !journey.hidesIncentive && <IncentiveModal onClose={dismissIncentive} />}
       {/* Presentation switch: one small dot, bottom right, demo route only. */}
       {isDemo && (
         <button
@@ -725,12 +713,12 @@ export function ClientPortalExperience({
           }}
         >
           {/* The name, top left, is the way home: back to the journey page. */}
-          <button type="button" className="pj-home-link" onClick={backToJourney} title="Home" style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)" }}>{brandName ?? (designSkin === "cobalt" || designSkin === "aurora" || designSkin === "calm" || designSkin === "grove" || designSkin === "groveaurora" ? (isRespond ? "CRM" : "Scale") : isRespond ? "crm" : "scale")}</button>
+          <button type="button" className="pj-home-link" onClick={backToJourney} title="Home" style={{ fontWeight: 800, fontSize: 17, letterSpacing: "-0.02em", color: "var(--pj-ink)" }}>{headerName(journey, designSkin)}</button>
           <span style={{ width: 1, height: 18, background: "var(--pj-line)", flexShrink: 0 }} />
           <span style={{ fontSize: 13, color: "var(--pj-muted)", minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Client Portal{name ? ` · ${name}` : ""}</span>
           <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
             <span style={{ fontSize: 12.5, color: "var(--pj-muted)", fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
-              Day {currentDay} / {activeJourneyTotalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>
+              Day {currentDay} / {journey.totalDays} · <b style={{ color: "var(--pj-done)", fontWeight: 650 }}>on track</b>
             </span>
             {/* Voice-guide toggle: lives with the theme dots so all "portal
                 preferences" share one home. */}
@@ -852,7 +840,7 @@ export function ClientPortalExperience({
             ) : null}
 
             {currentStage && voiceOn && (() => {
-              const guide = stageGuideFor(clientType, currentStage.id);
+              const guide = stageGuideOf(journey, currentStage.id);
               return guide ? (
                 <div style={{ position: "absolute", top: "clamp(24px, 4vh, 44px)", right: "clamp(20px, 4vw, 64px)" }}>
                   <StageGuide key={currentStage.id} guide={guide} />
@@ -945,7 +933,7 @@ export function ClientPortalExperience({
                   </div>
                 )}
 
-                <AskChips items={askItemsFor(clientType, currentStage.id)} stageKey={currentStage.id} />
+                <AskChips items={askItemsOf(journey, currentStage.id)} stageKey={currentStage.id} />
               </>
             )}
           </section>
@@ -955,11 +943,11 @@ export function ClientPortalExperience({
       {/* NEW DESIGN (handoff package) — full structural hub, home view */}
       {view === "home" && designSkin === "handoff" && (
         <HandoffHub
-          brand={brandName ?? (isRespond ? "crm" : "scale")}
+          brand={hubBrand(journey, "handoff")}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
-          totalDays={activeJourneyTotalDays}
+          totalDays={journey.totalDays}
           stages={journeyStages}
           currentStageIndex={currentStageIndex}
           stageDoneCount={stageDoneCount}
@@ -976,7 +964,7 @@ export function ClientPortalExperience({
           orbSlot={
             voiceOn && currentStage
               ? (() => {
-                  const g = stageGuideFor(clientType, currentStage.id);
+                  const g = stageGuideOf(journey, currentStage.id);
                   return g ? <StageGuide key={currentStage.id} guide={g} /> : null;
                 })()
               : null
@@ -987,11 +975,11 @@ export function ClientPortalExperience({
       {/* COBALT DESIGN (motion redesign) — white gallery hub, home view */}
       {view === "home" && designSkin === "cobalt" && (
         <CobaltHub
-          brand={brandName ?? (isRespond ? "CRM" : "Scale")}
+          brand={hubBrand(journey, "cobalt")}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
-          totalDays={activeJourneyTotalDays}
+          totalDays={journey.totalDays}
           stages={journeyStages}
           currentStageIndex={currentStageIndex}
           stageDoneCount={stageDoneCount}
@@ -1008,13 +996,13 @@ export function ClientPortalExperience({
           orbSlot={
             voiceOn && currentStage
               ? (() => {
-                  const g = stageGuideFor(clientType, currentStage.id);
+                  const g = stageGuideOf(journey, currentStage.id);
                   return g ? <StageGuide key={currentStage.id} guide={g} /> : null;
                 })()
               : null
           }
         >
-          {currentStage ? <AskChips items={askItemsFor(clientType, currentStage.id)} stageKey={currentStage.id} /> : null}
+          {currentStage ? <AskChips items={askItemsOf(journey, currentStage.id)} stageKey={currentStage.id} /> : null}
         </CobaltHub>
       )}
 
@@ -1022,11 +1010,11 @@ export function ClientPortalExperience({
       {view === "home" && (designSkin === "aurora" || designSkin === "calm") && (
         <AuroraHub
           calm={designSkin === "calm"}
-          brand={brandName ?? (isRespond ? "CRM" : "Scale")}
+          brand={hubBrand(journey, "aurora")}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
-          totalDays={activeJourneyTotalDays}
+          totalDays={journey.totalDays}
           stages={journeyStages}
           currentStageIndex={currentStageIndex}
           stageDoneCount={stageDoneCount}
@@ -1044,13 +1032,13 @@ export function ClientPortalExperience({
           orbSlot={
             voiceOn && currentStage
               ? (() => {
-                  const g = stageGuideFor(clientType, currentStage.id);
+                  const g = stageGuideOf(journey, currentStage.id);
                   return g ? <StageGuide key={currentStage.id} guide={g} /> : null;
                 })()
               : null
           }
         >
-          {currentStage ? <AskChips items={askItemsFor(clientType, currentStage.id)} stageKey={currentStage.id} /> : null}
+          {currentStage ? <AskChips items={askItemsOf(journey, currentStage.id)} stageKey={currentStage.id} /> : null}
         </AuroraHub>
       )}
 
@@ -1058,11 +1046,11 @@ export function ClientPortalExperience({
       {view === "home" && (designSkin === "grove" || designSkin === "groveaurora") && (
         <GroveHub
           aurora={designSkin === "groveaurora"}
-          brand={brandName ?? (isRespond ? "CRM" : "Scale")}
+          brand={hubBrand(journey, "grove")}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
           currentDay={currentDay}
-          totalDays={activeJourneyTotalDays}
+          totalDays={journey.totalDays}
           stages={journeyStages}
           currentStageIndex={currentStageIndex}
           stageDoneCount={stageDoneCount}
@@ -1072,7 +1060,7 @@ export function ClientPortalExperience({
           onSelectStage={(stageId) => openM(stageId, 1)}
           onOpenStageTask={(stageId, n) => openM(stageId, n)}
           calendarDay={calendarDay}
-          stringPlan={clientType === "bss" ? bssStringPlan : clientType === "bss-meta" ? scaleMetaStringPlan : undefined}
+          stringPlan={journey.stringPlan ?? undefined}
           upNext={upNext}
           upNextDetail={upNext ? `${upNext.detail}${upNext.formId && formSizeLabel(upNext.formId) ? ` (${formSizeLabel(upNext.formId)}.)` : ""}` : undefined}
           onStartUpNext={currentStage && upNext ? () => openM(currentStage.id, firstOpenMilestoneIndex + 1) : undefined}
@@ -1083,13 +1071,13 @@ export function ClientPortalExperience({
           orbSlot={
             voiceOn && currentStage
               ? (() => {
-                  const g = stageGuideFor(clientType, currentStage.id);
+                  const g = stageGuideOf(journey, currentStage.id);
                   return g ? <StageGuide key={currentStage.id} guide={g} /> : null;
                 })()
               : null
           }
         >
-          {currentStage ? <AskChips items={askItemsFor(clientType, currentStage.id)} stageKey={currentStage.id} /> : null}
+          {currentStage ? <AskChips items={askItemsOf(journey, currentStage.id)} stageKey={currentStage.id} /> : null}
         </GroveHub>
       )}
 
@@ -1270,14 +1258,14 @@ export function ClientPortalExperience({
                 </div>
                 <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 10px" }}>{m.title}</h3>
                 <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: 0, maxWidth: "54ch", lineHeight: 1.55 }}>{m.detail}</p>
-                {productTaskNotes[clientType]?.[m.id] ? (
+                {taskNote(journey, m.id) ? (
                   <div className="pj-task-note">
                     <span className="pj-task-note-dot" aria-hidden />
-                    {productTaskNotes[clientType]?.[m.id]}
+                    {taskNote(journey, m.id)}
                   </div>
                 ) : null}
 
-                {m.videoUrl && !productHiddenTaskVideos[clientType]?.includes(m.id) && (
+                {showsTaskVideo(journey, m) && (
                   <button
                     onClick={() => m.videoUrl && openVideo(m.title, m.videoUrl)}
                     style={{ marginTop: 16, display: "inline-flex", alignItems: "center", gap: 10, background: "var(--pj-card)", border: "1px solid var(--pj-line)", borderRadius: "var(--pj-radius-pill)", padding: "7px 16px 7px 7px", color: "var(--pj-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 13, cursor: "pointer" }}
@@ -1342,7 +1330,7 @@ export function ClientPortalExperience({
                   </div>
                 )}
 
-                {m.important && !productHiddenTaskImportant[clientType]?.includes(m.id) && (
+                {showsTaskImportant(journey, m) && (
                   <div style={{ marginTop: 18, display: "flex", gap: 11, borderRadius: "var(--pj-radius-sm)", border: "1px solid color-mix(in srgb, var(--pj-act) 40%, transparent)", background: "var(--pj-act-fill)", padding: "13px 16px" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pj-act)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
                       <path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
@@ -1476,7 +1464,7 @@ export function ClientPortalExperience({
                       <p style={{ fontSize: 12.5, color: "var(--pj-faint)", margin: "14px 0 0" }}>{m.embedNote}</p>
                     )}
                   </div>
-                ) : m.bookingUrl && !productHiddenTaskBooking[clientType]?.includes(m.id) ? (
+                ) : showsTaskBooking(journey, m) ? (
                   <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 20 }}>
                     <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
                       <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
@@ -1520,13 +1508,14 @@ export function ClientPortalExperience({
                       </div>
                     )}
 
-                    {(m.id === "ts-2" || m.id === "rsp-048") && portalToken && !productHiddenTaskPlayground[clientType]?.includes(m.id) && (
+                    {showsPlayground(journey, m.id) && portalToken && (
                       <ReceptionistPlayground portalToken={portalToken} />
                     )}
 
-                    {/* bd-g2 approves a REAL page, not a wall of copy: live preview of
-                        the auto-generated landing page at /portal/[token]/landing. */}
-                    {m.id === "bd-g2" && portalToken && (
+                    {/* A landing-page step (Scale: bd-g2) approves a REAL page, not a wall
+                        of copy: live preview of the auto-generated landing page at
+                        /portal/[token]/landing (content slot "landing-page"). */}
+                    {showsLandingPreview(journey, m.id) && portalToken && (
                       <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 20 }}>
                         <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
                           <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
@@ -1564,7 +1553,7 @@ export function ClientPortalExperience({
                         agentId={m.interviewAgentId}
                         questions={m.interview}
                         storageKey={`pjInterview:${portalToken ?? "demo"}:${m.id}`}
-                        audioBase={`/portal/voice/interview-${m.id}`}
+                        audioBase={interviewAudioBase(m.id)}
                         sound={voiceOn}
                         onChange={(transcript) => setNoteDrafts((prev) => (prev[m.id] === transcript ? prev : { ...prev, [m.id]: transcript }))}
                       />

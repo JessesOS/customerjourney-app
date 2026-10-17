@@ -3,18 +3,17 @@
  * (scripts/journeys/ssr.ts). The ONLY file that changes when the portal
  * component's API changes: ssr.ts and the frozen markup hashes stay put.
  *
- * Today (2026-10-17): ClientPortalExperience takes `clientType`, and the
- * welcome screens take `brand` ("scale" | "respond") plus the product maps.
+ * Since 2026-10-17: ClientPortalExperience takes the client type's
+ * PortalJourney (lib/productRegistry.ts), and the welcome screens take the
+ * product's wordmark plus the variant's name, tagline and intro video.
  */
-import { productBrandName, productIntroVideo, productTagline, type ClientType } from "../../lib/journeyEngine";
-import { buildJourneyStages } from "../../lib/onboardingJourney";
-import { buildRespondJourneyStages } from "../../lib/respondJourney";
-import { buildBssJourneyStages } from "../../lib/bssJourney";
+import { buildStages } from "../../lib/journeyBuild";
+import { portalJourneyFor } from "../../lib/productRegistry";
 import type { IntroVideo } from "./contract";
 
 /** Merged over the base props of ClientPortalExperience. */
 export function portalProps(clientType: string): Record<string, unknown> {
-  return { clientType };
+  return { journey: portalJourneyFor(clientType) };
 }
 
 export type WelcomeProps = {
@@ -27,13 +26,11 @@ export type WelcomeProps = {
 };
 
 export function welcomeProps(clientType: string): WelcomeProps {
-  const ct = clientType as ClientType;
-  const none = new Set<string>();
-  const stages = ct === "respond" ? buildRespondJourneyStages(none, 1) : ct === "bss" ? buildBssJourneyStages(none, 1) : buildJourneyStages(none, 1, ct);
+  const journey = portalJourneyFor(clientType);
   return {
-    brandProps: { brand: ct === "respond" ? "respond" : "scale", brandName: productBrandName[ct] },
-    tagline: productTagline[ct],
-    introVideo: productIntroVideo[ct],
-    stages: stages.map((s) => s.name),
+    brandProps: { wordmark: journey.wordmark, brandName: journey.brandName },
+    tagline: journey.tagline,
+    introVideo: journey.introVideo,
+    stages: buildStages(journey.stages, new Set(), 1).map((s) => s.name),
   };
 }

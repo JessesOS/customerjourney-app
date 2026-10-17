@@ -1,4 +1,4 @@
-import type { ClientType } from "@/lib/journeyEngine";
+import type { ClientType } from "@/products";
 
 /**
  * Maps a GHL product name to the portal journey it should provision.

@@ -289,8 +289,8 @@ export function renderSheet(product: Product): string {
   L.push(`| Converted from | ${product.source.from} at \`${product.source.commit}\` on ${product.source.convertedOn}: [conversion report](${reportLink}), with [open questions for Jesse](${reportLink}#flags-for-jesse-not-fixed) |`);
   if (product.source.document) L.push(`| Source document | [${cell(product.source.document.title)}](${product.source.document.url}) |`);
   L.push("");
-  if (product.status === "live" && steps.length) {
-    L.push("Until the portal reads product files, the client wording here mirrors the live portal's code templates, and `npm run products:check` proves the two match.");
+  if (product.variants.length && steps.length) {
+    L.push("The portal reads this file. `npm run check:journeys` freezes what each client type sees.");
     L.push("");
   }
 

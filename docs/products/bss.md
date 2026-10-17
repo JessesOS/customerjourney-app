@@ -14,6 +14,8 @@
 | Converted from | csm-dashboard lib/bssTasks.ts at `5c9abc9` on 2026-10-16: [conversion report](conversion-report-2026-10.md), with [open questions for Jesse](conversion-report-2026-10.md#flags-for-jesse-not-fixed) |
 | Source document | [Bitcoin Success School — Scope & Agreement v2 (2026-10-14)](https://bss-agreement.vercel.app/) |
 
+The portal reads this file. `npm run check:journeys` freezes what each client type sees.
+
 ## Variants
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |

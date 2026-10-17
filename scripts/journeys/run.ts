@@ -7,12 +7,15 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { isDeepStrictEqual } from "node:util";
 import { CLIENT_TYPES, canonical, firstDiff, hashOf, plain, type GlobalContract, type JourneyContract, type Producer } from "./contract";
-import { legacyProducer } from "./legacy-producer";
 import { registryProducer } from "./registry-producer";
 import { portalMarkup, welcomeMarkup } from "./ssr";
 
-/** The implementations that must each reproduce the fixtures. The first one writes them. */
-export const PRODUCERS: Producer[] = [legacyProducer, registryProducer];
+/**
+ * The implementations that must each reproduce the fixtures. The first one
+ * writes them. The legacy producer (today's lib/* code, transcribed) wrote them
+ * on 2026-10-17 and was retired with lib/respondJourney.ts and lib/bssJourney.ts.
+ */
+export const PRODUCERS: Producer[] = [registryProducer];
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const FIXTURE_DIR = join(ROOT, "scripts", "fixtures", "journeys");

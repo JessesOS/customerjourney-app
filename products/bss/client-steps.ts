@@ -1,6 +1,6 @@
 // BSS Launchpad client steps: what a "bss" client sees in their portal.
 //
-// A VERBATIM copy of bssJourneyTemplate in lib/bssJourney.ts (same ids,
+// A VERBATIM copy of bssJourneyTemplate in lib/bssJourney.ts (deleted the same day; same ids,
 // wording, flags, order and stage data, comments kept), made 2026-10-17. One
 // difference only: `milestones` is called `steps`. Every visible step has its
 // team task behind it (products/bss/team-tasks.ts, same id), so none is

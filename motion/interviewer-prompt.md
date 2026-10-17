@@ -1,7 +1,7 @@
 # Voice interviewer: agent set-up (ElevenLabs Agents)
 
 First draft, 2026-10-12, for Jesse to edit. No company name on purpose: the business name is undecided. Paste the two blocks below into the agent.
-The six topics match `ob-0` in `lib/onboardingJourney.ts`; keep the two in step.
+The six topics match `ob-0` in `products/scale/client-steps.ts` (and `rsp-000` in `products/respond/client-steps.ts`); keep them in step.
 
 ## First message
 

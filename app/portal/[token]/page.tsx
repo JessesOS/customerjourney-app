@@ -11,7 +11,6 @@ import {
 } from "@/lib/portalClientStore";
 import { tabTitle } from "@/lib/journeyBuild";
 import { portalJourneyFor } from "@/lib/productRegistry";
-import type { ClientType } from "@/products";
 
 // The browser tab: a custom product shows its own name (BSS: "BSS Launchpad").
 export async function generateMetadata({ params }: { params: Promise<{ token: string }> }) {
@@ -57,7 +56,7 @@ export default async function PortalPage({
       <style>{`html[data-welcome-pending] body{visibility:hidden;background:#f6f3ec}`}</style>
       <ClientPortalExperience
         name={client.name}
-        clientType={client.clientType as ClientType}
+        journey={journey}
         currentDay={currentDay}
         calendarDay={computeCurrentDay(client.startDate, 100000)}
         initialCompletedMilestoneIds={[...completedIds]}

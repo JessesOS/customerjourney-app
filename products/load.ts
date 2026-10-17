@@ -28,24 +28,3 @@ export function variantFor(product: Product, clientType: string): ProductVariant
 export function portalOverrides(product: Product, clientType: string): PortalOverrides {
   return variantFor(product, clientType).portal;
 }
-
-/** The PortalOverrides keys that mirrored a `product*` map in lib/journeyEngine.ts. */
-export type LegacyOverrideKey = Exclude<keyof PortalOverrides, "hiddenGuideStages" | "stringPlan">;
-
-/**
- * Which `product*` map in lib/journeyEngine.ts each legacy PortalOverrides key
- * mirrors. The golden-overrides check walks these both ways.
- */
-export const PORTAL_OVERRIDE_MAPS: Record<LegacyOverrideKey, string> = {
-  lockedLook: "productLockedLook",
-  brandName: "productBrandName",
-  hidesIncentive: "productHidesIncentive",
-  introVideo: "productIntroVideo",
-  hiddenTaskVideos: "productHiddenTaskVideos",
-  taskNotes: "productTaskNotes",
-  taskDetails: "productTaskDetails",
-  hiddenTaskBooking: "productHiddenTaskBooking",
-  hiddenTaskPlayground: "productHiddenTaskPlayground",
-  hiddenTaskImportant: "productHiddenTaskImportant",
-  tagline: "productTagline",
-};

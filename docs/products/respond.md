@@ -14,7 +14,7 @@
 | Converted from | csm-dashboard lib/respondTasks.ts at `5c9abc9` on 2026-10-16: [conversion report](conversion-report-2026-10.md), with [open questions for Jesse](conversion-report-2026-10.md#flags-for-jesse-not-fixed) |
 | Source document | [Full List Of Tasks - Respond CSM Comprehensive Operational Workflow Manual](https://docs.google.com/document/d/1ymwzx6joQ2HoPnrnBxHNxL3F1T4J2DYbsqZGkiHV0Bs/edit?usp=sharing) |
 
-Until the portal reads product files, the client wording here mirrors the live portal's code templates, and `npm run products:check` proves the two match.
+The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
 ## Variants
 

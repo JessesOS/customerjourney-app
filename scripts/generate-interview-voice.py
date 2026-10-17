@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Render the voice-interview questions to audio, one clip per question.
 
-Reads every `interview: [...]` list out of lib/onboardingJourney.ts and
-lib/respondJourney.ts (single source of truth) and renders each question to m4a in public/portal/voice/.
-Filenames are the contract with VoiceInterview.tsx:
-interview-<milestone id>-<question number>.m4a. Replacing these files with
-another voice needs no code change.
+Reads every step's `interview` questions from the product files (products/<id>/,
+through scripts/products/voice-sources.ts) and renders each question to m4a in
+public/portal/voice/. Filenames are the contract with VoiceInterview.tsx:
+interview-<step id>-<question number>.m4a. Audio is keyed by step id, so a
+custom product that changes an inherited interview uses a new step id.
+Replacing these files with another voice needs no code change.
 
 Voice: Fish Audio library voice "Australian" (calm, gentle Australian woman;
 audition file w5-calm-gentle) — Jesse's pick 2026-10-11 from a 32-voice
@@ -25,7 +26,6 @@ Usage: python3 scripts/generate-interview-voice.py [--free]   (needs ffmpeg; --f
 import asyncio
 import json
 import pathlib
-import re
 import subprocess
 import sys
 import tempfile
@@ -39,8 +39,12 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "public" / "portal" / "voice"
 FREE = "--free" in sys.argv
 
-# Every product's journey: Scale (ob-0), CRM / Respond (rsp-000) and BSS (bss-001).
-src = "\n".join((ROOT / "lib" / f).read_text() for f in ("onboardingJourney.ts", "respondJourney.ts", "bssJourney.ts"))
+def sources() -> dict:
+    """{guides: [...], interviews: [{file, text}]} from the product files (Scale ob-0, Respond rsp-000, BSS bss-001...)."""
+    out = subprocess.run(["npx", "tsx", "scripts/products/voice-sources.ts"], cwd=ROOT, capture_output=True, text=True)
+    if out.returncode != 0:
+        raise SystemExit(out.stderr.strip() or "scripts/products/voice-sources.ts failed")
+    return json.loads(out.stdout)
 
 def fish_key() -> str:
     env = ROOT / ".env.local"
@@ -62,37 +66,31 @@ async def edge(text: str, target: pathlib.Path) -> None:
     import edge_tts
     await edge_tts.Communicate(text.replace("AI ", "A.I. "), voice=EDGE_VOICE, rate=EDGE_RATE).save(str(target))
 
-def interview_lists() -> list[tuple[str, list[str]]]:
-    """(milestone id, questions) for every interview in the journey files."""
-    found = re.findall(r'id: "([\w-]+)",(?:(?!\bid: ").)*?interview: \[(.*?)\]', src, re.S)
-    if not found:
-        raise SystemExit("no interview lists found in the journey files")
-    return [(milestone_id, re.findall(r'"((?:[^"\\]|\\.)*)"', block)) for milestone_id, block in found]
+def clips() -> list[tuple[str, str]]:
+    """(file name, question) for every interview clip, sorted by file name."""
+    return sorted((c["file"], c["text"]) for c in sources()["interviews"])
 
 def list_clips() -> None:
-    rows = sorted((f"interview-{mid}-{n}.m4a", q) for mid, questions in interview_lists() for n, q in enumerate(questions, 1))
-    for name, text in rows:
+    for name, text in clips():
         print(f"{name}\t{text}")
 
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
-    found = re.findall(r'id: "([\w-]+)",(?:(?!\bid: ").)*?interview: \[(.*?)\]', src, re.S)
-    if not found:
-        raise SystemExit("no interview lists found in the journey files")
+    rows = clips()
+    if not rows:
+        raise SystemExit("no interview questions found in the product files")
     key = None if FREE else fish_key()
-    for milestone_id, block in found:
-        questions = re.findall(r'"((?:[^"\\]|\\.)*)"', block)
-        for n, q in enumerate(questions, 1):
-            target = OUT / f"interview-{milestone_id}-{n}.m4a"
-            with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
-                mp3 = pathlib.Path(tmp.name)
-            if FREE:
-                asyncio.run(edge(q, mp3))
-            else:
-                fish_tts(q, mp3, key)
-            subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp3), "-c:a", "aac", "-b:a", "64k", "-ac", "1", str(target)], check=True)
-            mp3.unlink(missing_ok=True)
-            print(f"{target.name}: {target.stat().st_size // 1024} KB  {q}")
+    for name, q in rows:
+        target = OUT / name
+        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+            mp3 = pathlib.Path(tmp.name)
+        if FREE:
+            asyncio.run(edge(q, mp3))
+        else:
+            fish_tts(q, mp3, key)
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(mp3), "-c:a", "aac", "-b:a", "64k", "-ac", "1", str(target)], check=True)
+        mp3.unlink(missing_ok=True)
+        print(f"{target.name}: {target.stat().st_size // 1024} KB  {q}")
     print("done")
 
 if "--list" in sys.argv:

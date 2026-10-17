@@ -7,6 +7,10 @@
  *      tasks (internal notes, staff names) must never be bundled for a browser.
  *   2. products/** imports only TYPES from lib/** (the one runtime direction is
  *      lib → products), and product folders never import ../index or ../load.
+ *   3. The compat shims (lib/journeyEngine.ts, onboardingJourney.ts,
+ *      stageGuide.ts, askAi.ts, stringPlans.ts) exist only for check:fin: no
+ *      app code imports them, they hold no journey data, and journeyEngine
+ *      exports exactly the 12 maps check:fin reads.
  *
  * Imports are read from source text: `import type`, `export type` and
  * all-`type` specifier lists are skipped; `@/`, `./` and `../` are resolved
@@ -15,10 +19,14 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import * as engine from "../../lib/journeyEngine";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 /** What a browser bundle must never reach. Paths are repo-relative; a trailing "/" means the whole folder. */
+/** The compat shims: kept only because scripts/check-fin-journey.ts imports them. */
+export const SHIMS = ["lib/journeyEngine.ts", "lib/onboardingJourney.ts", "lib/stageGuide.ts", "lib/askAi.ts", "lib/stringPlans.ts"];
+
 export const CLIENT_FORBIDDEN = [
   "products/",
   "db/",
@@ -27,6 +35,24 @@ export const CLIENT_FORBIDDEN = [
   "lib/portalClientStore.ts",
   "lib/settings.ts",
   "lib/teamAuth.ts",
+  ...SHIMS,
+  "lib/allJourneys.ts",
+];
+
+/** The maps lib/journeyEngine.ts exports for check:fin, exactly. */
+const ENGINE_MAPS = [
+  "clientTypeLabels",
+  "productBrandName",
+  "productHiddenTaskBooking",
+  "productHiddenTaskImportant",
+  "productHiddenTaskPlayground",
+  "productHiddenTaskVideos",
+  "productHidesIncentive",
+  "productIntroVideo",
+  "productLockedLook",
+  "productTagline",
+  "productTaskDetails",
+  "productTaskNotes",
 ];
 
 type ImportRef = { spec: string; typeOnly: boolean };
@@ -133,8 +159,25 @@ export function codeBoundaries(clientForbidden: string[] = CLIENT_FORBIDDEN): { 
     }
   }
 
+  // 3. Shims: no app code imports them; no journey data in them; journeyEngine's maps are exactly check:fin's.
+  for (const file of walk(join(ROOT, "app"))) {
+    for (const ref of importsOf(read(file))) {
+      const target = resolveImport(file, ref.spec);
+      if (target && SHIMS.includes(rel(target))) failures.push(`${rel(file)} imports the compat shim ${rel(target)}: read lib/productRegistry.ts or lib/journeyTypes.ts instead`);
+    }
+  }
+  for (const shim of SHIMS) {
+    const text = read(join(ROOT, shim));
+    if (/\bid:\s*"|milestones:\s*\[/.test(text)) failures.push(`${shim} holds journey data: it belongs in products/`);
+  }
+  const engineMaps = Object.entries(engine)
+    .filter(([name, value]) => (name.startsWith("product") || name === "clientTypeLabels") && value !== null && typeof value === "object")
+    .map(([name]) => name)
+    .sort();
+  if (engineMaps.join(",") !== ENGINE_MAPS.join(",")) failures.push(`lib/journeyEngine.ts must export exactly the 12 maps check:fin reads (${ENGINE_MAPS.join(", ")}); it exports ${engineMaps.join(", ")}`);
+
   return {
     failures,
-    summary: `${clientFiles.length} "use client" modules reach no server-only code (${reached} imports walked); ${productFiles.length} product files import only types from lib/`,
+    summary: `${clientFiles.length} "use client" modules reach no server-only code or shim (${reached} imports walked); ${productFiles.length} product files import only types from lib/; ${SHIMS.length} shims hold no data and no app code imports them`,
   };
 }

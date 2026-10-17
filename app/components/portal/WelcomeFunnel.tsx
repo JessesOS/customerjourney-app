@@ -24,11 +24,11 @@ type Dot = { t: number; speed: number; off: number; wob: number; sx: number; sy:
 const ease = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
-export function WelcomeFunnel({ brand, color = COBALT, onStart, brandName }: { brand: "scale" | "respond"; color?: string; onStart: () => void; brandName?: string }) {
+export function WelcomeFunnel({ wordmark, color = COBALT, onStart, brandName }: { wordmark: string; color?: string; onStart: () => void; brandName?: string }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const [exit, setExit] = useState<{ x: number; y: number } | null>(null);
-  const wordmark = brandName ?? (brand === "respond" ? "CRM" : "Scale"); // the second product is shown as "CRM" (Jesse 2026-10-12); custom products pass their own name
+  const shownName = brandName ?? wordmark; // the product's wordmark ("Scale", "CRM"), or a custom product's own name
 
   useEffect(() => {
     const cv = canvasRef.current;
@@ -172,7 +172,7 @@ export function WelcomeFunnel({ brand, color = COBALT, onStart, brandName }: { b
     >
       <canvas ref={canvasRef} aria-hidden data-xray="Funnel · canvas, drawn in code" data-xray-tool="code" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }} />
       <div className="pj-funnel-copy">
-        <h1 style={{ fontWeight: 600, fontSize: "clamp(64px, 8vw, 106px)", lineHeight: 1, letterSpacing: "-0.02em", margin: 0 }}>{wordmark}</h1>
+        <h1 style={{ fontWeight: 600, fontSize: "clamp(64px, 8vw, 106px)", lineHeight: 1, letterSpacing: "-0.02em", margin: 0 }}>{shownName}</h1>
       </div>
       <button ref={buttonRef} type="button" onClick={start} className="pj-funnel-cta">
         Get started

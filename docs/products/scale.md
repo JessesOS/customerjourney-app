@@ -14,7 +14,7 @@
 | Converted from | csm-dashboard lib/scaleTasks.ts at `5c9abc9` on 2026-10-16: [conversion report](conversion-report-2026-10.md), with [open questions for Jesse](conversion-report-2026-10.md#flags-for-jesse-not-fixed) |
 | Source document | [Full List Of Tasks - Scale CSM Comprehensive Operational Workflow Manual](https://docs.google.com/document/d/1KJZdPO2NkB9w67_stgykSrBSr6hVqeA32Tvihp439yg/edit?usp=drive_link) |
 
-Until the portal reads product files, the client wording here mirrors the live portal's code templates, and `npm run products:check` proves the two match.
+The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
 ## Variants
 

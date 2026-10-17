@@ -14,7 +14,7 @@ This one session owns the portal and the back office. GHL automation belongs to 
 
 ## A real client is live: protect him
 
-- **Fin Creighton** (Bitcoin Success School) has used the live portal since 2026-10-16. His product is `bss-meta` ("BSS Meta ads only"): the Scale journey for Meta only, plus product-level notes and hides in `lib/journeyEngine.ts`.
+- **Fin Creighton** (Bitcoin Success School) has used the live portal since 2026-10-16. His product is `bss-meta` ("BSS Meta ads only"): the Scale journey for Meta only, plus the variant's notes and hides in `products/scale/index.ts`.
 - **Every deploy to the live worker needs Jesse's explicit OK.** Send it as a package: the commits, the checks run, the version currently live, a D1 time-travel bookmark, and the rollback command.
 - **`npm run check:fin` and `npm run check:journeys` must pass before every commit and deploy.** check:fin proves everything Fin's portal is built from is unchanged; check:journeys does the same for every client type, Fin's included. Only re-save a baseline (`-- --write`) for a change Jesse approved.
 - **Never open Fin's link in a normal browser.** It records a visit as his. Use `curl`, or a browser where admin is unlocked.
@@ -56,13 +56,16 @@ npx wrangler deploy --config dist/server/wrangler.staging.json
 
 ## Products
 
-**Today:** journeys are code in `lib/onboardingJourney.ts` (Scale), `lib/respondJourney.ts` (CRM — Respond) and `lib/bssJourney.ts` (paused). Per-product tweaks live in the `product*` maps in `lib/journeyEngine.ts`.
+- **Each product is one folder in `products/`:** client steps, team tasks and portal settings (wording, timeline, branding, voice guide, Ask-AI, String Theory). The portal, admin and board read it through `lib/productRegistry.ts`. The how-to is `docs/products/README.md`; the sheets in `docs/products/<id>.md` are generated.
+- **Custom products** use `defineCustomProduct` (`products/custom.ts`): start from Scale, Respond or blank and describe only what differs.
+- **After any product change:**
+  1. Bump the version.
+  2. Run `npm run products:lock`, `products:render`, `products:check`, `check:journeys` and `check:fin`.
+- **Shims** (`lib/journeyEngine.ts`, `onboardingJourney.ts`, `stageGuide.ts`, `askAi.ts`, `stringPlans.ts`) exist only for check:fin. Never put journey data there, and never import them from app code.
 
 **Changing a journey:**
 - Note it in `docs/customer-journey-master-plan.md`.
-- Keep the copy as it is unless Jesse asks. Flag any copy you draft as a draft.
-
-**Product files** (`products/`, branch `team-board`): each product defined once, holding the client steps and the team tasks behind them. Generated sheets live in `docs/products/`. Change them by asking Claude. `npm run products:check` must pass.
+- Keep the copy as it is unless Jesse asks. Flag any copy you draft as a draft: list the step ids in the product's `draftCopy`.
 
 **Team board** (`docs/team-board.md`): the back office under `/admin`. It's on staging, behind the `TEAM_BOARD` flag. `npm run check:team-auth` must pass.
 

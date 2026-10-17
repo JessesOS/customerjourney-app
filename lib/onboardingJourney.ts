@@ -1,3 +1,11 @@
+// COMPAT SHIM (2026-10-17). The app reads products/ through lib/productRegistry.ts.
+// Kept only because scripts/check-fin-journey.ts imports these names. Never
+// import from app code. Never add journey data here.
+//
+// The Scale journey template, its days and the demo defaults, as check:fin
+// reads them. The template is the Scale product file's (products/scale/), the
+// default client type's product.
+
 import {
   buildStagesFromTemplate,
   clientTypeLabels,
@@ -12,8 +20,8 @@ import {
   type StageStatus,
   type StageTemplate,
 } from "./journeyEngine";
+import { DEFAULT_CLIENT_TYPE, portalTemplateFor, totalDaysFor } from "./productRegistry";
 
-// Re-exported so existing imports of `from "@/lib/onboardingJourney"` keep working.
 export {
   clientTypeLabels,
   completedStageCount,
@@ -27,164 +35,13 @@ export {
   type StageStatus,
 };
 
-// Content only -- no completion state. Condensed from the real CSM task data
-// (see docs/client-portal-task-condensation-report.md in respond-csm-dashboard).
-// Meta/Google variant-filtered — see the `channels` field on each milestone.
-export const journeyTemplate: StageTemplate[] = [
-  {
-    id: "onboarding",
-    name: "Onboarding",
-    dayStart: 1,
-    dayEnd: 2,
-    milestones: [
-      // Voice interview (added 2026-10-11 on Jesse's instruction): the very first
-      // task. The client answers out loud; the transcript saves as the task note.
-      // Title, detail and questions are a first draft for Jesse to edit.
-      {
-        id: "ob-0",
-        title: "Your voice interview",
-        detail: "Tell us about your business in your own words. Answer out loud or type — about 5 minutes.",
-        noteRequired: true,
-        // ElevenLabs agent (public id, created by Jesse 2026-10-12). Its prompt is
-        // kept in motion/interviewer-prompt.md. Remove this line to go back to the
-        // scripted interview below.
-        interviewAgentId: "agent_3001m4pqxn11ecs9s47qarwvsbp1",
-        interview: [
-          "What does your business do, and who do you do it for?",
-          "Which services or products do you most want more enquiries for?",
-          "Who is your ideal customer, and where are they?",
-          "Why do customers choose you over someone else?",
-          "What happens today when a new enquiry comes in?",
-          "What would a great result look like 90 days from now?",
-        ],
-      },
-      { id: "ob-1", title: "Tell us about your business", detail: "Your details, access and branding — about 15 minutes, best done in one sitting.", formId: "scale-onboarding-intake-v1" },
-      { id: "ob-2", title: "Book your Welcome Call & portal walkthrough", detail: "A live 30-minute walkthrough of your portal, your milestones, and your messaging center. Pick a time that suits you below — we'll send a calendar invite with everything you need to join.", bookingUrl: "https://go.rt-d.com/jesse30" },
-      { id: "ob-3", title: "Review & approve your AI receptionist's qualification questions", detail: "Our team has drafted the qualification questions your AI will ask incoming leads, based on how you'd train a new team member. Take a look below and approve, or leave a note if you'd like anything adjusted.", notePrompt: "Any adjustments or requests for these questions?", hasEditableContent: true },
-      { id: "ob-5", title: "Review your SMS/Email message copy", detail: "Our team has drafted the SMS and email messages your AI will send on your behalf. Take a look below and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to this messaging?", hasEditableContent: true },
-      { id: "ob-4", title: "Download the mobile app", detail: "Get the LeadConnector app so you never miss a lead. Available for iOS and Android — search \"LeadConnector\" in your app store.", videoUrl: "/portal/download-app-walkthrough.mp4" },
-      {
-        id: "ob-crm",
-        title: "Log into your CRM", // "TradeAI" removed from client-facing wording (Jesse, 2026-10-16)
-        detail: "Before you can complete your Build-Phase action steps, you need to successfully log into your new CRM dashboard.",
-        guideUrl: "https://crm.rtdigital.agency/",
-        guideLabel: "Open your CRM login",
-        steps: [
-          "Check your inbox — look for a welcome email from our team containing your login details.",
-          "Open your CRM login page with the button above.",
-          "When prompted, sign in with your email address and create your password — use the main password you shared with us on your initial sales call.",
-        ],
-        important: "Forgot your password? Click \"Forgot password\" on the login page to reset it. Still stuck? Ask for help in your dedicated Slack channel, or right here in the messaging center.",
-      },
-      { id: "ob-6", title: "Connect your calendar", detail: "Connect your calendar so your AI can see your availability and book appointments straight into it. Follow the step-by-step guide below.", videoUrl: "/portal/connect-accounts-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Set_Up_Calendars_and_Availability_in_your_CRM__7GRN6aWmSHSHoV8rVvqyzw", guideLabel: "Step-by-step guide" },
-      { id: "ob-6b", title: "Connect your social accounts", detail: "Connect your social accounts so your AI can respond to messages and comments across your channels. Follow the step-by-step guide below.", videoUrl: "/portal/connect-accounts-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/Connecting_Facebook_in_your_CRM__W7guqe5_Sy6-nMadYtAPyw", guideLabel: "Step-by-step guide" },
-      { id: "ob-6c", title: "Set up a payment mechanism", detail: "Go to Settings → Billing to connect your preferred payment mechanism for seamless transactions.", important: "Without this we can't send SMS or emails, which will stall your build progress." },
-      { id: "ob-7", title: "Upload your past leads (CSV)", detail: "Helps train your AI on what a good lead looks like for you.", hasUpload: true },
-      // MUTED per Jesse (2026-07-12) — redundant: domain + website builder access
-      // are already collected in the onboarding form, and GBP access is no longer
-      // needed (reviews pulled via an embedded app; rare phone-number changes
-      // handled ad hoc). Delete `hidden: true` to bring it back.
-      { id: "ob-8", title: "Grant access to your accounts", detail: "Google My Business, domain, and website builder access.", videoUrl: "/portal/grant-access-walkthrough.mp4", hidden: true },
-    ],
-    statusNotes: [
-      "Your project timeline: Days 2-13 Build, Day 14 AI Test, Day 30 Go-Live.",
-      "Your subscription fees begin 14-30 days from purchase.",
-    ],
-  },
-  {
-    id: "build",
-    name: "Build",
-    dayStart: 2,
-    dayEnd: 13,
-    blurb: "We're building your campaigns, assets, and AI receptionist — a few approvals needed along the way.",
-    milestones: [
-      // -- Meta-channel tasks (shown to Meta and Meta+Google clients) --
-      { id: "bd-1", title: "Review & approve your eBook lead magnet content", detail: "We've drafted your lead magnet — take a look at the doc below and approve it, or leave a note if you'd like any revisions, before we build the landing page.", notePrompt: "Any revisions or amendments you'd like?", hasEditableContent: true, channels: ["meta"] },
-      { id: "bd-2", title: "Approve your Meta ad campaigns & creative assets", detail: "Your ad strategy doc and creatives are ready below for final sign-off. Take a look and approve, or leave a note if you'd like anything changed.", notePrompt: "Any changes you'd like to the strategy or creative?", hasEditableContent: true, channels: ["meta"] },
-      { id: "bd-3", title: "Grant us partner access to your Meta Business Suite", detail: "Add us as a Partner in Meta Business Suite so we can launch your campaigns. Watch the walkthrough below, then use our Business ID and step-by-step guide.", videoUrl: "/portal/meta-partner-access-walkthrough.mp4", guideUrl: "https://scribehow.com/o/1Ys-2mLjQsuPVjJ-N76Ubg/viewer/How_to_Add_RT_Digital_as_a_Partner_on_Meta_Business_Suite__9EIRy1GpRLSzuofqDb0XYQ", guideLabel: "Step-by-step guide", hasEditableContent: true, channels: ["meta"] },
-      // -- Google-channel tasks (shown to Google and Meta+Google clients) --
-      // No creative/campaign approval on the Google side by design — Google runs
-      // high-intent traffic to the GHL landing page, so the client approves the
-      // landing page copy and grants Ads-account access.
-      // Flow: client shares their Google Ads Customer ID here → RT Digital sends
-      // a link request from the manager account → Google emails the client →
-      // client accepts. No passwords change hands.
-      { id: "bd-g1", title: "Link your Google Ads account to ours", detail: "We connect your Google Ads account to our manager account so we can build and run your campaigns — no passwords needed. Share your Google Ads Customer ID below (you'll find it in the top-right corner of your Google Ads account) and we'll send the link request. Don't have a Google Ads account yet? Just tell us in the same box and we'll set one up with you.", notePrompt: "Your Google Ads Customer ID", notePlaceholder: "e.g. 123-456-7890 — from the top-right of your Google Ads account", noteRequired: true, important: "After we send the request, Google will email you to approve it. Keep an eye on your inbox and click Accept — we can't start building until the link is approved.", channels: ["google"] },
-      { id: "bd-g3", title: "Review & approve your Google Ads keywords", detail: "These are the searches we'll put you in front of — the exact phrases people type when they're ready to call someone like you. This first list is built from your website so you can steer us early; our ads team is checking it against live search volumes and will confirm the final plan with you. Tell us anything to add or cut.", hasEditableContent: true, notePrompt: "Any keywords to add, or work you don't want to bid on?", notePlaceholder: "e.g. add \"emergency hot water\", drop anything about commercial jobs", channels: ["google"] },
-      { id: "bd-g2", title: "Review & approve your Google Ads landing page copy", detail: "We've drafted the landing page your Google ads will send visitors to. Read it through below and approve, or leave a note if you'd like anything changed before we build the page.", hasEditableContent: true, notePrompt: "Any changes you'd like to the landing page copy?", channels: ["google"] },
-      // HIDDEN for now — the CSM records this walkthrough Loom only once the ad
-      // campaigns are actually loaded and ready, which is often well after the
-      // client reaches this point. An empty "watch a video" task confused
-      // clients, so it's hidden until the flow is reworked. To re-enable, delete
-      // `hidden: true` (and set videoUrl to the recorded Loom, or add a bookingUrl/note).
-      // What the walkthrough should cover (from Regine's handover + Scale SOPs):
-      //   1. The live campaigns in Ads Manager — approved creatives & copy.
-      //   2. The lead form (native Meta form / GHL landing page) — exact fields.
-      //   3. The CRM lead flow — form submit → TradeAI CRM → pipeline → auto SMS + email.
-      //   Record a 3–4 min Loom and paste it into the client's messaging center; they watch, then tick it off.
-      { id: "bd-4", title: "Watch your ad campaign walkthrough video", detail: "A short recorded walkthrough showing exactly what's going live and how leads will flow in.", videoUrl: "/portal/ad-campaign-walkthrough.mp4", hidden: true, channels: ["meta"] },
-    ],
-    statusNotes: [
-      "Your AI receptionist is being configured — no action needed from you yet.",
-      "Your CRM access is being set up — you'll get a login once it's ready.",
-    ],
-  },
-  {
-    id: "testing",
-    name: "Testing",
-    dayStart: 14,
-    dayEnd: 14,
-    blurb: "A live test of your AI receptionist before we go live.",
-    milestones: [
-      { id: "ts-1", title: "Confirm your app, calendar & social accounts are connected", detail: "A quick check that everything is linked correctly before the test." },
-      { id: "ts-2", title: "Test your AI receptionist live", detail: "Try to stump it with different scenarios — this is how we make it better for you." },
-      { id: "ts-3", title: "Book your Go-Live Call", detail: "Testing looks good — time to lock in your go-live walkthrough. Pick a time that suits you below and we'll send a calendar invite with everything you need to join.", bookingUrl: "https://go.rt-d.com/jesse30" },
-    ],
-    statusNotes: ["We'll fine-tune your AI based on your test feedback — no action needed from you."],
-  },
-  {
-    id: "go-live",
-    name: "Go-Live",
-    dayStart: 30,
-    dayEnd: 30,
-    blurb: "Your system goes live — we'll walk your team through everything.",
-    milestones: [
-      { id: "gl-1", title: "Attend your Go-Live walkthrough call", detail: "Your booking details are below — they're also in your calendar invite. We'll get your team confident using the live system before we finish.", hasEditableContent: true },
-      { id: "gl-2", title: "Learn your live system", detail: "Calls, texts, missed-call handling — all in one app." },
-      { id: "gl-3", title: "See your AI in action", detail: "Live call summaries, coaching notes, and real lead handling, demoed live." },
-      { id: "gl-4", title: "Set your team's usage standards", detail: "How your team should use the app day-to-day, so nothing falls through the cracks." },
-      { id: "gl-5", title: "You're live — access your recording & support links", detail: "Everything you need in one message: call recording, user manual, and support contact." },
-    ],
-    statusNotes: ["Your subscription fees have now officially commenced."],
-  },
-  {
-    id: "post-launch",
-    name: "Post-Launch",
-    dayStart: 31,
-    dayEnd: 31,
-    blurb: "Ongoing support once you're live.",
-    milestones: [
-      { id: "pl-1", title: "Book your Week 1 check-in call", detail: "A quick check-in to make sure everything's running smoothly. Pick a time that suits you below.", bookingUrl: "https://go.rt-d.com/jesse30" },
-      { id: "pl-2", title: "Book your Week 2 check-in call", detail: "Another check-in before we move to monthly calls. Pick a time that suits you below.", bookingUrl: "https://go.rt-d.com/jesse30" },
-      { id: "pl-3", title: "Send us a testimonial", detail: "We'd love to hear how it's going — this helps us and future clients like you.", embedUrl: "https://senja.io/p/tradeai/r/ssh63o", embedTitle: "Leave your testimonial", embedNote: "Two minutes, means the world — written or video, whatever suits you." },
-    ],
-    statusNotes: ["Your account is actively monitored — performance reports available monthly."],
-  },
-];
+export const journeyTemplate: StageTemplate[] = portalTemplateFor(DEFAULT_CLIENT_TYPE);
 
-export const behindTheScenesItems = [
-  { label: "Your eBook lead magnet", detail: "drafted, landing page in production", state: "Live" as const },
-  { label: "Meta ad campaigns", detail: "strategy & creative approved, launching once Partner access is granted", state: "Building" as const },
-  { label: "Your AI receptionist", detail: "qualification questions & knowledgebase configuration", state: "Building" as const },
-  { label: "CRM & pipeline access", detail: "your login is being provisioned", state: "Building" as const },
-];
-
-export const journeyTotalDays = 30;
+export const journeyTotalDays = totalDaysFor(DEFAULT_CLIENT_TYPE);
 
 /**
- * Demo/default completion state: matches what the portal has always shown
- * (Onboarding fully done, Build's first milestone done) so the standalone
- * demo route and a freshly-seeded real client look identical.
+ * Demo/default completion state (check:fin's "defaults" set): Onboarding fully
+ * done, Build's first milestone done.
  */
 export const defaultCompletedMilestoneIds: string[] = [
   ...journeyTemplate[0].milestones.map((m) => m.id),
@@ -196,7 +53,7 @@ export const defaultCurrentDay = 12;
 export function buildJourneyStages(
   completedIds: Set<string>,
   currentDay: number,
-  clientType: ClientType = "meta-google",
+  clientType: ClientType = DEFAULT_CLIENT_TYPE,
 ): JourneyStage[] {
   return buildStagesFromTemplate(journeyTemplate, completedIds, currentDay, clientType);
 }

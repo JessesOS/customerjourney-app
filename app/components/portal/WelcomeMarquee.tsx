@@ -204,8 +204,8 @@ function Track({ group, animation, marginLeft }: { group: string; animation: str
   );
 }
 
-export function WelcomeMarquee({ brand, onStart, brandName }: { brand: "scale" | "respond"; onStart: () => void; brandName?: string }) {
-  const wordmark = brandName ?? (brand === "respond" ? "CRM" : "Scale"); // the second product is shown as "CRM" (Jesse 2026-10-12); custom products pass their own name
+export function WelcomeMarquee({ wordmark, onStart, brandName }: { wordmark: string; onStart: () => void; brandName?: string }) {
+  const shownName = brandName ?? wordmark; // the product's wordmark ("Scale", "CRM"), or a custom product's own name
   return (
     <div className="pj-marquee" style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", flexDirection: "column", overflow: "hidden", fontFamily: "var(--font-archivo), Archivo, sans-serif", background: WALL }}>
       <div style={{ position: "relative", flex: "1 1 0%", minHeight: 300, display: "flex", flexDirection: "column", justifyContent: "center", gap: 16, overflow: "hidden", background: WALL }} aria-hidden>
@@ -216,7 +216,7 @@ export function WelcomeMarquee({ brand, onStart, brandName }: { brand: "scale" |
         <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: 90, background: `linear-gradient(270deg, ${WALL} 0%, rgba(0,0,0,0) 100%)`, pointerEvents: "none", zIndex: 2 }} />
       </div>
       <div style={{ background: "#f7f5f0", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", padding: "54px 24px 36px", gap: 14 }}>
-        <div style={{ fontFamily: "var(--font-instrument-serif), 'Instrument Serif', serif", fontSize: 56, lineHeight: 1, letterSpacing: "-0.5px", color: "#17130e" }}>{wordmark}</div>
+        <div style={{ fontFamily: "var(--font-instrument-serif), 'Instrument Serif', serif", fontSize: 56, lineHeight: 1, letterSpacing: "-0.5px", color: "#17130e" }}>{shownName}</div>
         <div style={{ fontSize: 16, fontWeight: 500, letterSpacing: "0.2px", color: "#6f6a60" }}>Built for the trades</div>
         <button
           type="button"

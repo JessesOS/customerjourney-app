@@ -16,11 +16,11 @@ import { AURORA_PALETTES, WaveField } from "@/app/components/portal/AuroraHub";
 const HOLD_MS = 2600;
 const EXIT_MS = 700;
 
-export function WelcomeAurora({ brand, stages, onStart, brandName, tagline, onStartGesture }: { brand: "scale" | "respond"; stages: string[]; onStart: () => void; brandName?: string; tagline?: string; onStartGesture?: () => void }) {
+export function WelcomeAurora({ wordmark, stages, onStart, brandName, tagline, onStartGesture }: { wordmark: string; stages: string[]; onStart: () => void; brandName?: string; tagline?: string; onStartGesture?: () => void }) {
   const [i, setI] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const timer = useRef<number | undefined>(undefined);
-  const wordmark = brandName ?? (brand === "respond" ? "CRM" : "Scale"); // the second product is shown as "CRM" (Jesse 2026-10-12); custom products pass their own name
+  const shownName = brandName ?? wordmark; // the product's wordmark ("Scale", "CRM"), or a custom product's own name
 
   useEffect(() => {
     if (stages.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -46,7 +46,7 @@ export function WelcomeAurora({ brand, stages, onStart, brandName, tagline, onSt
     >
       <WaveField key={i} seed={i} animate lines={64} className="aw-field" />
       <div className="aw-copy">
-        <h1 className="aw-wordmark">{wordmark}</h1>
+        <h1 className="aw-wordmark">{shownName}</h1>
         {tagline ? <div className="aw-tagline">{tagline}</div> : null}
         <div className="aw-word" key={i} data-xray="Stage word · CSS, drawn in code" data-xray-tool="code">
           <span>{stages[i]}</span>

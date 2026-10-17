@@ -1,13 +1,11 @@
 // Respond client steps: what the client sees in their portal.
 //
-// A VERBATIM copy of respondJourneyTemplate in lib/respondJourney.ts (same ids,
-// wording, flags, order and stage data, comments kept). Two differences only:
-// `milestones` is called `steps`, and steps with no team work behind them
-// carry `clientOnly: true`. On the client side the portal's wording wins.
+// The portal reads this file. check:journeys freezes what clients see.
 //
-// Until the portal reads product files, lib/respondJourney.ts is what Respond
-// clients actually see. A change there (on main) must be mirrored here:
-// npm run products:check (golden template) fails until it is.
+// Converted verbatim (2026-10-16) from the code template the portal used before
+// (respondJourneyTemplate in lib/respondJourney.ts, deleted 2026-10-17): same
+// ids, wording, flags, order and stage data, comments kept. Steps with no team
+// work behind them carry `clientOnly: true`.
 
 import type { ProductStage } from "../types";
 

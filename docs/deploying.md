@@ -116,7 +116,7 @@ bucket (miniflare), separate from production.
 - Local dev (`npm run dev`, port 3000) and production use **separate D1 databases** — nothing
   local "activates" production. Local migrations: apply the SQL file to the sqlite under
   `.wrangler/state/v3/d1/miniflare-D1DatabaseObject/`.
-- Journey content (`lib/onboardingJourney.ts`) is code — changing it requires commit + redeploy.
+- Journey content lives in the product files (`products/<id>/`, read through `lib/productRegistry.ts`; see `docs/products/README.md`) — changing it requires commit + redeploy, with `npm run check:journeys` and `npm run check:fin` passing.
 - Client records live only in the database and never ship with code.
 
 ## Troubleshooting

@@ -1,25 +1,21 @@
 /**
- * Checks the product files (products/**). Seven checks, all must pass:
+ * Checks the product files (products/**). Five checks, all must pass:
  *
- *   1. Golden template: for meta, google, meta-google, bss-meta and respond,
- *      portalTemplate() deep-equals today's code template (journeyTemplate /
- *      respondJourneyTemplate). Proves the client steps are verbatim.
- *   2. Golden render: buildStagesFromTemplate gives identical stages from the
- *      product file and from today's template, across the same completion sets
- *      and days as check:fin (none, all, defaults, first-N; days 1, 12, 30).
- *   3. Golden overrides: every product* map entry and label in lib/journeyEngine.ts
- *      equals the variant's portal overrides, both ways; totalDays matches.
- *   4. Integrity: unique ids, every reference resolves, valid roles, every team
+ *   1. Frozen journeys: every client type's portal, built from the product
+ *      files, equals its frozen fixture (npm run check:journeys, which also
+ *      cross-checks Fin's own check:fin baseline).
+ *   2. Integrity: unique ids, every reference resolves, valid roles, every team
  *      task placed once, every visible client step has team tasks or is
  *      clientOnly, statuses and variants agree, portal settings and per-variant
  *      tweaks name real steps and stages, voice audio and media exist, forms
  *      exist, no RT Digital in client wording, every live or paused client type
- *      is frozen (scripts/fixtures/journeys/), channels agree with the portal.
- *   5. Code boundaries: no "use client" module reaches products/, the registry
- *      or server-only code; products/ imports only types from lib/
+ *      is frozen (scripts/fixtures/journeys/).
+ *   3. Code boundaries: no "use client" module reaches products/, the registry,
+ *      the compat shims or server-only code; no app code imports a shim; the
+ *      shims hold no journey data; products/ imports only types from lib/
  *      (scripts/products/static-checks.ts).
- *   6. Version lock: a product edited without a version bump fails.
- *   7. Sheets and index: docs/products/<id>.md and products/index.ts match a
+ *   4. Version lock: a product edited without a version bump fails.
+ *   5. Sheets and index: docs/products/<id>.md and products/index.ts match a
  *      fresh render.
  *
  *   npm run products:check
@@ -30,53 +26,16 @@ import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { isDeepStrictEqual } from "node:util";
-import * as engine from "../../lib/journeyEngine";
-import { buildStagesFromTemplate, milestoneVisibleFor, type ClientType, type JourneyStage, type StageTemplate } from "../../lib/journeyEngine";
-import { buildJourneyStages, defaultCompletedMilestoneIds, journeyTemplate, journeyTotalDays } from "../../lib/onboardingJourney";
-import {
-  buildRespondJourneyStages,
-  respondDefaultCompletedMilestoneIds,
-  respondJourneyTemplate,
-  respondJourneyTotalDays,
-} from "../../lib/respondJourney";
 import { onboardingFormById } from "../../lib/onboardingForm";
 import { productList } from "../../products/index";
-import {
-  allSteps,
-  dueDaysFor,
-  PORTAL_OVERRIDE_MAPS,
-  portalTemplate,
-  type LegacyOverrideKey,
-  productForClientType,
-  stepVisibleFor,
-  teamTasksFor,
-  variantFor,
-} from "../../products/load";
+import { allSteps, dueDaysFor, productForClientType, teamTasksFor } from "../../products/load";
 import { STAGE_ORDER, type ClientStep, type Product } from "../../products/types";
+import { runJourneyChecks, type CheckCounts } from "../journeys/run";
 import { indexCurrent, staleSheets } from "./render";
 import { codeBoundaries } from "./static-checks";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const LOCK_PATH = join(ROOT, "products", "versions.lock.json");
-const DAYS = [1, 12, 30];
-
-type Legacy = {
-  template: StageTemplate[];
-  totalDays: number;
-  defaults: string[];
-  build: (completed: Set<string>, day: number) => JourneyStage[];
-};
-
-/** Today's code, which the portal still reads. The product files must match it. */
-const LEGACY: Partial<Record<ClientType, Legacy>> = {
-  meta: { template: journeyTemplate, totalDays: journeyTotalDays, defaults: defaultCompletedMilestoneIds, build: (c, d) => buildJourneyStages(c, d, "meta") },
-  google: { template: journeyTemplate, totalDays: journeyTotalDays, defaults: defaultCompletedMilestoneIds, build: (c, d) => buildJourneyStages(c, d, "google") },
-  "meta-google": { template: journeyTemplate, totalDays: journeyTotalDays, defaults: defaultCompletedMilestoneIds, build: (c, d) => buildJourneyStages(c, d, "meta-google") },
-  "bss-meta": { template: journeyTemplate, totalDays: journeyTotalDays, defaults: defaultCompletedMilestoneIds, build: (c, d) => buildJourneyStages(c, d, "bss-meta") },
-  respond: { template: respondJourneyTemplate, totalDays: respondJourneyTotalDays, defaults: respondDefaultCompletedMilestoneIds, build: (c, d) => buildRespondJourneyStages(c, d) },
-};
-const CLIENT_TYPES = Object.keys(LEGACY) as ClientType[];
 
 const failures: string[] = [];
 const notes: string[] = [];
@@ -84,94 +43,14 @@ function must(condition: unknown, message: string): void {
   if (!condition) failures.push(message);
 }
 
-/** The first path where two values differ, for a readable failure. */
-function firstDiff(a: unknown, b: unknown, path = ""): string | null {
-  if (isDeepStrictEqual(a, b)) return null;
-  if (a && b && typeof a === "object" && typeof b === "object") {
-    const keys = [...new Set([...Object.keys(a as object), ...Object.keys(b as object)])];
-    for (const k of keys) {
-      const d = firstDiff((a as Record<string, unknown>)[k], (b as Record<string, unknown>)[k], `${path}${Array.isArray(a) ? `[${k}]` : `.${k}`}`);
-      if (d) return d;
-    }
-  }
-  return `${path || "(root)"}: product ${JSON.stringify(a)?.slice(0, 120)} vs code ${JSON.stringify(b)?.slice(0, 120)}`;
+// ── 1. Frozen journeys ────────────────────────────────────────────────────
+function frozenJourneys(): string {
+  const counts: CheckCounts = { renders: 0, markup: 0 };
+  for (const f of runJourneyChecks(counts)) must(false, f);
+  return `every client type matches scripts/fixtures/journeys/ (${counts.renders} renders, ${counts.markup} markup renders; bss-meta agrees with check:fin)`;
 }
 
-function requireProduct(ct: ClientType): Product {
-  const product = productForClientType(ct);
-  if (!product) throw new Error(`no product for client type ${ct}`);
-  return product;
-}
-
-// ── 1. Golden template ────────────────────────────────────────────────────
-function goldenTemplate(): string {
-  for (const ct of CLIENT_TYPES) {
-    const product = requireProduct(ct);
-    const diff = firstDiff(portalTemplate(product), LEGACY[ct]!.template);
-    must(!diff, `${ct}: portalTemplate differs from the code template at ${diff}`);
-  }
-  const shape = (ct: ClientType) => {
-    const t = portalTemplate(requireProduct(ct));
-    return `${t.length} stages / ${t.reduce((n, s) => n + s.milestones.length, 0)} steps`;
-  };
-  return `${CLIENT_TYPES.join(", ")} (Scale ${shape("meta")}, Respond ${shape("respond")})`;
-}
-
-// ── 2. Golden render ──────────────────────────────────────────────────────
-function goldenRender(): string {
-  let renders = 0;
-  for (const ct of CLIENT_TYPES) {
-    const legacy = LEGACY[ct]!;
-    const product = requireProduct(ct);
-    const template = portalTemplate(product);
-    const visibleIds = legacy.template.flatMap((s) => s.milestones.filter((m) => milestoneVisibleFor(m, ct)).map((m) => m.id));
-    const sets: Record<string, string[]> = { none: [], all: visibleIds, defaults: legacy.defaults };
-    visibleIds.forEach((_, i) => { sets[`first-${i + 1}`] = visibleIds.slice(0, i + 1); });
-    for (const [name, ids] of Object.entries(sets)) {
-      for (const day of DAYS) {
-        const fromProduct = buildStagesFromTemplate(template, new Set(ids), day, ct);
-        const fromCode = legacy.build(new Set(ids), day);
-        const diff = firstDiff(fromProduct, fromCode);
-        must(!diff, `${ct} ${name}@day${day}: render differs at ${diff}`);
-        renders++;
-      }
-    }
-  }
-  return `${renders} renders equal across ${CLIENT_TYPES.length} client types (completion sets none/all/defaults/first-N × days ${DAYS.join(", ")})`;
-}
-
-// ── 3. Golden overrides ───────────────────────────────────────────────────
-function goldenOverrides(): string {
-  const engineMaps = Object.entries(engine).filter(
-    ([name, value]) => (name.startsWith("product") || name === "clientTypeLabels") && value !== null && typeof value === "object",
-  ) as [string, Partial<Record<ClientType, unknown>>][];
-  const keyForMap = new Map(Object.entries(PORTAL_OVERRIDE_MAPS).map(([key, map]) => [map, key as LegacyOverrideKey]));
-  for (const map of keyForMap.keys()) must(engineMaps.some(([name]) => name === map), `PORTAL_OVERRIDE_MAPS names ${map}, which lib/journeyEngine.ts no longer exports`);
-  let compared = 0;
-  for (const ct of CLIENT_TYPES) {
-    const product = requireProduct(ct);
-    const variant = variantFor(product, ct);
-    for (const [name, map] of engineMaps) {
-      const expected = map[ct];
-      if (name === "clientTypeLabels") {
-        must(variant.label === expected, `${ct}: label "${variant.label}" ≠ clientTypeLabels "${String(expected)}"`);
-      } else {
-        const key = keyForMap.get(name);
-        if (!key) {
-          must(false, `lib/journeyEngine.ts has a new map ${name}: add it to PortalOverrides and PORTAL_OVERRIDE_MAPS`);
-          continue;
-        }
-        const diff = firstDiff(variant.portal[key], expected);
-        must(!diff, `${ct}: portal.${key} ≠ ${name}: ${diff}`);
-      }
-      compared++;
-    }
-    must(product.totalDays === LEGACY[ct]!.totalDays, `${ct}: totalDays ${product.totalDays} ≠ code ${LEGACY[ct]!.totalDays}`);
-  }
-  return `${compared} map entries equal (${engineMaps.length} maps incl. clientTypeLabels × ${CLIENT_TYPES.length} client types); totalDays Scale ${journeyTotalDays}, Respond ${respondJourneyTotalDays}`;
-}
-
-// ── 4. Integrity ──────────────────────────────────────────────────────────
+// ── 2. Integrity ──────────────────────────────────────────────────────────
 function integrity(): string {
   const VERSION = /^\d{4}-\d{2}-\d{2}\.\d+$/;
   const PRIORITIES = ["low", "normal", "high", "critical"];
@@ -310,9 +189,6 @@ function integrity(): string {
       must(!clientTypes.has(v.clientType), `${V}: client type ${v.clientType} is also in ${clientTypes.get(v.clientType)}`);
       clientTypes.set(v.clientType, p.id);
       if (p.status === "paused") must(v.offered !== true, `${V}: a paused product is never offered`);
-      for (const step of steps) {
-        must(stepVisibleFor(step, v) === milestoneVisibleFor(step, v.clientType as ClientType), `${V}: channels disagree with the portal on ${step.id}`);
-      }
       const o = v.portal;
       for (const key of ["hiddenTaskVideos", "hiddenTaskBooking", "hiddenTaskPlayground", "hiddenTaskImportant"] as const) {
         for (const id of o[key] ?? []) must(stepStage.has(id), `${V}: portal.${key} names unknown step ${id}`);
@@ -353,7 +229,7 @@ function integrity(): string {
   return `${productList.length} products, ${taskCount} team tasks, ${stepCount} client steps, ${clientTypes.size} variants; ${openWindows} tasks have open due windows ("As needed", "Ongoing"...)`;
 }
 
-// ── 5. Version lock ───────────────────────────────────────────────────────
+// ── 4. Version lock ───────────────────────────────────────────────────────
 type Lock = Record<string, { version: string; sha256: string }>;
 
 function canonical(value: unknown): unknown {
@@ -421,14 +297,14 @@ function writeLock() {
   console.log(`Wrote products/versions.lock.json: ${productList.map((p) => `${p.id} ${p.version}`).join(", ")}`);
 }
 
-// ── Code boundaries ───────────────────────────────────────────────────────
+// ── 3. Code boundaries ───────────────────────────────────────────────────────
 function boundaries(): string {
   const { failures: found, summary } = codeBoundaries();
   for (const f of found) must(false, f);
   return summary;
 }
 
-// ── Sheets and index ──────────────────────────────────────────────────────
+// ── 5. Sheets and index ──────────────────────────────────────────────────────
 function sheetsCurrent(): string {
   const stale = staleSheets();
   if (!indexCurrent()) stale.unshift("products/index.ts");
@@ -443,13 +319,11 @@ if (isMain) {
     writeLock();
   } else {
     const checks: [string, () => string][] = [
-      ["1 golden template", goldenTemplate],
-      ["2 golden render", goldenRender],
-      ["3 golden overrides", goldenOverrides],
-      ["4 integrity", integrity],
-      ["5 code boundaries", boundaries],
-      ["6 version lock", versionLock],
-      ["7 sheets and index", sheetsCurrent],
+      ["1 frozen journeys", frozenJourneys],
+      ["2 integrity", integrity],
+      ["3 code boundaries", boundaries],
+      ["4 version lock", versionLock],
+      ["5 sheets and index", sheetsCurrent],
     ];
     let failed = 0;
     for (const [name, run] of checks) {
