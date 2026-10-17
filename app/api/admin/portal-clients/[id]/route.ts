@@ -8,6 +8,7 @@ import {
   updatePortalClientAdminFields,
 } from "@/lib/portalClientStore";
 import { acceptedClientTypes, isAcceptedClientType } from "@/lib/productRegistry";
+import { productDraftsEnabled } from "@/lib/settings";
 
 export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   if (!(await requestCanAdminAsync(request))) {
@@ -54,8 +55,10 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     }
     const requestedType = body.clientType;
     if (requestedType !== undefined) {
-      if (!isAcceptedClientType(requestedType, { drafts: false })) {
-        return Response.json({ ok: false, error: `Client type must be one of: ${acceptedClientTypes({ drafts: false }).join(", ")}.` }, { status: 400 });
+      // Live and paused types; draft types too only where PRODUCT_DRAFTS=1 (staging).
+      const drafts = { drafts: productDraftsEnabled() };
+      if (!isAcceptedClientType(requestedType, drafts)) {
+        return Response.json({ ok: false, error: `Client type must be one of: ${acceptedClientTypes(drafts).join(", ")}.` }, { status: 400 });
       }
       adminFields.clientType = requestedType;
       // Explicitly choosing a type is what "confirming" means (Decision 2).

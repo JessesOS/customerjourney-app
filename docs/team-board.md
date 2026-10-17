@@ -46,6 +46,7 @@ All live under `/admin`, with a menu across the top.
 - **"Done by client":** some tasks finish when the client finishes certain steps. For example, `scl-040` waits on `ob-6`, `ob-6b` and `ob-6c`. That's worked out when the board is read, and never written to the client's side.
 - **The board never writes the portal's tables.** Ticking a client step is still done in the portal, or on the Clients page.
 - **Auto-assign:** a task is assigned on start only when exactly one active team member covers its role. Otherwise it waits, unassigned, showing its role.
+- **Paused products can't start a board.** BSS Launchpad (`bss`, the old 41-step custom journey) is paused. Since 2026-10-17 (Phase 3) the Board shows `bss` clients with their BSS client steps and 42 days, read from `products/bss/`. Their board can't start: Start board says "BSS Launchpad (custom journey) is paused." Fin is on `bss-meta` (Scale), not `bss`.
 
 ## Sign-in (`lib/teamAuth.ts`, `lib/accessJwt.ts`)
 
@@ -67,6 +68,7 @@ Add a person to both.
 |---|---|---|
 | `TEAM_BOARD` | `1` | unset. Every team route returns 404, and the Clients page is unchanged |
 | `TEAM_BOARD_AUTOSEED` | `1` | unset |
+| `PRODUCT_DRAFTS` | `1`. Draft products (status `draft`, e.g. a custom product being previewed) are offered in the Clients dropdown and their boards start | unset. Drafts are never offered and their boards never start. Set it locally in `.dev.vars` to preview a draft |
 | `PUBLIC_PORTAL_BASE` | the staging address | unset (copy-link uses the page's own address) |
 | `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` | empty until Access is set up | unset |
 | `OWNER_EMAIL` | empty (shows as owner@local) | unset |

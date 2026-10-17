@@ -10,13 +10,20 @@
  * A new product is one folder, products/<id>/, whose index.ts exports
  * `<camelCaseId>` (e.g. products/bss-custom/index.ts exports `bssCustom`).
  * Running this registers it: no other file changes.
+ *
+ * A custom product (defineCustomProduct, products/custom.ts) also gets "Based
+ * on", "Spec" and "Draft wording" rows and a "Differences from <base>" section,
+ * with notes on inherited wording that quotes days when its timeline changed.
  */
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { productList } from "../../products/index";
-import { allSteps, dueDaysFor, stepTree, stepVisibleFor, teamTasksFor, type StageNode } from "../../products/load";
-import type { ClientStep, Product, ProductStage, ProductVariant, TeamTask } from "../../products/types";
+// No import of products/index.ts (or products/load.ts, which imports it): this
+// script rewrites that file, so it must still run when the file names a folder
+// that was just deleted or renamed. The product list is passed in, or loaded
+// after the index is written.
+import { allSteps, dueDaysFor, stepTree, stepVisibleFor, teamTasksFor, type StageNode } from "../../products/helpers";
+import type { ClientStep, CustomDerivation, Product, ProductStage, ProductVariant, TeamTask } from "../../products/types";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const PRODUCTS_DIR = join(ROOT, "products");
@@ -196,6 +203,145 @@ function portalSettings(product: Product): string[] {
   return L;
 }
 
+// ── Custom products ───────────────────────────────────────────────────────
+
+/** Client wording that quotes a day ("day 14", "Days 1-2", "30-day"). */
+const QUOTES_DAYS = /\bdays?\s*\d|\d+-day/i;
+
+/** The client-facing text fields of a step, by field name. */
+function stepTexts(step: ClientStep): [string, string][] {
+  const out: [string, string | undefined][] = [
+    ["title", step.title],
+    ["detail", step.detail],
+    ["notePrompt", step.notePrompt],
+    ["notePlaceholder", step.notePlaceholder],
+    ["embedTitle", step.embedTitle],
+    ["embedNote", step.embedNote],
+    ["guideLabel", step.guideLabel],
+    ["important", step.important],
+    ["inviteEmail", step.inviteEmail],
+    ["doneLabel", step.doneLabel],
+    ...(step.steps ?? []).map((text, i) => [`steps[${i + 1}]`, text] as [string, string]),
+    ...(step.interview ?? []).map((text, i) => [`interview[${i + 1}]`, text] as [string, string]),
+  ];
+  return out.filter((entry): entry is [string, string] => Boolean(entry[1]));
+}
+
+/** The base a custom product was derived from, when it is one of these products. */
+function baseProductOf(custom: CustomDerivation, products: readonly Product[]): Product | null {
+  if (custom.base === "blank") return null;
+  const id = custom.base.id;
+  return products.find((p) => p.id === id) ?? null;
+}
+
+/** "Scale 2026-10-17.1 (meta)", or "a blank product". */
+function baseName(custom: CustomDerivation): string {
+  if (custom.base === "blank") return "a blank product";
+  return `${custom.base.name} ${custom.base.version}${custom.base.variant !== undefined ? ` (${custom.base.variant})` : ""}`;
+}
+
+const excerpt = (text: string) => {
+  const flat = text.replace(/\s+/g, " ").trim();
+  return flat.length > 140 ? `${flat.slice(0, 137)}…` : flat;
+};
+
+/**
+ * Copy lint for a custom product whose timeline changed: inherited client
+ * wording (not added, not changed by the spec) that quotes days, which may now
+ * be wrong. Notes only: a person decides. Empty when the timeline is the base's.
+ */
+export function copyLintNotes(product: Product, products: readonly Product[] = []): string[] {
+  const custom = product.custom;
+  if (!custom || !custom.timelineChanged || custom.base === "blank") return [];
+  const added = new Set(custom.addedSteps);
+  const changed = new Map(custom.changedSteps.map((c) => [c.id, new Set(c.fields)]));
+  const base = baseProductOf(custom, products);
+  const notes: string[] = [];
+  const flag = (where: string, text: string) => {
+    if (QUOTES_DAYS.test(text)) notes.push(`${where} still says "${excerpt(text)}": check the days against this product's timeline`);
+  };
+  for (const stage of product.stages.filter((s) => !s.teamOnly)) {
+    const from = base?.stages.find((s) => s.id === stage.id);
+    if (base && !from) continue; // a stage the custom product added: its own wording
+    if (!from || from.name === stage.name) flag(`stage ${stage.id} name`, stage.name);
+    if (stage.blurb && (!from || from.blurb === stage.blurb)) flag(`stage ${stage.id} blurb`, stage.blurb);
+    for (const note of stage.statusNotes) if (!from || from.statusNotes.includes(note)) flag(`stage ${stage.id} status note`, note);
+  }
+  for (const step of allSteps(product)) {
+    if (added.has(step.id) || step.hidden || !product.variants.some((v) => stepVisibleFor(step, v))) continue;
+    const own = changed.get(step.id) ?? new Set<string>();
+    const replacedDetail = product.variants.some((v) => v.portal.taskDetails && Object.hasOwn(v.portal.taskDetails, step.id));
+    for (const [field, text] of stepTexts(step)) {
+      const root = field.replace(/\[\d+\]$/, "");
+      if (own.has(root) || (field === "detail" && replacedDetail)) continue;
+      flag(`${code(step.id)} ${field}`, text);
+    }
+  }
+  return notes;
+}
+
+const listOr = (items: string[], none = "none") => (items.length ? items.join(", ") : none);
+
+/** The sheet's "Differences" section for a custom product. */
+function differencesSection(product: Product, custom: CustomDerivation, products: readonly Product[]): string[] {
+  const L: string[] = [];
+  const base = baseProductOf(custom, products);
+  if (custom.base === "blank") {
+    L.push("## Differences: written from scratch");
+    L.push("");
+    L.push("No base: every step and task below is this product's own.");
+    L.push("");
+    return L;
+  }
+  const from = custom.base.name;
+  L.push(`## Differences from ${baseName(custom)}`);
+  L.push("");
+  L.push(`Worked out by \`defineCustomProduct\` from \`products/${product.id}/index.ts\`. Everything not listed here is ${from}'s, as it is${custom.base.variant !== undefined ? ` for its \`${custom.base.variant}\` variant` : ""}.`);
+  L.push("");
+  L.push("| | |");
+  L.push("|---|---|");
+  L.push(`| Steps removed | ${listOr(custom.removedSteps.map(code))} |`);
+  L.push(`| Steps changed | ${listOr(custom.changedSteps.map((c) => `${code(c.id)} (${c.fields.join(", ")})`))} |`);
+  L.push(`| Steps added | ${listOr(custom.addedSteps.map(code))} |`);
+  L.push(`| Team tasks removed | ${listOr(custom.removedTasks.map((t) => `${code(t.id)} (${cell(t.reason)})`))} |`);
+  L.push(`| Team tasks changed | ${listOr(custom.changedTasks.map((c) => `${code(c.id)} (${c.fields.join(", ")})`))} |`);
+  L.push(`| Team tasks added | ${listOr(custom.addedTasks.map(code))} |`);
+  L.push(`| Dependencies dropped | ${listOr(custom.droppedDependencies.map((d) => `${code(d.task)} no longer waits on ${code(d.dependsOn)}`))} |`);
+  const setting = (key: "voiceGuide" | "askAi" | "features", present: boolean) =>
+    custom.inherited[key] ? `inherited from ${from}` : present ? "its own" : "off";
+  L.push(`| Voice guide | ${setting("voiceGuide", Boolean(product.portal?.voiceGuide))} |`);
+  L.push(`| Ask-AI | ${setting("askAi", Boolean(product.portal?.askAi && Object.keys(product.portal.askAi).length))} |`);
+  L.push(`| Step features | ${setting("features", Boolean(product.portal?.features))} |`);
+  L.push(`| Timeline | ${custom.timelineChanged ? "changed (below)" : `${from}'s, unchanged`} |`);
+  L.push("");
+  if (custom.timelineChanged) {
+    L.push("### Timeline");
+    L.push("");
+    L.push(`| | ${from} | This product |`);
+    L.push("|---|---|---|");
+    L.push(`| Days to go-live | ${base?.totalDays ?? "?"} | ${product.totalDays ?? "not set"} |`);
+    const ids = [...new Set([...(base?.stages.map((s) => s.id) ?? []), ...product.stages.map((s) => s.id)])];
+    for (const id of ids) {
+      const a = base?.stages.find((s) => s.id === id);
+      const b = product.stages.find((s) => s.id === id);
+      L.push(`| ${cell((b ?? a)!.name)} | ${a ? stageDays(a) : "no such stage"} | ${b ? stageDays(b) : "dropped"} |`);
+    }
+    L.push("");
+    const notes = copyLintNotes(product, products);
+    L.push("### Wording to check");
+    L.push("");
+    if (notes.length) {
+      L.push(`The timeline changed, and this inherited client wording quotes days. Each line is a note, not an error: fix the wording in \`steps.change\`, or leave it if it is still right.`);
+      L.push("");
+      for (const n of notes) L.push(`- ${n}`);
+    } else {
+      L.push("No inherited client wording quotes a day.");
+    }
+    L.push("");
+  }
+  return L;
+}
+
 function stageSection(node: StageNode, index: number, L: string[]) {
   const { stage } = node;
   L.push(`## ${index + 1}. ${stage.name} · ${stageDays(stage)}`);
@@ -257,7 +403,8 @@ function stageSection(node: StageNode, index: number, L: string[]) {
   }
 }
 
-export function renderSheet(product: Product): string {
+/** A product's sheet. `products` (the product files) is where a custom product's base is looked up. */
+export function renderSheet(product: Product, products: readonly Product[] = []): string {
   const L: string[] = [];
   const steps = allSteps(product);
   const behind = product.teamTasks.filter((t) => t.step).length;
@@ -285,14 +432,24 @@ export function renderSheet(product: Product): string {
     L.push("| Client steps | none in this product file |");
   }
   L.push(`| Team tasks | ${product.teamTasks.length} (${behind} behind a client step, ${product.teamTasks.length - behind} team-only) |`);
-  const reportLink = product.source.report.replace(/^docs\/products\//, "");
-  L.push(`| Converted from | ${product.source.from} at \`${product.source.commit}\` on ${product.source.convertedOn}: [conversion report](${reportLink}), with [open questions for Jesse](${reportLink}#flags-for-jesse-not-fixed) |`);
+  const custom = product.custom;
+  if (custom) {
+    L.push(`| Based on | ${custom.base === "blank" ? "nothing: written from scratch" : `${custom.base.name} \`${custom.base.version}\`${custom.base.variant !== undefined ? `, variant \`${custom.base.variant}\`` : ""}`} |`);
+    L.push(`| Spec | [${custom.spec}](../../${custom.spec}) |`);
+    L.push(`| Draft wording | ${custom.draftCopy.length ? `${custom.draftCopy.map(code).join(", ")}: Claude drafted this wording; Jesse approves it before the product goes live` : "none: every client-facing word is approved"} |`);
+  } else {
+    const reportLink = product.source.report.replace(/^docs\/products\//, "");
+    L.push(`| Converted from | ${product.source.from} at \`${product.source.commit}\` on ${product.source.convertedOn}: [conversion report](${reportLink}), with [open questions for Jesse](${reportLink}#flags-for-jesse-not-fixed) |`);
+  }
   if (product.source.document) L.push(`| Source document | [${cell(product.source.document.title)}](${product.source.document.url}) |`);
   L.push("");
   if (product.variants.length && steps.length) {
     L.push("The portal reads this file. `npm run check:journeys` freezes what each client type sees.");
     L.push("");
   }
+
+  // Differences (custom products)
+  if (custom) L.push(...differencesSection(product, custom, products));
 
   // Variants
   L.push("## Variants");
@@ -345,19 +502,31 @@ export function renderSheet(product: Product): string {
   return L.join("\n").replace(/\n{3,}/g, "\n\n").trimEnd() + "\n";
 }
 
-/** Every generated sheet, by repo-relative path. */
-export function renderSheets(): Record<string, string> {
-  return Object.fromEntries(productList.map((p) => [`docs/products/${p.id}.md`, renderSheet(p)]));
+/** Every generated sheet for these products, by repo-relative path. */
+export function renderSheets(products: readonly Product[]): Record<string, string> {
+  return Object.fromEntries(products.map((p) => [`docs/products/${p.id}.md`, renderSheet(p, products)]));
 }
 
-/** Paths whose committed sheet differs from a fresh render. */
-export function staleSheets(): string[] {
-  return Object.entries(renderSheets())
+const SHEET_MARK = "<!-- GENERATED by scripts/products/render.ts from products/";
+
+/** Generated sheets in docs/products/ whose product folder is gone. */
+function orphanSheets(ids: readonly string[]): string[] {
+  const dir = join(ROOT, "docs", "products");
+  return readdirSync(dir)
+    .filter((name) => name.endsWith(".md") && !ids.includes(name.slice(0, -3)))
+    .filter((name) => readFileSync(join(dir, name), "utf8").startsWith(SHEET_MARK))
+    .map((name) => `docs/products/${name}`);
+}
+
+/** Paths whose committed sheet differs from a fresh render, plus sheets of products that no longer exist. */
+export function staleSheets(products: readonly Product[]): string[] {
+  const stale = Object.entries(renderSheets(products))
     .filter(([rel, content]) => {
       const path = join(ROOT, rel);
       return !existsSync(path) || readFileSync(path, "utf8") !== content;
     })
     .map(([rel]) => rel);
+  return [...stale, ...orphanSheets(products.map((p) => p.id))];
 }
 
 /** Writes products/index.ts from the folders, then every sheet, in one run. */
@@ -369,25 +538,39 @@ async function writeAll() {
   console.log(`${indexSame ? "unchanged" : "wrote    "} products/index.ts (${ids.join(", ")})`);
   // Each folder imported directly, so a product added since products/index.ts
   // was last written renders in this same run.
+  const products: Product[] = [];
   for (const id of ids) {
     const mod = (await import(pathToFileURL(join(PRODUCTS_DIR, id, "index.ts")).href)) as Record<string, Product | undefined>;
     const product = mod[camelCase(id)];
     if (!product) throw new Error(`products/${id}/index.ts must export \`${camelCase(id)}\``);
     if (product.id !== id) throw new Error(`products/${id}/index.ts exports a product with id "${product.id}": the folder name and the id must match`);
-    const rel = `docs/products/${id}.md`;
+    products.push(product);
+  }
+  for (const product of products) {
+    const rel = `docs/products/${product.id}.md`;
     const path = join(ROOT, rel);
-    const content = renderSheet(product);
+    const content = renderSheet(product, products);
     const same = existsSync(path) && readFileSync(path, "utf8") === content;
     if (!same) writeFileSync(path, content);
     console.log(`${same ? "unchanged" : "wrote    "} ${rel}`);
+  }
+  // A product folder that was deleted or renamed leaves its generated sheet behind: remove it.
+  for (const rel of orphanSheets(ids)) {
+    unlinkSync(join(ROOT, rel));
+    console.log(`removed   ${rel} (no products/ folder)`);
   }
 }
 
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
 if (isMain) {
   if (process.argv.includes("--check")) {
-    const stale = staleSheets();
-    if (!indexCurrent()) stale.unshift("products/index.ts");
+    // A stale index may name a folder that is gone: report it before loading any product.
+    if (!indexCurrent()) {
+      console.error("FAIL out of date: products/index.ts. Run npm run products:render.");
+      process.exit(1);
+    }
+    const { productList } = await import("../../products/index");
+    const stale = staleSheets(productList);
     if (stale.length) {
       console.error(`FAIL out of date: ${stale.join(", ")}. Run npm run products:render.`);
       process.exit(1);

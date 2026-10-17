@@ -3,7 +3,7 @@ import { getDb } from "@/db";
 import { portalClients, portalMilestoneProgress, portalMilestoneUploads, teamBoards, teamMembers, teamTaskEvents, teamTasks } from "@/db/schema";
 import { boardSeedFor, labelFor, liveRoles } from "@/lib/productRegistry";
 import { computeCurrentDay, getLastActivityAt } from "@/lib/portalClientStore";
-import { setting } from "@/lib/settings";
+import { productDraftsEnabled, setting } from "@/lib/settings";
 import { teamBoardEnabled, type TeamActor } from "@/lib/teamAuth";
 import { dueDaysFor, productById, productForClientType, stepTree, teamTasksFor, variantFor } from "@/products/load";
 import type { Product, ProductVariant } from "@/products/types";
@@ -41,9 +41,9 @@ function productAndVariant(clientType: string, board?: { productId: string; vari
   return { product, variant: variantFor(product, clientType) };
 }
 
-/** Why a client's board can't start, or null when it can (unknown type, or a paused or draft product). */
+/** Why a client's board can't start, or null when it can (unknown type, a paused product, or a draft one where PRODUCT_DRAFTS isn't 1). */
 export function startBlockedReason(clientType: string): string | null {
-  const seed = boardSeedFor(clientType, { drafts: false });
+  const seed = boardSeedFor(clientType, { drafts: productDraftsEnabled() });
   return seed.ok ? null : seed.reason;
 }
 
@@ -53,7 +53,7 @@ export async function seedTeamBoard(clientId: string, actor: TeamActor): Promise
   const db = getDb();
   const client = (await db.select().from(portalClients).where(eq(portalClients.id, clientId)).limit(1))[0];
   if (!client) return { ok: false, error: "Unknown client.", status: 404 };
-  const seed = boardSeedFor(client.clientType, { drafts: false });
+  const seed = boardSeedFor(client.clientType, { drafts: productDraftsEnabled() });
   if (!seed.ok) return { ok: false, error: seed.reason, status: 409 };
   const existing = (await db.select().from(teamBoards).where(eq(teamBoards.clientId, clientId)).limit(1))[0];
   if (existing) return { ok: true, created: 0 };

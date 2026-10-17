@@ -52,7 +52,7 @@ npx wrangler deploy --config dist/server/wrangler.staging.json
 - **`main` (with `motion-redesign`) is the live line.**
 - **Back-office work goes on branch `team-board`.**
 - **Frozen journeys, not frozen files (2026-10-17).** The portal now reads its journeys from `products/`, so `app/portal/**`, `app/components/portal/**` and `lib/journey*.ts` differ from `main` on purpose; the empty-diff rule no longer applies. What protects clients is their output. `npm run check:journeys` freezes, for every client type (meta, google, meta-google, bss-meta, respond, bss and an unknown type), everything the portal is built from and shows: steps and wording, every stage render, days, branding, per-step tweaks, voice guides, Ask-AI, String Theory, admin counts and labels, and the portal's server-rendered markup in every look (`scripts/fixtures/journeys/`). `npm run check:fin` still guards Fin's own baseline. Both must pass before every commit, merge and deploy. Re-save a fixture (`npm run check:journeys -- --write <type>`) only for a change Jesse approved; `bss-meta` also needs `--yes-fin`. The fixtures can't see CSS: `app/globals.css` and `app/layout.tsx` still need Jesse's OK. After merging `main`: if a fixture differs only because of a portal change already approved on `main`, inspect it with `--dump <dir>`, re-save it and say so in the commit message.
-- **Feature flags** `TEAM_BOARD` / `TEAM_BOARD_AUTOSEED` (Worker vars): on in staging, off in prod until go-live.
+- **Feature flags** `TEAM_BOARD` / `TEAM_BOARD_AUTOSEED` (Worker vars): on in staging, off in prod until go-live. `PRODUCT_DRAFTS=1` (staging only, never prod) offers draft products in admin and lets their boards start.
 
 ## Products
 

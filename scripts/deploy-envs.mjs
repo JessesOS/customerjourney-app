@@ -28,6 +28,10 @@ export const ENVS = {
     vars: {
       TEAM_BOARD: "1",
       TEAM_BOARD_AUTOSEED: "1",
+      // Draft products (products/<id> with status "draft") are offered in
+      // admin and their boards start, so Jesse can preview a custom product
+      // on synthetic clients. Prod leaves it unset: drafts never reach it.
+      PRODUCT_DRAFTS: "1",
       PUBLIC_PORTAL_BASE: "https://scale-onboarding-portal-staging.jesse-b4e.workers.dev",
       // Filled in once the Cloudflare Zero Trust organisation and the staging
       // Access application exist (Phase 0.7 / 2.2).

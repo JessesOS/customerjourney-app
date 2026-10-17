@@ -2,10 +2,12 @@ import { requestCanAdminAsync } from "@/lib/teamAuth";
 import { autoStartBoard } from "@/lib/teamStore";
 import { createPortalClient, isPortalThemeVariant, listPortalClients } from "@/lib/portalClientStore";
 import { acceptedClientTypes, clientTypeOptions, DEFAULT_CLIENT_TYPE, isAcceptedClientType, lockedLookFor } from "@/lib/productRegistry";
+import { productDraftsEnabled } from "@/lib/settings";
 
 // Which client types exist, are offered and are accepted comes from the
 // product files (lib/productRegistry.ts): live and paused types are accepted,
-// only live ones are offered for new clients.
+// only live ones are offered for new clients. Draft products count too only
+// where PRODUCT_DRAFTS=1 (staging); prod leaves it unset.
 
 export async function GET(request: Request) {
   if (!(await requestCanAdminAsync(request))) {
@@ -14,7 +16,7 @@ export async function GET(request: Request) {
 
   try {
     const clients = await listPortalClients();
-    return Response.json({ ok: true, clients, clientTypeOptions: clientTypeOptions({ drafts: false }), defaultClientType: DEFAULT_CLIENT_TYPE });
+    return Response.json({ ok: true, clients, clientTypeOptions: clientTypeOptions({ drafts: productDraftsEnabled() }), defaultClientType: DEFAULT_CLIENT_TYPE });
   } catch (error) {
     return Response.json(
       { ok: false, error: error instanceof Error ? error.message : "Could not load clients." },
@@ -34,8 +36,9 @@ export async function POST(request: Request) {
     const companyName = body.companyName?.trim() ?? "";
     const startDate = body.startDate?.trim();
     const clientType = body.clientType?.trim() ?? DEFAULT_CLIENT_TYPE;
+    const drafts = { drafts: productDraftsEnabled() };
     // A product with a fixed look stores that look, so the admin shows what the client sees.
-    const lockedLook = isAcceptedClientType(clientType, { drafts: false }) ? lockedLookFor(clientType) : undefined;
+    const lockedLook = isAcceptedClientType(clientType, drafts) ? lockedLookFor(clientType) : undefined;
     const themeVariant = lockedLook ?? body.themeVariant?.trim() ?? "grove";
 
     if (!name) {
@@ -44,8 +47,8 @@ export async function POST(request: Request) {
     if (!startDate || Number.isNaN(new Date(startDate).getTime())) {
       return Response.json({ ok: false, error: "A valid start date is required." }, { status: 400 });
     }
-    if (!isAcceptedClientType(clientType, { drafts: false })) {
-      return Response.json({ ok: false, error: `Client type must be one of: ${acceptedClientTypes({ drafts: false }).join(", ")}.` }, { status: 400 });
+    if (!isAcceptedClientType(clientType, drafts)) {
+      return Response.json({ ok: false, error: `Client type must be one of: ${acceptedClientTypes(drafts).join(", ")}.` }, { status: 400 });
     }
     if (!isPortalThemeVariant(themeVariant)) {
       return Response.json({ ok: false, error: "Portal look is not one of the available looks." }, { status: 400 });

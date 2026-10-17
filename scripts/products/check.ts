@@ -1,5 +1,5 @@
 /**
- * Checks the product files (products/**). Five checks, all must pass:
+ * Checks the product files (products/**). Six checks, all must pass:
  *
  *   1. Frozen journeys: every client type's portal, built from the product
  *      files, equals its frozen fixture (npm run check:journeys, which also
@@ -9,13 +9,18 @@
  *      clientOnly, statuses and variants agree, portal settings and per-variant
  *      tweaks name real steps and stages, voice audio and media exist, forms
  *      exist, no RT Digital in client wording, every live or paused client type
- *      is frozen (scripts/fixtures/journeys/).
- *   3. Code boundaries: no "use client" module reaches products/, the registry,
+ *      is frozen (scripts/fixtures/journeys/), and each custom product's spec
+ *      file exists and a live one has no drafted wording.
+ *   3. Custom-product proof: an in-memory custom product (Scale Meta, changed;
+ *      never written to disk) resolves, registers, renders in the portal, seeds
+ *      a board and gets a sheet and an index line, without touching Scale; a
+ *      draft is offered and seeded only with PRODUCT_DRAFTS; mistakes throw.
+ *   4. Code boundaries: no "use client" module reaches products/, the registry,
  *      the compat shims or server-only code; no app code imports a shim; the
  *      shims hold no journey data; products/ imports only types from lib/
  *      (scripts/products/static-checks.ts).
- *   4. Version lock: a product edited without a version bump fails.
- *   5. Sheets and index: docs/products/<id>.md and products/index.ts match a
+ *   5. Version lock: a product edited without a version bump fails.
+ *   6. Sheets and index: docs/products/<id>.md and products/index.ts match a
  *      fresh render.
  *
  *   npm run products:check
@@ -26,12 +31,18 @@ import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createElement, type ComponentType } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import { ClientPortalExperience } from "../../app/components/portal/ClientPortalExperience";
+import { buildStages } from "../../lib/journeyBuild";
 import { onboardingFormById } from "../../lib/onboardingForm";
-import { productList } from "../../products/index";
-import { allSteps, dueDaysFor, productForClientType, teamTasksFor } from "../../products/load";
+import { createRegistry } from "../../lib/productRegistry";
+import { defineCustomProduct, type CustomProductSpec } from "../../products/custom";
+import { productList, scale } from "../../products/index";
+import { allSteps, dueDaysFor, productForClientType, stepVisibleFor, teamTasksFor } from "../../products/load";
 import { STAGE_ORDER, type ClientStep, type Product } from "../../products/types";
 import { runJourneyChecks, type CheckCounts } from "../journeys/run";
-import { indexCurrent, staleSheets } from "./render";
+import { copyLintNotes, indexCurrent, renderProductIndex, renderSheet, scanProductIds, staleSheets } from "./render";
 import { codeBoundaries } from "./static-checks";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -224,12 +235,136 @@ function integrity(): string {
     }
     for (const [where, text] of clientText) if (text && RT.test(text)) must(false, `${P}: "RT Digital" in client wording (${where}): the client-facing brand is allconvos.ai`);
   }
+  // Custom products: the spec Jesse wrote is in the repo; a live one has no drafted wording.
+  for (const p of productList as readonly Product[]) {
+    if (!p.custom) continue;
+    const P = `products/${p.id}`;
+    must(existsSync(join(ROOT, p.custom.spec)), `${P}: its spec ${p.custom.spec} is missing (save Jesse's spec there)`);
+    if (p.status === "live") must(p.custom.draftCopy.length === 0, `${P}: a live product can't have drafted wording (${p.custom.draftCopy.join(", ")})`);
+    for (const n of copyLintNotes(p, productList)) notes.push(`${p.id}: ${n.replace(/`/g, "")}`);
+  }
   const bssProduct = productForClientType("bss");
   must(bssProduct?.id === "bss" && bssProduct.status === "paused", `"bss" must resolve to the paused bss product`);
   return `${productList.length} products, ${taskCount} team tasks, ${stepCount} client steps, ${clientTypes.size} variants; ${openWindows} tasks have open due windows ("As needed", "Ongoing"...)`;
 }
 
-// ── 4. Version lock ───────────────────────────────────────────────────────
+// ── 3. Custom-product proof ───────────────────────────────────────────────
+// A custom product built in memory (never written to disk, never in
+// productList) goes through everything a real one would.
+
+/** The message defineCustomProduct throws for this spec, or null when it resolves. */
+function thrown(spec: CustomProductSpec<string>): string | null {
+  try {
+    defineCustomProduct(spec);
+    return null;
+  } catch (error) {
+    return error instanceof Error ? error.message : String(error);
+  }
+}
+
+function customProof(): string {
+  const before = contentHash(scale);
+  const spec: CustomProductSpec<"zz-proof"> = {
+    id: "zz-proof", name: "Proof only", version: "2026-10-17.1", status: "live",
+    clientType: "zz-proof", label: "Proof — custom", spec: "scripts/products/check.ts",
+    base: { product: scale, version: scale.version, variant: "meta" }, idPrefix: "zzp-", totalDays: 21,
+    stages: {
+      testing: { dayStart: 14, dayEnd: 14 }, "go-live": { dayStart: 21, dayEnd: 21 }, "post-launch": { dayStart: 22, dayEnd: 22 },
+      onboarding: { statusNotes: ["Proof timeline."] },
+    },
+    steps: {
+      remove: ["ob-4"], change: { "ob-2": { title: "Proof welcome call" } },
+      add: [{ stage: "build", after: "bd-2", step: { id: "zzp-1", title: "Approve your offer", detail: "Proof step." } }],
+    },
+    teamTasks: {
+      add: [{ task: { id: "zzp-t1", title: "Draft the offer", notes: "", stage: "build", category: "Offer",
+        step: "zzp-1", role: "Scale CSM", priority: "normal", due: "Days 8-10", dependencies: [] } }],
+    },
+    portal: { brandName: "Proof Portal" },
+  };
+  const proof = defineCustomProduct(spec);
+  const reg = createRegistry([...productList, proof]);
+  const P = "custom proof";
+
+  // Scale itself is untouched.
+  must(contentHash(scale) === before, `${P}: defineCustomProduct changed Scale (its content hash moved)`);
+
+  // Registered and offered like any live product.
+  must(reg.isClientType("zz-proof"), `${P}: zz-proof is not a client type of the registry`);
+  must(reg.acceptedClientTypes({ drafts: false }).includes("zz-proof"), `${P}: zz-proof is not accepted`);
+  const option = reg.clientTypeOptions({ drafts: false }).find((o) => o.value === "zz-proof");
+  must(option?.label === "Proof — custom", `${P}: zz-proof is not offered as "Proof — custom" (got ${JSON.stringify(option)})`);
+
+  // The portal journey.
+  const j = reg.portalJourneyFor("zz-proof");
+  const ids = j.stages.flatMap((s) => s.milestones.map((m) => m.id));
+  must(j.totalDays === 21, `${P}: totalDays is ${j.totalDays}, not 21`);
+  must(j.brandName === "Proof Portal", `${P}: brandName is ${j.brandName}, not "Proof Portal"`);
+  must(j.wordmark === "Scale", `${P}: wordmark is ${j.wordmark}, not "Scale"`);
+  must(!ids.includes("ob-4"), `${P}: removed step ob-4 is still in the portal`);
+  const build = j.stages.find((s) => s.id === "build")?.milestones.map((m) => m.id) ?? [];
+  must(build.indexOf("zzp-1") !== -1 && build.indexOf("zzp-1") === build.indexOf("bd-2") + 1, `${P}: zzp-1 is not right after bd-2 (build: ${build.join(", ")})`);
+  const ob2 = j.stages.flatMap((s) => s.milestones).find((m) => m.id === "ob-2");
+  must(ob2?.title === "Proof welcome call", `${P}: ob-2 is not retitled (got "${ob2?.title}")`);
+  const googleOnly = allSteps(scale).filter((st) => st.channels && st.channels.length && !st.channels.includes("meta")).map((st) => st.id);
+  must(googleOnly.length > 0 && googleOnly.every((id) => !ids.includes(id)), `${P}: Google-only steps reached the portal (${googleOnly.filter((id) => ids.includes(id)).join(", ")})`);
+  must(Object.keys(j.stageGuides).length === 0, `${P}: stageGuides is not empty`);
+  must(Object.keys(j.askItems).length === 0, `${P}: askItems is not empty`);
+  must(j.hidesIncentive === true, `${P}: the incentive popup is not hidden by default`);
+  must(j.playgroundSteps.length === 0, `${P}: playgroundSteps is not empty`);
+  must(j.landingPreviewSteps.length === 0, `${P}: landingPreviewSteps is not empty`);
+  must(j.stringPlan === null, `${P}: stringPlan is not null`);
+  must(buildStages(j.stages, new Set(), 1)[0]?.status === "current", `${P}: the first stage is not current on day 1`);
+
+  // The portal renders it (server markup).
+  const html = renderToStaticMarkup(createElement(ClientPortalExperience as unknown as ComponentType<Record<string, unknown>>, {
+    name: "Probe", currentDay: 1, calendarDay: 1, initialCompletedMilestoneIds: [], themeVariant: "handoff", portalToken: "probe-token", journey: j,
+  }));
+  must(html.includes("Proof Portal"), `${P}: the portal markup doesn't show "Proof Portal"`);
+  must(html.includes("Day 1 / 21"), `${P}: the portal markup doesn't show "Day 1 / 21"`);
+
+  // The board.
+  const seed = reg.boardSeedFor("zz-proof", { drafts: false });
+  if (!seed.ok) must(false, `${P}: the board doesn't start (${seed.reason})`);
+  else {
+    const taskIds = seed.tasks.map((t) => t.id);
+    must(taskIds.includes("zzp-t1"), `${P}: the board has no zzp-t1`);
+    const behindOb4 = proof.custom?.removedTasks.filter((t) => t.reason === "behind removed step ob-4").map((t) => t.id) ?? [];
+    const expectedBehind = scale.teamTasks.filter((t) => t.step === "ob-4").map((t) => t.id);
+    must(expectedBehind.length > 0 && expectedBehind.every((id) => behindOb4.includes(id)), `${P}: removedTasks doesn't list the tasks behind ob-4 (${expectedBehind.join(", ")})`);
+    must(behindOb4.every((id) => !taskIds.includes(id)), `${P}: the board still has tasks behind ob-4`);
+    const googleTasks = scale.teamTasks.filter((t) => t.channels && t.channels.length && !t.channels.includes("meta")).map((t) => t.id);
+    must(googleTasks.length > 0 && googleTasks.every((id) => !taskIds.includes(id)), `${P}: the board has Google-only tasks`);
+  }
+
+  // Counts, the step union, the sheet and the index.
+  const visibleCount = allSteps(proof).filter((st) => stepVisibleFor(st, proof.variants[0])).length;
+  must(reg.totalMilestoneCountFor("zz-proof") === visibleCount, `${P}: totalMilestoneCountFor is ${reg.totalMilestoneCountFor("zz-proof")}, not the ${visibleCount} visible steps`);
+  must(reg.allPortalSteps().some((m) => m.id === "zzp-1"), `${P}: allPortalSteps has no zzp-1`);
+  must(renderSheet(proof, productList).includes("Differences from Scale"), `${P}: the sheet has no "Differences from Scale" section`);
+  const index = renderProductIndex([...scanProductIds(), "zz-proof"]);
+  must(index.includes(`import { zzProof } from "./zz-proof";`) && index.includes("zzProof]"), `${P}: the generated index doesn't import and list zzProof`);
+
+  // A draft: offered and seeded only with PRODUCT_DRAFTS.
+  const draftReg = createRegistry([...productList, defineCustomProduct({ ...spec, status: "draft" })]);
+  must(!draftReg.clientTypeOptions({ drafts: false }).some((o) => o.value === "zz-proof"), `${P}: a draft is offered without PRODUCT_DRAFTS`);
+  must(draftReg.clientTypeOptions({ drafts: true }).some((o) => o.value === "zz-proof"), `${P}: a draft is not offered with PRODUCT_DRAFTS`);
+  must(!draftReg.boardSeedFor("zz-proof", { drafts: false }).ok, `${P}: a draft's board starts without PRODUCT_DRAFTS`);
+  must(draftReg.boardSeedFor("zz-proof", { drafts: true }).ok, `${P}: a draft's board doesn't start with PRODUCT_DRAFTS`);
+
+  // Mistakes throw.
+  const inherit = thrown({ ...spec, portal: { ...spec.portal, voiceGuide: "inherit" } });
+  must(inherit !== null && /quote its days/.test(inherit) && inherit.includes("30 days to go-live") && inherit.includes("21 days to go-live"),
+    `${P}: voiceGuide "inherit" with a new timeline must throw naming the days (got ${JSON.stringify(inherit)})`);
+  const interview = thrown({ ...spec, steps: { ...spec.steps, change: { ...spec.steps?.change, "ob-0": { interview: ["A new question?"] } } } });
+  must(interview !== null && interview.includes("ob-0") && /interview/.test(interview), `${P}: changing ob-0's interview must throw (got ${JSON.stringify(interview)})`);
+  const unknown = thrown({ ...spec, steps: { ...spec.steps, remove: ["ob-4", "zz-nope"] } });
+  must(unknown !== null && unknown.includes("zz-nope"), `${P}: an unknown id in steps.remove must throw (got ${JSON.stringify(unknown)})`);
+
+  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; 3 mistakes throw`;
+}
+
+// ── 5. Version lock ───────────────────────────────────────────────────────
 type Lock = Record<string, { version: string; sha256: string }>;
 
 function canonical(value: unknown): unknown {
@@ -297,16 +432,16 @@ function writeLock() {
   console.log(`Wrote products/versions.lock.json: ${productList.map((p) => `${p.id} ${p.version}`).join(", ")}`);
 }
 
-// ── 3. Code boundaries ───────────────────────────────────────────────────────
+// ── 4. Code boundaries ───────────────────────────────────────────────────────
 function boundaries(): string {
   const { failures: found, summary } = codeBoundaries();
   for (const f of found) must(false, f);
   return summary;
 }
 
-// ── 5. Sheets and index ──────────────────────────────────────────────────────
+// ── 6. Sheets and index ──────────────────────────────────────────────────────
 function sheetsCurrent(): string {
-  const stale = staleSheets();
+  const stale = staleSheets(productList);
   if (!indexCurrent()) stale.unshift("products/index.ts");
   must(stale.length === 0, `out of date: ${stale.join(", ")}: run npm run products:render`);
   return `products/index.ts and ${productList.length} sheets in docs/products/ match a fresh render`;
@@ -321,9 +456,10 @@ if (isMain) {
     const checks: [string, () => string][] = [
       ["1 frozen journeys", frozenJourneys],
       ["2 integrity", integrity],
-      ["3 code boundaries", boundaries],
-      ["4 version lock", versionLock],
-      ["5 sheets and index", sheetsCurrent],
+      ["3 custom-product proof", customProof],
+      ["4 code boundaries", boundaries],
+      ["5 version lock", versionLock],
+      ["6 sheets and index", sheetsCurrent],
     ];
     let failed = 0;
     for (const [name, run] of checks) {
