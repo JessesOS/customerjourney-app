@@ -76,3 +76,13 @@ Apply these during the conversion:
    - Cloudflare error 1042: worker-to-worker calls need a service binding.
    - A just-deployed change can look unapplied for a few seconds.
    - A client's identity is the portal id, not their name.
+
+## Fin's holding page (2026-10-18, live)
+
+Jesse asked for Fin's old link to say a new version is coming, while his custom product (`bss-custom`, branch `team-board`) is reviewed.
+
+- `79ff499`: a client whose `journey_state` is `paused` sees "A new version is on its way" (with their first name and brand) instead of their portal. It still records the visit. Active clients are unchanged. The copy is written for Fin ("ready by Sunday night, and this same link will open it").
+- Deployed with Jesse's OK: version `669af5da` (was `b9498d0f`). tsc and check:fin passed; the demo portal and Fin's normal portal returned 200 by curl before the data change.
+- Data change: Fin's record set to `paused` (1 row). D1 bookmark before it: `00000172-00000000-00005107-c818293b1d9e95aca8dd009cf5d53eed`. By curl, his link now returns the notice. He had opened his link once (17 Oct) and done nothing in it.
+- Undo: set his `journey_state` back to `active` (no deploy). Code rollback: `npx wrangler rollback b9498d0f-2f28-4749-a4f0-5daeecf9d251 --name scale-onboarding-portal`.
+- **Next:** merge `main` into `team-board` before that branch goes live, so it keeps this page.
