@@ -134,6 +134,27 @@ Built 2026-10-17. **Nothing deployed:** prod and staging are untouched, no remot
    - Product-specific copy in `StageCompleteView` and `IncentiveModal` (possible product settings).
    - The admin forms list is still the union of all products, so a reworded reused id shows the base title in admin.
 
+#### Review fixes for custom products (2026-10-17)
+
+A review of Phase 3 found eight latent problems. None affects a current client: they bite only once a custom product exists, and none does yet. **Nothing deployed; no product, fixture or sheet changed.** Each rule has its own case in the custom-product proof (`products:check`, check 3), and each case was seen to fail with its fix switched off.
+
+**Commits:**
+1. `bf981a8` (A, F) The server checks uploads, forms and editable content by step id against every product's steps (first id wins).
+   - `defineCustomProduct` throws on a change to `hasUpload`, `hasEditableContent` or `formId` of an inherited step, and on `channels` on added or changed steps and tasks.
+   - `products:check` integrity fails when one step id in two products disagrees on those fields, when a custom product's added id exists in another product, or when its `idPrefix` starts another product's ids (`bss-`).
+2. `1c2ade5` (B, C) Base variant tweaks and a complete Differences section.
+   - A base variant with portal tweaks (`bss-meta`) needs `variantPortal`: `"inherit"` keeps them, cut to the steps and stages kept, with each `portal` key set replacing that key; `"none"` leaves them out.
+   - `CustomDerivation` now records what was inherited, owned and dropped, plus stage patches (old → new), role changes and dropped completion links. The sheet's Differences section lists them all, so "anything it doesn't list is the base variant's" is true.
+3. `6b49ec9` (D) A new timeline also notes inherited team tasks due outside their stage's new days, and a String Theory plan that no longer matches ("Wording and dates to check", and `products:check` notes).
+4. `b73f770` (E) Integrity fails if `lib/productMapping.ts` (GHL) can return a client type that isn't live. Today: `respond` and `meta-google`, both live.
+5. `bded8f1` (G) Fin's form questions, upload steps and intro video are frozen only in `_global.json`. `check:journeys -- --write _global` now refuses to change them without `--yes-fin`. Noted in `CLAUDE.md` and README §7 and §9.
+6. `e87bdfc` (H) `npm run products:check -- --compare <old> <new>` prints what moving a client between two client types changes. README §9 step 10 makes it part of moving a client.
+7. This entry.
+
+**Checks:** `tsc`, `check:fin`, `check:journeys` (618 renders, 413 markup renders, fixtures unchanged), `products:check` 6/6 and `check:team-auth` pass after every commit.
+
+**Flagged, not fixed:** a stage patch can't set `teamOnly`, so re-adding the team-only `support` stage to a custom product would make it a client stage. No product does this.
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:
