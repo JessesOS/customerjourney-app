@@ -162,7 +162,12 @@ A custom product is a product file written as **differences from a base**: Scale
    - The same goes for `hasUpload`, `hasEditableContent` and `formId`. The server checks them by step id against every product's steps (`lib/allJourneys.ts`, first id wins), so changing one on an inherited step throws. `products:check` also fails if two products' steps with one id disagree on them, if an added step or task id exists in another product, or if `idPrefix` starts another product's ids (`bss-` is taken by the BSS product).
    - No `channels` on added or changed steps and tasks: a custom product has one client type, so they would do nothing. It throws.
    - Stage ids are fixed: `onboarding`, `build`, `testing`, `go-live`, `post-launch` and the team-only `support`. A stage can be patched, added (with `name`, `dayStart`, `dayEnd`) or dropped (`null`, once it is empty).
-   - If the timeline changes, fix any wording that quotes days. The sheet's "Wording to check" lists inherited wording that does.
+   - If the timeline changes, check its wording and dates. The sheet's "Wording and dates to check" (and `products:check`'s notes) lists:
+     - inherited client wording that quotes days: fix it in `steps.change`;
+     - inherited team tasks whose due window falls outside their stage's new days: re-date each with `teamTasks.change` (`due`, e.g. `"Day 21"`, or `dueDays`);
+     - a String Theory plan whose go-live day or strands don't match the new stages: set the product's own `portal.stringPlan`.
+
+     Each line is a note, not an error. Leave it if it is still right.
    - No RT Digital in client wording (`products:check` fails on it).
    - Forms and step features are code: a product can only switch on what exists (§8).
    - The voice guide, Ask-AI and step features are **off unless set**. `"inherit"` takes the base's, and is only allowed for the voice guide and Ask-AI when the timeline is the base's (their scripts quote its days).

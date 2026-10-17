@@ -530,7 +530,27 @@ function customProof(): string {
   must(onWebsite.custom!.stageChanges.some((c) => c.id === "onboarding" && c.change === "added" && c.fields.some((f) => f.field === "name" && f.to === "Proof onboarding"))
     && renderSheet(onWebsite, productList).includes("| `onboarding` | (whole stage) | no such stage | added |"), `${P}: an added stage is not recorded and shown`);
 
-  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new`;
+  // D. A changed timeline: inherited team tasks due outside their stage's new
+  // days, and a String Theory plan that no longer matches, are noted (sheet and
+  // products:check notes); a task re-dated in teamTasks.change is not.
+  const lateTask = proof.teamTasks.find((t) => t.stage === "go-live" && (dueDaysFor(t)?.start ?? 0) > 21);
+  const proofNotes = copyLintNotes(proof, productList);
+  if (!lateTask) must(false, `${P}: Scale Meta has no go-live task due after day 21 to prove with`);
+  else {
+    must(proofNotes.some((n) => n.startsWith(`team task \`${lateTask.id}\` is due "${lateTask.due}"`) && n.includes("outside its stage go-live (now day 21)") && n.includes("teamTasks.change")),
+      `${P}: ${lateTask.id} (due ${lateTask.due}) is not noted as outside go-live's new day 21 (notes: ${JSON.stringify(proofNotes)})`);
+    must(proofSheet.includes("### Wording and dates to check") && proofSheet.includes(`team task \`${lateTask.id}\` is due`), `${P}: the sheet doesn't list the date notes`);
+    const redated = defineCustomProduct({ ...spec, teamTasks: { ...spec.teamTasks, change: { [lateTask.id]: { due: "Day 21" } } } });
+    must(!copyLintNotes(redated, productList).some((n) => n.includes(`\`${lateTask.id}\``)), `${P}: a task re-dated in teamTasks.change is still noted`);
+  }
+  const timed = defineCustomProduct({ ...finBase, variantPortal: "inherit", totalDays: 21, stages: { "go-live": { dayStart: 21, dayEnd: 21 }, "post-launch": { dayStart: 22, dayEnd: 22 } } });
+  const timedNotes = copyLintNotes(timed, productList);
+  must(timedNotes.some((n) => n.startsWith("String Theory's go-live day is 30, but this product goes live on day 21")), `${P}: an inherited String Theory go-live day 30 is not noted against day 21 (notes: ${JSON.stringify(timedNotes)})`);
+  must(timedNotes.some((n) => n.startsWith("String Theory strand `golive` runs day 30, outside its steps' stages (go-live day 21)")), `${P}: String Theory strand golive is not noted (notes: ${JSON.stringify(timedNotes)})`);
+  must(renderSheet(timed, productList).includes("String Theory strand `golive`"), `${P}: the sheet doesn't list the String Theory notes`);
+  must(copyLintNotes(kept, productList).length === 0, `${P}: an unchanged timeline must give no wording or date notes (got ${JSON.stringify(copyLintNotes(kept, productList))})`);
+
+  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new; a new timeline notes tasks and String Theory dates that no longer fit`;
 }
 
 // ── 5. Version lock ───────────────────────────────────────────────────────

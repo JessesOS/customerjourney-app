@@ -13,7 +13,8 @@
  *
  * A custom product (defineCustomProduct, products/custom.ts) also gets "Based
  * on", "Spec" and "Draft wording" rows and a "Differences from <base>" section,
- * with notes on inherited wording that quotes days when its timeline changed.
+ * with notes on inherited wording that quotes days, and inherited dates that
+ * no longer fit (team tasks, String Theory), when its timeline changed.
  */
 import { existsSync, readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
@@ -245,10 +246,79 @@ const excerpt = (text: string) => {
   return flat.length > 140 ? `${flat.slice(0, 137)}…` : flat;
 };
 
+type DayRange = { start: number; end: number; ongoing?: boolean };
+
+const dayRange = (r: DayRange) => `${r.start === r.end ? `day ${r.start}` : `days ${r.start}–${r.end}`}${r.ongoing ? " on" : ""}`;
+
+/** True when `range` sits inside `span`: it starts within it and (unless the span is ongoing) ends within it. */
+function fitsDays(range: DayRange, span: DayRange): boolean {
+  if (range.start < span.start) return false;
+  if (span.ongoing) return true;
+  return range.start <= span.end && (Boolean(range.ongoing) || range.end <= span.end);
+}
+
+const stageSpan = (stages: ProductStage[]): DayRange => ({
+  start: Math.min(...stages.map((s) => s.dayStart)),
+  end: Math.max(...stages.map((s) => s.dayEnd)),
+  ongoing: stages.some((s) => s.ongoing),
+});
+
 /**
- * Copy lint for a custom product whose timeline changed: inherited client
- * wording (not added, not changed by the spec) that quotes days, which may now
- * be wrong. Notes only: a person decides. Empty when the timeline is the base's.
+ * Date notes for a custom product whose timeline changed: inherited team tasks
+ * (not added, not re-dated by the spec) whose due window no longer fits their
+ * stage's new days, and a String Theory plan whose go-live day or strands
+ * don't match the stages. Only stages whose days moved are looked at.
+ */
+function dateNotes(product: Product, custom: CustomDerivation, base: Product | null): string[] {
+  const notes: string[] = [];
+  const baseStage = (id: string) => base?.stages.find((s) => s.id === id);
+  const moved = new Set(
+    product.stages
+      .filter((s) => {
+        const was = baseStage(s.id);
+        return !was || was.dayStart !== s.dayStart || was.dayEnd !== s.dayEnd || Boolean(was.ongoing) !== Boolean(s.ongoing);
+      })
+      .map((s) => s.id as string),
+  );
+  const span = (s: ProductStage): DayRange => ({ start: s.dayStart, end: s.dayEnd, ongoing: s.ongoing });
+  const added = new Set(custom.addedTasks);
+  const redated = new Set(custom.changedTasks.filter((c) => c.fields.includes("due") || c.fields.includes("dueDays")).map((c) => c.id));
+  for (const t of product.teamTasks) {
+    if (added.has(t.id) || redated.has(t.id) || !moved.has(t.stage)) continue;
+    const stage = product.stages.find((s) => s.id === t.stage);
+    const days = dueDaysFor(t);
+    if (!stage || !days || fitsDays(days, span(stage))) continue;
+    const was = baseStage(t.stage);
+    const already = was && !fitsDays(days, span(was)) ? `; it was already outside ${base!.name}'s ${stageDays(was)}` : "";
+    notes.push(`team task ${code(t.id)} is due "${t.due}" (${dayRange(days)}), outside its stage ${t.stage} (now ${stageDays(stage)})${already}: re-date it in \`teamTasks.change\``);
+  }
+  // A custom product has one variant: its String Theory plan, inherited or its own.
+  const plan = product.variants[0]?.portal.stringPlan;
+  if (plan) {
+    const goLive = product.stages.find((s) => s.id === "go-live");
+    if (plan.goLiveDay !== product.totalDays || (goLive && !fitsDays({ start: plan.goLiveDay, end: plan.goLiveDay }, span(goLive)))) {
+      notes.push(`String Theory's go-live day is ${plan.goLiveDay}, but this product goes live on day ${product.totalDays ?? "?"}${goLive ? ` (go-live: ${stageDays(goLive)})` : ""}: set \`portal.stringPlan\``);
+    }
+    const stageOf = new Map(product.stages.flatMap((s) => s.steps.map((st) => [st.id, s] as const)));
+    for (const w of plan.workstreams) {
+      const stages = [...new Set(w.taskIds.map((id) => stageOf.get(id)).filter((s): s is ProductStage => Boolean(s)))];
+      if (!stages.length || !stages.some((s) => moved.has(s.id))) continue;
+      const strand: DayRange = { start: w.dayStart, end: w.dayEnd, ongoing: w.ongoing };
+      if (fitsDays(strand, stageSpan(stages))) continue;
+      const before = stages.map((s) => baseStage(s.id)).filter((s): s is ProductStage => Boolean(s));
+      const already = before.length === stages.length && !fitsDays(strand, stageSpan(before)) ? `; it was already outside them in ${base!.name}` : "";
+      notes.push(`String Theory strand \`${w.id}\` runs ${dayRange(strand)}, outside its steps' stages (${stages.map((s) => `${s.id} ${stageDays(s)}`).join(", ")})${already}: set \`portal.stringPlan\``);
+    }
+  }
+  return notes;
+}
+
+/**
+ * Notes for a custom product whose timeline changed: inherited client wording
+ * (not added, not changed by the spec) that quotes days, which may now be
+ * wrong, then the dates that may no longer fit (dateNotes). Notes only: a
+ * person decides. Empty when the timeline is the base's. The sheet's "Wording
+ * and dates to check" and products:check's notes both list them.
  */
 export function copyLintNotes(product: Product, products: readonly Product[] = []): string[] {
   const custom = product.custom;
@@ -277,7 +347,7 @@ export function copyLintNotes(product: Product, products: readonly Product[] = [
       flag(`${code(step.id)} ${field}`, text);
     }
   }
-  return notes;
+  return [...notes, ...dateNotes(product, custom, base)];
 }
 
 const listOr = (items: string[], none = "none") => (items.length ? items.join(", ") : none);
@@ -388,14 +458,14 @@ function differencesSection(product: Product, custom: CustomDerivation, products
     }
     L.push("");
     const notes = copyLintNotes(product, products);
-    L.push("### Wording to check");
+    L.push("### Wording and dates to check");
     L.push("");
     if (notes.length) {
-      L.push(`The timeline changed, and this inherited client wording quotes days. Each line is a note, not an error: fix the wording in \`steps.change\`, or leave it if it is still right.`);
+      L.push(`The timeline changed. This inherited wording quotes days, and these inherited dates may no longer fit the stages. Each line is a note, not an error: fix wording in \`steps.change\`, re-date a task in \`teamTasks.change\` (\`due\` or \`dueDays\`), set the product's own \`portal.stringPlan\`, or leave it if it is still right.`);
       L.push("");
       for (const n of notes) L.push(`- ${n}`);
     } else {
-      L.push("No inherited client wording quotes a day.");
+      L.push("No inherited client wording quotes a day, and every inherited date fits the new stages.");
     }
     L.push("");
   }
