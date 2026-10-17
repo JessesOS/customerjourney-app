@@ -10,11 +10,15 @@
  *      tweaks name real steps and stages, voice audio and media exist, forms
  *      exist, no RT Digital in client wording, every live or paused client type
  *      is frozen (scripts/fixtures/journeys/), and each custom product's spec
- *      file exists and a live one has no drafted wording.
+ *      file exists and a live one has no drafted wording. Across products: a
+ *      step id in two products agrees on hasUpload, hasEditableContent and
+ *      formId, and a custom product's added ids and idPrefix clash with no
+ *      other product's ids (the server checks ids against every product).
  *   3. Custom-product proof: an in-memory custom product (Scale Meta, changed;
  *      never written to disk) resolves, registers, renders in the portal, seeds
  *      a board and gets a sheet and an index line, without touching Scale; a
- *      draft is offered and seeded only with PRODUCT_DRAFTS; mistakes throw.
+ *      draft is offered and seeded only with PRODUCT_DRAFTS; mistakes throw
+ *      and clashes fail, one proof case per rule.
  *   4. Code boundaries: no "use client" module reaches products/, the registry,
  *      the compat shims or server-only code; no app code imports a shim; the
  *      shims hold no journey data; products/ imports only types from lib/
@@ -38,8 +42,8 @@ import { buildStages } from "../../lib/journeyBuild";
 import { onboardingFormById } from "../../lib/onboardingForm";
 import { createRegistry } from "../../lib/productRegistry";
 import { defineCustomProduct, type CustomProductSpec } from "../../products/custom";
-import { productList, scale } from "../../products/index";
-import { allSteps, dueDaysFor, productForClientType, stepVisibleFor, teamTasksFor } from "../../products/load";
+import { bss, productList, scale } from "../../products/index";
+import { allSteps, appliesToVariant, dueDaysFor, productForClientType, stepVisibleFor, teamTasksFor } from "../../products/load";
 import { STAGE_ORDER, type ClientStep, type Product } from "../../products/types";
 import { runJourneyChecks, type CheckCounts } from "../journeys/run";
 import { copyLintNotes, indexCurrent, renderProductIndex, renderSheet, scanProductIds, staleSheets } from "./render";
@@ -243,9 +247,70 @@ function integrity(): string {
     if (p.status === "live") must(p.custom.draftCopy.length === 0, `${P}: a live product can't have drafted wording (${p.custom.draftCopy.join(", ")})`);
     for (const n of copyLintNotes(p, productList)) notes.push(`${p.id}: ${n.replace(/`/g, "")}`);
   }
+  for (const f of crossProductIdFailures(productList)) must(false, f);
   const bssProduct = productForClientType("bss");
   must(bssProduct?.id === "bss" && bssProduct.status === "paused", `"bss" must resolve to the paused bss product`);
   return `${productList.length} products, ${taskCount} team tasks, ${stepCount} client steps, ${clientTypes.size} variants; ${openWindows} tasks have open due windows ("As needed", "Ongoing"...)`;
+}
+
+/** Step fields the server checks by step id against every product's steps (lib/allJourneys.ts, first id wins). */
+const SERVER_CHECKED = ["hasUpload", "hasEditableContent", "formId"] as const;
+
+/** True when `product` is a custom product built, directly or through others, on `ancestor`. */
+function builtOn(product: Product, ancestor: Product, products: readonly Product[]): boolean {
+  const seen = new Set<string>();
+  let current: Product | undefined = product;
+  while (current?.custom && current.custom.base !== "blank" && !seen.has(current.id)) {
+    seen.add(current.id);
+    const baseId: string = current.custom.base.id;
+    if (baseId === ancestor.id) return true;
+    current = products.find((p) => p.id === baseId);
+  }
+  return false;
+}
+
+/**
+ * Ids across products. The upload route, the admin forms list and the other
+ * id checks use the union of every product's steps, first id wins
+ * (lib/allJourneys.ts), so:
+ *   - the same step id in two products must agree on hasUpload,
+ *     hasEditableContent and formId;
+ *   - a custom product's added step and task ids are its own: no other product
+ *     has them (products built on it inherit them, which is fine);
+ *   - no other product has a step or task id that starts with a custom
+ *     product's idPrefix.
+ * Returns the failures (empty = fine).
+ */
+export function crossProductIdFailures(products: readonly Product[]): string[] {
+  const out: string[] = [];
+  const stepsById = new Map<string, { product: string; step: ClientStep }[]>();
+  for (const p of products) for (const step of allSteps(p)) stepsById.set(step.id, [...(stepsById.get(step.id) ?? []), { product: p.id, step }]);
+  for (const [id, entries] of stepsById) {
+    if (entries.length < 2) continue;
+    for (const key of SERVER_CHECKED) {
+      if (new Set(entries.map((e) => JSON.stringify(e.step[key] ?? null))).size < 2) continue;
+      const values = entries.map((e) => `products/${e.product} ${e.step[key] === undefined ? "unset" : JSON.stringify(e.step[key])}`).join(", ");
+      out.push(`step ${id} disagrees on ${key} across products (${values}): the server checks ${key} against every product's steps, first id wins (lib/allJourneys.ts). Remove the step and add a new id`);
+    }
+  }
+  for (const p of products) {
+    const custom = p.custom;
+    if (!custom) continue;
+    const others = products.filter((o) => o !== p && o.id !== p.id && !builtOn(o, p, products));
+    for (const id of custom.addedSteps) {
+      const owners = others.filter((o) => allSteps(o).some((s) => s.id === id)).map((o) => `products/${o.id}`);
+      if (owners.length) out.push(`products/${p.id}: added step ${id} is also a step of ${owners.join(", ")}: give it a new id`);
+    }
+    for (const id of custom.addedTasks) {
+      const owners = others.filter((o) => o.teamTasks.some((t) => t.id === id)).map((o) => `products/${o.id}`);
+      if (owners.length) out.push(`products/${p.id}: added task ${id} is also a task of ${owners.join(", ")}: give it a new id`);
+    }
+    for (const o of others) {
+      const ids = [...new Set([...allSteps(o).map((s) => s.id), ...o.teamTasks.map((t) => t.id)])].filter((id) => id.startsWith(custom.idPrefix));
+      if (ids.length) out.push(`products/${p.id}: idPrefix "${custom.idPrefix}" starts ids of products/${o.id} (${ids.slice(0, 3).join(", ")}${ids.length > 3 ? ", …" : ""}): pick a prefix no other product uses`);
+    }
+  }
+  return out;
 }
 
 // ── 3. Custom-product proof ───────────────────────────────────────────────
@@ -360,8 +425,53 @@ function customProof(): string {
   must(interview !== null && interview.includes("ob-0") && /interview/.test(interview), `${P}: changing ob-0's interview must throw (got ${JSON.stringify(interview)})`);
   const unknown = thrown({ ...spec, steps: { ...spec.steps, remove: ["ob-4", "zz-nope"] } });
   must(unknown !== null && unknown.includes("zz-nope"), `${P}: an unknown id in steps.remove must throw (got ${JSON.stringify(unknown)})`);
+  let mistakes = 3;
 
-  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; 3 mistakes throw`;
+  // A. The server checks uploads, forms and editable content by step id against
+  // every product's steps: an inherited step can't change them.
+  const metaVariant = scale.variants.find((v) => v.id === "meta")!;
+  const metaSteps = allSteps(scale).filter((st) => appliesToVariant(st, metaVariant));
+  const serverCases: [string | undefined, Partial<ClientStep>][] = [
+    [metaSteps.find((st) => st.hasUpload)?.id, { hasUpload: false }],
+    [metaSteps.find((st) => st.formId)?.id, { formId: "respond-onboarding-intake-v1" }],
+    [metaSteps.find((st) => st.hasEditableContent)?.id, { hasEditableContent: false }],
+  ];
+  for (const [id, change] of serverCases) {
+    if (!id) { must(false, `${P}: Scale Meta has no step with ${Object.keys(change)[0]} to prove with`); continue; }
+    const message = thrown({ ...spec, steps: { ...spec.steps, change: { ...spec.steps?.change, [id]: change } } });
+    must(message !== null && message.includes(`steps.change.${id}`) && message.includes(Object.keys(change)[0]) && message.includes("checked against every product's steps: remove the step and add a new id"),
+      `${P}: changing ${Object.keys(change)[0]} on inherited ${id} must throw (got ${JSON.stringify(message)})`);
+    mistakes++;
+  }
+  // A, integrity: zz-proof's own ids clash with nothing; a "bss-" prefix with a reused BSS id does; so does a reused step id that disagrees on hasUpload.
+  must(crossProductIdFailures([...productList, proof]).length === 0, `${P}: products:check finds id clashes in zz-proof: ${crossProductIdFailures([...productList, proof]).join("; ")}`);
+  const bssStep = allSteps(bss)[0].id;
+  const clash = defineCustomProduct({
+    ...spec, id: "zz-clash", clientType: "zz-clash", idPrefix: "bss-",
+    steps: { add: [{ stage: "build", step: { id: bssStep, title: "Clash", detail: "Proof step." } }] },
+    teamTasks: { add: [{ task: { ...spec.teamTasks!.add![0].task, id: bss.teamTasks[0].id, step: bssStep } }] },
+  });
+  const clashes = crossProductIdFailures([...productList, clash]);
+  must(clashes.some((f) => f.includes(`added step ${bssStep} is also a step of products/bss`)), `${P}: an added step id that products/bss has must fail products:check (got ${JSON.stringify(clashes)})`);
+  must(clashes.some((f) => f.includes(`added task ${bss.teamTasks[0].id} is also a task of products/bss`)), `${P}: an added task id that products/bss has must fail products:check (got ${JSON.stringify(clashes)})`);
+  must(clashes.some((f) => f.includes(`idPrefix "bss-" starts ids of products/bss`)), `${P}: idPrefix "bss-" must fail products:check (got ${JSON.stringify(clashes)})`);
+  const uploadStep = metaSteps.find((st) => st.hasUpload)!;
+  const handWritten: Product = {
+    id: "zz-hand", name: "Proof only", version: "2026-10-17.1", status: "draft", totalDays: null, roles: ["Proof"],
+    stages: [{ id: "onboarding", name: "Onboarding", dayStart: 1, dayEnd: 1, statusNotes: [], steps: [{ ...structuredClone(uploadStep), hasUpload: false }] }],
+    teamTasks: [], variants: [], source: scale.source,
+  };
+  const disagree = crossProductIdFailures([...productList, handWritten]);
+  must(disagree.some((f) => f.includes(`step ${uploadStep.id} disagrees on hasUpload`) && f.includes("products/zz-hand")), `${P}: a step id reused with another hasUpload must fail products:check (got ${JSON.stringify(disagree)})`);
+
+  // F. Channels: a custom product has one client type.
+  const addChannels = thrown({ ...spec, steps: { ...spec.steps, add: [{ stage: "build", after: "bd-2", step: { id: "zzp-1", title: "Approve your offer", detail: "Proof step.", channels: ["meta"] } }] } });
+  must(addChannels !== null && addChannels.includes("steps.add: zzp-1 has channels") && addChannels.includes("channels don't apply"), `${P}: channels on an added step must throw (got ${JSON.stringify(addChannels)})`);
+  const changeChannels = thrown({ ...spec, teamTasks: { ...spec.teamTasks, change: { [proof.teamTasks[0].id]: { channels: ["google"] } } } });
+  must(changeChannels !== null && changeChannels.includes(`teamTasks.change.${proof.teamTasks[0].id}: sets channels`) && changeChannels.includes("channels don't apply"), `${P}: channels on a changed task must throw (got ${JSON.stringify(changeChannels)})`);
+  mistakes += 2;
+
+  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail`;
 }
 
 // ── 5. Version lock ───────────────────────────────────────────────────────

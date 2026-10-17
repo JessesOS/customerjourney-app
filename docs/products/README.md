@@ -153,6 +153,8 @@ A custom product is a product file written as **differences from a base**: Scale
    - Keep the base's ids for the steps you keep. Clients' ticks are stored by step id.
    - Every new step and task id starts with `idPrefix` (e.g. `bssc-`).
    - A step whose meaning changes, or whose interview changes, needs a **new id**: remove the old step and add a new one. Interview audio is keyed by step id, so changing an inherited interview throws.
+   - The same goes for `hasUpload`, `hasEditableContent` and `formId`. The server checks them by step id against every product's steps (`lib/allJourneys.ts`, first id wins), so changing one on an inherited step throws. `products:check` also fails if two products' steps with one id disagree on them, if an added step or task id exists in another product, or if `idPrefix` starts another product's ids (`bss-` is taken by the BSS product).
+   - No `channels` on added or changed steps and tasks: a custom product has one client type, so they would do nothing. It throws.
    - Stage ids are fixed: `onboarding`, `build`, `testing`, `go-live`, `post-launch` and the team-only `support`. A stage can be patched, added (with `name`, `dayStart`, `dayEnd`) or dropped (`null`, once it is empty).
    - If the timeline changes, fix any wording that quotes days. The sheet's "Wording to check" lists inherited wording that does.
    - No RT Digital in client wording (`products:check` fails on it).

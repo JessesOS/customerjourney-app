@@ -54,10 +54,17 @@ export type CustomProductSpec<C extends string> = {
   /** null = drop the stage (it must end up empty). */
   stages?: Partial<Record<StageId, StagePatch | null>>;
   steps?: {
+    /**
+     * Fields merged into an inherited step. Never `interview`, `hasUpload`,
+     * `hasEditableContent` or `formId` (audio and server checks go by step id:
+     * remove the step and add a new id), never `channels`.
+     */
     change?: Record<string, Partial<Omit<ClientStep, "id">>>;
+    /** New steps. No `channels`: a custom product has one client type. */
     add?: { stage: StageId; after?: string; step: ClientStep }[];
     remove?: string[];
   };
+  /** No `channels` on changed or added tasks: a custom product has one client type. */
   teamTasks?: {
     change?: Record<string, Partial<Omit<TeamTask, "id">>>;
     add?: { after?: string; task: TeamTask }[];
@@ -111,6 +118,13 @@ const OVERRIDE_KEYS = [
   "hiddenGuideStages",
   "stringPlan",
 ] as const;
+
+/**
+ * Step fields the server checks by step id against every product's steps
+ * (lib/allJourneys.ts: the upload route, the admin forms list). An inherited
+ * step must keep its base's value; products:check also checks every product.
+ */
+const SERVER_CHECKED = ["hasUpload", "hasEditableContent", "formId"] as const;
 
 const orList = (items: string[]) => (items.length <= 1 ? items.join("") : `${items.slice(0, -1).join(", ")} or ${items[items.length - 1]}`);
 
@@ -230,12 +244,22 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
       fail(`steps.change.${id}: can't change an inherited interview (audio is keyed by step id: remove it and add a new step)`);
       continue;
     }
+    if ("channels" in fields) { fail(`steps.change.${id}: sets channels, but a custom product has one client type: channels don't apply`); continue; }
+    // The server checks uploads, editable content and forms by step id against
+    // the union of every product's steps (lib/allJourneys.ts, first id wins),
+    // so an inherited id must keep its base's answer.
+    const serverFields = SERVER_CHECKED.filter((key) => key in fields && fields[key] !== found.step[key]);
+    if (serverFields.length && inheritedSteps.has(id)) {
+      fail(`steps.change.${id}: can't change ${serverFields.join(", ")} on an inherited step (uploads, forms and editable content are checked against every product's steps: remove the step and add a new id)`);
+      continue;
+    }
     changedSteps.push({ id, fields: merge(found.step as unknown as Record<string, unknown>, fields as Record<string, unknown>) });
   }
 
   // 5. steps.add
   for (const { stage: stageId, after, step } of spec.steps?.add ?? []) {
     if (!step.id.startsWith(spec.idPrefix)) { fail(`steps.add: ${step.id} must start with the idPrefix "${spec.idPrefix}"`); continue; }
+    if ("channels" in step) { fail(`steps.add: ${step.id} has channels, but a custom product has one client type: channels don't apply`); continue; }
     if (findStep(step.id)) { fail(`steps.add: ${step.id} already exists`); continue; }
     const stage = stages.find((s) => s.id === stageId);
     if (!stage) { fail(`steps.add: ${step.id} goes in stage ${stageId}, which this product doesn't have`); continue; }
@@ -254,6 +278,7 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
   for (const [id, fields] of Object.entries(spec.teamTasks?.change ?? {})) {
     const task = tasks.find((t) => t.id === id);
     if (!task) { fail(`teamTasks.change: unknown task ${id}`); continue; }
+    if ("channels" in fields) { fail(`teamTasks.change.${id}: sets channels, but a custom product has one client type: channels don't apply`); continue; }
     changedTasks.push({ id, fields: merge(task as unknown as Record<string, unknown>, fields as Record<string, unknown>) });
   }
 
@@ -261,6 +286,7 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
   for (const { after, task } of spec.teamTasks?.add ?? []) {
     if (!task.id.startsWith(spec.idPrefix)) { fail(`teamTasks.add: ${task.id} must start with the idPrefix "${spec.idPrefix}"`); continue; }
     if (tasks.some((t) => t.id === task.id)) { fail(`teamTasks.add: ${task.id} already exists`); continue; }
+    if ("channels" in task) { fail(`teamTasks.add: ${task.id} has channels, but a custom product has one client type: channels don't apply`); continue; }
     const copy = structuredClone(task);
     let index: number;
     if (after !== undefined) {

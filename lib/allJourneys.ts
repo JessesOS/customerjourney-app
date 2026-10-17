@@ -7,6 +7,14 @@
 // its base's ids for the steps it keeps, so the union holds each id once with
 // the first product's wording. Only the form route goes per client
 // (formStepFor), so a reused formId never ticks the wrong step.
+//
+// The upload route and the admin forms list read hasUpload, hasEditableContent
+// and formId from this union, so every product that has a step id must agree
+// on them. Two guards keep it so: defineCustomProduct (products/custom.ts)
+// throws if a custom product changes them on an inherited step, and
+// products:check ("integrity") fails if two products disagree, if a custom
+// product adds an id another product has, or if its idPrefix starts another
+// product's ids.
 import { allPortalSteps, uploadStepIds } from "./productRegistry";
 import type { MilestoneTemplate } from "./journeyTypes";
 

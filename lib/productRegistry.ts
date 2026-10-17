@@ -208,7 +208,11 @@ export function createRegistry(products: readonly Product[]) {
     return null;
   }
 
-  /** Every product's steps (any status, hidden included), clientOnly stripped, first id wins. */
+  /**
+   * Every product's steps (any status, hidden included), clientOnly stripped,
+   * first id wins. Safe because products:check fails when two products'
+   * steps with one id disagree on hasUpload, hasEditableContent or formId.
+   */
   function allPortalSteps(): MilestoneTemplate[] {
     const seen = new Set<string>();
     const out: MilestoneTemplate[] = [];
