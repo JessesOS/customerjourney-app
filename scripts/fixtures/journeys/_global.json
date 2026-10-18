@@ -1,6 +1,7 @@
 {
   "acceptedClientTypes": [
     "bss",
+    "bss-custom",
     "bss-meta",
     "google",
     "meta",
@@ -48,6 +49,10 @@
     {
       "label": "BSS Meta ads only",
       "value": "bss-meta"
+    },
+    {
+      "label": "BSS custom",
+      "value": "bss-custom"
     }
   ],
   "allStepIds": [
@@ -784,6 +789,7 @@
     "Ads Team",
     "Automation Specialist",
     "Creative Strategist",
+    "Jesse Allan",
     "Joseph",
     "Response CSM",
     "Rich",

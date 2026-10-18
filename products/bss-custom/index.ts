@@ -20,8 +20,9 @@ import { bssCustomTeamTasks } from "./team-tasks";
 export const bssCustom = defineCustomProduct({
   id: "bss-custom",
   name: "BSS custom (Fin Creighton)",
-  version: "2026-10-18.16",
-  status: "draft",
+  version: "2026-10-18.17",
+  // Live (Jesse, 2026-10-18): he approved the wording by sending it to Fin.
+  status: "live",
   clientType: "bss-custom",
   label: "BSS custom",
   spec: "products/bss-custom/spec.md",
@@ -61,5 +62,5 @@ export const bssCustom = defineCustomProduct({
       ],
     },
   },
-  draftCopy: bssCustomSteps.map(({ step }) => step.id),
+  draftCopy: [],
 });

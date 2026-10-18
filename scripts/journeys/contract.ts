@@ -19,7 +19,7 @@ import type { StageGuide } from "../../lib/stageGuide";
 import type { StringPlan } from "../../lib/stringPlans";
 
 /** Every client type frozen, plus one unknown stored type (it renders as Scale with channel steps hidden). */
-export const CLIENT_TYPES = ["meta", "google", "meta-google", "bss-meta", "respond", "bss", "zz-unknown"] as const;
+export const CLIENT_TYPES = ["meta", "google", "meta-google", "bss-meta", "respond", "bss", "bss-custom", "zz-unknown"] as const;
 export const DAYS = [1, 12, 30] as const;
 export const SSR_DAYS = [1, 30] as const;
 /** Every portal look (PORTAL_THEME_VARIANTS in lib/portalClientStore.ts). */

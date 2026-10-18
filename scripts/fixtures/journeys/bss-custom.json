@@ -1,0 +1,1807 @@
+{
+  "data": {
+    "adminChecklist": [
+      {
+        "id": "onboarding",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "bssc-bookmark",
+            "title": "Bookmark your portal"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-save-portal",
+            "title": "Save your portal to your phone"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-access-site",
+            "title": "Give Jesse access to your website and app"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-review-1",
+            "title": "Review your website draft"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-assets",
+            "title": "Send the files for your website"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-questions",
+            "title": "Answer a few questions about how you work"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-access-tools",
+            "title": "Give Jesse access to your other tools"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-contact-lists",
+            "title": "Send us your contact lists"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-journey-map",
+            "title": "Approve your customer journey"
+          }
+        ],
+        "name": "Onboard, map and evaluate"
+      },
+      {
+        "id": "build",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "bssc-review-2",
+            "title": "Review your updated website"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-crm-plan",
+            "title": "Approve your CRM plan and our findings"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-contacts",
+            "title": "Check your contacts before we import them"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-signoff",
+            "title": "Sign off each page for launch"
+          }
+        ],
+        "name": "Build"
+      },
+      {
+        "id": "testing",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "bssc-launch-day",
+            "title": "Agree your launch day"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-test-booking",
+            "title": "Book a test Clarity Call through your new site"
+          }
+        ],
+        "name": "Connect"
+      },
+      {
+        "id": "go-live",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "bssc-messages",
+            "title": "Approve your emails and texts"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-ai-agent",
+            "title": "Try your AI lead agent"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-live-check",
+            "title": "Click through your live site"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-walkthrough",
+            "title": "Your launch walkthrough"
+          }
+        ],
+        "name": "Automate and launch"
+      },
+      {
+        "id": "post-launch",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "bssc-webinar",
+            "title": "Get your weekly webinar ready"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-onboarding-map",
+            "title": "Agree your client onboarding map"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-reactivation",
+            "title": "Approve your reactivation text"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "bssc-check-ins",
+            "title": "Monthly check-ins"
+          }
+        ],
+        "name": "Partners, webinar and support"
+      }
+    ],
+    "adminDayTotal": 30,
+    "adminLabel": "BSS custom",
+    "askItems": {
+      "build": [],
+      "go-live": [],
+      "onboarding": [],
+      "post-launch": [],
+      "testing": []
+    },
+    "brandName": "BSS Launchpad",
+    "clientType": "bss-custom",
+    "currentDayCap": 30,
+    "formSteps": {
+      "bss-custom-intake-v1": "bssc-questions"
+    },
+    "headerName": {
+      "aurora": "BSS Launchpad",
+      "calm": "BSS Launchpad",
+      "cobalt": "BSS Launchpad",
+      "current": "BSS Launchpad",
+      "grove": "BSS Launchpad",
+      "groveaurora": "BSS Launchpad",
+      "handoff": "BSS Launchpad"
+    },
+    "hidesIncentive": true,
+    "hubBrand": {
+      "aurora": "BSS Launchpad",
+      "cobalt": "BSS Launchpad",
+      "grove": "BSS Launchpad",
+      "handoff": "BSS Launchpad"
+    },
+    "introVideo": null,
+    "journeyStatus": {
+      "formStepId": "bssc-questions",
+      "nonBlocking": [],
+      "visible": [
+        {
+          "id": "bssc-bookmark",
+          "stageName": "Onboard, map and evaluate",
+          "title": "Bookmark your portal"
+        },
+        {
+          "id": "bssc-save-portal",
+          "stageName": "Onboard, map and evaluate",
+          "title": "Save your portal to your phone"
+        },
+        {
+          "id": "bssc-access-site",
+          "stageName": "Onboard, map and evaluate",
+          "title": "Give Jesse access to your website and app"
+        },
+        {
+          "id": "bssc-review-1",
+          "stageName": "Onboard, map and evaluate",
+          "title": "Review your website draft"
+        },
+        {
+          "id": "bssc-assets",
+          "stageName": "Onboard, map and evaluate",
+          "title": "Send the files for your website"
+        },
+        {
+          "id": "bssc-questions",
+          "stageName": "Onboard, map and evaluate",
+          "title": "Answer a few questions about how you work"
+        },
+        {
+          "id": "bssc-access-tools",
+          "stageName": "Onboard, map and evaluate",
+          "title": "Give Jesse access to your other tools"
+        },
+        {
+          "id": "bssc-contact-lists",
+          "stageName": "Onboard, map and evaluate",
+          "title": "Send us your contact lists"
+        },
+        {
+          "id": "bssc-journey-map",
+          "stageName": "Onboard, map and evaluate",
+          "title": "Approve your customer journey"
+        },
+        {
+          "id": "bssc-review-2",
+          "stageName": "Build",
+          "title": "Review your updated website"
+        },
+        {
+          "id": "bssc-crm-plan",
+          "stageName": "Build",
+          "title": "Approve your CRM plan and our findings"
+        },
+        {
+          "id": "bssc-contacts",
+          "stageName": "Build",
+          "title": "Check your contacts before we import them"
+        },
+        {
+          "id": "bssc-signoff",
+          "stageName": "Build",
+          "title": "Sign off each page for launch"
+        },
+        {
+          "id": "bssc-launch-day",
+          "stageName": "Connect",
+          "title": "Agree your launch day"
+        },
+        {
+          "id": "bssc-test-booking",
+          "stageName": "Connect",
+          "title": "Book a test Clarity Call through your new site"
+        },
+        {
+          "id": "bssc-messages",
+          "stageName": "Automate and launch",
+          "title": "Approve your emails and texts"
+        },
+        {
+          "id": "bssc-ai-agent",
+          "stageName": "Automate and launch",
+          "title": "Try your AI lead agent"
+        },
+        {
+          "id": "bssc-live-check",
+          "stageName": "Automate and launch",
+          "title": "Click through your live site"
+        },
+        {
+          "id": "bssc-walkthrough",
+          "stageName": "Automate and launch",
+          "title": "Your launch walkthrough"
+        },
+        {
+          "id": "bssc-webinar",
+          "stageName": "Partners, webinar and support",
+          "title": "Get your weekly webinar ready"
+        },
+        {
+          "id": "bssc-onboarding-map",
+          "stageName": "Partners, webinar and support",
+          "title": "Agree your client onboarding map"
+        },
+        {
+          "id": "bssc-reactivation",
+          "stageName": "Partners, webinar and support",
+          "title": "Approve your reactivation text"
+        },
+        {
+          "id": "bssc-check-ins",
+          "stageName": "Partners, webinar and support",
+          "title": "Monthly check-ins"
+        }
+      ]
+    },
+    "journeyTemplate": [
+      {
+        "blurb": "Your first week: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built.",
+        "dayEnd": 7,
+        "dayStart": 1,
+        "id": "onboarding",
+        "milestones": [
+          {
+            "detail": "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+            "doneLabel": "I've bookmarked it",
+            "id": "bssc-bookmark",
+            "showPortalLink": true,
+            "steps": [
+              "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+              "Or copy your portal link above and save it somewhere handy."
+            ],
+            "title": "Bookmark your portal"
+          },
+          {
+            "detail": "So you can get back here in one tap. Saved to your iPhone's home screen, it opens like an app.",
+            "doneLabel": "I've saved it",
+            "id": "bssc-save-portal",
+            "imageAlt": "An iPhone home screen with the BSS Launchpad icon, and the portal open full screen like an app.",
+            "imageUrl": "/portal/guides/bss-home-screen-app.png",
+            "steps": [
+              "On your iPhone, open your portal link in Safari (even if you usually use Chrome).",
+              "Tap the Share button: the square with an arrow pointing up, at the bottom of the screen.",
+              "Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
+              "From now on, open BSS Launchpad from your home screen."
+            ],
+            "title": "Save your portal to your phone"
+          },
+          {
+            "detail": "We build your new pages inside your existing site, so nothing you already have breaks. Invite Jesse to each of these.",
+            "doneLabel": "I've sent the invites",
+            "id": "bssc-access-site",
+            "important": "Never send us a password, seed phrase or private key. An invite is all we need.",
+            "inviteEmail": "jesse@allconvos.ai",
+            "notePrompt": "Anything you couldn't invite us to?",
+            "steps": [
+              "Lovable (your website): add jesse@allconvos.ai to your project, or connect it to GitHub and add Jesse there.",
+              "Supabase (your app's database): add Jesse as a team member, so we can see what your current system stores."
+            ],
+            "title": "Give Jesse access to your website and app"
+          },
+          {
+            "detail": "Every new page sits next to your current one, with 26 numbered questions. Your answers save as you type, and Jesse sees them straight away.",
+            "doneLabel": "I've answered the questions",
+            "guideLabel": "Open the review page",
+            "guideUrl": "https://bss-website-draft.vercel.app/review.html",
+            "id": "bssc-review-1",
+            "notePrompt": "Anything else you'd like changed?",
+            "title": "Review your website draft"
+          },
+          {
+            "detail": "Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page. Don't have it all yet? Send what you have and press Next: you can add more here any time.",
+            "doneLabel": "Next",
+            "hasUpload": true,
+            "id": "bssc-assets",
+            "notePlaceholder": "Paste your privacy policy here. You can also tell us what's still to come.",
+            "notePrompt": "Your privacy policy wording (optional)",
+            "steps": [
+              "New testimonials, with each client's permission to use them (review question 4).",
+              "Sean Clarke's original photo, and his logo if he has one (review question 12).",
+              "Your privacy policy wording, if you're providing it: paste it in the box below, or upload it (review question 25).",
+              "For each other partner: name, photo or logo, and a welcome message.",
+              "Your current email or text wording, and your booking link."
+            ],
+            "title": "Send the files for your website",
+            "uploadOptions": {
+              "accept": ".png,.jpg,.jpeg,.webp,.heic,.gif,.svg,.pdf,.doc,.docx,.txt,.rtf,.zip,.mp4,.mov",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "Add as many as you like, one at a time or several at once: photos, logos, PDFs, documents, short videos or a zip.",
+              "stayOpen": true,
+              "title": "Upload your files"
+            }
+          },
+          {
+            "detail": "One quick question at a time, and it saves as you go. Your answers shape your CRM, your text messages and your AI lead agent.",
+            "formId": "bss-custom-intake-v1",
+            "id": "bssc-questions",
+            "title": "Answer a few questions about how you work"
+          },
+          {
+            "detail": "So we can check what's there and connect it all to your CRM. Invite Jesse to each one you use, and tell us below about anything you couldn't.",
+            "doneLabel": "I've sent the invites",
+            "id": "bssc-access-tools",
+            "important": "Never send us a password, seed phrase or private key. An invite is all we need.",
+            "inviteEmail": "jesse@allconvos.ai",
+            "notePrompt": "Anything you couldn't invite us to?",
+            "steps": [
+              "GoHighLevel: add Jesse as an admin user on your current sub-account.",
+              "Calendly: invite Jesse as an admin, once your account is set up.",
+              "Zoom (if you run webinars on it): add Jesse as an admin, or tell us your plan type.",
+              "Payments (for example Stripe): give Jesse access, so a confirmed payment can start client onboarding.",
+              "YouTube (optional): add Jesse as a channel manager.",
+              "Porkbun and Cloudflare (your domain): add Jesse, or be ready to add a few records we send you."
+            ],
+            "title": "Give Jesse access to your other tools"
+          },
+          {
+            "detail": "Every list of people you've collected, so we can bring them into your new CRM. Keep each list as its own file: we combine them and remove duplicates for you.",
+            "doneLabel": "Next",
+            "hasUpload": true,
+            "id": "bssc-contact-lists",
+            "important": "These are your contacts' details. We keep them private and only use them to set up your CRM.",
+            "notePlaceholder": "e.g. The GoHighLevel list is the most up to date. Everyone on the Bali list agreed to hear from you.",
+            "notePrompt": "Which list is which, and anything we should know (optional)",
+            "steps": [
+              "From GoHighLevel: open Contacts, select all, and use Export to download a CSV. If you've given Jesse admin access, we can do this one for you.",
+              "From the app you built: use its export if it has one. If you've given Jesse Supabase access, we can pull it ourselves, so you can skip this.",
+              "Any other lists you have: Bali attendees, merch buyers, old spreadsheets.",
+              "Name each file so we know where it came from."
+            ],
+            "title": "Send us your contact lists",
+            "uploadOptions": {
+              "accept": ".csv,.xlsx,.xls",
+              "choose": "Click to choose your lists",
+              "chooseMore": "+ Add another list",
+              "hint": "One file per list, as many as you have. CSV or Excel.",
+              "stayOpen": true,
+              "title": "Upload your contact lists"
+            }
+          },
+          {
+            "detail": "How every lead becomes a client, from first contact to onboarding.",
+            "id": "bssc-journey-map",
+            "title": "Approve your customer journey"
+          }
+        ],
+        "name": "Onboard, map and evaluate",
+        "statusNotes": []
+      },
+      {
+        "blurb": "Your website is finished page by page, and your CRM is set up and loaded with your contacts.",
+        "dayEnd": 16,
+        "dayStart": 4,
+        "id": "build",
+        "milestones": [
+          {
+            "detail": "Your first changes are done. Check the updated review page and tell us what's left. We aim to finish in two rounds, with a third if you need it.",
+            "doneLabel": "I've sent my feedback",
+            "guideLabel": "Open the review page",
+            "guideUrl": "https://bss-website-draft.vercel.app/review.html",
+            "id": "bssc-review-2",
+            "notePrompt": "What's left to change?",
+            "title": "Review your updated website"
+          },
+          {
+            "detail": "Once we've looked at your current systems, we share what we found and a one-page plan here. Approve it, or tell us what to change.",
+            "hasEditableContent": true,
+            "id": "bssc-crm-plan",
+            "notePrompt": "Anything you'd like changed?",
+            "steps": [
+              "Our findings: what to keep, move or replace, and which GoHighLevel account to use.",
+              "Your partner tracking plan: how partners are added, tracked and paid.",
+              "Your CRM: pipelines, the details we keep on each contact, tags and lead scoring."
+            ],
+            "title": "Approve your CRM plan and our findings"
+          },
+          {
+            "detail": "We gather your contacts from your current systems, remove duplicates and tag them by where they came from. Tell us which ones agreed to hear from you, then we check 20 records together.",
+            "doneLabel": "I've checked my contacts",
+            "id": "bssc-contacts",
+            "notePrompt": "Which contacts agreed to hear from you?",
+            "title": "Check your contacts before we import them"
+          },
+          {
+            "detail": "A final preview of every page. Once you sign off, we rebuild the pages inside your Lovable site, ready for launch day.",
+            "id": "bssc-signoff",
+            "notePrompt": "Any page you're not ready to sign off?",
+            "title": "Sign off each page for launch"
+          }
+        ],
+        "name": "Build",
+        "statusNotes": []
+      },
+      {
+        "blurb": "Your forms, chat, phone, texting and Calendly are connected to your CRM and tested.",
+        "dayEnd": 20,
+        "dayStart": 17,
+        "id": "testing",
+        "milestones": [
+          {
+            "detail": "We launch your new website on your domain on a day that suits you. Your current site stays live until then.",
+            "doneLabel": "Send my preferred day",
+            "id": "bssc-launch-day",
+            "notePlaceholder": "e.g. a weekday morning",
+            "notePrompt": "Your preferred launch day",
+            "title": "Agree your launch day"
+          },
+          {
+            "detail": "Go through the booking quiz like a real lead and book a test call in Calendly. Check it lands in your CRM and you get the right emails.",
+            "doneLabel": "I've booked a test call",
+            "id": "bssc-test-booking",
+            "notePrompt": "Anything that didn't work as expected?",
+            "title": "Book a test Clarity Call through your new site"
+          }
+        ],
+        "name": "Connect",
+        "statusNotes": []
+      },
+      {
+        "blurb": "Your new website launches on your domain. Your follow-up messages and AI lead agent switch on once you've approved them.",
+        "dayEnd": 23,
+        "dayStart": 21,
+        "id": "go-live",
+        "milestones": [
+          {
+            "detail": "We write every message in your voice, using only claims you've approved. You approve each one here. We send a test to your inbox and phone, then switch it on.",
+            "hasEditableContent": true,
+            "id": "bssc-messages",
+            "notePrompt": "Any changes?",
+            "title": "Approve your emails and texts"
+          },
+          {
+            "detail": "Chat with it like a lead would. It only uses wording you've approved, never gives financial advice and never asks for seed phrases, keys or passwords. Send us real questions your audience asks, then approve it when you're happy.",
+            "id": "bssc-ai-agent",
+            "notePrompt": "Real questions your audience asks",
+            "title": "Try your AI lead agent"
+          },
+          {
+            "detail": "On launch day, click through every page and book a test call. Tell us anything that looks wrong.",
+            "doneLabel": "I've checked the site",
+            "id": "bssc-live-check",
+            "notePrompt": "Anything that looks wrong?",
+            "title": "Click through your live site"
+          },
+          {
+            "detail": "A recorded session for you and your coaches: the inbox, pipeline, contact records, bookings and dashboard. A short written guide follows, including how to edit your website.",
+            "doneLabel": "Send my times",
+            "id": "bssc-walkthrough",
+            "notePrompt": "Days and times that suit you",
+            "title": "Your launch walkthrough"
+          }
+        ],
+        "name": "Automate and launch",
+        "statusNotes": []
+      },
+      {
+        "blurb": "Partner tracking, your weekly webinar and client onboarding go live, so everything is in place by day 30. Then we review, tune and support you through month 8.",
+        "dayEnd": 30,
+        "dayStart": 24,
+        "id": "post-launch",
+        "milestones": [
+          {
+            "detail": "Your webinar pages, reminders and follow-ups are set up to repeat each week.",
+            "doneLabel": "I've done these",
+            "id": "bssc-webinar",
+            "notePrompt": "Anything you'd like changed?",
+            "steps": [
+              "Send us a link to a short welcome video for the \"You're registered\" page.",
+              "Tell us if you want replays, and for how long.",
+              "Register for a test webinar and check the emails and texts you get."
+            ],
+            "title": "Get your weekly webinar ready"
+          },
+          {
+            "detail": "What happens when someone pays: welcome, portal access, their coach and their first implementation call. Each step is marked \"automated\" or \"needs you\". We walk through it together, then you approve it here.",
+            "hasEditableContent": true,
+            "id": "bssc-onboarding-map",
+            "notePrompt": "Anything you'd like changed?",
+            "steps": [
+              "Set up a test account for Jesse in your members' area, so we can link new clients straight to it."
+            ],
+            "title": "Agree your client onboarding map"
+          },
+          {
+            "detail": "Two short texts to past contacts who agreed to hear from you. You approve both messages and the list they go to.",
+            "hasEditableContent": true,
+            "id": "bssc-reactivation",
+            "notePrompt": "Any changes?",
+            "title": "Approve your reactivation text"
+          },
+          {
+            "detail": "Once a month through month 8 we look at your leads, bookings, sales and AI conversations together, and tune what isn't working.",
+            "doneLabel": "Got it",
+            "id": "bssc-check-ins",
+            "notePrompt": "Anything you'd like to cover?",
+            "title": "Monthly check-ins"
+          }
+        ],
+        "name": "Partners, webinar and support",
+        "statusNotes": []
+      }
+    ],
+    "label": "BSS custom",
+    "lockedLook": "groveaurora",
+    "receptionistScriptStep": null,
+    "renderSamples": {
+      "all@day30": [
+        {
+          "blurb": "Your first week: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built.",
+          "dayEnd": 7,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+              "doneLabel": "I've bookmarked it",
+              "id": "bssc-bookmark",
+              "showPortalLink": true,
+              "status": "done",
+              "steps": [
+                "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+                "Or copy your portal link above and save it somewhere handy."
+              ],
+              "title": "Bookmark your portal"
+            },
+            {
+              "detail": "So you can get back here in one tap. Saved to your iPhone's home screen, it opens like an app.",
+              "doneLabel": "I've saved it",
+              "id": "bssc-save-portal",
+              "imageAlt": "An iPhone home screen with the BSS Launchpad icon, and the portal open full screen like an app.",
+              "imageUrl": "/portal/guides/bss-home-screen-app.png",
+              "status": "done",
+              "steps": [
+                "On your iPhone, open your portal link in Safari (even if you usually use Chrome).",
+                "Tap the Share button: the square with an arrow pointing up, at the bottom of the screen.",
+                "Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
+                "From now on, open BSS Launchpad from your home screen."
+              ],
+              "title": "Save your portal to your phone"
+            },
+            {
+              "detail": "We build your new pages inside your existing site, so nothing you already have breaks. Invite Jesse to each of these.",
+              "doneLabel": "I've sent the invites",
+              "id": "bssc-access-site",
+              "important": "Never send us a password, seed phrase or private key. An invite is all we need.",
+              "inviteEmail": "jesse@allconvos.ai",
+              "notePrompt": "Anything you couldn't invite us to?",
+              "status": "done",
+              "steps": [
+                "Lovable (your website): add jesse@allconvos.ai to your project, or connect it to GitHub and add Jesse there.",
+                "Supabase (your app's database): add Jesse as a team member, so we can see what your current system stores."
+              ],
+              "title": "Give Jesse access to your website and app"
+            },
+            {
+              "detail": "Every new page sits next to your current one, with 26 numbered questions. Your answers save as you type, and Jesse sees them straight away.",
+              "doneLabel": "I've answered the questions",
+              "guideLabel": "Open the review page",
+              "guideUrl": "https://bss-website-draft.vercel.app/review.html",
+              "id": "bssc-review-1",
+              "notePrompt": "Anything else you'd like changed?",
+              "status": "done",
+              "title": "Review your website draft"
+            },
+            {
+              "detail": "Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page. Don't have it all yet? Send what you have and press Next: you can add more here any time.",
+              "doneLabel": "Next",
+              "hasUpload": true,
+              "id": "bssc-assets",
+              "notePlaceholder": "Paste your privacy policy here. You can also tell us what's still to come.",
+              "notePrompt": "Your privacy policy wording (optional)",
+              "status": "done",
+              "steps": [
+                "New testimonials, with each client's permission to use them (review question 4).",
+                "Sean Clarke's original photo, and his logo if he has one (review question 12).",
+                "Your privacy policy wording, if you're providing it: paste it in the box below, or upload it (review question 25).",
+                "For each other partner: name, photo or logo, and a welcome message.",
+                "Your current email or text wording, and your booking link."
+              ],
+              "title": "Send the files for your website",
+              "uploadOptions": {
+                "accept": ".png,.jpg,.jpeg,.webp,.heic,.gif,.svg,.pdf,.doc,.docx,.txt,.rtf,.zip,.mp4,.mov",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Add as many as you like, one at a time or several at once: photos, logos, PDFs, documents, short videos or a zip.",
+                "stayOpen": true,
+                "title": "Upload your files"
+              }
+            },
+            {
+              "detail": "One quick question at a time, and it saves as you go. Your answers shape your CRM, your text messages and your AI lead agent.",
+              "formId": "bss-custom-intake-v1",
+              "id": "bssc-questions",
+              "status": "done",
+              "title": "Answer a few questions about how you work"
+            },
+            {
+              "detail": "So we can check what's there and connect it all to your CRM. Invite Jesse to each one you use, and tell us below about anything you couldn't.",
+              "doneLabel": "I've sent the invites",
+              "id": "bssc-access-tools",
+              "important": "Never send us a password, seed phrase or private key. An invite is all we need.",
+              "inviteEmail": "jesse@allconvos.ai",
+              "notePrompt": "Anything you couldn't invite us to?",
+              "status": "done",
+              "steps": [
+                "GoHighLevel: add Jesse as an admin user on your current sub-account.",
+                "Calendly: invite Jesse as an admin, once your account is set up.",
+                "Zoom (if you run webinars on it): add Jesse as an admin, or tell us your plan type.",
+                "Payments (for example Stripe): give Jesse access, so a confirmed payment can start client onboarding.",
+                "YouTube (optional): add Jesse as a channel manager.",
+                "Porkbun and Cloudflare (your domain): add Jesse, or be ready to add a few records we send you."
+              ],
+              "title": "Give Jesse access to your other tools"
+            },
+            {
+              "detail": "Every list of people you've collected, so we can bring them into your new CRM. Keep each list as its own file: we combine them and remove duplicates for you.",
+              "doneLabel": "Next",
+              "hasUpload": true,
+              "id": "bssc-contact-lists",
+              "important": "These are your contacts' details. We keep them private and only use them to set up your CRM.",
+              "notePlaceholder": "e.g. The GoHighLevel list is the most up to date. Everyone on the Bali list agreed to hear from you.",
+              "notePrompt": "Which list is which, and anything we should know (optional)",
+              "status": "done",
+              "steps": [
+                "From GoHighLevel: open Contacts, select all, and use Export to download a CSV. If you've given Jesse admin access, we can do this one for you.",
+                "From the app you built: use its export if it has one. If you've given Jesse Supabase access, we can pull it ourselves, so you can skip this.",
+                "Any other lists you have: Bali attendees, merch buyers, old spreadsheets.",
+                "Name each file so we know where it came from."
+              ],
+              "title": "Send us your contact lists",
+              "uploadOptions": {
+                "accept": ".csv,.xlsx,.xls",
+                "choose": "Click to choose your lists",
+                "chooseMore": "+ Add another list",
+                "hint": "One file per list, as many as you have. CSV or Excel.",
+                "stayOpen": true,
+                "title": "Upload your contact lists"
+              }
+            },
+            {
+              "detail": "How every lead becomes a client, from first contact to onboarding.",
+              "id": "bssc-journey-map",
+              "status": "done",
+              "title": "Approve your customer journey"
+            }
+          ],
+          "name": "Onboard, map and evaluate",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your website is finished page by page, and your CRM is set up and loaded with your contacts.",
+          "dayEnd": 16,
+          "dayStart": 4,
+          "id": "build",
+          "milestones": [
+            {
+              "detail": "Your first changes are done. Check the updated review page and tell us what's left. We aim to finish in two rounds, with a third if you need it.",
+              "doneLabel": "I've sent my feedback",
+              "guideLabel": "Open the review page",
+              "guideUrl": "https://bss-website-draft.vercel.app/review.html",
+              "id": "bssc-review-2",
+              "notePrompt": "What's left to change?",
+              "status": "done",
+              "title": "Review your updated website"
+            },
+            {
+              "detail": "Once we've looked at your current systems, we share what we found and a one-page plan here. Approve it, or tell us what to change.",
+              "hasEditableContent": true,
+              "id": "bssc-crm-plan",
+              "notePrompt": "Anything you'd like changed?",
+              "status": "done",
+              "steps": [
+                "Our findings: what to keep, move or replace, and which GoHighLevel account to use.",
+                "Your partner tracking plan: how partners are added, tracked and paid.",
+                "Your CRM: pipelines, the details we keep on each contact, tags and lead scoring."
+              ],
+              "title": "Approve your CRM plan and our findings"
+            },
+            {
+              "detail": "We gather your contacts from your current systems, remove duplicates and tag them by where they came from. Tell us which ones agreed to hear from you, then we check 20 records together.",
+              "doneLabel": "I've checked my contacts",
+              "id": "bssc-contacts",
+              "notePrompt": "Which contacts agreed to hear from you?",
+              "status": "done",
+              "title": "Check your contacts before we import them"
+            },
+            {
+              "detail": "A final preview of every page. Once you sign off, we rebuild the pages inside your Lovable site, ready for launch day.",
+              "id": "bssc-signoff",
+              "notePrompt": "Any page you're not ready to sign off?",
+              "status": "done",
+              "title": "Sign off each page for launch"
+            }
+          ],
+          "name": "Build",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your forms, chat, phone, texting and Calendly are connected to your CRM and tested.",
+          "dayEnd": 20,
+          "dayStart": 17,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "We launch your new website on your domain on a day that suits you. Your current site stays live until then.",
+              "doneLabel": "Send my preferred day",
+              "id": "bssc-launch-day",
+              "notePlaceholder": "e.g. a weekday morning",
+              "notePrompt": "Your preferred launch day",
+              "status": "done",
+              "title": "Agree your launch day"
+            },
+            {
+              "detail": "Go through the booking quiz like a real lead and book a test call in Calendly. Check it lands in your CRM and you get the right emails.",
+              "doneLabel": "I've booked a test call",
+              "id": "bssc-test-booking",
+              "notePrompt": "Anything that didn't work as expected?",
+              "status": "done",
+              "title": "Book a test Clarity Call through your new site"
+            }
+          ],
+          "name": "Connect",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your new website launches on your domain. Your follow-up messages and AI lead agent switch on once you've approved them.",
+          "dayEnd": 23,
+          "dayStart": 21,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "We write every message in your voice, using only claims you've approved. You approve each one here. We send a test to your inbox and phone, then switch it on.",
+              "hasEditableContent": true,
+              "id": "bssc-messages",
+              "notePrompt": "Any changes?",
+              "status": "done",
+              "title": "Approve your emails and texts"
+            },
+            {
+              "detail": "Chat with it like a lead would. It only uses wording you've approved, never gives financial advice and never asks for seed phrases, keys or passwords. Send us real questions your audience asks, then approve it when you're happy.",
+              "id": "bssc-ai-agent",
+              "notePrompt": "Real questions your audience asks",
+              "status": "done",
+              "title": "Try your AI lead agent"
+            },
+            {
+              "detail": "On launch day, click through every page and book a test call. Tell us anything that looks wrong.",
+              "doneLabel": "I've checked the site",
+              "id": "bssc-live-check",
+              "notePrompt": "Anything that looks wrong?",
+              "status": "done",
+              "title": "Click through your live site"
+            },
+            {
+              "detail": "A recorded session for you and your coaches: the inbox, pipeline, contact records, bookings and dashboard. A short written guide follows, including how to edit your website.",
+              "doneLabel": "Send my times",
+              "id": "bssc-walkthrough",
+              "notePrompt": "Days and times that suit you",
+              "status": "done",
+              "title": "Your launch walkthrough"
+            }
+          ],
+          "name": "Automate and launch",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Partner tracking, your weekly webinar and client onboarding go live, so everything is in place by day 30. Then we review, tune and support you through month 8.",
+          "dayEnd": 30,
+          "dayStart": 24,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "detail": "Your webinar pages, reminders and follow-ups are set up to repeat each week.",
+              "doneLabel": "I've done these",
+              "id": "bssc-webinar",
+              "notePrompt": "Anything you'd like changed?",
+              "status": "done",
+              "steps": [
+                "Send us a link to a short welcome video for the \"You're registered\" page.",
+                "Tell us if you want replays, and for how long.",
+                "Register for a test webinar and check the emails and texts you get."
+              ],
+              "title": "Get your weekly webinar ready"
+            },
+            {
+              "detail": "What happens when someone pays: welcome, portal access, their coach and their first implementation call. Each step is marked \"automated\" or \"needs you\". We walk through it together, then you approve it here.",
+              "hasEditableContent": true,
+              "id": "bssc-onboarding-map",
+              "notePrompt": "Anything you'd like changed?",
+              "status": "done",
+              "steps": [
+                "Set up a test account for Jesse in your members' area, so we can link new clients straight to it."
+              ],
+              "title": "Agree your client onboarding map"
+            },
+            {
+              "detail": "Two short texts to past contacts who agreed to hear from you. You approve both messages and the list they go to.",
+              "hasEditableContent": true,
+              "id": "bssc-reactivation",
+              "notePrompt": "Any changes?",
+              "status": "done",
+              "title": "Approve your reactivation text"
+            },
+            {
+              "detail": "Once a month through month 8 we look at your leads, bookings, sales and AI conversations together, and tune what isn't working.",
+              "doneLabel": "Got it",
+              "id": "bssc-check-ins",
+              "notePrompt": "Anything you'd like to cover?",
+              "status": "done",
+              "title": "Monthly check-ins"
+            }
+          ],
+          "name": "Partners, webinar and support",
+          "status": "done",
+          "statusNotes": []
+        }
+      ],
+      "none@day1": [
+        {
+          "blurb": "Your first week: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built.",
+          "dayEnd": 7,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+              "doneLabel": "I've bookmarked it",
+              "id": "bssc-bookmark",
+              "showPortalLink": true,
+              "status": "current",
+              "steps": [
+                "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+                "Or copy your portal link above and save it somewhere handy."
+              ],
+              "title": "Bookmark your portal"
+            },
+            {
+              "detail": "So you can get back here in one tap. Saved to your iPhone's home screen, it opens like an app.",
+              "doneLabel": "I've saved it",
+              "id": "bssc-save-portal",
+              "imageAlt": "An iPhone home screen with the BSS Launchpad icon, and the portal open full screen like an app.",
+              "imageUrl": "/portal/guides/bss-home-screen-app.png",
+              "status": "upcoming",
+              "steps": [
+                "On your iPhone, open your portal link in Safari (even if you usually use Chrome).",
+                "Tap the Share button: the square with an arrow pointing up, at the bottom of the screen.",
+                "Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
+                "From now on, open BSS Launchpad from your home screen."
+              ],
+              "title": "Save your portal to your phone"
+            },
+            {
+              "detail": "We build your new pages inside your existing site, so nothing you already have breaks. Invite Jesse to each of these.",
+              "doneLabel": "I've sent the invites",
+              "id": "bssc-access-site",
+              "important": "Never send us a password, seed phrase or private key. An invite is all we need.",
+              "inviteEmail": "jesse@allconvos.ai",
+              "notePrompt": "Anything you couldn't invite us to?",
+              "status": "upcoming",
+              "steps": [
+                "Lovable (your website): add jesse@allconvos.ai to your project, or connect it to GitHub and add Jesse there.",
+                "Supabase (your app's database): add Jesse as a team member, so we can see what your current system stores."
+              ],
+              "title": "Give Jesse access to your website and app"
+            },
+            {
+              "detail": "Every new page sits next to your current one, with 26 numbered questions. Your answers save as you type, and Jesse sees them straight away.",
+              "doneLabel": "I've answered the questions",
+              "guideLabel": "Open the review page",
+              "guideUrl": "https://bss-website-draft.vercel.app/review.html",
+              "id": "bssc-review-1",
+              "notePrompt": "Anything else you'd like changed?",
+              "status": "upcoming",
+              "title": "Review your website draft"
+            },
+            {
+              "detail": "Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page. Don't have it all yet? Send what you have and press Next: you can add more here any time.",
+              "doneLabel": "Next",
+              "hasUpload": true,
+              "id": "bssc-assets",
+              "notePlaceholder": "Paste your privacy policy here. You can also tell us what's still to come.",
+              "notePrompt": "Your privacy policy wording (optional)",
+              "status": "upcoming",
+              "steps": [
+                "New testimonials, with each client's permission to use them (review question 4).",
+                "Sean Clarke's original photo, and his logo if he has one (review question 12).",
+                "Your privacy policy wording, if you're providing it: paste it in the box below, or upload it (review question 25).",
+                "For each other partner: name, photo or logo, and a welcome message.",
+                "Your current email or text wording, and your booking link."
+              ],
+              "title": "Send the files for your website",
+              "uploadOptions": {
+                "accept": ".png,.jpg,.jpeg,.webp,.heic,.gif,.svg,.pdf,.doc,.docx,.txt,.rtf,.zip,.mp4,.mov",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Add as many as you like, one at a time or several at once: photos, logos, PDFs, documents, short videos or a zip.",
+                "stayOpen": true,
+                "title": "Upload your files"
+              }
+            },
+            {
+              "detail": "One quick question at a time, and it saves as you go. Your answers shape your CRM, your text messages and your AI lead agent.",
+              "formId": "bss-custom-intake-v1",
+              "id": "bssc-questions",
+              "status": "upcoming",
+              "title": "Answer a few questions about how you work"
+            },
+            {
+              "detail": "So we can check what's there and connect it all to your CRM. Invite Jesse to each one you use, and tell us below about anything you couldn't.",
+              "doneLabel": "I've sent the invites",
+              "id": "bssc-access-tools",
+              "important": "Never send us a password, seed phrase or private key. An invite is all we need.",
+              "inviteEmail": "jesse@allconvos.ai",
+              "notePrompt": "Anything you couldn't invite us to?",
+              "status": "upcoming",
+              "steps": [
+                "GoHighLevel: add Jesse as an admin user on your current sub-account.",
+                "Calendly: invite Jesse as an admin, once your account is set up.",
+                "Zoom (if you run webinars on it): add Jesse as an admin, or tell us your plan type.",
+                "Payments (for example Stripe): give Jesse access, so a confirmed payment can start client onboarding.",
+                "YouTube (optional): add Jesse as a channel manager.",
+                "Porkbun and Cloudflare (your domain): add Jesse, or be ready to add a few records we send you."
+              ],
+              "title": "Give Jesse access to your other tools"
+            },
+            {
+              "detail": "Every list of people you've collected, so we can bring them into your new CRM. Keep each list as its own file: we combine them and remove duplicates for you.",
+              "doneLabel": "Next",
+              "hasUpload": true,
+              "id": "bssc-contact-lists",
+              "important": "These are your contacts' details. We keep them private and only use them to set up your CRM.",
+              "notePlaceholder": "e.g. The GoHighLevel list is the most up to date. Everyone on the Bali list agreed to hear from you.",
+              "notePrompt": "Which list is which, and anything we should know (optional)",
+              "status": "upcoming",
+              "steps": [
+                "From GoHighLevel: open Contacts, select all, and use Export to download a CSV. If you've given Jesse admin access, we can do this one for you.",
+                "From the app you built: use its export if it has one. If you've given Jesse Supabase access, we can pull it ourselves, so you can skip this.",
+                "Any other lists you have: Bali attendees, merch buyers, old spreadsheets.",
+                "Name each file so we know where it came from."
+              ],
+              "title": "Send us your contact lists",
+              "uploadOptions": {
+                "accept": ".csv,.xlsx,.xls",
+                "choose": "Click to choose your lists",
+                "chooseMore": "+ Add another list",
+                "hint": "One file per list, as many as you have. CSV or Excel.",
+                "stayOpen": true,
+                "title": "Upload your contact lists"
+              }
+            },
+            {
+              "detail": "How every lead becomes a client, from first contact to onboarding.",
+              "id": "bssc-journey-map",
+              "status": "upcoming",
+              "title": "Approve your customer journey"
+            }
+          ],
+          "name": "Onboard, map and evaluate",
+          "status": "current",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your website is finished page by page, and your CRM is set up and loaded with your contacts.",
+          "dayEnd": 16,
+          "dayStart": 4,
+          "id": "build",
+          "milestones": [
+            {
+              "detail": "Your first changes are done. Check the updated review page and tell us what's left. We aim to finish in two rounds, with a third if you need it.",
+              "doneLabel": "I've sent my feedback",
+              "guideLabel": "Open the review page",
+              "guideUrl": "https://bss-website-draft.vercel.app/review.html",
+              "id": "bssc-review-2",
+              "notePrompt": "What's left to change?",
+              "status": "upcoming",
+              "title": "Review your updated website"
+            },
+            {
+              "detail": "Once we've looked at your current systems, we share what we found and a one-page plan here. Approve it, or tell us what to change.",
+              "hasEditableContent": true,
+              "id": "bssc-crm-plan",
+              "notePrompt": "Anything you'd like changed?",
+              "status": "upcoming",
+              "steps": [
+                "Our findings: what to keep, move or replace, and which GoHighLevel account to use.",
+                "Your partner tracking plan: how partners are added, tracked and paid.",
+                "Your CRM: pipelines, the details we keep on each contact, tags and lead scoring."
+              ],
+              "title": "Approve your CRM plan and our findings"
+            },
+            {
+              "detail": "We gather your contacts from your current systems, remove duplicates and tag them by where they came from. Tell us which ones agreed to hear from you, then we check 20 records together.",
+              "doneLabel": "I've checked my contacts",
+              "id": "bssc-contacts",
+              "notePrompt": "Which contacts agreed to hear from you?",
+              "status": "upcoming",
+              "title": "Check your contacts before we import them"
+            },
+            {
+              "detail": "A final preview of every page. Once you sign off, we rebuild the pages inside your Lovable site, ready for launch day.",
+              "id": "bssc-signoff",
+              "notePrompt": "Any page you're not ready to sign off?",
+              "status": "upcoming",
+              "title": "Sign off each page for launch"
+            }
+          ],
+          "name": "Build",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your forms, chat, phone, texting and Calendly are connected to your CRM and tested.",
+          "dayEnd": 20,
+          "dayStart": 17,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "We launch your new website on your domain on a day that suits you. Your current site stays live until then.",
+              "doneLabel": "Send my preferred day",
+              "id": "bssc-launch-day",
+              "notePlaceholder": "e.g. a weekday morning",
+              "notePrompt": "Your preferred launch day",
+              "status": "upcoming",
+              "title": "Agree your launch day"
+            },
+            {
+              "detail": "Go through the booking quiz like a real lead and book a test call in Calendly. Check it lands in your CRM and you get the right emails.",
+              "doneLabel": "I've booked a test call",
+              "id": "bssc-test-booking",
+              "notePrompt": "Anything that didn't work as expected?",
+              "status": "upcoming",
+              "title": "Book a test Clarity Call through your new site"
+            }
+          ],
+          "name": "Connect",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your new website launches on your domain. Your follow-up messages and AI lead agent switch on once you've approved them.",
+          "dayEnd": 23,
+          "dayStart": 21,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "We write every message in your voice, using only claims you've approved. You approve each one here. We send a test to your inbox and phone, then switch it on.",
+              "hasEditableContent": true,
+              "id": "bssc-messages",
+              "notePrompt": "Any changes?",
+              "status": "upcoming",
+              "title": "Approve your emails and texts"
+            },
+            {
+              "detail": "Chat with it like a lead would. It only uses wording you've approved, never gives financial advice and never asks for seed phrases, keys or passwords. Send us real questions your audience asks, then approve it when you're happy.",
+              "id": "bssc-ai-agent",
+              "notePrompt": "Real questions your audience asks",
+              "status": "upcoming",
+              "title": "Try your AI lead agent"
+            },
+            {
+              "detail": "On launch day, click through every page and book a test call. Tell us anything that looks wrong.",
+              "doneLabel": "I've checked the site",
+              "id": "bssc-live-check",
+              "notePrompt": "Anything that looks wrong?",
+              "status": "upcoming",
+              "title": "Click through your live site"
+            },
+            {
+              "detail": "A recorded session for you and your coaches: the inbox, pipeline, contact records, bookings and dashboard. A short written guide follows, including how to edit your website.",
+              "doneLabel": "Send my times",
+              "id": "bssc-walkthrough",
+              "notePrompt": "Days and times that suit you",
+              "status": "upcoming",
+              "title": "Your launch walkthrough"
+            }
+          ],
+          "name": "Automate and launch",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Partner tracking, your weekly webinar and client onboarding go live, so everything is in place by day 30. Then we review, tune and support you through month 8.",
+          "dayEnd": 30,
+          "dayStart": 24,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "detail": "Your webinar pages, reminders and follow-ups are set up to repeat each week.",
+              "doneLabel": "I've done these",
+              "id": "bssc-webinar",
+              "notePrompt": "Anything you'd like changed?",
+              "status": "upcoming",
+              "steps": [
+                "Send us a link to a short welcome video for the \"You're registered\" page.",
+                "Tell us if you want replays, and for how long.",
+                "Register for a test webinar and check the emails and texts you get."
+              ],
+              "title": "Get your weekly webinar ready"
+            },
+            {
+              "detail": "What happens when someone pays: welcome, portal access, their coach and their first implementation call. Each step is marked \"automated\" or \"needs you\". We walk through it together, then you approve it here.",
+              "hasEditableContent": true,
+              "id": "bssc-onboarding-map",
+              "notePrompt": "Anything you'd like changed?",
+              "status": "upcoming",
+              "steps": [
+                "Set up a test account for Jesse in your members' area, so we can link new clients straight to it."
+              ],
+              "title": "Agree your client onboarding map"
+            },
+            {
+              "detail": "Two short texts to past contacts who agreed to hear from you. You approve both messages and the list they go to.",
+              "hasEditableContent": true,
+              "id": "bssc-reactivation",
+              "notePrompt": "Any changes?",
+              "status": "upcoming",
+              "title": "Approve your reactivation text"
+            },
+            {
+              "detail": "Once a month through month 8 we look at your leads, bookings, sales and AI conversations together, and tune what isn't working.",
+              "doneLabel": "Got it",
+              "id": "bssc-check-ins",
+              "notePrompt": "Anything you'd like to cover?",
+              "status": "upcoming",
+              "title": "Monthly check-ins"
+            }
+          ],
+          "name": "Partners, webinar and support",
+          "status": "locked",
+          "statusNotes": []
+        }
+      ]
+    },
+    "renders": {
+      "all@day1": "ff9aefdddebab7a13d10c32591f4ce244e5fc7ab7c7be696c9d02aee371df3d0",
+      "all@day12": "ff9aefdddebab7a13d10c32591f4ce244e5fc7ab7c7be696c9d02aee371df3d0",
+      "all@day30": "ff9aefdddebab7a13d10c32591f4ce244e5fc7ab7c7be696c9d02aee371df3d0",
+      "alternate@day1": "50135bb972da274dfc7d45ac67b73c08d107481dcab3763d85a5ad964c8dd8e6",
+      "alternate@day12": "50135bb972da274dfc7d45ac67b73c08d107481dcab3763d85a5ad964c8dd8e6",
+      "alternate@day30": "50135bb972da274dfc7d45ac67b73c08d107481dcab3763d85a5ad964c8dd8e6",
+      "first-10@day1": "309039ed1596359e8c93fe690725f22d66bb7ff652d49ab477da59aaed5f5f5b",
+      "first-10@day12": "309039ed1596359e8c93fe690725f22d66bb7ff652d49ab477da59aaed5f5f5b",
+      "first-10@day30": "309039ed1596359e8c93fe690725f22d66bb7ff652d49ab477da59aaed5f5f5b",
+      "first-11@day1": "a7acab9358f886fdabe1863cbf15dcbff2d3492d7a967a2a93b5993b0967a04f",
+      "first-11@day12": "a7acab9358f886fdabe1863cbf15dcbff2d3492d7a967a2a93b5993b0967a04f",
+      "first-11@day30": "a7acab9358f886fdabe1863cbf15dcbff2d3492d7a967a2a93b5993b0967a04f",
+      "first-12@day1": "acd5e3ba1de99fcb0e1350be166da5f179e9ab5edc8dbdad8d4be624c1b800cd",
+      "first-12@day12": "acd5e3ba1de99fcb0e1350be166da5f179e9ab5edc8dbdad8d4be624c1b800cd",
+      "first-12@day30": "acd5e3ba1de99fcb0e1350be166da5f179e9ab5edc8dbdad8d4be624c1b800cd",
+      "first-13@day1": "b817a5c3fcf8d00315654e068a1a4f9b1743221f6a3307f9101ccd59cafa3166",
+      "first-13@day12": "b817a5c3fcf8d00315654e068a1a4f9b1743221f6a3307f9101ccd59cafa3166",
+      "first-13@day30": "b817a5c3fcf8d00315654e068a1a4f9b1743221f6a3307f9101ccd59cafa3166",
+      "first-14@day1": "f66202d7730c98074afdfeffcbe1d5ae0d9fa2aefe296f6107996d5cc94a7a4e",
+      "first-14@day12": "f66202d7730c98074afdfeffcbe1d5ae0d9fa2aefe296f6107996d5cc94a7a4e",
+      "first-14@day30": "f66202d7730c98074afdfeffcbe1d5ae0d9fa2aefe296f6107996d5cc94a7a4e",
+      "first-15@day1": "04058d96e04a8559e031449c27bc7643ce6a80c84f0acd5811f2adef1656335c",
+      "first-15@day12": "04058d96e04a8559e031449c27bc7643ce6a80c84f0acd5811f2adef1656335c",
+      "first-15@day30": "04058d96e04a8559e031449c27bc7643ce6a80c84f0acd5811f2adef1656335c",
+      "first-16@day1": "0e3d03cff12689d741d312827add4d08d9366001f009148bbbddd42f5ceb1448",
+      "first-16@day12": "0e3d03cff12689d741d312827add4d08d9366001f009148bbbddd42f5ceb1448",
+      "first-16@day30": "0e3d03cff12689d741d312827add4d08d9366001f009148bbbddd42f5ceb1448",
+      "first-17@day1": "75fd0356bfb5333a7ca36d40d9d9d26ce92e126f4c3aad2a939c21756cab5a1e",
+      "first-17@day12": "75fd0356bfb5333a7ca36d40d9d9d26ce92e126f4c3aad2a939c21756cab5a1e",
+      "first-17@day30": "75fd0356bfb5333a7ca36d40d9d9d26ce92e126f4c3aad2a939c21756cab5a1e",
+      "first-18@day1": "bb679f708827cbfaf119d8290423621875ae1c8f8e9d5c5d828a3b83dae75d47",
+      "first-18@day12": "bb679f708827cbfaf119d8290423621875ae1c8f8e9d5c5d828a3b83dae75d47",
+      "first-18@day30": "bb679f708827cbfaf119d8290423621875ae1c8f8e9d5c5d828a3b83dae75d47",
+      "first-19@day1": "3fc8b79f97da28a442cd7111114f3b32b996950464c8d85cbc998d933a1ed2fe",
+      "first-19@day12": "3fc8b79f97da28a442cd7111114f3b32b996950464c8d85cbc998d933a1ed2fe",
+      "first-19@day30": "3fc8b79f97da28a442cd7111114f3b32b996950464c8d85cbc998d933a1ed2fe",
+      "first-1@day1": "808c58e679d932b35f5c74937e63ff4f3f516840bd7543c23d0532b2032bc57c",
+      "first-1@day12": "808c58e679d932b35f5c74937e63ff4f3f516840bd7543c23d0532b2032bc57c",
+      "first-1@day30": "808c58e679d932b35f5c74937e63ff4f3f516840bd7543c23d0532b2032bc57c",
+      "first-20@day1": "658a7caf1f2873f9fe76738cef24361634c0cbd52d4bb8836d0d646ecb0c89bc",
+      "first-20@day12": "658a7caf1f2873f9fe76738cef24361634c0cbd52d4bb8836d0d646ecb0c89bc",
+      "first-20@day30": "658a7caf1f2873f9fe76738cef24361634c0cbd52d4bb8836d0d646ecb0c89bc",
+      "first-21@day1": "d9251381faffebfcbcfe335364310de0d772ff6ac3e22e248b85cf7a6eaa609f",
+      "first-21@day12": "d9251381faffebfcbcfe335364310de0d772ff6ac3e22e248b85cf7a6eaa609f",
+      "first-21@day30": "d9251381faffebfcbcfe335364310de0d772ff6ac3e22e248b85cf7a6eaa609f",
+      "first-22@day1": "bbe15cd6e2f722747f1da2550845d5b0e8e4e9df5aa0865f3e40f750d301f903",
+      "first-22@day12": "bbe15cd6e2f722747f1da2550845d5b0e8e4e9df5aa0865f3e40f750d301f903",
+      "first-22@day30": "bbe15cd6e2f722747f1da2550845d5b0e8e4e9df5aa0865f3e40f750d301f903",
+      "first-23@day1": "ff9aefdddebab7a13d10c32591f4ce244e5fc7ab7c7be696c9d02aee371df3d0",
+      "first-23@day12": "ff9aefdddebab7a13d10c32591f4ce244e5fc7ab7c7be696c9d02aee371df3d0",
+      "first-23@day30": "ff9aefdddebab7a13d10c32591f4ce244e5fc7ab7c7be696c9d02aee371df3d0",
+      "first-2@day1": "53afab6c953a5a49738a3fb9cfff9c03c5a1d0cd8b27876dd1438df31316736e",
+      "first-2@day12": "53afab6c953a5a49738a3fb9cfff9c03c5a1d0cd8b27876dd1438df31316736e",
+      "first-2@day30": "53afab6c953a5a49738a3fb9cfff9c03c5a1d0cd8b27876dd1438df31316736e",
+      "first-3@day1": "743d21ed8e48c51496b6d0d170b18247acb8675688b742be223e36e5d9e3d255",
+      "first-3@day12": "743d21ed8e48c51496b6d0d170b18247acb8675688b742be223e36e5d9e3d255",
+      "first-3@day30": "743d21ed8e48c51496b6d0d170b18247acb8675688b742be223e36e5d9e3d255",
+      "first-4@day1": "ce14d2d0507d5372925d99c2f97869b649ebf9496dda58422c7505c0049625a7",
+      "first-4@day12": "ce14d2d0507d5372925d99c2f97869b649ebf9496dda58422c7505c0049625a7",
+      "first-4@day30": "ce14d2d0507d5372925d99c2f97869b649ebf9496dda58422c7505c0049625a7",
+      "first-5@day1": "162a5e3671f66305ee54353de26d0a1b42c5c8e154e378479e89a05eaac5360e",
+      "first-5@day12": "162a5e3671f66305ee54353de26d0a1b42c5c8e154e378479e89a05eaac5360e",
+      "first-5@day30": "162a5e3671f66305ee54353de26d0a1b42c5c8e154e378479e89a05eaac5360e",
+      "first-6@day1": "0a20e8709b4ff4b0254423e2d801e3e5fd2a5092666e722db69c9bcad9b1dc3d",
+      "first-6@day12": "0a20e8709b4ff4b0254423e2d801e3e5fd2a5092666e722db69c9bcad9b1dc3d",
+      "first-6@day30": "0a20e8709b4ff4b0254423e2d801e3e5fd2a5092666e722db69c9bcad9b1dc3d",
+      "first-7@day1": "20142249541c169e22ddec996120d58ad0ee63b3f554fa010b71606f7b506a71",
+      "first-7@day12": "20142249541c169e22ddec996120d58ad0ee63b3f554fa010b71606f7b506a71",
+      "first-7@day30": "20142249541c169e22ddec996120d58ad0ee63b3f554fa010b71606f7b506a71",
+      "first-8@day1": "427530d6b2092f647ab22bff1915efa04de32b3510063a419a949c84eb4928de",
+      "first-8@day12": "427530d6b2092f647ab22bff1915efa04de32b3510063a419a949c84eb4928de",
+      "first-8@day30": "427530d6b2092f647ab22bff1915efa04de32b3510063a419a949c84eb4928de",
+      "first-9@day1": "05171378d2dbce0187b5a2fad16afdc55dc65c288d543cd4389a0521e9f186a6",
+      "first-9@day12": "05171378d2dbce0187b5a2fad16afdc55dc65c288d543cd4389a0521e9f186a6",
+      "first-9@day30": "05171378d2dbce0187b5a2fad16afdc55dc65c288d543cd4389a0521e9f186a6",
+      "last@day1": "bfb1c687230a21ac6e77af1cc94712f9282e039350f6dec502487e4e7497b5e6",
+      "last@day12": "bfb1c687230a21ac6e77af1cc94712f9282e039350f6dec502487e4e7497b5e6",
+      "last@day30": "bfb1c687230a21ac6e77af1cc94712f9282e039350f6dec502487e4e7497b5e6",
+      "none@day1": "e00566e1a3eaf1f2b6ef72f7b5f0b45948956c15708a3a5ebbb9a8f604dca890",
+      "none@day12": "e00566e1a3eaf1f2b6ef72f7b5f0b45948956c15708a3a5ebbb9a8f604dca890",
+      "none@day30": "e00566e1a3eaf1f2b6ef72f7b5f0b45948956c15708a3a5ebbb9a8f604dca890"
+    },
+    "stageCompletedBy": {
+      "half": {
+        "bssc-access-site": "onboarding",
+        "bssc-access-tools": "onboarding",
+        "bssc-ai-agent": null,
+        "bssc-assets": "onboarding",
+        "bssc-bookmark": "onboarding",
+        "bssc-check-ins": null,
+        "bssc-contact-lists": "onboarding",
+        "bssc-contacts": null,
+        "bssc-crm-plan": null,
+        "bssc-journey-map": "onboarding",
+        "bssc-launch-day": null,
+        "bssc-live-check": null,
+        "bssc-messages": null,
+        "bssc-onboarding-map": null,
+        "bssc-questions": "onboarding",
+        "bssc-reactivation": null,
+        "bssc-review-1": "onboarding",
+        "bssc-review-2": null,
+        "bssc-save-portal": "onboarding",
+        "bssc-signoff": "build",
+        "bssc-test-booking": null,
+        "bssc-walkthrough": null,
+        "bssc-webinar": null
+      },
+      "none": {
+        "bssc-access-site": null,
+        "bssc-access-tools": null,
+        "bssc-ai-agent": null,
+        "bssc-assets": null,
+        "bssc-bookmark": null,
+        "bssc-check-ins": null,
+        "bssc-contact-lists": null,
+        "bssc-contacts": null,
+        "bssc-crm-plan": null,
+        "bssc-journey-map": null,
+        "bssc-launch-day": null,
+        "bssc-live-check": null,
+        "bssc-messages": null,
+        "bssc-onboarding-map": null,
+        "bssc-questions": null,
+        "bssc-reactivation": null,
+        "bssc-review-1": null,
+        "bssc-review-2": null,
+        "bssc-save-portal": null,
+        "bssc-signoff": null,
+        "bssc-test-booking": null,
+        "bssc-walkthrough": null,
+        "bssc-webinar": null
+      }
+    },
+    "stageGuides": {
+      "build": null,
+      "go-live": null,
+      "onboarding": null,
+      "post-launch": null,
+      "testing": null
+    },
+    "steps": {
+      "bssc-access-site": {
+        "detail": "We build your new pages inside your existing site, so nothing you already have breaks. Invite Jesse to each of these.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-access-tools": {
+        "detail": "So we can check what's there and connect it all to your CRM. Invite Jesse to each one you use, and tell us below about anything you couldn't.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-ai-agent": {
+        "detail": "Chat with it like a lead would. It only uses wording you've approved, never gives financial advice and never asks for seed phrases, keys or passwords. Send us real questions your audience asks, then approve it when you're happy.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-assets": {
+        "detail": "Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page. Don't have it all yet? Send what you have and press Next: you can add more here any time.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-bookmark": {
+        "detail": "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-check-ins": {
+        "detail": "Once a month through month 8 we look at your leads, bookings, sales and AI conversations together, and tune what isn't working.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-contact-lists": {
+        "detail": "Every list of people you've collected, so we can bring them into your new CRM. Keep each list as its own file: we combine them and remove duplicates for you.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-contacts": {
+        "detail": "We gather your contacts from your current systems, remove duplicates and tag them by where they came from. Tell us which ones agreed to hear from you, then we check 20 records together.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-crm-plan": {
+        "detail": "Once we've looked at your current systems, we share what we found and a one-page plan here. Approve it, or tell us what to change.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-journey-map": {
+        "detail": "How every lead becomes a client, from first contact to onboarding.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-launch-day": {
+        "detail": "We launch your new website on your domain on a day that suits you. Your current site stays live until then.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-live-check": {
+        "detail": "On launch day, click through every page and book a test call. Tell us anything that looks wrong.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-messages": {
+        "detail": "We write every message in your voice, using only claims you've approved. You approve each one here. We send a test to your inbox and phone, then switch it on.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-onboarding-map": {
+        "detail": "What happens when someone pays: welcome, portal access, their coach and their first implementation call. Each step is marked \"automated\" or \"needs you\". We walk through it together, then you approve it here.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-questions": {
+        "detail": "One quick question at a time, and it saves as you go. Your answers shape your CRM, your text messages and your AI lead agent.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-reactivation": {
+        "detail": "Two short texts to past contacts who agreed to hear from you. You approve both messages and the list they go to.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-review-1": {
+        "detail": "Every new page sits next to your current one, with 26 numbered questions. Your answers save as you type, and Jesse sees them straight away.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-review-2": {
+        "detail": "Your first changes are done. Check the updated review page and tell us what's left. We aim to finish in two rounds, with a third if you need it.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-save-portal": {
+        "detail": "So you can get back here in one tap. Saved to your iPhone's home screen, it opens like an app.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-signoff": {
+        "detail": "A final preview of every page. Once you sign off, we rebuild the pages inside your Lovable site, ready for launch day.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-test-booking": {
+        "detail": "Go through the booking quiz like a real lead and book a test call in Calendly. Check it lands in your CRM and you get the right emails.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-walkthrough": {
+        "detail": "A recorded session for you and your coaches: the inbox, pipeline, contact records, bookings and dashboard. A short written guide follows, including how to edit your website.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "bssc-webinar": {
+        "detail": "Your webinar pages, reminders and follow-ups are set up to repeat each week.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      }
+    },
+    "stringPlan": {
+      "goLiveDay": 23,
+      "tailLabel": "→ M8",
+      "weeks": 5,
+      "workstreams": [
+        {
+          "dayEnd": 7,
+          "dayStart": 1,
+          "id": "access",
+          "name": "Access & questions",
+          "taskIds": [
+            "bssc-bookmark",
+            "bssc-save-portal",
+            "bssc-access-site",
+            "bssc-access-tools",
+            "bssc-contact-lists",
+            "bssc-questions"
+          ]
+        },
+        {
+          "after": [
+            "access"
+          ],
+          "dayEnd": 7,
+          "dayStart": 1,
+          "id": "mapping",
+          "name": "Journey & findings",
+          "taskIds": [
+            "bssc-journey-map"
+          ]
+        },
+        {
+          "dayEnd": 16,
+          "dayStart": 1,
+          "id": "website",
+          "name": "Website",
+          "taskIds": [
+            "bssc-review-1",
+            "bssc-assets",
+            "bssc-review-2",
+            "bssc-signoff"
+          ]
+        },
+        {
+          "after": [
+            "mapping"
+          ],
+          "dayEnd": 16,
+          "dayStart": 4,
+          "id": "crm",
+          "name": "CRM build",
+          "taskIds": [
+            "bssc-crm-plan",
+            "bssc-contacts"
+          ]
+        },
+        {
+          "after": [
+            "crm",
+            "website"
+          ],
+          "dayEnd": 20,
+          "dayStart": 17,
+          "id": "connect",
+          "name": "Connect & test",
+          "taskIds": [
+            "bssc-test-booking",
+            "bssc-launch-day"
+          ]
+        },
+        {
+          "after": [
+            "connect"
+          ],
+          "dayEnd": 23,
+          "dayStart": 21,
+          "id": "launch",
+          "name": "Automate & launch",
+          "taskIds": [
+            "bssc-messages",
+            "bssc-ai-agent",
+            "bssc-walkthrough",
+            "bssc-live-check"
+          ]
+        },
+        {
+          "after": [
+            "launch"
+          ],
+          "dayEnd": 30,
+          "dayStart": 24,
+          "id": "partners",
+          "name": "Webinar & onboarding",
+          "taskIds": [
+            "bssc-webinar",
+            "bssc-onboarding-map",
+            "bssc-reactivation"
+          ]
+        },
+        {
+          "after": [
+            "launch"
+          ],
+          "dayEnd": 30,
+          "dayStart": 24,
+          "id": "support",
+          "name": "Refine & support",
+          "ongoing": true,
+          "taskIds": [
+            "bssc-check-ins"
+          ]
+        }
+      ]
+    },
+    "tabTitle": "BSS Launchpad",
+    "tagline": "Your new website and client system, built step by step.",
+    "totalDays": 30,
+    "totalMilestoneCount": 23,
+    "visibleIds": [
+      "bssc-bookmark",
+      "bssc-save-portal",
+      "bssc-access-site",
+      "bssc-review-1",
+      "bssc-assets",
+      "bssc-questions",
+      "bssc-access-tools",
+      "bssc-contact-lists",
+      "bssc-journey-map",
+      "bssc-review-2",
+      "bssc-crm-plan",
+      "bssc-contacts",
+      "bssc-signoff",
+      "bssc-launch-day",
+      "bssc-test-booking",
+      "bssc-messages",
+      "bssc-ai-agent",
+      "bssc-live-check",
+      "bssc-walkthrough",
+      "bssc-webinar",
+      "bssc-onboarding-map",
+      "bssc-reactivation",
+      "bssc-check-ins"
+    ],
+    "wordmark": "BSS Launchpad"
+  },
+  "ssr": {
+    "aurora|all|day1": "107f1452a6e96fbc487a17a7e6c5906ebf895e0f1e79e1cabc8567ae81cc384c",
+    "aurora|all|day30": "dbd4456dde5273c0b36167f71f8f2ddd497206b735a3e1ccf133295abd028dcb",
+    "aurora|half|day1": "44089918906a31ce5f79b218f52b13f9e27797686f9ea5cd03d709373a7956d4",
+    "aurora|half|day30": "9d2e8c9bd0937b167ed6cbfd438b33e4d7afea2203d0307262f8b057d67d87d0",
+    "aurora|none|day1": "7ace122b42f44ea9395b42c64c169142ed3beee00a1c61ff58ddfb0328cdd7ed",
+    "aurora|none|day30": "d924a289523d846fd690ecc0a90870aefca0dc898a624f8ab73f9e4959982a4b",
+    "calm|all|day1": "fa122526fe61c603e84de2f45083a0e8be2ee351eecf62dc885c61ffcc25bdeb",
+    "calm|all|day30": "6a467939f1118a2f5c40aea88d862ff12394e4a04b7c9909ef61d216d0be81a1",
+    "calm|half|day1": "19a9f8f8ad4e0b99518eaf6fbfc46074d09ab4814c3139addd0130c21d5bcc3e",
+    "calm|half|day30": "dcfbdbef7ebdf64e59b8f03668018c47dcccfce2877e7de9e2b2045393d97f88",
+    "calm|none|day1": "adc36171c05ed9e56e44125d6b55befe143b0ca4943026250c3b08ab56f4885b",
+    "calm|none|day30": "fb8715cc52d626353a161b13b656f4e7882ad1d7dfdc7891b9a7f746e56dea69",
+    "cobalt|all|day1": "301989a9f96ab3392607ae1cbf3808e748e2ab401e82de6127fed74ff613da51",
+    "cobalt|all|day30": "459f079c4aaa51433f361a4d86d2d9c3d718b588f77becefaf73bf46e71c9380",
+    "cobalt|half|day1": "8c51f34e659907d20b8228bd4092e8f0ad77d3589d9bebe574d05cf954bbf763",
+    "cobalt|half|day30": "2d38b928713d8fa1c5632e6a721feae64816dc42224a4ce062e5459ff199fce6",
+    "cobalt|none|day1": "c70ae47af7de6365c5f3ef5a6bee15501bec1a965a31355dcdae1598709083eb",
+    "cobalt|none|day30": "061c9788da63c89425e07d83f10e2d6b5c636e229f4326a23e8788db70c8f81a",
+    "cool|all|day1": "e432c31f468d91112eece4e56263389745df5f05c1c1629989475a707a6acac3",
+    "cool|all|day30": "bae9922d11b74fdbd56ceebf50124be9d282c83f2fdd0075596abbbcfcc24944",
+    "cool|half|day1": "901b6995a655dc2d803310ac5da606a655557398f1e9b4522bef0fbe4cf275c5",
+    "cool|half|day30": "28f2ce038cc1c243c710cf2f06efd6be057bb42a9ddc6c92bf4a1b71c37f641c",
+    "cool|none|day1": "69aa9ba56e2c254003c9d0fdaf695e276b7f51a2e7768ea96c6a5d208eb43d13",
+    "cool|none|day30": "f42a19b2c4394d1900639e6752b1fd62b0f65447e6322ced82eda4fd0ff17c96",
+    "groveaurora|all|day1": "144b0148fb6098a447b09b0f897e6269ef933ec68f6f66b1bb1488797ab9ccbb",
+    "groveaurora|all|day30": "5f21ef7afda48059e207358d7e24b3f45f2c9b828dc454477c8ef08d28b0510c",
+    "groveaurora|half|day1": "66a98183a99fbebc98033815388517b060e05313855f730454f7ea908579f339",
+    "groveaurora|half|day30": "5bc6f75b52ee0ecfbadbfdef79c5f168f3c4e956fb045ad4ed86c0f1a467c448",
+    "groveaurora|none|day1": "cccb9136cb80e90863a87dcd536a255edf1f160598ef86071bc2b82709d459bb",
+    "groveaurora|none|day30": "05bd87bde42dc20d82ab7a6d2e3b0e3f79562488123581ff0380a68720366b7a",
+    "grove|all|day1": "57522a828fec40369c4f0ab5e40547cdf0a41b6df5e45ff4a8e87ec6ff5217ac",
+    "grove|all|day30": "0dc5ddbb80cafe63a93952393ebe954862653ab5b39003d153d9dfa6239aef41",
+    "grove|half|day1": "f572379881d495d98b5dbe10670ded7247b1e31a883ed9dcf90ffdd2be4762cf",
+    "grove|half|day30": "7e2cf9aef9b91e7d0d99360b93725d044d79a56baab336bdc69b35d91b1007bd",
+    "grove|none|day1": "c2561230563f34e4f5f337b9c6d6024f19585829537221a8f9b59fb24988df64",
+    "grove|none|day30": "9e3dbc4a526da27f35abf220ad4893283416de8ae991439f5a22723a53fa0ac1",
+    "handoff|all|day1": "f6e634bb7f5865c4db1abcb865d2712909bcdb8fcd39b8564a3a9392f90da896",
+    "handoff|all|day30": "6ae9a66a5de70f6d9dd5bbb13e1eadd9c77895a669cf899f55d174df9d9ffdfb",
+    "handoff|half|day1": "658499cb60c939bf55338e9af1d4b0d626c64eebca0f0b2de196c2ada6113c9e",
+    "handoff|half|day30": "ddc75d9493325904ee609874294597d43aae050ef73cc865c0e2b33270298acb",
+    "handoff|none|day1": "8b9a9ba7ce55128dd1ce63f97a93e3ee09df4ae6980a86c5a002a20caa3f7201",
+    "handoff|none|day30": "9978e725d1badd5a65e6770efcd0bff18f01c9ad0ccbedc96f7641649576dee2",
+    "neutral|all|day1": "0a775b014fcb648d1258f788e5b463a6bd7f49a672bb04ee494878f4b3b64d0c",
+    "neutral|all|day30": "1efe66069c636b739c8fe20372ae3176f32791c49877e136b3a33da924463b19",
+    "neutral|half|day1": "8bfa07748d78c1f793148d21d5ec0f8c3e0845058baf3c46c469b55a60bab62f",
+    "neutral|half|day30": "b316fcc31f7e6187f98dd443d9705d1167841efe346cd9fa0034971122430233",
+    "neutral|none|day1": "4fd59e176d832062ada16015ba1bade3171ad428d5a2a0ba162aeaa3e1f281a6",
+    "neutral|none|day30": "6c6aef642ce5e2186f922013a48859e491571dccb1df8c0c32183e8c46c10d0a",
+    "warm|all|day1": "ea29ddbf24f6032ddbb284c2b1ee5e58aacfd5064e30a077fecee3dc06638cad",
+    "warm|all|day30": "51049f628aa2b417d7a4cbd1e764f2a958895244eb45d4053b5b8e4df5b03666",
+    "warm|half|day1": "7b2a04fb649b3ad63b44df227bab4a84802b65f7294c2cb2f28d5efa44dda9ce",
+    "warm|half|day30": "f7ca91202608024f0f981f27941e7b66b8209e759b9e6e074a64567ca81e28cb",
+    "warm|none|day1": "8ca81f4959301f3874ddd772d7506d3025db6540c4cacb4661cea2b856586cae",
+    "warm|none|day30": "448bffca06cdbd7042bde445f0feca64ee25ef16b5aa375f0cefaedb7e5c449c"
+  },
+  "welcome": {
+    "aurora": "d23a96ef3109b67f713db933c85da801375f8a64a9ad397928141d3e74f8c8a3",
+    "funnel": "a3868befd41b483626e4577fa85a03609e434202c46b2b8a4d43b8f528855650",
+    "funnel-grove": "61fea2746cd2824fc849ceabdc52a9f2219671834bd6cf9cc507846d70a6ace1",
+    "marquee": "96609d21cec768d6364c67adc272aab9aa318b765d5915c494ac230a44c6ae53",
+    "mosaic": "1e3b4e01c05b99eb1f7ff3fe62e3a59de582d14201a3c7e8ffd5beeab51292e0"
+  }
+}
