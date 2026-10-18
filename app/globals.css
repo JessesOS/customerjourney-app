@@ -825,6 +825,7 @@
 .jm-ov-arrow.is-down { flex: 0 0 18px; width: 2px; height: 18px; align-self: center; }
 .jm-ov-arrow.is-down::after { right: -4px; top: auto; bottom: -3px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid var(--pj-faint); border-bottom: 0; }
 .jm-ov-arrow.is-down > i { left: -2px; top: 0; animation-name: jmDrop; }
+.jm-ov-arrow.is-up { transform: rotate(180deg); }
 @keyframes jmRun { 0% { left: 0; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { left: calc(100% - 6px); opacity: 0; } }
 @keyframes jmDrop { 0% { top: 0; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { top: calc(100% - 6px); opacity: 0; } }
 

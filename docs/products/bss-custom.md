@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.15` |
+| Version | `2026-10-18.16` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 30 days to go-live |
 | Client steps | 23 (2 client only, 0 hidden in the portal) |
@@ -57,13 +57,11 @@ Organic and referral leads, from the first click to a booked call. Where they co
 1. **They take the Book a Call quiz** (your lead). Your six questions, then their name and email. We save their answers straight away, even if they don't book, so nobody slips through. Their source stays with them too: YouTube, a partner, the checklist, and so on.
    - **A good fit:** Goes straight on to choose a time.
    - **Not a fit yet:** The same two answers as today lead to your not-qualified page, then one email with free resources: your podcast, the Security Score and the checklist.
-   - _To confirm:_ Which of the five suggested quiz improvements you want. (Your review page (question 7))
-2. **They book in Calendly** (your lead). Calendly opens inside the quiz with their name and email filled in, and your five-day booking window stays. When they book, they land on your call-booked page, and their answers sit on their contact for the call.
+2. **They book in Calendly** (your lead). Calendly opens inside the quiz with their name and email filled in, and your five-day booking window stays. Calendly connects into GoHighLevel, so when they book, they land on your call-booked page and their answers sit on their contact for the call.
    - page: Your call-booked page
    - alert: You (or their coach): new booking, with a short summary of their answers
-   - _To confirm:_ Calendly or GoHighLevel's own booking, and which one sends the confirmations and reminders, so nobody gets them twice. (We'll recommend one after a quick check)
 3. **Before the call: confirmation, warm-ups and reminders**. Timed around when they booked, so nothing arrives late or in a burst. Book for tomorrow, and they get the confirmation and the 1-hour reminder only. Reschedule, and the reminders move. Cancel, and they get a "want a new time?" message two hours later.
-   - Booked three or more days ahead: Booked, Confirmation (email and text) → 2 days before, Why the call is worth it → 1 day before, How to prepare → 24 hours, Reminder email → 1 hour, Text with the Zoom link → The call, Clarity Call
+   - Booked three or more days ahead: Booked, Confirmation (email and text) → 2 days before, Why the call is worth it (email) → 1 day before, How to prepare (email) → 24 hours, Reminder email → 1 hour, Text with the Zoom link → The call, Clarity Call (on Zoom)
 4. **Didn't book? A gentle nudge, then six emails**. If they finish the quiz but don't book: a "pick a time" email after an hour, a text the next day, and a last email the day after. Then six emails over two weeks, opening differently for YouTube viewers, partner referrals, checklist downloads and Security Score results. Everything stops the moment they book or reply.
    - New-lead emails, over two weeks: Day 0, Welcome → Day 2, Why self-custody feels hard → Day 4, How the path works → Day 7, People who've done it → Day 10, Common doubts → Day 14, Book your Clarity Call
 5. **The Clarity Call** (you). You or your coach see their answers and where they came from before the call. Afterwards you mark how it went, and the right follow-up starts on its own.
@@ -71,8 +69,7 @@ Organic and referral leads, from the first click to a booked call. Where they co
    - **Didn't show:** A rebook text 15 minutes later, then two emails over three days.
    - **Thinking about it:** Three emails over a week: common questions, a client story, and "the door's open".
    - **Waiting on payment:** A reminder the next day, a friendly text after three days, and an alert for you to call after a week.
-   - _To confirm:_ How you take payment after a call. (Your answers in "Answer a few questions")
-6. **Partner referrals: the same journey, credited to the partner**. Leads from a partner's page take the same quiz, booking and emails. The partner stays attached from their link to a paying client, so you can see each partner's leads, calls and clients.
+6. **Partner referrals: the same journey, with the partner on record**. Leads from a partner's page take the same quiz, booking and emails. Each one keeps the name of the partner who sent them, all the way to becoming a client, so you can see which partners bring you leads, calls and clients. Paying your partners stays as you do it today.
    - _To confirm:_ How partners are added, tracked and paid today. (Your answers in "Answer a few questions")
 
 Ends with: A booked Clarity Call, with their answers ready for you.
@@ -86,7 +83,7 @@ Every Thursday at 5:00 pm Brisbane time, on repeat. Where they come from: Your w
    - email: Your place is confirmed: calendar links and their private joining link
    - text: A short confirmation (if they agreed to texts)
 2. **Leading up to the session**. One email a day: useful value from your four-step roadmap, plus a reminder to attend. Late sign-ups only get the days that are left, never a pile of catch-up emails. Up to three texts per session.
-   - From sign-up to the live session: Sign-up, Confirmed, with the joining link → Daily, Build your setup → Daily, Use it with confidence → Daily, Protect yourself and your family → Daily, Fund with confidence → Day before, Reminder text → 1 hour, Join now (email and text)
+   - From sign-up to the live session: Sign-up, Confirmed, with the joining link (email) → Daily, Build your setup (email) → Daily, Use it with confidence (email) → Daily, Protect yourself and your family (email) → Daily, Fund with confidence (email) → Day before, Reminder (text) → 1 hour, Join now (email and text)
 3. **After the session**. Three to four days of follow-up, each leading to a free Clarity Call.
    - **Attended:** Four emails over three days: the key takeaways, then an invitation to book a Clarity Call.
    - **Missed it:** Four emails over three days: the replay (if you offer one), the next session, and a Clarity Call.
@@ -138,10 +135,8 @@ Ends with: A new client, welcomed and booked in with their coach.
 - Your implementation coaches (Your answers in "Answer a few questions")
 - Who gets alerts for new leads, hot leads and bookings (Your answers in "Answer a few questions")
 - Where most of your contacts are (this decides how texts are registered) (Your answers in "Answer a few questions")
-- The quiz improvements you want (Your review page (question 7))
 - The webinar's title, first date and length (Your review page (questions 14 to 16))
 - Replays, and for how long (Your review page (question 19))
-- Calendly or GoHighLevel booking, and who sends the reminders (We'll recommend one)
 - A short pre-call form for people who book through a Calendly link directly, skipping the quiz (We'll suggest one in your CRM plan)
 - Which contacts agreed to hear from you ("Check your contacts before we import them")
 

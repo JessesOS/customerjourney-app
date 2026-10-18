@@ -139,12 +139,12 @@ export function JourneyMap({
           </div>
           <span className="jm-ov-arrow" aria-hidden><i /></span>
           <div className="jm-ov-core">
-            <button type="button" className="jm-ov-node is-orange" onClick={() => jump(webinar.j.id)}>
-              <span className="jm-ov-num">{webinar.n}</span>{webinar.j.title}
-            </button>
-            <span className="jm-ov-arrow is-down" aria-hidden><i /></span>
             <button type="button" className="jm-ov-node is-purple is-main" onClick={() => jump(call.j.id)}>
               <span className="jm-ov-num">{call.n}</span>{call.j.title}
+            </button>
+            <span className="jm-ov-arrow is-down is-up" aria-hidden><i /></span>
+            <button type="button" className="jm-ov-node is-orange" onClick={() => jump(webinar.j.id)}>
+              <span className="jm-ov-num">{webinar.n}</span>{webinar.j.title}
             </button>
           </div>
           <span className="jm-ov-arrow" aria-hidden><i /></span>
