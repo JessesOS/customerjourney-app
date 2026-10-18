@@ -1,8 +1,8 @@
 /**
  * Frozen journeys: proof that no client type's portal has changed.
  *
- * For every client type (meta, google, meta-google, bss-meta, respond, bss and
- * an unknown stored type), scripts/fixtures/journeys/<type>.json freezes what
+ * For every client type (meta, google, meta-google, bss-meta, respond, bss,
+ * bss-custom and an unknown stored type), scripts/fixtures/journeys/<type>.json freezes what
  * the portal is built from and shows: steps and wording, every stage render,
  * days, branding, per-step tweaks, voice guides, Ask-AI, String Theory, admin
  * counts and labels, and the portal's server-rendered markup in every look.
@@ -12,8 +12,9 @@
  *
  *   npm run check:journeys                          check (exit 1 on any difference)
  *   npm run check:journeys -- --dump <dir>          write full contracts and markup, to diff two commits
- *   npm run check:journeys -- --write <type…>       re-save (only for a change Jesse approved; bss-meta needs --yes-fin,
- *                                                   and so does _global when Fin's forms, uploads or video in it change)
+ *   npm run check:journeys -- --write <type…>       re-save (only for a change Jesse approved; Fin's types need --yes-fin:
+ *                                                   bss-custom, his live journey, and bss-meta, his rollback. So does
+ *                                                   _global when either type's forms, uploads or video in it change)
  *   npm run check:journeys -- --write-all           first freeze only (refused once any fixture exists)
  *
  * Added 2026-10-17 (Option D, Phase 3), before the portal moved to products/.
@@ -21,7 +22,7 @@
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { CLIENT_TYPES } from "./journeys/contract";
-import { dumpAll, runJourneyChecks, typeFixturesPresent, writeFixtures, type CheckCounts } from "./journeys/run";
+import { dumpAll, fixtureWriteRefusal, runJourneyChecks, typeFixturesPresent, writeFixtures, type CheckCounts } from "./journeys/run";
 
 const args = process.argv.slice(2);
 const isMain = process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1]);
@@ -42,7 +43,8 @@ if (isMain) {
       const types = args.slice(args.indexOf("--write") + 1).filter((a) => !a.startsWith("--"));
       if (!types.length) throw new Error("--write needs one or more client types (or _global)");
       const yesFin = args.includes("--yes-fin");
-      if (types.includes("bss-meta") && !yesFin) throw new Error("bss-meta is Fin's live journey: re-saving it needs --yes-fin, and only for a change Jesse approved");
+      const refusal = fixtureWriteRefusal(types, { yesFin });
+      if (refusal) throw new Error(refusal);
       for (const t of types) console.log(`Re-saving frozen journey for ${t}: only for a change Jesse approved`);
       const written = writeFixtures(types, { yesFin });
       console.log(`Wrote ${written.join(", ")}`);

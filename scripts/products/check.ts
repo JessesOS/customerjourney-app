@@ -53,7 +53,7 @@ import { allSteps, appliesToVariant, dueDaysFor, productForClientType, stepVisib
 import { STAGE_ORDER, type ClientStep, type Product } from "../../products/types";
 import { GHL_SAMPLES, type GlobalContract } from "../journeys/contract";
 import { registryProducer } from "../journeys/registry-producer";
-import { FIXTURE_DIR, finGlobalChanges, guardGlobalWrite, runJourneyChecks, type CheckCounts, type Fixture } from "../journeys/run";
+import { FIN_TYPES, FIXTURE_DIR, finGlobalChanges, finRefusal, fixtureWriteRefusal, guardGlobalWrite, runJourneyChecks, type CheckCounts, type Fixture } from "../journeys/run";
 import { copyLintNotes, indexCurrent, renderProductIndex, renderSheet, scanProductIds, staleSheets } from "./render";
 import { compareJourneys } from "./compare";
 import { codeBoundaries } from "./static-checks";
@@ -608,42 +608,66 @@ function customProof(): string {
   must(ghlFails.some((f) => f.startsWith(`lib/productMapping.ts returns client type "respond", but products/respond is paused`)), `${P}: GHL mapping to a paused product must fail (got ${JSON.stringify(ghlFails)})`);
   must(ghlMappingFailures(productList, ["zz-nowhere"]).some((f) => f.includes(`"zz-nowhere", which no product defines`)), `${P}: GHL mapping to an unknown client type must fail`);
 
-  // G. Fin's form questions, upload steps and intro video are frozen only in
-  // _global.json: re-saving it when they change needs --yes-fin.
+  // G. Fin's types (FIN_TYPES: bss-custom, his live journey, and bss-meta, his
+  // rollback). Re-saving either fixture needs --yes-fin. So does re-saving
+  // _global.json when it would change their form questions, upload steps,
+  // editable steps, intro video or acceptance, which only _global freezes.
   const frozenGlobal = JSON.parse(readFileSync(join(FIXTURE_DIR, "_global.json"), "utf8")) as GlobalContract;
-  const finFixture = (JSON.parse(readFileSync(join(FIXTURE_DIR, "bss-meta.json"), "utf8")) as Fixture).data;
   const refused = (now: GlobalContract, yesFin: boolean): string | null => {
     try { guardGlobalWrite(now, { yesFin }, frozenGlobal); return null; } catch (error) { return error instanceof Error ? error.message : String(error); }
   };
+  // Pinned here too, so dropping a type from FIN_TYPES can't quietly drop its proofs below.
+  must(FIN_TYPES.join(", ") === "bss-custom, bss-meta", `${P}: FIN_TYPES must be bss-custom (Fin's live journey) and bss-meta (his rollback), got ${FIN_TYPES.join(", ")}. Change it only with Jesse's OK`);
   must(finGlobalChanges(frozenGlobal, frozenGlobal).length === 0, `${P}: the frozen _global differs from itself for Fin`);
   must(refused(registryProducer.global(), false) === null, `${P}: today's _global (unchanged) would be refused: ${refused(registryProducer.global(), false)}`);
-  const finForm = Object.keys(finFixture.formSteps)[0];
-  if (!finForm || !frozenGlobal.forms[finForm]) must(false, `${P}: no form on Fin's steps to prove with`);
-  else {
-    const reworded = structuredClone(frozenGlobal);
-    reworded.forms[finForm].sections[0].fields[0].label = "Proof question?";
-    must(finGlobalChanges(reworded, frozenGlobal).some((c) => c.startsWith(`the questions of form ${finForm}`)), `${P}: a reworded question on Fin's form ${finForm} is not seen`);
-    const message = refused(reworded, false);
-    must(message !== null && message.includes("--yes-fin") && message.includes(finForm), `${P}: re-saving _global with Fin's form changed must be refused without --yes-fin (got ${JSON.stringify(message)})`);
-    must(refused(reworded, true) === null, `${P}: --yes-fin must allow it`);
+  const finForms = new Set<string>();
+  for (const ct of FIN_TYPES) {
+    const finFixture = (JSON.parse(readFileSync(join(FIXTURE_DIR, `${ct}.json`), "utf8")) as Fixture).data;
+    for (const id of Object.keys(finFixture.formSteps)) finForms.add(id);
+    // Refused only when the change is seen as this type's, and --yes-fin allows it.
+    const guarded = (now: GlobalContract, seen: string) =>
+      finGlobalChanges(now, frozenGlobal).some((c) => c.startsWith(`${ct}: ${seen}`)) && Boolean(refused(now, false)?.includes("--yes-fin")) && refused(now, true) === null;
+
+    const fixtureRefusal = fixtureWriteRefusal([ct], { yesFin: false });
+    must(fixtureRefusal === finRefusal(ct) && fixtureRefusal.includes("--yes-fin"), `${P}: re-saving Fin's ${ct} fixture must be refused without --yes-fin (got ${JSON.stringify(fixtureRefusal)})`);
+    must(fixtureWriteRefusal([ct], { yesFin: true }) === null, `${P}: --yes-fin must allow re-saving Fin's ${ct} fixture`);
+
+    const finForm = Object.keys(finFixture.formSteps)[0];
+    if (!finForm || !frozenGlobal.forms[finForm]) must(false, `${P}: no form on Fin's ${ct} steps to prove with`);
+    else {
+      const reworded = structuredClone(frozenGlobal);
+      reworded.forms[finForm].sections[0].fields[0].label = "Proof question?";
+      must(guarded(reworded, `the questions of form ${finForm}`) && Boolean(refused(reworded, false)?.includes(finForm)), `${P}: re-saving _global with Fin's ${ct} form ${finForm} reworded must be refused without --yes-fin (got ${JSON.stringify(refused(reworded, false))})`);
+    }
+    const finUpload = finFixture.visibleIds.find((id) => frozenGlobal.uploadStepIds.includes(id));
+    if (finUpload) {
+      const noUpload = structuredClone(frozenGlobal);
+      noUpload.uploadStepIds = noUpload.uploadStepIds.filter((id) => id !== finUpload);
+      must(guarded(noUpload, "his upload steps"), `${P}: losing Fin's ${ct} upload step ${finUpload} must be refused without --yes-fin`);
+    }
+    const finEditable = finFixture.visibleIds.find((id) => frozenGlobal.adminForms.editableStepIds.includes(id));
+    if (finEditable) {
+      const noEditable = structuredClone(frozenGlobal);
+      noEditable.adminForms.editableStepIds = noEditable.adminForms.editableStepIds.filter((id) => id !== finEditable);
+      must(guarded(noEditable, "his steps with editable content"), `${P}: losing Fin's ${ct} editable step ${finEditable} must be refused without --yes-fin`);
+    }
+    const finMedia = finFixture.introVideo?.src.replace("/api/media/", "");
+    if (finMedia && frozenGlobal.media[finMedia]) {
+      const noMedia = structuredClone(frozenGlobal);
+      delete noMedia.media[finMedia];
+      must(guarded(noMedia, "his intro video"), `${P}: losing Fin's ${ct} intro video from the media list must be refused without --yes-fin`);
+    }
+    const notAccepted = structuredClone(frozenGlobal);
+    notAccepted.acceptedClientTypes = notAccepted.acceptedClientTypes.filter((t) => t !== ct);
+    must(guarded(notAccepted, "no longer an accepted client type"), `${P}: Fin's ${ct} no longer accepted must be refused without --yes-fin`);
   }
-  const otherForm = Object.keys(frozenGlobal.forms).find((id) => !(id in finFixture.formSteps));
-  if (otherForm) {
+  must(fixtureWriteRefusal(["respond"], { yesFin: false }) === null, `${P}: re-saving a fixture that isn't Fin's must not need --yes-fin`);
+  const otherForm = Object.keys(frozenGlobal.forms).find((id) => !finForms.has(id));
+  if (!otherForm) must(false, `${P}: no form outside Fin's types to prove with`);
+  else {
     const other = structuredClone(frozenGlobal);
     other.forms[otherForm].sections[0].fields[0].label = "Proof question?";
     must(refused(other, false) === null, `${P}: a change to ${otherForm} (not Fin's) must not need --yes-fin`);
-  }
-  const finUpload = finFixture.visibleIds.find((id) => frozenGlobal.uploadStepIds.includes(id));
-  if (finUpload) {
-    const noUpload = structuredClone(frozenGlobal);
-    noUpload.uploadStepIds = noUpload.uploadStepIds.filter((id) => id !== finUpload);
-    must(refused(noUpload, false)?.includes("his upload steps"), `${P}: losing Fin's upload step ${finUpload} must be refused without --yes-fin`);
-  }
-  const finMedia = finFixture.introVideo?.src.replace("/api/media/", "");
-  if (finMedia && frozenGlobal.media[finMedia]) {
-    const noMedia = structuredClone(frozenGlobal);
-    delete noMedia.media[finMedia];
-    must(refused(noMedia, false)?.includes("his intro video"), `${P}: losing Fin's intro video from the media list must be refused without --yes-fin`);
   }
 
   // H. Moving a client: portalJourneyFor(old) against (new), as --compare prints it.
@@ -660,7 +684,7 @@ function customProof(): string {
   try { compareJourneys(reg, "meta", "zz-nowhere"); } catch (error) { unknownType = error instanceof Error ? error.message : String(error); }
   must(unknownType?.includes("zz-nowhere"), `${P}: --compare with an unknown client type must throw`);
 
-  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new; a new timeline notes tasks and String Theory dates that no longer fit; GHL to a paused or unknown type fails; re-saving _global over Fin's forms, uploads or video needs --yes-fin; --compare lists a move's changes`;
+  return `zz-proof (Scale Meta, ${visibleCount} steps, ${proof.teamTasks.length} tasks, 21 days) registers, renders, seeds and gets a sheet; Scale unchanged; draft gated by PRODUCT_DRAFTS; ${mistakes} mistakes throw; id clashes across products fail; base-variant tweaks inherited or left out, on record; stage and role changes shown old → new; a new timeline notes tasks and String Theory dates that no longer fit; GHL to a paused or unknown type fails; re-saving Fin's fixtures (${FIN_TYPES.join(", ")}) or his forms, uploads, editable steps or video in _global needs --yes-fin; --compare lists a move's changes`;
 }
 
 // ── 5. Version lock ───────────────────────────────────────────────────────

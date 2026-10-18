@@ -21,6 +21,19 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const FIXTURE_DIR = join(ROOT, "scripts", "fixtures", "journeys");
 const FIN_FIXTURE = join(ROOT, "scripts", "fixtures", "fin-bss-meta-journey.json");
 const GLOBAL = "_global";
+/**
+ * Fin's client types. Re-saving their fixtures, or their parts of _global,
+ * needs --yes-fin. bss-custom has been his live journey since 2026-10-18.
+ * bss-meta was his before that and is his rollback, so it stays guarded
+ * until it's retired.
+ */
+export const FIN_TYPES = ["bss-custom", "bss-meta"] as const;
+export const isFinType = (ct: string): boolean => (FIN_TYPES as readonly string[]).includes(ct);
+/** Why re-saving one of Fin's fixtures is refused without --yes-fin. */
+export function finRefusal(ct: string): string {
+  const role = ct === "bss-custom" ? "Fin's live journey" : "Fin's old journey and his rollback";
+  return `${ct} is ${role}: re-saving it needs --yes-fin, and only for a change Jesse approved`;
+}
 /** Renders kept in full in each fixture, so a reader can see what a hash stands for. */
 const RENDER_SAMPLES = ["none@day1", "all@day30"];
 
@@ -168,31 +181,38 @@ export function crossCheckFin(): string[] {
 }
 
 /**
- * Parts of Fin's portal (bss-meta) that only _global.json freezes, not
- * bss-meta.json: the questions of every form his visible steps use, his intro
- * video's media entry, which of his steps take uploads or editable content,
- * and that bss-meta is still accepted. What would change from `frozen` to
- * `now` (both as stored: canonical). Empty = Fin's parts are unchanged.
+ * Parts of Fin's portals (each of FIN_TYPES) that only _global.json freezes,
+ * not the type's own fixture: the questions of every form its visible steps
+ * use, its intro video's media entry, which of its steps take uploads or
+ * editable content, and that the type is still accepted. What would change
+ * from `frozen` to `now` (both as stored: canonical), each line starting with
+ * the type. Empty = Fin's parts are unchanged.
  */
 export function finGlobalChanges(now: GlobalContract, frozen: GlobalContract): string[] {
-  if (!existsSync(fixturePath("bss-meta"))) return ["no bss-meta fixture to read Fin's steps from"];
-  const fin = readJson<Fixture>(fixturePath("bss-meta")).data;
   const out: string[] = [];
-  for (const [formId, stepId] of Object.entries(fin.formSteps)) {
-    const diff = firstDiff(now.forms[formId] ?? null, frozen.forms[formId] ?? null, `forms.${formId}`);
-    if (diff) out.push(`the questions of form ${formId} (his step ${stepId}): ${diff}`);
+  for (const ct of FIN_TYPES) {
+    if (!existsSync(fixturePath(ct))) {
+      out.push(`${ct}: no fixture to read Fin's steps from`);
+      continue;
+    }
+    const fin = readJson<Fixture>(fixturePath(ct)).data;
+    const say = (line: string) => out.push(`${ct}: ${line}`);
+    for (const [formId, stepId] of Object.entries(fin.formSteps)) {
+      const diff = firstDiff(now.forms[formId] ?? null, frozen.forms[formId] ?? null, `forms.${formId}`);
+      if (diff) say(`the questions of form ${formId} (his step ${stepId}): ${diff}`);
+    }
+    const src = fin.introVideo?.src;
+    if (src && src.startsWith("/api/media/")) {
+      const name = src.slice("/api/media/".length);
+      const diff = firstDiff(now.media[name] ?? null, frozen.media[name] ?? null, `media.${name}`);
+      if (diff) say(`his intro video: ${diff}`);
+    }
+    const his = (ids: string[]) => fin.visibleIds.filter((id) => ids.includes(id)).join(", ") || "none";
+    if (his(now.uploadStepIds) !== his(frozen.uploadStepIds)) say(`his upload steps: now ${his(now.uploadStepIds)} vs frozen ${his(frozen.uploadStepIds)}`);
+    const editable = (g: GlobalContract) => his(g.adminForms.editableStepIds);
+    if (editable(now) !== editable(frozen)) say(`his steps with editable content: now ${editable(now)} vs frozen ${editable(frozen)}`);
+    if (!now.acceptedClientTypes.includes(ct)) say("no longer an accepted client type");
   }
-  const src = fin.introVideo?.src;
-  if (src && src.startsWith("/api/media/")) {
-    const name = src.slice("/api/media/".length);
-    const diff = firstDiff(now.media[name] ?? null, frozen.media[name] ?? null, `media.${name}`);
-    if (diff) out.push(`his intro video: ${diff}`);
-  }
-  const his = (ids: string[]) => fin.visibleIds.filter((id) => ids.includes(id)).join(", ") || "none";
-  if (his(now.uploadStepIds) !== his(frozen.uploadStepIds)) out.push(`his upload steps: now ${his(now.uploadStepIds)} vs frozen ${his(frozen.uploadStepIds)}`);
-  const editable = (g: GlobalContract) => his(g.adminForms.editableStepIds);
-  if (editable(now) !== editable(frozen)) out.push(`his steps with editable content: now ${editable(now)} vs frozen ${editable(frozen)}`);
-  if (!now.acceptedClientTypes.includes("bss-meta")) out.push("bss-meta is no longer an accepted client type");
   return out;
 }
 
@@ -206,17 +226,24 @@ export function guardGlobalWrite(now: GlobalContract, options: { yesFin: boolean
   if (!stored) return;
   const changes = finGlobalChanges(plain(now), stored);
   if (changes.length) {
-    throw new Error(`_global.json also freezes parts of Fin's portal (bss-meta), and re-saving it would change them:\n  - ${changes.join("\n  - ")}\nRe-saving _global then needs --yes-fin, and only for a change Jesse approved`);
+    throw new Error(`_global.json also freezes parts of Fin's portals (${FIN_TYPES.join(", ")}), and re-saving it would change them:\n  - ${changes.join("\n  - ")}\nRe-saving _global then needs --yes-fin, and only for a change Jesse approved`);
   }
+}
+
+/** Why writeFixtures would refuse these types before writing anything (null = it wouldn't). Writes nothing itself. */
+export function fixtureWriteRefusal(types: string[], options: { yesFin: boolean }): string | null {
+  for (const ct of types) {
+    if (ct !== GLOBAL && !(CLIENT_TYPES as readonly string[]).includes(ct)) return `${ct} is not one of the frozen client types (${CLIENT_TYPES.join(", ")})`;
+    if (isFinType(ct) && !options.yesFin) return finRefusal(ct);
+  }
+  return null;
 }
 
 /** Writes the fixtures for these client types (and `_global`) from the first producer. Checks every type first: nothing is written if one is refused. */
 export function writeFixtures(types: string[], options: { yesFin: boolean }): string[] {
   const producer = PRODUCERS[0];
-  for (const ct of types) {
-    if (ct !== GLOBAL && !(CLIENT_TYPES as readonly string[]).includes(ct)) throw new Error(`${ct} is not one of the frozen client types (${CLIENT_TYPES.join(", ")})`);
-    if (ct === "bss-meta" && !options.yesFin) throw new Error("bss-meta is Fin's live journey: add --yes-fin, and only for a change Jesse approved");
-  }
+  const refusal = fixtureWriteRefusal(types, options);
+  if (refusal) throw new Error(refusal);
   const global = types.includes(GLOBAL) ? producer.global() : null;
   if (global) guardGlobalWrite(global, options);
   mkdirSync(FIXTURE_DIR, { recursive: true });

@@ -346,7 +346,29 @@ Jesse approved the go-live package ("I'm ready for you to deploy"), plus switchi
 
 **Next:**
 - Jesse sends Fin his link with `?welcome=1` on the end (his browser already saw the old welcome).
-- Extend the `--yes-fin` guard (`scripts/check-journeys.ts`, `scripts/journeys/run.ts`) to cover `bss-custom` and its forms in `_global`. Until then CLAUDE.md asks for Jesse's OK.
+- ~~Extend the `--yes-fin` guard to cover `bss-custom` and its forms in `_global`.~~ Done the same day (see below).
 - Team board on prod: Access on a team hostname, the allconvos.ai DNS move, then `TEAM_BOARD`.
 - Ask Jesse: update Fin's pack to the 30-day timeline before switching the panel back on. Alerts by email or WhatsApp, not Slack.
 - Retire `bss-meta` (JAT is the last client on it). Tidy the staging demos ("Demo — BSS custom", "Fin Rehearsal").
+
+## The `--yes-fin` guard covers bss-custom (2026-10-18)
+
+Jesse asked for it after the go-live. These are check scripts only: no deploy and no prod data.
+
+- **One list of Fin's types:** `FIN_TYPES` in `scripts/journeys/run.ts`, holding `bss-custom` (live) and `bss-meta` (his rollback, guarded until it's retired).
+  - Re-saving either fixture needs `--yes-fin`.
+  - So does re-saving `_global` when it would change either type's form questions, upload steps, editable steps, intro video or acceptance.
+  - The refusal rule is one pure function, `fixtureWriteRefusal`, used by both the CLI and `writeFixtures`. The test can call it without any chance of writing a fixture.
+- **`products:check` (check 3, section G)** proves every refusal for both types, and that `--yes-fin` allows each one. Changes outside Fin's types (Respond's form, the respond fixture) still need no flag. The list itself is pinned, so dropping a type can't quietly drop its proofs.
+- **Checked by breaking it on purpose** (temporary edits, restored byte for byte):
+  - the `_global` guard skipping bss-custom gave 4 failures (form, upload, editable step, acceptance);
+  - the fixture guard removed gave 2 failures;
+  - bss-custom dropped from the list was caught by the pin.
+- **The real commands:**
+  - `check:journeys -- --write bss-custom` and `--write bss-meta` are refused;
+  - `--write _global`, with Fin's first intake question temporarily reworded, is refused and names the question.
+  - No fixture was written.
+- **Still not frozen by check:journeys:**
+  - the journey map's wording and the app icon (only the version lock covers them);
+  - the journey map notes form (`bss-journey-map-notes-v1`), which nothing freezes.
+  - Closing this means adding them to the frozen contract, then one re-save of every fixture, which needs Jesse's OK.
