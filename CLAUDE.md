@@ -15,6 +15,7 @@ This one session owns the portal and the back office. GHL automation belongs to 
 ## A real client is live: protect him
 
 - **Fin Creighton** (Bitcoin Success School) has used the live portal since 2026-10-16. His product is `bss-meta` ("BSS Meta ads only"): the Scale journey for Meta only, plus the variant's notes and hides in `products/scale/index.ts`.
+- **Since 2026-10-18 his link shows a holding page** ("A new version is on its way", `app/components/portal/PortalPausedNotice.tsx`): his record's `journey_state` is `paused`. He moves to the custom product `bss-custom` (branch `team-board`) on the same link. Undo: set `journey_state` back to `active`.
 - **Every deploy to the live worker needs Jesse's explicit OK.** Send it as a package: the commits, the checks run, the version currently live, a D1 time-travel bookmark, and the rollback command.
 - **`npm run check:fin` and `npm run check:journeys` must pass before every commit and deploy.** check:fin proves everything Fin's portal is built from is unchanged; check:journeys does the same for every client type, Fin's included. Only re-save a baseline (`-- --write`) for a change Jesse approved.
 - **Fin's form questions live in `_global.json`**, not in `bss-meta.json` (so do his upload steps and his intro video's media entry). `check:journeys -- --write _global` refuses to re-save them changed without `--yes-fin`.
