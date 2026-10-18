@@ -22,6 +22,7 @@ import { OnboardingFormStepper } from "@/app/components/portal/OnboardingFormSte
 import { MicButton } from "@/app/components/portal/MicButton";
 import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
+import { PortalAssistant } from "@/app/components/portal/PortalAssistant";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
 import { StageGuide } from "@/app/components/portal/StageGuide";
@@ -640,6 +641,10 @@ export function ClientPortalExperience({
         />
       ) : null}
       {!showWelcome && !introPlaying && showIncentive && !journey.hidesIncentive && <IncentiveModal onClose={dismissIncentive} />}
+      {/* "Ask Jesse": only for products that switch it on (BSS custom first). */}
+      {journey.assistant && portalToken && !showWelcome && !introPlaying && (
+        <PortalAssistant portalToken={portalToken} firstName={name.trim().split(/\s+/)[0] ?? ""} />
+      )}
       {/* Presentation switch: one small dot, bottom right, demo route only. */}
       {isDemo && (
         <button

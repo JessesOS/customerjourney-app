@@ -169,4 +169,6 @@ export type PortalJourney = {
   stageGuides: Record<string, StageGuide>; // only stages that have one
   askItems: Record<string, AskItem[]>;     // only stages that have items
   stringPlan: StringPlan | null;
+  /** The "Ask Jesse" help panel is on. Absent (not false) when off, so other products' journeys are unchanged. */
+  assistant?: true;
 };

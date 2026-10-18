@@ -494,6 +494,7 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
       if (f.receptionistScriptStep && stepIds.has(f.receptionistScriptStep)) features.receptionistScriptStep = f.receptionistScriptStep;
       if (f.landingPreviewSteps) features.landingPreviewSteps = f.landingPreviewSteps.filter((id) => stepIds.has(id));
       if (f.nonBlockingSteps) features.nonBlockingSteps = f.nonBlockingSteps.filter((id) => stepIds.has(id));
+      if (f.assistant) features.assistant = true;
     }
   } else {
     features = p.features ? structuredClone(p.features) : undefined;

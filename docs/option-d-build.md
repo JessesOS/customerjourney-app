@@ -186,6 +186,31 @@ The first real custom product. Jesse approved it ("go ahead matey"): Fin's side 
 - "Answer a few questions" is now **type or talk**. Fin chooses the guided form (`bss-custom-intake-v1` in `lib/onboardingForm.ts`: 15 questions, one per screen, a "Not sure yet" option on every choice) or a spoken interview (11 questions in the Scale interview's voice). Either one finishes the step, and he can switch at any time. Portal code: a step with both `formId` and `interview` shows the choice first; no other step has both, so `check:journeys` renders are unchanged. `_global` re-saved: only the new form was added. Version `2026-10-18.2`.
 - Then the voice option was hidden (Jesse: he'll first rework the ElevenLabs prompt for a free-flowing conversation). The questions are saved as `bssCustomInterview` in `products/bss-custom/client-steps.ts`, and the clips stay in `public/portal/voice/`. Add `interview: bssCustomInterview` back to bring the choice back. Version `2026-10-18.3`.
 
+### Ask Jesse: the client's help panel (branch `team-board`, 2026-10-18)
+
+Jesse asked for a help widget in Fin's portal: ask a question (typed or spoken), get an answer that knows his project, or raise a support request. Plan in `~/.claude/plans/temporal-waddling-wave.md`. Jesse chose a reviewed knowledge pack (not a live Gmail/WhatsApp feed: those hold other clients, pricing and RT Digital), text plus speak-to-type for now, and requests as board tasks.
+
+- **Data:** migration `0016_portal_assistant`, CREATE only (`portal_assistant_packs`, `portal_messages`).
+- **Server:**
+  - `lib/assistantStore.ts`;
+  - portal routes `assistant` (GET history, POST question) and `assistant/requests`;
+  - team routes `tasks/[taskId]/reply` and `clients/[id]/assistant`.
+- **Model and limits:** `claude-opus-5-5` at low effort, with `fallbacks: "default"` (`@anthropic-ai/sdk` added). 30 questions an hour, 10 requests a day.
+- **Portal:** `PortalAssistant.tsx`, shown only when the product sets `portal.features.assistant`. Only `bss-custom` (version `2026-10-18.4`) does, so every frozen journey is unchanged.
+- **Board:**
+  - support tasks get "Reply to the client";
+  - the client board shows the client's chat under Activity;
+  - `createCustomTask` takes a category, and `TeamActor.via` gains `"portal"`.
+- **Pack:** Fin's draft is in the BSS client folder (`knowledge/fin-assistant-pack.md`), for Jesse's review. It's loaded by `scripts/assistant-pack.mjs`.
+- **Verified locally** (phone and desktop):
+  - the 404 for products without it;
+  - the fallback answer without a key;
+  - a request becoming a board task;
+  - a team reply in the panel with the unread dot;
+  - the rate limit at 30 an hour;
+  - a non-support task refusing replies.
+- **Not yet verified:** real answers. Staging and local have no `ANTHROPIC_API_KEY` (prod has one).
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:

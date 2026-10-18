@@ -255,3 +255,28 @@ export const teamTaskEvents = sqliteTable(
   },
   (table) => [index("team_task_events_client_idx").on(table.clientId, table.createdAt), index("team_task_events_task_idx").on(table.taskId)],
 );
+
+// ---- Portal assistant ("Ask Jesse", 2026-10-18). Additive; nothing above changes. ----
+
+/** The reviewed knowledge pack the assistant answers from: one per client, loaded by scripts/assistant-pack.mjs. */
+export const portalAssistantPacks = sqliteTable("portal_assistant_packs", {
+  clientId: text("client_id").primaryKey(),
+  content: text("content").notNull(),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedBy: text("updated_by").notNull().default(""),
+});
+
+/** The client's side panel: their questions, the assistant's answers, and the team's replies to their requests. */
+export const portalMessages = sqliteTable(
+  "portal_messages",
+  {
+    id: integer("id").primaryKey(),
+    clientId: text("client_id").notNull(),
+    role: text("role").notNull(), // client | assistant | team
+    body: text("body").notNull(),
+    /** The board task a support request created, on the request and on each team reply to it. */
+    requestTaskId: integer("request_task_id"),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [index("portal_messages_client_idx").on(table.clientId, table.createdAt), index("portal_messages_request_idx").on(table.requestTaskId)],
+);

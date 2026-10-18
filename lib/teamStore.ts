@@ -342,7 +342,7 @@ export async function updateTeamTask(taskId: number, patch: TaskPatch, actor: Te
 
 export async function createCustomTask(
   clientId: string,
-  input: { title: string; stageId: string; stepId?: string | null; role?: string; priority?: string; dueWindow?: string; notes?: string },
+  input: { title: string; stageId: string; stepId?: string | null; role?: string; priority?: string; dueWindow?: string; notes?: string; category?: string },
   actor: TeamActor,
 ): Promise<{ ok: true; id: number } | { ok: false; error: string; status: number }> {
   const db = getDb();
@@ -360,7 +360,7 @@ export async function createCustomTask(
     .insert(teamTasks)
     .values({
       clientId, templateId, productVersion: board.productVersion, isCustom: true, title: title.slice(0, 2000), notes: (input.notes ?? "").slice(0, 20000),
-      stageId: input.stageId || "onboarding", category: "Added by the team", stepId: input.stepId || null, role: input.role ?? "",
+      stageId: input.stageId || "onboarding", category: input.category?.trim() || "Added by the team", stepId: input.stepId || null, role: input.role ?? "",
       assigneeEmail: null, status: "queued", priority, dueWindow: input.dueWindow ?? "", sortOrder: Math.max(0, ...existing.map((e) => e.sortOrder)) + 1,
       createdAt: stamp, updatedAt: stamp,
     })

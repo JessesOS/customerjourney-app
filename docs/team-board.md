@@ -48,6 +48,29 @@ All live under `/admin`, with a menu across the top.
 - **Auto-assign:** a task is assigned on start only when exactly one active team member covers its role. Otherwise it waits, unassigned, showing its role.
 - **Paused products can't start a board.** BSS Launchpad (`bss`, the old 41-step custom journey) is paused. Since 2026-10-17 (Phase 3) the Board shows `bss` clients with their BSS client steps and 42 days, read from `products/bss/`. Their board can't start: Start board says "BSS Launchpad (custom journey) is paused." Fin is on `bss-meta` (Scale), not `bss`.
 
+## Ask Jesse: the client's help panel (2026-10-18)
+
+A sound-wave button, bottom right of the client's portal, opens a side panel. It's switched on per product (`portal.features.assistant`); today only `bss-custom` has it.
+
+- **Ask:**
+  - The client types, or speaks with the mic, and gets an answer from Claude (`claude-opus-5-5`, low effort, with server-side fallbacks).
+  - It answers **only** from the client's reviewed knowledge pack and their live progress. Rules: no RT Digital, no passwords or seed phrases, no financial/legal/tax advice, no pricing or contract talk, and say so when unsure.
+  - Limited to 30 questions an hour per client.
+  - Without a pack or an `ANTHROPIC_API_KEY`, it offers "Send to Jesse" instead.
+- **Requests:**
+  - "Send to Jesse" creates a task on the client's board: category **Support requests**, high priority, "Reply within 1 business day", with the client's details in the notes. It also pings Slack (`PORTAL_SLACK_WEBHOOK`).
+  - Without a board, it's Slack only.
+  - Limited to 10 requests a day.
+- **Replies:** a support task's drawer has **Reply to the client**. The reply shows in the client's panel under that request, with a dot on the button until they open it.
+- **The client's chat** shows read-only on their board, under Activity ("Ask Jesse chat").
+- **Knowledge pack:**
+  - A Markdown file Jesse reviews (Fin's is `~/Master/Side_Projects/Clients/bitcoinsuccessschool/knowledge/fin-assistant-pack.md`).
+  - Loaded with `node scripts/assistant-pack.mjs --env local|staging|prod --client <client id> --file <pack.md>` (prod needs `--yes-prod` and Jesse's OK; `--show` prints what's loaded).
+  - The script refuses a pack that mentions RT Digital.
+  - Never put prices, GST, contract terms, internal notes or other clients in a pack.
+- **Data:** `portal_assistant_packs` and `portal_messages` (migration `0016_portal_assistant`, CREATE only).
+- **Code:** `lib/assistantStore.ts`, `app/api/portal/[token]/assistant/` (GET, POST, `requests/`), `app/api/admin/team/tasks/[taskId]/reply`, `app/api/admin/team/clients/[id]/assistant`, `app/components/portal/PortalAssistant.tsx`.
+
 ## Sign-in (`lib/teamAuth.ts`, `lib/accessJwt.ts`)
 
 1. **Cloudflare Access:** the signed `Cf-Access-Jwt-Assertion` token is verified (RS256, audience, issuer, expiry). The email must be an active member on the Team page, or `OWNER_EMAIL`.

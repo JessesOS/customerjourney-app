@@ -161,6 +161,7 @@ export function createRegistry(products: readonly Product[]) {
       askItems,
       stringPlan: v.stringPlan ?? null,
     };
+    if (features.assistant) journey.assistant = true;
     if (byType.has(clientType)) journeys.set(clientType, journey);
     return journey;
   }

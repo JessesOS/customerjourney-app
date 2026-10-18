@@ -25,7 +25,8 @@ export type TeamActor = {
   name: string;
   isAdmin: boolean;
   roles: string[];
-  via: "access" | "local" | "code";
+  /** "portal": a client acting from their own portal (a support request), never a team member. */
+  via: "access" | "local" | "code" | "portal";
 };
 
 /** The email in a valid Cloudflare Access token on this request, or null. */

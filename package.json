@@ -20,6 +20,7 @@
     "check:team-auth": "tsx scripts/check-team-auth.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.135.0",
     "@elevenlabs/client": "^1.27.0",
     "drizzle-orm": "0.45.2",
     "next": "16.2.6",
@@ -42,11 +43,11 @@
     "eslint-config-next": "16.2.6",
     "react-server-dom-webpack": "19.2.6",
     "tailwindcss": "4.2.1",
+    "tsx": "4.22.1",
     "typescript": "5.9.3",
     "vinext": "0.0.50",
     "vite": "8.0.13",
-    "wrangler": "4.92.0",
-    "tsx": "4.22.1"
+    "wrangler": "4.92.0"
   },
   "type": "module"
 }

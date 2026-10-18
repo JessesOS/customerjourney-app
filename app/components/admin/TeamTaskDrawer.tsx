@@ -57,6 +57,7 @@ export function TeamTaskDrawer({
   const [saving, setSaving] = useState(false);
   const [events, setEvents] = useState<TaskEvent[]>([]);
   const [comment, setComment] = useState("");
+  const [reply, setReply] = useState("");
   const [notes, setNotes] = useState(task.notes);
   const [editingNotes, setEditingNotes] = useState(false);
   const [blocked, setBlocked] = useState(task.blockedReason);
@@ -92,6 +93,13 @@ export function TeamTaskDrawer({
     const { status, data } = await teamFetch(`/api/admin/team/tasks/${task.id}/comments`, { method: "POST", json: { text: comment } });
     if (status === 200 && data.ok) { setComment(""); await loadEvents(); await onChanged(); }
     else setError(data.error ?? "Could not add the comment.");
+  }
+
+  async function replyToClient() {
+    if (!reply.trim()) return;
+    const { status, data } = await teamFetch(`/api/admin/team/tasks/${task.id}/reply`, { method: "POST", json: { text: reply } });
+    if (status === 200 && data.ok) { setReply(""); await loadEvents(); await onChanged(); }
+    else setError(data.error ?? "Could not send the reply.");
   }
 
   async function remove() {
@@ -204,6 +212,14 @@ export function TeamTaskDrawer({
             <div className="tb-notes">{task.notes || "No notes."}</div>
           )}
         </div>
+
+        {task.category === "Support requests" ? (
+          <div className="tb-field">
+            <label className="tb-label" htmlFor="tb-reply">Reply to the client</label>
+            <textarea id="tb-reply" className="tb-textarea" style={{ minHeight: 70 }} value={reply} onChange={(e) => setReply(e.target.value)} placeholder="Shows in their Ask Jesse panel, under this request" />
+            <button type="button" className="tb-btn tb-btn--small tb-btn--primary" style={{ marginTop: 8 }} disabled={!reply.trim()} onClick={() => void replyToClient()}>Send to client</button>
+          </div>
+        ) : null}
 
         <div className="tb-field">
           <label className="tb-label" htmlFor="tb-comment">Comment</label>

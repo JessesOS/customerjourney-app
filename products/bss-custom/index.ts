@@ -19,7 +19,7 @@ import { bssCustomTeamTasks } from "./team-tasks";
 export const bssCustom = defineCustomProduct({
   id: "bss-custom",
   name: "BSS custom (Fin Creighton)",
-  version: "2026-10-18.3",
+  version: "2026-10-18.4",
   status: "draft",
   clientType: "bss-custom",
   label: "BSS custom",
@@ -37,6 +37,9 @@ export const bssCustom = defineCustomProduct({
     brandName: "BSS Launchpad",
     tagline: "Your new website and client system, built step by step.",
     lockedLook: "groveaurora",
+    // "Ask Jesse" help panel (Jesse, 2026-10-18): answers from Fin's reviewed
+    // pack (scripts/assistant-pack.mjs) and takes support requests for the board.
+    features: { assistant: true },
     stringPlan: {
       weeks: 10,
       goLiveDay: 42,

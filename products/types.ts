@@ -139,6 +139,8 @@ export type ProductFeatures = {
   landingPreviewSteps?: string[];
   /** Steps that never stop a client moving on (listed as "missing", not blocking, in journey status). */
   nonBlockingSteps?: string[];
+  /** The "Ask Jesse" help panel: a sound-wave button that answers from the client's reviewed pack and takes support requests. */
+  assistant?: boolean;
 };
 
 /** Product-level portal settings. Anything absent is off. */

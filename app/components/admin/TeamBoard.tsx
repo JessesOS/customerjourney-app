@@ -100,6 +100,7 @@ export function TeamBoard({ clientId }: { clientId: string }) {
   const [overCol, setOverCol] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [chat, setChat] = useState<{ id: number; role: string; body: string; createdAt: string }[]>([]);
 
   useEffect(() => {
     try { const v = window.localStorage.getItem(VIEW_KEY) as View | null; if (v === "steps" || v === "columns" || v === "categories") setView(v); } catch {}
@@ -113,6 +114,9 @@ export function TeamBoard({ clientId }: { clientId: string }) {
     const { status, data: d } = await teamFetch<Board>(`/api/admin/team/clients/${clientId}`);
     if (status === 200 && d.ok) { setData(d); setError(null); }
     else setError(d.error ?? "Could not load the board.");
+    // The client's "Ask Jesse" panel, if their product has one (empty otherwise).
+    const c = await teamFetch<{ messages: { id: number; role: string; body: string; createdAt: string }[] }>(`/api/admin/team/clients/${clientId}/assistant`);
+    if (c.status === 200 && c.data.ok) setChat(c.data.messages);
   }, [clientId]);
   useEffect(() => { void load(); }, [load]);
 
@@ -307,6 +311,19 @@ export function TeamBoard({ clientId }: { clientId: string }) {
                 <div className="tb-faint" style={{ fontSize: 11.5 }}>{timeAgo(e.createdAt)}</div>
               </div>
             ))}
+            {chat.length ? (
+              <>
+                <div className="tb-label" style={{ marginTop: 18 }}>Ask Jesse chat</div>
+                <div className="tb-faint" style={{ fontSize: 12, marginBottom: 6 }}>What the client asked in their portal, and what the assistant answered. Reply to requests from their task.</div>
+                {chat.slice(-30).map((m) => (
+                  <div key={m.id} className="tb-feed-item">
+                    <strong style={{ fontWeight: 600 }}>{m.role === "client" ? (m.body.startsWith("Request: ") ? "Client request" : "Client") : m.role === "team" ? "Team reply" : "Assistant"}</strong>{" "}
+                    <span className="tb-muted" style={{ whiteSpace: "pre-wrap" }}>{m.role === "client" && m.body.startsWith("Request: ") ? m.body.slice(9) : m.body}</span>
+                    <div className="tb-faint" style={{ fontSize: 11.5 }}>{timeAgo(m.createdAt)}</div>
+                  </div>
+                ))}
+              </>
+            ) : null}
           </aside>
         </div>
       )}
