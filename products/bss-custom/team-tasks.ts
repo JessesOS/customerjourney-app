@@ -2552,7 +2552,8 @@ export const bssCustomTeamTasks: TeamTask[] = [
   {
     id: "bssc-c901",
     title: "Export existing contacts (GHL, Supabase tables, any other lists)",
-    stage: "build",
+    stage: "onboarding",
+    step: "bssc-contact-lists",
     category: "CRM: contact import",
     role: "Jesse Allan",
     priority: "high",

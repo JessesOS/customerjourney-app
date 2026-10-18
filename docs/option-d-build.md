@@ -253,6 +253,15 @@ Jesse asked for the three journeys, laid out visually, on Fin's journey approval
 - **"Give Jesse access to your other tools"** no longer asks for Meta (Jesse: not for now). Fin's Ask Jesse pack says the same.
 - Version `2026-10-18.13`.
 
+### "Send us your contact lists" (2026-10-18)
+
+A new weeks 1-2 step after "Give Jesse access to your other tools".
+- **What Fin uploads:** his GoHighLevel export, the list from the app he built, and any other lists. Each is its own CSV or Excel file, so it keeps its source; we combine them and remove duplicates.
+- **How the step works:** how-tos for each export, a privacy note, a "which list is which" box, and Next always available. The box stays open afterwards.
+- **Board:** team task C901 (export existing contacts) moved behind the step.
+- **Uploads** now also take `.xlsx` and `.xls`.
+- Version `2026-10-18.14`.
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:

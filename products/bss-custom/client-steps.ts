@@ -208,6 +208,35 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
+      // Fin's own lists (Jesse, 2026-10-18): his GoHighLevel contacts and the list
+      // from the app he built, kept as separate files so each keeps its source.
+      id: "bssc-contact-lists",
+      title: "Send us your contact lists",
+      detail: "Every list of people you've collected, so we can bring them into your new CRM. Keep each list as its own file: we combine them and remove duplicates for you.",
+      hasUpload: true,
+      uploadOptions: {
+        accept: ".csv,.xlsx,.xls",
+        title: "Upload your contact lists",
+        hint: "One file per list, as many as you have. CSV or Excel.",
+        choose: "Click to choose your lists",
+        chooseMore: "+ Add another list",
+        stayOpen: true,
+      },
+      steps: [
+        "From GoHighLevel: open Contacts, select all, and use Export to download a CSV. If you've given Jesse admin access, we can do this one for you.",
+        "From the app you built: use its export if it has one. If you've given Jesse Supabase access, we can pull it ourselves, so you can skip this.",
+        "Any other lists you have: Bali attendees, merch buyers, old spreadsheets.",
+        "Name each file so we know where it came from.",
+      ],
+      important: "These are your contacts' details. We keep them private and only use them to set up your CRM.",
+      notePrompt: "Which list is which, and anything we should know (optional)",
+      notePlaceholder: "e.g. The GoHighLevel list is the most up to date. Everyone on the Bali list agreed to hear from you.",
+      doneLabel: "Next",
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
       // The map itself is products/bss-custom/journey-map.ts (portal.journeyMap),
       // with its own notes boxes. Findings and the partner plan moved to the
       // CRM plan step: they need a look at Fin's systems first (Jesse, 2026-10-18).

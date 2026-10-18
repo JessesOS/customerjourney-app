@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.13` |
+| Version | `2026-10-18.14` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
-| Client steps | 22 (2 client only, 0 hidden in the portal) |
-| Team tasks | 337 (240 behind a client step, 97 team-only) |
+| Client steps | 23 (2 client only, 0 hidden in the portal) |
+| Team tasks | 337 (241 behind a client step, 96 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/bss-custom/spec.md](../../products/bss-custom/spec.md) |
-| Draft wording | `bssc-bookmark`, `bssc-save-portal`, `bssc-access-site`, `bssc-review-1`, `bssc-assets`, `bssc-questions`, `bssc-access-tools`, `bssc-journey-map`, `bssc-review-2`, `bssc-crm-plan`, `bssc-contacts`, `bssc-signoff`, `bssc-launch-day`, `bssc-test-booking`, `bssc-messages`, `bssc-ai-agent`, `bssc-live-check`, `bssc-walkthrough`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `bssc-bookmark`, `bssc-save-portal`, `bssc-access-site`, `bssc-review-1`, `bssc-assets`, `bssc-questions`, `bssc-access-tools`, `bssc-contact-lists`, `bssc-journey-map`, `bssc-review-2`, `bssc-crm-plan`, `bssc-contacts`, `bssc-signoff`, `bssc-launch-day`, `bssc-test-booking`, `bssc-messages`, `bssc-ai-agent`, `bssc-live-check`, `bssc-walkthrough`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| BSS custom | `bss-custom` | none | where PRODUCT_DRAFTS=1 | 22 | 337 |
+| BSS custom | `bss-custom` | none | where PRODUCT_DRAFTS=1 | 23 | 337 |
 
 ### Portal tweaks by variant
 
@@ -894,6 +894,32 @@ Status on 17 Oct: TODO
 
 </details>
 
+### `bssc-contact-lists` Send us your contact lists
+
+> Every list of people you've collected, so we can bring them into your new CRM. Keep each list as its own file: we combine them and remove duplicates for you.
+
+Portal: upload · note · 4 numbered steps · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bssc-c901` Export existing contacts (GHL, Supabase tables, any other lists) | Jesse Allan | Week 3 (days 15–21) | high | `bssc-a13`, `bssc-a14` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`bssc-c901` Export existing contacts (GHL, Supabase tables, any other lists)**
+
+From the spec: C901 (3.C9 Data imports).
+Task: Export existing contacts from: the existing GHL sub-account; Supabase tables (`qualification_submissions`, `assessment_submissions`, leads, partners, phone enquiries, Bali attendees/bookings, merch buyers, webinar/checklist sign-ups); any other list Fin has
+Who: Us
+Depends on: A13, A14
+When: W3
+Done when: All exports in hand
+Needs from Fin: Access + any other lists
+Status on 17 Oct: BLOCKED
+Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of the journey (A12).
+
+</details>
+
 ### `bssc-journey-map` Approve your customer journey
 
 > How every lead becomes a client, from first contact to onboarding.
@@ -1721,11 +1747,10 @@ Status on 17 Oct: TODO
 | **CRM: integrations** | | | | |
 | `bssc-c811` Zapier or webhooks for anything without a native link | Jesse Allan | As needed | normal |  |
 | **CRM: contact import** | | | | |
-| `bssc-c901` Export existing contacts (GHL, Supabase tables, any other lists) | Jesse Allan | Week 3 (days 15–21) | high | `bssc-a13`, `bssc-a14` |
 | `bssc-c902` Clean: remove duplicates, merge by email/phone, fix formats, drop junk | Jesse Allan | Weeks 3-4 (days 15–28) | normal | `bssc-c901` |
 | `bssc-c903` Tag each contact by source and interest (C4) | Jesse Allan | Week 4 (days 22–28) | normal | `bssc-c902` |
 
-<details><summary>Guidance for the team (19 tasks)</summary>
+<details><summary>Guidance for the team (18 tasks)</summary>
 
 **`bssc-b220` Call booked: Move Fin's photo and the coffee image from hotlinks into the project**
 
@@ -1904,18 +1929,6 @@ Depends on: Audits
 When: As needed
 Done when: Each tested
 Status on 17 Oct: TODO
-Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of the journey (A12).
-
-**`bssc-c901` Export existing contacts (GHL, Supabase tables, any other lists)**
-
-From the spec: C901 (3.C9 Data imports).
-Task: Export existing contacts from: the existing GHL sub-account; Supabase tables (`qualification_submissions`, `assessment_submissions`, leads, partners, phone enquiries, Bali attendees/bookings, merch buyers, webinar/checklist sign-ups); any other list Fin has
-Who: Us
-Depends on: A13, A14
-When: W3
-Done when: All exports in hand
-Needs from Fin: Access + any other lists
-Status on 17 Oct: BLOCKED
 Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of the journey (A12).
 
 **`bssc-c902` Clean: remove duplicates, merge by email/phone, fix formats, drop junk**

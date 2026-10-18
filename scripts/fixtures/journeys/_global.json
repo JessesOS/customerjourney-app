@@ -142,6 +142,7 @@
     "bssc-assets",
     "bssc-questions",
     "bssc-access-tools",
+    "bssc-contact-lists",
     "bssc-journey-map",
     "bssc-review-2",
     "bssc-crm-plan",
@@ -793,6 +794,7 @@
   ],
   "uploadStepIds": [
     "bssc-assets",
+    "bssc-contact-lists",
     "ob-7",
     "rsp-017"
   ]

@@ -20,7 +20,7 @@ import { bssCustomTeamTasks } from "./team-tasks";
 export const bssCustom = defineCustomProduct({
   id: "bss-custom",
   name: "BSS custom (Fin Creighton)",
-  version: "2026-10-18.13",
+  version: "2026-10-18.14",
   status: "draft",
   clientType: "bss-custom",
   label: "BSS custom",
@@ -49,7 +49,7 @@ export const bssCustom = defineCustomProduct({
       goLiveDay: 42,
       tailLabel: "→ M8",
       workstreams: [
-        { id: "access", name: "Access & questions", dayStart: 1, dayEnd: 14, taskIds: ["bssc-bookmark", "bssc-save-portal", "bssc-access-site", "bssc-access-tools", "bssc-questions"] },
+        { id: "access", name: "Access & questions", dayStart: 1, dayEnd: 14, taskIds: ["bssc-bookmark", "bssc-save-portal", "bssc-access-site", "bssc-access-tools", "bssc-contact-lists", "bssc-questions"] },
         { id: "mapping", name: "Journey & findings", dayStart: 1, dayEnd: 14, taskIds: ["bssc-journey-map"], after: ["access"] },
         { id: "website", name: "Website", dayStart: 1, dayEnd: 28, taskIds: ["bssc-review-1", "bssc-assets", "bssc-review-2", "bssc-signoff"] },
         { id: "crm", name: "CRM build", dayStart: 8, dayEnd: 28, taskIds: ["bssc-crm-plan", "bssc-contacts"], after: ["mapping"] },
