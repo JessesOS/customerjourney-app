@@ -56,7 +56,7 @@ npx wrangler deploy --config dist/server/wrangler.staging.json
 - **`main` (with `motion-redesign`) is the live line.**
 - **Back-office work goes on branch `team-board`.**
 - **Frozen journeys, not frozen files (2026-10-17).** The portal now reads its journeys from `products/`, so `app/portal/**`, `app/components/portal/**` and `lib/journey*.ts` differ from `main` on purpose; the empty-diff rule no longer applies. What protects clients is their output. `npm run check:journeys` freezes, for every client type (meta, google, meta-google, bss-meta, respond, bss, bss-custom and an unknown type), everything the portal is built from and shows: steps and wording, every stage render, days, branding, per-step tweaks, voice guides, Ask-AI, String Theory, admin counts and labels, and the portal's server-rendered markup in every look (`scripts/fixtures/journeys/`). `npm run check:fin` still guards the old `bss-meta` baseline. Both must pass before every commit, merge and deploy. Re-save a fixture (`npm run check:journeys -- --write <type>`) only for a change Jesse approved; Fin's `bss-custom` and `bss-meta` also need `--yes-fin`. The fixtures can't see CSS: `app/globals.css` and `app/layout.tsx` still need Jesse's OK. After merging `main`: if a fixture differs only because of a portal change already approved on `main`, inspect it with `--dump <dir>`, re-save it and say so in the commit message.
-- **Feature flags** `TEAM_BOARD` / `TEAM_BOARD_AUTOSEED` (Worker vars): on in staging, off in prod until go-live. `PRODUCT_DRAFTS=1` (staging only, never prod) offers draft products in admin and lets their boards start. Prod has had the team and Ask Jesse tables (0015, 0016) since 2026-10-18. They're empty until those features are switched on.
+- **Feature flags** `TEAM_BOARD` / `TEAM_BOARD_AUTOSEED` (Worker vars): both on in staging. In prod, `TEAM_BOARD` has been on since 2026-10-18, with the access code as the only sign-in (it counts as `OWNER_EMAIL`, jesse@allconvos.ai). Autoseed stays off in prod until the Scale and Respond task lists are tidied. `PRODUCT_DRAFTS=1` (staging only, never prod) offers draft products in admin and lets their boards start. Prod has had the team and Ask Jesse tables (0015, 0016) since 2026-10-18. They're empty until those features are switched on.
 
 ## Products
 
@@ -72,7 +72,7 @@ npx wrangler deploy --config dist/server/wrangler.staging.json
 - Note it in `docs/customer-journey-master-plan.md`.
 - Keep the copy as it is unless Jesse asks. Flag any copy you draft as a draft: list the step ids in the product's `draftCopy`.
 
-**Team board** (`docs/team-board.md`): the back office under `/admin`. It's on staging, behind the `TEAM_BOARD` flag. `npm run check:team-auth` must pass.
+**Team board** (`docs/team-board.md`): the back office under `/admin`, behind the `TEAM_BOARD` flag. Live since 2026-10-18 on Jesse's access code; per-person logins come later. `npm run check:team-auth` must pass.
 
 ## Working rules
 

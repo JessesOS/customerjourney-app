@@ -2,14 +2,14 @@
 
 Built 2026-10-17 (Option D, Phase 2). It replaces the old CSM dashboard. It lives in this app, so there is nothing to sync.
 
-**Status:** on **staging** for Jesse's review. Not live. Prod has the code switched off (`TEAM_BOARD` unset), and its database has no team tables yet.
+**Status:** live on prod since 2026-10-18 (Jesse's OK). There, sign-in is Jesse's access code only. Cloudflare Access and per-person logins wait until someone else joins (Jesse: he's the only team member). Staging keeps the full setup for testing.
 
 ## Where
 
 | | Address | Sign-in |
 |---|---|---|
 | Staging | `https://scale-onboarding-portal-staging.jesse-b4e.workers.dev/admin` | Staging access code (in `.env.staging.local`), or Cloudflare Access once it's set up |
-| Prod (after go-live) | `team.allconvos.ai` | Cloudflare Access (one email login per person) |
+| Prod | `https://scale-onboarding-portal.jesse-b4e.workers.dev/admin` | Jesse's access code, which counts as `OWNER_EMAIL` (jesse@allconvos.ai). Later: `team.allconvos.ai` with Cloudflare Access, one email login per person |
 
 ## Screens
 
@@ -46,7 +46,7 @@ All live under `/admin`, with a menu across the top.
 - **"Done by client":** some tasks finish when the client finishes certain steps. For example, `scl-040` waits on `ob-6`, `ob-6b` and `ob-6c`. That's worked out when the board is read, and never written to the client's side.
 - **The board never writes the portal's tables.** Ticking a client step is still done in the portal, or on the Clients page.
 - **Auto-assign:** a task is assigned on start only when exactly one active team member covers its role. Otherwise it waits, unassigned, showing its role.
-- **Paused products can't start a board.** BSS Launchpad (`bss`, the old 41-step custom journey) is paused. Since 2026-10-17 (Phase 3) the Board shows `bss` clients with their BSS client steps and 42 days, read from `products/bss/`. Their board can't start: Start board says "BSS Launchpad (custom journey) is paused." Fin is on `bss-meta` (Scale), not `bss`.
+- **Paused products can't start a board.** BSS Launchpad (`bss`, the old 41-step custom journey) is paused. Since 2026-10-17 (Phase 3) the Board shows `bss` clients with their BSS client steps and 42 days, read from `products/bss/`. Their board can't start: Start board says "BSS Launchpad (custom journey) is paused." Fin is on `bss-custom` (since 2026-10-18), not `bss`.
 
 ## Ask Jesse: the client's help panel (2026-10-18)
 
@@ -87,14 +87,14 @@ Add a person to both.
 
 ## Settings (Worker vars, in `scripts/deploy-envs.mjs`)
 
-| Setting | Staging | Prod (today) |
+| Setting | Staging | Prod |
 |---|---|---|
-| `TEAM_BOARD` | `1` | unset. Every team route returns 404, and the Clients page is unchanged |
-| `TEAM_BOARD_AUTOSEED` | `1` | unset |
+| `TEAM_BOARD` | `1` | `1` (since 2026-10-18) |
+| `TEAM_BOARD_AUTOSEED` | `1` | unset: a client's board starts when someone clicks Start board. It goes on once the Scale and Respond task lists are tidied, so new boards don't copy stale tasks |
 | `PRODUCT_DRAFTS` | `1`. Draft products (status `draft`, e.g. a custom product being previewed) are offered in the Clients dropdown and their boards start | unset. Drafts are never offered and their boards never start. Set it locally in `.dev.vars` to preview a draft |
 | `PUBLIC_PORTAL_BASE` | the staging address | unset (copy-link uses the page's own address) |
 | `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` | empty until Access is set up | unset |
-| `OWNER_EMAIL` | empty (shows as owner@local) | unset |
+| `OWNER_EMAIL` | empty (shows as owner@local) | `jesse@allconvos.ai`. The access code counts as this team member, so "Mine" and My tasks work |
 
 ## Data (migration `drizzle/0015_team_board.sql`, CREATE only)
 
@@ -105,11 +105,15 @@ Add a person to both.
 
 Applied to staging on 2026-10-17. Prod gets it at go-live, **before** that deploy.
 
-## Go-live checklist (later, with Jesse's OK)
+## Go-live (2026-10-18)
 
-1. Jesse signs off on staging, and allconvos.ai DNS is on Cloudflare.
-2. Set up an Access app on `team.allconvos.ai` **only**. Never on the prod workers.dev address: that's every client's link.
-3. Merge `team-board` into `main`, then run `check:fin`, `products:check`, `check:team-auth` and `tsc`.
-4. Note a prod D1 restore point, then `node scripts/d1-migrate.mjs --env prod --file drizzle/0015_team_board.sql --yes-prod`.
-5. Set the prod vars (`TEAM_BOARD`, `ACCESS_*`, `OWNER_EMAIL`, `PUBLIC_PORTAL_BASE`; autoseed is Jesse's call), deploy, and add the `team.allconvos.ai` custom domain.
-6. Smoke test: Fin's link by curl, `check:fin`, no board for Fin unless Jesse asks.
+Done with Jesse's OK; details in `docs/option-d-build.md`.
+- Migration 0015 applied to prod with Fin's go-live, before the code.
+- Jesse added as the only team member (jesse@allconvos.ai, admin, role "Jesse Allan"). That has to happen before a board starts, so its tasks are assigned to him.
+- `TEAM_BOARD=1` and `OWNER_EMAIL` deployed. No autoseed, no Access.
+
+**Later: per-person logins** (when someone else joins):
+1. allconvos.ai DNS on Cloudflare.
+2. An Access app on `team.allconvos.ai` **only**. Never on the prod workers.dev address: that's every client's link.
+3. Set `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD` (and `PUBLIC_PORTAL_BASE`), deploy, and add the `team.allconvos.ai` custom domain.
+4. Add each person on the Team page and in the Access policy.

@@ -16,7 +16,14 @@ export const ENVS = {
     // The CSM_DASHBOARD service binding (BSS journey sync) was retired on
     // 2026-10-16 with the sync itself: the back office now lives in this app.
     services: [],
-    vars: {},
+    // Team board live since 2026-10-18 (Jesse's OK). Sign-in is his access
+    // code only, which counts as OWNER_EMAIL: no Cloudflare Access or
+    // per-person logins yet (Jesse: he's the only team member). Autoseed stays
+    // off until the Scale and Respond task lists are tidied.
+    vars: {
+      TEAM_BOARD: "1",
+      OWNER_EMAIL: "jesse@allconvos.ai",
+    },
     out: "dist/server/wrangler.json",
   },
   staging: {
