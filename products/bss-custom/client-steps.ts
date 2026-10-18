@@ -149,16 +149,27 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
       // things it doesn't ask about.
       id: "bssc-assets",
       title: "Send the files for your website",
-      detail: "Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page.",
+      detail: "Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page. Don't have it all yet? Send what you have and press Next: you can add more here any time.",
       hasUpload: true,
+      // Any files, several at a time, optional, and still open after Next (Jesse, 2026-10-18).
+      uploadOptions: {
+        accept: ".png,.jpg,.jpeg,.webp,.heic,.gif,.svg,.pdf,.doc,.docx,.txt,.rtf,.zip,.mp4,.mov",
+        title: "Upload your files",
+        hint: "Add as many as you like, one at a time or several at once: photos, logos, PDFs, documents, short videos or a zip.",
+        choose: "Click to choose your files",
+        chooseMore: "+ Add more files",
+        stayOpen: true,
+      },
       steps: [
         "New testimonials, with each client's permission to use them (review question 4).",
         "Sean Clarke's original photo, and his logo if he has one (review question 12).",
-        "Your privacy policy wording, if you're providing it (review question 25).",
+        "Your privacy policy wording, if you're providing it: paste it in the box below, or upload it (review question 25).",
         "For each other partner: name, photo or logo, and a welcome message.",
         "Your current email or text wording, and your booking link.",
       ],
-      notePrompt: "Anything still to come?",
+      notePrompt: "Your privacy policy wording (optional)",
+      notePlaceholder: "Paste your privacy policy here. You can also tell us what's still to come.",
+      doneLabel: "Next",
     },
   },
   {
@@ -187,7 +198,6 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
         "Calendly: invite Jesse as an admin, once your account is set up.",
         "Zoom (if you run webinars on it): add Jesse as an admin, or tell us your plan type.",
         "Payments (for example Stripe): give Jesse access, so a confirmed payment can start client onboarding.",
-        "Meta (Instagram and Facebook): add Jesse to your Meta Business account.",
         "YouTube (optional): add Jesse as a channel manager.",
         "Porkbun and Cloudflare (your domain): add Jesse, or be ready to add a few records we send you.",
       ],

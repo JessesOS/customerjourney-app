@@ -37,6 +37,8 @@ export type JourneyMilestone = {
   /** A picture shown under the step's how-to list (e.g. what the portal looks like saved to a phone). */
   imageUrl?: string;
   imageAlt?: string;
+  /** An "any files" upload for a hasUpload step (photos, PDFs, documents, zips). Absent = the CSV lead-list upload Scale uses. */
+  uploadOptions?: UploadOptions;
   /** Voice interview: questions asked one at a time; the answers are saved
       as the task's note. */
   interview?: string[];
@@ -85,6 +87,8 @@ export type MilestoneTemplate = {
   /** A picture shown under the step's how-to list (e.g. what the portal looks like saved to a phone). */
   imageUrl?: string;
   imageAlt?: string;
+  /** An "any files" upload for a hasUpload step (photos, PDFs, documents, zips). Absent = the CSV lead-list upload Scale uses. */
+  uploadOptions?: UploadOptions;
   interview?: string[];
   interviewAgentId?: string;
   inviteEmail?: string;
@@ -129,6 +133,23 @@ export type StageGuide = { script: string; audioSrc: string };
  * process-oriented — they point at the portal, the tasks, and the team, and
  * promise nothing the journey templates don't already say.
  */
+/**
+ * "Any files" upload on a hasUpload step (BSS custom's "Send the files for
+ * your website", Jesse 2026-10-18). Takes several files, one at a time or many
+ * at once; the client can press Next without any (everything is optional); with
+ * stayOpen the step keeps its upload box after it is ticked, so more can be
+ * added later. A step with a notePrompt also shows that text box here.
+ */
+export type UploadOptions = {
+  /** The file picker's accept list, e.g. ".png,.jpg,.pdf". */
+  accept: string;
+  title: string;
+  hint: string;
+  choose: string;
+  chooseMore: string;
+  stayOpen?: boolean;
+};
+
 export type AskItem = { q: string; a: string };
 
 /**

@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.12` |
+| Version | `2026-10-18.13` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 22 (2 client only, 0 hidden in the portal) |
@@ -688,7 +688,7 @@ Status on 17 Oct: DONE
 
 ### `bssc-assets` Send the files for your website
 
-> Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page.
+> Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page. Don't have it all yet? Send what you have and press Next: you can add more here any time.
 
 Portal: upload · note · 5 numbered steps
 
@@ -835,7 +835,7 @@ Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of 
 
 > So we can check what's there and connect it all to your CRM. Invite Jesse to each one you use, and tell us below about anything you couldn't.
 
-Portal: note · 7 numbered steps · invite email · "Important" box
+Portal: note · 6 numbered steps · invite email · "Important" box
 
 Done with: `bssc-a10` (behind `bssc-access-site`)
 

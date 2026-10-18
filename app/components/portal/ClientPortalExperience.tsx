@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { JourneyMilestone, PortalJourney } from "@/lib/journeyTypes";
+import type { JourneyMilestone, PortalJourney, UploadOptions } from "@/lib/journeyTypes";
 import {
   askItemsOf,
   buildStages,
@@ -435,28 +435,34 @@ export function ClientPortalExperience({
     });
   }
 
-  async function uploadFiles(milestoneId: string, files: File[]) {
+  async function uploadFiles(milestoneId: string, files: File[], options?: UploadOptions) {
     setUploadError(null);
-    const bad = files.find((f) => !f.name.toLowerCase().endsWith(".csv"));
-    if (bad) {
-      setUploadError(`${bad.name} isn't a .csv file.`);
-      return;
+    if (!options) {
+      const bad = files.find((f) => !f.name.toLowerCase().endsWith(".csv"));
+      if (bad) {
+        setUploadError(`${bad.name} isn't a .csv file.`);
+        return;
+      }
     }
-    const big = files.find((f) => f.size > MAX_UPLOAD_BYTES);
+    const limit = options ? 25_000_000 : MAX_UPLOAD_BYTES;
+    const big = files.find((f) => f.size > limit);
     if (big) {
-      setUploadError(`${big.name} is too large. Please keep each file under 20MB.`);
+      setUploadError(`${big.name} is too large. Please keep each file under ${Math.round(limit / 1_000_000)}MB.`);
       return;
     }
 
     setUploadingId(milestoneId);
     try {
       for (const file of files) {
-        let content: string;
-        try {
-          content = await readText(file);
-        } catch {
-          setUploadError(`Could not read ${file.name}.`);
-          return;
+        // The CSV upload reads the file as text; an "any files" step sends the file itself.
+        let content = "";
+        if (!options) {
+          try {
+            content = await readText(file);
+          } catch {
+            setUploadError(`Could not read ${file.name}.`);
+            return;
+          }
         }
         if (!portalToken) {
           setUploads((prev) => ({ ...prev, [milestoneId]: [...(prev[milestoneId] ?? []), { fileName: file.name, uploadedAt: new Date().toISOString() }] }));
@@ -464,11 +470,13 @@ export function ClientPortalExperience({
         }
         let payload: { ok: boolean; error?: string; file?: UploadMeta };
         try {
-          const res = await fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ fileName: file.name, content }),
-          });
+          const res = options
+            ? await fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, { method: "POST", body: (() => { const form = new FormData(); form.append("file", file); return form; })() })
+            : await fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ fileName: file.name, content }),
+              });
           payload = (await res.json()) as typeof payload;
         } catch {
           setUploadError("Could not reach the server.");
@@ -1263,6 +1271,94 @@ export function ClientPortalExperience({
             const uploadedFiles = uploads[m.id] ?? [];
             const showUploadWidget = m.status !== "done" && m.hasUpload;
             const hasCustomFlow = Boolean(inlineForm) || showUploadWidget || choosingMode;
+            const uploadOpts = m.uploadOptions;
+            // The upload box: Scale's CSV lead list, or (with uploadOptions) any files, an optional text box and an
+            // always-available Next. With stayOpen it also shows after the step is ticked, without the Next button.
+            const uploadBox = (showNext: boolean) => (
+                  <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
+                    <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 8 }}>
+                      {uploadOpts?.title ?? "Upload your files"}
+                    </div>
+                    <p style={{ fontSize: 13.5, color: "var(--pj-muted)", lineHeight: 1.5, margin: "0 0 14px" }}>
+                      {uploadOpts?.hint ?? "One file with your full list is best. If it's split across several files, add them all."}
+                    </p>
+                    {uploadedFiles.length > 0 && (
+                      <ul style={{ listStyle: "none", margin: "0 0 12px", padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
+                        {uploadedFiles.map((f, i) => (
+                          <li key={f.id ?? `${f.fileName}-${i}`} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderRadius: "var(--pj-radius-sm)", background: "var(--pj-well)", fontSize: 14 }}>
+                            <span aria-hidden style={{ color: "var(--pj-act)", fontWeight: 700 }}>✓</span>
+                            <span style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: "var(--pj-ink)" }}>{f.fileName}</span>
+                            <button
+                              type="button"
+                              onClick={() => removeUpload(m.id, i)}
+                              disabled={uploadingId === m.id}
+                              aria-label={`Remove ${f.fileName}`}
+                              style={{ marginLeft: "auto", background: "none", border: "none", padding: 0, color: "var(--pj-muted)", fontSize: 12.5, textDecoration: "underline", cursor: uploadingId === m.id ? "default" : "pointer", fontFamily: "inherit" }}
+                            >
+                              Remove
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    <label
+                      style={{
+                        display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+                        border: "1.5px dashed var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: uploadedFiles.length ? "16px 20px" : "28px 20px",
+                        cursor: uploadingId === m.id ? "default" : "pointer", color: "var(--pj-muted)",
+                        fontFamily: "var(--font-body), sans-serif", fontSize: 14,
+                      }}
+                    >
+                      <input
+                        type="file"
+                        accept={uploadOpts?.accept ?? ".csv"}
+                        multiple
+                        disabled={uploadingId === m.id}
+                        onChange={(e) => {
+                          const files = Array.from(e.target.files ?? []);
+                          if (files.length) void uploadFiles(m.id, files, uploadOpts);
+                          e.target.value = "";
+                        }}
+                        style={{ display: "none" }}
+                      />
+                      {uploadingId === m.id ? "Working…" : uploadOpts ? (uploadedFiles.length ? uploadOpts.chooseMore : uploadOpts.choose) : uploadedFiles.length ? "+ Add another .csv file" : "Click to choose your .csv file(s)"}
+                    </label>
+                    {uploadError && <div style={{ marginTop: 12, fontSize: 13, color: "var(--pj-act)" }}>{uploadError}</div>}
+                    {uploadOpts && m.notePrompt && showNext && (
+                      <div style={{ marginTop: 18 }}>
+                        <label style={{ fontSize: 10.5, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
+                          {m.notePrompt}
+                        </label>
+                        <textarea
+                          value={noteValue}
+                          onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [m.id]: e.target.value }))}
+                          placeholder={m.notePlaceholder ?? "Optional"}
+                          rows={5}
+                          style={{ width: "100%", marginTop: 8, padding: "12px 14px", borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", color: "var(--pj-ink)", fontFamily: "var(--font-body), system-ui, sans-serif", fontSize: 14, resize: "vertical", outline: "none" }}
+                        />
+                        <MicButton onText={(chunk) => setNoteDrafts((prev) => ({ ...prev, [m.id]: `${prev[m.id] ?? noteValue} ${chunk}`.trim() }))} />
+                      </div>
+                    )}
+                    {showNext && (uploadOpts || uploadedFiles.length > 0) && (
+                      <div style={{ marginTop: 18, display: "flex", alignItems: "center", gap: 14 }}>
+                        <span style={{ fontSize: 12.5, color: "var(--pj-faint)" }}>
+                          {uploadedFiles.length === 0 ? "Nothing added yet. That's fine, you can add files any time." : uploadedFiles.length === 1 ? "1 file added" : `${uploadedFiles.length} files added`}
+                        </span>
+                        <button
+                          type="button"
+                          disabled={uploadingId === m.id}
+                          onClick={() => {
+                            approveMilestone(m.id, uploadOpts && m.notePrompt ? noteValue : undefined);
+                            advanceAfterComplete(m.id);
+                          }}
+                          style={{ marginLeft: "auto", background: "var(--pj-btn-grad)", color: "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, boxShadow: "var(--pj-shadow-btn)", cursor: uploadingId === m.id ? "default" : "pointer", opacity: uploadingId === m.id ? 0.6 : 1 }}
+                        >
+                          {uploadOpts ? (m.doneLabel ?? "Next") : <>I&apos;ve added everything</>} <span style={{ fontSize: 17 }}>→</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+            );
             // The customer journey map, on the one step the product puts it on.
             const mapHere = journey.journeyMap && journey.journeyMap.step === m.id ? journey.journeyMap.content : null;
 
@@ -1370,6 +1466,7 @@ export function ClientPortalExperience({
                       <div style={{ flex: 1, fontSize: 14, color: "var(--pj-ink)" }}>You&apos;ve completed this task.</div>
                     </div>
                     {mapHere && <JourneyMap content={mapHere} portalToken={portalToken} readOnly />}
+                    {m.hasUpload && uploadOpts?.stayOpen && uploadBox(false)}
                     {savedContent && (
                       <div style={{ marginTop: 14, borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: "16px 18px" }}>
                         {savedContent.split("\n").filter(Boolean).map((line, i) => (
@@ -1382,7 +1479,7 @@ export function ClientPortalExperience({
                         <span style={{ color: "var(--pj-act)", fontWeight: 600 }}>Your note:</span> {notes[m.id]}
                       </div>
                     )}
-                    {uploadedFiles.length > 0 && (
+                    {uploadedFiles.length > 0 && !uploadOpts?.stayOpen && (
                       <div style={{ marginTop: 14, fontSize: 13, color: "var(--pj-muted)" }}>
                         <span style={{ color: "var(--pj-act)", fontWeight: 600 }}>Uploaded:</span> {uploadedFiles.map((f) => f.fileName).join(", ")}
                       </div>
@@ -1414,74 +1511,7 @@ export function ClientPortalExperience({
                     />
                   </>
                 ) : showUploadWidget ? (
-                  <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
-                    <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 8 }}>
-                      Upload your files
-                    </div>
-                    <p style={{ fontSize: 13.5, color: "var(--pj-muted)", lineHeight: 1.5, margin: "0 0 14px" }}>
-                      One file with your full list is best. If it&apos;s split across several files, add them all.
-                    </p>
-                    {uploadedFiles.length > 0 && (
-                      <ul style={{ listStyle: "none", margin: "0 0 12px", padding: 0, display: "flex", flexDirection: "column", gap: 8 }}>
-                        {uploadedFiles.map((f, i) => (
-                          <li key={f.id ?? `${f.fileName}-${i}`} style={{ display: "flex", alignItems: "center", gap: 10, padding: "10px 14px", borderRadius: "var(--pj-radius-sm)", background: "var(--pj-well)", fontSize: 14 }}>
-                            <span aria-hidden style={{ color: "var(--pj-act)", fontWeight: 700 }}>✓</span>
-                            <span style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: "var(--pj-ink)" }}>{f.fileName}</span>
-                            <button
-                              type="button"
-                              onClick={() => removeUpload(m.id, i)}
-                              disabled={uploadingId === m.id}
-                              aria-label={`Remove ${f.fileName}`}
-                              style={{ marginLeft: "auto", background: "none", border: "none", padding: 0, color: "var(--pj-muted)", fontSize: 12.5, textDecoration: "underline", cursor: uploadingId === m.id ? "default" : "pointer", fontFamily: "inherit" }}
-                            >
-                              Remove
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    <label
-                      style={{
-                        display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-                        border: "1.5px dashed var(--pj-line)", borderRadius: "var(--pj-radius-sm)", padding: uploadedFiles.length ? "16px 20px" : "28px 20px",
-                        cursor: uploadingId === m.id ? "default" : "pointer", color: "var(--pj-muted)",
-                        fontFamily: "var(--font-body), sans-serif", fontSize: 14,
-                      }}
-                    >
-                      <input
-                        type="file"
-                        accept=".csv"
-                        multiple
-                        disabled={uploadingId === m.id}
-                        onChange={(e) => {
-                          const files = Array.from(e.target.files ?? []);
-                          if (files.length) void uploadFiles(m.id, files);
-                          e.target.value = "";
-                        }}
-                        style={{ display: "none" }}
-                      />
-                      {uploadingId === m.id ? "Working…" : uploadedFiles.length ? "+ Add another .csv file" : "Click to choose your .csv file(s)"}
-                    </label>
-                    {uploadError && <div style={{ marginTop: 12, fontSize: 13, color: "var(--pj-act)" }}>{uploadError}</div>}
-                    {uploadedFiles.length > 0 && (
-                      <div style={{ marginTop: 18, display: "flex", alignItems: "center", gap: 14 }}>
-                        <span style={{ fontSize: 12.5, color: "var(--pj-faint)" }}>
-                          {uploadedFiles.length === 1 ? "1 file added" : `${uploadedFiles.length} files added`}
-                        </span>
-                        <button
-                          type="button"
-                          disabled={uploadingId === m.id}
-                          onClick={() => {
-                            approveMilestone(m.id);
-                            advanceAfterComplete(m.id);
-                          }}
-                          style={{ marginLeft: "auto", background: "var(--pj-btn-grad)", color: "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, boxShadow: "var(--pj-shadow-btn)", cursor: uploadingId === m.id ? "default" : "pointer", opacity: uploadingId === m.id ? 0.6 : 1 }}
-                        >
-                          I&apos;ve added everything <span style={{ fontSize: 17 }}>→</span>
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                  uploadBox(true)
                 ) : m.showPortalLink ? (
                   <PortalLinkCard portalToken={portalToken} />
                 ) : m.embedUrl ? (

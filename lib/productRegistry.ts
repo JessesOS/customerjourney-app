@@ -234,6 +234,11 @@ export function createRegistry(products: readonly Product[]) {
     return allPortalSteps().filter((m) => m.hasUpload).map((m) => m.id);
   }
 
+  /** Ids of upload steps that keep taking files after the client ticks them. */
+  function uploadStayOpenStepIds(): string[] {
+    return allPortalSteps().filter((m) => m.hasUpload && m.uploadOptions?.stayOpen).map((m) => m.id);
+  }
+
   /** The R2 media the portal may serve: every variant's /api/media/ intro video. */
   function mediaAllowlist(): Record<string, { key: string; type: string }> {
     const out: Record<string, { key: string; type: string }> = {};
@@ -282,6 +287,7 @@ export function createRegistry(products: readonly Product[]) {
     formStepFor,
     allPortalSteps,
     uploadStepIds,
+    uploadStayOpenStepIds,
     mediaAllowlist,
     liveRoles,
     boardSeedFor,
@@ -314,6 +320,7 @@ export const {
   formStepFor,
   allPortalSteps,
   uploadStepIds,
+  uploadStayOpenStepIds,
   mediaAllowlist,
   liveRoles,
   boardSeedFor,

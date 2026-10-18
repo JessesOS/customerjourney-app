@@ -15,10 +15,13 @@
 // products:check ("integrity") fails if two products disagree, if a custom
 // product adds an id another product has, or if its idPrefix starts another
 // product's ids.
-import { allPortalSteps, uploadStepIds } from "./productRegistry";
+import { allPortalSteps, uploadStayOpenStepIds, uploadStepIds } from "./productRegistry";
 import type { MilestoneTemplate } from "./journeyTypes";
 
 export const allMilestoneTemplates: MilestoneTemplate[] = allPortalSteps();
 
 /** Steps that take a file upload. */
 export const uploadMilestoneIds = new Set(uploadStepIds());
+
+/** Upload steps that keep taking files after the client ticks them (uploadOptions.stayOpen). */
+export const uploadStayOpenIds = new Set(uploadStayOpenStepIds());

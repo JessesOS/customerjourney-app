@@ -238,6 +238,21 @@ Jesse asked for the three journeys, laid out visually, on Fin's journey approval
   - Findings and the partner plan moved to "Approve your CRM plan and our findings" (they need his systems first), along with their 7 team tasks (A16, A19, A20, A21, B232, B604, C101).
 - **Product setting:** `portal.journeyMap`, checked by `products:check`. Version `2026-10-18.12`. Frozen journeys are unchanged; `_global` lost one review card (the journey step).
 
+### Files step takes real files; Meta access dropped for now (2026-10-18)
+
+- **"Send the files for your website"** now takes photos, logos, PDFs, documents, short videos and zips.
+  - Several files at once, up to 50.
+  - A box for pasting the privacy policy wording.
+  - Next is always there, so Fin can carry on without everything.
+  - The box stays open after he ticks it, so he can add more later.
+- **How:**
+  - A step setting, `uploadOptions` (`lib/journeyTypes.ts`).
+  - The upload route takes multipart files into R2 (25MB each).
+  - Admin downloads come back as the real file type.
+  - Steps without it (Scale's CSV lead list) are unchanged; `check:journeys` renders are identical.
+- **"Give Jesse access to your other tools"** no longer asks for Meta (Jesse: not for now). Fin's Ask Jesse pack says the same.
+- Version `2026-10-18.13`.
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:

@@ -446,18 +446,26 @@ export async function saveFormResponses(
 
 export type MilestoneUploadMeta = { id: number; fileName: string; uploadedAt: string };
 
-export async function addMilestoneUpload(clientId: string, milestoneId: string, fileName: string, content: string): Promise<MilestoneUploadMeta> {
+export async function addMilestoneUpload(
+  clientId: string,
+  milestoneId: string,
+  fileName: string,
+  content: string | ArrayBuffer,
+  contentType?: string,
+): Promise<MilestoneUploadMeta> {
   const db = getDb();
   const bucket = getUploadsBucket();
   const now = new Date().toISOString();
+  // A binary file (a photo, a PDF) only ever lives in R2: the row holds no content.
+  if (typeof content !== "string" && !bucket) throw new Error("File uploads are not available right now.");
   const inserted = await db
     .insert(portalMilestoneUploads)
-    .values({ clientId, milestoneId, fileName, content: bucket ? "" : content, uploadedAt: now })
+    .values({ clientId, milestoneId, fileName, content: bucket || typeof content !== "string" ? "" : content, uploadedAt: now })
     .returning({ id: portalMilestoneUploads.id });
   const id = inserted[0].id;
   if (bucket) {
     try {
-      await bucket.put(uploadFileObjectKey(clientId, milestoneId, id), content);
+      await bucket.put(uploadFileObjectKey(clientId, milestoneId, id), content, contentType ? { httpMetadata: { contentType } } : undefined);
     } catch (error) {
       await db.delete(portalMilestoneUploads).where(eq(portalMilestoneUploads.id, id));
       throw error;
@@ -495,7 +503,7 @@ export async function getMilestoneUpload(clientId: string, milestoneId: string, 
   if (!row) return null;
 
   // Inline rows carry the file; R2-backed rows have empty content.
-  if (row.content) return row;
+  if (row.content) return { ...row, bytes: undefined as ArrayBuffer | undefined };
 
   const bucket = getUploadsBucket();
   if (!bucket) {
@@ -507,7 +515,9 @@ export async function getMilestoneUpload(clientId: string, milestoneId: string, 
     console.error(`Upload row ${row.id} is R2-backed but the object is missing.`);
     return null;
   }
-  return { ...row, content: await object.text() };
+  // Read once as bytes (a photo must not be decoded as text); `content` is the same bytes as text, as before.
+  const bytes = await object.arrayBuffer();
+  return { ...row, content: new TextDecoder().decode(bytes), bytes };
 }
 
 /** Every task's files, oldest first, keyed by task id. */
