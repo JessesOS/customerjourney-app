@@ -111,6 +111,8 @@ Done with Jesse's OK; details in `docs/option-d-build.md`.
 - Migration 0015 applied to prod with Fin's go-live, before the code.
 - Jesse added as the only team member (jesse@allconvos.ai, admin, role "Jesse Allan"). That has to happen before a board starts, so its tasks are assigned to him.
 - `TEAM_BOARD=1` and `OWNER_EMAIL` deployed. No autoseed, no Access.
+- Jesse started Fin's board (bss-custom 2026-10-18.17: 337 tasks, all his). The 38 tasks his spec records as DONE were then marked done, each with a history line "Done before the board started (from the spec)". This was a one-off catch-up: later boards start from zero, and tasks are ticked on the board as they're done.
+- Jesse also started a practice board on "Jesse test fin" (all To do).
 
 **Later: per-person logins** (when someone else joins):
 1. allconvos.ai DNS on Cloudflare.

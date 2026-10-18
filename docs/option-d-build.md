@@ -372,3 +372,32 @@ Jesse asked for it after the go-live. These are check scripts only: no deploy an
   - the journey map's wording and the app icon (only the version lock covers them);
   - the journey map notes form (`bss-journey-map-notes-v1`), which nothing freezes.
   - Closing this means adding them to the frozen contract, then one re-save of every fixture, which needs Jesse's OK.
+
+## Team board live in prod (2026-10-18)
+
+Jesse approved the package ("go for it"). **Decision:** no Cloudflare Access or per-person logins yet, because he's the only team member. The board runs on his access code, which counts as `OWNER_EMAIL` (jesse@allconvos.ai). Autoseed stays off until the Scale and Respond task lists are tidied, so new boards don't copy stale LaunchBay tasks.
+
+**In order:**
+1. Restore point before any change (05:29Z): `0000017a-00000004-00005108-58ba49c5d0f39f8416075d6a40346d37`.
+2. Jesse added as the only team member (`team_members`: jesse@allconvos.ai, admin, role "Jesse Allan"). This came before any board, so their tasks are assigned to him.
+3. `43dc849` (prod vars `TEAM_BOARD=1`, `OWNER_EMAIL`) deployed as version `f40cdad5-c6af-4e24-8c70-cff94a29e67f` (was `384aadb0`). tsc and check:fin passed in the main checkout. All five checks had passed on the same commit in the worktree.
+4. Jesse started the boards: "Jesse test fin" (05:32Z) and Fin (05:39Z). Each has 337 tasks at bss-custom `2026-10-18.17`, all assigned to him, with him recorded as starter. That proves the access code maps to `OWNER_EMAIL`.
+5. Restore point `0000017a-00000010-00005108-eb3dfd9c737a7ffd859624482cf9dbd5`, then Fin's 38 tasks marked done. Those are the ones whose spec notes say "Status on 17 Oct: DONE":
+   - 4 onboarding/admin (payment 1, subscription end, welcome email, portal link);
+   - 11 website global items;
+   - 21 website pages;
+   - 1 asset and 1 hosting item.
+
+   Each got a history line "Done before the board started (from the spec)". Result: 38 done and 299 to do. The test board is untouched.
+
+**Rehearsed first, locally, on a throwaway client** (since removed):
+- one member, so all 337 tasks were assigned to him;
+- the board read "Team tasks 38 / 337";
+- running the mark-done SQL twice changed nothing.
+
+**Verified by curl after the deploy:**
+- Fin's, Jesse test fin's and JAT's links are unchanged, and `/portal/demo` returns 200.
+- The team APIs now return 403 without the code (they returned 404 while the board was off).
+- `/admin/board` and `/admin/my-tasks` return 200.
+
+**Undo:** `npx wrangler rollback 384aadb0-e29d-41ed-b9dd-6ec51442367c --name scale-onboarding-portal` switches the board off. The board's data sits unused in its own tables. Fin's portal isn't touched either way.
