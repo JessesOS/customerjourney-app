@@ -181,6 +181,10 @@ The first real custom product. Jesse approved it ("go ahead matey"): Fin's side 
 - Tasks auto-assign only when one active member covers the role "Jesse Allan". Add yourself on the Team page with that role before Fin's board starts.
 - `--compare bss-meta bss-custom`: none of Fin's 25 current steps carry over (new ids), and his current intro video would go.
 
+**Update 2026-10-18 (Jesse's review):**
+- The members' area test account moved from the first access step to the onboarding map step (week 8). Version `2026-10-18.1`.
+- "Answer a few questions" is now **type or talk**. Fin chooses the guided form (`bss-custom-intake-v1` in `lib/onboardingForm.ts`: 15 questions, one per screen, a "Not sure yet" option on every choice) or a spoken interview (11 questions in the Scale interview's voice). Either one finishes the step, and he can switch at any time. Portal code: a step with both `formId` and `interview` shows the choice first; no other step has both, so `check:journeys` renders are unchanged. `_global` re-saved: only the new form was added. Version `2026-10-18.2`.
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:

@@ -25,7 +25,8 @@
     ],
     "formIds": [
       "scale-onboarding-intake-v1",
-      "respond-onboarding-intake-v1"
+      "respond-onboarding-intake-v1",
+      "bss-custom-intake-v1"
     ]
   },
   "adminOptions": [
@@ -159,6 +160,237 @@
   ],
   "defaultClientType": "meta-google",
   "forms": {
+    "bss-custom-intake-v1": {
+      "id": "bss-custom-intake-v1",
+      "introDescription": "Short answers are fine. Pick \"Not sure yet\" for anything you don't know: we'll cover it on your kick-off call. Never put passwords here.",
+      "introTitle": "A few questions about how you work",
+      "sections": [
+        {
+          "fields": [
+            {
+              "id": "best_contact",
+              "label": "What's the best way and time to reach you?",
+              "placeholder": "e.g. WhatsApp, weekday mornings",
+              "type": "textarea"
+            },
+            {
+              "helper": "Leave it blank if it's just you.",
+              "id": "other_approvers",
+              "label": "Does anyone else approve things?",
+              "type": "text"
+            },
+            {
+              "id": "alert_recipients",
+              "label": "Who should get alerts for new leads, hot leads and bookings?",
+              "placeholder": "Names, with an email or mobile for each",
+              "type": "textarea",
+              "why": "So the right person hears about a lead within minutes."
+            }
+          ],
+          "id": "reaching-you",
+          "title": "Reaching you"
+        },
+        {
+          "fields": [
+            {
+              "id": "webinar_platform",
+              "label": "Which platform do you run webinars on?",
+              "options": [
+                {
+                  "label": "Zoom Meetings",
+                  "value": "zoom-meetings"
+                },
+                {
+                  "label": "Zoom Webinars",
+                  "value": "zoom-webinars"
+                },
+                {
+                  "label": "Something else",
+                  "value": "other"
+                },
+                {
+                  "label": "Not sure yet",
+                  "value": "not-sure"
+                }
+              ],
+              "type": "radio",
+              "why": "So we can send each person a private joining link and see who attended."
+            },
+            {
+              "id": "payment_method",
+              "label": "How do you take payment after a sales call?",
+              "options": [
+                {
+                  "label": "A Stripe payment link",
+                  "value": "stripe-link"
+                },
+                {
+                  "label": "An invoice",
+                  "value": "invoice"
+                },
+                {
+                  "label": "Something else",
+                  "value": "other"
+                },
+                {
+                  "label": "Not sure yet",
+                  "value": "not-sure"
+                }
+              ],
+              "type": "radio",
+              "why": "So a confirmed payment can start your client onboarding on its own."
+            },
+            {
+              "helper": "Optional.",
+              "id": "payment_detail",
+              "label": "Anything else about how payment works?",
+              "type": "textarea"
+            },
+            {
+              "id": "partner_setup",
+              "label": "How does your partner and commission setup work today?",
+              "type": "textarea",
+              "why": "So each partner gets credit, from their link through to a paying client."
+            },
+            {
+              "helper": "It wasn't in the agreement, so Jesse will talk it through with you.",
+              "id": "contact_page",
+              "label": "Should a Contact page be part of the site?",
+              "options": [
+                {
+                  "label": "Yes",
+                  "value": "yes"
+                },
+                {
+                  "label": "No",
+                  "value": "no"
+                },
+                {
+                  "label": "Let's talk about it",
+                  "value": "talk"
+                }
+              ],
+              "type": "radio"
+            }
+          ],
+          "id": "how-you-run",
+          "title": "How you run things today"
+        },
+        {
+          "fields": [
+            {
+              "id": "contacts_location",
+              "label": "Where are most of your contacts?",
+              "options": [
+                {
+                  "label": "Australia",
+                  "value": "au"
+                },
+                {
+                  "label": "The UK",
+                  "value": "uk"
+                },
+                {
+                  "label": "The US",
+                  "value": "us"
+                },
+                {
+                  "label": "A mix",
+                  "value": "mix"
+                },
+                {
+                  "label": "Not sure yet",
+                  "value": "not-sure"
+                }
+              ],
+              "type": "radio",
+              "why": "This decides how your text messages are registered."
+            },
+            {
+              "helper": "Tick all that apply.",
+              "id": "social_accounts",
+              "label": "Which social accounts should we connect?",
+              "options": [
+                {
+                  "label": "Instagram",
+                  "value": "instagram"
+                },
+                {
+                  "label": "Facebook",
+                  "value": "facebook"
+                },
+                {
+                  "label": "YouTube",
+                  "value": "youtube"
+                },
+                {
+                  "label": "X (Twitter)",
+                  "value": "x"
+                },
+                {
+                  "label": "LinkedIn",
+                  "value": "linkedin"
+                },
+                {
+                  "label": "TikTok",
+                  "value": "tiktok"
+                },
+                {
+                  "label": "None for now",
+                  "value": "none"
+                }
+              ],
+              "type": "checkboxes"
+            },
+            {
+              "id": "audience_links",
+              "label": "Where does your audience find you?",
+              "placeholder": "Paste a link for each place",
+              "type": "textarea"
+            }
+          ],
+          "id": "audience",
+          "title": "Your audience"
+        },
+        {
+          "fields": [
+            {
+              "id": "coaches",
+              "label": "Who are your implementation coaches?",
+              "placeholder": "One per line: name, email",
+              "type": "textarea",
+              "why": "Each coach gets their own calendar and CRM login."
+            }
+          ],
+          "id": "team",
+          "title": "Your team"
+        },
+        {
+          "fields": [
+            {
+              "id": "goals",
+              "label": "What are your goals for the next 6 months?",
+              "placeholder": "Leads, calls and clients",
+              "type": "textarea"
+            },
+            {
+              "id": "tone",
+              "label": "Your tone of voice, in three words",
+              "placeholder": "e.g. calm, direct, warm",
+              "type": "text"
+            },
+            {
+              "id": "never_say",
+              "label": "Anything we should never say or promise?",
+              "type": "textarea"
+            }
+          ],
+          "id": "voice-goals",
+          "title": "Your voice and goals"
+        }
+      ],
+      "title": "BSS: how you work"
+    },
     "respond-onboarding-intake-v1": {
       "id": "respond-onboarding-intake-v1",
       "introDescription": "Please don't type passwords anywhere in this form. Where we need access, invite admin@allconvos.ai instead. If you really must share a password, paste a one-time secret link (for example from onetimesecret.com), never the password itself.",

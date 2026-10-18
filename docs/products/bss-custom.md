@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.1` |
+| Version | `2026-10-18.2` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 21 (0 client only, 0 hidden in the portal) |
@@ -570,9 +570,9 @@ Status on 17 Oct: DONE
 
 ### `bssc-questions` Answer a few questions about how you work
 
-> Short answers are fine. They shape your CRM, your text messages and your AI lead agent.
+> Type your answers, one quick question at a time, or talk them through out loud. Your answers shape your CRM, your text messages and your AI lead agent.
 
-Portal: note · 15 numbered steps
+Portal: voice interview · form `bss-custom-intake-v1`
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|

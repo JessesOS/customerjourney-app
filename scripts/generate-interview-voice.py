@@ -20,7 +20,8 @@ voice, no key, no cost).
 Re-run whenever a question's wording changes, or the clip and the text on
 screen will disagree.
 
-Usage: python3 scripts/generate-interview-voice.py [--free]   (needs ffmpeg; --free needs edge-tts)
+Usage: python3 scripts/generate-interview-voice.py [--free] [--step <step id>]   (needs ffmpeg; --free needs edge-tts)
+       --step renders only that step's clips (e.g. --step bssc-questions), leaving the others as they are
        python3 scripts/generate-interview-voice.py --list   print "<file>\t<text>" per clip, sorted; no TTS, network or ffmpeg
 """
 import asyncio
@@ -77,6 +78,9 @@ def list_clips() -> None:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     rows = clips()
+    if "--step" in sys.argv:
+        step = sys.argv[sys.argv.index("--step") + 1]
+        rows = [(name, q) for name, q in rows if name.startswith(f"interview-{step}-")]
     if not rows:
         raise SystemExit("no interview questions found in the product files")
     key = None if FREE else fish_key()

@@ -288,6 +288,124 @@ export const respondOnboardingForm: PortalFormDefinition = {
   ],
 };
 
+// BSS custom (Fin Creighton): "Answer a few questions about how you work".
+// Spec sections 4.2 and 5 (intake form). One question per screen; every choice
+// has a "Not sure yet" way out, so nothing blocks him. The step also offers the
+// same questions as a voice interview (products/bss-custom/client-steps.ts).
+// Wording drafted by Claude, 2026-10-18: Jesse to approve.
+const notSure = { label: "Not sure yet", value: "not-sure" };
+export const bssCustomIntakeForm: PortalFormDefinition = {
+  id: "bss-custom-intake-v1",
+  title: "BSS: how you work",
+  introTitle: "A few questions about how you work",
+  introDescription: "Short answers are fine. Pick \"Not sure yet\" for anything you don't know: we'll cover it on your kick-off call. Never put passwords here.",
+  sections: [
+    {
+      id: "reaching-you",
+      title: "Reaching you",
+      fields: [
+        { id: "best_contact", label: "What's the best way and time to reach you?", type: "textarea", placeholder: "e.g. WhatsApp, weekday mornings" },
+        { id: "other_approvers", label: "Does anyone else approve things?", type: "text", helper: "Leave it blank if it's just you." },
+        { id: "alert_recipients", label: "Who should get alerts for new leads, hot leads and bookings?", type: "textarea", placeholder: "Names, with an email or mobile for each", why: "So the right person hears about a lead within minutes." },
+      ],
+    },
+    {
+      id: "how-you-run",
+      title: "How you run things today",
+      fields: [
+        {
+          id: "webinar_platform",
+          label: "Which platform do you run webinars on?",
+          type: "radio",
+          why: "So we can send each person a private joining link and see who attended.",
+          options: [
+            { label: "Zoom Meetings", value: "zoom-meetings" },
+            { label: "Zoom Webinars", value: "zoom-webinars" },
+            { label: "Something else", value: "other" },
+            notSure,
+          ],
+        },
+        {
+          id: "payment_method",
+          label: "How do you take payment after a sales call?",
+          type: "radio",
+          why: "So a confirmed payment can start your client onboarding on its own.",
+          options: [
+            { label: "A Stripe payment link", value: "stripe-link" },
+            { label: "An invoice", value: "invoice" },
+            { label: "Something else", value: "other" },
+            notSure,
+          ],
+        },
+        { id: "payment_detail", label: "Anything else about how payment works?", type: "textarea", helper: "Optional." },
+        { id: "partner_setup", label: "How does your partner and commission setup work today?", type: "textarea", why: "So each partner gets credit, from their link through to a paying client." },
+        {
+          id: "contact_page",
+          label: "Should a Contact page be part of the site?",
+          type: "radio",
+          helper: "It wasn't in the agreement, so Jesse will talk it through with you.",
+          options: [
+            { label: "Yes", value: "yes" },
+            { label: "No", value: "no" },
+            { label: "Let's talk about it", value: "talk" },
+          ],
+        },
+      ],
+    },
+    {
+      id: "audience",
+      title: "Your audience",
+      fields: [
+        {
+          id: "contacts_location",
+          label: "Where are most of your contacts?",
+          type: "radio",
+          why: "This decides how your text messages are registered.",
+          options: [
+            { label: "Australia", value: "au" },
+            { label: "The UK", value: "uk" },
+            { label: "The US", value: "us" },
+            { label: "A mix", value: "mix" },
+            notSure,
+          ],
+        },
+        {
+          id: "social_accounts",
+          label: "Which social accounts should we connect?",
+          type: "checkboxes",
+          helper: "Tick all that apply.",
+          options: [
+            { label: "Instagram", value: "instagram" },
+            { label: "Facebook", value: "facebook" },
+            { label: "YouTube", value: "youtube" },
+            { label: "X (Twitter)", value: "x" },
+            { label: "LinkedIn", value: "linkedin" },
+            { label: "TikTok", value: "tiktok" },
+            { label: "None for now", value: "none" },
+          ],
+        },
+        { id: "audience_links", label: "Where does your audience find you?", type: "textarea", placeholder: "Paste a link for each place" },
+      ],
+    },
+    {
+      id: "team",
+      title: "Your team",
+      fields: [
+        { id: "coaches", label: "Who are your implementation coaches?", type: "textarea", placeholder: "One per line: name, email", why: "Each coach gets their own calendar and CRM login." },
+      ],
+    },
+    {
+      id: "voice-goals",
+      title: "Your voice and goals",
+      fields: [
+        { id: "goals", label: "What are your goals for the next 6 months?", type: "textarea", placeholder: "Leads, calls and clients" },
+        { id: "tone", label: "Your tone of voice, in three words", type: "text", placeholder: "e.g. calm, direct, warm" },
+        { id: "never_say", label: "Anything we should never say or promise?", type: "textarea" },
+      ],
+    },
+  ],
+};
+
 /** Honest size label for a form task, computed from the definition so it never
     drifts: "21 questions · about 15 minutes". */
 export function formSizeLabel(formId: string): string | null {
@@ -299,7 +417,7 @@ export function formSizeLabel(formId: string): string | null {
 }
 
 export function onboardingFormById(formId: string): PortalFormDefinition | undefined {
-  return [scaleOnboardingForm, respondOnboardingForm].find((form) => form.id === formId);
+  return [scaleOnboardingForm, respondOnboardingForm, bssCustomIntakeForm].find((form) => form.id === formId);
 }
 
 const maxLengths: Partial<Record<PortalFormFieldType, number>> = {

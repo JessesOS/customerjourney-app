@@ -151,6 +151,8 @@ export function ClientPortalExperience({
   const [completedIds, setCompletedIds] = useState<Set<string>>(() => new Set(initialCompletedMilestoneIds));
   const [notes, setNotes] = useState<Record<string, string>>(initialMilestoneNotes);
   const [noteDrafts, setNoteDrafts] = useState<Record<string, string>>({});
+  // A step with both a form and a voice interview lets the client choose: type or talk.
+  const [answerModes, setAnswerModes] = useState<Record<string, "type" | "talk">>({});
   const [uploads, setUploads] = useState<Record<string, UploadMeta[]>>(milestoneUploads);
   // Team content can land minutes AFTER the client first opens the portal (the
   // AI pack generates during checkout). Start from the server-rendered snapshot
@@ -1244,12 +1246,17 @@ export function ClientPortalExperience({
             const isFirst = isTeamTask || pos <= 0;
             const nextN = pos >= 0 && pos < mine.length - 1 ? mine[pos + 1] : undefined;
             const prevN = pos > 0 ? mine[pos - 1] : undefined;
-            const inlineForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
+            const stepForm = m.status !== "done" && m.formId ? onboardingFormById(m.formId) : undefined;
+            const twoWays = Boolean(stepForm && m.interview);
+            const answerMode = twoWays ? answerModes[m.id] : undefined;
+            const choosingMode = twoWays && !answerMode;
+            const inlineForm = twoWays && answerMode !== "type" ? undefined : stepForm;
+            const switchMode = (mode: "type" | "talk") => { setAnswerModes((prev) => ({ ...prev, [m.id]: mode })); window.scrollTo(0, 0); };
             const savedContent = liveContent[m.id];
             const noteValue = noteDrafts[m.id] ?? notes[m.id] ?? "";
             const uploadedFiles = uploads[m.id] ?? [];
             const showUploadWidget = m.status !== "done" && m.hasUpload;
-            const hasCustomFlow = Boolean(inlineForm) || showUploadWidget;
+            const hasCustomFlow = Boolean(inlineForm) || showUploadWidget || choosingMode;
 
             return (
               <div>
@@ -1367,15 +1374,31 @@ export function ClientPortalExperience({
                       </div>
                     )}
                   </div>
+                ) : choosingMode ? (
+                  <div className="pj-answer-modes">
+                    <button type="button" className="pj-answer-mode" onClick={() => switchMode("type")}>
+                      <span className="pj-answer-mode-title">Type my answers</span>
+                      <span className="pj-answer-mode-sub">One quick question at a time. Saves as you go.</span>
+                    </button>
+                    <button type="button" className="pj-answer-mode" onClick={() => switchMode("talk")}>
+                      <span className="pj-answer-mode-title">Talk it through</span>
+                      <span className="pj-answer-mode-sub">We ask out loud, you answer out loud. Fix anything before you send it.</span>
+                    </button>
+                  </div>
                 ) : inlineForm ? (
-                  <OnboardingFormStepper
-                    form={inlineForm}
-                    portalToken={portalToken}
-                    onComplete={() => {
-                      approveMilestone(m.id);
-                      advanceAfterComplete(m.id);
-                    }}
-                  />
+                  <>
+                    {twoWays && (
+                      <button type="button" className="pj-answer-switch" onClick={() => switchMode("talk")}>Rather talk it through?</button>
+                    )}
+                    <OnboardingFormStepper
+                      form={inlineForm}
+                      portalToken={portalToken}
+                      onComplete={() => {
+                        approveMilestone(m.id);
+                        advanceAfterComplete(m.id);
+                      }}
+                    />
+                  </>
                 ) : showUploadWidget ? (
                   <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
                     <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 8 }}>
@@ -1546,6 +1569,10 @@ export function ClientPortalExperience({
                       >
                         Skip
                       </button>
+                    )}
+
+                    {twoWays && (
+                      <button type="button" className="pj-answer-switch" onClick={() => switchMode("type")}>Rather type your answers?</button>
                     )}
 
                     {m.interview && (

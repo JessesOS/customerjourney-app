@@ -16,7 +16,7 @@
     "sha256": "dc3d10c4a5b29762a5a086937db10da183085a05b99651757f6eda0cced63b89"
   },
   "bss-custom": {
-    "version": "2026-10-18.1",
-    "sha256": "7c3a851b7840ce5183c0f09226317c582248427fc12930e79a4b10ba1ec3a525"
+    "version": "2026-10-18.2",
+    "sha256": "6b3c52454785257cce5db9132946479d6bdcec3b53a625c70c6837e32c0ae07c"
   }
 }
