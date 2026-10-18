@@ -105,6 +105,8 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
         "Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
         "From now on, open BSS Launchpad from your home screen.",
       ],
+      imageUrl: "/portal/guides/bss-home-screen-app.png",
+      imageAlt: "An iPhone home screen with the BSS Launchpad icon, and the portal open full screen like an app.",
       doneLabel: "I've saved it",
       clientOnly: true,
     },

@@ -34,6 +34,9 @@ export type JourneyMilestone = {
   /** Shows a "copy your portal link" card instead of the usual content — for
       tasks that just ask the client to bookmark where they already are. */
   showPortalLink?: boolean;
+  /** A picture shown under the step's how-to list (e.g. what the portal looks like saved to a phone). */
+  imageUrl?: string;
+  imageAlt?: string;
   /** Voice interview: questions asked one at a time; the answers are saved
       as the task's note. */
   interview?: string[];
@@ -79,6 +82,9 @@ export type MilestoneTemplate = {
   important?: string;
   steps?: string[];
   showPortalLink?: boolean;
+  /** A picture shown under the step's how-to list (e.g. what the portal looks like saved to a phone). */
+  imageUrl?: string;
+  imageAlt?: string;
   interview?: string[];
   interviewAgentId?: string;
   inviteEmail?: string;

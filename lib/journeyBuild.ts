@@ -64,6 +64,7 @@ export function buildStages(
       important: m.important,
       steps: m.steps,
       showPortalLink: m.showPortalLink,
+      ...(m.imageUrl ? { imageUrl: m.imageUrl, imageAlt: m.imageAlt ?? "" } : {}),
       status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
     }));
 

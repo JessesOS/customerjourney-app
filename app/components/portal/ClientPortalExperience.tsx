@@ -1342,6 +1342,11 @@ export function ClientPortalExperience({
                   </div>
                 )}
 
+                {m.imageUrl && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={m.imageUrl} alt={m.imageAlt ?? ""} className="pj-step-image" loading="lazy" />
+                )}
+
                 {showsTaskImportant(journey, m) && (
                   <div style={{ marginTop: 18, display: "flex", gap: 11, borderRadius: "var(--pj-radius-sm)", border: "1px solid color-mix(in srgb, var(--pj-act) 40%, transparent)", background: "var(--pj-act-fill)", padding: "13px 16px" }}>
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pj-act)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }}>
