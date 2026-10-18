@@ -191,7 +191,7 @@ export const bssJourneyMap: JourneyMapContent = {
         {
           title: "Everything after that",
           detail:
-            "Your monthly group calls, the community, the Master Vault document and their later calls. We'll map each step together, marked \"automated\" or \"needs you\", in week 8.",
+            "Your monthly group calls, the community, the Master Vault document and their later calls. We'll map each step together, marked \"automated\" or \"needs you\", before your first month is up.",
         },
       ],
       outcome: "A new client, welcomed and booked in with their coach.",
@@ -202,7 +202,7 @@ export const bssJourneyMap: JourneyMapContent = {
     { title: "Missed calls", detail: "Miss a call on your business number and they get a text within a minute." },
     { title: "Your AI lead agent", detail: "Answers questions day and night on your website chat, texts, Instagram and Facebook. It asks your six questions, books Clarity Calls, and hands over to you with a summary." },
     { title: "Hot lead alerts", detail: "When a lead looks ready (strong answers, replies, a booking), you get an alert." },
-    { title: "Past contacts", detail: "Two short texts to past contacts who agreed to hear from you, from week 7." },
+    { title: "Past contacts", detail: "Two short texts to past contacts who agreed to hear from you, once your new system is live." },
     { title: "Testimonials", detail: "After a call or a milestone, an email asking for a review, with permission to use it on your website." },
   ],
   rules: [

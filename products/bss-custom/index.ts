@@ -20,14 +20,14 @@ import { bssCustomTeamTasks } from "./team-tasks";
 export const bssCustom = defineCustomProduct({
   id: "bss-custom",
   name: "BSS custom (Fin Creighton)",
-  version: "2026-10-18.14",
+  version: "2026-10-18.15",
   status: "draft",
   clientType: "bss-custom",
   label: "BSS custom",
   spec: "products/bss-custom/spec.md",
   base: "blank",
   idPrefix: "bssc-",
-  totalDays: 42,
+  totalDays: 30,
   roles: ["Jesse Allan"],
   stages: bssCustomStages,
   steps: { add: bssCustomSteps },
@@ -41,22 +41,23 @@ export const bssCustom = defineCustomProduct({
     // "Ask Jesse" help panel (Jesse, 2026-10-18): answers from Fin's reviewed
     // pack (scripts/assistant-pack.mjs) and takes support requests for the board.
     // Saved to a phone's home screen, the portal opens full screen with this icon (draft, Jesse 2026-10-18).
-    features: { assistant: true, appIcon: "bss-launchpad" },
+    // Ask Jesse (assistant) is hidden for now (Jesse, 2026-10-18): add `assistant: true` back to show it.
+    features: { appIcon: "bss-launchpad" },
     // The customer journey map on "Approve your customer journey" (draft, Jesse 2026-10-18).
     journeyMap: { step: "bssc-journey-map", content: bssJourneyMap },
     stringPlan: {
-      weeks: 10,
-      goLiveDay: 42,
+      weeks: 5,
+      goLiveDay: 23,
       tailLabel: "→ M8",
       workstreams: [
-        { id: "access", name: "Access & questions", dayStart: 1, dayEnd: 14, taskIds: ["bssc-bookmark", "bssc-save-portal", "bssc-access-site", "bssc-access-tools", "bssc-contact-lists", "bssc-questions"] },
-        { id: "mapping", name: "Journey & findings", dayStart: 1, dayEnd: 14, taskIds: ["bssc-journey-map"], after: ["access"] },
-        { id: "website", name: "Website", dayStart: 1, dayEnd: 28, taskIds: ["bssc-review-1", "bssc-assets", "bssc-review-2", "bssc-signoff"] },
-        { id: "crm", name: "CRM build", dayStart: 8, dayEnd: 28, taskIds: ["bssc-crm-plan", "bssc-contacts"], after: ["mapping"] },
-        { id: "connect", name: "Connect & test", dayStart: 29, dayEnd: 35, taskIds: ["bssc-test-booking", "bssc-launch-day"], after: ["crm", "website"] },
-        { id: "launch", name: "Automate & launch", dayStart: 36, dayEnd: 42, taskIds: ["bssc-messages", "bssc-ai-agent", "bssc-walkthrough", "bssc-live-check"], after: ["connect"] },
-        { id: "partners", name: "Webinar & onboarding", dayStart: 43, dayEnd: 70, taskIds: ["bssc-webinar", "bssc-onboarding-map", "bssc-reactivation"], after: ["launch"] },
-        { id: "support", name: "Refine & support", dayStart: 43, dayEnd: 70, ongoing: true, taskIds: ["bssc-check-ins"], after: ["launch"] },
+        { id: "access", name: "Access & questions", dayStart: 1, dayEnd: 7, taskIds: ["bssc-bookmark", "bssc-save-portal", "bssc-access-site", "bssc-access-tools", "bssc-contact-lists", "bssc-questions"] },
+        { id: "mapping", name: "Journey & findings", dayStart: 1, dayEnd: 7, taskIds: ["bssc-journey-map"], after: ["access"] },
+        { id: "website", name: "Website", dayStart: 1, dayEnd: 16, taskIds: ["bssc-review-1", "bssc-assets", "bssc-review-2", "bssc-signoff"] },
+        { id: "crm", name: "CRM build", dayStart: 4, dayEnd: 16, taskIds: ["bssc-crm-plan", "bssc-contacts"], after: ["mapping"] },
+        { id: "connect", name: "Connect & test", dayStart: 17, dayEnd: 20, taskIds: ["bssc-test-booking", "bssc-launch-day"], after: ["crm", "website"] },
+        { id: "launch", name: "Automate & launch", dayStart: 21, dayEnd: 23, taskIds: ["bssc-messages", "bssc-ai-agent", "bssc-walkthrough", "bssc-live-check"], after: ["connect"] },
+        { id: "partners", name: "Webinar & onboarding", dayStart: 24, dayEnd: 30, taskIds: ["bssc-webinar", "bssc-onboarding-map", "bssc-reactivation"], after: ["launch"] },
+        { id: "support", name: "Refine & support", dayStart: 24, dayEnd: 30, ongoing: true, taskIds: ["bssc-check-ins"], after: ["launch"] },
       ],
     },
   },

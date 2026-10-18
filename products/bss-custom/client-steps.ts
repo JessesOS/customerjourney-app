@@ -4,8 +4,9 @@
 //
 // EVERY WORD HERE IS A DRAFT (Claude, 2026-10-17): all 21 steps are listed in
 // draftCopy, so the product can't go live until Jesse approves the wording.
-// Timings follow section 2 of the spec: week 1 starts on the day the client
-// starts. Post-launch is ongoing: support runs to month 8.
+// Timings (Jesse, 2026-10-18): compressed from the spec's six weeks to launch
+// (week 10 for partners) to 30 days: launch by day 23, everything in place by
+// day 30, then support to month 8. Day 1 is the day the client starts.
 // No kick-off call step for now (Jesse, 2026-10-18): its team task (bssc-a09)
 // stays on the board, team-only.
 // The portal opens one step at a time, so each stage's order puts what Fin can
@@ -24,37 +25,36 @@ export const bssCustomStages: Partial<Record<StageId, StagePatch>> = {
   onboarding: {
     name: "Onboard, map and evaluate",
     dayStart: 1,
-    dayEnd: 14,
-    blurb: "Weeks 1 and 2: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built.",
+    dayEnd: 7,
+    blurb: "Your first week: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built.",
     statusNotes: [],
   },
   build: {
     name: "Build",
-    dayStart: 8,
-    dayEnd: 28,
-    blurb: "Weeks 2 to 4: your website is finished page by page, and your CRM is set up and loaded with your contacts.",
+    dayStart: 4,
+    dayEnd: 16,
+    blurb: "Your website is finished page by page, and your CRM is set up and loaded with your contacts.",
     statusNotes: [],
   },
   testing: {
     name: "Connect",
-    dayStart: 29,
-    dayEnd: 35,
-    blurb: "Week 5: your forms, chat, phone, texting, social channels and Calendly are connected to your CRM and tested.",
+    dayStart: 17,
+    dayEnd: 20,
+    blurb: "Your forms, chat, phone, texting and Calendly are connected to your CRM and tested.",
     statusNotes: [],
   },
   "go-live": {
     name: "Automate and launch",
-    dayStart: 36,
-    dayEnd: 42,
-    blurb: "Week 6: your new website launches on your domain. Your follow-up messages and AI lead agent switch on once you've approved them.",
+    dayStart: 21,
+    dayEnd: 23,
+    blurb: "Your new website launches on your domain. Your follow-up messages and AI lead agent switch on once you've approved them.",
     statusNotes: [],
   },
   "post-launch": {
     name: "Partners, webinar and support",
-    dayStart: 43,
-    dayEnd: 240,
-    ongoing: true,
-    blurb: "Weeks 7 to 10 add partner tracking, your weekly webinar and client onboarding. Then we review, tune and support you through month 8.",
+    dayStart: 24,
+    dayEnd: 30,
+    blurb: "Partner tracking, your weekly webinar and client onboarding go live, so everything is in place by day 30. Then we review, tune and support you through month 8.",
     statusNotes: [],
   },
 };
@@ -78,7 +78,7 @@ export const bssCustomInterview: string[] = [
 ];
 
 export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
-  // ── Onboard, map and evaluate (weeks 1-2) ──
+  // ── Onboard, map and evaluate (days 1-7) ──
   {
     stage: "onboarding",
     step: {
@@ -246,7 +246,7 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
     },
   },
 
-  // ── Build (weeks 2-4) ──
+  // ── Build (days 4-16) ──
   {
     stage: "build",
     step: {
@@ -294,7 +294,7 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
     },
   },
 
-  // ── Connect (week 5) ──
+  // ── Connect (days 17-20) ──
   {
     stage: "testing",
     step: {
@@ -317,7 +317,7 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
     },
   },
 
-  // ── Automate and launch (week 6) ──
+  // ── Automate and launch (days 21-23) ──
   {
     stage: "go-live",
     step: {
@@ -358,7 +358,7 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
     },
   },
 
-  // ── Partners, webinar and support (weeks 7-10, then to month 8) ──
+  // ── Partners, webinar and support (days 24-30, then support to month 8) ──
   {
     stage: "post-launch",
     step: {

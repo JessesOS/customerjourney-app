@@ -6,9 +6,9 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.14` |
+| Version | `2026-10-18.15` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
-| Journey | 42 days to go-live |
+| Journey | 30 days to go-live |
 | Client steps | 23 (2 client only, 0 hidden in the portal) |
 | Team tasks | 337 (241 behind a client step, 96 team-only) |
 | Based on | nothing: written from scratch |
@@ -32,7 +32,7 @@ No base: every step and task below is this product's own.
 **BSS custom** (`bss-custom`)
 
 - named **BSS Launchpad** · tagline "Your new website and client system, built step by step." · look fixed to `groveaurora` · no $200 "move fast" popup
-- String Theory: 8 strands, go-live day 42
+- String Theory: 8 strands, go-live day 23
 
 ## Portal settings
 
@@ -41,7 +41,7 @@ No base: every step and task below is this product's own.
 | Name the client sees | **BSS Launchpad**, unless a variant sets its own name |
 | Voice guide | off |
 | Ask-AI | off |
-| Step features | home-screen app icon `bss-launchpad`; "Ask Jesse" help panel (answers from the client's reviewed pack; requests become board tasks) |
+| Step features | home-screen app icon `bss-launchpad` |
 | Customer journey map | on `bssc-journey-map`: 3 journeys, notes saved in form `bss-journey-map-notes-v1` (below) |
 
 ## Customer journey map (on `bssc-journey-map`)
@@ -108,7 +108,7 @@ From payment to their first implementation call. Where they come from: A payment
    - email: Your client portal: access and how to start
 3. **Meet your coach**. The next day, an email introducing their implementation coach, with a link to book call 1. Then a "how to prepare" email before that call.
    - _To confirm:_ Your implementation coaches' names and emails. (Your answers in "Answer a few questions")
-4. **Everything after that**. Your monthly group calls, the community, the Master Vault document and their later calls. We'll map each step together, marked "automated" or "needs you", in week 8.
+4. **Everything after that**. Your monthly group calls, the community, the Master Vault document and their later calls. We'll map each step together, marked "automated" or "needs you", before your first month is up.
 
 Ends with: A new client, welcomed and booked in with their coach.
 
@@ -118,7 +118,7 @@ Ends with: A new client, welcomed and booked in with their coach.
 - **Missed calls:** Miss a call on your business number and they get a text within a minute.
 - **Your AI lead agent:** Answers questions day and night on your website chat, texts, Instagram and Facebook. It asks your six questions, books Clarity Calls, and hands over to you with a summary.
 - **Hot lead alerts:** When a lead looks ready (strong answers, replies, a booking), you get an alert.
-- **Past contacts:** Two short texts to past contacts who agreed to hear from you, from week 7.
+- **Past contacts:** Two short texts to past contacts who agreed to hear from you, once your new system is live.
 - **Testimonials:** After a call or a milestone, an email asking for a review, with permission to use it on your website.
 
 ### Rules every message follows
@@ -155,9 +155,9 @@ Ends with: A new client, welcomed and booked in with their coach.
 
 Each stage lists the client's steps in portal order, with the team tasks behind each step, then any team-only work. _Meta only_ / _Google only_ marks work for one ad channel. "After" lists the tasks to finish first.
 
-## 1. Onboard, map and evaluate · days 1–14
+## 1. Onboard, map and evaluate · days 1–7
 
-_Weeks 1 and 2: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built._
+_Your first week: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built._
 
 ### `bssc-bookmark` Bookmark your portal _(client only)_
 
@@ -183,10 +183,10 @@ Portal: note · 2 numbered steps · invite email · "Important" box
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-a10` Collect all access in the portal (see 4.1) _(done when the client finishes `bssc-access-site`, `bssc-access-tools`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | critical | `bssc-a06` |
-| `bssc-a13` Analyse Fin's existing app (the "vibe-coded CRM"): keep, migrate or replace | Jesse Allan | Weeks 1-2 (days 1–14) | critical | `bssc-a10` |
-| `bssc-b310` Asset from Fin / Lovable project: Original files for Fin's photo, the coffee image, logos | Jesse Allan | Weeks 1-2 (days 1–14) | normal |  |
-| `bssc-b602` Fin: Get access to Fin's Lovable project (add Jesse as collaborator, or GitHub sync) _(done when the client finishes `bssc-access-site`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | critical |  |
+| `bssc-a10` Collect all access in the portal (see 4.1) _(done when the client finishes `bssc-access-site`, `bssc-access-tools`)_ | Jesse Allan | Days 1-7 (days 1–7) | critical | `bssc-a06` |
+| `bssc-a13` Analyse Fin's existing app (the "vibe-coded CRM"): keep, migrate or replace | Jesse Allan | Days 1-7 (days 1–7) | critical | `bssc-a10` |
+| `bssc-b310` Asset from Fin / Lovable project: Original files for Fin's photo, the coffee image, logos | Jesse Allan | Days 1-7 (days 1–7) | normal |  |
+| `bssc-b602` Fin: Get access to Fin's Lovable project (add Jesse as collaborator, or GitHub sync) _(done when the client finishes `bssc-access-site`)_ | Jesse Allan | Days 1-7 (days 1–7) | critical |  |
 
 <details><summary>Guidance for the team (4 tasks)</summary>
 
@@ -239,44 +239,44 @@ Portal: note · guide link
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-a23` Send the draft 1 review email with the review hub link and 26 questions | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b101` Design system carried from the pitch homepage to every page | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b102` Main navigation: Home · Podcast & Videos + "Book Your Free Clarity Call" button | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b103` Footer: disclaimer (unchanged), Pages links, Social links | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b104` Webinar pages use a focused header (logo only, no main menu, no assistant) (BRIEF s10) | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b105` Placeholder AI assistant bottom right | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b106` Every booking button opens the Book a Call quiz | Jesse Allan | Week 1 (days 1–7) | normal | `bssc-b201` |
-| `bssc-b107` Motion: calm, plays once, respects "reduce motion"; videos load only when pressed | Jesse Allan | Week 1 (days 1–7) | normal |  |
+| `bssc-a23` Send the draft 1 review email with the review hub link and 26 questions | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b101` Design system carried from the pitch homepage to every page | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b102` Main navigation: Home · Podcast & Videos + "Book Your Free Clarity Call" button | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b103` Footer: disclaimer (unchanged), Pages links, Social links | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b104` Webinar pages use a focused header (logo only, no main menu, no assistant) (BRIEF s10) | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b105` Placeholder AI assistant bottom right | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b106` Every booking button opens the Book a Call quiz | Jesse Allan | Days 1-3 (days 1–3) | normal | `bssc-b201` |
+| `bssc-b107` Motion: calm, plays once, respects "reduce motion"; videos load only when pressed | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
 | `bssc-b108` Fix the scroll-film crash ("Aw, Snap" error 11 on the second pass in Chrome) | Jesse Allan | Done 17 Oct | normal |  |
-| `bssc-b109` Mobile layouts for every page (390 wide) | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b110` Accessibility basics | Jesse Allan | Week 1 to launch (days 1–42) | normal |  |
+| `bssc-b109` Mobile layouts for every page (390 wide) | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b110` Accessibility basics | Jesse Allan | Days 1-23 (days 1–23) | normal |  |
 | `bssc-b114` Review hub for each draft round | Jesse Allan | Each round | normal |  |
-| `bssc-b201` Book a Call quiz: redesign the qualification pop-up | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b202` Fin: decide which of the five quiz question improvements to make (Q7) _(done when the client finishes `bssc-review-1`)_ | Jesse Allan | Week 2 (days 8–14) | high |  |
-| `bssc-b206` Home: Fourth scroll step "A setup that doesn't die with you", same animation | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b207` Home: Problem: keep the opening line; replace the second line | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b208` Home: Path: new subtext; new "Step by step guidance" and "Ongoing support" text | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b209` Home: Benefits list: seven points in Fin's order | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b210` Home: Package summary: heading "12 months of training and support" | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b211` Home: FAQ "What's included?": new opening sentence; remove "Your setup plan"; five items | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b212` Home: "Trusted by" → "Featured on" (Bitcoin MENA, Bitcoin Magazine logos) | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b213` Home: Testimonial carousel that switches on at 4+ testimonials (today: Mark, Bailey, Kodie) | Jesse Allan | Week 1 (days 1–7) | high |  |
+| `bssc-b201` Book a Call quiz: redesign the qualification pop-up | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b202` Fin: decide which of the five quiz question improvements to make (Q7) _(done when the client finishes `bssc-review-1`)_ | Jesse Allan | Days 4-7 (days 4–7) | high |  |
+| `bssc-b206` Home: Fourth scroll step "A setup that doesn't die with you", same animation | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b207` Home: Problem: keep the opening line; replace the second line | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b208` Home: Path: new subtext; new "Step by step guidance" and "Ongoing support" text | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b209` Home: Benefits list: seven points in Fin's order | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b210` Home: Package summary: heading "12 months of training and support" | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b211` Home: FAQ "What's included?": new opening sentence; remove "Your setup plan"; five items | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b212` Home: "Trusted by" → "Featured on" (Bitcoin MENA, Bitcoin Magazine logos) | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b213` Home: Testimonial carousel that switches on at 4+ testimonials (today: Mark, Bailey, Kodie) | Jesse Allan | Days 1-3 (days 1–3) | high |  |
 | `bssc-b216` Home: Keep unchanged: offer heading "Worth $21,000+" | Jesse Allan | Always | normal |  |
-| `bssc-b217` Call booked: Restyle in the homepage design with subtle motion | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b218` Call booked: Optional extras: readiness checklist; one testimonial near the videos | Jesse Allan | Week 2 on (days 8–70) | low |  |
-| `bssc-b221` Podcast & Videos: Hero (live copy + subscribe links + newest episode), "Start here" | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b223` Podcast: Instagram and X: links (not feeds) unless Fin wants a paid widget billed at cost | Jesse Allan | Week 2 on (days 8–70) | normal |  |
-| `bssc-b224` About: Restyle, copy unchanged; "Secure My Set-Up" opens the quiz | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b225` Not qualified: Restyle, copy and video unchanged; two proposed "Keep learning" links | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b226` Link-in-bio: Restyle as one card over a film still; same three links and words | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b227` Privacy: Restyle; today's text is the Bali Retreat policy, shown under a draft note | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b229` Partner template: One page; each partner = a record | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b230` Fin (asks Sean): Sean's endorsement, "Gday" vs "G'day", original photo (Q10 to Q12) | Jesse Allan | Week 2 (days 8–14) | high |  |
-| `bssc-b233` /book: Same template, no partner intro (live /book wrongly shows Sean's intro) | Jesse Allan | Week 1 (days 1–7) | normal | `bssc-b229` |
-| `bssc-b234` Webinar registration: Working title, supporting line, four pillars, "Reserve my place", host | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b235` Webinar confirmed: "You're registered"; three next steps | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b236` Webinar replay: Dated label, heading | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-b241` Fin reviews draft 1 in the hub (26 questions) _(done when the client finishes `bssc-review-1`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a23` |
+| `bssc-b217` Call booked: Restyle in the homepage design with subtle motion | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b218` Call booked: Optional extras: readiness checklist; one testimonial near the videos | Jesse Allan | Days 4-30 (days 4–30) | low |  |
+| `bssc-b221` Podcast & Videos: Hero (live copy + subscribe links + newest episode), "Start here" | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b223` Podcast: Instagram and X: links (not feeds) unless Fin wants a paid widget billed at cost | Jesse Allan | Days 4-30 (days 4–30) | normal |  |
+| `bssc-b224` About: Restyle, copy unchanged; "Secure My Set-Up" opens the quiz | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b225` Not qualified: Restyle, copy and video unchanged; two proposed "Keep learning" links | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b226` Link-in-bio: Restyle as one card over a film still; same three links and words | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b227` Privacy: Restyle; today's text is the Bali Retreat policy, shown under a draft note | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b229` Partner template: One page; each partner = a record | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b230` Fin (asks Sean): Sean's endorsement, "Gday" vs "G'day", original photo (Q10 to Q12) | Jesse Allan | Days 4-7 (days 4–7) | high |  |
+| `bssc-b233` /book: Same template, no partner intro (live /book wrongly shows Sean's intro) | Jesse Allan | Days 1-3 (days 1–3) | normal | `bssc-b229` |
+| `bssc-b234` Webinar registration: Working title, supporting line, four pillars, "Reserve my place", host | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b235` Webinar confirmed: "You're registered"; three next steps | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b236` Webinar replay: Dated label, heading | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-b241` Fin reviews draft 1 in the hub (26 questions) _(done when the client finishes `bssc-review-1`)_ | Jesse Allan | Days 1-7 (days 1–7) | normal | `bssc-a23` |
 | `bssc-b311` Asset from Us (pitch build): Film frames, design system, scroll film | Jesse Allan | Done (pitch build) | normal |  |
 
 <details><summary>Guidance for the team (39 tasks)</summary>
@@ -694,14 +694,14 @@ Portal: upload · note · 5 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-b214` Home: Add new testimonials when Fin sends them (with each client's written permission) | Jesse Allan | Week 2 on (days 8–70) | high | `bssc-b213` |
-| `bssc-b228` Privacy: New main-site privacy policy covering quiz answers | Jesse Allan | Before launch (days 29–42) | high |  |
-| `bssc-b231` Fin: collect each other partner's name, photo or logo, welcome message and OK on wording | Jesse Allan | Weeks 2-7 (days 8–49) | high | `bssc-a16` |
-| `bssc-b301` Asset from Fin: New testimonials (text and/or video), each with written permission | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-| `bssc-b302` Asset from Fin: Confirmation of "Featured on" relationships (Bitcoin MENA, Bitcoin Magazine) | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-| `bssc-b303` Asset from Fin / Sean: Sean Clarke's original photo (and any logo) | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-| `bssc-b304` Asset from Fin / partners: Every other partner's photo/logo, name, welcome message | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-| `bssc-b308` Asset from Fin: Privacy policy wording (or approval of our draft) | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
+| `bssc-b214` Home: Add new testimonials when Fin sends them (with each client's written permission) | Jesse Allan | Days 4-30 (days 4–30) | high | `bssc-b213` |
+| `bssc-b228` Privacy: New main-site privacy policy covering quiz answers | Jesse Allan | Days 17-23 (days 17–23) | high |  |
+| `bssc-b231` Fin: collect each other partner's name, photo or logo, welcome message and OK on wording | Jesse Allan | Days 4-25 (days 4–25) | high | `bssc-a16` |
+| `bssc-b301` Asset from Fin: New testimonials (text and/or video), each with written permission | Jesse Allan | Days 1-7 (days 1–7) | high |  |
+| `bssc-b302` Asset from Fin: Confirmation of "Featured on" relationships (Bitcoin MENA, Bitcoin Magazine) | Jesse Allan | Days 1-7 (days 1–7) | high |  |
+| `bssc-b303` Asset from Fin / Sean: Sean Clarke's original photo (and any logo) | Jesse Allan | Days 1-7 (days 1–7) | high |  |
+| `bssc-b304` Asset from Fin / partners: Every other partner's photo/logo, name, welcome message | Jesse Allan | Days 1-7 (days 1–7) | high |  |
+| `bssc-b308` Asset from Fin: Privacy policy wording (or approval of our draft) | Jesse Allan | Days 1-7 (days 1–7) | high |  |
 
 <details><summary>Guidance for the team (8 tasks)</summary>
 
@@ -778,10 +778,10 @@ Portal: form `bss-custom-intake-v1`
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-a15` Map every channel enquiries come in through today | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a09` |
-| `bssc-a17` Map how Fin takes payment after a sales call (Stripe? invoice? other) | Jesse Allan | Weeks 1-2 (days 1–14) | high | `bssc-a09` |
-| `bssc-a18` Fin: Confirm the webinar platform and licence (Zoom Meetings or Zoom Webinars) _(done when the client finishes `bssc-questions`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-| `bssc-c701` Decide the number's country: depends on where Fin's contacts are | Jesse Allan | Week 2 (days 8–14) | normal | `bssc-a15` |
+| `bssc-a15` Map every channel enquiries come in through today | Jesse Allan | Days 1-7 (days 1–7) | normal | `bssc-a09` |
+| `bssc-a17` Map how Fin takes payment after a sales call (Stripe? invoice? other) | Jesse Allan | Days 1-7 (days 1–7) | high | `bssc-a09` |
+| `bssc-a18` Fin: Confirm the webinar platform and licence (Zoom Meetings or Zoom Webinars) _(done when the client finishes `bssc-questions`)_ | Jesse Allan | Days 1-7 (days 1–7) | high |  |
+| `bssc-c701` Decide the number's country: depends on where Fin's contacts are | Jesse Allan | Days 4-7 (days 4–7) | normal | `bssc-a15` |
 
 <details><summary>Guidance for the team (4 tasks)</summary>
 
@@ -841,10 +841,10 @@ Done with: `bssc-a10` (behind `bssc-access-site`)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-a14` Audit Fin's existing GHL sub-account | Jesse Allan | Weeks 1-2 (days 1–14) | critical |  |
-| `bssc-b501` Fin: Calendly account (overview account + a sub-account per implementation coach) | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a19` |
-| `bssc-b502` Fin: Invite Jesse as Calendly admin (jesse@allconvos.ai), by invite not password _(done when the client finishes `bssc-access-tools`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | high | `bssc-b501` |
-| `bssc-b507` Fin: Zoom licence per coach (Fin's cost) | Jesse Allan | Week 2 (days 8–14) | normal |  |
+| `bssc-a14` Audit Fin's existing GHL sub-account | Jesse Allan | Days 1-7 (days 1–7) | critical |  |
+| `bssc-b501` Fin: Calendly account (overview account + a sub-account per implementation coach) | Jesse Allan | Days 1-7 (days 1–7) | normal | `bssc-a19` |
+| `bssc-b502` Fin: Invite Jesse as Calendly admin (jesse@allconvos.ai), by invite not password _(done when the client finishes `bssc-access-tools`)_ | Jesse Allan | Days 1-7 (days 1–7) | high | `bssc-b501` |
+| `bssc-b507` Fin: Zoom licence per coach (Fin's cost) | Jesse Allan | Days 4-7 (days 4–7) | normal |  |
 
 <details><summary>Guidance for the team (4 tasks)</summary>
 
@@ -902,7 +902,7 @@ Portal: upload · note · 4 numbered steps · "Important" box
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-c901` Export existing contacts (GHL, Supabase tables, any other lists) | Jesse Allan | Week 3 (days 15–21) | high | `bssc-a13`, `bssc-a14` |
+| `bssc-c901` Export existing contacts (GHL, Supabase tables, any other lists) | Jesse Allan | Days 8-11 (days 8–11) | high | `bssc-a13`, `bssc-a14` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
@@ -926,8 +926,8 @@ Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of 
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-a11` Map the customer journey end to end | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a09`, `bssc-a10` |
-| `bssc-a12` Fin approves the customer journey map before anything is built on it _(done when the client finishes `bssc-journey-map`)_ | Jesse Allan | Week 2 (days 8–14) | critical | `bssc-a11` |
+| `bssc-a11` Map the customer journey end to end | Jesse Allan | Days 1-7 (days 1–7) | normal | `bssc-a09`, `bssc-a10` |
+| `bssc-a12` Fin approves the customer journey map before anything is built on it _(done when the client finishes `bssc-journey-map`)_ | Jesse Allan | Days 4-7 (days 4–7) | critical | `bssc-a11` |
 
 <details><summary>Guidance for the team (2 tasks)</summary>
 
@@ -963,24 +963,24 @@ Status on 17 Oct: TODO
 | **Onboarding & admin** | | | | |
 | `bssc-a01` Take payment 1 and record consent and signature | Jesse Allan | Done 14 Oct | normal |  |
 | `bssc-a02` Set the subscription to stop after payment 8 (cancel_at 21 May 2027) | Jesse Allan | Done 15 Oct | normal | `bssc-a01` |
-| `bssc-a03` Check why Jesse got no Stripe email for the payment; fix notification settings | Jesse Allan | Week 1 (days 1–7) | normal |  |
+| `bssc-a03` Check why Jesse got no Stripe email for the payment; fix notification settings | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
 | `bssc-a04` Send the welcome / kickoff email | Jesse Allan | Done 15 Oct 08:35 | normal | `bssc-a01` |
 | `bssc-a05` Send Fin his portal link | Jesse Allan | Done 16 Oct | normal |  |
-| `bssc-a06` Build Fin's custom onboarding product (client portal + team board), from this file | Jesse Allan | Weeks 1-2 (days 1–14) | normal |  |
-| `bssc-a07` Load every task in section 3 into the team board, with owner, dependency, week and status | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a06` |
-| `bssc-a08` Load Fin's checklist (section 4) into his portal | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a06` |
-| `bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a06` |
-| `bssc-a22` Send the clarifications addendum | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-a24` Update the agreement page and any emails from "Cal.com" to "Calendly" (or GHL, per A19) | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a19` |
-| `bssc-a25` Fix the client-portal booking link (dead Cal.com link) | Jesse Allan | Week 1 (days 1–7) | normal | `bssc-b501` |
+| `bssc-a06` Build Fin's custom onboarding product (client portal + team board), from this file | Jesse Allan | Days 1-7 (days 1–7) | normal |  |
+| `bssc-a07` Load every task in section 3 into the team board, with owner, dependency, week and status | Jesse Allan | Days 1-7 (days 1–7) | normal | `bssc-a06` |
+| `bssc-a08` Load Fin's checklist (section 4) into his portal | Jesse Allan | Days 1-7 (days 1–7) | normal | `bssc-a06` |
+| `bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other | Jesse Allan | Days 1-7 (days 1–7) | normal | `bssc-a06` |
+| `bssc-a22` Send the clarifications addendum | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-a24` Update the agreement page and any emails from "Cal.com" to "Calendly" (or GHL, per A19) | Jesse Allan | Days 1-7 (days 1–7) | normal | `bssc-a19` |
+| `bssc-a25` Fix the client-portal booking link (dead Cal.com link) | Jesse Allan | Days 1-3 (days 1–3) | normal | `bssc-b501` |
 | `bssc-a26` Weekly progress update to Fin in the portal | Jesse Allan | Every week to month 8 (days 1–240) | normal | `bssc-a06` |
-| `bssc-a27` Ask the accountant about GST on a client billed to a UK address | Jesse Allan | Weeks 1-2 (days 1–14) | normal |  |
+| `bssc-a27` Ask the accountant about GST on a client billed to a UK address | Jesse Allan | Days 1-7 (days 1–7) | normal |  |
 | `bssc-x-scope` Not in scope: decide the Contact page, quote the rest if Fin asks | Jesse Allan | As needed | normal |  |
 | **Domain & hosting** | | | | |
-| `bssc-b603` Test the publish route on a dummy Lovable account first | Jesse Allan | Weeks 1-2 (days 1–14) | normal |  |
+| `bssc-b603` Test the publish route on a dummy Lovable account first | Jesse Allan | Days 1-7 (days 1–7) | normal |  |
 | **CRM: setup & users** | | | | |
-| `bssc-c102` Jesse's own GHL agency account set up again | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-c107` Ownership in writing: Fin owns his contacts, data, content and GHL account | Jesse Allan | Week 1 (days 1–7) | normal | `bssc-a22` |
+| `bssc-c102` Jesse's own GHL agency account set up again | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-c107` Ownership in writing: Fin owns his contacts, data, content and GHL account | Jesse Allan | Days 1-3 (days 1–3) | normal | `bssc-a22` |
 
 <details><summary>Guidance for the team (18 tasks)</summary>
 
@@ -1193,9 +1193,9 @@ From the spec: every item marked NOT IN SCOPE, plus 3.H (ads) and 3.J (add-ons, 
 
 </details>
 
-## 2. Build · days 8–28
+## 2. Build · days 4–16
 
-_Weeks 2 to 4: your website is finished page by page, and your CRM is set up and loaded with your contacts._
+_Your website is finished page by page, and your CRM is set up and loaded with your contacts._
 
 ### `bssc-review-2` Review your updated website
 
@@ -1205,9 +1205,9 @@ Portal: note · guide link
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-b203` Quiz: Build the chosen question changes | Jesse Allan | Weeks 2-3 (days 8–21) | normal | `bssc-b202` |
-| `bssc-b242` Draft 2 (round 1 changes applied) | Jesse Allan | Week 2 (days 8–14) | normal | `bssc-b241` |
-| `bssc-b243` Draft 3 (round 2) | Jesse Allan | Weeks 3-4 (days 15–28) | normal |  |
+| `bssc-b203` Quiz: Build the chosen question changes | Jesse Allan | Days 4-11 (days 4–11) | normal | `bssc-b202` |
+| `bssc-b242` Draft 2 (round 1 changes applied) | Jesse Allan | Days 4-7 (days 4–7) | normal | `bssc-b241` |
+| `bssc-b243` Draft 3 (round 2) | Jesse Allan | Days 8-16 (days 8–16) | normal |  |
 | `bssc-b244` Round 3 (on paper; aim not to need it) | Jesse Allan | If needed | normal |  |
 | `bssc-b802` Test: Copy check line by line against the live site for every "unchanged" line | Jesse Allan | Each round | normal |  |
 
@@ -1269,50 +1269,50 @@ Portal: work to review · note · 3 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-a16` Map partner, commission and payout setup today (how partners are added, tracked and paid) | Jesse Allan | Weeks 1-2 (days 1–14) | high | `bssc-a13` |
-| `bssc-a19` Research check: Calendly vs GHL native booking | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-a20` Written findings and recommendation: keep, migrate or replace | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a13`, `bssc-a14`, `bssc-a15` |
-| `bssc-a21` Decide the sub-account: Fin's existing, or a new one Jesse provides | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a20` |
-| `bssc-b232` Partner: Exact partner pages confirmed in the first two weeks (AGR) | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a16` |
-| `bssc-b604` Choose the publish route (recommended: through Fin's Lovable project) | Jesse Allan | Week 2 (days 8–14) | normal | `bssc-b602`, `bssc-b603` |
-| `bssc-c101` Decide existing vs new sub-account | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a20` |
-| `bssc-c201` Pipeline: Sales: Clarity Call | Jesse Allan | Weeks 2-3 (days 8–21) | normal |  |
-| `bssc-c202` Pipeline: Not qualified (or a stage + tag in C201) | Jesse Allan | Weeks 2-3 (days 8–21) | normal |  |
-| `bssc-c203` Pipeline: Webinar (per weekly occurrence) | Jesse Allan | Weeks 2-3 (days 8–21) | normal |  |
-| `bssc-c204` Pipeline: Client onboarding | Jesse Allan | Weeks 2-3 (days 8–21) | normal |  |
-| `bssc-c205` Pipeline: Partners (optional, depends on A16) | Jesse Allan | Weeks 2-3 (days 8–21) | normal |  |
-| `bssc-c206` Agree the pipelines with Fin before building _(done when the client finishes `bssc-crm-plan`)_ | Jesse Allan | Week 2 (days 8–14) | normal | `bssc-a12` |
-| `bssc-c301` Field: Q1 Have you bought Bitcoin? | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c302` Field: Q2 How are you currently storing your Bitcoin? | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c303` Field: Q3 What's stopped you from setting this up already? | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c304` Field: Q4 What kind of support are you looking for? | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c305` Field: Q5 Are you ready to invest in protecting your Bitcoin? | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c306` Field: Q6 How soon would you want to get started? | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c307` Field: Qualification summary (one readable paragraph for the coach before the call) | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c308` Field: Qualified (yes / no) + disqualify reason | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c309` Field: Qualification submitted at; correlation ID | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c310` Field: Lead source (first touch) and latest source | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c311` Field: UTM source / medium / campaign / content; referrer; landing page | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c312` Field: Partner slug; partner name | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c313` Field: Calendly event URI; invitee URI; call date-time; coach | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c314` Field: Call outcome (showed / no-show / considering / awaiting payment / won / lost) | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c315` Field: Payment status; payment date; amount; method | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c316` Field: Client start date; coach assigned; portal access sent | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c317` Field: Webinar occurrence (date-time); registered at; attended; replay watched | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c318` Field: Webinar private joining link | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c319` Field: SMS consent (yes/no), consent time, consent wording version, source | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c320` Field: Security Score result + assessment answers | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c321` Field: Lead score | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c322` Field: Checklist downloaded at | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c323` Field: Reactivation consent confirmed (by Fin) | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c324` Field: AI agent handoff summary | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c501` Lead score rules (draft): hot, warm and cold | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c4-source` Tags: source | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c4-status` Tags: status | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c4-webinar` Tags: webinar | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c4-consent` Tags: consent and safety | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c4-engagement` Tags: engagement | Jesse Allan | Week 3 (days 15–21) | normal |  |
-| `bssc-c4-interest` Tags: interest | Jesse Allan | Week 3 (days 15–21) | normal |  |
+| `bssc-a16` Map partner, commission and payout setup today (how partners are added, tracked and paid) | Jesse Allan | Days 1-7 (days 1–7) | high | `bssc-a13` |
+| `bssc-a19` Research check: Calendly vs GHL native booking | Jesse Allan | Days 1-3 (days 1–3) | normal |  |
+| `bssc-a20` Written findings and recommendation: keep, migrate or replace | Jesse Allan | Day 7 (days 7–7) | normal | `bssc-a13`, `bssc-a14`, `bssc-a15` |
+| `bssc-a21` Decide the sub-account: Fin's existing, or a new one Jesse provides | Jesse Allan | Day 7 (days 7–7) | normal | `bssc-a20` |
+| `bssc-b232` Partner: Exact partner pages confirmed in the first two weeks (AGR) | Jesse Allan | Day 7 (days 7–7) | normal | `bssc-a16` |
+| `bssc-b604` Choose the publish route (recommended: through Fin's Lovable project) | Jesse Allan | Days 4-7 (days 4–7) | normal | `bssc-b602`, `bssc-b603` |
+| `bssc-c101` Decide existing vs new sub-account | Jesse Allan | Day 7 (days 7–7) | normal | `bssc-a20` |
+| `bssc-c201` Pipeline: Sales: Clarity Call | Jesse Allan | Days 4-11 (days 4–11) | normal |  |
+| `bssc-c202` Pipeline: Not qualified (or a stage + tag in C201) | Jesse Allan | Days 4-11 (days 4–11) | normal |  |
+| `bssc-c203` Pipeline: Webinar (per weekly occurrence) | Jesse Allan | Days 4-11 (days 4–11) | normal |  |
+| `bssc-c204` Pipeline: Client onboarding | Jesse Allan | Days 4-11 (days 4–11) | normal |  |
+| `bssc-c205` Pipeline: Partners (optional, depends on A16) | Jesse Allan | Days 4-11 (days 4–11) | normal |  |
+| `bssc-c206` Agree the pipelines with Fin before building _(done when the client finishes `bssc-crm-plan`)_ | Jesse Allan | Days 4-7 (days 4–7) | normal | `bssc-a12` |
+| `bssc-c301` Field: Q1 Have you bought Bitcoin? | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c302` Field: Q2 How are you currently storing your Bitcoin? | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c303` Field: Q3 What's stopped you from setting this up already? | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c304` Field: Q4 What kind of support are you looking for? | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c305` Field: Q5 Are you ready to invest in protecting your Bitcoin? | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c306` Field: Q6 How soon would you want to get started? | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c307` Field: Qualification summary (one readable paragraph for the coach before the call) | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c308` Field: Qualified (yes / no) + disqualify reason | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c309` Field: Qualification submitted at; correlation ID | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c310` Field: Lead source (first touch) and latest source | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c311` Field: UTM source / medium / campaign / content; referrer; landing page | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c312` Field: Partner slug; partner name | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c313` Field: Calendly event URI; invitee URI; call date-time; coach | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c314` Field: Call outcome (showed / no-show / considering / awaiting payment / won / lost) | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c315` Field: Payment status; payment date; amount; method | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c316` Field: Client start date; coach assigned; portal access sent | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c317` Field: Webinar occurrence (date-time); registered at; attended; replay watched | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c318` Field: Webinar private joining link | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c319` Field: SMS consent (yes/no), consent time, consent wording version, source | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c320` Field: Security Score result + assessment answers | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c321` Field: Lead score | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c322` Field: Checklist downloaded at | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c323` Field: Reactivation consent confirmed (by Fin) | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c324` Field: AI agent handoff summary | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c501` Lead score rules (draft): hot, warm and cold | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c4-source` Tags: source | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c4-status` Tags: status | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c4-webinar` Tags: webinar | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c4-consent` Tags: consent and safety | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c4-engagement` Tags: engagement | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
+| `bssc-c4-interest` Tags: interest | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
 
 <details><summary>Guidance for the team (44 tasks)</summary>
 
@@ -1664,8 +1664,8 @@ Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-c904` Fin: Record consent status; Fin confirms which contacts agreed to hear from him _(done when the client finishes `bssc-contacts`)_ | Jesse Allan | Week 4 (days 22–28) | high | `bssc-c903` |
-| `bssc-c905` Import into GHL; spot-check 20 records with Fin | Jesse Allan | Week 4 (days 22–28) | normal | `bssc-c904` |
+| `bssc-c904` Fin: Record consent status; Fin confirms which contacts agreed to hear from him _(done when the client finishes `bssc-contacts`)_ | Jesse Allan | Days 12-16 (days 12–16) | high | `bssc-c903` |
+| `bssc-c905` Import into GHL; spot-check 20 records with Fin | Jesse Allan | Days 12-16 (days 12–16) | normal | `bssc-c904` |
 
 <details><summary>Guidance for the team (2 tasks)</summary>
 
@@ -1702,7 +1702,7 @@ Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-b245` Fin signs off each page for build _(done when the client finishes `bssc-signoff`)_ | Jesse Allan | Week 4 (days 22–28) | critical | `bssc-b243` |
+| `bssc-b245` Fin signs off each page for build _(done when the client finishes `bssc-signoff`)_ | Jesse Allan | Days 12-16 (days 12–16) | critical | `bssc-b243` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
@@ -1724,31 +1724,31 @@ Status on 17 Oct: TODO
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | **Website: pages** | | | | |
-| `bssc-b220` Call booked: Move Fin's photo and the coffee image from hotlinks into the project | Jesse Allan | Build (weeks 2-4) (days 8–28) | normal |  |
-| `bssc-b222` Podcast: Live feed: YouTube Data API v3 | Jesse Allan | Build (weeks 2-4) (days 8–28) | normal |  |
+| `bssc-b220` Call booked: Move Fin's photo and the coffee image from hotlinks into the project | Jesse Allan | Build (days 4-16) (days 4–16) | normal |  |
+| `bssc-b222` Podcast: Live feed: YouTube Data API v3 | Jesse Allan | Build (days 4-16) (days 4–16) | normal |  |
 | **Website: assets** | | | | |
-| `bssc-b309` Asset from Fin or Us (decide): Google API key for YouTube Data API | Jesse Allan | Build (weeks 2-4) (days 8–28) | normal |  |
+| `bssc-b309` Asset from Fin or Us (decide): Google API key for YouTube Data API | Jesse Allan | Build (days 4-16) (days 4–16) | normal |  |
 | **Domain & hosting** | | | | |
 | `bssc-b601` Draft preview hosting (noindex) | Jesse Allan | Done 17 Oct | normal |  |
-| `bssc-b605` Rebuild approved pages inside Lovable (React) without breaking existing routes | Jesse Allan | Weeks 4-6 (days 22–42) | critical | `bssc-b245`, `bssc-b604` |
-| `bssc-b606` DNS (Porkbun) and Cloudflare: only if the route needs it | Jesse Allan | Weeks 4-6 (days 22–42) | normal |  |
+| `bssc-b605` Rebuild approved pages inside Lovable (React) without breaking existing routes | Jesse Allan | Days 12-23 (days 12–23) | critical | `bssc-b245`, `bssc-b604` |
+| `bssc-b606` DNS (Porkbun) and Cloudflare: only if the route needs it | Jesse Allan | Days 12-23 (days 12–23) | normal |  |
 | **CRM: setup & users** | | | | |
-| `bssc-c103` Install and configure the BSS snapshot (base CRM) | Jesse Allan | Weeks 2-3 (days 8–21) | normal | `bssc-c101` |
-| `bssc-c104` Business profile: name, address, time zone (Australia/Brisbane), logo, colours, signature | Jesse Allan | Weeks 2-3 (days 8–21) | normal | `bssc-c103` |
-| `bssc-c105` Users and permissions: Fin, Jesse, each coach, future sales team | Jesse Allan | Week 3 (days 15–21) | normal | `bssc-c103` |
-| `bssc-c106` Notification settings: who gets new-lead, hot-lead, booking, failure alerts | Jesse Allan | Week 3 (days 15–21) | normal | `bssc-c105` |
+| `bssc-c103` Install and configure the BSS snapshot (base CRM) | Jesse Allan | Days 4-11 (days 4–11) | normal | `bssc-c101` |
+| `bssc-c104` Business profile: name, address, time zone (Australia/Brisbane), logo, colours, signature | Jesse Allan | Days 4-11 (days 4–11) | normal | `bssc-c103` |
+| `bssc-c105` Users and permissions: Fin, Jesse, each coach, future sales team | Jesse Allan | Days 8-11 (days 8–11) | normal | `bssc-c103` |
+| `bssc-c106` Notification settings: who gets new-lead, hot-lead, booking, failure alerts | Jesse Allan | Days 8-11 (days 8–11) | normal | `bssc-c105` |
 | **CRM: lists, score & dashboard** | | | | |
-| `bssc-c502` Smart lists: past clients, never booked, by source, no-shows, hot leads and more | Jesse Allan | Week 3 (days 15–21) | normal |  |
+| `bssc-c502` Smart lists: past clients, never booked, by source, no-shows, hot leads and more | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
 | **Phone, SMS & email** | | | | |
-| `bssc-c702` Buy the dedicated business number in GHL (monthly cost to Fin) | Jesse Allan | Weeks 3-5 (days 15–35) | normal | `bssc-c701` |
-| `bssc-c703` SMS sender registration | Jesse Allan | Weeks 3-5 (days 15–35) | normal | `bssc-c702` |
-| `bssc-c706` Email sending domain: a dedicated subdomain with SPF, DKIM and DMARC | Jesse Allan | Weeks 3-5 (days 15–35) | normal |  |
-| `bssc-c707` Fin: From name and reply-to address for all emails (Fin's choice) | Jesse Allan | Week 3 (days 15–21) | normal |  |
+| `bssc-c702` Buy the dedicated business number in GHL (monthly cost to Fin) | Jesse Allan | Days 8-20 (days 8–20) | normal | `bssc-c701` |
+| `bssc-c703` SMS sender registration | Jesse Allan | Days 8-20 (days 8–20) | normal | `bssc-c702` |
+| `bssc-c706` Email sending domain: a dedicated subdomain with SPF, DKIM and DMARC | Jesse Allan | Days 8-20 (days 8–20) | normal |  |
+| `bssc-c707` Fin: From name and reply-to address for all emails (Fin's choice) | Jesse Allan | Days 8-11 (days 8–11) | normal |  |
 | **CRM: integrations** | | | | |
 | `bssc-c811` Zapier or webhooks for anything without a native link | Jesse Allan | As needed | normal |  |
 | **CRM: contact import** | | | | |
-| `bssc-c902` Clean: remove duplicates, merge by email/phone, fix formats, drop junk | Jesse Allan | Weeks 3-4 (days 15–28) | normal | `bssc-c901` |
-| `bssc-c903` Tag each contact by source and interest (C4) | Jesse Allan | Week 4 (days 22–28) | normal | `bssc-c902` |
+| `bssc-c902` Clean: remove duplicates, merge by email/phone, fix formats, drop junk | Jesse Allan | Days 8-16 (days 8–16) | normal | `bssc-c901` |
+| `bssc-c903` Tag each contact by source and interest (C4) | Jesse Allan | Days 12-16 (days 12–16) | normal | `bssc-c902` |
 
 <details><summary>Guidance for the team (18 tasks)</summary>
 
@@ -1953,9 +1953,9 @@ Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of 
 
 </details>
 
-## 3. Connect · days 29–35
+## 3. Connect · days 17–20
 
-_Week 5: your forms, chat, phone, texting, social channels and Calendly are connected to your CRM and tested._
+_Your forms, chat, phone, texting and Calendly are connected to your CRM and tested._
 
 ### `bssc-launch-day` Agree your launch day
 
@@ -1965,8 +1965,8 @@ Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-b608` Keep the old site live until launch day | Jesse Allan | Until launch (week 6) (days 1–42) | normal |  |
-| `bssc-x-launch-date` Propose a launch day to Fin | Jesse Allan | Week 5 (days 29–35) | normal |  |
+| `bssc-b608` Keep the old site live until launch day | Jesse Allan | Until launch (day 23) (days 1–23) | normal |  |
+| `bssc-x-launch-date` Propose a launch day to Fin | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
 
 <details><summary>Guidance for the team (2 tasks)</summary>
 
@@ -1992,21 +1992,21 @@ Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-b204` Quiz: Replace the Calendly placeholder with Fin's Calendly embed | Jesse Allan | Weeks 3-5 (days 15–35) | high | `bssc-b501`, `bssc-b505` |
-| `bssc-b205` Quiz: live data handling (save first, sync to GHL with retries, Calendly webhook confirms) | Jesse Allan | Weeks 4-6 (days 22–42) | normal |  |
-| `bssc-b503` Clarity Call event type | Jesse Allan | Week 2 (days 8–14) | normal | `bssc-b501` |
-| `bssc-b504` Calendly redirects to bitcoinsuccessschool.com/callbooked after booking | Jesse Allan | Week 3 (days 15–21) | normal | `bssc-b503` |
-| `bssc-b505` Embed Calendly inside the quiz's last step (prefill name/email, attribution params) | Jesse Allan | Weeks 3-5 (days 15–35) | normal | `bssc-b503` |
-| `bssc-b506` Direct Calendly links that skip the quiz: flag missing answers, short pre-call form | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-b503` |
-| `bssc-b803` Test: Quiz: happy path, both disqualify paths | Jesse Allan | Weeks 5-6 (days 29–42) | normal |  |
-| `bssc-b804` Test: Simulate a GHL sync failure: answers stay saved, retry works, alert reaches Jesse | Jesse Allan | Weeks 5-6 (days 29–42) | normal |  |
-| `bssc-b805` Test: Booking: webhook links the booking to the right contact and answers | Jesse Allan | Weeks 5-6 (days 29–42) | normal |  |
-| `bssc-b809` Test: Fin's acceptance: Fin clicks through the live staging and books a test call _(done when the client finishes `bssc-test-booking`)_ | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-c601` Calendly ↔ GHL: bookings, reschedules and cancels update GHL | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-b501`, `bssc-c103` |
-| `bssc-c602` Decide who sends confirmations and reminders | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-c601` |
-| `bssc-c604` Coach calendars mapped (each coach's Calendly sub-account → GHL user) | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-b501`, `bssc-c105` |
-| `bssc-c802` Website quiz: reliable sync to GHL (retries, alert, correlation ID) | Jesse Allan | Weeks 4-6 (days 22–42) | high | `bssc-a13` |
-| `bssc-g01` Funnel: Book a Call funnel (quiz → Calendly → call booked) | Jesse Allan | Weeks 5-6 (days 29–42) | normal |  |
+| `bssc-b204` Quiz: Replace the Calendly placeholder with Fin's Calendly embed | Jesse Allan | Days 8-20 (days 8–20) | high | `bssc-b501`, `bssc-b505` |
+| `bssc-b205` Quiz: live data handling (save first, sync to GHL with retries, Calendly webhook confirms) | Jesse Allan | Days 12-23 (days 12–23) | normal |  |
+| `bssc-b503` Clarity Call event type | Jesse Allan | Days 4-7 (days 4–7) | normal | `bssc-b501` |
+| `bssc-b504` Calendly redirects to bitcoinsuccessschool.com/callbooked after booking | Jesse Allan | Days 8-11 (days 8–11) | normal | `bssc-b503` |
+| `bssc-b505` Embed Calendly inside the quiz's last step (prefill name/email, attribution params) | Jesse Allan | Days 8-20 (days 8–20) | normal | `bssc-b503` |
+| `bssc-b506` Direct Calendly links that skip the quiz: flag missing answers, short pre-call form | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-b503` |
+| `bssc-b803` Test: Quiz: happy path, both disqualify paths | Jesse Allan | Days 17-23 (days 17–23) | normal |  |
+| `bssc-b804` Test: Simulate a GHL sync failure: answers stay saved, retry works, alert reaches Jesse | Jesse Allan | Days 17-23 (days 17–23) | normal |  |
+| `bssc-b805` Test: Booking: webhook links the booking to the right contact and answers | Jesse Allan | Days 17-23 (days 17–23) | normal |  |
+| `bssc-b809` Test: Fin's acceptance: Fin clicks through the live staging and books a test call _(done when the client finishes `bssc-test-booking`)_ | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-c601` Calendly ↔ GHL: bookings, reschedules and cancels update GHL | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-b501`, `bssc-c103` |
+| `bssc-c602` Decide who sends confirmations and reminders | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-c601` |
+| `bssc-c604` Coach calendars mapped (each coach's Calendly sub-account → GHL user) | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-b501`, `bssc-c105` |
+| `bssc-c802` Website quiz: reliable sync to GHL (retries, alert, correlation ID) | Jesse Allan | Days 12-23 (days 12–23) | high | `bssc-a13` |
+| `bssc-g01` Funnel: Book a Call funnel (quiz → Calendly → call booked) | Jesse Allan | Days 17-23 (days 17–23) | normal |  |
 
 <details><summary>Guidance for the team (15 tasks)</summary>
 
@@ -2165,38 +2165,38 @@ Status on 17 Oct: Draft visual DONE
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | **Website: forms** | | | | |
-| `bssc-b401` Form: Book a Call qualification quiz | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-b402` Form: Webinar registration | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-b403` Form: Security Score assessment (assess.bitcoinsuccessschool.com) | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-b404` Form: Free equipment checklist (/checklist) | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-b405` Form: Contact form | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-b406` Form: Phone enquiries form (existing app) | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-b407` Form: Partner sign-up / partner portal forms (existing app) | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-b408` Every form: SMS consent, privacy link, never-share-seed-phrase line | Jesse Allan | Week 5 (days 29–35) | normal |  |
+| `bssc-b401` Form: Book a Call qualification quiz | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-b402` Form: Webinar registration | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-b403` Form: Security Score assessment (assess.bitcoinsuccessschool.com) | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-b404` Form: Free equipment checklist (/checklist) | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-b405` Form: Contact form | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-b406` Form: Phone enquiries form (existing app) | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-b407` Form: Partner sign-up / partner portal forms (existing app) | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-b408` Every form: SMS consent, privacy link, never-share-seed-phrase line | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
 | **Tracking & analytics** | | | | |
-| `bssc-b701` Tagged links (UTM + GHL trigger links) for bio, YouTube, partners and webinar ads | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-b702` Capture UTM and referrer on every form (hidden fields) | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-b401`, `bssc-b402` |
+| `bssc-b701` Tagged links (UTM + GHL trigger links) for bio, YouTube, partners and webinar ads | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-b702` Capture UTM and referrer on every form (hidden fields) | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-b401`, `bssc-b402` |
 | **CRM: calendars** | | | | |
-| `bssc-c603` GHL calendars only if A19 picks GHL native booking | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-a19` |
+| `bssc-c603` GHL calendars only if A19 picks GHL native booking | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-a19` |
 | **Phone, SMS & email** | | | | |
-| `bssc-c704` Two-way SMS from the GHL inbox; STOP/opt-out handling | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-c703` |
-| `bssc-c705` Missed-call text-back on the business number | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-c702` |
-| `bssc-c708` Warm up sending gently (small volumes first; reactivation last) | Jesse Allan | Weeks 5-7 (days 29–49) | normal | `bssc-c706` |
-| `bssc-c709` Conversations inbox: SMS, email, chat widget, IG, FB in one place | Jesse Allan | Week 5 (days 29–35) | normal |  |
+| `bssc-c704` Two-way SMS from the GHL inbox; STOP/opt-out handling | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-c703` |
+| `bssc-c705` Missed-call text-back on the business number | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-c702` |
+| `bssc-c708` Warm up sending gently (small volumes first; reactivation last) | Jesse Allan | Days 17-25 (days 17–25) | normal | `bssc-c706` |
+| `bssc-c709` Conversations inbox: SMS, email, chat widget, IG, FB in one place | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
 | **CRM: integrations** | | | | |
-| `bssc-c801` Calendly: connect to GHL (see C601 to C604) | Jesse Allan | Week 5 (days 29–35) | high | `bssc-b501` |
-| `bssc-c803` Security Score assessment: Confirm sync-to-ghl works; map answers to C320; tag src:assessment | Jesse Allan | Week 5 (days 29–35) | high | `bssc-a13` |
-| `bssc-c804` Instagram + Facebook: Connect DMs to the GHL inbox; tag by channel | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-c805` YouTube: Trackable lead-capture links in descriptions and pinned comments | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-b701` |
-| `bssc-c806` Chat widget: Install the GHL chat widget on the site (later the AI agent) | Jesse Allan | Weeks 5-6 (days 29–42) | normal | `bssc-c103` |
-| `bssc-c812` Any other tool Fin uses today that can be connected (AGR Phase 4) | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-a15` |
+| `bssc-c801` Calendly: connect to GHL (see C601 to C604) | Jesse Allan | Days 17-20 (days 17–20) | high | `bssc-b501` |
+| `bssc-c803` Security Score assessment: Confirm sync-to-ghl works; map answers to C320; tag src:assessment | Jesse Allan | Days 17-20 (days 17–20) | high | `bssc-a13` |
+| `bssc-c804` Instagram + Facebook: Connect DMs to the GHL inbox; tag by channel | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-c805` YouTube: Trackable lead-capture links in descriptions and pinned comments | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-b701` |
+| `bssc-c806` Chat widget: Install the GHL chat widget on the site (later the AI agent) | Jesse Allan | Days 17-23 (days 17–23) | normal | `bssc-c103` |
+| `bssc-c812` Any other tool Fin uses today that can be connected (AGR Phase 4) | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-a15` |
 | **Automations** | | | | |
-| `bssc-d02` Workflow: Missed-call text-back | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-d22` Workflow: Opt-out handling | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-d00` Build the global stop rules into every workflow | Jesse Allan | Week 5 (days 29–35) | normal |  |
+| `bssc-d02` Workflow: Missed-call text-back | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-d22` Workflow: Opt-out handling | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-d00` Build the global stop rules into every workflow | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
 | **Funnels** | | | | |
-| `bssc-g04` Funnel: Security Score assessment | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-g05` Funnel: Free equipment checklist | Jesse Allan | Week 5 (days 29–35) | normal |  |
+| `bssc-g04` Funnel: Security Score assessment | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-g05` Funnel: Free equipment checklist | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
 
 <details><summary>Guidance for the team (26 tasks)</summary>
 
@@ -2444,9 +2444,9 @@ All 3.D workflows are (draft) designs to agree with Fin. DEFERRED: Fin said to i
 
 </details>
 
-## 4. Automate and launch · days 36–42
+## 4. Automate and launch · days 21–23
 
-_Week 6: your new website launches on your domain. Your follow-up messages and AI lead agent switch on once you've approved them._
+_Your new website launches on your domain. Your follow-up messages and AI lead agent switch on once you've approved them._
 
 ### `bssc-messages` Approve your emails and texts
 
@@ -2456,45 +2456,45 @@ Portal: work to review · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-e1-1` SMS, 0 min: Thanks for reaching out, here's a link to book your free Clarity Call | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e1-2` Email, 0 min: Thanks + what happens next + booking link | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e1-3` Internal alert, 0 min: New lead, source, summary | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e2-1` SMS, ≤ 1 min: Sorry we missed you; reply here or book a time | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-e3-1` Email, +1 h: Pick a time for your Clarity Call | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e3-2` SMS, +24 h: Short nudge with link (if consent) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e3-3` Email, +48 h: Last nudge; then nurture | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e4-1` Email, immediately: Confirmation (date, time, Zoom, reschedule and cancel links) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e4-2` SMS, immediately: Short confirmation (if consent) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e4-3` Email, warm-up 1 (≥ 1 day before): What the call covers, how to prepare, what to bring | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e4-4` Email, warm-up 2 (if booked 3+ days out): The offer explained, proof, confidence | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e4-5` Email, 24 h before: Reminder | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e4-6` SMS, 1 h before: Reminder with the Zoom link | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e4-7` Email, on reschedule: New time confirmed | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e4-8` Email + SMS, cancelled +2 h: Want a new time? | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e5-1` No-show SMS, +15 min: We missed you, here's a link to rebook | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-e5-2` No-show email, +1 day: Rebook | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-e5-3` No-show email, +3 days: Last rebook, then nurture | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-e5-4` Considering email, +1 day: Answers to common questions | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-e5-5` Considering email, +3 days: Proof / client story | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-e5-6` Considering email, +7 days: Door open, reply any time | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-e5-7` Awaiting payment email, +1 day: Payment link / invoice reminder | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-e5-8` Awaiting payment SMS, +3 days: Friendly nudge | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-e5-9` Awaiting payment internal alert, +7 days: Fin to call | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-e6-1` Email, day 0: Welcome, what to expect | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e6-2` Email, day 2: The problem, why self-custody feels hard | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e6-3` Email, day 4: The process, how the path works | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e6-4` Email, day 7: Proof, others who did it | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e6-5` Email, day 10: Questions, common doubts answered | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e6-6` Email, day 14: Book a call, the Clarity Call | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e6-7` SMS, day 1 (draft): nurture text 1 of 3 (if consent) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e6-8` SMS, day 6 (draft): nurture text 2 of 3 (if consent) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e6-9` SMS, day 12 (draft): nurture text 3 of 3 (if consent) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e7-1` Email, day 0: YouTube viewer welcome | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e7-2` Email, day 0: Partner referral welcome (names the partner) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e7-3` Email, day 0: Checklist delivery | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e7-4` Email, day 0: Security Score result explained (per score band) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e7-5` Email, day 0: Not qualified, free resources (D18) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e11-1` Email, +1 day after call / milestone: Ask for a review or testimonial; permission for website use | Jesse Allan | Week 8 on (days 50–70) | normal |  |
+| `bssc-e1-1` SMS, 0 min: Thanks for reaching out, here's a link to book your free Clarity Call | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e1-2` Email, 0 min: Thanks + what happens next + booking link | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e1-3` Internal alert, 0 min: New lead, source, summary | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e2-1` SMS, ≤ 1 min: Sorry we missed you; reply here or book a time | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-e3-1` Email, +1 h: Pick a time for your Clarity Call | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e3-2` SMS, +24 h: Short nudge with link (if consent) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e3-3` Email, +48 h: Last nudge; then nurture | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e4-1` Email, immediately: Confirmation (date, time, Zoom, reschedule and cancel links) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e4-2` SMS, immediately: Short confirmation (if consent) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e4-3` Email, warm-up 1 (≥ 1 day before): What the call covers, how to prepare, what to bring | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e4-4` Email, warm-up 2 (if booked 3+ days out): The offer explained, proof, confidence | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e4-5` Email, 24 h before: Reminder | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e4-6` SMS, 1 h before: Reminder with the Zoom link | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e4-7` Email, on reschedule: New time confirmed | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e4-8` Email + SMS, cancelled +2 h: Want a new time? | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e5-1` No-show SMS, +15 min: We missed you, here's a link to rebook | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-e5-2` No-show email, +1 day: Rebook | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-e5-3` No-show email, +3 days: Last rebook, then nurture | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-e5-4` Considering email, +1 day: Answers to common questions | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-e5-5` Considering email, +3 days: Proof / client story | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-e5-6` Considering email, +7 days: Door open, reply any time | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-e5-7` Awaiting payment email, +1 day: Payment link / invoice reminder | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-e5-8` Awaiting payment SMS, +3 days: Friendly nudge | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-e5-9` Awaiting payment internal alert, +7 days: Fin to call | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-e6-1` Email, day 0: Welcome, what to expect | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e6-2` Email, day 2: The problem, why self-custody feels hard | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e6-3` Email, day 4: The process, how the path works | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e6-4` Email, day 7: Proof, others who did it | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e6-5` Email, day 10: Questions, common doubts answered | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e6-6` Email, day 14: Book a call, the Clarity Call | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e6-7` SMS, day 1 (draft): nurture text 1 of 3 (if consent) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e6-8` SMS, day 6 (draft): nurture text 2 of 3 (if consent) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e6-9` SMS, day 12 (draft): nurture text 3 of 3 (if consent) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e7-1` Email, day 0: YouTube viewer welcome | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e7-2` Email, day 0: Partner referral welcome (names the partner) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e7-3` Email, day 0: Checklist delivery | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e7-4` Email, day 0: Security Score result explained (per score band) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e7-5` Email, day 0: Not qualified, free resources (D18) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e11-1` Email, +1 day after call / milestone: Ask for a review or testimonial; permission for website use | Jesse Allan | Days 25-30 (days 25–30) | normal |  |
 
 <details><summary>Guidance for the team (39 tasks)</summary>
 
@@ -2859,19 +2859,19 @@ Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-d24` Workflow: AI agent handoff | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-f01` Agent design: role, goals, tone of voice matched to Fin | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-a12` |
-| `bssc-f02` Knowledge base from Fin-approved wording only: FAQ, offer, guarantee, process | Jesse Allan | Week 5 (days 29–35) | normal |  |
-| `bssc-f03` Prompt engineering with rules for what it can and can't say | Jesse Allan | Week 5 (days 29–35) | normal | `bssc-f01` |
-| `bssc-f04` Conversational qualification using the six booking-form questions | Jesse Allan | Weeks 5-6 (days 29–42) | normal |  |
-| `bssc-f05` Speed to lead on every channel, day or night | Jesse Allan | Week 6 (days 36–42) | normal | `bssc-c709` |
-| `bssc-f06` Channels: website chat widget, SMS, Instagram and Facebook DMs where available | Jesse Allan | Week 6 (days 36–42) | normal | `bssc-c804`, `bssc-c806` |
-| `bssc-f07` Books the Clarity Call into the calendar | Jesse Allan | Week 6 (days 36–42) | normal | `bssc-c601` |
-| `bssc-f08` Handoff to Fin with summary + instant alert (D24) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-f09` Guardrails: approved answers only | Jesse Allan | Weeks 5-6 (days 29–42) | normal | `bssc-f03` |
-| `bssc-f10` Test against real audience questions (list from Fin + inbox history) | Jesse Allan | Week 6 (days 36–42) | normal | `bssc-f01`, `bssc-f02`, `bssc-f03`, `bssc-f04`, `bssc-f05`, `bssc-f06`, `bssc-f07`, `bssc-f08`, `bssc-f09` |
-| `bssc-f11` Fin approves the agent before launch _(done when the client finishes `bssc-ai-agent`)_ | Jesse Allan | Week 6 (days 36–42) | normal | `bssc-f10` |
-| `bssc-f12` Replace the website's placeholder assistant with the live agent | Jesse Allan | Week 6 (days 36–42) | normal | `bssc-f11` |
+| `bssc-d24` Workflow: AI agent handoff | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-f01` Agent design: role, goals, tone of voice matched to Fin | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-a12` |
+| `bssc-f02` Knowledge base from Fin-approved wording only: FAQ, offer, guarantee, process | Jesse Allan | Days 17-20 (days 17–20) | normal |  |
+| `bssc-f03` Prompt engineering with rules for what it can and can't say | Jesse Allan | Days 17-20 (days 17–20) | normal | `bssc-f01` |
+| `bssc-f04` Conversational qualification using the six booking-form questions | Jesse Allan | Days 17-23 (days 17–23) | normal |  |
+| `bssc-f05` Speed to lead on every channel, day or night | Jesse Allan | Days 21-23 (days 21–23) | normal | `bssc-c709` |
+| `bssc-f06` Channels: website chat widget, SMS, Instagram and Facebook DMs where available | Jesse Allan | Days 21-23 (days 21–23) | normal | `bssc-c804`, `bssc-c806` |
+| `bssc-f07` Books the Clarity Call into the calendar | Jesse Allan | Days 21-23 (days 21–23) | normal | `bssc-c601` |
+| `bssc-f08` Handoff to Fin with summary + instant alert (D24) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-f09` Guardrails: approved answers only | Jesse Allan | Days 17-23 (days 17–23) | normal | `bssc-f03` |
+| `bssc-f10` Test against real audience questions (list from Fin + inbox history) | Jesse Allan | Days 21-23 (days 21–23) | normal | `bssc-f01`, `bssc-f02`, `bssc-f03`, `bssc-f04`, `bssc-f05`, `bssc-f06`, `bssc-f07`, `bssc-f08`, `bssc-f09` |
+| `bssc-f11` Fin approves the agent before launch _(done when the client finishes `bssc-ai-agent`)_ | Jesse Allan | Days 21-23 (days 21–23) | normal | `bssc-f10` |
+| `bssc-f12` Replace the website's placeholder assistant with the live agent | Jesse Allan | Days 21-23 (days 21–23) | normal | `bssc-f11` |
 
 <details><summary>Guidance for the team (13 tasks)</summary>
 
@@ -3020,13 +3020,13 @@ Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-b111` Page speed: frame images light set on phones; video facades; lazy images | Jesse Allan | Launch (week 6) (days 36–42) | normal |  |
-| `bssc-b112` SEO basics for launch | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-b607` Launch day: publish, check every page and route | Jesse Allan | Week 6 (agreed day) (days 36–42) | critical |  |
+| `bssc-b111` Page speed: frame images light set on phones; video facades; lazy images | Jesse Allan | Launch (days 21-23) (days 21–23) | normal |  |
+| `bssc-b112` SEO basics for launch | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-b607` Launch day: publish, check every page and route | Jesse Allan | Days 21-23 (agreed day) (days 21–23) | critical |  |
 | `bssc-b801` Test: Every page desktop + phone, no console errors, no sideways scroll | Jesse Allan | Each round, and launch | normal |  |
-| `bssc-b808` Test: Feeds: refresh, a failing feed keeps the last good list | Jesse Allan | Launch (week 6) (days 36–42) | normal |  |
-| `bssc-b810` Test: Scroll film stress test (no crash, memory flat) on the live build | Jesse Allan | Launch (week 6) (days 36–42) | normal |  |
-| `bssc-g07` Funnel: Old webinar "The Big Calm" page | Jesse Allan | Week 6 (days 36–42) | normal |  |
+| `bssc-b808` Test: Feeds: refresh, a failing feed keeps the last good list | Jesse Allan | Launch (days 21-23) (days 21–23) | normal |  |
+| `bssc-b810` Test: Scroll film stress test (no crash, memory flat) on the live build | Jesse Allan | Launch (days 21-23) (days 21–23) | normal |  |
+| `bssc-g07` Funnel: Old webinar "The Big Calm" page | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
 
 <details><summary>Guidance for the team (7 tasks)</summary>
 
@@ -3099,11 +3099,11 @@ Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-b113` Fin gets admin access so he can change the site himself, and owns it (WA promise) | Jesse Allan | Launch (week 6) (days 36–42) | normal | `bssc-b602` |
-| `bssc-c503` Dashboard: leads by source, bookings, show rate, conversions, partners, webinar | Jesse Allan | Week 6 (partners week 10) (days 36–42) | normal |  |
-| `bssc-i01` Walkthrough session for Fin _(done when the client finishes `bssc-walkthrough`)_ | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-i02` Short written guide (how to do the everyday things) | Jesse Allan | Weeks 6-7 (days 36–49) | normal | `bssc-i01` |
-| `bssc-i05` Website editing guide (Lovable), since Fin edits the site himself | Jesse Allan | Week 6 (days 36–42) | normal | `bssc-b113` |
+| `bssc-b113` Fin gets admin access so he can change the site himself, and owns it (WA promise) | Jesse Allan | Launch (days 21-23) (days 21–23) | normal | `bssc-b602` |
+| `bssc-c503` Dashboard: leads by source, bookings, show rate, conversions, partners, webinar | Jesse Allan | Days 21-23 (partners by day 30) (days 21–23) | normal |  |
+| `bssc-i01` Walkthrough session for Fin _(done when the client finishes `bssc-walkthrough`)_ | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-i02` Short written guide (how to do the everyday things) | Jesse Allan | Days 21-25 (days 21–25) | normal | `bssc-i01` |
+| `bssc-i05` Website editing guide (Lovable), since Fin edits the site himself | Jesse Allan | Days 21-23 (days 21–23) | normal | `bssc-b113` |
 
 <details><summary>Guidance for the team (5 tasks)</summary>
 
@@ -3163,31 +3163,31 @@ Status on 17 Oct: TODO
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | **Website: pages** | | | | |
-| `bssc-b215` Home: VSL slot kept in the design (the VSL itself is a separate add-on) | Jesse Allan | Launch (week 6) (days 36–42) | normal |  |
+| `bssc-b215` Home: VSL slot kept in the design (the VSL itself is a separate add-on) | Jesse Allan | Launch (days 21-23) (days 21–23) | normal |  |
 | **Tracking & analytics** | | | | |
-| `bssc-b704` Site analytics (for example GA4 or Lovable/Cloudflare analytics) | Jesse Allan | Launch (week 6) (days 36–42) | normal |  |
+| `bssc-b704` Site analytics (for example GA4 or Lovable/Cloudflare analytics) | Jesse Allan | Launch (days 21-23) (days 21–23) | normal |  |
 | **Automations** | | | | |
-| `bssc-d01` Workflow: Speed to lead (instant reply + alert) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d03` Workflow: Qualification submitted | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d04` Workflow: Abandoned booking nudge | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d05` Workflow: Booking confirmed | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d06` Workflow: Call-booked sequence (smart timing) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d07` Workflow: Reschedule / cancel | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d09` Workflow: New-lead nurture (6 emails + texts) | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d17` Workflow: Hot lead alert | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d18` Workflow: Not qualified | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d19` Workflow: Security Score follow-up | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d20` Workflow: Checklist download | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d21` Workflow: Sync failure alert | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d23` Workflow: Pipeline stage moves | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-d25` Workflow: Welcome and education flows (AGR Phase 5) | Jesse Allan | Week 6 (days 36–42) | normal |  |
+| `bssc-d01` Workflow: Speed to lead (instant reply + alert) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d03` Workflow: Qualification submitted | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d04` Workflow: Abandoned booking nudge | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d05` Workflow: Booking confirmed | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d06` Workflow: Call-booked sequence (smart timing) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d07` Workflow: Reschedule / cancel | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d09` Workflow: New-lead nurture (6 emails + texts) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d17` Workflow: Hot lead alert | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d18` Workflow: Not qualified | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d19` Workflow: Security Score follow-up | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d20` Workflow: Checklist download | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d21` Workflow: Sync failure alert | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d23` Workflow: Pipeline stage moves | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-d25` Workflow: Welcome and education flows (AGR Phase 5) | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
 | **Messages: internal alerts** | | | | |
-| `bssc-e12-1` Internal alert: New lead | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e12-2` Internal alert: Hot lead | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e12-3` Internal alert: Booking | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e12-4` Internal alert: Sync failure | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e12-5` Internal alert: AI handoff | Jesse Allan | Week 6 (days 36–42) | normal |  |
-| `bssc-e12-6` Internal alert: Awaiting payment after 7 days | Jesse Allan | Week 6 (days 36–42) | normal |  |
+| `bssc-e12-1` Internal alert: New lead | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e12-2` Internal alert: Hot lead | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e12-3` Internal alert: Booking | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e12-4` Internal alert: Sync failure | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e12-5` Internal alert: AI handoff | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
+| `bssc-e12-6` Internal alert: Awaiting payment after 7 days | Jesse Allan | Days 21-23 (days 21–23) | normal |  |
 
 <details><summary>Guidance for the team (22 tasks)</summary>
 
@@ -3396,9 +3396,9 @@ Alert: Awaiting payment after 7 days
 
 </details>
 
-## 5. Partners, webinar and support · days 43–240 on, ongoing
+## 5. Partners, webinar and support · days 24–30
 
-_Weeks 7 to 10 add partner tracking, your weekly webinar and client onboarding. Then we review, tune and support you through month 8._
+_Partner tracking, your weekly webinar and client onboarding go live, so everything is in place by day 30. Then we review, tune and support you through month 8._
 
 ### `bssc-webinar` Get your weekly webinar ready
 
@@ -3408,36 +3408,36 @@ Portal: note · 3 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-b237` Webinar: Show "registered" only after GHL confirms the registration | Jesse Allan | Weeks 7-9 (days 43–63) | normal | `bssc-d11` |
-| `bssc-b238` Webinar: Registration attached to the exact occurrence so reminders never drift to another week | Jesse Allan | Weeks 7-9 (days 43–63) | normal | `bssc-d11` |
-| `bssc-b305` Asset from Fin: webinar welcome video (Fin films) | Jesse Allan | Weeks 7-9 (days 43–63) | high |  |
-| `bssc-b306` Asset from Fin: Each week's webinar replay video link | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-b508` Webinar joining links: registrant-specific, by email only | Jesse Allan | Weeks 7-9 (days 43–63) | normal | `bssc-a18` |
-| `bssc-b806` Test: webinar end to end (registration to the call-booked journey) | Jesse Allan | Weeks 8-9 (days 50–63) | normal |  |
-| `bssc-c808` Webinar platform: registration → unique join link → attendance back to GHL | Jesse Allan | Weeks 7-9 (days 43–63) | high | `bssc-a18` |
-| `bssc-d11` Workflow: Webinar system | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-d12` Workflow: Webinar follow-up | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-d13` Workflow: Weekly webinar rollover | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-g02` Funnel: Weekly webinar funnel (registration → confirmed → reminders → live → replay → book a call) | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-i04` Webinar weekly routine guide: what Fin does each week (link, replay) | Jesse Allan | Week 9 (days 57–63) | normal | `bssc-d13` |
-| `bssc-e8-1` Email, on registration: Confirmed (date, time, calendar links, private joining link) | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-2` SMS, on registration: Confirmation (if consent) | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-3` Email, daily before the webinar: Value + reminder, Build your setup | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-4` Email, daily before the webinar: Value + reminder, Use it with confidence | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-5` Email, daily before the webinar: Value + reminder, Protect yourself and your family | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-6` Email, daily before the webinar: Value + reminder, Fund with confidence | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-7` Email, daily before the webinar: Value + reminder, What to bring | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-8` SMS, day before: Reminder | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-9` Email, 1 h before: Join now, private link | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-10` SMS, 1 h before: Join now | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-11` Email, attended +1 h: Takeaways → book a Clarity Call | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-12` Email, attended +1 day: Takeaways → book a Clarity Call | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-13` Email, attended +2 days: Takeaways → book a Clarity Call | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-14` Email, attended +3 days: Takeaways → book a Clarity Call | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-15` Email, missed +1 h: Replay (if approved) → next session → book a call | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-16` Email, missed +1 day: Replay (if approved) → next session → book a call | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-17` Email, missed +2 days: Replay (if approved) → next session → book a call | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
-| `bssc-e8-18` Email, missed +3 days: Replay (if approved) → next session → book a call | Jesse Allan | Weeks 7-9 (days 43–63) | normal |  |
+| `bssc-b237` Webinar: Show "registered" only after GHL confirms the registration | Jesse Allan | Days 24-28 (days 24–28) | normal | `bssc-d11` |
+| `bssc-b238` Webinar: Registration attached to the exact occurrence so reminders never drift to another week | Jesse Allan | Days 24-28 (days 24–28) | normal | `bssc-d11` |
+| `bssc-b305` Asset from Fin: webinar welcome video (Fin films) | Jesse Allan | Days 24-28 (days 24–28) | high |  |
+| `bssc-b306` Asset from Fin: Each week's webinar replay video link | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-b508` Webinar joining links: registrant-specific, by email only | Jesse Allan | Days 24-28 (days 24–28) | normal | `bssc-a18` |
+| `bssc-b806` Test: webinar end to end (registration to the call-booked journey) | Jesse Allan | Days 25-28 (days 25–28) | normal |  |
+| `bssc-c808` Webinar platform: registration → unique join link → attendance back to GHL | Jesse Allan | Days 24-28 (days 24–28) | high | `bssc-a18` |
+| `bssc-d11` Workflow: Webinar system | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-d12` Workflow: Webinar follow-up | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-d13` Workflow: Weekly webinar rollover | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-g02` Funnel: Weekly webinar funnel (registration → confirmed → reminders → live → replay → book a call) | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-i04` Webinar weekly routine guide: what Fin does each week (link, replay) | Jesse Allan | Days 27-28 (days 27–28) | normal | `bssc-d13` |
+| `bssc-e8-1` Email, on registration: Confirmed (date, time, calendar links, private joining link) | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-2` SMS, on registration: Confirmation (if consent) | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-3` Email, daily before the webinar: Value + reminder, Build your setup | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-4` Email, daily before the webinar: Value + reminder, Use it with confidence | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-5` Email, daily before the webinar: Value + reminder, Protect yourself and your family | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-6` Email, daily before the webinar: Value + reminder, Fund with confidence | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-7` Email, daily before the webinar: Value + reminder, What to bring | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-8` SMS, day before: Reminder | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-9` Email, 1 h before: Join now, private link | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-10` SMS, 1 h before: Join now | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-11` Email, attended +1 h: Takeaways → book a Clarity Call | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-12` Email, attended +1 day: Takeaways → book a Clarity Call | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-13` Email, attended +2 days: Takeaways → book a Clarity Call | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-14` Email, attended +3 days: Takeaways → book a Clarity Call | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-15` Email, missed +1 h: Replay (if approved) → next session → book a call | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-16` Email, missed +1 day: Replay (if approved) → next session → book a call | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-17` Email, missed +2 days: Replay (if approved) → next session → book a call | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
+| `bssc-e8-18` Email, missed +3 days: Replay (if approved) → next session → book a call | Jesse Allan | Days 24-28 (days 24–28) | normal |  |
 
 <details><summary>Guidance for the team (30 tasks)</summary>
 
@@ -3744,16 +3744,16 @@ Portal: work to review · note · 1 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-c807` Payments: Connect how Fin takes payment | Jesse Allan | Weeks 7-10 (days 43–70) | high | `bssc-a17` |
-| `bssc-c810` Existing client portal: Link onboarding to it | Jesse Allan | Weeks 8-10 (days 50–70) | normal | `bssc-a13` |
-| `bssc-d10` Workflow: Client onboarding | Jesse Allan | Weeks 8-10 (days 50–70) | normal |  |
-| `bssc-i03` Coach guide: marking call outcomes, reading the pre-call summary | Jesse Allan | Weeks 7-8 (days 43–56) | normal | `bssc-d08` |
-| `bssc-e9-1` Email + SMS, on payment: Welcome to Bitcoin Success School | Jesse Allan | Weeks 8-10 (days 50–70) | normal |  |
-| `bssc-e9-2` Email, on payment: Portal access and how to start | Jesse Allan | Weeks 8-10 (days 50–70) | normal |  |
-| `bssc-e9-3` Email, +1 day: Meet your implementation coach; book call 1 | Jesse Allan | Weeks 8-10 (days 50–70) | normal |  |
-| `bssc-e9-4` Email, before call 1: How to prepare | Jesse Allan | Weeks 8-10 (days 50–70) | normal |  |
-| `bssc-e9-5` Email, per step: Later steps per the map | Jesse Allan | Weeks 8-10 (days 50–70) | normal |  |
-| `bssc-x-onboarding-map` Draft the client onboarding map ("automated" vs "needs Fin") | Jesse Allan | Week 8 (days 50–56) | normal |  |
+| `bssc-c807` Payments: Connect how Fin takes payment | Jesse Allan | Days 24-30 (days 24–30) | high | `bssc-a17` |
+| `bssc-c810` Existing client portal: Link onboarding to it | Jesse Allan | Days 25-30 (days 25–30) | normal | `bssc-a13` |
+| `bssc-d10` Workflow: Client onboarding | Jesse Allan | Days 25-30 (days 25–30) | normal |  |
+| `bssc-i03` Coach guide: marking call outcomes, reading the pre-call summary | Jesse Allan | Days 24-26 (days 24–26) | normal | `bssc-d08` |
+| `bssc-e9-1` Email + SMS, on payment: Welcome to Bitcoin Success School | Jesse Allan | Days 25-30 (days 25–30) | normal |  |
+| `bssc-e9-2` Email, on payment: Portal access and how to start | Jesse Allan | Days 25-30 (days 25–30) | normal |  |
+| `bssc-e9-3` Email, +1 day: Meet your implementation coach; book call 1 | Jesse Allan | Days 25-30 (days 25–30) | normal |  |
+| `bssc-e9-4` Email, before call 1: How to prepare | Jesse Allan | Days 25-30 (days 25–30) | normal |  |
+| `bssc-e9-5` Email, per step: Later steps per the map | Jesse Allan | Days 25-30 (days 25–30) | normal |  |
+| `bssc-x-onboarding-map` Draft the client onboarding map ("automated" vs "needs Fin") | Jesse Allan | Days 25-26 (days 25–26) | normal |  |
 
 <details><summary>Guidance for the team (10 tasks)</summary>
 
@@ -3859,9 +3859,9 @@ Portal: work to review · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-d15` Workflow: Database reactivation | Jesse Allan | After C708 (week 7 on) (days 43–70) | normal |  |
-| `bssc-e10-1` SMS, day 0: Short personal check-in (draft) | Jesse Allan | After C708 (week 7 on) (days 43–70) | normal |  |
-| `bssc-e10-2` SMS, day 3: One follow-up | Jesse Allan | After C708 (week 7 on) (days 43–70) | normal |  |
+| `bssc-d15` Workflow: Database reactivation | Jesse Allan | After C708 (day 24 on) (days 24–30) | normal |  |
+| `bssc-e10-1` SMS, day 0: Short personal check-in (draft) | Jesse Allan | After C708 (day 24 on) (days 24–30) | normal |  |
+| `bssc-e10-2` SMS, day 3: One follow-up | Jesse Allan | After C708 (day 24 on) (days 24–30) | normal |  |
 
 <details><summary>Guidance for the team (3 tasks)</summary>
 
@@ -3904,9 +3904,9 @@ Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `bssc-f13` Review conversations weekly in month 1, then monthly; tune through month 8 | Jesse Allan | Months 2-8 (days 43–240) | normal | `bssc-f12` |
-| `bssc-i06` Ongoing support through month 8: requests in the portal, tracked to done | Jesse Allan | Months 2-8 (days 43–240) | normal | `bssc-a06` |
-| `bssc-i07` Regular check-ins (customer success) | Jesse Allan | Monthly, months 2-8 (days 43–240) | normal | `bssc-c503` |
+| `bssc-f13` Review conversations weekly in month 1, then monthly; tune through month 8 | Jesse Allan | Months 2-8 (days 31–240) | normal | `bssc-f12` |
+| `bssc-i06` Ongoing support through month 8: requests in the portal, tracked to done | Jesse Allan | Months 2-8 (days 31–240) | normal | `bssc-a06` |
+| `bssc-i07` Regular check-ins (customer success) | Jesse Allan | Monthly, months 2-8 (days 31–240) | normal | `bssc-c503` |
 
 <details><summary>Guidance for the team (3 tasks)</summary>
 
@@ -3946,25 +3946,25 @@ Status on 17 Oct: TODO
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | **Website: pages** | | | | |
-| `bssc-b219` Call booked: Swap in Fin's re-filmed video embeds when ready (LOOM 1:43) | Jesse Allan | Month 2 on (days 43–240) | low |  |
-| `bssc-b239` Webinar: Room for page variants to test later (BRIEF s8) | Jesse Allan | Month 2 on (days 43–240) | low |  |
+| `bssc-b219` Call booked: Swap in Fin's re-filmed video embeds when ready (LOOM 1:43) | Jesse Allan | Month 2 on (days 31–240) | low |  |
+| `bssc-b239` Webinar: Room for page variants to test later (BRIEF s8) | Jesse Allan | Month 2 on (days 31–240) | low |  |
 | **Website: assets** | | | | |
-| `bssc-b307` Asset from Fin: Re-filmed call-booked videos (optional, later) | Jesse Allan | Month 2 on (days 43–240) | low |  |
+| `bssc-b307` Asset from Fin: Re-filmed call-booked videos (optional, later) | Jesse Allan | Month 2 on (days 31–240) | low |  |
 | **Domain & hosting** | | | | |
 | `bssc-b609` Take down the pitch site and draft preview when the engagement ends | Jesse Allan | End of engagement | low |  |
 | **Website: testing** | | | | |
-| `bssc-b807` Test: Partner journey for each partner incl. repeat submission and conversion to paid client | Jesse Allan | Weeks 8-9 (days 50–63) | normal |  |
+| `bssc-b807` Test: Partner journey for each partner incl. repeat submission and conversion to paid client | Jesse Allan | Days 25-28 (days 25–28) | normal |  |
 | **CRM: integrations** | | | | |
-| `bssc-c809` Partner system: carry the partner ID from link to payment; partner report | Jesse Allan | Weeks 7-10 (days 43–70) | high | `bssc-a16` |
+| `bssc-c809` Partner system: carry the partner ID from link to payment; partner report | Jesse Allan | Days 24-30 (days 24–30) | high | `bssc-a16` |
 | **Automations** | | | | |
-| `bssc-d08` Workflow: After the sales call | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-d14` Workflow: Partner attribution | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
-| `bssc-d16` Workflow: Review / testimonial request | Jesse Allan | Week 8 on (days 50–70) | normal |  |
+| `bssc-d08` Workflow: After the sales call | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-d14` Workflow: Partner attribution | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
+| `bssc-d16` Workflow: Review / testimonial request | Jesse Allan | Days 25-30 (days 25–30) | normal |  |
 | **Funnels** | | | | |
-| `bssc-g06` Funnel: Partner funnel (/call/<slug> → quiz → booking → paying client) | Jesse Allan | Weeks 7-10 (days 43–70) | normal |  |
+| `bssc-g06` Funnel: Partner funnel (/call/<slug> → quiz → booking → paying client) | Jesse Allan | Days 24-30 (days 24–30) | normal |  |
 | **Training & support** | | | | |
 | `bssc-i08` Handover and export if we stop working together: everything built to date handed over | Jesse Allan | On exit | normal |  |
-| `bssc-i09` After month 8: sub-account kept for A$50/month if it's Jesse's (WA; GST question open) | Jesse Allan | June 2027 (after month 8) (days 240–240) | normal | `bssc-a21` |
+| `bssc-i09` After month 8: sub-account kept for A$50/month if it's Jesse's (WA; GST question open) | Jesse Allan | June 2027 (after month 8) (days 31–240) | normal | `bssc-a21` |
 
 <details><summary>Guidance for the team (12 tasks)</summary>
 

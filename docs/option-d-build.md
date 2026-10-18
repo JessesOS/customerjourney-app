@@ -262,6 +262,26 @@ A new weeks 1-2 step after "Give Jesse access to your other tools".
 - **Uploads** now also take `.xlsx` and `.xls`.
 - Version `2026-10-18.14`.
 
+### 30-day journey; Ask Jesse hidden (2026-10-18)
+
+- **Timeline:** compressed from 6 weeks to launch (week 10 for partners) to 30 days.
+
+  | Stage | Days |
+  |---|---|
+  | Onboard, map and evaluate | 1-7 |
+  | Build | 4-16 |
+  | Connect | 17-20 |
+  | Automate and launch | 21-23 |
+  | Partners, webinar and support | 24-30, then support to month 8 |
+
+- **Task dates:** all 321 dated team tasks re-dated with the same proportional map; month-based support starts after day 30.
+- **Wording:** stage blurbs no longer quote weeks, and the journey map no longer mentions weeks 7 or 8.
+- **String Theory:** 5 weeks, go-live on day 23.
+- **Agreement mismatch:** the signed agreement still says about 6 weeks to launch and about 10 weeks for partners. The portal now promises faster.
+- **Ask Jesse:** hidden for BSS custom (`features.assistant` removed). The code, routes and Fin's pack stay; the pack still describes the old weeks, so update it before switching the panel back on.
+- **Existing boards don't change:** boards already started on staging keep their old dates. A board started from now on gets the new ones.
+- Version `2026-10-18.15`.
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:
