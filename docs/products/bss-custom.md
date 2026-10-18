@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.5` |
+| Version | `2026-10-18.6` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
-| Client steps | 21 (0 client only, 0 hidden in the portal) |
+| Client steps | 22 (1 client only, 0 hidden in the portal) |
 | Team tasks | 337 (241 behind a client step, 96 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/bss-custom/spec.md](../../products/bss-custom/spec.md) |
-| Draft wording | `bssc-access-site`, `bssc-review-1`, `bssc-questions`, `bssc-access-tools`, `bssc-kickoff`, `bssc-assets`, `bssc-journey-map`, `bssc-review-2`, `bssc-crm-plan`, `bssc-contacts`, `bssc-signoff`, `bssc-launch-day`, `bssc-test-booking`, `bssc-messages`, `bssc-ai-agent`, `bssc-live-check`, `bssc-walkthrough`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `bssc-save-portal`, `bssc-access-site`, `bssc-review-1`, `bssc-questions`, `bssc-access-tools`, `bssc-kickoff`, `bssc-assets`, `bssc-journey-map`, `bssc-review-2`, `bssc-crm-plan`, `bssc-contacts`, `bssc-signoff`, `bssc-launch-day`, `bssc-test-booking`, `bssc-messages`, `bssc-ai-agent`, `bssc-live-check`, `bssc-walkthrough`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| BSS custom | `bss-custom` | none | where PRODUCT_DRAFTS=1 | 21 | 337 |
+| BSS custom | `bss-custom` | none | where PRODUCT_DRAFTS=1 | 22 | 337 |
 
 ### Portal tweaks by variant
 
@@ -56,6 +56,14 @@ Each stage lists the client's steps in portal order, with the team tasks behind 
 ## 1. Onboard, map and evaluate · days 1–14
 
 _Weeks 1 and 2: give us access, answer a few questions and review your first website draft. Then we agree your customer journey before anything is built._
+
+### `bssc-save-portal` Save your portal to your phone _(client only)_
+
+> So you can get back here in one tap. On your iPhone, save it to your home screen and it opens like an app. On a computer, bookmark this page.
+
+Portal: 5 numbered steps · portal link
+
+No team task behind this step.
 
 ### `bssc-access-site` Give Jesse access to your website and app
 
