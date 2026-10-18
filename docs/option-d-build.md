@@ -211,6 +211,15 @@ Jesse asked for a help widget in Fin's portal: ask a question (typed or spoken),
   - a non-support task refusing replies.
 - **Not yet verified:** real answers. Staging and local have no `ANTHROPIC_API_KEY` (prod has one).
 
+### Home-screen app for BSS custom (2026-10-18)
+
+Saved to an iPhone's home screen (Safari: Share, Add to Home Screen), Fin's portal now opens full screen with a "BSS" icon.
+
+- **Draft icon:** a white "BSS" on vault-ink, with a purple and BSS-orange glow (`public/portal/icons/bss-launchpad-{180,192,512}.png`).
+- **Product setting:** `portal.features.appIcon`. `products:check` fails if an icon file is missing.
+- **The page head** gets the icons, the Apple full-screen tags and a per-client manifest (`/api/portal/<token>/manifest`, which opens that client's own link).
+- **Scope:** only `bss-custom` (version `2026-10-18.5`). Other products' pages are unchanged; `check:journeys` and a curl of the Scale demo confirm it.
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:

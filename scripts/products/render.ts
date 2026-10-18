@@ -200,6 +200,7 @@ function portalSettings(product: Product): string[] {
   if (f.receptionistScriptStep) features.push(`receptionist script from ${code(f.receptionistScriptStep)}`);
   if (f.landingPreviewSteps?.length) features.push(`landing-page preview on ${f.landingPreviewSteps.map(code).join(", ")}`);
   if (f.nonBlockingSteps?.length) features.push(`never blocking: ${f.nonBlockingSteps.map(code).join(", ")}`);
+  if (f.appIcon) features.push(`home-screen app icon \`${f.appIcon}\``);
   if (f.assistant) features.push(`"Ask Jesse" help panel (answers from the client's reviewed pack; requests become board tasks)`);
   L.push(`| Step features | ${features.length ? features.join("; ") : "none"} |`);
   return L;

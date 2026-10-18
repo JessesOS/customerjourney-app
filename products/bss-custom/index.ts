@@ -19,7 +19,7 @@ import { bssCustomTeamTasks } from "./team-tasks";
 export const bssCustom = defineCustomProduct({
   id: "bss-custom",
   name: "BSS custom (Fin Creighton)",
-  version: "2026-10-18.4",
+  version: "2026-10-18.5",
   status: "draft",
   clientType: "bss-custom",
   label: "BSS custom",
@@ -39,7 +39,8 @@ export const bssCustom = defineCustomProduct({
     lockedLook: "groveaurora",
     // "Ask Jesse" help panel (Jesse, 2026-10-18): answers from Fin's reviewed
     // pack (scripts/assistant-pack.mjs) and takes support requests for the board.
-    features: { assistant: true },
+    // Saved to a phone's home screen, the portal opens full screen with this icon (draft, Jesse 2026-10-18).
+    features: { assistant: true, appIcon: "bss-launchpad" },
     stringPlan: {
       weeks: 10,
       goLiveDay: 42,

@@ -13,10 +13,24 @@ import { tabTitle } from "@/lib/journeyBuild";
 import { portalJourneyFor } from "@/lib/productRegistry";
 
 // The browser tab: a custom product shows its own name (BSS: "BSS Launchpad").
+// A product with a home-screen icon also gets the "Add to Home Screen" app
+// settings: its icon, full screen, and a manifest that opens this client's link.
 export async function generateMetadata({ params }: { params: Promise<{ token: string }> }) {
   const { token } = await params;
   const client = await getPortalClientByToken(token);
-  return { title: client ? tabTitle(portalJourneyFor(client.clientType)) : "Client Portal" };
+  if (!client) return { title: "Client Portal" };
+  const journey = portalJourneyFor(client.clientType);
+  const title = tabTitle(journey);
+  if (!journey.appIcon) return { title };
+  const icon = (size: number) => `/portal/icons/${journey.appIcon}-${size}.png`;
+  return {
+    title,
+    manifest: `/api/portal/${token}/manifest`,
+    icons: { icon: [{ url: icon(192), sizes: "192x192", type: "image/png" }], apple: [{ url: icon(180), sizes: "180x180" }] },
+    appleWebApp: { capable: true, title, statusBarStyle: "black-translucent" as const },
+    // Older iPhones read only this name for "open full screen".
+    other: { "apple-mobile-web-app-capable": "yes" },
+  };
 }
 
 export default async function PortalPage({

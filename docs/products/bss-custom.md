@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.4` |
+| Version | `2026-10-18.5` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 21 (0 client only, 0 hidden in the portal) |
@@ -41,7 +41,7 @@ No base: every step and task below is this product's own.
 | Name the client sees | **BSS Launchpad**, unless a variant sets its own name |
 | Voice guide | off |
 | Ask-AI | off |
-| Step features | "Ask Jesse" help panel (answers from the client's reviewed pack; requests become board tasks) |
+| Step features | home-screen app icon `bss-launchpad`; "Ask Jesse" help panel (answers from the client's reviewed pack; requests become board tasks) |
 
 ## Roles
 

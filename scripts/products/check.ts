@@ -180,6 +180,10 @@ function integrity(): string {
       const f = p.portal.features ?? {};
       const featureIds = [...(f.playgroundSteps ?? []), ...(f.landingPreviewSteps ?? []), ...(f.nonBlockingSteps ?? []), ...(f.receptionistScriptStep ? [f.receptionistScriptStep] : [])];
       for (const id of featureIds) must(stepStage.has(id), `${P}: portal.features names unknown step ${id}`);
+      if (f.appIcon) {
+        must(/^[a-z0-9-]+$/.test(f.appIcon), `${P}: portal.features.appIcon "${f.appIcon}" must be kebab-case`);
+        for (const size of [180, 192, 512]) must(existsSync(join(ROOT, "public", "portal", "icons", `${f.appIcon}-${size}.png`)), `${P}: app icon public/portal/icons/${f.appIcon}-${size}.png is missing`);
+      }
     }
 
     // Client wording and assets.

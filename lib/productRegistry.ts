@@ -162,6 +162,7 @@ export function createRegistry(products: readonly Product[]) {
       stringPlan: v.stringPlan ?? null,
     };
     if (features.assistant) journey.assistant = true;
+    if (features.appIcon) journey.appIcon = features.appIcon;
     if (byType.has(clientType)) journeys.set(clientType, journey);
     return journey;
   }

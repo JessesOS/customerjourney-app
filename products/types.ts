@@ -141,6 +141,8 @@ export type ProductFeatures = {
   nonBlockingSteps?: string[];
   /** The "Ask Jesse" help panel: a sound-wave button that answers from the client's reviewed pack and takes support requests. */
   assistant?: boolean;
+  /** Home-screen app icon: public/portal/icons/<name>-180.png, -192.png and -512.png. Saved to a phone's home screen, the portal opens full screen with this icon. */
+  appIcon?: string;
 };
 
 /** Product-level portal settings. Anything absent is off. */
