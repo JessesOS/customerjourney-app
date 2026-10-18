@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.9` |
+| Version | `2026-10-18.10` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 22 (2 client only, 0 hidden in the portal) |
 | Team tasks | 337 (240 behind a client step, 97 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/bss-custom/spec.md](../../products/bss-custom/spec.md) |
-| Draft wording | `bssc-bookmark`, `bssc-save-portal`, `bssc-access-site`, `bssc-review-1`, `bssc-questions`, `bssc-access-tools`, `bssc-assets`, `bssc-journey-map`, `bssc-review-2`, `bssc-crm-plan`, `bssc-contacts`, `bssc-signoff`, `bssc-launch-day`, `bssc-test-booking`, `bssc-messages`, `bssc-ai-agent`, `bssc-live-check`, `bssc-walkthrough`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `bssc-bookmark`, `bssc-save-portal`, `bssc-access-site`, `bssc-review-1`, `bssc-assets`, `bssc-questions`, `bssc-access-tools`, `bssc-journey-map`, `bssc-review-2`, `bssc-crm-plan`, `bssc-contacts`, `bssc-signoff`, `bssc-launch-day`, `bssc-test-booking`, `bssc-messages`, `bssc-ai-agent`, `bssc-live-check`, `bssc-walkthrough`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -584,6 +584,90 @@ Status on 17 Oct: DONE
 
 </details>
 
+### `bssc-assets` Send the files for your website
+
+> Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page.
+
+Portal: upload · note · 5 numbered steps
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `bssc-b214` Home: Add new testimonials when Fin sends them (with each client's written permission) | Jesse Allan | Week 2 on (days 8–70) | high | `bssc-b213` |
+| `bssc-b228` Privacy: New main-site privacy policy covering quiz answers | Jesse Allan | Before launch (days 29–42) | high |  |
+| `bssc-b231` Fin: collect each other partner's name, photo or logo, welcome message and OK on wording | Jesse Allan | Weeks 2-7 (days 8–49) | high | `bssc-a16` |
+| `bssc-b301` Asset from Fin: New testimonials (text and/or video), each with written permission | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
+| `bssc-b302` Asset from Fin: Confirmation of "Featured on" relationships (Bitcoin MENA, Bitcoin Magazine) | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
+| `bssc-b303` Asset from Fin / Sean: Sean Clarke's original photo (and any logo) | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
+| `bssc-b304` Asset from Fin / partners: Every other partner's photo/logo, name, welcome message | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
+| `bssc-b308` Asset from Fin: Privacy policy wording (or approval of our draft) | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
+
+<details><summary>Guidance for the team (8 tasks)</summary>
+
+**`bssc-b214` Home: Add new testimonials when Fin sends them (with each client's written permission)**
+
+From the spec: B214 (3.B2 Website: page by page).
+Who: Us
+Depends on: B213, Fin's content
+When: W2+
+Done when: Live in the carousel
+Needs from Fin: Testimonials + consent
+Tools: HTML
+Status on 17 Oct: BLOCKED
+
+**`bssc-b228` Privacy: New main-site privacy policy covering quiz answers**
+
+From the spec: B228 (3.B2 Website: page by page).
+Task: New main-site privacy policy covering quiz answers, webinar sign-ups, SMS reminders, GHL, Calendly
+Who: Fin provides, or Us draft + Fin approves
+Depends on: Q25
+When: Before launch
+Done when: Approved text live
+Needs from Fin: Wording or approval
+Status on 17 Oct: BLOCKED (Fin)
+
+**`bssc-b231` Fin: collect each other partner's name, photo or logo, welcome message and OK on wording**
+
+From the spec: B231 (3.B2 Website: page by page).
+Who: Fin
+Depends on: Partner list (A16)
+When: W2 to W7
+Done when: All records filled
+Needs from Fin: Per partner content
+Tools: Portal
+Status on 17 Oct: BLOCKED
+
+**`bssc-b301` Asset from Fin: New testimonials (text and/or video), each with written permission**
+
+From the spec: B301 (3.B3 Assets the website needs).
+For: Home carousel, partner pages, call booked (optional)
+Status on 17 Oct: BLOCKED
+
+**`bssc-b302` Asset from Fin: Confirmation of "Featured on" relationships (Bitcoin MENA, Bitcoin Magazine)**
+
+From the spec: B302 (3.B3 Assets the website needs).
+For: Home, About, partner pages
+Status on 17 Oct: BLOCKED
+
+**`bssc-b303` Asset from Fin / Sean: Sean Clarke's original photo (and any logo)**
+
+From the spec: B303 (3.B3 Assets the website needs).
+For: Partner page
+Status on 17 Oct: BLOCKED
+
+**`bssc-b304` Asset from Fin / partners: Every other partner's photo/logo, name, welcome message**
+
+From the spec: B304 (3.B3 Assets the website needs).
+For: Partner pages
+Status on 17 Oct: BLOCKED
+
+**`bssc-b308` Asset from Fin: Privacy policy wording (or approval of our draft)**
+
+From the spec: B308 (3.B3 Assets the website needs).
+For: Privacy
+Status on 17 Oct: BLOCKED
+
+</details>
+
 ### `bssc-questions` Answer a few questions about how you work
 
 > One quick question at a time, and it saves as you go. Your answers shape your CRM, your text messages and your AI lead agent.
@@ -705,90 +789,6 @@ Done when: Coaches have Zoom
 Needs from Fin: Licences
 Tools: Zoom
 Status on 17 Oct: TODO
-
-</details>
-
-### `bssc-assets` Send us your website content
-
-> Upload what you have below. For anything still to come, just tell us when to expect it.
-
-Portal: upload · note · 6 numbered steps
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `bssc-b214` Home: Add new testimonials when Fin sends them (with each client's written permission) | Jesse Allan | Week 2 on (days 8–70) | high | `bssc-b213` |
-| `bssc-b228` Privacy: New main-site privacy policy covering quiz answers | Jesse Allan | Before launch (days 29–42) | high |  |
-| `bssc-b231` Fin: collect each other partner's name, photo or logo, welcome message and OK on wording | Jesse Allan | Weeks 2-7 (days 8–49) | high | `bssc-a16` |
-| `bssc-b301` Asset from Fin: New testimonials (text and/or video), each with written permission | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-| `bssc-b302` Asset from Fin: Confirmation of "Featured on" relationships (Bitcoin MENA, Bitcoin Magazine) | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-| `bssc-b303` Asset from Fin / Sean: Sean Clarke's original photo (and any logo) | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-| `bssc-b304` Asset from Fin / partners: Every other partner's photo/logo, name, welcome message | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-| `bssc-b308` Asset from Fin: Privacy policy wording (or approval of our draft) | Jesse Allan | Weeks 1-2 (days 1–14) | high |  |
-
-<details><summary>Guidance for the team (8 tasks)</summary>
-
-**`bssc-b214` Home: Add new testimonials when Fin sends them (with each client's written permission)**
-
-From the spec: B214 (3.B2 Website: page by page).
-Who: Us
-Depends on: B213, Fin's content
-When: W2+
-Done when: Live in the carousel
-Needs from Fin: Testimonials + consent
-Tools: HTML
-Status on 17 Oct: BLOCKED
-
-**`bssc-b228` Privacy: New main-site privacy policy covering quiz answers**
-
-From the spec: B228 (3.B2 Website: page by page).
-Task: New main-site privacy policy covering quiz answers, webinar sign-ups, SMS reminders, GHL, Calendly
-Who: Fin provides, or Us draft + Fin approves
-Depends on: Q25
-When: Before launch
-Done when: Approved text live
-Needs from Fin: Wording or approval
-Status on 17 Oct: BLOCKED (Fin)
-
-**`bssc-b231` Fin: collect each other partner's name, photo or logo, welcome message and OK on wording**
-
-From the spec: B231 (3.B2 Website: page by page).
-Who: Fin
-Depends on: Partner list (A16)
-When: W2 to W7
-Done when: All records filled
-Needs from Fin: Per partner content
-Tools: Portal
-Status on 17 Oct: BLOCKED
-
-**`bssc-b301` Asset from Fin: New testimonials (text and/or video), each with written permission**
-
-From the spec: B301 (3.B3 Assets the website needs).
-For: Home carousel, partner pages, call booked (optional)
-Status on 17 Oct: BLOCKED
-
-**`bssc-b302` Asset from Fin: Confirmation of "Featured on" relationships (Bitcoin MENA, Bitcoin Magazine)**
-
-From the spec: B302 (3.B3 Assets the website needs).
-For: Home, About, partner pages
-Status on 17 Oct: BLOCKED
-
-**`bssc-b303` Asset from Fin / Sean: Sean Clarke's original photo (and any logo)**
-
-From the spec: B303 (3.B3 Assets the website needs).
-For: Partner page
-Status on 17 Oct: BLOCKED
-
-**`bssc-b304` Asset from Fin / partners: Every other partner's photo/logo, name, welcome message**
-
-From the spec: B304 (3.B3 Assets the website needs).
-For: Partner pages
-Status on 17 Oct: BLOCKED
-
-**`bssc-b308` Asset from Fin: Privacy policy wording (or approval of our draft)**
-
-From the spec: B308 (3.B3 Assets the website needs).
-For: Privacy
-Status on 17 Oct: BLOCKED
 
 </details>
 

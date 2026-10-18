@@ -144,6 +144,26 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
+      // Right after the review (Jesse, 2026-10-18): the review page takes typed
+      // answers only, so the files it asks for are uploaded here, with the two
+      // things it doesn't ask about.
+      id: "bssc-assets",
+      title: "Send the files for your website",
+      detail: "Your review page asks for a few photos and files. Upload them here, along with two things it doesn't ask about. Answer the questions themselves on the review page.",
+      hasUpload: true,
+      steps: [
+        "New testimonials, with each client's permission to use them (review question 4).",
+        "Sean Clarke's original photo, and his logo if he has one (review question 12).",
+        "Your privacy policy wording, if you're providing it (review question 25).",
+        "For each other partner: name, photo or logo, and a welcome message.",
+        "Your current email or text wording, and your booking link.",
+      ],
+      notePrompt: "Anything still to come?",
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
       id: "bssc-questions",
       title: "Answer a few questions about how you work",
       detail: "One quick question at a time, and it saves as you go. Your answers shape your CRM, your text messages and your AI lead agent.",
@@ -173,25 +193,6 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
       ],
       doneLabel: "I've sent the invites",
       notePrompt: "Anything you couldn't invite us to?",
-    },
-  },
-  {
-    stage: "onboarding",
-    step: {
-      id: "bssc-assets",
-      title: "Send us your website content",
-      detail: "Upload what you have below. For anything still to come, just tell us when to expect it.",
-      hasUpload: true,
-      steps: [
-        "New testimonials, with each client's written permission to use them on your website.",
-        "Confirm that \"Featured on\" is right for Bitcoin MENA and Bitcoin Magazine.",
-        "Sean Clarke's original photo (and logo, if any), plus his OK on any wording change.",
-        "For each other partner: name, photo or logo, and a welcome message.",
-        "Your privacy policy wording, or your OK on a draft from us.",
-        "Your existing email or text wording, and your booking link.",
-      ],
-      doneLabel: "I've sent what I have",
-      notePrompt: "Anything still to come?",
     },
   },
   {
