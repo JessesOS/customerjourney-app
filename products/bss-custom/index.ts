@@ -19,7 +19,7 @@ import { bssCustomTeamTasks } from "./team-tasks";
 export const bssCustom = defineCustomProduct({
   id: "bss-custom",
   name: "BSS custom (Fin Creighton)",
-  version: "2026-10-18.2",
+  version: "2026-10-18.3",
   status: "draft",
   clientType: "bss-custom",
   label: "BSS custom",

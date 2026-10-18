@@ -57,6 +57,24 @@ export const bssCustomStages: Partial<Record<StageId, StagePatch>> = {
   },
 };
 
+/**
+ * The questions step as a spoken interview: saved, not shown (Jesse,
+ * 2026-10-18). Its clips are in public/portal/voice/interview-bssc-questions-<n>.m4a.
+ */
+export const bssCustomInterview: string[] = [
+  "What's the best way and time to reach you? And does anyone else need to approve things?",
+  "Who should get an alert when a new lead comes in, a hot lead turns up, or someone books a call?",
+  "Which platform do you run your webinars on: Zoom Meetings, Zoom Webinars, or something else?",
+  "How do you take payment after a sales call today?",
+  "How does your partner and commission setup work at the moment?",
+  "Should the new site have a Contact page? It wasn't in the agreement, so just tell us what you're thinking.",
+  "Where are most of your contacts: Australia, the UK, the US, or a mix? And which social accounts should we connect?",
+  "Where does your audience find you? Name every place you can think of.",
+  "Who are your implementation coaches? Names are fine for now. We'll get their emails later.",
+  "What are your goals for the next six months, in leads, calls and clients?",
+  "How would you describe your tone of voice, in three words? And is there anything we should never say or promise?",
+];
+
 export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   // ── Onboard, map and evaluate (weeks 1-2) ──
   {
@@ -92,23 +110,12 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "bssc-questions",
       title: "Answer a few questions about how you work",
-      detail: "Type your answers, one quick question at a time, or talk them through out loud. Your answers shape your CRM, your text messages and your AI lead agent.",
-      // Two ways in (Jesse, 2026-10-18): the form, or the same questions as a
-      // voice interview. Either one finishes the step.
+      detail: "One quick question at a time, and it saves as you go. Your answers shape your CRM, your text messages and your AI lead agent.",
+      // The guided form. The voice interview is hidden for now (Jesse,
+      // 2026-10-18): to offer "type or talk" again, add
+      // `interview: bssCustomInterview` (and an ElevenLabs `interviewAgentId`
+      // for a free-flowing conversation once Jesse has set up its prompt).
       formId: "bss-custom-intake-v1",
-      interview: [
-        "What's the best way and time to reach you? And does anyone else need to approve things?",
-        "Who should get an alert when a new lead comes in, a hot lead turns up, or someone books a call?",
-        "Which platform do you run your webinars on: Zoom Meetings, Zoom Webinars, or something else?",
-        "How do you take payment after a sales call today?",
-        "How does your partner and commission setup work at the moment?",
-        "Should the new site have a Contact page? It wasn't in the agreement, so just tell us what you're thinking.",
-        "Where are most of your contacts: Australia, the UK, the US, or a mix? And which social accounts should we connect?",
-        "Where does your audience find you? Name every place you can think of.",
-        "Who are your implementation coaches? Names are fine for now. We'll get their emails later.",
-        "What are your goals for the next six months, in leads, calls and clients?",
-        "How would you describe your tone of voice, in three words? And is there anything we should never say or promise?",
-      ],
     },
   },
   {
