@@ -80,17 +80,30 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
-      // First and quick (Jesse, 2026-10-18): one tap back into the portal from his iPhone.
+      // First (Jesse, 2026-10-18): bookmark the portal, then save it to the phone.
+      id: "bssc-bookmark",
+      title: "Bookmark your portal",
+      detail: "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+      showPortalLink: true,
+      steps: [
+        "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+        "Or copy your portal link above and save it somewhere handy.",
+      ],
+      doneLabel: "I've bookmarked it",
+      clientOnly: true,
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
       id: "bssc-save-portal",
       title: "Save your portal to your phone",
-      detail: "So you can get back here in one tap. On your iPhone, save it to your home screen and it opens like an app. On a computer, bookmark this page.",
-      showPortalLink: true,
+      detail: "So you can get back here in one tap. Saved to your iPhone's home screen, it opens like an app.",
       steps: [
         "On your iPhone, open your portal link in Safari (even if you usually use Chrome).",
         "Tap the Share button: the square with an arrow pointing up, at the bottom of the screen.",
         "Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
         "From now on, open BSS Launchpad from your home screen.",
-        "On your computer, bookmark this page (Cmd + D on a Mac).",
       ],
       doneLabel: "I've saved it",
       clientOnly: true,
