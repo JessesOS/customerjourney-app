@@ -142,7 +142,6 @@
     "bssc-review-1",
     "bssc-questions",
     "bssc-access-tools",
-    "bssc-kickoff",
     "bssc-assets",
     "bssc-journey-map",
     "bssc-review-2",
@@ -164,7 +163,7 @@
   "forms": {
     "bss-custom-intake-v1": {
       "id": "bss-custom-intake-v1",
-      "introDescription": "Short answers are fine. Pick \"Not sure yet\" for anything you don't know: we'll cover it on your kick-off call. Never put passwords here.",
+      "introDescription": "Short answers are fine. Pick \"Not sure yet\" for anything you don't know: we'll go through it with you. Never put passwords here.",
       "introTitle": "A few questions about how you work",
       "sections": [
         {

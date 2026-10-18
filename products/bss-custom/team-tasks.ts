@@ -108,8 +108,6 @@ export const bssCustomTeamTasks: TeamTask[] = [
     id: "bssc-a09",
     title: "Kick-off call: agree goals, who approves what, how to reach each other",
     stage: "onboarding",
-    step: "bssc-kickoff",
-    completesWithSteps: ["bssc-kickoff"],
     category: "Onboarding & admin",
     role: "Jesse Allan",
     priority: "normal",

@@ -6,6 +6,8 @@
 // draftCopy, so the product can't go live until Jesse approves the wording.
 // Timings follow section 2 of the spec: week 1 starts on the day the client
 // starts. Post-launch is ongoing: support runs to month 8.
+// No kick-off call step for now (Jesse, 2026-10-18): its team task (bssc-a09)
+// stays on the board, team-only.
 // The portal opens one step at a time, so each stage's order puts what Fin can
 // do straight away first (access, then the website draft that's ready now),
 // and steps that wait on our work later. Steps that aren't approvals say what
@@ -171,17 +173,6 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
       ],
       doneLabel: "I've sent the invites",
       notePrompt: "Anything you couldn't invite us to?",
-    },
-  },
-  {
-    stage: "onboarding",
-    step: {
-      id: "bssc-kickoff",
-      title: "Book your kick-off call",
-      detail: "About 45 minutes with Jesse: we agree your goals, who approves what, and the best way to reach each other. Tell us when suits you and Jesse will send an invite.",
-      doneLabel: "Send my times",
-      notePrompt: "Days and times that suit you",
-      notePlaceholder: "e.g. Tuesday or Wednesday afternoon",
     },
   },
   {

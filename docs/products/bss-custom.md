@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.8` |
+| Version | `2026-10-18.9` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
-| Client steps | 23 (2 client only, 0 hidden in the portal) |
-| Team tasks | 337 (241 behind a client step, 96 team-only) |
+| Client steps | 22 (2 client only, 0 hidden in the portal) |
+| Team tasks | 337 (240 behind a client step, 97 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/bss-custom/spec.md](../../products/bss-custom/spec.md) |
-| Draft wording | `bssc-bookmark`, `bssc-save-portal`, `bssc-access-site`, `bssc-review-1`, `bssc-questions`, `bssc-access-tools`, `bssc-kickoff`, `bssc-assets`, `bssc-journey-map`, `bssc-review-2`, `bssc-crm-plan`, `bssc-contacts`, `bssc-signoff`, `bssc-launch-day`, `bssc-test-booking`, `bssc-messages`, `bssc-ai-agent`, `bssc-live-check`, `bssc-walkthrough`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `bssc-bookmark`, `bssc-save-portal`, `bssc-access-site`, `bssc-review-1`, `bssc-questions`, `bssc-access-tools`, `bssc-assets`, `bssc-journey-map`, `bssc-review-2`, `bssc-crm-plan`, `bssc-contacts`, `bssc-signoff`, `bssc-launch-day`, `bssc-test-booking`, `bssc-messages`, `bssc-ai-agent`, `bssc-live-check`, `bssc-walkthrough`, `bssc-webinar`, `bssc-onboarding-map`, `bssc-reactivation`, `bssc-check-ins`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| BSS custom | `bss-custom` | none | where PRODUCT_DRAFTS=1 | 23 | 337 |
+| BSS custom | `bss-custom` | none | where PRODUCT_DRAFTS=1 | 22 | 337 |
 
 ### Portal tweaks by variant
 
@@ -708,31 +708,6 @@ Status on 17 Oct: TODO
 
 </details>
 
-### `bssc-kickoff` Book your kick-off call
-
-> About 45 minutes with Jesse: we agree your goals, who approves what, and the best way to reach each other. Tell us when suits you and Jesse will send an invite.
-
-Portal: note
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other _(done when the client finishes `bssc-kickoff`)_ | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a06` |
-
-<details><summary>Guidance for the team (1 task)</summary>
-
-**`bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other**
-
-From the spec: A09 (3.A Onboarding, portal, evaluation and admin).
-Who: Both
-Depends on: A06
-When: W1 to W2
-Done when: Call held; notes in the portal; approver named (default: Fin)
-Needs from Fin: 45 minutes
-Tools: Zoom, portal
-Status on 17 Oct: TODO
-
-</details>
-
 ### `bssc-assets` Send us your website content
 
 > Upload what you have below. For anything still to come, just tell us when to expect it.
@@ -954,6 +929,7 @@ Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of 
 | `bssc-a06` Build Fin's custom onboarding product (client portal + team board), from this file | Jesse Allan | Weeks 1-2 (days 1–14) | normal |  |
 | `bssc-a07` Load every task in section 3 into the team board, with owner, dependency, week and status | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a06` |
 | `bssc-a08` Load Fin's checklist (section 4) into his portal | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a06` |
+| `bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a06` |
 | `bssc-a22` Send the clarifications addendum | Jesse Allan | Week 1 (days 1–7) | normal |  |
 | `bssc-a24` Update the agreement page and any emails from "Cal.com" to "Calendly" (or GHL, per A19) | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a19` |
 | `bssc-a25` Fix the client-portal booking link (dead Cal.com link) | Jesse Allan | Week 1 (days 1–7) | normal | `bssc-b501` |
@@ -966,7 +942,7 @@ Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of 
 | `bssc-c102` Jesse's own GHL agency account set up again | Jesse Allan | Week 1 (days 1–7) | normal |  |
 | `bssc-c107` Ownership in writing: Fin owns his contacts, data, content and GHL account | Jesse Allan | Week 1 (days 1–7) | normal | `bssc-a22` |
 
-<details><summary>Guidance for the team (17 tasks)</summary>
+<details><summary>Guidance for the team (18 tasks)</summary>
 
 **`bssc-a01` Take payment 1 and record consent and signature**
 
@@ -1046,6 +1022,17 @@ Depends on: A06
 When: W1 to W2
 Done when: Fin sees his to-dos in order
 Tools: Custom product
+Status on 17 Oct: TODO
+
+**`bssc-a09` Kick-off call: agree goals, who approves what, how to reach each other**
+
+From the spec: A09 (3.A Onboarding, portal, evaluation and admin).
+Who: Both
+Depends on: A06
+When: W1 to W2
+Done when: Call held; notes in the portal; approver named (default: Fin)
+Needs from Fin: 45 minutes
+Tools: Zoom, portal
 Status on 17 Oct: TODO
 
 **`bssc-a22` Send the clarifications addendum**

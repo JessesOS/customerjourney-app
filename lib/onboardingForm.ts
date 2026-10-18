@@ -298,7 +298,7 @@ export const bssCustomIntakeForm: PortalFormDefinition = {
   id: "bss-custom-intake-v1",
   title: "BSS: how you work",
   introTitle: "A few questions about how you work",
-  introDescription: "Short answers are fine. Pick \"Not sure yet\" for anything you don't know: we'll cover it on your kick-off call. Never put passwords here.",
+  introDescription: "Short answers are fine. Pick \"Not sure yet\" for anything you don't know: we'll go through it with you. Never put passwords here.",
   sections: [
     {
       id: "reaching-you",
