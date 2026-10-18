@@ -163,6 +163,7 @@ export function createRegistry(products: readonly Product[]) {
     };
     if (features.assistant) journey.assistant = true;
     if (features.appIcon) journey.appIcon = features.appIcon;
+    if (portal.journeyMap && visible.has(portal.journeyMap.step)) journey.journeyMap = portal.journeyMap;
     if (byType.has(clientType)) journeys.set(clientType, journey);
     return journey;
   }

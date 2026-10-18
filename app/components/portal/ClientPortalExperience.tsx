@@ -23,6 +23,7 @@ import { MicButton } from "@/app/components/portal/MicButton";
 import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { PortalAssistant } from "@/app/components/portal/PortalAssistant";
+import { JourneyMap } from "@/app/components/portal/JourneyMap";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
 import { StageGuide } from "@/app/components/portal/StageGuide";
@@ -1262,6 +1263,8 @@ export function ClientPortalExperience({
             const uploadedFiles = uploads[m.id] ?? [];
             const showUploadWidget = m.status !== "done" && m.hasUpload;
             const hasCustomFlow = Boolean(inlineForm) || showUploadWidget || choosingMode;
+            // The customer journey map, on the one step the product puts it on.
+            const mapHere = journey.journeyMap && journey.journeyMap.step === m.id ? journey.journeyMap.content : null;
 
             return (
               <div>
@@ -1366,6 +1369,7 @@ export function ClientPortalExperience({
                       </div>
                       <div style={{ flex: 1, fontSize: 14, color: "var(--pj-ink)" }}>You&apos;ve completed this task.</div>
                     </div>
+                    {mapHere && <JourneyMap content={mapHere} portalToken={portalToken} readOnly />}
                     {savedContent && (
                       <div style={{ marginTop: 14, borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: "16px 18px" }}>
                         {savedContent.split("\n").filter(Boolean).map((line, i) => (
@@ -1373,7 +1377,7 @@ export function ClientPortalExperience({
                         ))}
                       </div>
                     )}
-                    {notes[m.id] && (
+                    {notes[m.id] && !mapHere && (
                       <div style={{ marginTop: 14, fontSize: 13, color: "var(--pj-muted)" }}>
                         <span style={{ color: "var(--pj-act)", fontWeight: 600 }}>Your note:</span> {notes[m.id]}
                       </div>
@@ -1524,6 +1528,14 @@ export function ClientPortalExperience({
                     {/* Only show a content card when it adds something beyond the
                         description above — i.e. team-pasted review content. For a
                         plain task the detail at the top already says it all. */}
+                    {mapHere && (
+                      <JourneyMap
+                        content={mapHere}
+                        portalToken={portalToken}
+                        onNotesChange={(compiled) => setNoteDrafts((prev) => (prev[m.id] === compiled ? prev : { ...prev, [m.id]: compiled }))}
+                      />
+                    )}
+
                     {m.hasEditableContent && (
                       <div style={{ marginTop: 24, borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: 22 }}>
                         <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 12 }}>
@@ -1640,7 +1652,7 @@ export function ClientPortalExperience({
                         onClick={() => {
                           if (noteMissing) return;
                           const completedStageId = stageCompletedBy(m.id);
-                          approveMilestone(m.id, m.notePrompt || m.interview ? noteValue : undefined);
+                          approveMilestone(m.id, m.notePrompt || m.interview || mapHere ? noteValue : undefined);
                           if (completedStageId) {
                             setJustCompletedStageId(completedStageId);
                             setView("complete");

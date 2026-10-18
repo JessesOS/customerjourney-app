@@ -132,6 +132,53 @@ export type StageGuide = { script: string; audioSrc: string };
 export type AskItem = { q: string; a: string };
 
 /**
+ * A product's customer journey map, shown on one approval step (BSS custom
+ * first, Jesse 2026-10-18): each journey as a visual flow, open questions
+ * flagged "To confirm", and a notes box per journey that saves as the client
+ * types (a hidden form, notesFormId, one textarea per journey id plus
+ * "also_running" and "anything_else").
+ */
+export type JourneyMapMessage = { channel: "email" | "text" | "alert" | "page"; label: string };
+export type JourneyMapStep = {
+  title: string;
+  detail: string;
+  /** Who does it: shown as a small tag. Absent = it happens on its own. */
+  who?: "you" | "them" | "us";
+  messages?: JourneyMapMessage[];
+  /** A small timeline drawn across the step (e.g. the reminders before a call). */
+  timeline?: { label: string; points: { at: string; label: string }[] };
+  /** Paths that split here (e.g. good fit / not a fit). */
+  branches?: { label: string; detail: string; tone?: "good" | "neutral" }[];
+  /** An open question this step waits on, and where the client answers it. */
+  pending?: { question: string; where: string };
+};
+export type JourneyMapJourney = {
+  /** Also the notes field id in notesFormId. */
+  id: string;
+  title: string;
+  tagline: string;
+  accent: "purple" | "orange" | "teal";
+  /** Where people come in. */
+  entries: string[];
+  steps: JourneyMapStep[];
+  outcome: string;
+};
+export type JourneyMapContent = {
+  title: string;
+  intro: string;
+  /** Shown as a small banner: whose draft this is. */
+  draftNote: string;
+  journeys: JourneyMapJourney[];
+  /** Smaller flows that run alongside, and the rules every message follows. */
+  alsoRunning: { title: string; detail: string }[];
+  rules: string[];
+  /** Every open question, with where the client answers it. */
+  toConfirm: { question: string; where: string }[];
+  /** The hidden form (lib/onboardingForm.ts) that keeps the client's notes. */
+  notesFormId: string;
+};
+
+/**
  * Plans for the "String Theory" view in the progress panel: a product's work
  * as parallel workstreams across its timeline. Days are journey days (day 1 =
  * the client's start). `ongoing` strings run past the end of the axis.
@@ -179,4 +226,6 @@ export type PortalJourney = {
   assistant?: true;
   /** Home-screen app icon name (public/portal/icons/<name>-<size>.png). Absent when the product has none. */
   appIcon?: string;
+  /** The customer journey map and the step it shows on. Absent when the product has none. */
+  journeyMap?: { step: string; content: JourneyMapContent };
 };

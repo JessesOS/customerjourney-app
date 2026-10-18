@@ -198,16 +198,12 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
+      // The map itself is products/bss-custom/journey-map.ts (portal.journeyMap),
+      // with its own notes boxes. Findings and the partner plan moved to the
+      // CRM plan step: they need a look at Fin's systems first (Jesse, 2026-10-18).
       id: "bssc-journey-map",
-      title: "Approve your customer journey and our findings",
-      detail: "We map every step from first contact to paying client, and look at what you have today. We walk you through it on a call, then you approve it here. Nothing is built on it until you do.",
-      hasEditableContent: true,
-      steps: [
-        "The customer journey map: first contact, follow-up, booking, sales call, new client and onboarding.",
-        "Our findings and recommendation: what to keep, move or replace, and which GoHighLevel account to use.",
-        "Your partner tracking plan: how partners are added, tracked and paid.",
-      ],
-      notePrompt: "Anything you'd like changed?",
+      title: "Approve your customer journey",
+      detail: "How every lead becomes a client, from first contact to onboarding.",
     },
   },
 
@@ -228,9 +224,14 @@ export const bssCustomSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "build",
     step: {
       id: "bssc-crm-plan",
-      title: "Approve your CRM plan",
-      detail: "One page: your pipelines, the details we store on each contact, your tags and how leads are scored. Approve it, or tell us what to change.",
+      title: "Approve your CRM plan and our findings",
+      detail: "Once we've looked at your current systems, we share what we found and a one-page plan here. Approve it, or tell us what to change.",
       hasEditableContent: true,
+      steps: [
+        "Our findings: what to keep, move or replace, and which GoHighLevel account to use.",
+        "Your partner tracking plan: how partners are added, tracked and paid.",
+        "Your CRM: pipelines, the details we keep on each contact, tags and lead scoring.",
+      ],
       notePrompt: "Anything you'd like changed?",
     },
   },

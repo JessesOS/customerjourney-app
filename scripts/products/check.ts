@@ -180,6 +180,12 @@ function integrity(): string {
       const f = p.portal.features ?? {};
       const featureIds = [...(f.playgroundSteps ?? []), ...(f.landingPreviewSteps ?? []), ...(f.nonBlockingSteps ?? []), ...(f.receptionistScriptStep ? [f.receptionistScriptStep] : [])];
       for (const id of featureIds) must(stepStage.has(id), `${P}: portal.features names unknown step ${id}`);
+      const map = p.portal.journeyMap;
+      if (map) {
+        must(stepStage.has(map.step), `${P}: portal.journeyMap is on unknown step ${map.step}`);
+        must(Boolean(onboardingFormById(map.content.notesFormId)), `${P}: portal.journeyMap notes form ${map.content.notesFormId} is not in lib/onboardingForm.ts`);
+        must(new Set(map.content.journeys.map((j) => j.id)).size === map.content.journeys.length, `${P}: portal.journeyMap has two journeys with one id`);
+      }
       if (f.appIcon) {
         must(/^[a-z0-9-]+$/.test(f.appIcon), `${P}: portal.features.appIcon "${f.appIcon}" must be kebab-case`);
         for (const size of [180, 192, 512]) must(existsSync(join(ROOT, "public", "portal", "icons", `${f.appIcon}-${size}.png`)), `${P}: app icon public/portal/icons/${f.appIcon}-${size}.png is missing`);

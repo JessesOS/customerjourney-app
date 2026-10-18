@@ -203,6 +203,30 @@ function portalSettings(product: Product): string[] {
   if (f.appIcon) features.push(`home-screen app icon \`${f.appIcon}\``);
   if (f.assistant) features.push(`"Ask Jesse" help panel (answers from the client's reviewed pack; requests become board tasks)`);
   L.push(`| Step features | ${features.length ? features.join("; ") : "none"} |`);
+  if (portal.journeyMap) L.push(`| Customer journey map | on ${code(portal.journeyMap.step)}: ${portal.journeyMap.content.journeys.length} journeys, notes saved in form \`${portal.journeyMap.content.notesFormId}\` (below) |`);
+  return L;
+}
+
+/** The customer journey map as the client reads it, in plain Markdown. */
+function journeyMapSheet(product: Product): string[] {
+  const map = product.portal?.journeyMap;
+  if (!map) return [];
+  const c = map.content;
+  const L: string[] = ["", `## Customer journey map (on ${code(map.step)})`, "", `_${c.draftNote}_`, "", c.intro];
+  c.journeys.forEach((j, i) => {
+    L.push("", `### ${i + 1}. ${j.title}`, "", `${j.tagline} Where they come from: ${j.entries.join(", ")}.`, "");
+    j.steps.forEach((s, k) => {
+      L.push(`${k + 1}. **${s.title}**${s.who ? ` (${s.who === "you" ? "you" : s.who === "them" ? "your lead" : "us"})` : ""}. ${s.detail}`);
+      for (const m of s.messages ?? []) L.push(`   - ${m.channel}: ${m.label}`);
+      if (s.timeline) L.push(`   - ${s.timeline.label}: ${s.timeline.points.map((p) => `${p.at}, ${p.label}`).join(" → ")}`);
+      for (const b of s.branches ?? []) L.push(`   - **${b.label}:** ${b.detail}`);
+      if (s.pending) L.push(`   - _To confirm:_ ${s.pending.question} (${s.pending.where})`);
+    });
+    L.push("", `Ends with: ${j.outcome}`);
+  });
+  L.push("", "### Also running", "", ...c.alsoRunning.map((a) => `- **${a.title}:** ${a.detail}`));
+  L.push("", "### Rules every message follows", "", ...c.rules.map((r) => `- ${r}`));
+  L.push("", "### Still to confirm", "", ...c.toConfirm.map((t) => `- ${t.question} (${t.where})`));
   return L;
 }
 
@@ -614,6 +638,7 @@ export function renderSheet(product: Product, products: readonly Product[] = [])
   L.push("## Portal settings");
   L.push("");
   L.push(...portalSettings(product));
+  L.push(...journeyMapSheet(product));
   L.push("");
 
   // Roles

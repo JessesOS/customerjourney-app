@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-18.10` |
+| Version | `2026-10-18.12` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 22 (2 client only, 0 hidden in the portal) |
@@ -42,6 +42,108 @@ No base: every step and task below is this product's own.
 | Voice guide | off |
 | Ask-AI | off |
 | Step features | home-screen app icon `bss-launchpad`; "Ask Jesse" help panel (answers from the client's reviewed pack; requests become board tasks) |
+| Customer journey map | on `bssc-journey-map`: 3 journeys, notes saved in form `bss-journey-map-notes-v1` (below) |
+
+## Customer journey map (on `bssc-journey-map`)
+
+_Our draft, built from your brief, your Loom and our calls. Anything marked "To confirm" is waiting on an answer from you._
+
+How someone goes from first hearing about Bitcoin Success School to becoming a client. There are three journeys, and most people take the first. Read it through, add a note wherever you'd change something, then approve it. Nothing gets built in GoHighLevel until you do.
+
+### 1. Book a Clarity Call
+
+Organic and referral leads, from the first click to a booked call. Where they come from: Your website, YouTube and the podcast, Instagram and Facebook, Partner pages, Security Score, Equipment checklist, A call or message.
+
+1. **They take the Book a Call quiz** (your lead). Your six questions, then their name and email. We save their answers straight away, even if they don't book, so nobody slips through. Their source stays with them too: YouTube, a partner, the checklist, and so on.
+   - **A good fit:** Goes straight on to choose a time.
+   - **Not a fit yet:** The same two answers as today lead to your not-qualified page, then one email with free resources: your podcast, the Security Score and the checklist.
+   - _To confirm:_ Which of the five suggested quiz improvements you want. (Your review page (question 7))
+2. **They book in Calendly** (your lead). Calendly opens inside the quiz with their name and email filled in, and your five-day booking window stays. When they book, they land on your call-booked page, and their answers sit on their contact for the call.
+   - page: Your call-booked page
+   - alert: You (or their coach): new booking, with a short summary of their answers
+   - _To confirm:_ Calendly or GoHighLevel's own booking, and which one sends the confirmations and reminders, so nobody gets them twice. (We'll recommend one after a quick check)
+3. **Before the call: confirmation, warm-ups and reminders**. Timed around when they booked, so nothing arrives late or in a burst. Book for tomorrow, and they get the confirmation and the 1-hour reminder only. Reschedule, and the reminders move. Cancel, and they get a "want a new time?" message two hours later.
+   - Booked three or more days ahead: Booked, Confirmation (email and text) → 2 days before, Why the call is worth it → 1 day before, How to prepare → 24 hours, Reminder email → 1 hour, Text with the Zoom link → The call, Clarity Call
+4. **Didn't book? A gentle nudge, then six emails**. If they finish the quiz but don't book: a "pick a time" email after an hour, a text the next day, and a last email the day after. Then six emails over two weeks, opening differently for YouTube viewers, partner referrals, checklist downloads and Security Score results. Everything stops the moment they book or reply.
+   - New-lead emails, over two weeks: Day 0, Welcome → Day 2, Why self-custody feels hard → Day 4, How the path works → Day 7, People who've done it → Day 10, Common doubts → Day 14, Book your Clarity Call
+5. **The Clarity Call** (you). You or your coach see their answers and where they came from before the call. Afterwards you mark how it went, and the right follow-up starts on its own.
+   - **Joined:** Moves on to onboarding (journey 3).
+   - **Didn't show:** A rebook text 15 minutes later, then two emails over three days.
+   - **Thinking about it:** Three emails over a week: common questions, a client story, and "the door's open".
+   - **Waiting on payment:** A reminder the next day, a friendly text after three days, and an alert for you to call after a week.
+   - _To confirm:_ How you take payment after a call. (Your answers in "Answer a few questions")
+6. **Partner referrals: the same journey, credited to the partner**. Leads from a partner's page take the same quiz, booking and emails. The partner stays attached from their link to a paying client, so you can see each partner's leads, calls and clients.
+   - _To confirm:_ How partners are added, tracked and paid today. (Your answers in "Answer a few questions")
+
+Ends with: A booked Clarity Call, with their answers ready for you.
+
+### 2. Weekly webinar
+
+Every Thursday at 5:00 pm Brisbane time, on repeat. Where they come from: Your webinar page, Your socials and YouTube, Partner pages, Your email list.
+
+1. **They register** (your lead). First name, email, and an optional mobile with text consent. Their place is tied to that week's session, so reminders never drift to another week. The page only says "You're registered" once it's really done.
+   - page: "You're registered" page, with your welcome video
+   - email: Your place is confirmed: calendar links and their private joining link
+   - text: A short confirmation (if they agreed to texts)
+2. **Leading up to the session**. One email a day: useful value from your four-step roadmap, plus a reminder to attend. Late sign-ups only get the days that are left, never a pile of catch-up emails. Up to three texts per session.
+   - From sign-up to the live session: Sign-up, Confirmed, with the joining link → Daily, Build your setup → Daily, Use it with confidence → Daily, Protect yourself and your family → Daily, Fund with confidence → Day before, Reminder text → 1 hour, Join now (email and text)
+3. **After the session**. Three to four days of follow-up, each leading to a free Clarity Call.
+   - **Attended:** Four emails over three days: the key takeaways, then an invitation to book a Clarity Call.
+   - **Missed it:** Four emails over three days: the replay (if you offer one), the next session, and a Clarity Call.
+   - _To confirm:_ Zoom Meetings or Zoom Webinars, and whether it can tell us who attended. Until it can, everyone gets one shared follow-up. Also: whether you offer replays, and for how long. (Your answers in "Answer a few questions", and Your review page (questions 17 and 19))
+4. **Books a call? Over to journey 1**. The moment someone books, the webinar emails stop and the call-booked emails take over. Existing clients never get these prompts.
+5. **Next week, it rolls over**. After each session, the pages and emails switch to next Thursday on their own. The replay page shows the latest recording.
+   - _To confirm:_ The webinar's title, first date and how long it runs. (Your review page (questions 14 to 16))
+
+Ends with: A booked Clarity Call, or a new contact in your new-lead emails.
+
+### 3. New client onboarding
+
+From payment to their first implementation call. Where they come from: A payment after a Clarity Call.
+
+1. **Payment comes through**. They become a client, and every sales email stops.
+   - _To confirm:_ How you take payment, so a payment can start this on its own. (Your answers in "Answer a few questions")
+2. **Welcome**. Straight away, a warm welcome and how to get started.
+   - email: Welcome to Bitcoin Success School (and a text)
+   - email: Your client portal: access and how to start
+3. **Meet your coach**. The next day, an email introducing their implementation coach, with a link to book call 1. Then a "how to prepare" email before that call.
+   - _To confirm:_ Your implementation coaches' names and emails. (Your answers in "Answer a few questions")
+4. **Everything after that**. Your monthly group calls, the community, the Master Vault document and their later calls. We'll map each step together, marked "automated" or "needs you", in week 8.
+
+Ends with: A new client, welcomed and booked in with their coach.
+
+### Also running
+
+- **Instant replies:** Every new enquiry gets a reply within minutes: an email, plus a text if they agreed. You get an alert.
+- **Missed calls:** Miss a call on your business number and they get a text within a minute.
+- **Your AI lead agent:** Answers questions day and night on your website chat, texts, Instagram and Facebook. It asks your six questions, books Clarity Calls, and hands over to you with a summary.
+- **Hot lead alerts:** When a lead looks ready (strong answers, replies, a booking), you get an alert.
+- **Past contacts:** Two short texts to past contacts who agreed to hear from you, from week 7.
+- **Testimonials:** After a call or a milestone, an email asking for a review, with permission to use it on your website.
+
+### Rules every message follows
+
+- Messages stop when someone replies, books, becomes a client or opts out.
+- Clients never get sales messages.
+- Texts only go out between 8 am and 8 pm their time.
+- A reminder whose moment has passed is skipped, never sent late or in a burst.
+- STOP and unsubscribe work everywhere, straight away.
+- Every email and text is written in your voice, and you approve each one before it goes live.
+
+### Still to confirm
+
+- How you take payment after a call (Your answers in "Answer a few questions")
+- Zoom Meetings or Zoom Webinars (Your answers in "Answer a few questions")
+- How partners are added, tracked and paid (Your answers in "Answer a few questions")
+- Your implementation coaches (Your answers in "Answer a few questions")
+- Who gets alerts for new leads, hot leads and bookings (Your answers in "Answer a few questions")
+- Where most of your contacts are (this decides how texts are registered) (Your answers in "Answer a few questions")
+- The quiz improvements you want (Your review page (question 7))
+- The webinar's title, first date and length (Your review page (questions 14 to 16))
+- Replays, and for how long (Your review page (question 19))
+- Calendly or GoHighLevel booking, and who sends the reminders (We'll recommend one)
+- A short pre-call form for people who book through a Calendly link directly, skipping the quiz (We'll suggest one in your CRM plan)
+- Which contacts agreed to hear from you ("Check your contacts before we import them")
 
 ## Roles
 
@@ -792,25 +894,16 @@ Status on 17 Oct: TODO
 
 </details>
 
-### `bssc-journey-map` Approve your customer journey and our findings
+### `bssc-journey-map` Approve your customer journey
 
-> We map every step from first contact to paying client, and look at what you have today. We walk you through it on a call, then you approve it here. Nothing is built on it until you do.
-
-Portal: work to review · note · 3 numbered steps
+> How every lead becomes a client, from first contact to onboarding.
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | `bssc-a11` Map the customer journey end to end | Jesse Allan | Weeks 1-2 (days 1–14) | normal | `bssc-a09`, `bssc-a10` |
 | `bssc-a12` Fin approves the customer journey map before anything is built on it _(done when the client finishes `bssc-journey-map`)_ | Jesse Allan | Week 2 (days 8–14) | critical | `bssc-a11` |
-| `bssc-a16` Map partner, commission and payout setup today (how partners are added, tracked and paid) | Jesse Allan | Weeks 1-2 (days 1–14) | high | `bssc-a13` |
-| `bssc-a19` Research check: Calendly vs GHL native booking | Jesse Allan | Week 1 (days 1–7) | normal |  |
-| `bssc-a20` Written findings and recommendation: keep, migrate or replace | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a13`, `bssc-a14`, `bssc-a15` |
-| `bssc-a21` Decide the sub-account: Fin's existing, or a new one Jesse provides | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a20` |
-| `bssc-b232` Partner: Exact partner pages confirmed in the first two weeks (AGR) | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a16` |
-| `bssc-b604` Choose the publish route (recommended: through Fin's Lovable project) | Jesse Allan | Week 2 (days 8–14) | normal | `bssc-b602`, `bssc-b603` |
-| `bssc-c101` Decide existing vs new sub-account | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a20` |
 
-<details><summary>Guidance for the team (9 tasks)</summary>
+<details><summary>Guidance for the team (2 tasks)</summary>
 
 **`bssc-a11` Map the customer journey end to end**
 
@@ -834,85 +927,6 @@ Done when: Approved in the portal
 Needs from Fin: Approval
 Tools: Portal
 Status on 17 Oct: TODO
-
-**`bssc-a16` Map partner, commission and payout setup today (how partners are added, tracked and paid)**
-
-From the spec: A16 (3.A Onboarding, portal, evaluation and admin).
-Who: Both
-Depends on: A13
-When: W1 to W2
-Done when: Written plan shown to Fin; flagged before work if bigger than expected
-Needs from Fin: Explanation + access
-Tools: Lovable app, Supabase, GHL
-Status on 17 Oct: BLOCKED
-
-**`bssc-a19` Research check: Calendly vs GHL native booking**
-
-From the spec: A19 (3.A Onboarding, portal, evaluation and admin).
-Task: Research check: Calendly vs GHL native booking (cost, features, red flags), as agreed on the 15 Oct call
-Who: Us
-When: W1
-Done when: A short note to Fin with a recommendation
-Tools: Calendly, GHL
-Status on 17 Oct: TODO
-
-**`bssc-a20` Written findings and recommendation: keep, migrate or replace**
-
-From the spec: A20 (3.A Onboarding, portal, evaluation and admin).
-Task: Written findings and recommendation: keep, migrate or replace; can the existing sub-account be used
-Who: Us
-Depends on: A13, A14, A15
-When: End W2
-Done when: Report in the portal, approved by Fin
-Needs from Fin: Approval
-Tools: Portal
-Status on 17 Oct: TODO
-
-**`bssc-a21` Decide the sub-account: Fin's existing, or a new one Jesse provides**
-
-From the spec: A21 (3.A Onboarding, portal, evaluation and admin).
-Task: Decide the sub-account: Fin's existing, or a new one Jesse provides (Jesse emailed "I will include a sub-account as part of this package"; the agreement says Fin owns and pays for his GHL)
-Who: Both
-Depends on: A20
-When: End W2
-Done when: Decision written down
-Needs from Fin: Decision
-Tools: GHL
-Status on 17 Oct: TODO
-
-**`bssc-b232` Partner: Exact partner pages confirmed in the first two weeks (AGR)**
-
-From the spec: B232 (3.B2 Website: page by page).
-Who: Both
-Depends on: A16
-When: End W2
-Done when: List agreed
-Needs from Fin: Decision
-Status on 17 Oct: TODO
-
-**`bssc-b604` Choose the publish route (recommended: through Fin's Lovable project)**
-
-From the spec: B604 (3.B6 Domain, DNS and hosting).
-Task: Choose the publish route. Recommended: (A) through Fin's Lovable project. Alternatives: (B) Vercel + DNS change (breaks app routes unless split); (C) Cloudflare routing by path; (D) webinar pages as GHL funnels on a `go.` subdomain
-Who: Us recommends, Fin approves
-Depends on: B602, B603
-When: W2
-Done when: Route written down
-Needs from Fin: Approval
-Status on 17 Oct: TODO
-
-**`bssc-c101` Decide existing vs new sub-account**
-
-From the spec: C101 (3.C1 Sub-account, users, settings).
-Task: Decide existing vs new sub-account (A21); contingency: if Fin's can't be used, Jesse provides a new one and migrates, same scope and price
-Who: Both
-Depends on: A20
-When: End W2
-Done when: Written
-Needs from Fin: Decision
-Tools: GHL
-Status on 17 Oct: TODO
-Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of the journey (A12).
 
 </details>
 
@@ -1221,14 +1235,21 @@ Done when: Passed (draft 1 DONE)
 
 </details>
 
-### `bssc-crm-plan` Approve your CRM plan
+### `bssc-crm-plan` Approve your CRM plan and our findings
 
-> One page: your pipelines, the details we store on each contact, your tags and how leads are scored. Approve it, or tell us what to change.
+> Once we've looked at your current systems, we share what we found and a one-page plan here. Approve it, or tell us what to change.
 
-Portal: work to review · note
+Portal: work to review · note · 3 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
+| `bssc-a16` Map partner, commission and payout setup today (how partners are added, tracked and paid) | Jesse Allan | Weeks 1-2 (days 1–14) | high | `bssc-a13` |
+| `bssc-a19` Research check: Calendly vs GHL native booking | Jesse Allan | Week 1 (days 1–7) | normal |  |
+| `bssc-a20` Written findings and recommendation: keep, migrate or replace | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a13`, `bssc-a14`, `bssc-a15` |
+| `bssc-a21` Decide the sub-account: Fin's existing, or a new one Jesse provides | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a20` |
+| `bssc-b232` Partner: Exact partner pages confirmed in the first two weeks (AGR) | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a16` |
+| `bssc-b604` Choose the publish route (recommended: through Fin's Lovable project) | Jesse Allan | Week 2 (days 8–14) | normal | `bssc-b602`, `bssc-b603` |
+| `bssc-c101` Decide existing vs new sub-account | Jesse Allan | End of week 2 (days 14–14) | normal | `bssc-a20` |
 | `bssc-c201` Pipeline: Sales: Clarity Call | Jesse Allan | Weeks 2-3 (days 8–21) | normal |  |
 | `bssc-c202` Pipeline: Not qualified (or a stage + tag in C201) | Jesse Allan | Weeks 2-3 (days 8–21) | normal |  |
 | `bssc-c203` Pipeline: Webinar (per weekly occurrence) | Jesse Allan | Weeks 2-3 (days 8–21) | normal |  |
@@ -1267,7 +1288,86 @@ Portal: work to review · note
 | `bssc-c4-engagement` Tags: engagement | Jesse Allan | Week 3 (days 15–21) | normal |  |
 | `bssc-c4-interest` Tags: interest | Jesse Allan | Week 3 (days 15–21) | normal |  |
 
-<details><summary>Guidance for the team (37 tasks)</summary>
+<details><summary>Guidance for the team (44 tasks)</summary>
+
+**`bssc-a16` Map partner, commission and payout setup today (how partners are added, tracked and paid)**
+
+From the spec: A16 (3.A Onboarding, portal, evaluation and admin).
+Who: Both
+Depends on: A13
+When: W1 to W2
+Done when: Written plan shown to Fin; flagged before work if bigger than expected
+Needs from Fin: Explanation + access
+Tools: Lovable app, Supabase, GHL
+Status on 17 Oct: BLOCKED
+
+**`bssc-a19` Research check: Calendly vs GHL native booking**
+
+From the spec: A19 (3.A Onboarding, portal, evaluation and admin).
+Task: Research check: Calendly vs GHL native booking (cost, features, red flags), as agreed on the 15 Oct call
+Who: Us
+When: W1
+Done when: A short note to Fin with a recommendation
+Tools: Calendly, GHL
+Status on 17 Oct: TODO
+
+**`bssc-a20` Written findings and recommendation: keep, migrate or replace**
+
+From the spec: A20 (3.A Onboarding, portal, evaluation and admin).
+Task: Written findings and recommendation: keep, migrate or replace; can the existing sub-account be used
+Who: Us
+Depends on: A13, A14, A15
+When: End W2
+Done when: Report in the portal, approved by Fin
+Needs from Fin: Approval
+Tools: Portal
+Status on 17 Oct: TODO
+
+**`bssc-a21` Decide the sub-account: Fin's existing, or a new one Jesse provides**
+
+From the spec: A21 (3.A Onboarding, portal, evaluation and admin).
+Task: Decide the sub-account: Fin's existing, or a new one Jesse provides (Jesse emailed "I will include a sub-account as part of this package"; the agreement says Fin owns and pays for his GHL)
+Who: Both
+Depends on: A20
+When: End W2
+Done when: Decision written down
+Needs from Fin: Decision
+Tools: GHL
+Status on 17 Oct: TODO
+
+**`bssc-b232` Partner: Exact partner pages confirmed in the first two weeks (AGR)**
+
+From the spec: B232 (3.B2 Website: page by page).
+Who: Both
+Depends on: A16
+When: End W2
+Done when: List agreed
+Needs from Fin: Decision
+Status on 17 Oct: TODO
+
+**`bssc-b604` Choose the publish route (recommended: through Fin's Lovable project)**
+
+From the spec: B604 (3.B6 Domain, DNS and hosting).
+Task: Choose the publish route. Recommended: (A) through Fin's Lovable project. Alternatives: (B) Vercel + DNS change (breaks app routes unless split); (C) Cloudflare routing by path; (D) webinar pages as GHL funnels on a `go.` subdomain
+Who: Us recommends, Fin approves
+Depends on: B602, B603
+When: W2
+Done when: Route written down
+Needs from Fin: Approval
+Status on 17 Oct: TODO
+
+**`bssc-c101` Decide existing vs new sub-account**
+
+From the spec: C101 (3.C1 Sub-account, users, settings).
+Task: Decide existing vs new sub-account (A21); contingency: if Fin's can't be used, Jesse provides a new one and migrates, same scope and price
+Who: Both
+Depends on: A20
+When: End W2
+Done when: Written
+Needs from Fin: Decision
+Tools: GHL
+Status on 17 Oct: TODO
+Everything in 3.C is (draft) design until the audit (A14) and Fin's approval of the journey (A12).
 
 **`bssc-c201` Pipeline: Sales: Clarity Call**
 

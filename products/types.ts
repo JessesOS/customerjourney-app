@@ -11,7 +11,7 @@
 // (npm run products:render). Change a product by asking Claude; the how-to is
 // docs/products/README.md.
 
-import type { AskItem, ClientChannel, IntroVideo, MilestoneTemplate, PortalLook, StringPlan } from "../lib/journeyTypes";
+import type { AskItem, ClientChannel, IntroVideo, JourneyMapContent, MilestoneTemplate, PortalLook, StringPlan } from "../lib/journeyTypes";
 
 export type { ClientChannel };
 
@@ -153,6 +153,8 @@ export type ProductPortal = {
   /** Example questions with scripted answers, per portal stage. */
   askAi?: Partial<Record<StageId, AskItem[]>>;
   features?: ProductFeatures;
+  /** A customer journey map shown on one approval step, with notes boxes (see JourneyMapContent). */
+  journeyMap?: { step: string; content: JourneyMapContent };
 };
 
 /**

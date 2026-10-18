@@ -406,6 +406,30 @@ export const bssCustomIntakeForm: PortalFormDefinition = {
   ],
 };
 
+// BSS custom: the client's notes on their customer journey map (Jesse,
+// 2026-10-18). Never shown as a stepper: the map on "Approve your customer
+// journey" saves into it as they type. One box per journey id in
+// products/bss-custom/journey-map.ts, plus "also_running" and "anything_else".
+export const bssJourneyMapNotesForm: PortalFormDefinition = {
+  id: "bss-journey-map-notes-v1",
+  title: "BSS: customer journey map notes",
+  introTitle: "Your notes on the customer journey",
+  introDescription: "Saved as you type on the customer journey map.",
+  sections: [
+    {
+      id: "notes",
+      title: "Notes",
+      fields: [
+        { id: "book_a_call", label: "Book a Clarity Call", type: "textarea" },
+        { id: "webinar", label: "Weekly webinar", type: "textarea" },
+        { id: "new_clients", label: "New client onboarding", type: "textarea" },
+        { id: "also_running", label: "Also running", type: "textarea" },
+        { id: "anything_else", label: "Anything else", type: "textarea" },
+      ],
+    },
+  ],
+};
+
 /** Honest size label for a form task, computed from the definition so it never
     drifts: "21 questions · about 15 minutes". */
 export function formSizeLabel(formId: string): string | null {
@@ -417,7 +441,7 @@ export function formSizeLabel(formId: string): string | null {
 }
 
 export function onboardingFormById(formId: string): PortalFormDefinition | undefined {
-  return [scaleOnboardingForm, respondOnboardingForm, bssCustomIntakeForm].find((form) => form.id === formId);
+  return [scaleOnboardingForm, respondOnboardingForm, bssCustomIntakeForm, bssJourneyMapNotesForm].find((form) => form.id === formId);
 }
 
 const maxLengths: Partial<Record<PortalFormFieldType, number>> = {

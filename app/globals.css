@@ -799,6 +799,125 @@
 /* A step's picture (e.g. the home-screen mockup on BSS custom). */
 .pj-step-image { display: block; width: 100%; max-width: 460px; height: auto; margin: 22px auto 0; }
 
+/* The customer journey map on an approval step (JourneyMap.tsx, BSS custom first). */
+.jm { margin-top: 24px; font-family: var(--font-body), sans-serif; color: var(--pj-ink); --jm-purple: var(--pj-act); --jm-orange: #e08a08; --jm-teal: #0f9488; }
+.jm-draft { display: inline-block; font-size: 12px; line-height: 1.45; color: var(--pj-muted); background: var(--pj-well, rgba(0,0,0,0.04)); border: 1px dashed var(--pj-line); border-radius: 10px; padding: 7px 11px; }
+.jm-title { margin: 18px 0 0; font: 800 24px/1.2 var(--font-heading), sans-serif; letter-spacing: -0.02em; }
+.jm-intro { margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: var(--pj-muted); max-width: 62ch; }
+.jm-label { display: block; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 650; color: var(--pj-faint); }
+.jm-muted { font-size: 13.5px; color: var(--pj-muted); margin: 6px 0 0; }
+
+/* Overview: leads → (webinar ↓) Clarity Call → new client */
+.jm-overview { margin-top: 22px; display: flex; align-items: center; gap: 10px; padding: 18px; border: 1px solid var(--pj-line); border-radius: var(--pj-radius-card, 20px); background: var(--pj-card); }
+.jm-ov-in { display: flex; flex-direction: column; gap: 2px; min-width: 104px; }
+.jm-ov-kicker { font-size: 13.5px; font-weight: 700; }
+.jm-ov-sub { font-size: 12px; color: var(--pj-faint); }
+.jm-ov-core { display: flex; flex-direction: column; align-items: stretch; gap: 6px; flex: 1.2; }
+.jm-ov-node { display: flex; align-items: center; gap: 9px; border: 1px solid var(--pj-line); background: var(--pj-card); color: var(--pj-ink); border-radius: 14px; padding: 10px 12px; font: 650 13.5px var(--font-body), sans-serif; text-align: left; cursor: pointer; transition: transform 200ms ease, border-color 200ms ease; flex: 1; }
+.jm-ov-node:hover, .jm-ov-node:focus-visible { transform: translateY(-1px); }
+.jm-ov-node.is-purple { border-color: var(--jm-purple); } .jm-ov-node.is-orange { border-color: var(--jm-orange); } .jm-ov-node.is-teal { border-color: var(--jm-teal); }
+.jm-ov-node.is-main { box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+.jm-ov-num { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; }
+.jm-ov-node.is-purple .jm-ov-num { background: var(--jm-purple); } .jm-ov-node.is-orange .jm-ov-num { background: var(--jm-orange); } .jm-ov-node.is-teal .jm-ov-num { background: var(--jm-teal); }
+.jm-ov-arrow { position: relative; flex: 0 0 34px; height: 2px; background: var(--pj-line); border-radius: 2px; overflow: visible; }
+.jm-ov-arrow::after { content: ""; position: absolute; right: -2px; top: -4px; border-left: 7px solid var(--pj-faint); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+.jm-ov-arrow > i { position: absolute; top: -2px; left: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--jm-purple); animation: jmRun 1.8s ease-in-out infinite; }
+.jm-ov-arrow.is-down { flex: 0 0 18px; width: 2px; height: 18px; align-self: center; }
+.jm-ov-arrow.is-down::after { right: -4px; top: auto; bottom: -3px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid var(--pj-faint); border-bottom: 0; }
+.jm-ov-arrow.is-down > i { left: -2px; top: 0; animation-name: jmDrop; }
+@keyframes jmRun { 0% { left: 0; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { left: calc(100% - 6px); opacity: 0; } }
+@keyframes jmDrop { 0% { top: 0; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { top: calc(100% - 6px); opacity: 0; } }
+
+/* A journey */
+.jm-journey { --jm-accent: var(--jm-purple); margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--pj-line); scroll-margin-top: 90px; }
+.jm-journey.is-orange { --jm-accent: var(--jm-orange); } .jm-journey.is-teal { --jm-accent: var(--jm-teal); }
+.jm-j-head { display: flex; align-items: center; gap: 14px; }
+.jm-j-num { flex-shrink: 0; width: 40px; height: 40px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font: 800 19px var(--font-heading), sans-serif; color: #fff; background: var(--jm-accent); box-shadow: 0 8px 20px -8px var(--jm-accent); }
+.jm-j-title { font: 800 20px/1.2 var(--font-heading), sans-serif; letter-spacing: -0.015em; }
+.jm-j-tag { margin-top: 3px; font-size: 13.5px; color: var(--pj-muted); }
+.jm-entries { margin-top: 16px; }
+.jm-chips { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+.jm-chip { font-size: 12.5px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--pj-line); background: var(--pj-card); }
+
+/* The flow: numbered steps on a line that flows downwards */
+.jm-flow { list-style: none; margin: 18px 0 0; padding: 0 0 0 4px; position: relative; }
+.jm-flow::before { content: ""; position: absolute; left: 17px; top: 14px; bottom: 14px; width: 2px; background-image: linear-gradient(to bottom, var(--jm-accent) 0 50%, transparent 50% 100%); background-size: 2px 14px; opacity: 0.55; animation: jmFlow 1.2s linear infinite; }
+@keyframes jmFlow { from { background-position: 0 0; } to { background-position: 0 14px; } }
+.jm-step { position: relative; display: flex; gap: 14px; padding: 0 0 18px; }
+.jm-dot { position: relative; z-index: 1; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--pj-card); border: 2px solid var(--jm-accent); color: var(--jm-accent); display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 750; }
+.jm-step-body { flex: 1; min-width: 0; border: 1px solid var(--pj-line); border-radius: 16px; background: var(--pj-card); padding: 13px 15px; }
+.jm-step-title { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; line-height: 1.35; }
+.jm-who { font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--jm-accent); border: 1px solid var(--jm-accent); border-radius: 999px; padding: 2px 8px; }
+.jm-step-detail { margin: 6px 0 0; font-size: 14px; line-height: 1.55; color: var(--pj-muted); }
+.jm-messages { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.jm-messages li { display: flex; align-items: baseline; gap: 8px; font-size: 13px; line-height: 1.45; }
+.jm-channel { flex-shrink: 0; font-size: 10px; font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 6px; background: var(--pj-well, rgba(0,0,0,0.05)); color: var(--pj-muted); }
+.jm-channel.is-email { color: var(--jm-purple); } .jm-channel.is-text { color: var(--jm-teal); } .jm-channel.is-alert { color: #c2410c; } .jm-channel.is-page { color: var(--pj-ink); }
+.jm-branches { margin-top: 10px; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
+.jm-branch { display: flex; flex-direction: column; gap: 3px; padding: 9px 11px; border-radius: 12px; background: var(--pj-well, rgba(0,0,0,0.035)); border-left: 3px solid var(--pj-faint); font-size: 13px; line-height: 1.45; }
+.jm-branch strong { font-size: 13px; }
+.jm-branch span { color: var(--pj-muted); }
+.jm-branch.is-good { border-left-color: #16a34a; } .jm-branch.is-neutral { border-left-color: var(--jm-orange); }
+.jm-pending { margin-top: 10px; display: flex; flex-direction: column; gap: 3px; padding: 9px 11px; border-radius: 12px; background: rgba(248, 158, 22, 0.1); border: 1px solid rgba(224, 138, 8, 0.35); font-size: 13px; line-height: 1.45; }
+.jm-pending-tag { font-size: 10px; font-weight: 750; letter-spacing: 0.1em; text-transform: uppercase; color: #b45309; }
+.jm-pending em { font-style: normal; color: var(--pj-muted); font-size: 12.5px; }
+.jm-outcome { margin: 2px 0 0 46px; display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border-radius: 999px; background: var(--jm-accent); color: #fff; font-size: 13.5px; font-weight: 650; }
+
+/* A small timeline: dots along a line, a runner travelling across */
+.jm-timeline { margin-top: 12px; padding: 12px 12px 4px; border-radius: 12px; background: var(--pj-well, rgba(0,0,0,0.035)); }
+.jm-tl-label { font-size: 11px; font-weight: 650; letter-spacing: 0.06em; text-transform: uppercase; color: var(--pj-faint); }
+.jm-tl { list-style: none; margin: 12px 0 0; padding: 0; position: relative; display: grid; grid-template-columns: repeat(var(--jm-n), minmax(0, 1fr)); }
+.jm-tl::before { content: ""; position: absolute; left: 6px; right: 6px; top: 6px; height: 2px; background: var(--pj-line); }
+.jm-tl-runner { position: absolute; top: 3px; left: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--jm-accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--jm-accent) 22%, transparent); animation: jmRun 4.5s ease-in-out infinite; z-index: 1; }
+.jm-tl-point { position: relative; display: flex; flex-direction: column; gap: 3px; padding: 0 4px 10px 0; animation: jmPop 500ms ease both; animation-delay: calc(var(--jm-i) * 90ms); }
+.jm-tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--pj-card); border: 2px solid var(--jm-accent); }
+.jm-tl-at { font-size: 11px; font-weight: 700; color: var(--jm-accent); margin-top: 4px; }
+.jm-tl-what { font-size: 12px; line-height: 1.35; color: var(--pj-muted); }
+@keyframes jmPop { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* Blocks under the journeys */
+.jm-block { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--pj-line); }
+.jm-block-title { font: 750 17px var(--font-heading), sans-serif; letter-spacing: -0.01em; }
+.jm-grid { margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.jm-mini { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border: 1px solid var(--pj-line); border-radius: 14px; background: var(--pj-card); font-size: 13px; line-height: 1.45; }
+.jm-mini span { color: var(--pj-muted); }
+.jm-rules { margin: 10px 0 0; padding-left: 20px; list-style: disc outside; font-size: 14px; line-height: 1.6; color: var(--pj-muted); }
+.jm-rules li { display: list-item; }
+.jm-confirm-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.jm-confirm-list li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 9px 12px; border-radius: 10px; background: rgba(248, 158, 22, 0.08); font-size: 13.5px; }
+.jm-confirm-list em { font-style: normal; font-size: 12.5px; color: var(--pj-muted); }
+
+/* Notes */
+.jm-notes { margin-top: 16px; }
+.jm-textarea { width: 100%; margin-top: 8px; padding: 11px 13px; border-radius: var(--pj-radius-sm, 12px); border: 1px solid var(--pj-line); background: var(--pj-card); color: var(--pj-ink); font: 14px var(--font-body), system-ui, sans-serif; resize: vertical; outline: none; }
+.jm-textarea:focus { border-color: var(--jm-accent, var(--pj-act)); }
+.jm-notes-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.jm-saved { font-size: 12px; color: var(--pj-faint); }
+.jm-notes.is-read p { margin: 6px 0 0; font-size: 14px; color: var(--pj-muted); white-space: pre-wrap; }
+
+/* Glide in as they scroll into view (only once the script runs; never with reduced motion) */
+.jm.is-animated .jm-reveal { transition: opacity 500ms ease, transform 500ms ease; }
+.jm.is-animated .jm-reveal:not(.is-in) { opacity: 0; transform: translateY(14px); }
+
+@media (max-width: 640px) {
+  .jm-overview { flex-direction: column; align-items: stretch; }
+  .jm-ov-arrow { flex: 0 0 18px; width: 2px; height: 18px; align-self: center; }
+  .jm-ov-arrow::after { right: -4px; top: auto; bottom: -3px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid var(--pj-faint); border-bottom: 0; }
+  .jm-ov-arrow > i { left: -2px; top: 0; animation-name: jmDrop; }
+  .jm-tl { grid-template-columns: 1fr; gap: 2px; }
+  .jm-tl::before { left: 6px; right: auto; top: 6px; bottom: 16px; width: 2px; height: auto; }
+  .jm-tl-runner { animation-name: jmDrop; left: 3px; }
+  .jm-tl-point { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; padding: 0 0 8px; }
+  .jm-tl-dot { flex-shrink: 0; align-self: flex-start; }
+  .jm-tl-at { margin-top: 0; }
+  .jm-tl-what { flex-basis: 100%; padding-left: 22px; }
+  .jm-outcome { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jm-ov-arrow > i, .jm-tl-runner { display: none; }
+  .jm-flow::before, .jm-tl-point { animation: none; }
+}
+
 /* "Ask Jesse": the help button and side panel (PortalAssistant.tsx, BSS custom first). */
 .pja-button { position: fixed; right: 22px; bottom: 22px; z-index: 65; display: inline-flex; align-items: center; gap: 10px; padding: 11px 18px 11px 14px; border: none; border-radius: 999px; background: var(--pj-ink); color: var(--pj-card); font: 650 14px var(--font-body), sans-serif; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.22); transition: transform 200ms ease; }
 .pja-button:hover, .pja-button:focus-visible { transform: translateY(-2px); }

@@ -220,6 +220,24 @@ Saved to an iPhone's home screen (Safari: Share, Add to Home Screen), Fin's port
 - **The page head** gets the icons, the Apple full-screen tags and a per-client manifest (`/api/portal/<token>/manifest`, which opens that client's own link).
 - **Scope:** only `bss-custom` (version `2026-10-18.5`). Other products' pages are unchanged; `check:journeys` and a curl of the Scale demo confirm it.
 
+### Customer journey map on "Approve your customer journey" (2026-10-18)
+
+Jesse asked for the three journeys, laid out visually, on Fin's journey approval step, with notes. Built from Fin's brief v6 (sections 7 to 11), his Loom, his email list of 14 Oct, and the spec's workflows and messages.
+
+- **Content** (`products/bss-custom/journey-map.ts`, draft for Jesse):
+  - three journeys:
+    1. Book a Clarity Call, the main one, covering organic and referral leads;
+    2. the weekly webinar;
+    3. new client onboarding;
+  - "also running" flows and the rules every message follows;
+  - 12 items marked "To confirm", each saying where Fin answers it.
+- **Display** (`JourneyMap.tsx`): an overview diagram, a flowing line per journey, timelines with a moving marker, branches and "To confirm" boxes. It works on phone and desktop, with reduced motion respected.
+- **Notes:** a box per journey, plus "Also running" and "Anything else". They save as he types (hidden form `bss-journey-map-notes-v1`) and travel with his approval to the board.
+- **Step changes:**
+  - "Approve your customer journey" is now just the map.
+  - Findings and the partner plan moved to "Approve your CRM plan and our findings" (they need his systems first), along with their 7 team tasks (A16, A19, A20, A21, B232, B604, C101).
+- **Product setting:** `portal.journeyMap`, checked by `products:check`. Version `2026-10-18.12`. Frozen journeys are unchanged; `_global` lost one review card (the journey step).
+
 ## Hand-off notes from the CSM session (2026-10-16)
 
 Apply these during the conversion:

@@ -14,12 +14,13 @@
 
 import { defineCustomProduct } from "../custom";
 import { bssCustomStages, bssCustomSteps } from "./client-steps";
+import { bssJourneyMap } from "./journey-map";
 import { bssCustomTeamTasks } from "./team-tasks";
 
 export const bssCustom = defineCustomProduct({
   id: "bss-custom",
   name: "BSS custom (Fin Creighton)",
-  version: "2026-10-18.10",
+  version: "2026-10-18.12",
   status: "draft",
   clientType: "bss-custom",
   label: "BSS custom",
@@ -41,6 +42,8 @@ export const bssCustom = defineCustomProduct({
     // pack (scripts/assistant-pack.mjs) and takes support requests for the board.
     // Saved to a phone's home screen, the portal opens full screen with this icon (draft, Jesse 2026-10-18).
     features: { assistant: true, appIcon: "bss-launchpad" },
+    // The customer journey map on "Approve your customer journey" (draft, Jesse 2026-10-18).
+    journeyMap: { step: "bssc-journey-map", content: bssJourneyMap },
     stringPlan: {
       weeks: 10,
       goLiveDay: 42,
