@@ -1,16 +1,19 @@
-// BSS custom: Fin Creighton's own product (Bitcoin Success School). DRAFT.
+// BSS custom: Fin Creighton's own product (Bitcoin Success School). LIVE:
+// Fin has been on it since 2026-10-18 (start date 2026-10-19).
 //
 // Written from scratch (blank base) from Jesse's spec, products/bss-custom/spec.md
 // (the BSS handover of 17 Oct 2026). Two sides, defined once:
-//   - Fin's side is short: 21 client steps (./client-steps.ts) for access,
-//     questions, content, approvals, calls and tests. All drafted by Claude.
+//   - Fin's side is short: 23 client steps over 30 days (./client-steps.ts) for
+//     access, questions, content, approvals, calls and tests. Drafted by Claude,
+//     then edited and approved by Jesse.
 //   - The team side is every granular task in the spec: 337 tasks
 //     (./team-tasks.ts), each behind the client step it supports, or team-only.
 //     Automations and messages are in, marked DEFERRED in their notes (Fin:
 //     website and core GHL first).
 //
-// Fin stays on "bss-meta" until Jesse moves him (a separate prod change, with
-// npm run products:check -- --compare bss-meta bss-custom).
+// Frozen by npm run check:journeys (scripts/fixtures/journeys/bss-custom.json).
+// Any change here is a change to Fin's live portal: Jesse's OK, a version bump,
+// then a deploy package.
 
 import { defineCustomProduct } from "../custom";
 import { bssCustomStages, bssCustomSteps } from "./client-steps";

@@ -315,4 +315,38 @@ Jesse asked for Fin's old link to say a new version is coming, while his custom 
 - Deployed with Jesse's OK: version `669af5da` (was `b9498d0f`). tsc and check:fin passed; the demo portal and Fin's normal portal returned 200 by curl before the data change.
 - Data change: Fin's record set to `paused` (1 row). D1 bookmark before it: `00000172-00000000-00005107-c818293b1d9e95aca8dd009cf5d53eed`. By curl, his link now returns the notice. He had opened his link once (17 Oct) and done nothing in it.
 - Undo: set his `journey_state` back to `active` (no deploy). Code rollback: `npx wrangler rollback b9498d0f-2f28-4749-a4f0-5daeecf9d251 --name scale-onboarding-portal`.
-- **Next:** merge `main` into `team-board` before that branch goes live, so it keeps this page.
+- ~~**Next:** merge `main` into `team-board` before that branch goes live, so it keeps this page.~~ Done (4180cf6). The page stays in the code for any paused client.
+
+## Fin goes live on BSS custom (2026-10-18, live)
+
+Jesse approved the go-live package ("I'm ready for you to deploy"), plus switching the test client "testfin" too.
+
+**What changed on prod, in order:**
+1. D1 bookmark before any change (04:25Z): `00000177-00000000-00005108-fd337082ad04694c228f9fec0c0b52a8`.
+2. Migrations 0015 (team board) and 0016 (Ask Jesse), CREATE only: 6 new tables, all empty. No `portal_*` table touched; still 3 clients.
+3. Code: `main` fast-forwarded to `team-board` (f4ce0df, 43 commits), deployed as version `384aadb0-e29d-41ed-b9dd-6ec51442367c` (was `669af5da`). `motion-redesign` fast-forwarded too. All three branches are at f4ce0df.
+4. Fin's record (04:27:24Z): `bss-meta`, `paused` became `bss-custom`, `active` (1 row). Same link, start date unchanged (19 Oct).
+5. "testfin" (04:28:04Z): renamed "Jesse test fin", switched to `bss-custom`, start date set to 19 Oct to match Fin's (1 row).
+
+**Checks before deploying:** tsc, check:fin, check:journeys (8 client types, 699 renders, 472 markup renders), products:check 6/6, check:team-auth. All passed twice: on team-board in the worktree, then on `main` in the main checkout. The three bss-custom portals on staging returned 200. The prod config had no vars (so `TEAM_BOARD`, `TEAM_BOARD_AUTOSEED` and `PRODUCT_DRAFTS` are off), the prod D1, and the prod R2 bucket.
+
+**Verified by curl** (no browser, so no visits recorded for Fin):
+- Before the data change: Fin's link still showed the holding page. testfin, JAT, `/portal/demo` and the new icon and phone image returned 200. Admin APIs returned 403 without the code; team APIs returned 404 (flag off).
+- After: Fin's link shows the BSS Launchpad portal, with "Bookmark your portal" first and "Day 1 / 30 · on track" (start date tomorrow, no negative days). It has the app icon tags and his own manifest. There's no holding page, no Ask Jesse, no $200 popup and no RT Digital. "Jesse test fin" shows the same. JAT (bss-meta) is unchanged.
+
+**Facts for later:**
+- Fin's old bss-meta ticks don't carry over, because the step ids differ. He had done nothing in it.
+- His last recorded open is 2026-10-17 23:26Z, two minutes after the holding page went live. It was a real browser, probably Jesse's check, since visits are recorded by the page's script and curl doesn't run it.
+- Dates: day 1 is 19 Oct, launch (day 23) is 10 Nov, day 30 is 17 Nov. The signed agreement still says about 6 weeks to launch and about 10 for partners.
+
+**Undo, in this order** (the old code doesn't know bss-custom, so the data goes back first):
+1. Put Fin back: `UPDATE portal_clients SET client_type = 'bss-meta', journey_state = 'paused', updated_at = CURRENT_TIMESTAMP WHERE portal_token = '<Fin's token>' AND client_type = 'bss-custom'`. Do the same for "Jesse test fin" (`bss-meta`, `active`).
+2. Roll back the code: `npx wrangler rollback 669af5da-d012-491a-ab0f-1106d3e08bd3 --name scale-onboarding-portal`.
+3. Only if the database itself is wrong: `npx wrangler d1 time-travel restore scale-onboarding-portal-prod --bookmark=00000177-00000000-00005108-fd337082ad04694c228f9fec0c0b52a8`. This also removes the 6 empty tables and loses anything Fin did since.
+
+**Next:**
+- Jesse sends Fin his link with `?welcome=1` on the end (his browser already saw the old welcome).
+- Extend the `--yes-fin` guard (`scripts/check-journeys.ts`, `scripts/journeys/run.ts`) to cover `bss-custom` and its forms in `_global`. Until then CLAUDE.md asks for Jesse's OK.
+- Team board on prod: Access on a team hostname, the allconvos.ai DNS move, then `TEAM_BOARD`.
+- Ask Jesse: update Fin's pack to the 30-day timeline before switching the panel back on. Alerts by email or WhatsApp, not Slack.
+- Retire `bss-meta` (JAT is the last client on it). Tidy the staging demos ("Demo — BSS custom", "Fin Rehearsal").

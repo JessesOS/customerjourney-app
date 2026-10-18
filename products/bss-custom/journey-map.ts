@@ -1,6 +1,6 @@
 // BSS custom: Fin's customer journey map, shown on "Approve your customer
-// journey" (bssc-journey-map). DRAFT (Claude, 2026-10-18), for Jesse to check
-// before Fin sees it.
+// journey" (bssc-journey-map). Drafted by Claude on 2026-10-18 and edited from
+// Jesse's read-through. Live: Fin reviews it, adds notes and approves it in his portal.
 //
 // Built from Fin's brief v6 (sections 7 to 11: call-booked page, webinar,
 // partner pages, qualification and booking), his Loom of 15 Oct, his email list
