@@ -51,6 +51,20 @@ Source: `products/at-network/spec.md` ("Communication rule"). Nothing here is bu
 2. **Phase 2 (tomorrow): records.** Approval and Change request kinds, status flow, auto-approval records from steps 1, 10, 12 and 13, CSV and HTML export, and the overdue flag.
 3. **Later:** email alerts, a Communications tab in each hub, file attachments in threads, per-person logins, PDF export.
 
+## Phase 3 idea: a customer-success phone and text agent (Jesse, 2026-10-21)
+
+Not built. Jesse wants a personal customer-service agent: the client calls or texts a GoHighLevel number, a voice agent answers, knows which client they are, and takes support requests. Built in this app (the customer journey session), not the brain session.
+
+**Design (from my notes; GHL specifics are unverified, so check GHL's current voice-agent and webhook docs before building):**
+- **Live lookup, not a static knowledge base.** A GHL voice agent calls a webhook or custom action mid-call, sending the caller's phone number. A new endpoint in this app finds the client and returns their current status: their step, what's due, open messages. Answers are always current.
+- **Same facts as Ask Jesse.** The per-client reviewed pack (`portal_assistant_packs`, `scripts/assistant-pack.mjs`) could feed both the text assistant and the voice agent.
+- **Requests come back.** When a call ends (or a text arrives), a GHL workflow posts to a new inbound endpoint here. It becomes a message on the client's thread or a task on their board. It reuses the Messages tables and the existing support-request task.
+- **Phone-number matching.** Needs a mobile number on each client record (a small additive change).
+
+**Cautions:** caller ID is not proof of identity, so the agent shares status only and never approves or signs anything (those stay in the portal); scope changes still have to be written in the portal; check call-recording and consent rules; and GHL automation normally belongs to the brain session, but Jesse chose to keep this in this project.
+
+**Size:** about two endpoints (lookup and inbound), a phone field, shared-secret auth, and the GHL-side agent set-up.
+
 ## Checks and safety
 
 - Prod gets migration 0017 before any code that needs it, with Jesse's OK and the time-travel bookmark. Not before go-live.
