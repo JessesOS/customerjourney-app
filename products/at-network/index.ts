@@ -15,7 +15,7 @@ import { atNetworkTeamTasks } from "./team-tasks";
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-21.1",
+  version: "2026-10-21.2",
   status: "draft",
   clientType: "at-network",
   label: "AT Network",
@@ -32,7 +32,8 @@ export const atNetwork = defineCustomProduct({
     lockedLook: "groveaurora", // an existing look; a look of its own would need code
     // "Ask Jesse" help panel: with no reviewed pack it only takes requests, which
     // become tasks on the board (Jesse, 2026-10-21).
-    features: { assistant: true },
+    // Messages: step threads with the team (phase 1 of docs/at-network-communications-plan.md).
+    features: { assistant: true, comms: true },
   },
   draftCopy: atNetworkSteps.map((s) => s.step.id),
 });

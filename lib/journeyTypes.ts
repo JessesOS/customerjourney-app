@@ -245,6 +245,8 @@ export type PortalJourney = {
   stringPlan: StringPlan | null;
   /** The "Ask Jesse" help panel is on. Absent (not false) when off, so other products' journeys are unchanged. */
   assistant?: true;
+  /** Communications (step threads and the Messages panel) are on. Absent when off, so other products' journeys are unchanged. */
+  comms?: true;
   /** Home-screen app icon name (public/portal/icons/<name>-<size>.png). Absent when the product has none. */
   appIcon?: string;
   /** The customer journey map and the step it shows on. Absent when the product has none. */

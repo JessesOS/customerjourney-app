@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { PRIORITY_CHIP, STATUS_LABEL, teamFetch, timeAgo, useMe } from "@/app/components/admin/teamClient";
 import { TeamTaskDrawer, type BoardTask, type Member } from "@/app/components/admin/TeamTaskDrawer";
+import { AdminComms } from "@/app/components/admin/AdminComms";
 
 type Step = { id: string; title: string; done: boolean; clientOnly: boolean; note: string | null; uploads: number };
 type Stage = { id: string; name: string; dayStart: number; dayEnd: number; ongoing: boolean; teamOnly: boolean; steps: Step[] };
@@ -311,6 +312,7 @@ export function TeamBoard({ clientId }: { clientId: string }) {
                 <div className="tb-faint" style={{ fontSize: 11.5 }}>{timeAgo(e.createdAt)}</div>
               </div>
             ))}
+            <AdminComms clientId={clientId} />
             {chat.length ? (
               <>
                 <div className="tb-label" style={{ marginTop: 18 }}>Ask Jesse chat</div>

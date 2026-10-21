@@ -497,6 +497,7 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
       if (f.landingPreviewSteps) features.landingPreviewSteps = f.landingPreviewSteps.filter((id) => stepIds.has(id));
       if (f.nonBlockingSteps) features.nonBlockingSteps = f.nonBlockingSteps.filter((id) => stepIds.has(id));
       if (f.assistant) features.assistant = true;
+      if (f.comms) features.comms = true;
       if (f.appIcon) features.appIcon = f.appIcon;
     }
   } else {

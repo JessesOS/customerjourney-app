@@ -266,6 +266,44 @@ export const portalAssistantPacks = sqliteTable("portal_assistant_packs", {
   updatedBy: text("updated_by").notNull().default(""),
 });
 
+/**
+ * Communications (AT Network first, 2026-10-21): threads on each step between
+ * the client and the team. Append-only: rows are never edited or deleted, so
+ * they stand as a dated record. Phase 1 writes kind "message" only; Approval
+ * and Change request records (and their status rows) come in phase 2.
+ */
+export const portalComms = sqliteTable(
+  "portal_comms",
+  {
+    id: integer("id").primaryKey(),
+    clientId: text("client_id").notNull(),
+    /** The step the thread sits on. Empty = a general message. */
+    stepId: text("step_id").notNull().default(""),
+    kind: text("kind").notNull().default("message"), // message | approval | change_request | status
+    authorSide: text("author_side").notNull(), // client | team
+    /** Typed by the client (several people share one link), or the team member's name. */
+    authorName: text("author_name").notNull().default(""),
+    body: text("body").notNull(),
+    parentId: integer("parent_id"),
+    status: text("status"),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [index("portal_comms_client_idx").on(table.clientId, table.createdAt), index("portal_comms_step_idx").on(table.clientId, table.stepId)],
+);
+
+/** The last comms row each side has seen, per client: drives the unread dots. */
+export const portalCommsSeen = sqliteTable(
+  "portal_comms_seen",
+  {
+    id: integer("id").primaryKey(),
+    clientId: text("client_id").notNull(),
+    side: text("side").notNull(), // client | team
+    lastSeenId: integer("last_seen_id").notNull().default(0),
+    updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [uniqueIndex("portal_comms_seen_client_side").on(table.clientId, table.side)],
+);
+
 /** The client's side panel: their questions, the assistant's answers, and the team's replies to their requests. */
 export const portalMessages = sqliteTable(
   "portal_messages",

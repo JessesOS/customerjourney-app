@@ -23,6 +23,7 @@ import { MicButton } from "@/app/components/portal/MicButton";
 import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/IntroVideo";
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { PortalAssistant } from "@/app/components/portal/PortalAssistant";
+import { PortalComms } from "@/app/components/portal/PortalComms";
 import { JourneyMap } from "@/app/components/portal/JourneyMap";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
@@ -653,6 +654,10 @@ export function ClientPortalExperience({
       {/* "Ask Jesse": only for products that switch it on (BSS custom first). */}
       {journey.assistant && portalToken && !showWelcome && !introPlaying && (
         <PortalAssistant portalToken={portalToken} firstName={name.trim().split(/\s+/)[0] ?? ""} />
+      )}
+      {/* Messages: step threads with the team, only for products that switch it on (AT Network first). */}
+      {journey.comms && portalToken && !showWelcome && !introPlaying && (
+        <PortalComms portalToken={portalToken} steps={journey.stages.flatMap((s) => s.milestones.map((m) => ({ id: m.id, title: m.title })))} />
       )}
       {/* Presentation switch: one small dot, bottom right, demo route only. */}
       {isDemo && (

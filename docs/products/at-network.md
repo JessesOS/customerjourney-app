@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-21.1` |
+| Version | `2026-10-21.2` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 15 (0 client only, 0 hidden in the portal) |
