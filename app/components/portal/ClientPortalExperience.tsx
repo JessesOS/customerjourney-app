@@ -1374,6 +1374,19 @@ export function ClientPortalExperience({
                 </div>
                 <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 10px" }}>{m.title}</h3>
                 <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: 0, maxWidth: "54ch", lineHeight: 1.55 }}>{m.detail}</p>
+                {/* Messages on this step (products with comms only): opens the panel on this step's thread. */}
+                {journey.comms && (
+                  <button
+                    type="button"
+                    onClick={() => window.dispatchEvent(new CustomEvent("pjc:open", { detail: m.id }))}
+                    style={{ marginTop: 12, display: "inline-flex", alignItems: "center", gap: 7, padding: "7px 14px", borderRadius: 999, border: "1px solid var(--pj-line)", background: "var(--pj-card)", color: "var(--pj-ink)", font: "600 13px var(--font-body), sans-serif", cursor: "pointer" }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    Messages on this step
+                  </button>
+                )}
                 {taskNote(journey, m.id) ? (
                   <div className="pj-task-note">
                     <span className="pj-task-note-dot" aria-hidden />
