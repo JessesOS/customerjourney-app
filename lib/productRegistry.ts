@@ -165,6 +165,7 @@ export function createRegistry(products: readonly Product[]) {
     if (features.comms) journey.comms = true;
     if (features.appIcon) journey.appIcon = features.appIcon;
     if (portal.journeyMap && visible.has(portal.journeyMap.step)) journey.journeyMap = portal.journeyMap;
+    if (portal.agreement && visible.has(portal.agreement.step)) journey.agreement = portal.agreement;
     if (byType.has(clientType)) journeys.set(clientType, journey);
     return journey;
   }

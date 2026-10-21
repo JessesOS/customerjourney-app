@@ -24,6 +24,7 @@ import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/Intro
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { PortalAssistant } from "@/app/components/portal/PortalAssistant";
 import { PortalComms } from "@/app/components/portal/PortalComms";
+import { AgreementAccept } from "@/app/components/portal/AgreementAccept";
 import { JourneyMap } from "@/app/components/portal/JourneyMap";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
 import { RailVariant, StageRail } from "@/app/components/portal/StageRail";
@@ -1275,7 +1276,9 @@ export function ClientPortalExperience({
             const noteValue = noteDrafts[m.id] ?? notes[m.id] ?? "";
             const uploadedFiles = uploads[m.id] ?? [];
             const showUploadWidget = m.status !== "done" && m.hasUpload;
-            const hasCustomFlow = Boolean(inlineForm) || showUploadWidget || choosingMode;
+            // The agreement (AT Network first): its own accept-and-sign form replaces the step's buttons.
+            const agreementHere = journey.agreement && journey.agreement.step === m.id ? journey.agreement : null;
+            const hasCustomFlow = Boolean(inlineForm) || showUploadWidget || choosingMode || Boolean(agreementHere);
             const uploadOpts = m.uploadOptions;
             // The upload box: Scale's CSV lead list, or (with uploadOptions) any files, an optional text box and an
             // always-available Next. With stayOpen it also shows after the step is ticked, without the Next button.
@@ -1484,6 +1487,7 @@ export function ClientPortalExperience({
                       <div style={{ flex: 1, fontSize: 14, color: "var(--pj-ink)" }}>You&apos;ve completed this task.</div>
                     </div>
                     {mapHere && <JourneyMap content={mapHere} portalToken={portalToken} readOnly />}
+                    {agreementHere && portalToken && <AgreementAccept portalToken={portalToken} agreement={agreementHere} />}
                     {m.hasUpload && uploadOpts?.stayOpen && uploadBox(false)}
                     {savedContent && (
                       <div style={{ marginTop: 14, borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: "16px 18px" }}>
@@ -1576,6 +1580,26 @@ export function ClientPortalExperience({
                     {/* Only show a content card when it adds something beyond the
                         description above — i.e. team-pasted review content. For a
                         plain task the detail at the top already says it all. */}
+                    {agreementHere && portalToken && (
+                      <AgreementAccept
+                        portalToken={portalToken}
+                        agreement={agreementHere}
+                        onAccepted={(note) => {
+                          // The server has recorded it and ticked the step; mirror that here and move on.
+                          const completedStageId = stageCompletedBy(m.id);
+                          approveMilestone(m.id, note);
+                          if (completedStageId) {
+                            setJustCompletedStageId(completedStageId);
+                            setView("complete");
+                            window.scrollTo(0, 0);
+                          } else if (nextN) {
+                            setMilestone(nextN);
+                          } else {
+                            backToJourney();
+                          }
+                        }}
+                      />
+                    )}
                     {mapHere && (
                       <JourneyMap
                         content={mapHere}

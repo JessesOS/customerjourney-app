@@ -6,13 +6,13 @@
 // OPEN in the spec, so PLACEHOLDERS here: total days, each stage's day window,
 // every due date, the brand tagline. No prices anywhere (they live in the contract).
 // Steps open one at a time, in order. Payments are ticked by Jesse in admin.
-// Typed-name acceptance (Jesse, 2026-10-21): a required box, "type your full
-// name"; the answer is stored with the time. A purpose-built step can come later.
+// Step 1 is the signed acceptance of the agreement (./agreement.ts). Payments
+// are Stripe invoices; the portal shows the step and Jesse marks it paid.
 
 import type { StagePatch } from "../custom";
 import type { ClientStep, StageId } from "../types";
 
-const PAY_NOTE = "Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.";
+const PAY_NOTE = "Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.";
 const ONE_LIST = "Send one list with everything you'd change, from both of you. That counts as one round.";
 
 export const atNetworkStages: Partial<Record<StageId, StagePatch>> = {
@@ -57,21 +57,13 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
-      id: "atn-how-we-work",
-      title: "Read how we work together, and accept",
-      detail: "Short and plain. Read it, then type your full name to accept.",
-      steps: [
-        "One round is one consolidated feedback list, sent here. You get two rounds on the concept or script, and two on the edit or build. A new concept after approval, or extra rounds, is a change request.",
-        "You see everything on a review link as it is built. Handover (go-live, files, access) happens when the final instalment is paid.",
-        "Your work is deemed accepted 5 business days after the final review link, unless you send a written change list here.",
-        "Anything outside the Statement of Work is a change request: written here, quoted, and approved before work starts.",
-        "Scope, feedback, files and approvals go through this portal only. WhatsApp is for logistics. We reply within one business day.",
-        "If an item from you is late, the timeline pauses until it arrives.",
-      ],
-      notePrompt: "Type your full name to accept",
-      notePlaceholder: "Your full name",
-      noteRequired: true,
-      doneLabel: "I accept",
+      // The legal acceptance (Jesse, 2026-10-21: the portal is the signature).
+      // The agreement and its form come from portal.agreement (./agreement.ts):
+      // tick, entity, full name, email; stored with the time, version, exact
+      // text and IP address, with a printable copy. Replaces atn-how-we-work.
+      id: "atn-agreement",
+      title: "Read the agreement and accept it",
+      detail: "This is our agreement with you. Read all of it, then accept it below. Your acceptance is your signature.",
     },
   },
   {

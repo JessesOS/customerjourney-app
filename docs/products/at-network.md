@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-21.2` |
+| Version | `2026-10-21.3` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 15 (0 client only, 0 hidden in the portal) |
 | Team tasks | 29 (27 behind a client step, 2 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
-| Draft wording | `atn-how-we-work`, `atn-pay-1`, `atn-starmap`, `atn-package-breakdown`, `atn-photos-rich`, `atn-academy`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-ads`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `atn-agreement`, `atn-pay-1`, `atn-starmap`, `atn-package-breakdown`, `atn-photos-rich`, `atn-academy`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-ads`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -56,27 +56,25 @@ Each stage lists the client's steps in portal order, with the team tasks behind 
 
 _Agree how we work together, pay the first instalment and send us what we need to begin._
 
-### `atn-how-we-work` Read how we work together, and accept
+### `atn-agreement` Read the agreement and accept it
 
-> Short and plain. Read it, then type your full name to accept.
-
-Portal: note (required) · 6 numbered steps
+> This is our agreement with you. Read all of it, then accept it below. Your acceptance is your signature.
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t05` Check the typed-name acceptance and file the dated record | Jesse Allan | Days 1-2 | normal | `atn-t01` |
+| `atn-t05` Check the signed acceptance and save its printable copy | Jesse Allan | Days 1-2 | normal | `atn-t01` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t05` Check the typed-name acceptance and file the dated record**
+**`atn-t05` Check the signed acceptance and save its printable copy**
 
-The typed name is stored with the time.
+The board's Agreement section lists each acceptance with its record link. Email and PDF copies come later.
 
 </details>
 
 ### `atn-pay-1` Pay the first instalment
 
-> Your invoice is in your email. Work starts once it is paid. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.
+> Your invoice is in your email. Work starts once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -221,7 +219,7 @@ _Your video ads, statics and LinkedIn banner are ready for your review._
 
 ### `atn-pay-2` Pay the second instalment
 
-> Due when the site review link opens. Your invoice is in your email. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.
+> Due when the site review link opens. Your invoice is in your email. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -275,7 +273,7 @@ Opening the link makes payment 3 due.
 
 ### `atn-pay-final` Pay the final instalment
 
-> Due when the final review link opens. Handover follows once it is paid. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.
+> Due when the final review link opens. Handover follows once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|

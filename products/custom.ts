@@ -108,6 +108,8 @@ export type CustomProductSpec<C extends string> = {
     features?: "inherit" | ProductFeatures;
     /** A customer journey map on one of this product's steps. */
     journeyMap?: ProductPortal["journeyMap"];
+    /** A versioned agreement accepted on one of this product's steps. */
+    agreement?: ProductPortal["agreement"];
   };
   /** Step ids whose client wording Claude drafted; must be empty when live. */
   draftCopy?: string[];
@@ -508,6 +510,7 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
   if (askAi) portal.askAi = askAi;
   if (features) portal.features = features;
   if (p.journeyMap) portal.journeyMap = structuredClone(p.journeyMap);
+  if (p.agreement) portal.agreement = structuredClone(p.agreement);
 
   // 14. The variant: one client type; the base variant's tweaks when the spec
   // says "inherit" (cut to the steps and stages kept), under this product's own
@@ -588,6 +591,7 @@ export function defineCustomProduct<const C extends string>(spec: CustomProductS
   }
   for (const stage of overrides.hiddenGuideStages ?? []) if (!portalStages.has(stage)) fail(`portal.hiddenGuideStages names ${stage}, which is not a portal stage`);
   if (p.journeyMap) mustBeVisible("portal.journeyMap", [p.journeyMap.step]);
+  if (p.agreement) mustBeVisible("portal.agreement", [p.agreement.step]);
   const draftCopy = [...(spec.draftCopy ?? [])];
   for (const id of draftCopy) if (!seenSteps.has(id)) fail(`draftCopy names unknown step ${id}`);
   if (spec.status === "live" && draftCopy.length) fail(`a live product can't have drafted wording: Jesse approves ${draftCopy.join(", ")} first, then empty draftCopy`);

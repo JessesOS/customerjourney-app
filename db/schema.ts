@@ -291,6 +291,30 @@ export const portalComms = sqliteTable(
   (table) => [index("portal_comms_client_idx").on(table.clientId, table.createdAt), index("portal_comms_step_idx").on(table.clientId, table.stepId)],
 );
 
+/**
+ * Agreement acceptances (AT Network first, 2026-10-21): the portal is the
+ * signature. Append-only. Each row keeps the exact text accepted (and its
+ * SHA-256), so a later version never changes what was signed.
+ */
+export const portalAcceptances = sqliteTable(
+  "portal_acceptances",
+  {
+    id: integer("id").primaryKey(),
+    clientId: text("client_id").notNull(),
+    stepId: text("step_id").notNull(),
+    agreementVersion: text("agreement_version").notNull(),
+    agreementHash: text("agreement_hash").notNull(),
+    agreementText: text("agreement_text").notNull(),
+    entity: text("entity").notNull(),
+    signerName: text("signer_name").notNull(),
+    signerEmail: text("signer_email").notNull(),
+    ip: text("ip").notNull().default(""),
+    userAgent: text("user_agent").notNull().default(""),
+    acceptedAt: text("accepted_at").notNull(),
+  },
+  (table) => [index("portal_acceptances_client_idx").on(table.clientId, table.acceptedAt)],
+);
+
 /** The last comms row each side has seen, per client: drives the unread dots. */
 export const portalCommsSeen = sqliteTable(
   "portal_comms_seen",

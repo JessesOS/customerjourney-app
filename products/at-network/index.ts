@@ -9,13 +9,14 @@
 // due date, the portal tagline, the welcome video (Jesse will send the mp4).
 
 import { defineCustomProduct } from "../custom";
+import { atNetworkAgreement } from "./agreement";
 import { atNetworkStages, atNetworkSteps } from "./client-steps";
 import { atNetworkTeamTasks } from "./team-tasks";
 
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-21.2",
+  version: "2026-10-21.3",
   status: "draft",
   clientType: "at-network",
   label: "AT Network",
@@ -34,6 +35,8 @@ export const atNetwork = defineCustomProduct({
     // become tasks on the board (Jesse, 2026-10-21).
     // Messages: step threads with the team (phase 1 of docs/at-network-communications-plan.md).
     features: { assistant: true, comms: true },
+    // Step 1: the agreement, accepted as a signed record (text OPEN: placeholder).
+    agreement: atNetworkAgreement,
   },
   draftCopy: atNetworkSteps.map((s) => s.step.id),
 });

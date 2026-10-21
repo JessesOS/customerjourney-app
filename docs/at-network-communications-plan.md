@@ -4,6 +4,8 @@
 
 Source: `products/at-network/spec.md` ("Communication rule"). Nothing here is built. Jesse's calls so far: build it today or tomorrow; start with the simple send-a-request panel that already exists.
 
+**Agreement acceptance (built 21 Oct, staging only, version 516c9bdc):** step 1 is `atn-agreement`, the legal acceptance (spec "Acceptance"). `portal.agreement` (`products/at-network/agreement.ts`) holds the versioned text. Its SOW and MSA text are still placeholders (OPEN). `portal_acceptances` (migration 0018, staging only) keeps each acceptance append-only, with the exact text and its SHA-256, the version, the entity, typed full name, email, UTC time, IP address and user agent. A stale version or changed text is refused. A printable record is at `/api/portal/<token>/agreement/<id>`, and the board's Agreement section lists acceptances. **Later:** emailing the record (needs a sending service) and a real PDF file. **Before real use:** final agreement text, the legal entity, and a lawyer's check of the wording and what is recorded. **Rule:** change `version` with any wording change.
+
 ## What the client rule needs
 
 - Scope, feedback, files and approvals go through the portal only.

@@ -184,6 +184,21 @@ export type JourneyMapJourney = {
   steps: JourneyMapStep[];
   outcome: string;
 };
+/**
+ * A versioned agreement the client accepts on one step (AT Network first,
+ * 2026-10-21: the portal is the signature). Change any word and the version
+ * must change too: acceptances keep the exact text they accepted.
+ */
+export type AgreementContent = {
+  /** The step the agreement and its acceptance form sit on. */
+  step: string;
+  version: string;
+  title: string;
+  /** The entity the signer accepts for. Absent = the signer types it. */
+  entity?: string;
+  sections: { heading: string; paragraphs: string[] }[];
+};
+
 export type JourneyMapContent = {
   title: string;
   intro: string;
@@ -251,4 +266,6 @@ export type PortalJourney = {
   appIcon?: string;
   /** The customer journey map and the step it shows on. Absent when the product has none. */
   journeyMap?: { step: string; content: JourneyMapContent };
+  /** The agreement the client accepts on one step. Absent when the product has none. */
+  agreement?: AgreementContent;
 };

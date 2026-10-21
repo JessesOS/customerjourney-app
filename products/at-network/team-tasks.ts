@@ -15,7 +15,7 @@ export const atNetworkTeamTasks: TeamTask[] = [
   // ── Get started ──
   t("atn-t01", "Send the Statement of Work and first invoice", "onboarding", "Admin", undefined, "Days 1-2"),
   t("atn-t02", "Confirm payment 1 in admin and tick the step (nothing starts before this)", "onboarding", "Admin", "atn-pay-1", "Days 1-3", "Jesse ticks it in admin.", ["atn-t01"]),
-  t("atn-t05", "Check the typed-name acceptance and file the dated record", "onboarding", "Admin", "atn-how-we-work", "Days 1-2", "The typed name is stored with the time.", ["atn-t01"]),
+  t("atn-t05", "Check the signed acceptance and save its printable copy", "onboarding", "Admin", "atn-agreement", "Days 1-2", "The board's Agreement section lists each acceptance with its record link. Email and PDF copies come later.", ["atn-t01"]),
   t("atn-t06", "Check the photos of Rich are usable; ask for more if not", "onboarding", "Content", "atn-photos-rich", "Days 3-7"),
   t("atn-t07", "Read the Academy course details; log gaps", "onboarding", "Content", "atn-academy", "Days 3-7"),
   t("atn-t08", "Set up the GHL contact person's access", "onboarding", "Admin", "atn-ghl-contact", "Days 3-7"),
