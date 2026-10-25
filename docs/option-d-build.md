@@ -401,3 +401,13 @@ Jesse approved the package ("go for it"). **Decision:** no Cloudflare Access or 
 - `/admin/board` and `/admin/my-tasks` return 200.
 
 **Undo:** `npx wrangler rollback 384aadb0-e29d-41ed-b9dd-6ec51442367c --name scale-onboarding-portal` switches the board off. The board's data sits unused in its own tables. Fin's portal isn't touched either way.
+
+## 2026-10-25: AT Network live (version 558906f3)
+
+AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 with Jesse's OK, after a full walkthrough on staging the same day. Branch `at-network` merged into `main` at a92f953; `motion-redesign` and `team-board` fast-forwarded to it.
+
+- **Product `at-network`:** five stages (Sign and start, What we need from you, Website build, Funnel and ads, Final review and handover), 26 client steps, 40-odd team tasks, the Scope and Map (two tracks and a collapsed Phase 2 list), agreement v1 of 25 Oct (the text of agreements.allconvos.ai/at-network, word for word, entity AT Network Pty Ltd), the kickoff booking page (Google Calendar on jesse@allconvos.ai), Martyn's StarMap link, input steps aligned to the agreement's A4 list. Spec: `products/at-network/spec.md`.
+- **New shared features, off unless a product sets them:** `features.comms` (Messages: step threads, Approval and Change request kinds, team statuses, overdue flag, CSV/HTML export; tables `portal_comms`, `portal_comms_seen`, migration 0017), `portal.agreement` (signed acceptance as an append-only record with the exact text and SHA-256, printable copy, team-recorded acceptances; table `portal_acceptances`, migration 0018), `features.approvalSteps`, `MilestoneTemplate.pendingContentText`, `JourneyMapJourney.collapsed`, email alerts through Resend (`lib/email.ts`, `lib/alerts.ts`; `EMAIL_API_KEY` secret per environment). Fin's `bss-custom` fixture and `check:fin` are unchanged.
+- **Prod:** migrations 0017 and 0018 applied (CREATE only) before the deploy. Previous live version f40cdad5; D1 bookmark before the change `000001ae-00000000-0000510f-16aff70c59cc294b052d4a9239b6724c`. Verified by curl: Fin's portal and "Jesse test fin" return 200 with "BSS Launchpad" and none of the new markup; admin loads.
+- **After go-live (Jesse):** create "AT Network" in prod admin with Rich's start date, Start board, record the signed acceptance in the Agreement section, set `EMAIL_API_KEY` on prod (dry-run until then).
+- **Plan and status:** `docs/at-network-communications-plan.md`. Playbook: `docs/new-client-product-playbook.md`.

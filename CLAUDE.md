@@ -15,6 +15,7 @@ This one session owns the portal and the back office. GHL automation belongs to 
 ## A real client is live: protect him
 
 - **Fin Creighton** (Bitcoin Success School) has used the live portal since 2026-10-16. **Since 2026-10-18 his product is `bss-custom`** (`products/bss-custom/`, "BSS Launchpad"): 23 client steps over 30 days, with the 337 team tasks behind them. His start date is 2026-10-19, so launch (day 23) is 10 Nov and day 30 is 17 Nov. Before that he was on `bss-meta`, which only the test client JAT still uses.
+- **AT Network** (Rich Latimer, Martyn Hume Cobbe) is live since 2026-10-25 on `at-network` (`products/at-network/`): the second custom product, separate from Fin's. Its fixture is frozen too. Changing it needs Jesse's OK, a version bump and a deploy package, like `bss-custom`. Messages, the signed agreement and email alerts (Resend) are its features; they are off for every other product. See `docs/at-network-communications-plan.md`.
 - **The holding page stays in the code** (`app/components/portal/PortalPausedNotice.tsx`): a client whose `journey_state` is `paused` sees "A new version is on its way" instead of their portal. Fin saw it from 2026-10-17 23:25Z to 2026-10-18 04:27Z.
 - **"Jesse test fin"** (prod) is a live copy of Fin's portal: `bss-custom`, same start date. It's Jesse's, so open it freely.
 - **Every deploy to the live worker needs Jesse's explicit OK.** Send it as a package: the commits, the checks run, the version currently live, a D1 time-travel bookmark, and the rollback command.
