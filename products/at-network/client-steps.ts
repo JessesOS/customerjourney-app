@@ -76,6 +76,37 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
+      // Bookmark steps, as for Fin (Jesse, 2026-10-25). Client-only: no team task.
+      id: "atn-bookmark",
+      title: "Bookmark your portal",
+      detail: "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+      showPortalLink: true,
+      steps: [
+        "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+        "Or copy your portal link above and save it somewhere handy.",
+      ],
+      doneLabel: "I've bookmarked it",
+      clientOnly: true,
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
+      id: "atn-save-portal",
+      title: "Save your portal to your phone",
+      detail: "So you can get back here in one tap. Saved to your phone's home screen, it opens like an app.",
+      steps: [
+        "On an iPhone, open your portal link in Safari (even if you usually use Chrome). Tap the Share button: the square with an arrow pointing up, at the bottom of the screen. Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
+        "On Android, open the link in Chrome, tap the three dots at the top right, then \"Add to Home screen\".",
+        "From now on, open AT Network from your home screen.",
+      ],
+      doneLabel: "I've saved it",
+      clientOnly: true,
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
       // The Scope and Map (./scope-map.ts): the two tracks, the site map, what's
       // in, what's out, and the Phase 2 list. Stays readable after it's ticked.
       id: "atn-scope-map",

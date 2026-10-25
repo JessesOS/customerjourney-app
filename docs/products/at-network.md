@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.9` |
+| Version | `2026-10-25.10` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
-| Client steps | 27 (0 client only, 0 hidden in the portal) |
+| Client steps | 29 (2 client only, 0 hidden in the portal) |
 | Team tasks | 39 (38 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
-| Draft wording | `atn-agreement`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-level-docs`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-stinger-ref`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `atn-agreement`, `atn-bookmark`, `atn-save-portal`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-level-docs`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-stinger-ref`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 27 | 39 |
+| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 29 | 39 |
 
 ### Portal tweaks by variant
 
@@ -147,6 +147,22 @@ _Accept the agreement, pay the first instalment, read your scope and map, pay th
 The board's Agreement section lists each acceptance with its record link. Email and PDF copies come later.
 
 </details>
+
+### `atn-bookmark` Bookmark your portal _(client only)_
+
+> This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.
+
+Portal: 2 numbered steps · portal link
+
+No team task behind this step.
+
+### `atn-save-portal` Save your portal to your phone _(client only)_
+
+> So you can get back here in one tap. Saved to your phone's home screen, it opens like an app.
+
+Portal: 3 numbered steps
+
+No team task behind this step.
 
 ### `atn-scope-map` Read your scope and map
 
