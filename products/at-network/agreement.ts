@@ -3,7 +3,7 @@
 // accepted, so CHANGE THE VERSION WITH ANY CHANGE TO THE WORDING.
 //
 // OPEN: the Statement of Work and Master Services Agreement text (to come from
-// the AT Network folder) and the legal entity. Until then this is a placeholder
+// the AT Network folder). Entity settled 2026-10-25. Until then this is a placeholder
 // and must not be accepted for real. "How we work together" is the handover's
 // decided first message.
 
@@ -11,9 +11,10 @@ import type { AgreementContent } from "../../lib/journeyTypes";
 
 export const atNetworkAgreement: AgreementContent = {
   step: "atn-agreement",
-  version: "draft-1",
+  version: "draft-2",
   title: "AT Network agreement (DRAFT: not for signing)",
-  // entity: OPEN. Absent, so the signer types it.
+  // The client's legal entity (Jesse, 2026-10-25). Fixed, so the signer can't mistype it.
+  entity: "AT Network Pty Ltd (ABN 69 684 621 887)",
   sections: [
     {
       heading: "Statement of Work",
