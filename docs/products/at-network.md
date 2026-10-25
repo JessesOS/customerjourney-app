@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.2` |
+| Version | `2026-10-25.3` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 26 (0 client only, 0 hidden in the portal) |
@@ -185,7 +185,7 @@ Jesse ticks it in admin.
 
 > One call, 45 minutes, once the first instalment has landed. We look inside your platform together, lock the homepage brief, and confirm who signs things off.
 
-Portal: note (required) · 2 numbered steps
+Portal: booking calendar · note · 2 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|

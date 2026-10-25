@@ -93,18 +93,17 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
-      // OPEN: the booking link. Add `bookingUrl` once Jesse gives it.
+      // Google Calendar booking page on jesse@allconvos.ai (made 2026-10-25).
       id: "atn-book-kickoff",
+      bookingUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ32pczT1vxP1Sys3PKJU7B88A9iei4TYjinv4BRZ2NkdAlZtIykK6RcRHHc0ntTyC2J26XrF5RS",
       title: "Book the kickoff call",
       detail: "One call, 45 minutes, once the first instalment has landed. We look inside your platform together, lock the homepage brief, and confirm who signs things off.",
       steps: [
-        "Tell us two or three times that suit you below, or use the booking link if you have one.",
+        "Pick a time on the booking page below. You get a calendar invite with the Google Meet link straight away.",
         "Have your platform login handy so we can look inside it together.",
       ],
-      notePrompt: "Times that suit you",
-      notePlaceholder: "Two or three options, with your time zone.",
-      noteRequired: true,
-      doneLabel: "I've sent my times",
+      notePrompt: "Anything you want covered on the call? (optional)",
+      doneLabel: "I've booked it",
     },
   },
   {
