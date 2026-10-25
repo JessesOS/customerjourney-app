@@ -158,11 +158,13 @@
     "atn-kickoff-summary",
     "atn-starmap",
     "atn-package-breakdown",
-    "atn-level-docs",
+    "atn-prices",
     "atn-photos-rich",
     "atn-academy",
     "atn-workbook",
     "atn-stinger-ref",
+    "atn-exec-copy",
+    "atn-starmap-link",
     "atn-ghl-contact",
     "atn-scripts",
     "atn-videographer",
@@ -837,6 +839,8 @@
     "Voice AI Specialist"
   ],
   "uploadStepIds": [
+    "atn-exec-copy",
+    "atn-package-breakdown",
     "atn-photos-rich",
     "atn-scripts",
     "atn-starmap",

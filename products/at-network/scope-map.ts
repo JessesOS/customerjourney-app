@@ -40,7 +40,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
           who: "us",
           branches: [
             { label: "Foundations", detail: "Its own page, linked from the top menu, inside the Academy level.", tone: "good" },
-            { label: "Growth and Legacy", detail: "Placeholder pages for now, so the pathway is complete. Their full content comes later.", tone: "neutral" },
+            { label: "Growth and Legacy", detail: "A page each, built from the outlines you supply, so the pathway is complete.", tone: "neutral" },
           ],
         },
         {

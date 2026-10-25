@@ -32,7 +32,7 @@ export const atNetworkStages: Partial<Record<StageId, StagePatch>> = {
     name: "What we need from you",
     dayStart: 3,
     dayEnd: 10,
-    blurb: "The content and details only you can give us. Each one has a due day. If one is late, the timeline pauses until it arrives.",
+    blurb: "The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. If one is late, the timeline pauses until it arrives.",
     statusNotes: [],
   },
   testing: {
@@ -179,26 +179,27 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "build",
     step: {
+      // Received (agreement A4): Ben's copy for the four levels, 24 October.
       id: "atn-package-breakdown",
-      title: "Send the product package breakdown",
-      detail: "Rich: share your product package breakdown as a Google Doc. Set sharing so anyone with the link can view, then paste the link.",
-      steps: ["Open your Google Doc and press Share.", "Under General access, choose \"Anyone with the link\".", "Copy the link and paste it below."],
-      notePrompt: "Link to the package breakdown",
-      notePlaceholder: "https://docs.google.com/...",
-      noteRequired: true,
-      doneLabel: "I've sent the link",
+      title: "Confirm your product package breakdown",
+      detail: "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+      hasUpload: true,
+      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.zip", title: "Newer version?", hint: "Only if the copy has changed since 24 October.", ...FILES },
+      notePrompt: "Anything changed, or a link to the latest version (optional)",
+      doneLabel: "Confirmed, nothing changed",
     },
   },
   {
     stage: "build",
     step: {
-      id: "atn-level-docs",
-      title: "Send the Google Doc for each membership level",
-      detail: "Ben: one Google Doc per level (Initiations, Tribe, Academy, Mentor7) and one for the Benevolent Executive. These become the five offer pages. Set sharing so anyone with the link can view, then paste the links.",
-      notePrompt: "Links, one per line",
-      notePlaceholder: "Initiations: https://docs.google.com/...\nTribe: ...",
+      // Agreement A4: prices and free-month terms, Rich, 3 business days after payment 1.
+      id: "atn-prices",
+      title: "Send the price and free-month terms for each level",
+      detail: "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B." + " Due 3 business days after payment 1.",
+      notePrompt: "Price and free-month terms, per level",
+      notePlaceholder: "Tribe: ... per month. Academy: ... Mentor7: ... Free month: ...",
       noteRequired: true,
-      doneLabel: "I've sent the links",
+      doneLabel: "I've sent them",
     },
   },
   {
@@ -206,7 +207,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-photos-rich",
       title: "Send photos of Rich",
-      detail: "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us.",
+      detail: "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.",
       hasUpload: true,
       uploadOptions: { accept: ".png,.jpg,.jpeg,.webp,.heic,.zip", title: "Upload photos of Rich", hint: "Add as many as you like, one at a time or several at once. A zip is fine.", ...FILES },
       doneLabel: "Next",
@@ -217,7 +218,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-academy",
       title: "Send the Academy course details",
-      detail: "Rich: what the Academy course includes, so we describe it correctly on your site. Your Foundations outline goes here too.",
+      detail: "Rich: what the Academy course includes, so we describe it correctly on your site. Martyn's Foundations document is already with us. Your outlines for the Growth and Legacy courses go here too: we build their pages from them. Due 3 business days after payment 1.",
       notePrompt: "Academy course details",
       notePlaceholder: "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
       noteRequired: true,
@@ -229,7 +230,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-workbook",
       title: "Send the interactive workbook",
-      detail: "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list.",
+      detail: "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list. Due 3 business days after payment 1.",
       hasUpload: true,
       uploadOptions: { accept: ".pdf,.doc,.docx,.zip", title: "Upload the workbook", hint: "A PDF or document, or paste a link below.", ...FILES },
       notePrompt: "Or paste a link",
@@ -256,9 +257,35 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "build",
     step: {
+      // Agreement A4: Executive Program page copy, Rich, 3 business days after payment 1.
+      id: "atn-exec-copy",
+      title: "Send the Benevolent Executive Program page copy",
+      detail: "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+      hasUpload: true,
+      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf", title: "Upload the copy", hint: "Or paste it, or a link, in the box below.", ...FILES },
+      notePrompt: "The copy, or a link to it",
+      doneLabel: "I've sent it",
+    },
+  },
+  {
+    stage: "build",
+    step: {
+      // Agreement A4: where the StarMap page links from, Rich, 3 business days after payment 1.
+      id: "atn-starmap-link",
+      title: "Tell us where the StarMap page links from",
+      detail: "Rich: where on your site should people find the StarMap assessment? For example the top menu, the homepage, the Initiations page, or all three. Due 3 business days after payment 1.",
+      notePrompt: "Where the StarMap page links from",
+      notePlaceholder: "e.g. Top menu and the Initiations page",
+      noteRequired: true,
+      doneLabel: "I've told you",
+    },
+  },
+  {
+    stage: "build",
+    step: {
       id: "atn-ghl-contact",
       title: "Name your GHL contact person",
-      detail: "Who should we work with on your GoHighLevel account? One person is best.",
+      detail: "Who should we work with on your GoHighLevel account? One person is best. Due 3 business days after payment 1.",
       notePrompt: "Their name and email",
       notePlaceholder: "Name, email",
       noteRequired: true,
@@ -270,7 +297,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-scripts",
       title: "Write first-draft scripts for your four sales videos",
-      detail: "One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document.",
+      detail: "One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
       hasUpload: true,
       uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.zip", title: "Upload your script drafts", hint: "One document per video, or one for all four.", ...FILES },
       notePrompt: "Or paste your drafts here",
@@ -431,7 +458,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-domain-access",
       title: "Give domain and hosting access for go-live",
-      detail: "So your finished site can go live on your domain. Never send us a password in the portal: tell us who to invite or how you'd like to share access.",
+      detail: "So your finished site can go live on your domain. Due at go-live. Never send us a password in the portal: tell us who to invite or how you'd like to share access.",
       important: "Never send a password here. An invite is all we need.",
       inviteEmail: "jesse@allconvos.ai",
       notePrompt: "Who manages your domain and hosting, and where is it (for example GoDaddy)?",

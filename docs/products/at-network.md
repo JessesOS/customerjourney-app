@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.12` |
+| Version | `2026-10-25.14` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
-| Client steps | 29 (2 client only, 0 hidden in the portal) |
-| Team tasks | 39 (38 behind a client step, 1 team-only) |
+| Client steps | 31 (2 client only, 0 hidden in the portal) |
+| Team tasks | 41 (40 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
-| Draft wording | `atn-agreement`, `atn-bookmark`, `atn-save-portal`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-level-docs`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-stinger-ref`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `atn-agreement`, `atn-bookmark`, `atn-save-portal`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-prices`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-stinger-ref`, `atn-exec-copy`, `atn-starmap-link`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 29 | 39 |
+| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 31 | 41 |
 
 ### Portal tweaks by variant
 
@@ -58,7 +58,7 @@ The First Light site, built page by page. You see it on a review link as it grow
    - **Who it's for:** The three cold ads can sit here too, one per audience.
 2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
    - **Foundations:** Its own page, linked from the top menu, inside the Academy level.
-   - **Growth and Legacy:** Placeholder pages for now, so the pathway is complete. Their full content comes later.
+   - **Growth and Legacy:** A page each, built from the outlines you supply, so the pathway is complete.
 3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free trial is, how levels work and what happens next.
 4. **Podcast section, with a journal** (us). A home for the podcast, with the intro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
 5. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
@@ -122,7 +122,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 39 |
+| Jesse Allan | 41 |
 
 ## Stages
 
@@ -250,7 +250,7 @@ Chase Ben as well as Rich. Nothing starts before payment 1.
 
 ## 2. What we need from you · days 3–10
 
-_The content and details only you can give us. Each one has a due day. If one is late, the timeline pauses until it arrives._
+_The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. If one is late, the timeline pauses until it arrives._
 
 ### `atn-starmap` Confirm your StarMap questions and report
 
@@ -270,37 +270,37 @@ The artifact link goes in guideUrl. Build only after his Final.
 
 </details>
 
-### `atn-package-breakdown` Send the product package breakdown
+### `atn-package-breakdown` Confirm your product package breakdown
 
-> Rich: share your product package breakdown as a Google Doc. Set sharing so anyone with the link can view, then paste the link.
+> Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.
 
-Portal: note (required) · 3 numbered steps
+Portal: upload · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t04` Read the package breakdown; log gaps | Jesse Allan | Days 3-7 | normal |  |
+| `atn-t04` Read Ben's package breakdown (received 24 Oct); log gaps | Jesse Allan | Days 3-7 | normal |  |
 
-### `atn-level-docs` Send the Google Doc for each membership level
+<details><summary>Guidance for the team (1 task)</summary>
 
-> Ben: one Google Doc per level (Initiations, Tribe, Academy, Mentor7) and one for the Benevolent Executive. These become the five offer pages. Set sharing so anyone with the link can view, then paste the links.
+**`atn-t04` Read Ben's package breakdown (received 24 Oct); log gaps**
+
+Tick the client's confirmation step in admin if they don't.
+
+</details>
+
+### `atn-prices` Send the price and free-month terms for each level
+
+> Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.
 
 Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t13` Read Ben's Google Doc for each level; log gaps | Jesse Allan | Days 3-10 | normal |  |
-
-<details><summary>Guidance for the team (1 task)</summary>
-
-**`atn-t13` Read Ben's Google Doc for each level; log gaps**
-
-Five docs: Initiations, Tribe, Academy, Mentor7, Benevolent Executive.
-
-</details>
+| `atn-t13` Put the prices and free-month terms into the offer pages and landing pages A and B | Jesse Allan | Days 3-10 | normal |  |
 
 ### `atn-photos-rich` Send photos of Rich
 
-> Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us.
+> Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.
 
 Portal: upload
 
@@ -310,7 +310,7 @@ Portal: upload
 
 ### `atn-academy` Send the Academy course details
 
-> Rich: what the Academy course includes, so we describe it correctly on your site. Your Foundations outline goes here too.
+> Rich: what the Academy course includes, so we describe it correctly on your site. Martyn's Foundations document is already with us. Your outlines for the Growth and Legacy courses go here too: we build their pages from them. Due 3 business days after payment 1.
 
 Portal: note (required)
 
@@ -320,7 +320,7 @@ Portal: note (required)
 
 ### `atn-workbook` Send the interactive workbook
 
-> Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list.
+> Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list. Due 3 business days after payment 1.
 
 Portal: upload · note
 
@@ -346,9 +346,29 @@ Intro only in Phase 1 (one round). The outro is Phase 2.
 
 </details>
 
+### `atn-exec-copy` Send the Benevolent Executive Program page copy
+
+> Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.
+
+Portal: upload · note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t19` Place the Benevolent Executive Program page copy | Jesse Allan | Days 3-10 | normal |  |
+
+### `atn-starmap-link` Tell us where the StarMap page links from
+
+> Rich: where on your site should people find the StarMap assessment? For example the top menu, the homepage, the Initiations page, or all three. Due 3 business days after payment 1.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t20` Link the StarMap page from where Rich says | Jesse Allan | Days 3-10 | normal |  |
+
 ### `atn-ghl-contact` Name your GHL contact person
 
-> Who should we work with on your GoHighLevel account? One person is best.
+> Who should we work with on your GoHighLevel account? One person is best. Due 3 business days after payment 1.
 
 Portal: note (required)
 
@@ -358,7 +378,7 @@ Portal: note (required)
 
 ### `atn-scripts` Write first-draft scripts for your four sales videos
 
-> One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document.
+> One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.
 
 Portal: upload · note
 
@@ -388,14 +408,18 @@ Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t20` Build the First Light site: homepage, Offerings, The Journey, Stories, FAQs | Jesse Allan | Days 8-24 | normal | `atn-t12` |
-| `atn-t21` Build the five offer pages and the Foundations page | Jesse Allan | Days 12-24 | normal | `atn-t13` |
+| `atn-t29` Build the First Light site: homepage, Offerings, The Journey, Stories, FAQs | Jesse Allan | Days 8-24 | normal | `atn-t12` |
+| `atn-t21` Build the five offer pages, the Foundations page and the Growth and Legacy pages | Jesse Allan | Days 12-24 | normal | `atn-t13` |
 | `atn-t22` Build the StarMap page | Jesse Allan | Days 12-24 | normal | `atn-t03` |
 | `atn-t23` Build the eBook landing page, the free guide PDF and the podcast section with its journal | Jesse Allan | Days 12-24 | normal |  |
 | `atn-t24` Set up the content editor and the SEO basics | Jesse Allan | Days 16-26 | normal |  |
-| `atn-t25` Open the site review link and send it; payment 2 is now due | Jesse Allan | Day 26 | normal | `atn-t20`, `atn-t21`, `atn-t23` |
+| `atn-t25` Open the site review link and send it; payment 2 is now due | Jesse Allan | Day 26 | normal | `atn-t29`, `atn-t21`, `atn-t23` |
 
-<details><summary>Guidance for the team (2 tasks)</summary>
+<details><summary>Guidance for the team (3 tasks)</summary>
+
+**`atn-t21` Build the five offer pages, the Foundations page and the Growth and Legacy pages**
+
+Growth and Legacy from Rich's outlines (agreement A2).
 
 **`atn-t22` Build the StarMap page**
 
@@ -548,7 +572,7 @@ Jesse ticks it in admin.
 
 ### `atn-domain-access` Give domain and hosting access for go-live
 
-> So your finished site can go live on your domain. Never send us a password in the portal: tell us who to invite or how you'd like to share access.
+> So your finished site can go live on your domain. Due at go-live. Never send us a password in the portal: tell us who to invite or how you'd like to share access.
 
 Portal: note (required) · invite email · "Important" box
 
