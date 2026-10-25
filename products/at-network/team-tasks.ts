@@ -32,7 +32,6 @@ export const atNetworkTeamTasks: TeamTask[] = [
   t("atn-t18", "Review the stinger references and brief the intro ident", "build", "Inputs", "atn-stinger-ref", "Days 3-10", "Intro only in Phase 1 (one round). The outro is Phase 2."),
   t("atn-t08", "Set up the GHL contact person's access", "build", "Admin", "atn-ghl-contact", "Days 3-7"),
   t("atn-t16", "Give one round of edits on the client's script drafts", "build", "Video", "atn-scripts", "Days 10-20"),
-  t("atn-t17", "Note the videographer's dates (filming is the client's)", "build", "Video", "atn-videographer", "Days 10-20"),
   // ── Website build ──
   t("atn-t29", "Build the First Light site: homepage, Offerings, The Journey, Stories, FAQs", "testing", "Site", "atn-review-site", "Days 8-24", "", ["atn-t12"]),
   t("atn-t21", "Build the five offer pages, the Foundations page and the Growth and Legacy pages", "testing", "Site", "atn-review-site", "Days 12-24", "Growth and Legacy from Rich's outlines (agreement A2).", ["atn-t13"]),

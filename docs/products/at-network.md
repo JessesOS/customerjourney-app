@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.14` |
+| Version | `2026-10-25.15` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
-| Client steps | 31 (2 client only, 0 hidden in the portal) |
-| Team tasks | 41 (40 behind a client step, 1 team-only) |
+| Client steps | 30 (2 client only, 0 hidden in the portal) |
+| Team tasks | 40 (39 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
-| Draft wording | `atn-agreement`, `atn-bookmark`, `atn-save-portal`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-prices`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-stinger-ref`, `atn-exec-copy`, `atn-starmap-link`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `atn-agreement`, `atn-bookmark`, `atn-save-portal`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-prices`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-stinger-ref`, `atn-exec-copy`, `atn-starmap-link`, `atn-ghl-contact`, `atn-scripts`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 31 | 41 |
+| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 30 | 40 |
 
 ### Portal tweaks by variant
 
@@ -122,7 +122,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 41 |
+| Jesse Allan | 40 |
 
 ## Stages
 
@@ -385,16 +385,6 @@ Portal: upload · note
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | `atn-t16` Give one round of edits on the client's script drafts | Jesse Allan | Days 10-20 | normal |  |
-
-### `atn-videographer` Confirm your videographer's availability
-
-> Tell us the dates your videographer can film, so we can plan the shoot. Filming is your team's.
-
-Portal: note (required)
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `atn-t17` Note the videographer's dates (filming is the client's) | Jesse Allan | Days 10-20 | normal |  |
 
 ## 3. Website build · days 8–26
 

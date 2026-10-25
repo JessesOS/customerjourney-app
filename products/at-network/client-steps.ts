@@ -305,18 +305,6 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       doneLabel: "I've sent the drafts",
     },
   },
-  {
-    stage: "build",
-    step: {
-      id: "atn-videographer",
-      title: "Confirm your videographer's availability",
-      detail: "Tell us the dates your videographer can film, so we can plan the shoot. Filming is your team's.",
-      notePrompt: "Dates and times that work",
-      notePlaceholder: "Dates, times, location, and the videographer's name.",
-      noteRequired: true,
-      doneLabel: "I've sent the dates",
-    },
-  },
 
   // ── Website build ──
   {
