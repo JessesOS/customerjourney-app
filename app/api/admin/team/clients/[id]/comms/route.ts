@@ -3,6 +3,7 @@ import { getDb } from "@/db";
 import { portalClients } from "@/db/schema";
 import { addComm, CHANGE_STATUSES, commsEnabled, commsSteps, commsView, markSeen, MAX_BODY, setChangeStatus, type ChangeStatus } from "@/lib/commsStore";
 import { requireTeam } from "@/lib/teamAuth";
+import { alertClientOfTeamComm } from "@/lib/alerts";
 
 // Communications, team side: the client's step threads, a reply box, the
 // unread count, and (phase 2) moving a change request to a new status.
@@ -48,6 +49,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     const note = typeof body.note === "string" ? body.note.trim().slice(0, MAX_BODY) : "";
     const row = await setChangeStatus(client.id, body.requestId, status, teamName(actor), note);
     if (!row) return Response.json({ ok: false, error: "Not a change request." }, { status: 404 });
+    await alertClientOfTeamComm(new URL(request.url).origin, client, { kind: "status", stepId: row.stepId, authorName: row.authorName, body: row.body, status });
     return Response.json({ ok: true, steps: commsSteps(client.clientType), ...(await commsView(client.id, "team")) });
   }
 
@@ -60,5 +62,6 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   const row = await addComm({ clientId: client.id, stepId, authorSide: "team", authorName: teamName(actor), body: text });
   // Replying means the team has read the thread up to here.
   if (row) await markSeen(client.id, "team", row.id);
+  if (row) await alertClientOfTeamComm(new URL(request.url).origin, client, { kind: "message", stepId, authorName: row.authorName, body: text });
   return Response.json({ ok: true, steps: commsSteps(client.clientType), ...(await commsView(client.id, "team")) });
 }

@@ -1,5 +1,6 @@
 import { addComm, clientMessagesToday, CLIENT_MESSAGES_PER_DAY, commsEnabled, commsSteps, commsView, markSeen, MAX_BODY, MAX_NAME, type CommKind } from "@/lib/commsStore";
 import { getPortalClientByToken } from "@/lib/portalClientStore";
+import { alertTeamOfClientComm } from "@/lib/alerts";
 
 // Communications, client side (AT Network first). Token auth like every portal
 // route; 404 unless the client's product switches on features.comms.
@@ -48,5 +49,6 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
   }
 
   await addComm({ clientId: client.id, stepId, kind, authorSide: "client", authorName, body: text });
+  await alertTeamOfClientComm(new URL(request.url).origin, client, { kind, stepId, authorName, body: text });
   return Response.json({ ok: true, ...(await commsView(client.id, "client")) });
 }

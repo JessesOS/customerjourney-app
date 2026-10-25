@@ -1,5 +1,6 @@
 import { acceptAgreement, agreementFor, agreementText, listAcceptances, sha256 } from "@/lib/agreementStore";
 import { getPortalClientByToken } from "@/lib/portalClientStore";
+import { alertAgreementAccepted } from "@/lib/alerts";
 
 // The agreement on step 1 (AT Network first): what the client reads, their past
 // acceptances, and the acceptance itself. 404 unless the product has one.
@@ -42,5 +43,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
     userAgent: request.headers.get("user-agent") ?? "",
   });
   if (!result.ok) return Response.json({ ok: false, error: result.error }, { status: result.status });
-  return Response.json(result);
+  // The signer's copy and the team alert. Never fails the acceptance.
+  const emails = await alertAgreementAccepted(new URL(request.url).origin, client, { id: result.id, version: result.row.agreementVersion, entity: result.row.entity, signerName: result.row.signerName, signerEmail: result.row.signerEmail, acceptedAt: result.row.acceptedAt });
+  const { row: _row, ...out } = result;
+  return Response.json({ ...out, emails });
 }

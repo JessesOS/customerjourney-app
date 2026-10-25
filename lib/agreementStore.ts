@@ -36,6 +36,12 @@ export async function listAcceptances(clientId: string) {
   return getDb().select().from(portalAcceptances).where(eq(portalAcceptances.clientId, clientId)).orderBy(asc(portalAcceptances.id));
 }
 
+/** The latest signer's email: the only client email the portal holds. */
+export async function latestSignerEmail(clientId: string): Promise<string | null> {
+  const rows = await listAcceptances(clientId);
+  return rows.at(-1)?.signerEmail ?? null;
+}
+
 export async function getAcceptance(clientId: string, id: number) {
   const row = (await getDb().select().from(portalAcceptances).where(eq(portalAcceptances.id, id)).limit(1))[0];
   return row && row.clientId === clientId ? row : null;
@@ -80,7 +86,7 @@ export async function acceptAgreement(client: { id: string; clientType: string }
     .returning();
   const note = `Accepted ${a.version} for ${entity} by ${name} (${email}) at ${acceptedAt}. Record #${row.id}.`;
   await markMilestoneComplete(client.id, a.step, note);
-  return { ok: true as const, id: row.id, note, acceptedAt };
+  return { ok: true as const, id: row.id, note, acceptedAt, row };
 }
 
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");

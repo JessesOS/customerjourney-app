@@ -1,6 +1,8 @@
 import { getPortalClientByToken, markMilestoneComplete } from "@/lib/portalClientStore";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { recordStepApproval } from "@/lib/commsStore";
+import { alertTeamOfSignoff } from "@/lib/alerts";
+import { portalJourneyFor } from "@/lib/productRegistry";
 
 const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
 
@@ -24,7 +26,12 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
     const note = typeof body.note === "string" ? body.note.trim().slice(0, 12000) : undefined;
     await markMilestoneComplete(client.id, milestoneId, note);
     // A sign-off step: the typed name becomes an Approval record on the step's thread (AT Network first).
-    if (note) await recordStepApproval(client, milestoneId, note);
+    if (note) {
+      await recordStepApproval(client, milestoneId, note);
+      if (portalJourneyFor(client.clientType).approvalSteps?.includes(milestoneId)) {
+        await alertTeamOfSignoff(new URL(request.url).origin, client, milestoneId, note.split("\n")[0].slice(0, 80));
+      }
+    }
 
     return Response.json({ ok: true });
   } catch (error) {
