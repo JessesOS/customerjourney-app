@@ -53,6 +53,19 @@ export async function alertClientOfTeamComm(origin: string, client: Client, c: {
   });
 }
 
+/** The team pasted something into a step (a review link, a summary, a sign-off list): tell the client. */
+export async function alertClientOfContent(origin: string, client: Client, stepId: string): Promise<EmailResult> {
+  const to = await latestSignerEmail(client.id);
+  if (!to) return "skipped";
+  const step = stepTitle(client, stepId);
+  return sendEmail({
+    to,
+    subject: `${brand(client)}: something to look at on "${step}"`,
+    text: `There's something new for you on "${step}" in your portal.\n\nOpen it here: ${portalUrl(origin, client, stepId)}\n\nReply in the portal so it stays on the record.`,
+    replyTo: teamEmail(),
+  });
+}
+
 /** A sign-off step was completed: tell the team. */
 export async function alertTeamOfSignoff(origin: string, client: Client, stepId: string, signer: string): Promise<EmailResult> {
   return sendEmail({

@@ -89,6 +89,29 @@ export async function acceptAgreement(client: { id: string; clientType: string }
   return { ok: true as const, id: row.id, note, acceptedAt, row };
 }
 
+/**
+ * The team records an acceptance made outside the portal (the client signed
+ * before getting their link). Same append-only row, marked by `source`, and the
+ * step is ticked. The exact current text is stored, so the record says what
+ * version was in force.
+ */
+export async function recordAcceptanceManually(client: { id: string; clientType: string }, input: { entity: string; signerName: string; signerEmail: string; acceptedAt: string; source: string }) {
+  const a = agreementFor(client.clientType);
+  if (!a) return { ok: false as const, status: 404, error: "This product has no agreement." };
+  const entity = input.entity.trim(), name = input.signerName.trim(), email = input.signerEmail.trim();
+  const when = new Date(input.acceptedAt);
+  if (!entity || name.split(/\s+/).length < 2) return { ok: false as const, status: 400, error: "Entity and the signer's full name are required." };
+  if (!EMAIL.test(email)) return { ok: false as const, status: 400, error: "A valid signer email is required." };
+  if (Number.isNaN(when.getTime())) return { ok: false as const, status: 400, error: "A valid date and time is required." };
+  const text = agreementText(a);
+  const [row] = await getDb()
+    .insert(portalAcceptances)
+    .values({ clientId: client.id, stepId: a.step, agreementVersion: a.version, agreementHash: await sha256(text), agreementText: text, entity, signerName: name, signerEmail: email, ip: "", userAgent: `recorded by team: ${input.source.trim().slice(0, 200) || "signed outside the portal"}`, acceptedAt: when.toISOString() })
+    .returning();
+  await markMilestoneComplete(client.id, a.step, `Accepted ${a.version} for ${entity} by ${name} (${email}) at ${when.toISOString()}, recorded by the team. Record #${row.id}.`);
+  return { ok: true as const, id: row.id };
+}
+
 const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 /** The printable copy: the exact text accepted, then the acceptance details. Save as PDF from the browser's print. */
@@ -113,6 +136,7 @@ button{padding:9px 16px;border-radius:8px;border:1px solid #999;background:#fff;
 <dt>Date and time (UTC)</dt><dd>${esc(row.acceptedAt)}</dd>
 <dt>Agreement version</dt><dd>${esc(row.agreementVersion)}</dd>
 <dt>IP address</dt><dd>${esc(row.ip || "not available")}</dd>
+${row.userAgent.startsWith("recorded by team") ? `<dt>How it was recorded</dt><dd>${esc(row.userAgent)}</dd>` : ""}
 <dt>Statement</dt><dd>I have read and accept the agreement on behalf of ${esc(row.entity)}.</dd>
 <dt>SHA-256 of the text below</dt><dd class="hash">${esc(row.agreementHash)}</dd>
 </dl></div>

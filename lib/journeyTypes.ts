@@ -17,6 +17,7 @@ export type JourneyMilestone = {
   notePlaceholder?: string;
   noteRequired?: boolean;
   hasEditableContent?: boolean;
+  pendingContentText?: string;
   videoUrl?: string;
   hasUpload?: boolean;
   awaitingTeam?: boolean;
@@ -72,6 +73,8 @@ export type MilestoneTemplate = {
   notePlaceholder?: string;
   noteRequired?: boolean;
   hasEditableContent?: boolean;
+  /** What an editable-content step says while the team hasn't pasted anything yet. Absent = the stock line. */
+  pendingContentText?: string;
   videoUrl?: string;
   hasUpload?: boolean;
   awaitingTeam?: boolean;
@@ -183,6 +186,8 @@ export type JourneyMapJourney = {
   entries: string[];
   steps: JourneyMapStep[];
   outcome: string;
+  /** Starts folded, with one tap to open (a parking lot the client needn't read first). */
+  collapsed?: boolean;
 };
 /**
  * A versioned agreement the client accepts on one step (AT Network first,

@@ -1,3 +1,8 @@
+import { eq } from "drizzle-orm";
+import { getDb } from "@/db";
+import { portalClients } from "@/db/schema";
+import { commsEnabled } from "@/lib/commsStore";
+import { alertClientOfContent } from "@/lib/alerts";
 import { requestCanAdminAsync } from "@/lib/teamAuth";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { getMilestoneContentFull, resolveMilestoneDraft, setMilestoneContent, setMilestoneDraft } from "@/lib/portalClientStore";
@@ -63,7 +68,13 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
 
     const content = (body.content ?? "").slice(0, 8000);
     await setMilestoneContent(id, milestoneId, content);
-    return Response.json({ ok: true });
+    // Products with comms: the client hears that there's something to look at (AT Network first).
+    let email: string | undefined;
+    if (content.trim()) {
+      const client = (await getDb().select().from(portalClients).where(eq(portalClients.id, id)).limit(1))[0];
+      if (client && commsEnabled(client.clientType)) email = await alertClientOfContent(new URL(request.url).origin, client, milestoneId);
+    }
+    return Response.json({ ok: true, email });
   } catch (error) {
     return Response.json(
       { ok: false, error: error instanceof Error ? error.message : "Could not save content." },

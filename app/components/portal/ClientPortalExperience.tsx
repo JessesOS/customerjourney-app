@@ -1619,7 +1619,7 @@ export function ClientPortalExperience({
                           ))
                         ) : (
                           <p style={{ fontSize: 15, color: "var(--pj-muted)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
-                            Your account team is finalizing these — check back soon.
+                            {m.pendingContentText ?? "Your account team is finalizing these — check back soon."}
                           </p>
                         )}
                       </div>

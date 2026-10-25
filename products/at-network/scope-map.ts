@@ -39,7 +39,8 @@ export const atNetworkScopeMap: JourneyMapContent = {
           detail: "One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.",
           who: "us",
           branches: [
-            { label: "Foundations", detail: "Its own page, linked from the top menu, inside the Academy level. Growth and Legacy are outlined there, not built as pages.", tone: "good" },
+            { label: "Foundations", detail: "Its own page, linked from the top menu, inside the Academy level.", tone: "good" },
+            { label: "Growth and Legacy", detail: "Placeholder pages for now, so the pathway is complete. Their full content comes later.", tone: "neutral" },
           ],
         },
         {
@@ -111,18 +112,17 @@ export const atNetworkScopeMap: JourneyMapContent = {
     },
     {
       id: "phase2",
-      title: "The Phase 2 list",
-      tagline: "Good ideas that aren't in Phase 1. Parked here, not lost. Add yours in the notes. We quote them once the site is live.",
+      title: "Phase 2: things we've talked about, not quoted yet",
+      tagline: "Parked here so nothing is lost. We quote them once the site is live. Add your own in the notes.",
       accent: "teal",
+      collapsed: true,
       entries: ["Your voice notes and messages", "The kickoff call", "Anything that comes up during the build"],
       steps: [
         { title: "Platform rebrand", detail: "Changing the platform's branding to match the new site." },
         { title: "Impact video edits", detail: "A shorter edit, or running the 6.5-minute video through a model to blend in the branding." },
         { title: "Avatar videos and a new sales video", detail: "Longer avatar videos come from your videographer. We place them on the site when you have them." },
         { title: "Branding the workbook", detail: "We use the workbook as it is in Phase 1." },
-        { title: "Growth and Legacy pages", detail: "Outlined on the Foundations page in Phase 1, built as pages later." },
         { title: "Posting system for articles, podcast outro, podcast page", detail: "The journal in the podcast section covers Phase 1." },
-        { title: "Plugging the brain into Meta ads, extra ad versions, a formal testing round", detail: "Phase 1 checks every page on phones and desktop; the tags show what converts once ads run." },
         { title: "The Benevolent Executive film", detail: "We'll talk it through separately. It isn't in this portal's scope." },
       ],
       outcome: "One quote, when you're ready, for the ones you want.",

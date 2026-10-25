@@ -30,7 +30,7 @@ export const atNetworkStages: Partial<Record<StageId, StagePatch>> = {
   },
   build: {
     name: "What we need from you",
-    dayStart: 1,
+    dayStart: 3,
     dayEnd: 10,
     blurb: "The content and details only you can give us. Each one has a due day. If one is late, the timeline pauses until it arrives.",
     statusNotes: [],
@@ -65,9 +65,12 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       // The legal acceptance (Jesse, 2026-10-21: the portal is the signature).
       // The agreement and its form come from portal.agreement (./agreement.ts).
+      // Most clients sign before they get their link (Jesse, 2026-10-25): the
+      // team records the acceptance in admin and this step arrives done, with
+      // the agreement still readable. A client who hasn't signed sees the form.
       id: "atn-agreement",
-      title: "Read the agreement and accept it",
-      detail: "This is our agreement with you. Read all of it, then accept it below. Your acceptance is your signature.",
+      title: "Your signed agreement",
+      detail: "Our agreement with you, kept here to read any time. If you haven't accepted it yet, read all of it and accept it below. Your acceptance is your signature.",
     },
   },
   {
@@ -115,7 +118,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       title: "Approve the kickoff summary",
       detail: "After the call we write up what we decided, in plain words, below. Read it. If it's right, type your full name and approve it. That summary is the brief we build to. Anything not in it is a change request.",
       hasEditableContent: true,
-      notePrompt: "Type your full name to approve, or tell us what's wrong",
+      pendingContentText: "Your summary appears here after the call.",
+      notePrompt: "Type your full name to approve",
       notePlaceholder: "Your full name",
       noteRequired: true,
       doneLabel: "Approved",
@@ -126,14 +130,18 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "build",
     step: {
+      // Martyn already sent the StarMap (a Claude artifact, 24 Oct). This is a
+      // confirmation, not a request (Jesse, 2026-10-25). OPEN: the artifact link
+      // goes in guideUrl once Jesse sends it.
       id: "atn-starmap",
-      title: "Send the StarMap questions and report details",
-      detail: "Martyn: send us the questions and the details for the StarMap report. Paste them in the box, or upload a file.",
+      title: "Confirm your StarMap questions and report",
+      detail: "Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.",
+      guideLabel: "Open the StarMap you sent",
       hasUpload: true,
-      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.zip", title: "Upload your StarMap files", hint: "Documents or screenshots. You can also paste everything in the box below.", ...FILES },
-      notePrompt: "The StarMap questions and report details",
-      notePlaceholder: "Paste the questions and the details of the report here.",
-      doneLabel: "I've sent them",
+      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.zip", title: "Newer version?", hint: "Only if something has changed since you sent it.", ...FILES },
+      notePrompt: "Anything to change, or type Final",
+      notePlaceholder: "Final",
+      doneLabel: "Confirm",
     },
   },
   {
@@ -240,6 +248,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "testing",
     step: {
       id: "atn-review-site",
+      hasEditableContent: true,
+      pendingContentText: "Your review link appears here when it's ready. We'll email you.",
       title: "Review your site: round 1 of 2",
       detail: "Open the review link and look at every page, on your phone as well as your computer. " + ONE_LIST + " Or approve it as it is.",
       notePrompt: "Your consolidated list for round 1, or \"Approved\"",
@@ -261,6 +271,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "testing",
     step: {
       id: "atn-review-site-2",
+      hasEditableContent: true,
+      pendingContentText: "Your review link appears here when it's ready. We'll email you.",
       title: "Review your site: round 2 of 2",
       detail: "Your round 1 changes are in. This is the last round on the site. " + ONE_LIST + " Anything after this round is a change request.",
       notePrompt: "Your consolidated list for round 2, or \"Approved\"",
@@ -273,9 +285,11 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "testing",
     step: {
       id: "atn-signoff-site",
+      hasEditableContent: true,
+      pendingContentText: "What you're signing off appears here: the final list and the link to the final versions.",
       title: "Sign off your site",
       detail: "Both rounds are done. Type your full name to sign off the site. From here, changes to it are change requests.",
-      notePrompt: "Type your full name to sign off",
+      notePrompt: "Type your full name to sign off the items above",
       notePlaceholder: "Your full name",
       noteRequired: true,
       doneLabel: "Sign off",
@@ -287,6 +301,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "go-live",
     step: {
       id: "atn-review-landing",
+      hasEditableContent: true,
+      pendingContentText: "Your review link appears here when it's ready. We'll email you.",
       title: "Review landing pages A, B and C: round 1 of 2",
       detail: "One landing page per ad, on the review link. " + ONE_LIST + " Or approve them as they are.",
       notePrompt: "Your consolidated list for round 1, or \"Approved\"",
@@ -299,6 +315,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "go-live",
     step: {
       id: "atn-review-ads",
+      hasEditableContent: true,
+      pendingContentText: "Your review link appears here when it's ready. We'll email you.",
       title: "Review your ads and LinkedIn banner: round 1 of 2",
       detail: "The three video ads (Foundations, Tribe, Mentor7), the two statics and the LinkedIn banner, on the review link. " + ONE_LIST + " Or approve them as they are.",
       notePrompt: "Your consolidated list for round 1, or \"Approved\"",
@@ -311,6 +329,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "go-live",
     step: {
       id: "atn-review-funnel-2",
+      hasEditableContent: true,
+      pendingContentText: "Your review link appears here when it's ready. We'll email you.",
       title: "Review the funnel: round 2 of 2",
       detail: "Your round 1 changes to the landing pages, ads, statics and banner are in. This is the last round. " + ONE_LIST,
       notePrompt: "Your consolidated list for round 2, or \"Approved\"",
@@ -323,9 +343,11 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "go-live",
     step: {
       id: "atn-signoff-funnel",
+      hasEditableContent: true,
+      pendingContentText: "What you're signing off appears here: the final list and the link to the final versions.",
       title: "Sign off the funnel",
       detail: "Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.",
-      notePrompt: "Type your full name to sign off",
+      notePrompt: "Type your full name to sign off the items above",
       notePlaceholder: "Your full name",
       noteRequired: true,
       doneLabel: "Sign off",
@@ -337,6 +359,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "post-launch",
     step: {
       id: "atn-review-final",
+      hasEditableContent: true,
+      pendingContentText: "Your review link appears here when it's ready. We'll email you.",
       title: "Review the final work",
       detail: "Everything together, one last time, on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.",
       notePrompt: "Approved, or your change list",

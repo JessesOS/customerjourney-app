@@ -194,6 +194,9 @@ export function JourneyMap({
 }
 
 function Journey({ journey, n, notes }: { journey: JourneyMapJourney; n: number; notes: ReactNode }) {
+  // A collapsed journey (AT Network's Phase 2 list, 2026-10-25) shows its header and one
+  // button; the rest appears on tap. Journeys without the flag render exactly as before.
+  const [open, setOpen] = useState(!journey.collapsed);
   return (
     <section id={`jm-${journey.id}`} className={`jm-journey is-${journey.accent}`}>
       <header className="jm-j-head jm-reveal">
@@ -203,6 +206,27 @@ function Journey({ journey, n, notes }: { journey: JourneyMapJourney; n: number;
           <div className="jm-j-tag">{journey.tagline}</div>
         </div>
       </header>
+      {journey.collapsed && !open ? (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          aria-expanded={false}
+          style={{ marginTop: 12, padding: "9px 16px", borderRadius: 999, border: "1px solid var(--pj-line)", background: "var(--pj-card)", color: "var(--pj-act)", font: "600 13px var(--font-body), sans-serif", cursor: "pointer" }}
+        >
+          Show the list ({journey.steps.length}) ↓
+        </button>
+      ) : null}
+      {journey.collapsed && open ? (
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          aria-expanded={true}
+          style={{ marginTop: 12, padding: "9px 16px", borderRadius: 999, border: "1px solid var(--pj-line)", background: "var(--pj-card)", color: "var(--pj-muted)", font: "600 13px var(--font-body), sans-serif", cursor: "pointer" }}
+        >
+          Hide the list ↑
+        </button>
+      ) : null}
+      <div style={journey.collapsed && !open ? { display: "none" } : undefined}>
       <div className="jm-entries jm-reveal">
         <span className="jm-label">Where they come from</span>
         <div className="jm-chips">{journey.entries.map((e) => <span key={e} className="jm-chip">{e}</span>)}</div>
@@ -248,6 +272,7 @@ function Journey({ journey, n, notes }: { journey: JourneyMapJourney; n: number;
       </ol>
       <div className="jm-outcome jm-reveal"><span aria-hidden>✓</span>{journey.outcome}</div>
       {notes}
+      </div>
     </section>
   );
 }

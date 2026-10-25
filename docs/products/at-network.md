@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.4` |
+| Version | `2026-10-25.5` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 26 (0 client only, 0 hidden in the portal) |
@@ -57,7 +57,8 @@ The First Light site, built page by page. You see it on a review link as it grow
    - **The Ascension pathway:** The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
    - **Who it's for:** The three cold ads can sit here too, one per audience.
 2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
-   - **Foundations:** Its own page, linked from the top menu, inside the Academy level. Growth and Legacy are outlined there, not built as pages.
+   - **Foundations:** Its own page, linked from the top menu, inside the Academy level.
+   - **Growth and Legacy:** Placeholder pages for now, so the pathway is complete. Their full content comes later.
 3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free trial is, how levels work and what happens next.
 4. **Podcast section, with a journal** (us). A home for the podcast, with the intro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
 5. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
@@ -83,18 +84,16 @@ Three cold ads, three landing pages, and the homepage in the mix, so the numbers
 
 Ends with: Assets and a plan your team can run, with the tags in place to see what converts from day one.
 
-### 3. The Phase 2 list
+### 3. Phase 2: things we've talked about, not quoted yet
 
-Good ideas that aren't in Phase 1. Parked here, not lost. Add yours in the notes. We quote them once the site is live. Where they come from: Your voice notes and messages, The kickoff call, Anything that comes up during the build.
+Parked here so nothing is lost. We quote them once the site is live. Add your own in the notes. Where they come from: Your voice notes and messages, The kickoff call, Anything that comes up during the build.
 
 1. **Platform rebrand**. Changing the platform's branding to match the new site.
 2. **Impact video edits**. A shorter edit, or running the 6.5-minute video through a model to blend in the branding.
 3. **Avatar videos and a new sales video**. Longer avatar videos come from your videographer. We place them on the site when you have them.
 4. **Branding the workbook**. We use the workbook as it is in Phase 1.
-5. **Growth and Legacy pages**. Outlined on the Foundations page in Phase 1, built as pages later.
-6. **Posting system for articles, podcast outro, podcast page**. The journal in the podcast section covers Phase 1.
-7. **Plugging the brain into Meta ads, extra ad versions, a formal testing round**. Phase 1 checks every page on phones and desktop; the tags show what converts once ads run.
-8. **The Benevolent Executive film**. We'll talk it through separately. It isn't in this portal's scope.
+5. **Posting system for articles, podcast outro, podcast page**. The journal in the podcast section covers Phase 1.
+6. **The Benevolent Executive film**. We'll talk it through separately. It isn't in this portal's scope.
 
 Ends with: One quote, when you're ready, for the ones you want.
 
@@ -133,9 +132,9 @@ Each stage lists the client's steps in portal order, with the team tasks behind 
 
 _Accept the agreement, pay the first instalment, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to._
 
-### `atn-agreement` Read the agreement and accept it
+### `atn-agreement` Your signed agreement
 
-> This is our agreement with you. Read all of it, then accept it below. Your acceptance is your signature.
+> Our agreement with you, kept here to read any time. If you haven't accepted it yet, read all of it and accept it below. Your acceptance is your signature.
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -233,25 +232,25 @@ Chase Ben as well as Rich. Nothing starts before payment 1.
 
 </details>
 
-## 2. What we need from you · days 1–10
+## 2. What we need from you · days 3–10
 
 _The content and details only you can give us. Each one has a due day. If one is late, the timeline pauses until it arrives._
 
-### `atn-starmap` Send the StarMap questions and report details
+### `atn-starmap` Confirm your StarMap questions and report
 
-> Martyn: send us the questions and the details for the StarMap report. Paste them in the box, or upload a file.
+> Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.
 
 Portal: upload · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t03` Review the StarMap artifact before it goes to the client | Jesse Allan | Days 3-7 | normal |  |
+| `atn-t03` Add Martyn's StarMap link to the step; build the page once he confirms Final | Jesse Allan | Days 3-7 | normal |  |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t03` Review the StarMap artifact before it goes to the client**
+**`atn-t03` Add Martyn's StarMap link to the step; build the page once he confirms Final**
 
-Jesse reviews first. The page is confirmed once the questions are seen.
+The artifact link goes in guideUrl. Build only after his Final.
 
 </details>
 
@@ -351,7 +350,7 @@ _We build your site. You see everything on a review link as it is built: two rou
 
 > Open the review link and look at every page, on your phone as well as your computer. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve it as it is.
 
-Portal: note (required)
+Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -394,7 +393,7 @@ Jesse ticks it in admin.
 
 > Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.
 
-Portal: note (required)
+Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -404,7 +403,7 @@ Portal: note (required)
 
 > Both rounds are done. Type your full name to sign off the site. From here, changes to it are change requests.
 
-Portal: note (required)
+Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -426,7 +425,7 @@ _Your landing pages, the three video ads, two statics and the LinkedIn banner. T
 
 > One landing page per ad, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
 
-Portal: note (required)
+Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -445,7 +444,7 @@ One per ad. Half the traffic to the homepage. UTM on every link.
 
 > The three video ads (Foundations, Tribe, Mentor7), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
 
-Portal: note (required)
+Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -466,7 +465,7 @@ Foundations, Tribe, Mentor7.
 
 > Your round 1 changes to the landing pages, ads, statics and banner are in. This is the last round. Send one list with everything you, Martyn and Ben would change. That counts as one round.
 
-Portal: note (required)
+Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -476,7 +475,7 @@ Portal: note (required)
 
 > Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.
 
-Portal: note (required)
+Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -490,7 +489,7 @@ _One last look at everything, the final instalment, then we hand over your finis
 
 > Everything together, one last time, on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.
 
-Portal: note (required)
+Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
