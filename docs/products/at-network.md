@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.16` |
+| Version | `2026-10-25.17` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 30 (2 client only, 0 hidden in the portal) |
@@ -108,7 +108,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 - The list is the list. If it's in Phase 1, it's above. If it isn't, it's a change request: written here, quoted, approved before we start.
 - One consolidated list per round, from Rich, Martyn and Ben together. Two rounds on each piece. Round 2 is the last.
 - Feedback, files and approvals go through this portal. WhatsApp is for logistics. We reply within one business day.
-- Nothing starts before the first instalment. A late item from you pauses the timeline.
+- Nothing starts before the first instalment. We build with the content we have by each due date; only late go-live access holds the launch.
 - One person signs off. We build once that person has approved in writing.
 
 ### Still to confirm
@@ -250,7 +250,7 @@ Chase Ben as well as Rich. Nothing starts before payment 1.
 
 ## 2. What we need from you · days 3–10
 
-_The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. If one is late, the timeline pauses until it arrives._
+_The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. We build with what we have by each due date and mark anything still to come, so nothing here holds up your launch._
 
 ### `atn-starmap` Confirm your StarMap questions and report
 
@@ -562,7 +562,7 @@ Jesse ticks it in admin.
 
 ### `atn-domain-access` Give domain and hosting access for go-live
 
-> So your finished site can go live on your domain. Due at go-live. Never send us a password in the portal: tell us who to invite or how you'd like to share access.
+> So your finished site can go live on your domain. Due at go-live: this is the one item that holds the launch date if it's late. Never send us a password in the portal: tell us who to invite or how you'd like to share access.
 
 Portal: note (required) · invite email · "Important" box
 
@@ -580,7 +580,7 @@ Hosting of the live domain is OPEN.
 
 ### `atn-handover` Confirm your handover
 
-> You've received the finished site files, assets and access. From here, hosting and changes are yours. Tick this once you've checked you have everything.
+> You've received the finished site files, assets and access, with a page template and a short guide for adding new pages in the same look. From here, hosting and changes are yours. Tick this once you've checked you have everything.
 
 Portal: note
 
@@ -592,6 +592,6 @@ Portal: note
 
 **`atn-t44` Hand over the finished site files, assets and access**
 
-Deployable on their hosting, editable by any developer. Jesse keeps build scripts, templates, design system source, prompts, workflows and the AI pipeline.
+Deployable on their hosting, editable by any developer. Include the page template and the short guide for adding pages (agreement B7). Jesse keeps build scripts, templates, design system source, prompts, workflows and the AI pipeline.
 
 </details>

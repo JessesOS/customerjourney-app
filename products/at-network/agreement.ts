@@ -2,8 +2,9 @@
 // (Jesse, 2026-10-21; spec "Acceptance"). Acceptances keep the exact text they
 // accepted, so CHANGE THE VERSION WITH ANY CHANGE TO THE WORDING.
 //
-// Version 1, 25 October 2026: the text of https://agreements.allconvos.ai/at-network
-// (Jesse, 2026-10-25), word for word, generated from the page by the build
+// Version 1, 25 October 2026, as updated on the page the same day (late content
+// no longer pauses the timeline; handover template and guide). The text of
+// https://agreements.allconvos.ai/at-network (Jesse, 2026-10-25), word for word, generated from the page by the build
 // session. The page's own acceptance form is not part of the text. B14 describes
 // signing on that page; a client who signs there is recorded in admin
 // ("Record a signed acceptance") and this step arrives done.
@@ -12,7 +13,8 @@ import type { AgreementContent } from "../../lib/journeyTypes";
 
 export const atNetworkAgreement: AgreementContent = {
   step: "atn-agreement",
-  version: "v1-2026-10-25",
+  // Changed from "v1-2026-10-25" when the page text changed (no acceptances existed yet).
+  version: "v1.1-2026-10-25",
   title: "Agreement · AT Network Phase 1 · Version 1 · 25 October 2026",
   // The client's legal entity (Jesse, 2026-10-25). Fixed, so the signer can't mistype it.
   entity: "AT Network Pty Ltd (ABN 69 684 621 887)",
@@ -73,7 +75,7 @@ export const atNetworkAgreement: AgreementContent = {
     {
       "heading": "A4 Items I need from you",
       "paragraphs": [
-        "The timeline pauses while any of these is late.",
+        "The timeline pauses only while go-live access (domain and hosting) is late. Everything else below is built with what is available by its due date: see “Content that isn’t ready” after this table.",
         "StarMap assessment. From: Martyn. Due: Received 21 October.",
         "Product package breakdown (website copy for Levels 0 to 3). From: Ben. Due: Received 24 October.",
         "Prices and free-month terms for each level (needed for the offer pages and landing pages A and B). From: Rich. Due: 3 business days after payment 1.",
@@ -85,7 +87,8 @@ export const atNetworkAgreement: AgreementContent = {
         "First draft of each of the four sales-video scripts. From: Your team. Due: 7 days after payment 1.",
         "Domain and hosting access, for go-live. From: Rich. Due: At go-live.",
         "Already received: the final eBook, Martyn’s Foundations course document, and Ben’s copy for the four subscription levels.",
-        "Sales-video scripts: four sales videos, one for each offer page (Levels 0 to 3; not the Benevolent Executive page, and not landing pages A, B and C). Your team writes the first draft of each script from your product package breakdown. I give one round of direction and changes on each. Filming and editing the videos are yours."
+        "Sales-video scripts: four sales videos, one for each offer page (Levels 0 to 3; not the Benevolent Executive page, and not landing pages A, B and C). Your team writes the first draft of each script from your product package breakdown. I give one round of direction and changes on each. Filming and editing the videos are yours.",
+        "Content that isn’t ready. Some content may not exist yet, such as course outlines and details, Executive Program copy, or new courses still being written. That does not slow the project or move any payment. I build every page in A2 with the content available by the due dates above, and mark clearly where something is still to come. Rounds of changes (B2) and acceptance (B3) apply to the work as built with that content, and a page that is built and waiting only on your content counts as ready for review for payments 2 and 3. Pages and content that arrive later can be added by you after handover, in the same look, using the page template and guide I hand over (B7), or by me as a change request (B4)."
       ]
     },
     {
@@ -94,7 +97,7 @@ export const atNetworkAgreement: AgreementContent = {
         "Payment 1, on acceptance. Work starts when it is received.",
         "Payment 2, when the site and landing pages are ready for your review on the review link.",
         "Payment 3, when the final work is ready for your review. Handover (B7) happens on this payment.",
-        "Launch is about five weeks from the day payment 1 is received, if the items in A4 arrive on time."
+        "Launch is about five weeks from the day payment 1 is received, if go-live access (A4) is ready on time. Content that is not ready does not move the date."
       ]
     },
     {
@@ -135,13 +138,13 @@ export const atNetworkAgreement: AgreementContent = {
     {
       "heading": "B6 Pause and ending",
       "paragraphs": [
-        "If a payment is late or the items in A4 stop for 30 days, the work pauses, and restarting may need a new start date. Either of us may end this agreement in writing. If it ends, payments for work already delivered remain payable, payments made are not refunded, and you receive the work completed and paid for to date."
+        "If a payment is late, or approvals and the go-live items in A4 stop for 30 days, the work pauses, and restarting may need a new start date. Either of us may end this agreement in writing. If it ends, payments for work already delivered remain payable, payments made are not refunded, and you receive the work completed and paid for to date."
       ]
     },
     {
       "heading": "B7 Handover, hosting and code",
       "paragraphs": [
-        "During the build I host the review site. You have no server or code access during the build. On payment 3, I hand over the finished site files and assets: clean static HTML, CSS and JavaScript (no server-side code) that can be hosted on GoDaddy or elsewhere and edited by any developer or AI tool. I help with go-live on your domain, on hosting you choose. After handover, hosting, updates and changes are yours, or can be quoted."
+        "During the build I host the review site. You have no server or code access during the build. On payment 3, I hand over the finished site files and assets: clean static HTML, CSS and JavaScript (no server-side code) that can be hosted on GoDaddy or elsewhere and edited by any developer or AI tool. I help with go-live on your domain, on hosting you choose. The handover includes a page template and a short guide, so you can add new pages in the same look. After handover, hosting, updates and changes are yours, or can be quoted."
       ]
     },
     {

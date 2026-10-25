@@ -32,7 +32,7 @@ export const atNetworkStages: Partial<Record<StageId, StagePatch>> = {
     name: "What we need from you",
     dayStart: 3,
     dayEnd: 10,
-    blurb: "The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. If one is late, the timeline pauses until it arrives.",
+    blurb: "The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. We build with what we have by each due date and mark anything still to come, so nothing here holds up your launch.",
     statusNotes: [],
   },
   testing: {
@@ -446,7 +446,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-domain-access",
       title: "Give domain and hosting access for go-live",
-      detail: "So your finished site can go live on your domain. Due at go-live. Never send us a password in the portal: tell us who to invite or how you'd like to share access.",
+      detail: "So your finished site can go live on your domain. Due at go-live: this is the one item that holds the launch date if it's late. Never send us a password in the portal: tell us who to invite or how you'd like to share access.",
       important: "Never send a password here. An invite is all we need.",
       inviteEmail: "jesse@allconvos.ai",
       notePrompt: "Who manages your domain and hosting, and where is it (for example GoDaddy)?",
@@ -460,7 +460,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-handover",
       title: "Confirm your handover",
-      detail: "You've received the finished site files, assets and access. From here, hosting and changes are yours. Tick this once you've checked you have everything.",
+      detail: "You've received the finished site files, assets and access, with a page template and a short guide for adding new pages in the same look. From here, hosting and changes are yours. Tick this once you've checked you have everything.",
       notePrompt: "Anything missing?",
       doneLabel: "I have everything",
     },

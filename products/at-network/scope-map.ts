@@ -137,7 +137,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
     "The list is the list. If it's in Phase 1, it's above. If it isn't, it's a change request: written here, quoted, approved before we start.",
     "One consolidated list per round, from Rich, Martyn and Ben together. Two rounds on each piece. Round 2 is the last.",
     "Feedback, files and approvals go through this portal. WhatsApp is for logistics. We reply within one business day.",
-    "Nothing starts before the first instalment. A late item from you pauses the timeline.",
+    "Nothing starts before the first instalment. We build with the content we have by each due date; only late go-live access holds the launch.",
     "One person signs off. We build once that person has approved in writing.",
   ],
   toConfirm: [

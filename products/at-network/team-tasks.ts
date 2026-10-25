@@ -56,5 +56,5 @@ export const atNetworkTeamTasks: TeamTask[] = [
   t("atn-t41", "Open the final review link and send it; the 5-business-day clock starts; payment 3 is due", "post-launch", "Review", "atn-review-final", "Day 38", "", ["atn-t40"]),
   t("atn-t42", "Confirm the final payment in admin and tick the step", "post-launch", "Admin", "atn-pay-final", "Days 38-42", "Jesse ticks it in admin.", ["atn-t41"]),
   t("atn-t43", "Go live on the client's domain", "post-launch", "Handover", "atn-domain-access", "Days 41-42", "Hosting of the live domain is OPEN.", ["atn-t42"]),
-  t("atn-t44", "Hand over the finished site files, assets and access", "post-launch", "Handover", "atn-handover", "Day 42", "Deployable on their hosting, editable by any developer. Jesse keeps build scripts, templates, design system source, prompts, workflows and the AI pipeline.", ["atn-t42"]),
+  t("atn-t44", "Hand over the finished site files, assets and access", "post-launch", "Handover", "atn-handover", "Day 42", "Deployable on their hosting, editable by any developer. Include the page template and the short guide for adding pages (agreement B7). Jesse keeps build scripts, templates, design system source, prompts, workflows and the AI pipeline.", ["atn-t42"]),
 ];

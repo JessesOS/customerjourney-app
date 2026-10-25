@@ -16,8 +16,8 @@
     "sha256": "dc3d10c4a5b29762a5a086937db10da183085a05b99651757f6eda0cced63b89"
   },
   "at-network": {
-    "version": "2026-10-25.16",
-    "sha256": "5e3230849fa8b237ee6c851f06f6e1faf0e09e74671d182828426562b4b78641"
+    "version": "2026-10-25.17",
+    "sha256": "0a70e6d622ce8dbf75378460981ec1c1a0c0c2904d3dbcb456a0b1d0ab1b193f"
   },
   "bss-custom": {
     "version": "2026-10-18.17",
