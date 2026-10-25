@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.7` |
+| Version | `2026-10-25.8` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 26 (0 client only, 0 hidden in the portal) |
@@ -31,7 +31,7 @@ No base: every step and task below is this product's own.
 
 **AT Network** (`at-network`)
 
-- named **AT Network** · look fixed to `groveaurora` · no $200 "move fast" popup
+- named **AT Network** · tagline "Your website and funnel, built in the open." · look fixed to `groveaurora` · no $200 "move fast" popup
 
 ## Portal settings
 

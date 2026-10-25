@@ -18,7 +18,7 @@ import { atNetworkTeamTasks } from "./team-tasks";
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-25.7",
+  version: "2026-10-25.8",
   status: "draft",
   clientType: "at-network",
   label: "AT Network",
@@ -31,7 +31,9 @@ export const atNetwork = defineCustomProduct({
   steps: { add: atNetworkSteps },
   teamTasks: { add: atNetworkTeamTasks.map((task) => ({ task })) },
   portal: {
-    brandName: "AT Network", // PLACEHOLDER: brand name and tagline are OPEN
+    brandName: "AT Network",
+    // Draft tagline (Claude, Jesse's OK to choose, 2026-10-25). Shown under the name on the welcome screen.
+    tagline: "Your website and funnel, built in the open.",
     lockedLook: "groveaurora", // an existing look; a look of its own would need code
     // "Ask Jesse" help panel: with no reviewed pack it only takes requests, which
     // become tasks on the board (Jesse, 2026-10-21).
