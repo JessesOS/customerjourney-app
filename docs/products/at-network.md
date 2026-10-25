@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.5` |
+| Version | `2026-10-25.6` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 26 (0 client only, 0 hidden in the portal) |
@@ -240,7 +240,7 @@ _The content and details only you can give us. Each one has a due day. If one is
 
 > Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.
 
-Portal: upload · note
+Portal: upload · note · guide link
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|

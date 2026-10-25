@@ -131,9 +131,10 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "build",
     step: {
       // Martyn already sent the StarMap (a Claude artifact, 24 Oct). This is a
-      // confirmation, not a request (Jesse, 2026-10-25). OPEN: the artifact link
-      // goes in guideUrl once Jesse sends it.
+      // confirmation, not a request (Jesse, 2026-10-25). The link is Martyn's
+      // Claude artifact (from Jesse, 2026-10-25).
       id: "atn-starmap",
+      guideUrl: "https://claude.ai/public/artifacts/0e5b4902-2540-4ff2-b0ec-1e456fc85bc6",
       title: "Confirm your StarMap questions and report",
       detail: "Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.",
       guideLabel: "Open the StarMap you sent",
