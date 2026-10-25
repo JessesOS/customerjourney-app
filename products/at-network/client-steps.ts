@@ -1,66 +1,68 @@
-// AT Network: the client's side. 15 steps, in the order of the handover
-// (products/at-network/spec.md, 2026-10-21). Brand-new product: nothing here
-// is copied from Fin's bss-custom beyond the build pattern.
+// AT Network: the client's side. Restructured 2026-10-25 (Jesse's OK) around
+// the kickoff: sign, pay, read the scope and map, book the call, approve the
+// written summary, then build. Five stages: Sign and start, What we need from
+// you, Website build, Funnel and ads, Final review and handover.
 //
-// EVERY WORD HERE IS A DRAFT (Claude, 2026-10-21): all steps are in draftCopy.
+// EVERY WORD HERE IS A DRAFT (Claude): all steps are in draftCopy.
 // OPEN in the spec, so PLACEHOLDERS here: total days, each stage's day window,
-// every due date, the brand tagline. No prices anywhere (they live in the contract).
-// Steps open one at a time, in order. Payments are ticked by Jesse in admin.
+// every due date, the brand tagline, the kickoff booking link. No prices.
 // Step 1 is the signed acceptance of the agreement (./agreement.ts). Payments
 // are Stripe invoices; the portal shows the step and Jesse marks it paid.
+// Reviews follow the agreement's rule: one consolidated list per round, two
+// rounds per piece. Each review step says which round it is.
 
 import type { StagePatch } from "../custom";
 import type { ClientStep, StageId } from "../types";
 
 const PAY_NOTE = "Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.";
-const ONE_LIST = "Send one list with everything you'd change, from both of you. That counts as one round.";
+const ONE_LIST = "Send one list with everything you, Martyn and Ben would change. That counts as one round.";
+const FILES = { choose: "Click to choose your files", chooseMore: "+ Add more files", stayOpen: true } as const;
 
 export const atNetworkStages: Partial<Record<StageId, StagePatch>> = {
   onboarding: {
-    name: "Get started",
+    name: "Sign and start",
     dayStart: 1,
     dayEnd: 7,
-    blurb: "Agree how we work together, pay the first instalment and send us what we need to begin.",
+    blurb: "Accept the agreement, pay the first instalment, read your scope and map, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to.",
     statusNotes: [],
   },
   build: {
-    name: "Build",
-    dayStart: 8,
-    dayEnd: 28,
-    blurb: "We build your site and landing pages. You see everything on a review link as it is built.",
+    name: "What we need from you",
+    dayStart: 1,
+    dayEnd: 10,
+    blurb: "The content and details only you can give us. Each one has a due day. If one is late, the timeline pauses until it arrives.",
     statusNotes: [],
   },
   testing: {
-    name: "Ads and review",
-    dayStart: 29,
-    dayEnd: 35,
-    blurb: "Your video ads, statics and LinkedIn banner are ready for your review.",
+    name: "Website build",
+    dayStart: 8,
+    dayEnd: 26,
+    blurb: "We build your site. You see everything on a review link as it is built: two rounds of changes, then your sign-off.",
     statusNotes: [],
   },
   "go-live": {
-    name: "Final review",
-    dayStart: 36,
-    dayEnd: 40,
-    blurb: "You review the final work and pay the final instalment.",
+    name: "Funnel and ads",
+    dayStart: 20,
+    dayEnd: 33,
+    blurb: "Your landing pages, the three video ads, two statics and the LinkedIn banner. Two rounds, then sign-off.",
     statusNotes: [],
   },
   "post-launch": {
-    name: "Handover",
-    dayStart: 41,
+    name: "Final review and handover",
+    dayStart: 34,
     dayEnd: 42,
-    blurb: "We hand over your finished site files and help you go live on your domain.",
+    blurb: "One last look at everything, the final instalment, then we hand over your finished site files and help you go live on your domain.",
     statusNotes: [],
   },
 };
 
 export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
+  // ── Sign and start ──
   {
     stage: "onboarding",
     step: {
       // The legal acceptance (Jesse, 2026-10-21: the portal is the signature).
-      // The agreement and its form come from portal.agreement (./agreement.ts):
-      // tick, entity, full name, email; stored with the time, version, exact
-      // text and IP address, with a printable copy. Replaces atn-how-we-work.
+      // The agreement and its form come from portal.agreement (./agreement.ts).
       id: "atn-agreement",
       title: "Read the agreement and accept it",
       detail: "This is our agreement with you. Read all of it, then accept it below. Your acceptance is your signature.",
@@ -78,34 +80,68 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
+      // The Scope and Map (./scope-map.ts): the two tracks, the site map, what's
+      // in, what's out, and the Phase 2 list. Stays readable after it's ticked.
+      id: "atn-scope-map",
+      title: "Read your scope and map",
+      detail: "Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.",
+      doneLabel: "I've read it",
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
+      // OPEN: the booking link. Add `bookingUrl` once Jesse gives it.
+      id: "atn-book-kickoff",
+      title: "Book the kickoff call",
+      detail: "One call, 45 minutes, once the first instalment has landed. We look inside your platform together, lock the homepage brief, and confirm who signs things off.",
+      steps: [
+        "Tell us two or three times that suit you below, or use the booking link if you have one.",
+        "Have your platform login handy so we can look inside it together.",
+      ],
+      notePrompt: "Times that suit you",
+      notePlaceholder: "Two or three options, with your time zone.",
+      noteRequired: true,
+      doneLabel: "I've sent my times",
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
+      // After the call: Jesse pastes the "locked on" summary here (editable
+      // content), the approver types their name, and that's the brief.
+      id: "atn-kickoff-summary",
+      title: "Approve the kickoff summary",
+      detail: "After the call we write up what we decided, in plain words, below. Read it. If it's right, type your full name and approve it. That summary is the brief we build to. Anything not in it is a change request.",
+      hasEditableContent: true,
+      notePrompt: "Type your full name to approve, or tell us what's wrong",
+      notePlaceholder: "Your full name",
+      noteRequired: true,
+      doneLabel: "Approved",
+    },
+  },
+
+  // ── What we need from you ──
+  {
+    stage: "build",
+    step: {
       id: "atn-starmap",
       title: "Send the StarMap questions and report details",
       detail: "Martyn: send us the questions and the details for the StarMap report. Paste them in the box, or upload a file.",
       hasUpload: true,
-      uploadOptions: {
-        accept: ".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.zip",
-        title: "Upload your StarMap files",
-        hint: "Documents or screenshots. You can also paste everything in the box below.",
-        choose: "Click to choose your files",
-        chooseMore: "+ Add more files",
-        stayOpen: true,
-      },
+      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.zip", title: "Upload your StarMap files", hint: "Documents or screenshots. You can also paste everything in the box below.", ...FILES },
       notePrompt: "The StarMap questions and report details",
       notePlaceholder: "Paste the questions and the details of the report here.",
       doneLabel: "I've sent them",
     },
   },
   {
-    stage: "onboarding",
+    stage: "build",
     step: {
       id: "atn-package-breakdown",
       title: "Send the product package breakdown",
       detail: "Rich: share your product package breakdown as a Google Doc. Set sharing so anyone with the link can view, then paste the link.",
-      steps: [
-        "Open your Google Doc and press Share.",
-        "Under General access, choose \"Anyone with the link\".",
-        "Copy the link and paste it below.",
-      ],
+      steps: ["Open your Google Doc and press Share.", "Under General access, choose \"Anyone with the link\".", "Copy the link and paste it below."],
       notePrompt: "Link to the package breakdown",
       notePlaceholder: "https://docs.google.com/...",
       noteRequired: true,
@@ -113,29 +149,34 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     },
   },
   {
-    stage: "onboarding",
+    stage: "build",
+    step: {
+      id: "atn-level-docs",
+      title: "Send the Google Doc for each membership level",
+      detail: "Ben: one Google Doc per level (Initiations, Tribe, Academy, Mentor7) and one for the Benevolent Executive. These become the five offer pages. Set sharing so anyone with the link can view, then paste the links.",
+      notePrompt: "Links, one per line",
+      notePlaceholder: "Initiations: https://docs.google.com/...\nTribe: ...",
+      noteRequired: true,
+      doneLabel: "I've sent the links",
+    },
+  },
+  {
+    stage: "build",
     step: {
       id: "atn-photos-rich",
       title: "Send photos of Rich",
       detail: "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us.",
       hasUpload: true,
-      uploadOptions: {
-        accept: ".png,.jpg,.jpeg,.webp,.heic,.zip",
-        title: "Upload photos of Rich",
-        hint: "Add as many as you like, one at a time or several at once. A zip is fine.",
-        choose: "Click to choose your photos",
-        chooseMore: "+ Add more photos",
-        stayOpen: true,
-      },
+      uploadOptions: { accept: ".png,.jpg,.jpeg,.webp,.heic,.zip", title: "Upload photos of Rich", hint: "Add as many as you like, one at a time or several at once. A zip is fine.", ...FILES },
       doneLabel: "Next",
     },
   },
   {
-    stage: "onboarding",
+    stage: "build",
     step: {
       id: "atn-academy",
       title: "Send the Academy course details",
-      detail: "Rich: tell us what the Academy course includes, so we can describe it correctly on your site.",
+      detail: "Rich: what the Academy course includes, so we describe it correctly on your site. Your Foundations outline goes here too.",
       notePrompt: "Academy course details",
       notePlaceholder: "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
       noteRequired: true,
@@ -143,7 +184,20 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     },
   },
   {
-    stage: "onboarding",
+    stage: "build",
+    step: {
+      id: "atn-workbook",
+      title: "Send the interactive workbook",
+      detail: "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list.",
+      hasUpload: true,
+      uploadOptions: { accept: ".pdf,.doc,.docx,.zip", title: "Upload the workbook", hint: "A PDF or document, or paste a link below.", ...FILES },
+      notePrompt: "Or paste a link",
+      notePlaceholder: "https://...",
+      doneLabel: "I've sent it",
+    },
+  },
+  {
+    stage: "build",
     step: {
       id: "atn-ghl-contact",
       title: "Name your GHL contact person",
@@ -159,16 +213,9 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-scripts",
       title: "Write first-draft scripts for your sales videos",
-      detail: "Your team writes a first draft for the sales video on each landing page. Rough is fine: we shape it with you. Paste them in the box, or upload a document.",
+      detail: "Your team writes a first draft for the sales video on each landing page. Rough is fine: you get one round of edits from us. Paste them in the box, or upload a document.",
       hasUpload: true,
-      uploadOptions: {
-        accept: ".pdf,.doc,.docx,.txt,.rtf,.zip",
-        title: "Upload your script drafts",
-        hint: "One document per landing page, or one for all of them.",
-        choose: "Click to choose your files",
-        chooseMore: "+ Add more files",
-        stayOpen: true,
-      },
+      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.zip", title: "Upload your script drafts", hint: "One document per landing page, or one for all of them.", ...FILES },
       notePrompt: "Or paste your drafts here",
       notePlaceholder: "Landing page A, B and C: one script each.",
       doneLabel: "I've sent the drafts",
@@ -179,24 +226,25 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-videographer",
       title: "Confirm your videographer's availability",
-      detail: "Tell us the dates your videographer can film, so we can plan the shoot.",
+      detail: "Tell us the dates your videographer can film, so we can plan the shoot. Filming is your team's.",
       notePrompt: "Dates and times that work",
       notePlaceholder: "Dates, times, location, and the videographer's name.",
       noteRequired: true,
       doneLabel: "I've sent the dates",
     },
   },
+
+  // ── Website build ──
   {
-    stage: "build",
+    stage: "testing",
     step: {
       id: "atn-review-site",
-      title: "Review your site and landing pages",
-      detail: "Rich and Martyn: open the review link and look at every page. " + ONE_LIST + " Or approve it as it is.",
-      awaitingTeam: false,
-      notePrompt: "Your consolidated feedback list, or \"Approved\"",
-      notePlaceholder: "Everything you'd change, or type Approved.",
+      title: "Review your site: round 1 of 2",
+      detail: "Open the review link and look at every page, on your phone as well as your computer. " + ONE_LIST + " Or approve it as it is.",
+      notePrompt: "Your consolidated list for round 1, or \"Approved\"",
+      notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
       noteRequired: true,
-      doneLabel: "Send my feedback",
+      doneLabel: "Send round 1",
     },
   },
   {
@@ -211,21 +259,85 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "testing",
     step: {
-      id: "atn-review-ads",
-      title: "Review your ads and LinkedIn banner",
-      detail: "Rich and Martyn: review the three video ads, the two statics and the LinkedIn banner on the review link. " + ONE_LIST + " Or approve them as they are.",
-      notePrompt: "Your consolidated feedback list, or \"Approved\"",
-      notePlaceholder: "Everything you'd change, or type Approved.",
+      id: "atn-review-site-2",
+      title: "Review your site: round 2 of 2",
+      detail: "Your round 1 changes are in. This is the last round on the site. " + ONE_LIST + " Anything after this round is a change request.",
+      notePrompt: "Your consolidated list for round 2, or \"Approved\"",
+      notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
       noteRequired: true,
-      doneLabel: "Send my feedback",
+      doneLabel: "Send round 2",
+    },
+  },
+  {
+    stage: "testing",
+    step: {
+      id: "atn-signoff-site",
+      title: "Sign off your site",
+      detail: "Both rounds are done. Type your full name to sign off the site. From here, changes to it are change requests.",
+      notePrompt: "Type your full name to sign off",
+      notePlaceholder: "Your full name",
+      noteRequired: true,
+      doneLabel: "Sign off",
+    },
+  },
+
+  // ── Funnel and ads ──
+  {
+    stage: "go-live",
+    step: {
+      id: "atn-review-landing",
+      title: "Review landing pages A, B and C: round 1 of 2",
+      detail: "One landing page per ad, on the review link. " + ONE_LIST + " Or approve them as they are.",
+      notePrompt: "Your consolidated list for round 1, or \"Approved\"",
+      notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
+      noteRequired: true,
+      doneLabel: "Send round 1",
     },
   },
   {
     stage: "go-live",
     step: {
+      id: "atn-review-ads",
+      title: "Review your ads and LinkedIn banner: round 1 of 2",
+      detail: "The three video ads (Foundations, Tribe, Mentor7), the two statics and the LinkedIn banner, on the review link. " + ONE_LIST + " Or approve them as they are.",
+      notePrompt: "Your consolidated list for round 1, or \"Approved\"",
+      notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
+      noteRequired: true,
+      doneLabel: "Send round 1",
+    },
+  },
+  {
+    stage: "go-live",
+    step: {
+      id: "atn-review-funnel-2",
+      title: "Review the funnel: round 2 of 2",
+      detail: "Your round 1 changes to the landing pages, ads, statics and banner are in. This is the last round. " + ONE_LIST,
+      notePrompt: "Your consolidated list for round 2, or \"Approved\"",
+      notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
+      noteRequired: true,
+      doneLabel: "Send round 2",
+    },
+  },
+  {
+    stage: "go-live",
+    step: {
+      id: "atn-signoff-funnel",
+      title: "Sign off the funnel",
+      detail: "Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.",
+      notePrompt: "Type your full name to sign off",
+      notePlaceholder: "Your full name",
+      noteRequired: true,
+      doneLabel: "Sign off",
+    },
+  },
+
+  // ── Final review and handover ──
+  {
+    stage: "post-launch",
+    step: {
       id: "atn-review-final",
       title: "Review the final work",
-      detail: "Rich and Martyn: review everything one last time on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.",
+      detail: "Everything together, one last time, on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.",
       notePrompt: "Approved, or your change list",
       notePlaceholder: "Type Approved, or list what you'd change.",
       noteRequired: true,
@@ -233,7 +345,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     },
   },
   {
-    stage: "go-live",
+    stage: "post-launch",
     step: {
       id: "atn-pay-final",
       title: "Pay the final instalment",
@@ -253,6 +365,16 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       notePlaceholder: "Name, email, provider",
       noteRequired: true,
       doneLabel: "Access confirmed",
+    },
+  },
+  {
+    stage: "post-launch",
+    step: {
+      id: "atn-handover",
+      title: "Confirm your handover",
+      detail: "You've received the finished site files, assets and access. From here, hosting and changes are yours. Tick this once you've checked you have everything.",
+      notePrompt: "Anything missing?",
+      doneLabel: "I have everything",
     },
   },
 ];

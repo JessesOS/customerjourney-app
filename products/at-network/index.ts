@@ -3,20 +3,22 @@
 //
 // Written from the AT Network session's handover, products/at-network/spec.md
 // (2026-10-21), on a blank base. Two sides, defined once:
-//   - the client's side: 15 steps (./client-steps.ts);
+//   - the client's side: 25 steps in five stages (./client-steps.ts), restructured
+//     2026-10-25 around the kickoff call, with the Scope and Map (./scope-map.ts);
 //   - the team's side: the deliverables behind them (./team-tasks.ts).
 // OPEN in the spec, so placeholders for now: total days and stage windows, every
 // due date, the portal tagline, the welcome video (Jesse will send the mp4).
 
 import { defineCustomProduct } from "../custom";
 import { atNetworkAgreement } from "./agreement";
+import { atNetworkScopeMap } from "./scope-map";
 import { atNetworkStages, atNetworkSteps } from "./client-steps";
 import { atNetworkTeamTasks } from "./team-tasks";
 
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-21.3",
+  version: "2026-10-25.1",
   status: "draft",
   clientType: "at-network",
   label: "AT Network",
@@ -37,6 +39,8 @@ export const atNetwork = defineCustomProduct({
     features: { assistant: true, comms: true },
     // Step 1: the agreement, accepted as a signed record (text OPEN: placeholder).
     agreement: atNetworkAgreement,
+    // The Scope and Map on "Read your scope and map" (draft, 2026-10-25): two tracks, site map, Phase 2 list.
+    journeyMap: { step: "atn-scope-map", content: atNetworkScopeMap },
   },
   draftCopy: atNetworkSteps.map((s) => s.step.id),
 });

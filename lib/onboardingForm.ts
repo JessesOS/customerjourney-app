@@ -440,8 +440,28 @@ export function formSizeLabel(formId: string): string | null {
   return `${count} questions · about ${minutes} minutes`;
 }
 
+// AT Network: notes typed on the Scope and Map (products/at-network/scope-map.ts).
+export const atNetworkScopeNotesForm: PortalFormDefinition = {
+  id: "at-network-scope-notes-v1",
+  title: "AT Network: scope and map notes",
+  introTitle: "Your notes on the scope and map",
+  introDescription: "Saved as you type on the scope and map.",
+  sections: [
+    {
+      id: "notes",
+      title: "Notes",
+      fields: [
+        { id: "website", label: "Track 1: the website build", type: "textarea" },
+        { id: "funnel", label: "Track 2: the funnel test", type: "textarea" },
+        { id: "phase2", label: "The Phase 2 list", type: "textarea" },
+        { id: "also_running", label: "Also running", type: "textarea" },
+      ],
+    },
+  ],
+};
+
 export function onboardingFormById(formId: string): PortalFormDefinition | undefined {
-  return [scaleOnboardingForm, respondOnboardingForm, bssCustomIntakeForm, bssJourneyMapNotesForm].find((form) => form.id === formId);
+  return [scaleOnboardingForm, respondOnboardingForm, bssCustomIntakeForm, bssJourneyMapNotesForm, atNetworkScopeNotesForm].find((form) => form.id === formId);
 }
 
 const maxLengths: Partial<Record<PortalFormFieldType, number>> = {

@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-21.3` |
+| Version | `2026-10-25.1` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
-| Client steps | 15 (0 client only, 0 hidden in the portal) |
-| Team tasks | 29 (27 behind a client step, 2 team-only) |
+| Client steps | 26 (0 client only, 0 hidden in the portal) |
+| Team tasks | 38 (37 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
-| Draft wording | `atn-agreement`, `atn-pay-1`, `atn-starmap`, `atn-package-breakdown`, `atn-photos-rich`, `atn-academy`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-ads`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `atn-agreement`, `atn-pay-1`, `atn-scope-map`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-level-docs`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 15 | 29 |
+| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 26 | 38 |
 
 ### Portal tweaks by variant
 
@@ -41,20 +41,97 @@ No base: every step and task below is this product's own.
 | Voice guide | off |
 | Ask-AI | off |
 | Step features | "Ask Jesse" help panel (answers from the client's reviewed pack; requests become board tasks) |
+| Customer journey map | on `atn-scope-map`: 3 journeys, notes saved in form `at-network-scope-notes-v1` (below) |
+
+## Customer journey map (on `atn-scope-map`)
+
+_Our draft, built from the agreement, your voice notes and messages. Anything marked "To confirm" is waiting on an answer from you. We'll walk through it on the kickoff call._
+
+Phase 1 is two tracks that share one page. The website build is your new site. The funnel test sends ads to landing pages, and half of that traffic to the homepage, so the homepage is part of the test too. Everything in Phase 1 is below. Anything else goes on the Phase 2 list.
+
+### 1. Track 1: the website build
+
+The First Light site, built page by page. You see it on a review link as it grows. Where they come from: Ads (half of all ad traffic), LinkedIn and search, The podcast, Referrals and the Tribe.
+
+1. **Home** (us). In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. The impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.
+   - **The Ascension pathway:** The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
+   - **Who it's for:** The three cold ads can sit here too, one per audience.
+2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
+   - **Foundations:** Its own page, linked from the top menu, inside the Academy level. Growth and Legacy are outlined there, not built as pages.
+3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free trial is, how levels work and what happens next.
+4. **Podcast section, with a journal** (us). A home for the podcast, with the intro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
+5. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
+   - _To confirm:_ The StarMap questions and report details ("Send the StarMap questions and report details")
+6. **Under the hood** (us). A simple content editor so you can change words and images, the SEO basics on every page, checked on phones and desktop before launch. At handover you get the full site files.
+
+Ends with: A site you own, deployable on your hosting and editable by any developer, handed over on the final instalment.
+
+### 2. Track 2: the funnel test
+
+Three cold ads, three landing pages, and the homepage in the mix, so the numbers tell us what converts. Where they come from: Meta ads, LinkedIn ads, Retargeting.
+
+1. **Three cold video ads** (us). Up to 15 seconds each, vertical, captions burned in. One per audience.
+   - **Foundations:** The main door.
+   - **Tribe:** The community.
+   - **Mentor7:** The inner circle.
+2. **The split**. Each ad sends half its traffic to its own landing page and half to the homepage. Every link carries a tag, so we see which page converts for which audience.
+   - **Landing pages A, B and C:** One per ad, each with a sales video from your team's script (one round of edits from us).
+   - **The homepage:** The same homepage from Track 1, so it's tested against the landing pages.
+3. **Two statics and the LinkedIn banner** (us). Two still ads and a banner for the company page.
+4. **The retargeting ladder** (us). Written as a plan: who sees what after they've visited, and in what order. Your team sets it up in the ad accounts.
+5. **Running the ads** (you). Your team runs the ad accounts, the checkout, the tracking and the posting. We hand over the assets and the plan.
+
+Ends with: Assets and a plan your team can run, with the tags in place to see what converts from day one.
+
+### 3. The Phase 2 list
+
+Good ideas that aren't in Phase 1. Parked here, not lost. Add yours in the notes. We quote them once the site is live. Where they come from: Your voice notes and messages, The kickoff call, Anything that comes up during the build.
+
+1. **Platform rebrand**. Changing the platform's branding to match the new site.
+2. **Impact video edits**. A shorter edit, or running the 6.5-minute video through a model to blend in the branding.
+3. **Avatar videos and a new sales video**. Longer avatar videos come from your videographer. We place them on the site when you have them.
+4. **Branding the workbook**. We use the workbook as it is in Phase 1.
+5. **Growth and Legacy pages**. Outlined on the Foundations page in Phase 1, built as pages later.
+6. **Posting system for articles, podcast outro, podcast page**. The journal in the podcast section covers Phase 1.
+7. **Plugging the brain into Meta ads, extra ad versions, a formal testing round**. Phase 1 checks every page on phones and desktop; the tags show what converts once ads run.
+8. **The Benevolent Executive film**. We'll talk it through separately. It isn't in this portal's scope.
+
+Ends with: One quote, when you're ready, for the ones you want.
+
+### Also running
+
+- **The podcast intro:** One intro, one round of changes.
+- **Sales video scripts:** Your team drafts one per landing page. We give one round of edits.
+- **Your team owns:** GoHighLevel, checkout, tracking, ad accounts, filming, posting and DNS.
+
+### Rules every message follows
+
+- The list is the list. If it's in Phase 1, it's above. If it isn't, it's a change request: written here, quoted, approved before we start.
+- One consolidated list per round, from Rich, Martyn and Ben together. Two rounds on each piece. Round 2 is the last.
+- Feedback, files and approvals go through this portal. WhatsApp is for logistics. We reply within one business day.
+- Nothing starts before the first instalment. A late item from you pauses the timeline.
+- One person signs off. We build once that person has approved in writing.
+
+### Still to confirm
+
+- Is the trial one free month or three? (The kickoff call, then the kickoff summary)
+- Who signs things off: Rich alone? (The kickoff call, then the kickoff summary)
+- Phase 1 has three cold ads. The Executive audience isn't one of them. OK? (The kickoff call)
+- The homepage is tested against the landing pages. It's one homepage, not two versions. (The kickoff call)
 
 ## Roles
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 29 |
+| Jesse Allan | 38 |
 
 ## Stages
 
 Each stage lists the client's steps in portal order, with the team tasks behind each step, then any team-only work. _Meta only_ / _Google only_ marks work for one ad channel. "After" lists the tasks to finish first.
 
-## 1. Get started · days 1–7
+## 1. Sign and start · days 1–7
 
-_Agree how we work together, pay the first instalment and send us what we need to begin._
+_Accept the agreement, pay the first instalment, read your scope and map, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to._
 
 ### `atn-agreement` Read the agreement and accept it
 
@@ -78,15 +155,87 @@ The board's Agreement section lists each acceptance with its record link. Email 
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t02` Confirm payment 1 in admin and tick the step (nothing starts before this) | Jesse Allan | Days 1-3 | normal | `atn-t01` |
+| `atn-t02` Confirm payment 1 in admin and tick the step | Jesse Allan | Days 1-3 | normal | `atn-t01` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t02` Confirm payment 1 in admin and tick the step (nothing starts before this)**
+**`atn-t02` Confirm payment 1 in admin and tick the step**
 
 Jesse ticks it in admin.
 
 </details>
+
+### `atn-scope-map` Read your scope and map
+
+> Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t09` Edit the Scope and Map before the client reads it | Jesse Allan | Days 1-3 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t09` Edit the Scope and Map before the client reads it**
+
+products/at-network/scope-map.ts is Claude's draft. Check the In, Out and Phase 2 lists against the agreement.
+
+</details>
+
+### `atn-book-kickoff` Book the kickoff call
+
+> One call, 45 minutes, once the first instalment has landed. We look inside your platform together, lock the homepage brief, and confirm who signs things off.
+
+Portal: note (required) · 2 numbered steps
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t10` Book the kickoff call and send the agenda | Jesse Allan | Days 2-5 | normal | `atn-t02` |
+| `atn-t11` Run the kickoff call | Jesse Allan | Days 3-7 | normal | `atn-t10` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t10` Book the kickoff call and send the agenda**
+
+Agenda: look inside the platform, lock the homepage brief, confirm who signs off, the trial length, three ads not four, one homepage.
+
+</details>
+
+### `atn-kickoff-summary` Approve the kickoff summary
+
+> After the call we write up what we decided, in plain words, below. Read it. If it's right, type your full name and approve it. That summary is the brief we build to. Anything not in it is a change request.
+
+Portal: work to review · note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t12` Write the kickoff summary and paste it into the step | Jesse Allan | Days 3-7 | normal | `atn-t11` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t12` Write the kickoff summary and paste it into the step**
+
+One "locked on" message: every decision from the call, the open answers, the approver. Paste into the step's content in admin. The approver types their name to approve: that's the brief.
+
+</details>
+
+### Team-only work in Sign and start
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| **Admin** | | | | |
+| `atn-t01` Send the agreement and the first invoice to Ben | Jesse Allan | Days 1-2 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t01` Send the agreement and the first invoice to Ben**
+
+Chase Ben as well as Rich. Nothing starts before payment 1.
+
+</details>
+
+## 2. What we need from you · days 1–10
+
+_The content and details only you can give us. Each one has a due day. If one is late, the timeline pauses until it arrives._
 
 ### `atn-starmap` Send the StarMap questions and report details
 
@@ -96,13 +245,13 @@ Portal: upload · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t03` Review the StarMap public artifact before it goes to the client | Jesse Allan | Days 3-7 | normal |  |
+| `atn-t03` Review the StarMap artifact before it goes to the client | Jesse Allan | Days 3-7 | normal |  |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t03` Review the StarMap public artifact before it goes to the client**
+**`atn-t03` Review the StarMap artifact before it goes to the client**
 
-Jesse reviews first. Page is confirmed once the questions are seen.
+Jesse reviews first. The page is confirmed once the questions are seen.
 
 </details>
 
@@ -114,7 +263,25 @@ Portal: note (required) · 3 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t04` Read the package breakdown and photos; log gaps | Jesse Allan | Days 3-7 | normal |  |
+| `atn-t04` Read the package breakdown; log gaps | Jesse Allan | Days 3-7 | normal |  |
+
+### `atn-level-docs` Send the Google Doc for each membership level
+
+> Ben: one Google Doc per level (Initiations, Tribe, Academy, Mentor7) and one for the Benevolent Executive. These become the five offer pages. Set sharing so anyone with the link can view, then paste the links.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t13` Read Ben's Google Doc for each level; log gaps | Jesse Allan | Days 3-10 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t13` Read Ben's Google Doc for each level; log gaps**
+
+Five docs: Initiations, Tribe, Academy, Mentor7, Benevolent Executive.
+
+</details>
 
 ### `atn-photos-rich` Send photos of Rich
 
@@ -128,13 +295,23 @@ Portal: upload
 
 ### `atn-academy` Send the Academy course details
 
-> Rich: tell us what the Academy course includes, so we can describe it correctly on your site.
+> Rich: what the Academy course includes, so we describe it correctly on your site. Your Foundations outline goes here too.
 
 Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t07` Read the Academy course details; log gaps | Jesse Allan | Days 3-7 | normal |  |
+| `atn-t07` Read the Academy course details and the Foundations outline; log gaps | Jesse Allan | Days 3-7 | normal |  |
+
+### `atn-workbook` Send the interactive workbook
+
+> Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list.
+
+Portal: upload · note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t14` File the workbook as received (no branding in Phase 1) | Jesse Allan | Days 3-10 | normal |  |
 
 ### `atn-ghl-contact` Name your GHL contact person
 
@@ -146,76 +323,56 @@ Portal: note (required)
 |---|---|---|---|---|
 | `atn-t08` Set up the GHL contact person's access | Jesse Allan | Days 3-7 | normal |  |
 
-### Team-only work in Get started
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| **Admin** | | | | |
-| `atn-t01` Send the Statement of Work and first invoice | Jesse Allan | Days 1-2 | normal |  |
-
-## 2. Build · days 8–28
-
-_We build your site and landing pages. You see everything on a review link as it is built._
-
 ### `atn-scripts` Write first-draft scripts for your sales videos
 
-> Your team writes a first draft for the sales video on each landing page. Rough is fine: we shape it with you. Paste them in the box, or upload a document.
+> Your team writes a first draft for the sales video on each landing page. Rough is fine: you get one round of edits from us. Paste them in the box, or upload a document.
 
 Portal: upload · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t16` Shape the client's script drafts with them | Jesse Allan | Days 10-20 | normal |  |
+| `atn-t16` Give one round of edits on the client's script drafts | Jesse Allan | Days 10-20 | normal |  |
 
 ### `atn-videographer` Confirm your videographer's availability
 
-> Tell us the dates your videographer can film, so we can plan the shoot.
+> Tell us the dates your videographer can film, so we can plan the shoot. Filming is your team's.
 
 Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t17` Plan the shoot with the videographer | Jesse Allan | Days 10-20 | normal |  |
+| `atn-t17` Note the videographer's dates (filming is the client's) | Jesse Allan | Days 10-20 | normal |  |
 
-### `atn-review-site` Review your site and landing pages
+## 3. Website build · days 8–26
 
-> Rich and Martyn: open the review link and look at every page. Send one list with everything you'd change, from both of you. That counts as one round. Or approve it as it is.
+_We build your site. You see everything on a review link as it is built: two rounds of changes, then your sign-off._
+
+### `atn-review-site` Review your site: round 1 of 2
+
+> Open the review link and look at every page, on your phone as well as your computer. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve it as it is.
 
 Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t10` Build the First Light site: homepage, Offerings, The journey, Stories, FAQs | Jesse Allan | Days 8-24 | normal | `atn-t02` |
-| `atn-t11` Build the five offer pages | Jesse Allan | Days 12-24 | normal |  |
-| `atn-t12` Build the StarMap page | Jesse Allan | Days 12-24 | normal | `atn-t03` |
-| `atn-t13` Build the eBook landing page and the free guide PDF | Jesse Allan | Days 12-24 | normal |  |
-| `atn-t14` Build landing pages A, B and C | Jesse Allan | Days 16-26 | normal | `atn-t10` |
-| `atn-t15` Build the simple CMS | Jesse Allan | Days 16-26 | normal |  |
-| `atn-t18` Open the site review link and send it to the client | Jesse Allan | Day 26 | normal | `atn-t10`, `atn-t11`, `atn-t13`, `atn-t14` |
+| `atn-t20` Build the First Light site: homepage, Offerings, The Journey, Stories, FAQs | Jesse Allan | Days 8-24 | normal | `atn-t12` |
+| `atn-t21` Build the five offer pages and the Foundations page | Jesse Allan | Days 12-24 | normal | `atn-t13` |
+| `atn-t22` Build the StarMap page | Jesse Allan | Days 12-24 | normal | `atn-t03` |
+| `atn-t23` Build the eBook landing page, the free guide PDF and the podcast section with its journal | Jesse Allan | Days 12-24 | normal |  |
+| `atn-t24` Set up the content editor and the SEO basics | Jesse Allan | Days 16-26 | normal |  |
+| `atn-t25` Open the site review link and send it; payment 2 is now due | Jesse Allan | Day 26 | normal | `atn-t20`, `atn-t21`, `atn-t23` |
 
-<details><summary>Guidance for the team (4 tasks)</summary>
+<details><summary>Guidance for the team (2 tasks)</summary>
 
-**`atn-t12` Build the StarMap page**
+**`atn-t22` Build the StarMap page**
 
 Confirm once the questions are seen.
 
-**`atn-t14` Build landing pages A, B and C**
+**`atn-t25` Open the site review link and send it; payment 2 is now due**
 
-Sales video scripts come from the client (atn-scripts).
-
-**`atn-t15` Build the simple CMS**
-
-Field list is OPEN.
-
-**`atn-t18` Open the site review link and send it to the client**
-
-Opening the link makes payment 2 due.
+Check every page on phones and desktop first. Opening the link makes payment 2 due.
 
 </details>
-
-## 3. Ads and review · days 29–35
-
-_Your video ads, statics and LinkedIn banner are ready for your review._
 
 ### `atn-pay-2` Pay the second instalment
 
@@ -223,53 +380,122 @@ _Your video ads, statics and LinkedIn banner are ready for your review._
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t24` Confirm payment 2 in admin and tick the step | Jesse Allan | Days 26-30 | normal | `atn-t18` |
+| `atn-t26` Confirm payment 2 in admin and tick the step | Jesse Allan | Days 26-30 | normal | `atn-t25` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t24` Confirm payment 2 in admin and tick the step**
+**`atn-t26` Confirm payment 2 in admin and tick the step**
 
 Jesse ticks it in admin.
 
 </details>
 
-### `atn-review-ads` Review your ads and LinkedIn banner
+### `atn-review-site-2` Review your site: round 2 of 2
 
-> Rich and Martyn: review the three video ads, the two statics and the LinkedIn banner on the review link. Send one list with everything you'd change, from both of you. That counts as one round. Or approve them as they are.
-
-Portal: note (required)
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `atn-t20` Make three cold video ads (up to 15 s, vertical, captions burned in) | Jesse Allan | Days 26-34 | normal |  |
-| `atn-t21` Make two statics and the LinkedIn banner | Jesse Allan | Days 26-34 | normal |  |
-| `atn-t22` Write the retargeting ladder as a plan | Jesse Allan | Days 26-34 | normal |  |
-| `atn-t23` Produce the podcast intro and outro | Jesse Allan | Days 26-34 | normal |  |
-| `atn-t25` Open the ads review link and send it to the client | Jesse Allan | Day 35 | normal | `atn-t20`, `atn-t21` |
-
-## 4. Final review · days 36–40
-
-_You review the final work and pay the final instalment._
-
-### `atn-review-final` Review the final work
-
-> Rich and Martyn: review everything one last time on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.
+> Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.
 
 Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t30` Apply the SEO checklist | Jesse Allan | Days 35-39 | normal |  |
-| `atn-t31` Prepare the final files | Jesse Allan | Days 35-39 | normal |  |
-| `atn-t32` Open the final review link and send it; the 5-business-day clock starts | Jesse Allan | Day 36 | normal | `atn-t30`, `atn-t31` |
+| `atn-t27` Make the round 1 changes to the site and reopen the link | Jesse Allan | Days 27-30 | normal | `atn-t25` |
+
+### `atn-signoff-site` Sign off your site
+
+> Both rounds are done. Type your full name to sign off the site. From here, changes to it are change requests.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t28` Make the round 2 changes and ask for sign-off | Jesse Allan | Days 30-33 | normal | `atn-t27` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t32` Open the final review link and send it; the 5-business-day clock starts**
+**`atn-t28` Make the round 2 changes and ask for sign-off**
 
-Opening the link makes payment 3 due.
+After sign-off, site changes are change requests.
 
 </details>
+
+## 4. Funnel and ads · days 20–33
+
+_Your landing pages, the three video ads, two statics and the LinkedIn banner. Two rounds, then sign-off._
+
+### `atn-review-landing` Review landing pages A, B and C: round 1 of 2
+
+> One landing page per ad, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t30` Build landing pages A, B and C with the tags | Jesse Allan | Days 20-30 | normal | `atn-t16` |
+| `atn-t35` Open the funnel review link and send it | Jesse Allan | Day 30 | normal | `atn-t30`, `atn-t31`, `atn-t32` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t30` Build landing pages A, B and C with the tags**
+
+One per ad. Half the traffic to the homepage. UTM on every link.
+
+</details>
+
+### `atn-review-ads` Review your ads and LinkedIn banner: round 1 of 2
+
+> The three video ads (Foundations, Tribe, Mentor7), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t31` Make three cold video ads (up to 15 s, vertical, captions burned in) | Jesse Allan | Days 20-30 | normal |  |
+| `atn-t32` Make two statics and the LinkedIn banner | Jesse Allan | Days 20-30 | normal |  |
+| `atn-t33` Write the retargeting ladder as a plan | Jesse Allan | Days 24-30 | normal |  |
+| `atn-t34` Produce the podcast intro (one round) | Jesse Allan | Days 24-30 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t31` Make three cold video ads (up to 15 s, vertical, captions burned in)**
+
+Foundations, Tribe, Mentor7.
+
+</details>
+
+### `atn-review-funnel-2` Review the funnel: round 2 of 2
+
+> Your round 1 changes to the landing pages, ads, statics and banner are in. This is the last round. Send one list with everything you, Martyn and Ben would change. That counts as one round.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t36` Make the round 1 changes to the funnel and reopen the link | Jesse Allan | Days 31-33 | normal | `atn-t35` |
+
+### `atn-signoff-funnel` Sign off the funnel
+
+> Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t37` Make the round 2 changes and ask for sign-off | Jesse Allan | Days 33-34 | normal | `atn-t36` |
+
+## 5. Final review and handover · days 34–42
+
+_One last look at everything, the final instalment, then we hand over your finished site files and help you go live on your domain._
+
+### `atn-review-final` Review the final work
+
+> Everything together, one last time, on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t40` Prepare the final files and apply the SEO checklist | Jesse Allan | Days 34-38 | normal |  |
+| `atn-t41` Open the final review link and send it; the 5-business-day clock starts; payment 3 is due | Jesse Allan | Day 38 | normal | `atn-t40` |
 
 ### `atn-pay-final` Pay the final instalment
 
@@ -277,19 +503,15 @@ Opening the link makes payment 3 due.
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t33` Confirm the final payment in admin and tick the step | Jesse Allan | Days 36-40 | normal | `atn-t32` |
+| `atn-t42` Confirm the final payment in admin and tick the step | Jesse Allan | Days 38-42 | normal | `atn-t41` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t33` Confirm the final payment in admin and tick the step**
+**`atn-t42` Confirm the final payment in admin and tick the step**
 
 Jesse ticks it in admin.
 
 </details>
-
-## 5. Handover · days 41–42
-
-_We hand over your finished site files and help you go live on your domain._
 
 ### `atn-domain-access` Give domain and hosting access for go-live
 
@@ -299,27 +521,30 @@ Portal: note (required) · invite email · "Important" box
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t41` Go live on the client's domain | Jesse Allan | Days 41-42 | normal | `atn-t33` |
+| `atn-t43` Go live on the client's domain | Jesse Allan | Days 41-42 | normal | `atn-t42` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t41` Go live on the client's domain**
+**`atn-t43` Go live on the client's domain**
 
 Hosting of the live domain is OPEN.
 
 </details>
 
-### Team-only work in Handover
+### `atn-handover` Confirm your handover
+
+> You've received the finished site files, assets and access. From here, hosting and changes are yours. Tick this once you've checked you have everything.
+
+Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| **Handover** | | | | |
-| `atn-t40` Hand over the finished site files and assets | Jesse Allan | Day 41 | normal | `atn-t33` |
+| `atn-t44` Hand over the finished site files, assets and access | Jesse Allan | Day 42 | normal | `atn-t42` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t40` Hand over the finished site files and assets**
+**`atn-t44` Hand over the finished site files, assets and access**
 
-Deployable on GoDaddy and editable by any developer. Jesse keeps build scripts, templates, design system source, prompts, workflows and the AI pipeline.
+Deployable on their hosting, editable by any developer. Jesse keeps build scripts, templates, design system source, prompts, workflows and the AI pipeline.
 
 </details>
