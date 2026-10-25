@@ -1,5 +1,6 @@
 {
   "acceptedClientTypes": [
+    "at-network",
     "bss",
     "bss-custom",
     "bss-meta",
@@ -58,6 +59,10 @@
     {
       "label": "BSS Meta ads only",
       "value": "bss-meta"
+    },
+    {
+      "label": "AT Network",
+      "value": "at-network"
     },
     {
       "label": "BSS custom",

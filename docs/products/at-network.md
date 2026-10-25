@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.15` |
-| Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
+| Version | `2026-10-25.16` |
+| Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 30 (2 client only, 0 hidden in the portal) |
 | Team tasks | 40 (39 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
-| Draft wording | `atn-agreement`, `atn-bookmark`, `atn-save-portal`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-prices`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-stinger-ref`, `atn-exec-copy`, `atn-starmap-link`, `atn-ghl-contact`, `atn-scripts`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | none: every client-facing word is approved |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 30 | 40 |
+| AT Network | `at-network` | none | yes | 30 | 40 |
 
 ### Portal tweaks by variant
 

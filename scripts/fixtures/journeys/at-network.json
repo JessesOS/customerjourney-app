@@ -1,0 +1,2167 @@
+{
+  "data": {
+    "adminChecklist": [
+      {
+        "id": "onboarding",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "atn-agreement",
+            "title": "Your signed agreement"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-bookmark",
+            "title": "Bookmark your portal"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-save-portal",
+            "title": "Save your portal to your phone"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-scope-map",
+            "title": "Read your scope and map"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-pay-1",
+            "title": "Pay the first instalment"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-book-kickoff",
+            "title": "Book the kickoff call"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-kickoff-summary",
+            "title": "Approve the kickoff summary"
+          }
+        ],
+        "name": "Sign and start"
+      },
+      {
+        "id": "build",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "atn-starmap",
+            "title": "Confirm your StarMap questions and report"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-package-breakdown",
+            "title": "Confirm your product package breakdown"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-prices",
+            "title": "Send the price and free-month terms for each level"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-photos-rich",
+            "title": "Send photos of Rich"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-academy",
+            "title": "Send the Academy course details"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-workbook",
+            "title": "Send the interactive workbook"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-stinger-ref",
+            "title": "Send a reference for your podcast stingers"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-exec-copy",
+            "title": "Send the Benevolent Executive Program page copy"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-starmap-link",
+            "title": "Tell us where the StarMap page links from"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-ghl-contact",
+            "title": "Name your GHL contact person"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-scripts",
+            "title": "Write first-draft scripts for your four sales videos"
+          }
+        ],
+        "name": "What we need from you"
+      },
+      {
+        "id": "testing",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "atn-review-site",
+            "title": "Review your site: round 1 of 2"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-pay-2",
+            "title": "Pay the second instalment"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-review-site-2",
+            "title": "Review your site: round 2 of 2"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-signoff-site",
+            "title": "Sign off your site"
+          }
+        ],
+        "name": "Website build"
+      },
+      {
+        "id": "go-live",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "atn-review-landing",
+            "title": "Review landing pages A, B and C: round 1 of 2"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-review-ads",
+            "title": "Review your ads and LinkedIn banner: round 1 of 2"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-review-funnel-2",
+            "title": "Review the funnel: round 2 of 2"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-signoff-funnel",
+            "title": "Sign off the funnel"
+          }
+        ],
+        "name": "Funnel and ads"
+      },
+      {
+        "id": "post-launch",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "atn-review-final",
+            "title": "Review the final work"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-pay-final",
+            "title": "Pay the final instalment"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-domain-access",
+            "title": "Give domain and hosting access for go-live"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "atn-handover",
+            "title": "Confirm your handover"
+          }
+        ],
+        "name": "Final review and handover"
+      }
+    ],
+    "adminDayTotal": 42,
+    "adminLabel": "AT Network",
+    "askItems": {
+      "build": [],
+      "go-live": [],
+      "onboarding": [],
+      "post-launch": [],
+      "testing": []
+    },
+    "brandName": "AT Network",
+    "clientType": "at-network",
+    "currentDayCap": 42,
+    "formSteps": {},
+    "headerName": {
+      "aurora": "AT Network",
+      "calm": "AT Network",
+      "cobalt": "AT Network",
+      "current": "AT Network",
+      "grove": "AT Network",
+      "groveaurora": "AT Network",
+      "handoff": "AT Network"
+    },
+    "hidesIncentive": true,
+    "hubBrand": {
+      "aurora": "AT Network",
+      "cobalt": "AT Network",
+      "grove": "AT Network",
+      "handoff": "AT Network"
+    },
+    "introVideo": null,
+    "journeyStatus": {
+      "formStepId": null,
+      "nonBlocking": [],
+      "visible": [
+        {
+          "id": "atn-agreement",
+          "stageName": "Sign and start",
+          "title": "Your signed agreement"
+        },
+        {
+          "id": "atn-bookmark",
+          "stageName": "Sign and start",
+          "title": "Bookmark your portal"
+        },
+        {
+          "id": "atn-save-portal",
+          "stageName": "Sign and start",
+          "title": "Save your portal to your phone"
+        },
+        {
+          "id": "atn-scope-map",
+          "stageName": "Sign and start",
+          "title": "Read your scope and map"
+        },
+        {
+          "id": "atn-pay-1",
+          "stageName": "Sign and start",
+          "title": "Pay the first instalment"
+        },
+        {
+          "id": "atn-book-kickoff",
+          "stageName": "Sign and start",
+          "title": "Book the kickoff call"
+        },
+        {
+          "id": "atn-kickoff-summary",
+          "stageName": "Sign and start",
+          "title": "Approve the kickoff summary"
+        },
+        {
+          "id": "atn-starmap",
+          "stageName": "What we need from you",
+          "title": "Confirm your StarMap questions and report"
+        },
+        {
+          "id": "atn-package-breakdown",
+          "stageName": "What we need from you",
+          "title": "Confirm your product package breakdown"
+        },
+        {
+          "id": "atn-prices",
+          "stageName": "What we need from you",
+          "title": "Send the price and free-month terms for each level"
+        },
+        {
+          "id": "atn-photos-rich",
+          "stageName": "What we need from you",
+          "title": "Send photos of Rich"
+        },
+        {
+          "id": "atn-academy",
+          "stageName": "What we need from you",
+          "title": "Send the Academy course details"
+        },
+        {
+          "id": "atn-workbook",
+          "stageName": "What we need from you",
+          "title": "Send the interactive workbook"
+        },
+        {
+          "id": "atn-stinger-ref",
+          "stageName": "What we need from you",
+          "title": "Send a reference for your podcast stingers"
+        },
+        {
+          "id": "atn-exec-copy",
+          "stageName": "What we need from you",
+          "title": "Send the Benevolent Executive Program page copy"
+        },
+        {
+          "id": "atn-starmap-link",
+          "stageName": "What we need from you",
+          "title": "Tell us where the StarMap page links from"
+        },
+        {
+          "id": "atn-ghl-contact",
+          "stageName": "What we need from you",
+          "title": "Name your GHL contact person"
+        },
+        {
+          "id": "atn-scripts",
+          "stageName": "What we need from you",
+          "title": "Write first-draft scripts for your four sales videos"
+        },
+        {
+          "id": "atn-review-site",
+          "stageName": "Website build",
+          "title": "Review your site: round 1 of 2"
+        },
+        {
+          "id": "atn-pay-2",
+          "stageName": "Website build",
+          "title": "Pay the second instalment"
+        },
+        {
+          "id": "atn-review-site-2",
+          "stageName": "Website build",
+          "title": "Review your site: round 2 of 2"
+        },
+        {
+          "id": "atn-signoff-site",
+          "stageName": "Website build",
+          "title": "Sign off your site"
+        },
+        {
+          "id": "atn-review-landing",
+          "stageName": "Funnel and ads",
+          "title": "Review landing pages A, B and C: round 1 of 2"
+        },
+        {
+          "id": "atn-review-ads",
+          "stageName": "Funnel and ads",
+          "title": "Review your ads and LinkedIn banner: round 1 of 2"
+        },
+        {
+          "id": "atn-review-funnel-2",
+          "stageName": "Funnel and ads",
+          "title": "Review the funnel: round 2 of 2"
+        },
+        {
+          "id": "atn-signoff-funnel",
+          "stageName": "Funnel and ads",
+          "title": "Sign off the funnel"
+        },
+        {
+          "id": "atn-review-final",
+          "stageName": "Final review and handover",
+          "title": "Review the final work"
+        },
+        {
+          "id": "atn-pay-final",
+          "stageName": "Final review and handover",
+          "title": "Pay the final instalment"
+        },
+        {
+          "id": "atn-domain-access",
+          "stageName": "Final review and handover",
+          "title": "Give domain and hosting access for go-live"
+        },
+        {
+          "id": "atn-handover",
+          "stageName": "Final review and handover",
+          "title": "Confirm your handover"
+        }
+      ]
+    },
+    "journeyTemplate": [
+      {
+        "blurb": "Accept the agreement, save your portal, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to.",
+        "dayEnd": 7,
+        "dayStart": 1,
+        "id": "onboarding",
+        "milestones": [
+          {
+            "detail": "Our agreement with you, kept here to read any time. If you haven't accepted it yet, read all of it and accept it below. Your acceptance is your signature.",
+            "id": "atn-agreement",
+            "title": "Your signed agreement"
+          },
+          {
+            "detail": "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+            "doneLabel": "I've bookmarked it",
+            "id": "atn-bookmark",
+            "showPortalLink": true,
+            "steps": [
+              "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+              "Or copy your portal link above and save it somewhere handy."
+            ],
+            "title": "Bookmark your portal"
+          },
+          {
+            "detail": "So you can get back here in one tap. Saved to your phone's home screen, it opens like an app.",
+            "doneLabel": "I've saved it",
+            "id": "atn-save-portal",
+            "steps": [
+              "On an iPhone, open your portal link in Safari (even if you usually use Chrome). Tap the Share button: the square with an arrow pointing up, at the bottom of the screen. Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
+              "On Android, open the link in Chrome, tap the three dots at the top right, then \"Add to Home screen\".",
+              "From now on, open AT Network from your home screen."
+            ],
+            "title": "Save your portal to your phone"
+          },
+          {
+            "detail": "Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.",
+            "doneLabel": "I've read it",
+            "id": "atn-scope-map",
+            "title": "Read your scope and map"
+          },
+          {
+            "detail": "Your invoice is in your email. Work starts once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+            "doneLabel": "I've paid",
+            "id": "atn-pay-1",
+            "title": "Pay the first instalment"
+          },
+          {
+            "bookingUrl": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zFdYaXgf5lDqGZ8rLV9KPdB1nNec8ZbfcHcmXT7Bj51LstiAWeQvjG-26D1PxlPcvQ9-lxgdP",
+            "detail": "One call, 45 minutes, once the first instalment has landed. We look inside your platform together, lock the homepage brief, and confirm who signs things off.",
+            "doneLabel": "I've booked it",
+            "id": "atn-book-kickoff",
+            "notePrompt": "Anything you want covered on the call? (optional)",
+            "steps": [
+              "Pick a time on the booking page below. You get a calendar invite with the Google Meet link straight away.",
+              "Have your platform login handy so we can look inside it together."
+            ],
+            "title": "Book the kickoff call"
+          },
+          {
+            "detail": "After the call we write up what we decided, in plain words, below. Read it. If it's right, type your full name and approve it. That summary is the brief we build to. Anything not in it is a change request.",
+            "doneLabel": "Approved",
+            "hasEditableContent": true,
+            "id": "atn-kickoff-summary",
+            "notePlaceholder": "Your full name",
+            "notePrompt": "Type your full name to approve",
+            "noteRequired": true,
+            "pendingContentText": "Your summary appears here after the call.",
+            "title": "Approve the kickoff summary"
+          }
+        ],
+        "name": "Sign and start",
+        "statusNotes": []
+      },
+      {
+        "blurb": "The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. If one is late, the timeline pauses until it arrives.",
+        "dayEnd": 10,
+        "dayStart": 3,
+        "id": "build",
+        "milestones": [
+          {
+            "detail": "Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.",
+            "doneLabel": "Confirm",
+            "guideLabel": "Open the StarMap you sent",
+            "guideUrl": "https://claude.ai/public/artifacts/0e5b4902-2540-4ff2-b0ec-1e456fc85bc6",
+            "hasUpload": true,
+            "id": "atn-starmap",
+            "notePlaceholder": "Final",
+            "notePrompt": "Anything to change, or type Final",
+            "title": "Confirm your StarMap questions and report",
+            "uploadOptions": {
+              "accept": ".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.zip",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "Only if something has changed since you sent it.",
+              "stayOpen": true,
+              "title": "Newer version?"
+            }
+          },
+          {
+            "detail": "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+            "doneLabel": "Confirmed, nothing changed",
+            "hasUpload": true,
+            "id": "atn-package-breakdown",
+            "notePrompt": "Anything changed, or a link to the latest version (optional)",
+            "title": "Confirm your product package breakdown",
+            "uploadOptions": {
+              "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "Only if the copy has changed since 24 October.",
+              "stayOpen": true,
+              "title": "Newer version?"
+            }
+          },
+          {
+            "detail": "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.",
+            "doneLabel": "I've sent them",
+            "id": "atn-prices",
+            "notePlaceholder": "Tribe: ... per month. Academy: ... Mentor7: ... Free month: ...",
+            "notePrompt": "Price and free-month terms, per level",
+            "noteRequired": true,
+            "title": "Send the price and free-month terms for each level"
+          },
+          {
+            "detail": "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.",
+            "doneLabel": "Next",
+            "hasUpload": true,
+            "id": "atn-photos-rich",
+            "title": "Send photos of Rich",
+            "uploadOptions": {
+              "accept": ".png,.jpg,.jpeg,.webp,.heic,.zip",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "Add as many as you like, one at a time or several at once. A zip is fine.",
+              "stayOpen": true,
+              "title": "Upload photos of Rich"
+            }
+          },
+          {
+            "detail": "Rich: what the Academy course includes, so we describe it correctly on your site. Martyn's Foundations document is already with us. Your outlines for the Growth and Legacy courses go here too: we build their pages from them. Due 3 business days after payment 1.",
+            "doneLabel": "I've sent the details",
+            "id": "atn-academy",
+            "notePlaceholder": "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
+            "notePrompt": "Academy course details",
+            "noteRequired": true,
+            "title": "Send the Academy course details"
+          },
+          {
+            "detail": "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list. Due 3 business days after payment 1.",
+            "doneLabel": "I've sent it",
+            "hasUpload": true,
+            "id": "atn-workbook",
+            "notePlaceholder": "https://...",
+            "notePrompt": "Or paste a link",
+            "title": "Send the interactive workbook",
+            "uploadOptions": {
+              "accept": ".pdf,.doc,.docx,.zip",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "A PDF or document, or paste a link below.",
+              "stayOpen": true,
+              "title": "Upload the workbook"
+            }
+          },
+          {
+            "detail": "The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. Phase 1 makes the intro; the outro is on the Phase 2 list.",
+            "doneLabel": "I've sent the references",
+            "hasUpload": true,
+            "id": "atn-stinger-ref",
+            "notePlaceholder": "e.g. https://youtube.com/... Warm, cinematic, not corporate.",
+            "notePrompt": "Links to the examples, and the feel you want",
+            "noteRequired": true,
+            "title": "Send a reference for your podcast stingers",
+            "uploadOptions": {
+              "accept": ".mp4,.mov,.mp3,.wav,.png,.jpg,.jpeg,.pdf,.zip",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "Short clips or stills, if you have them. Links go in the box below.",
+              "stayOpen": true,
+              "title": "Upload a reference"
+            }
+          },
+          {
+            "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+            "doneLabel": "I've sent it",
+            "hasUpload": true,
+            "id": "atn-exec-copy",
+            "notePrompt": "The copy, or a link to it",
+            "title": "Send the Benevolent Executive Program page copy",
+            "uploadOptions": {
+              "accept": ".pdf,.doc,.docx,.txt,.rtf",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "Or paste it, or a link, in the box below.",
+              "stayOpen": true,
+              "title": "Upload the copy"
+            }
+          },
+          {
+            "detail": "Rich: where on your site should people find the StarMap assessment? For example the top menu, the homepage, the Initiations page, or all three. Due 3 business days after payment 1.",
+            "doneLabel": "I've told you",
+            "id": "atn-starmap-link",
+            "notePlaceholder": "e.g. Top menu and the Initiations page",
+            "notePrompt": "Where the StarMap page links from",
+            "noteRequired": true,
+            "title": "Tell us where the StarMap page links from"
+          },
+          {
+            "detail": "Who should we work with on your GoHighLevel account? One person is best. Due 3 business days after payment 1.",
+            "doneLabel": "I've named them",
+            "id": "atn-ghl-contact",
+            "notePlaceholder": "Name, email",
+            "notePrompt": "Their name and email",
+            "noteRequired": true,
+            "title": "Name your GHL contact person"
+          },
+          {
+            "detail": "One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
+            "doneLabel": "I've sent the drafts",
+            "hasUpload": true,
+            "id": "atn-scripts",
+            "notePlaceholder": "Level 0, Level 1, Level 2, Level 3: one script each.",
+            "notePrompt": "Or paste your drafts here",
+            "title": "Write first-draft scripts for your four sales videos",
+            "uploadOptions": {
+              "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "One document per video, or one for all four.",
+              "stayOpen": true,
+              "title": "Upload your script drafts"
+            }
+          }
+        ],
+        "name": "What we need from you",
+        "statusNotes": []
+      },
+      {
+        "blurb": "We build your site. You see everything on a review link as it is built: two rounds of changes, then your sign-off.",
+        "dayEnd": 26,
+        "dayStart": 8,
+        "id": "testing",
+        "milestones": [
+          {
+            "detail": "Open the review link and look at every page, on your phone as well as your computer. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve it as it is.",
+            "doneLabel": "Send round 1",
+            "hasEditableContent": true,
+            "id": "atn-review-site",
+            "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+            "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
+            "noteRequired": true,
+            "pendingContentText": "Your review link appears here when it's ready. We'll email you.",
+            "title": "Review your site: round 1 of 2"
+          },
+          {
+            "detail": "Due when the site review link opens. Your invoice is in your email. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+            "doneLabel": "I've paid",
+            "id": "atn-pay-2",
+            "title": "Pay the second instalment"
+          },
+          {
+            "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.",
+            "doneLabel": "Send round 2",
+            "hasEditableContent": true,
+            "id": "atn-review-site-2",
+            "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+            "notePrompt": "Your consolidated list for round 2, or \"Approved\"",
+            "noteRequired": true,
+            "pendingContentText": "Your review link appears here when it's ready. We'll email you.",
+            "title": "Review your site: round 2 of 2"
+          },
+          {
+            "detail": "Both rounds are done. Type your full name to sign off the site. From here, changes to it are change requests.",
+            "doneLabel": "Sign off",
+            "hasEditableContent": true,
+            "id": "atn-signoff-site",
+            "notePlaceholder": "Your full name",
+            "notePrompt": "Type your full name to sign off the items above",
+            "noteRequired": true,
+            "pendingContentText": "What you're signing off appears here: the final list and the link to the final versions.",
+            "title": "Sign off your site"
+          }
+        ],
+        "name": "Website build",
+        "statusNotes": []
+      },
+      {
+        "blurb": "Your landing pages, the three video ads, two statics and the LinkedIn banner. Two rounds, then sign-off.",
+        "dayEnd": 33,
+        "dayStart": 20,
+        "id": "go-live",
+        "milestones": [
+          {
+            "detail": "One landing page per ad, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+            "doneLabel": "Send round 1",
+            "hasEditableContent": true,
+            "id": "atn-review-landing",
+            "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+            "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
+            "noteRequired": true,
+            "pendingContentText": "Your review link appears here when it's ready. We'll email you.",
+            "title": "Review landing pages A, B and C: round 1 of 2"
+          },
+          {
+            "detail": "The three video ads (Foundations, Tribe, Mentor7), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+            "doneLabel": "Send round 1",
+            "hasEditableContent": true,
+            "id": "atn-review-ads",
+            "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+            "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
+            "noteRequired": true,
+            "pendingContentText": "Your review link appears here when it's ready. We'll email you.",
+            "title": "Review your ads and LinkedIn banner: round 1 of 2"
+          },
+          {
+            "detail": "Your round 1 changes to the landing pages, ads, statics and banner are in. This is the last round. Send one list with everything you, Martyn and Ben would change. That counts as one round.",
+            "doneLabel": "Send round 2",
+            "hasEditableContent": true,
+            "id": "atn-review-funnel-2",
+            "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+            "notePrompt": "Your consolidated list for round 2, or \"Approved\"",
+            "noteRequired": true,
+            "pendingContentText": "Your review link appears here when it's ready. We'll email you.",
+            "title": "Review the funnel: round 2 of 2"
+          },
+          {
+            "detail": "Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.",
+            "doneLabel": "Sign off",
+            "hasEditableContent": true,
+            "id": "atn-signoff-funnel",
+            "notePlaceholder": "Your full name",
+            "notePrompt": "Type your full name to sign off the items above",
+            "noteRequired": true,
+            "pendingContentText": "What you're signing off appears here: the final list and the link to the final versions.",
+            "title": "Sign off the funnel"
+          }
+        ],
+        "name": "Funnel and ads",
+        "statusNotes": []
+      },
+      {
+        "blurb": "One last look at everything, the final instalment, then we hand over your finished site files and help you go live on your domain.",
+        "dayEnd": 42,
+        "dayStart": 34,
+        "id": "post-launch",
+        "milestones": [
+          {
+            "detail": "Everything together, one last time, on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.",
+            "doneLabel": "Send my answer",
+            "hasEditableContent": true,
+            "id": "atn-review-final",
+            "notePlaceholder": "Type Approved, or list what you'd change.",
+            "notePrompt": "Approved, or your change list",
+            "noteRequired": true,
+            "pendingContentText": "Your review link appears here when it's ready. We'll email you.",
+            "title": "Review the final work"
+          },
+          {
+            "detail": "Due when the final review link opens. Handover follows once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+            "doneLabel": "I've paid",
+            "id": "atn-pay-final",
+            "title": "Pay the final instalment"
+          },
+          {
+            "detail": "So your finished site can go live on your domain. Due at go-live. Never send us a password in the portal: tell us who to invite or how you'd like to share access.",
+            "doneLabel": "Access confirmed",
+            "id": "atn-domain-access",
+            "important": "Never send a password here. An invite is all we need.",
+            "inviteEmail": "jesse@allconvos.ai",
+            "notePlaceholder": "Name, email, provider",
+            "notePrompt": "Who manages your domain and hosting, and where is it (for example GoDaddy)?",
+            "noteRequired": true,
+            "title": "Give domain and hosting access for go-live"
+          },
+          {
+            "detail": "You've received the finished site files, assets and access. From here, hosting and changes are yours. Tick this once you've checked you have everything.",
+            "doneLabel": "I have everything",
+            "id": "atn-handover",
+            "notePrompt": "Anything missing?",
+            "title": "Confirm your handover"
+          }
+        ],
+        "name": "Final review and handover",
+        "statusNotes": []
+      }
+    ],
+    "label": "AT Network",
+    "lockedLook": "groveaurora",
+    "receptionistScriptStep": null,
+    "renderSamples": {
+      "all@day30": [
+        {
+          "blurb": "Accept the agreement, save your portal, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to.",
+          "dayEnd": 7,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "Our agreement with you, kept here to read any time. If you haven't accepted it yet, read all of it and accept it below. Your acceptance is your signature.",
+              "id": "atn-agreement",
+              "status": "done",
+              "title": "Your signed agreement"
+            },
+            {
+              "detail": "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+              "doneLabel": "I've bookmarked it",
+              "id": "atn-bookmark",
+              "showPortalLink": true,
+              "status": "done",
+              "steps": [
+                "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+                "Or copy your portal link above and save it somewhere handy."
+              ],
+              "title": "Bookmark your portal"
+            },
+            {
+              "detail": "So you can get back here in one tap. Saved to your phone's home screen, it opens like an app.",
+              "doneLabel": "I've saved it",
+              "id": "atn-save-portal",
+              "status": "done",
+              "steps": [
+                "On an iPhone, open your portal link in Safari (even if you usually use Chrome). Tap the Share button: the square with an arrow pointing up, at the bottom of the screen. Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
+                "On Android, open the link in Chrome, tap the three dots at the top right, then \"Add to Home screen\".",
+                "From now on, open AT Network from your home screen."
+              ],
+              "title": "Save your portal to your phone"
+            },
+            {
+              "detail": "Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.",
+              "doneLabel": "I've read it",
+              "id": "atn-scope-map",
+              "status": "done",
+              "title": "Read your scope and map"
+            },
+            {
+              "detail": "Your invoice is in your email. Work starts once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+              "doneLabel": "I've paid",
+              "id": "atn-pay-1",
+              "status": "done",
+              "title": "Pay the first instalment"
+            },
+            {
+              "bookingUrl": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zFdYaXgf5lDqGZ8rLV9KPdB1nNec8ZbfcHcmXT7Bj51LstiAWeQvjG-26D1PxlPcvQ9-lxgdP",
+              "detail": "One call, 45 minutes, once the first instalment has landed. We look inside your platform together, lock the homepage brief, and confirm who signs things off.",
+              "doneLabel": "I've booked it",
+              "id": "atn-book-kickoff",
+              "notePrompt": "Anything you want covered on the call? (optional)",
+              "status": "done",
+              "steps": [
+                "Pick a time on the booking page below. You get a calendar invite with the Google Meet link straight away.",
+                "Have your platform login handy so we can look inside it together."
+              ],
+              "title": "Book the kickoff call"
+            },
+            {
+              "detail": "After the call we write up what we decided, in plain words, below. Read it. If it's right, type your full name and approve it. That summary is the brief we build to. Anything not in it is a change request.",
+              "doneLabel": "Approved",
+              "hasEditableContent": true,
+              "id": "atn-kickoff-summary",
+              "notePlaceholder": "Your full name",
+              "notePrompt": "Type your full name to approve",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Approve the kickoff summary"
+            }
+          ],
+          "name": "Sign and start",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. If one is late, the timeline pauses until it arrives.",
+          "dayEnd": 10,
+          "dayStart": 3,
+          "id": "build",
+          "milestones": [
+            {
+              "detail": "Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.",
+              "doneLabel": "Confirm",
+              "guideLabel": "Open the StarMap you sent",
+              "guideUrl": "https://claude.ai/public/artifacts/0e5b4902-2540-4ff2-b0ec-1e456fc85bc6",
+              "hasUpload": true,
+              "id": "atn-starmap",
+              "notePlaceholder": "Final",
+              "notePrompt": "Anything to change, or type Final",
+              "status": "done",
+              "title": "Confirm your StarMap questions and report",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Only if something has changed since you sent it.",
+                "stayOpen": true,
+                "title": "Newer version?"
+              }
+            },
+            {
+              "detail": "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+              "doneLabel": "Confirmed, nothing changed",
+              "hasUpload": true,
+              "id": "atn-package-breakdown",
+              "notePrompt": "Anything changed, or a link to the latest version (optional)",
+              "status": "done",
+              "title": "Confirm your product package breakdown",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Only if the copy has changed since 24 October.",
+                "stayOpen": true,
+                "title": "Newer version?"
+              }
+            },
+            {
+              "detail": "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.",
+              "doneLabel": "I've sent them",
+              "id": "atn-prices",
+              "notePlaceholder": "Tribe: ... per month. Academy: ... Mentor7: ... Free month: ...",
+              "notePrompt": "Price and free-month terms, per level",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Send the price and free-month terms for each level"
+            },
+            {
+              "detail": "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.",
+              "doneLabel": "Next",
+              "hasUpload": true,
+              "id": "atn-photos-rich",
+              "status": "done",
+              "title": "Send photos of Rich",
+              "uploadOptions": {
+                "accept": ".png,.jpg,.jpeg,.webp,.heic,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Add as many as you like, one at a time or several at once. A zip is fine.",
+                "stayOpen": true,
+                "title": "Upload photos of Rich"
+              }
+            },
+            {
+              "detail": "Rich: what the Academy course includes, so we describe it correctly on your site. Martyn's Foundations document is already with us. Your outlines for the Growth and Legacy courses go here too: we build their pages from them. Due 3 business days after payment 1.",
+              "doneLabel": "I've sent the details",
+              "id": "atn-academy",
+              "notePlaceholder": "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
+              "notePrompt": "Academy course details",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Send the Academy course details"
+            },
+            {
+              "detail": "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list. Due 3 business days after payment 1.",
+              "doneLabel": "I've sent it",
+              "hasUpload": true,
+              "id": "atn-workbook",
+              "notePlaceholder": "https://...",
+              "notePrompt": "Or paste a link",
+              "status": "done",
+              "title": "Send the interactive workbook",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "A PDF or document, or paste a link below.",
+                "stayOpen": true,
+                "title": "Upload the workbook"
+              }
+            },
+            {
+              "detail": "The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. Phase 1 makes the intro; the outro is on the Phase 2 list.",
+              "doneLabel": "I've sent the references",
+              "hasUpload": true,
+              "id": "atn-stinger-ref",
+              "notePlaceholder": "e.g. https://youtube.com/... Warm, cinematic, not corporate.",
+              "notePrompt": "Links to the examples, and the feel you want",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Send a reference for your podcast stingers",
+              "uploadOptions": {
+                "accept": ".mp4,.mov,.mp3,.wav,.png,.jpg,.jpeg,.pdf,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Short clips or stills, if you have them. Links go in the box below.",
+                "stayOpen": true,
+                "title": "Upload a reference"
+              }
+            },
+            {
+              "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+              "doneLabel": "I've sent it",
+              "hasUpload": true,
+              "id": "atn-exec-copy",
+              "notePrompt": "The copy, or a link to it",
+              "status": "done",
+              "title": "Send the Benevolent Executive Program page copy",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.rtf",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Or paste it, or a link, in the box below.",
+                "stayOpen": true,
+                "title": "Upload the copy"
+              }
+            },
+            {
+              "detail": "Rich: where on your site should people find the StarMap assessment? For example the top menu, the homepage, the Initiations page, or all three. Due 3 business days after payment 1.",
+              "doneLabel": "I've told you",
+              "id": "atn-starmap-link",
+              "notePlaceholder": "e.g. Top menu and the Initiations page",
+              "notePrompt": "Where the StarMap page links from",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Tell us where the StarMap page links from"
+            },
+            {
+              "detail": "Who should we work with on your GoHighLevel account? One person is best. Due 3 business days after payment 1.",
+              "doneLabel": "I've named them",
+              "id": "atn-ghl-contact",
+              "notePlaceholder": "Name, email",
+              "notePrompt": "Their name and email",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Name your GHL contact person"
+            },
+            {
+              "detail": "One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
+              "doneLabel": "I've sent the drafts",
+              "hasUpload": true,
+              "id": "atn-scripts",
+              "notePlaceholder": "Level 0, Level 1, Level 2, Level 3: one script each.",
+              "notePrompt": "Or paste your drafts here",
+              "status": "done",
+              "title": "Write first-draft scripts for your four sales videos",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "One document per video, or one for all four.",
+                "stayOpen": true,
+                "title": "Upload your script drafts"
+              }
+            }
+          ],
+          "name": "What we need from you",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "We build your site. You see everything on a review link as it is built: two rounds of changes, then your sign-off.",
+          "dayEnd": 26,
+          "dayStart": 8,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "Open the review link and look at every page, on your phone as well as your computer. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve it as it is.",
+              "doneLabel": "Send round 1",
+              "hasEditableContent": true,
+              "id": "atn-review-site",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Review your site: round 1 of 2"
+            },
+            {
+              "detail": "Due when the site review link opens. Your invoice is in your email. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+              "doneLabel": "I've paid",
+              "id": "atn-pay-2",
+              "status": "done",
+              "title": "Pay the second instalment"
+            },
+            {
+              "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.",
+              "doneLabel": "Send round 2",
+              "hasEditableContent": true,
+              "id": "atn-review-site-2",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 2, or \"Approved\"",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Review your site: round 2 of 2"
+            },
+            {
+              "detail": "Both rounds are done. Type your full name to sign off the site. From here, changes to it are change requests.",
+              "doneLabel": "Sign off",
+              "hasEditableContent": true,
+              "id": "atn-signoff-site",
+              "notePlaceholder": "Your full name",
+              "notePrompt": "Type your full name to sign off the items above",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Sign off your site"
+            }
+          ],
+          "name": "Website build",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your landing pages, the three video ads, two statics and the LinkedIn banner. Two rounds, then sign-off.",
+          "dayEnd": 33,
+          "dayStart": 20,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "One landing page per ad, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+              "doneLabel": "Send round 1",
+              "hasEditableContent": true,
+              "id": "atn-review-landing",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Review landing pages A, B and C: round 1 of 2"
+            },
+            {
+              "detail": "The three video ads (Foundations, Tribe, Mentor7), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+              "doneLabel": "Send round 1",
+              "hasEditableContent": true,
+              "id": "atn-review-ads",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Review your ads and LinkedIn banner: round 1 of 2"
+            },
+            {
+              "detail": "Your round 1 changes to the landing pages, ads, statics and banner are in. This is the last round. Send one list with everything you, Martyn and Ben would change. That counts as one round.",
+              "doneLabel": "Send round 2",
+              "hasEditableContent": true,
+              "id": "atn-review-funnel-2",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 2, or \"Approved\"",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Review the funnel: round 2 of 2"
+            },
+            {
+              "detail": "Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.",
+              "doneLabel": "Sign off",
+              "hasEditableContent": true,
+              "id": "atn-signoff-funnel",
+              "notePlaceholder": "Your full name",
+              "notePrompt": "Type your full name to sign off the items above",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Sign off the funnel"
+            }
+          ],
+          "name": "Funnel and ads",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "One last look at everything, the final instalment, then we hand over your finished site files and help you go live on your domain.",
+          "dayEnd": 42,
+          "dayStart": 34,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "detail": "Everything together, one last time, on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.",
+              "doneLabel": "Send my answer",
+              "hasEditableContent": true,
+              "id": "atn-review-final",
+              "notePlaceholder": "Type Approved, or list what you'd change.",
+              "notePrompt": "Approved, or your change list",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Review the final work"
+            },
+            {
+              "detail": "Due when the final review link opens. Handover follows once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+              "doneLabel": "I've paid",
+              "id": "atn-pay-final",
+              "status": "done",
+              "title": "Pay the final instalment"
+            },
+            {
+              "detail": "So your finished site can go live on your domain. Due at go-live. Never send us a password in the portal: tell us who to invite or how you'd like to share access.",
+              "doneLabel": "Access confirmed",
+              "id": "atn-domain-access",
+              "important": "Never send a password here. An invite is all we need.",
+              "inviteEmail": "jesse@allconvos.ai",
+              "notePlaceholder": "Name, email, provider",
+              "notePrompt": "Who manages your domain and hosting, and where is it (for example GoDaddy)?",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Give domain and hosting access for go-live"
+            },
+            {
+              "detail": "You've received the finished site files, assets and access. From here, hosting and changes are yours. Tick this once you've checked you have everything.",
+              "doneLabel": "I have everything",
+              "id": "atn-handover",
+              "notePrompt": "Anything missing?",
+              "status": "done",
+              "title": "Confirm your handover"
+            }
+          ],
+          "name": "Final review and handover",
+          "status": "done",
+          "statusNotes": []
+        }
+      ],
+      "none@day1": [
+        {
+          "blurb": "Accept the agreement, save your portal, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to.",
+          "dayEnd": 7,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "detail": "Our agreement with you, kept here to read any time. If you haven't accepted it yet, read all of it and accept it below. Your acceptance is your signature.",
+              "id": "atn-agreement",
+              "status": "current",
+              "title": "Your signed agreement"
+            },
+            {
+              "detail": "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+              "doneLabel": "I've bookmarked it",
+              "id": "atn-bookmark",
+              "showPortalLink": true,
+              "status": "upcoming",
+              "steps": [
+                "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+                "Or copy your portal link above and save it somewhere handy."
+              ],
+              "title": "Bookmark your portal"
+            },
+            {
+              "detail": "So you can get back here in one tap. Saved to your phone's home screen, it opens like an app.",
+              "doneLabel": "I've saved it",
+              "id": "atn-save-portal",
+              "status": "upcoming",
+              "steps": [
+                "On an iPhone, open your portal link in Safari (even if you usually use Chrome). Tap the Share button: the square with an arrow pointing up, at the bottom of the screen. Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
+                "On Android, open the link in Chrome, tap the three dots at the top right, then \"Add to Home screen\".",
+                "From now on, open AT Network from your home screen."
+              ],
+              "title": "Save your portal to your phone"
+            },
+            {
+              "detail": "Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.",
+              "doneLabel": "I've read it",
+              "id": "atn-scope-map",
+              "status": "upcoming",
+              "title": "Read your scope and map"
+            },
+            {
+              "detail": "Your invoice is in your email. Work starts once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+              "doneLabel": "I've paid",
+              "id": "atn-pay-1",
+              "status": "upcoming",
+              "title": "Pay the first instalment"
+            },
+            {
+              "bookingUrl": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zFdYaXgf5lDqGZ8rLV9KPdB1nNec8ZbfcHcmXT7Bj51LstiAWeQvjG-26D1PxlPcvQ9-lxgdP",
+              "detail": "One call, 45 minutes, once the first instalment has landed. We look inside your platform together, lock the homepage brief, and confirm who signs things off.",
+              "doneLabel": "I've booked it",
+              "id": "atn-book-kickoff",
+              "notePrompt": "Anything you want covered on the call? (optional)",
+              "status": "upcoming",
+              "steps": [
+                "Pick a time on the booking page below. You get a calendar invite with the Google Meet link straight away.",
+                "Have your platform login handy so we can look inside it together."
+              ],
+              "title": "Book the kickoff call"
+            },
+            {
+              "detail": "After the call we write up what we decided, in plain words, below. Read it. If it's right, type your full name and approve it. That summary is the brief we build to. Anything not in it is a change request.",
+              "doneLabel": "Approved",
+              "hasEditableContent": true,
+              "id": "atn-kickoff-summary",
+              "notePlaceholder": "Your full name",
+              "notePrompt": "Type your full name to approve",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Approve the kickoff summary"
+            }
+          ],
+          "name": "Sign and start",
+          "status": "current",
+          "statusNotes": []
+        },
+        {
+          "blurb": "The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. If one is late, the timeline pauses until it arrives.",
+          "dayEnd": 10,
+          "dayStart": 3,
+          "id": "build",
+          "milestones": [
+            {
+              "detail": "Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.",
+              "doneLabel": "Confirm",
+              "guideLabel": "Open the StarMap you sent",
+              "guideUrl": "https://claude.ai/public/artifacts/0e5b4902-2540-4ff2-b0ec-1e456fc85bc6",
+              "hasUpload": true,
+              "id": "atn-starmap",
+              "notePlaceholder": "Final",
+              "notePrompt": "Anything to change, or type Final",
+              "status": "upcoming",
+              "title": "Confirm your StarMap questions and report",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Only if something has changed since you sent it.",
+                "stayOpen": true,
+                "title": "Newer version?"
+              }
+            },
+            {
+              "detail": "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+              "doneLabel": "Confirmed, nothing changed",
+              "hasUpload": true,
+              "id": "atn-package-breakdown",
+              "notePrompt": "Anything changed, or a link to the latest version (optional)",
+              "status": "upcoming",
+              "title": "Confirm your product package breakdown",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Only if the copy has changed since 24 October.",
+                "stayOpen": true,
+                "title": "Newer version?"
+              }
+            },
+            {
+              "detail": "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.",
+              "doneLabel": "I've sent them",
+              "id": "atn-prices",
+              "notePlaceholder": "Tribe: ... per month. Academy: ... Mentor7: ... Free month: ...",
+              "notePrompt": "Price and free-month terms, per level",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Send the price and free-month terms for each level"
+            },
+            {
+              "detail": "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.",
+              "doneLabel": "Next",
+              "hasUpload": true,
+              "id": "atn-photos-rich",
+              "status": "upcoming",
+              "title": "Send photos of Rich",
+              "uploadOptions": {
+                "accept": ".png,.jpg,.jpeg,.webp,.heic,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Add as many as you like, one at a time or several at once. A zip is fine.",
+                "stayOpen": true,
+                "title": "Upload photos of Rich"
+              }
+            },
+            {
+              "detail": "Rich: what the Academy course includes, so we describe it correctly on your site. Martyn's Foundations document is already with us. Your outlines for the Growth and Legacy courses go here too: we build their pages from them. Due 3 business days after payment 1.",
+              "doneLabel": "I've sent the details",
+              "id": "atn-academy",
+              "notePlaceholder": "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
+              "notePrompt": "Academy course details",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Send the Academy course details"
+            },
+            {
+              "detail": "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list. Due 3 business days after payment 1.",
+              "doneLabel": "I've sent it",
+              "hasUpload": true,
+              "id": "atn-workbook",
+              "notePlaceholder": "https://...",
+              "notePrompt": "Or paste a link",
+              "status": "upcoming",
+              "title": "Send the interactive workbook",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "A PDF or document, or paste a link below.",
+                "stayOpen": true,
+                "title": "Upload the workbook"
+              }
+            },
+            {
+              "detail": "The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. Phase 1 makes the intro; the outro is on the Phase 2 list.",
+              "doneLabel": "I've sent the references",
+              "hasUpload": true,
+              "id": "atn-stinger-ref",
+              "notePlaceholder": "e.g. https://youtube.com/... Warm, cinematic, not corporate.",
+              "notePrompt": "Links to the examples, and the feel you want",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Send a reference for your podcast stingers",
+              "uploadOptions": {
+                "accept": ".mp4,.mov,.mp3,.wav,.png,.jpg,.jpeg,.pdf,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Short clips or stills, if you have them. Links go in the box below.",
+                "stayOpen": true,
+                "title": "Upload a reference"
+              }
+            },
+            {
+              "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+              "doneLabel": "I've sent it",
+              "hasUpload": true,
+              "id": "atn-exec-copy",
+              "notePrompt": "The copy, or a link to it",
+              "status": "upcoming",
+              "title": "Send the Benevolent Executive Program page copy",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.rtf",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Or paste it, or a link, in the box below.",
+                "stayOpen": true,
+                "title": "Upload the copy"
+              }
+            },
+            {
+              "detail": "Rich: where on your site should people find the StarMap assessment? For example the top menu, the homepage, the Initiations page, or all three. Due 3 business days after payment 1.",
+              "doneLabel": "I've told you",
+              "id": "atn-starmap-link",
+              "notePlaceholder": "e.g. Top menu and the Initiations page",
+              "notePrompt": "Where the StarMap page links from",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Tell us where the StarMap page links from"
+            },
+            {
+              "detail": "Who should we work with on your GoHighLevel account? One person is best. Due 3 business days after payment 1.",
+              "doneLabel": "I've named them",
+              "id": "atn-ghl-contact",
+              "notePlaceholder": "Name, email",
+              "notePrompt": "Their name and email",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Name your GHL contact person"
+            },
+            {
+              "detail": "One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
+              "doneLabel": "I've sent the drafts",
+              "hasUpload": true,
+              "id": "atn-scripts",
+              "notePlaceholder": "Level 0, Level 1, Level 2, Level 3: one script each.",
+              "notePrompt": "Or paste your drafts here",
+              "status": "upcoming",
+              "title": "Write first-draft scripts for your four sales videos",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "One document per video, or one for all four.",
+                "stayOpen": true,
+                "title": "Upload your script drafts"
+              }
+            }
+          ],
+          "name": "What we need from you",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "We build your site. You see everything on a review link as it is built: two rounds of changes, then your sign-off.",
+          "dayEnd": 26,
+          "dayStart": 8,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "Open the review link and look at every page, on your phone as well as your computer. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve it as it is.",
+              "doneLabel": "Send round 1",
+              "hasEditableContent": true,
+              "id": "atn-review-site",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Review your site: round 1 of 2"
+            },
+            {
+              "detail": "Due when the site review link opens. Your invoice is in your email. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+              "doneLabel": "I've paid",
+              "id": "atn-pay-2",
+              "status": "upcoming",
+              "title": "Pay the second instalment"
+            },
+            {
+              "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.",
+              "doneLabel": "Send round 2",
+              "hasEditableContent": true,
+              "id": "atn-review-site-2",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 2, or \"Approved\"",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Review your site: round 2 of 2"
+            },
+            {
+              "detail": "Both rounds are done. Type your full name to sign off the site. From here, changes to it are change requests.",
+              "doneLabel": "Sign off",
+              "hasEditableContent": true,
+              "id": "atn-signoff-site",
+              "notePlaceholder": "Your full name",
+              "notePrompt": "Type your full name to sign off the items above",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Sign off your site"
+            }
+          ],
+          "name": "Website build",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your landing pages, the three video ads, two statics and the LinkedIn banner. Two rounds, then sign-off.",
+          "dayEnd": 33,
+          "dayStart": 20,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "One landing page per ad, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+              "doneLabel": "Send round 1",
+              "hasEditableContent": true,
+              "id": "atn-review-landing",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Review landing pages A, B and C: round 1 of 2"
+            },
+            {
+              "detail": "The three video ads (Foundations, Tribe, Mentor7), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+              "doneLabel": "Send round 1",
+              "hasEditableContent": true,
+              "id": "atn-review-ads",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Review your ads and LinkedIn banner: round 1 of 2"
+            },
+            {
+              "detail": "Your round 1 changes to the landing pages, ads, statics and banner are in. This is the last round. Send one list with everything you, Martyn and Ben would change. That counts as one round.",
+              "doneLabel": "Send round 2",
+              "hasEditableContent": true,
+              "id": "atn-review-funnel-2",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your consolidated list for round 2, or \"Approved\"",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Review the funnel: round 2 of 2"
+            },
+            {
+              "detail": "Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.",
+              "doneLabel": "Sign off",
+              "hasEditableContent": true,
+              "id": "atn-signoff-funnel",
+              "notePlaceholder": "Your full name",
+              "notePrompt": "Type your full name to sign off the items above",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Sign off the funnel"
+            }
+          ],
+          "name": "Funnel and ads",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "One last look at everything, the final instalment, then we hand over your finished site files and help you go live on your domain.",
+          "dayEnd": 42,
+          "dayStart": 34,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "detail": "Everything together, one last time, on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.",
+              "doneLabel": "Send my answer",
+              "hasEditableContent": true,
+              "id": "atn-review-final",
+              "notePlaceholder": "Type Approved, or list what you'd change.",
+              "notePrompt": "Approved, or your change list",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Review the final work"
+            },
+            {
+              "detail": "Due when the final review link opens. Handover follows once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+              "doneLabel": "I've paid",
+              "id": "atn-pay-final",
+              "status": "upcoming",
+              "title": "Pay the final instalment"
+            },
+            {
+              "detail": "So your finished site can go live on your domain. Due at go-live. Never send us a password in the portal: tell us who to invite or how you'd like to share access.",
+              "doneLabel": "Access confirmed",
+              "id": "atn-domain-access",
+              "important": "Never send a password here. An invite is all we need.",
+              "inviteEmail": "jesse@allconvos.ai",
+              "notePlaceholder": "Name, email, provider",
+              "notePrompt": "Who manages your domain and hosting, and where is it (for example GoDaddy)?",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Give domain and hosting access for go-live"
+            },
+            {
+              "detail": "You've received the finished site files, assets and access. From here, hosting and changes are yours. Tick this once you've checked you have everything.",
+              "doneLabel": "I have everything",
+              "id": "atn-handover",
+              "notePrompt": "Anything missing?",
+              "status": "upcoming",
+              "title": "Confirm your handover"
+            }
+          ],
+          "name": "Final review and handover",
+          "status": "locked",
+          "statusNotes": []
+        }
+      ]
+    },
+    "renders": {
+      "all@day1": "8c918c4b17ad04804fa39a7c792760a6f3cadd7ceaeda66a11fbd4a5c3f63b53",
+      "all@day12": "8c918c4b17ad04804fa39a7c792760a6f3cadd7ceaeda66a11fbd4a5c3f63b53",
+      "all@day30": "8c918c4b17ad04804fa39a7c792760a6f3cadd7ceaeda66a11fbd4a5c3f63b53",
+      "alternate@day1": "3035ebeb0d9aecfc5a5c4752465951017d7c17558e4cc37de58ad7eaf20156ee",
+      "alternate@day12": "3035ebeb0d9aecfc5a5c4752465951017d7c17558e4cc37de58ad7eaf20156ee",
+      "alternate@day30": "3035ebeb0d9aecfc5a5c4752465951017d7c17558e4cc37de58ad7eaf20156ee",
+      "first-10@day1": "2a001195c504e1ff9c37ef3af554048573db4d98c61afb31594f1bc9395abad0",
+      "first-10@day12": "2a001195c504e1ff9c37ef3af554048573db4d98c61afb31594f1bc9395abad0",
+      "first-10@day30": "2a001195c504e1ff9c37ef3af554048573db4d98c61afb31594f1bc9395abad0",
+      "first-11@day1": "93265fe981e4f2ae4a7eca1150e25a8c151a44bbbfe95b46c0a494aee0148dc0",
+      "first-11@day12": "93265fe981e4f2ae4a7eca1150e25a8c151a44bbbfe95b46c0a494aee0148dc0",
+      "first-11@day30": "93265fe981e4f2ae4a7eca1150e25a8c151a44bbbfe95b46c0a494aee0148dc0",
+      "first-12@day1": "be054ea739186f2da8c96f8ff4db17a141a3305ca6eb50f796f95fc6cb2dbdd1",
+      "first-12@day12": "be054ea739186f2da8c96f8ff4db17a141a3305ca6eb50f796f95fc6cb2dbdd1",
+      "first-12@day30": "be054ea739186f2da8c96f8ff4db17a141a3305ca6eb50f796f95fc6cb2dbdd1",
+      "first-13@day1": "ef63309fcf8aa9f6094e069222d734b39be9c0773786f857b54e520adcd1c801",
+      "first-13@day12": "ef63309fcf8aa9f6094e069222d734b39be9c0773786f857b54e520adcd1c801",
+      "first-13@day30": "ef63309fcf8aa9f6094e069222d734b39be9c0773786f857b54e520adcd1c801",
+      "first-14@day1": "8aeaeaf6e3185fb808925618105f2c6a452bcc7ae6e4974e053f92fec44c8f3f",
+      "first-14@day12": "8aeaeaf6e3185fb808925618105f2c6a452bcc7ae6e4974e053f92fec44c8f3f",
+      "first-14@day30": "8aeaeaf6e3185fb808925618105f2c6a452bcc7ae6e4974e053f92fec44c8f3f",
+      "first-15@day1": "70c15f7a68e99641ecf03fac0b0874e0e78913345e7615ed1f4309ccfb4f6cdb",
+      "first-15@day12": "70c15f7a68e99641ecf03fac0b0874e0e78913345e7615ed1f4309ccfb4f6cdb",
+      "first-15@day30": "70c15f7a68e99641ecf03fac0b0874e0e78913345e7615ed1f4309ccfb4f6cdb",
+      "first-16@day1": "34e6ed341263abafd740a82a1a83be1bda725a9aa771ad45cd57910f4833a239",
+      "first-16@day12": "34e6ed341263abafd740a82a1a83be1bda725a9aa771ad45cd57910f4833a239",
+      "first-16@day30": "34e6ed341263abafd740a82a1a83be1bda725a9aa771ad45cd57910f4833a239",
+      "first-17@day1": "979482418496e615cab8415da08f99e56c4c784d388e21c9dadea4b85ba61f28",
+      "first-17@day12": "979482418496e615cab8415da08f99e56c4c784d388e21c9dadea4b85ba61f28",
+      "first-17@day30": "979482418496e615cab8415da08f99e56c4c784d388e21c9dadea4b85ba61f28",
+      "first-18@day1": "6d24a2613f085883511b811254d5acd74aff2fbf5395b0cc2a73af4c3a2410c3",
+      "first-18@day12": "6d24a2613f085883511b811254d5acd74aff2fbf5395b0cc2a73af4c3a2410c3",
+      "first-18@day30": "6d24a2613f085883511b811254d5acd74aff2fbf5395b0cc2a73af4c3a2410c3",
+      "first-19@day1": "4913693f0cfd6f23386a79ac157ed8fd7703210f2cbd515f505850b2a0cb5869",
+      "first-19@day12": "4913693f0cfd6f23386a79ac157ed8fd7703210f2cbd515f505850b2a0cb5869",
+      "first-19@day30": "4913693f0cfd6f23386a79ac157ed8fd7703210f2cbd515f505850b2a0cb5869",
+      "first-1@day1": "9bb36379866653f0b893d3ac171096df1e705b72c468e3381a5ef18ab392f456",
+      "first-1@day12": "9bb36379866653f0b893d3ac171096df1e705b72c468e3381a5ef18ab392f456",
+      "first-1@day30": "9bb36379866653f0b893d3ac171096df1e705b72c468e3381a5ef18ab392f456",
+      "first-20@day1": "4eebfe22f08fcaf09d45d0f73ed885e7522d6750de8f0b4f72d38642da2e3caf",
+      "first-20@day12": "4eebfe22f08fcaf09d45d0f73ed885e7522d6750de8f0b4f72d38642da2e3caf",
+      "first-20@day30": "4eebfe22f08fcaf09d45d0f73ed885e7522d6750de8f0b4f72d38642da2e3caf",
+      "first-21@day1": "1cc117bd37c9302c478129063b59b45e35f475ca71403db4beeac65ee8ab6729",
+      "first-21@day12": "1cc117bd37c9302c478129063b59b45e35f475ca71403db4beeac65ee8ab6729",
+      "first-21@day30": "1cc117bd37c9302c478129063b59b45e35f475ca71403db4beeac65ee8ab6729",
+      "first-22@day1": "ff15a898856cc2c9ec256ff7d38577d6de13bbdcb1693da5c474e8ffd387fdcc",
+      "first-22@day12": "ff15a898856cc2c9ec256ff7d38577d6de13bbdcb1693da5c474e8ffd387fdcc",
+      "first-22@day30": "ff15a898856cc2c9ec256ff7d38577d6de13bbdcb1693da5c474e8ffd387fdcc",
+      "first-23@day1": "6e5addc87129dd8d1f252765312aee8523abde3f2efb0203a356b28f72a5f68b",
+      "first-23@day12": "6e5addc87129dd8d1f252765312aee8523abde3f2efb0203a356b28f72a5f68b",
+      "first-23@day30": "6e5addc87129dd8d1f252765312aee8523abde3f2efb0203a356b28f72a5f68b",
+      "first-24@day1": "5bbe63f03683c8c40244c66b3d42af2c36ddc0e3b4a626f50e0b405dd3fd5a81",
+      "first-24@day12": "5bbe63f03683c8c40244c66b3d42af2c36ddc0e3b4a626f50e0b405dd3fd5a81",
+      "first-24@day30": "5bbe63f03683c8c40244c66b3d42af2c36ddc0e3b4a626f50e0b405dd3fd5a81",
+      "first-25@day1": "e8ec58a8e12675f12bbb10b8172e7da5a9a97575f3e2a0c9b276d0b2e0066f16",
+      "first-25@day12": "e8ec58a8e12675f12bbb10b8172e7da5a9a97575f3e2a0c9b276d0b2e0066f16",
+      "first-25@day30": "e8ec58a8e12675f12bbb10b8172e7da5a9a97575f3e2a0c9b276d0b2e0066f16",
+      "first-26@day1": "ae52acee32d822e1041532819c8ad73747fd6e11e7ec23eff692d0f9e20edbe6",
+      "first-26@day12": "ae52acee32d822e1041532819c8ad73747fd6e11e7ec23eff692d0f9e20edbe6",
+      "first-26@day30": "ae52acee32d822e1041532819c8ad73747fd6e11e7ec23eff692d0f9e20edbe6",
+      "first-27@day1": "97425635c716bde78ff40cdc0659c7cd58b0c1127af50e90e52d761460303fb1",
+      "first-27@day12": "97425635c716bde78ff40cdc0659c7cd58b0c1127af50e90e52d761460303fb1",
+      "first-27@day30": "97425635c716bde78ff40cdc0659c7cd58b0c1127af50e90e52d761460303fb1",
+      "first-28@day1": "34e28c0a42a2379dbcf9bf9acf2f338f127bf01f9b2dab700e1ca56586064c2a",
+      "first-28@day12": "34e28c0a42a2379dbcf9bf9acf2f338f127bf01f9b2dab700e1ca56586064c2a",
+      "first-28@day30": "34e28c0a42a2379dbcf9bf9acf2f338f127bf01f9b2dab700e1ca56586064c2a",
+      "first-29@day1": "b5e8d75ed7aa36f0c3fb37c5e028f38563159fd328f4569677cd59f54c96176f",
+      "first-29@day12": "b5e8d75ed7aa36f0c3fb37c5e028f38563159fd328f4569677cd59f54c96176f",
+      "first-29@day30": "b5e8d75ed7aa36f0c3fb37c5e028f38563159fd328f4569677cd59f54c96176f",
+      "first-2@day1": "62bca280692df2949784089c1bfa84a31dbdd200129c953b985de98decc54875",
+      "first-2@day12": "62bca280692df2949784089c1bfa84a31dbdd200129c953b985de98decc54875",
+      "first-2@day30": "62bca280692df2949784089c1bfa84a31dbdd200129c953b985de98decc54875",
+      "first-30@day1": "8c918c4b17ad04804fa39a7c792760a6f3cadd7ceaeda66a11fbd4a5c3f63b53",
+      "first-30@day12": "8c918c4b17ad04804fa39a7c792760a6f3cadd7ceaeda66a11fbd4a5c3f63b53",
+      "first-30@day30": "8c918c4b17ad04804fa39a7c792760a6f3cadd7ceaeda66a11fbd4a5c3f63b53",
+      "first-3@day1": "e3efdfbdd85dbfa29fe6b7579595ebbe26725ce668275dc997e88ba1250e7a0e",
+      "first-3@day12": "e3efdfbdd85dbfa29fe6b7579595ebbe26725ce668275dc997e88ba1250e7a0e",
+      "first-3@day30": "e3efdfbdd85dbfa29fe6b7579595ebbe26725ce668275dc997e88ba1250e7a0e",
+      "first-4@day1": "0f6fab2bc7c42951696a9b0efe788293e003b58300b00a609152ac3515ab1135",
+      "first-4@day12": "0f6fab2bc7c42951696a9b0efe788293e003b58300b00a609152ac3515ab1135",
+      "first-4@day30": "0f6fab2bc7c42951696a9b0efe788293e003b58300b00a609152ac3515ab1135",
+      "first-5@day1": "54a1a784a4f6311a9cf4cc6eeecbeada724f6a7b61d4fb5f828808d09cec63ac",
+      "first-5@day12": "54a1a784a4f6311a9cf4cc6eeecbeada724f6a7b61d4fb5f828808d09cec63ac",
+      "first-5@day30": "54a1a784a4f6311a9cf4cc6eeecbeada724f6a7b61d4fb5f828808d09cec63ac",
+      "first-6@day1": "1321da793bac7d8556e66415cc13ec72b48856a960328ff22dff29b28860ecf5",
+      "first-6@day12": "1321da793bac7d8556e66415cc13ec72b48856a960328ff22dff29b28860ecf5",
+      "first-6@day30": "1321da793bac7d8556e66415cc13ec72b48856a960328ff22dff29b28860ecf5",
+      "first-7@day1": "3de55a101d20a4446a08fa109882e8eb9f228a5a359de2b0b350dc7ecbb3a0e3",
+      "first-7@day12": "3de55a101d20a4446a08fa109882e8eb9f228a5a359de2b0b350dc7ecbb3a0e3",
+      "first-7@day30": "3de55a101d20a4446a08fa109882e8eb9f228a5a359de2b0b350dc7ecbb3a0e3",
+      "first-8@day1": "31325bdc85436ac4fa1152bf54bf7b211dbb6700ff783402f85ba09c693f1ba2",
+      "first-8@day12": "31325bdc85436ac4fa1152bf54bf7b211dbb6700ff783402f85ba09c693f1ba2",
+      "first-8@day30": "31325bdc85436ac4fa1152bf54bf7b211dbb6700ff783402f85ba09c693f1ba2",
+      "first-9@day1": "15345e18058623b01fed2c87c41d67d85077ba0a04833178fe16d9ed471628f7",
+      "first-9@day12": "15345e18058623b01fed2c87c41d67d85077ba0a04833178fe16d9ed471628f7",
+      "first-9@day30": "15345e18058623b01fed2c87c41d67d85077ba0a04833178fe16d9ed471628f7",
+      "last@day1": "e8c9c5d651aff3b86ca83a3b566eee0863ef07fea87d607229b04aa9d7e38729",
+      "last@day12": "e8c9c5d651aff3b86ca83a3b566eee0863ef07fea87d607229b04aa9d7e38729",
+      "last@day30": "e8c9c5d651aff3b86ca83a3b566eee0863ef07fea87d607229b04aa9d7e38729",
+      "none@day1": "7e35e30b2dcebc1757bba93da6fe51078c1ac116f6b76b11667fc5e5e05459fd",
+      "none@day12": "7e35e30b2dcebc1757bba93da6fe51078c1ac116f6b76b11667fc5e5e05459fd",
+      "none@day30": "7e35e30b2dcebc1757bba93da6fe51078c1ac116f6b76b11667fc5e5e05459fd"
+    },
+    "stageCompletedBy": {
+      "half": {
+        "atn-academy": null,
+        "atn-agreement": "onboarding",
+        "atn-book-kickoff": "onboarding",
+        "atn-bookmark": "onboarding",
+        "atn-domain-access": null,
+        "atn-exec-copy": null,
+        "atn-ghl-contact": null,
+        "atn-handover": null,
+        "atn-kickoff-summary": "onboarding",
+        "atn-package-breakdown": null,
+        "atn-pay-1": "onboarding",
+        "atn-pay-2": null,
+        "atn-pay-final": null,
+        "atn-photos-rich": null,
+        "atn-prices": null,
+        "atn-review-ads": null,
+        "atn-review-final": null,
+        "atn-review-funnel-2": null,
+        "atn-review-landing": null,
+        "atn-review-site": null,
+        "atn-review-site-2": null,
+        "atn-save-portal": "onboarding",
+        "atn-scope-map": "onboarding",
+        "atn-scripts": null,
+        "atn-signoff-funnel": null,
+        "atn-signoff-site": null,
+        "atn-starmap": null,
+        "atn-starmap-link": null,
+        "atn-stinger-ref": null,
+        "atn-workbook": null
+      },
+      "none": {
+        "atn-academy": null,
+        "atn-agreement": null,
+        "atn-book-kickoff": null,
+        "atn-bookmark": null,
+        "atn-domain-access": null,
+        "atn-exec-copy": null,
+        "atn-ghl-contact": null,
+        "atn-handover": null,
+        "atn-kickoff-summary": null,
+        "atn-package-breakdown": null,
+        "atn-pay-1": null,
+        "atn-pay-2": null,
+        "atn-pay-final": null,
+        "atn-photos-rich": null,
+        "atn-prices": null,
+        "atn-review-ads": null,
+        "atn-review-final": null,
+        "atn-review-funnel-2": null,
+        "atn-review-landing": null,
+        "atn-review-site": null,
+        "atn-review-site-2": null,
+        "atn-save-portal": null,
+        "atn-scope-map": null,
+        "atn-scripts": null,
+        "atn-signoff-funnel": null,
+        "atn-signoff-site": null,
+        "atn-starmap": null,
+        "atn-starmap-link": null,
+        "atn-stinger-ref": null,
+        "atn-workbook": null
+      }
+    },
+    "stageGuides": {
+      "build": null,
+      "go-live": null,
+      "onboarding": null,
+      "post-launch": null,
+      "testing": null
+    },
+    "steps": {
+      "atn-academy": {
+        "detail": "Rich: what the Academy course includes, so we describe it correctly on your site. Martyn's Foundations document is already with us. Your outlines for the Growth and Legacy courses go here too: we build their pages from them. Due 3 business days after payment 1.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-agreement": {
+        "detail": "Our agreement with you, kept here to read any time. If you haven't accepted it yet, read all of it and accept it below. Your acceptance is your signature.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-book-kickoff": {
+        "detail": "One call, 45 minutes, once the first instalment has landed. We look inside your platform together, lock the homepage brief, and confirm who signs things off.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": true,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-bookmark": {
+        "detail": "This portal is where you'll find your next steps, your approvals and everything we need from you. Bookmark it so you can always get back here.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-domain-access": {
+        "detail": "So your finished site can go live on your domain. Due at go-live. Never send us a password in the portal: tell us who to invite or how you'd like to share access.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-exec-copy": {
+        "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-ghl-contact": {
+        "detail": "Who should we work with on your GoHighLevel account? One person is best. Due 3 business days after payment 1.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-handover": {
+        "detail": "You've received the finished site files, assets and access. From here, hosting and changes are yours. Tick this once you've checked you have everything.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-kickoff-summary": {
+        "detail": "After the call we write up what we decided, in plain words, below. Read it. If it's right, type your full name and approve it. That summary is the brief we build to. Anything not in it is a change request.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-package-breakdown": {
+        "detail": "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-pay-1": {
+        "detail": "Your invoice is in your email. Work starts once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-pay-2": {
+        "detail": "Due when the site review link opens. Your invoice is in your email. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-pay-final": {
+        "detail": "Due when the final review link opens. Handover follows once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-photos-rich": {
+        "detail": "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-prices": {
+        "detail": "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-review-ads": {
+        "detail": "The three video ads (Foundations, Tribe, Mentor7), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-review-final": {
+        "detail": "Everything together, one last time, on the review link. Approve it, or send one change list within 5 business days. After that it is deemed accepted.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-review-funnel-2": {
+        "detail": "Your round 1 changes to the landing pages, ads, statics and banner are in. This is the last round. Send one list with everything you, Martyn and Ben would change. That counts as one round.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-review-landing": {
+        "detail": "One landing page per ad, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-review-site": {
+        "detail": "Open the review link and look at every page, on your phone as well as your computer. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve it as it is.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-review-site-2": {
+        "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-save-portal": {
+        "detail": "So you can get back here in one tap. Saved to your phone's home screen, it opens like an app.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-scope-map": {
+        "detail": "Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-scripts": {
+        "detail": "One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-signoff-funnel": {
+        "detail": "Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-signoff-site": {
+        "detail": "Both rounds are done. Type your full name to sign off the site. From here, changes to it are change requests.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-starmap": {
+        "detail": "Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-starmap-link": {
+        "detail": "Rich: where on your site should people find the StarMap assessment? For example the top menu, the homepage, the Initiations page, or all three. Due 3 business days after payment 1.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-stinger-ref": {
+        "detail": "The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. Phase 1 makes the intro; the outro is on the Phase 2 list.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "atn-workbook": {
+        "detail": "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list. Due 3 business days after payment 1.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      }
+    },
+    "stringPlan": null,
+    "tabTitle": "AT Network",
+    "tagline": "Your website and funnel, built in the open.",
+    "totalDays": 42,
+    "totalMilestoneCount": 30,
+    "visibleIds": [
+      "atn-agreement",
+      "atn-bookmark",
+      "atn-save-portal",
+      "atn-scope-map",
+      "atn-pay-1",
+      "atn-book-kickoff",
+      "atn-kickoff-summary",
+      "atn-starmap",
+      "atn-package-breakdown",
+      "atn-prices",
+      "atn-photos-rich",
+      "atn-academy",
+      "atn-workbook",
+      "atn-stinger-ref",
+      "atn-exec-copy",
+      "atn-starmap-link",
+      "atn-ghl-contact",
+      "atn-scripts",
+      "atn-review-site",
+      "atn-pay-2",
+      "atn-review-site-2",
+      "atn-signoff-site",
+      "atn-review-landing",
+      "atn-review-ads",
+      "atn-review-funnel-2",
+      "atn-signoff-funnel",
+      "atn-review-final",
+      "atn-pay-final",
+      "atn-domain-access",
+      "atn-handover"
+    ],
+    "wordmark": "AT Network"
+  },
+  "ssr": {
+    "aurora|all|day1": "63fb6a356bfee1caac0f5239128719af8a3faaea99e6552976dea704fefe3e49",
+    "aurora|all|day30": "4797c7a3a4b0c8ff31d2231b4dcb6649b334abc55301eecc3d13599106919789",
+    "aurora|half|day1": "05bb92b9bc89324e9d7aee0d08d0e9518d213ed024d63a6ce7fe05b5e29c595a",
+    "aurora|half|day30": "a21fbd3b9e9652522e7fe2666ae8c8eddeeb000a263d22d237094af1ea390ba4",
+    "aurora|none|day1": "a5aad0bb807d02dfeed2c26526d3f9ba5ff9ec1ccc6adda608d1259907b070a4",
+    "aurora|none|day30": "81d63e8df230d262d81ef8231d9e35b4d8201073eb2ee423df8b90e32023a19c",
+    "calm|all|day1": "fd481eadaeefccff0dfe68aca6cdf56c09a6712460d6513bc71c264f5949b16a",
+    "calm|all|day30": "e744d2a4936c1ae0c485ce362eb1dde4e0b63422e5fc1abecb7dd4f08812ae18",
+    "calm|half|day1": "26a8db35e30c03fe3d72d0039ce4c361e4a9efeb191410687233f0686c4522bc",
+    "calm|half|day30": "780a0f343aac8384726fe92b5c1f3b1d590582c71aecfe3aebe1cfab6204d0ab",
+    "calm|none|day1": "71b8dd1ea8e499458ee16adce386f2399b93a5fd9a966af398d7a0a124d84ce2",
+    "calm|none|day30": "8cf5e5b5c823697c2443e3f2da0f3cad402ba6b1a2b5c410975cc3183c81fd69",
+    "cobalt|all|day1": "429383973173007dd66df0c31ab8ec65bc3d1718f5b4400405ac5a22ac7cfa4d",
+    "cobalt|all|day30": "d1893fd6580c3f7d0b50defe3e201f92eb3bf57cf460a9f6ebcfbbb5dc390307",
+    "cobalt|half|day1": "b1cda6d5023bdd29b02fb58af7a4058c7b0c9f0c1fad10dfb1133cac2c1a3256",
+    "cobalt|half|day30": "f2c2b827c367d6c16f7b3de91fafb2bec0eb1caba56c22500e6563d338022e88",
+    "cobalt|none|day1": "637cca5c0456e83411ffe8522f1c483c4f8e6e430711d43cf7bff570fc839867",
+    "cobalt|none|day30": "3b1fcd420d1ad6c775ab7b72425c1600220da37638619eeaf13561643079ca54",
+    "cool|all|day1": "0bc548f4b0a1669757174fe42ee854755353c6bd16c0c0bd56629f8b53beaa08",
+    "cool|all|day30": "fb88d050c51f42190455f3767c7453c6c2bd39c0697c77b5603699708ce71bd7",
+    "cool|half|day1": "63e8b30b80017761b969632dac004a8acc7501a77b939f614d882d727cd8ebff",
+    "cool|half|day30": "370a31c0aed4513ad9b56ea24bce120b9656d9af96b1240ffef7524e1b4161e6",
+    "cool|none|day1": "41ba7f23b332e2382ef301d17b0bb01045b8db8305062cf0c9027a1f6008df94",
+    "cool|none|day30": "86b082ede6e9c6cb80ff3a521aaa6ba24e8ee9854f1dfb38a308b28860da8c72",
+    "groveaurora|all|day1": "c75737ee12f0a278941e995868c7c752fb0f95addf5743f96fded3abad337804",
+    "groveaurora|all|day30": "9ca238dc786aff1db1944c057c7af5d3d608538e46dc714adb088e0895e1de1e",
+    "groveaurora|half|day1": "0dcfba4ae1dcec5d933a00802c037e1b5faad7be49e39dec4c0a1c606d35c9cf",
+    "groveaurora|half|day30": "61cf603a9715726371dd64e48a1c5a20d341c26e9d8b3bddca89a8294ce18ab5",
+    "groveaurora|none|day1": "ff613170d80a7ff6ecb6cad257f6c7a88e1e250a05ab87345e6700a5fa06cb56",
+    "groveaurora|none|day30": "4bcd0c3632416d8cc3448c2691e983a932d055da352aa29118cf84353c372fb2",
+    "grove|all|day1": "df7b0db66e84ba2a0ffc25d541a27a1abec8261ea22186c04364b63a666924fb",
+    "grove|all|day30": "ae5cbf89bab3654761bb87aeda2454b22b85d651e9c8fe51825dd9ba39fd0e1c",
+    "grove|half|day1": "9b123f754e9f32e05ebeb680018f479bd4537c000591de7c5db49b4be0ab77f1",
+    "grove|half|day30": "8b72c82ad0d967569a81bb0e201b2b20fb0b2cb80995ccb61f911c4fc70e00e7",
+    "grove|none|day1": "7e695ab065902c051e2b030134990f8f201fedc33afa202fe82fa3ee3da4ab20",
+    "grove|none|day30": "bcb4bb9645d7db91689995653210d151e4c9e21615b5df5e3d01995053e42a07",
+    "handoff|all|day1": "1edf350b98eb6eb6c672b4a69b58affda5f6c1ac80435624330b452d105ef186",
+    "handoff|all|day30": "74f5889ae63e1d2f515af603958e1ccd295d1ca4943360c7de9eb5ba1b95585d",
+    "handoff|half|day1": "f54c06c76aabdd560eacf0c91ba5a7db83d7b5c0c41d5189ad315d5d997ee08c",
+    "handoff|half|day30": "4af2ea08650645fb02eb14aba214ecd4a35309bae60ca9f0aacbdb1833dcefe3",
+    "handoff|none|day1": "30804330754ce842d81689709339b4c915c3e80d040b4bfd5e2fc96ba3af4030",
+    "handoff|none|day30": "bb8c846295f2ec3a184a157525171a586ee17f918a22f1fa133f1f40cf3953bd",
+    "neutral|all|day1": "2ebca261ba05c5f6c6ce41c667ee2de7faaab5395015c4622cc568456be5834e",
+    "neutral|all|day30": "590e997f00d5c0bd9d769f5203742e058c99393d014c2d1debd2e8d12164537c",
+    "neutral|half|day1": "d96b89858f67e451c4a3a6ac8ad05bb4c7e06241481289c047cd3b660f92701f",
+    "neutral|half|day30": "13e43c5b21a494f8abc20830fd148ce3ac02f55ddb42698da1ed6718b0d0efd4",
+    "neutral|none|day1": "31d5be4eea4de5346baa90724c70ed14ab1570abec4db0e86ac0276e1ab600de",
+    "neutral|none|day30": "355110e2979699abcb77968228a93ff5fe0bbe544d14f44f46881a31854d5fe1",
+    "warm|all|day1": "6946002d187b85cd818ef44e55d03771b7f77e1a8b0b47de2b615db19937fb6a",
+    "warm|all|day30": "0b4abff0a6b1ae6c445a0ef6e6a01047068f11b6657bb69921049b58b69afa55",
+    "warm|half|day1": "e905b6deb6a3c9af819877aa52e3a0ca0b210c0a38a1e26c60df14770e0b0c8c",
+    "warm|half|day30": "f33f9be2778ac768d7fe77c75b15f56c09f636d5f0f20a80d874728c91a7eae6",
+    "warm|none|day1": "28bd32cee8520856f49558c776529ffdd7153bc325be088358c42a09abd04479",
+    "warm|none|day30": "fe6d65d457c31adb6c99133030bb759b8b3cffa11711a837031eeb38825d2df6"
+  },
+  "welcome": {
+    "aurora": "ff5ccc56a4ed3d937899ae77ba694f78d490870e3a5a8f2844c53b6e92ce3b00",
+    "funnel": "dc527818b473f7d02a024e1b7c9bbcce217b0944696a0914cfb35fb5da383ef5",
+    "funnel-grove": "e5dc4326b46039a6f69a55f53ad5c272ed5c9439e054e329e79d9d7b5227c07e",
+    "marquee": "4f12d0be0e1423cd68b2a98383be235993a970ea0787e5c1c2fb3edf1ed0ee10",
+    "mosaic": "298dec286d175d1e35ce3725d98dd0dd9f1e35b6a63e29bace0f73c8cd3e3716"
+  }
+}

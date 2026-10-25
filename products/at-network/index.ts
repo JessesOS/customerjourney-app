@@ -1,5 +1,5 @@
 // AT Network (Rich Latimer and Martyn Hume Cobbe): a brand-new custom product,
-// separate from Fin's. DRAFT: staging and local only (never prod).
+// separate from Fin's. LIVE since 2026-10-25 (Jesse's OK after the walkthrough).
 //
 // Written from the AT Network session's handover, products/at-network/spec.md
 // (2026-10-21), on a blank base. Two sides, defined once:
@@ -18,8 +18,9 @@ import { atNetworkTeamTasks } from "./team-tasks";
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-25.15",
-  status: "draft",
+  version: "2026-10-25.16",
+  // Live (Jesse, 2026-10-25): he approved the wording in the walkthrough of 25 Oct.
+  status: "live",
   clientType: "at-network",
   label: "AT Network",
   spec: "products/at-network/spec.md",
@@ -45,5 +46,5 @@ export const atNetwork = defineCustomProduct({
     // The Scope and Map on "Read your scope and map" (draft, 2026-10-25): two tracks, site map, Phase 2 list.
     journeyMap: { step: "atn-scope-map", content: atNetworkScopeMap },
   },
-  draftCopy: atNetworkSteps.map((s) => s.step.id),
+  draftCopy: [],
 });
