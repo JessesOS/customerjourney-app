@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.8` |
+| Version | `2026-10-25.9` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
-| Client steps | 26 (0 client only, 0 hidden in the portal) |
-| Team tasks | 38 (37 behind a client step, 1 team-only) |
+| Client steps | 27 (0 client only, 0 hidden in the portal) |
+| Team tasks | 39 (38 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
-| Draft wording | `atn-agreement`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-level-docs`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `atn-agreement`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-level-docs`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-stinger-ref`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 26 | 38 |
+| AT Network | `at-network` | none | where PRODUCT_DRAFTS=1 | 27 | 39 |
 
 ### Portal tweaks by variant
 
@@ -122,7 +122,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 38 |
+| Jesse Allan | 39 |
 
 ## Stages
 
@@ -312,6 +312,24 @@ Portal: upload · note
 |---|---|---|---|---|
 | `atn-t14` File the workbook as received (no branding in Phase 1) | Jesse Allan | Days 3-10 | normal |  |
 
+### `atn-stinger-ref` Send a reference for your podcast stingers
+
+> The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. Phase 1 makes the intro; the outro is on the Phase 2 list.
+
+Portal: upload · note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t18` Review the stinger references and brief the intro ident | Jesse Allan | Days 3-10 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t18` Review the stinger references and brief the intro ident**
+
+Intro only in Phase 1 (one round). The outro is Phase 2.
+
+</details>
+
 ### `atn-ghl-contact` Name your GHL contact person
 
 > Who should we work with on your GoHighLevel account? One person is best.
@@ -451,7 +469,7 @@ Portal: work to review · note (required)
 | `atn-t31` Make three cold video ads (up to 15 s, vertical, captions burned in) | Jesse Allan | Days 20-30 | normal |  |
 | `atn-t32` Make two statics and the LinkedIn banner | Jesse Allan | Days 20-30 | normal |  |
 | `atn-t33` Write the retargeting ladder as a plan | Jesse Allan | Days 24-30 | normal |  |
-| `atn-t34` Produce the podcast intro (one round) | Jesse Allan | Days 24-30 | normal |  |
+| `atn-t34` Produce the podcast intro stinger (one round) | Jesse Allan | Days 24-30 | normal | `atn-t18` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
