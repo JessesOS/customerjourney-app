@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.11` |
+| Version | `2026-10-25.12` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 29 (2 client only, 0 hidden in the portal) |
@@ -130,7 +130,7 @@ Each stage lists the client's steps in portal order, with the team tasks behind 
 
 ## 1. Sign and start · days 1–7
 
-_Accept the agreement, pay the first instalment, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to._
+_Accept the agreement, save your portal, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to._
 
 ### `atn-agreement` Your signed agreement
 

@@ -25,7 +25,7 @@ export const atNetworkStages: Partial<Record<StageId, StagePatch>> = {
     name: "Sign and start",
     dayStart: 1,
     dayEnd: 7,
-    blurb: "Accept the agreement, pay the first instalment, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to.",
+    blurb: "Accept the agreement, save your portal, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to.",
     statusNotes: [],
   },
   build: {
