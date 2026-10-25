@@ -95,7 +95,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       // Google Calendar booking page on jesse@allconvos.ai (made 2026-10-25).
       id: "atn-book-kickoff",
-      bookingUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ32pczT1vxP1Sys3PKJU7B88A9iei4TYjinv4BRZ2NkdAlZtIykK6RcRHHc0ntTyC2J26XrF5RS",
+      bookingUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zFdYaXgf5lDqGZ8rLV9KPdB1nNec8ZbfcHcmXT7Bj51LstiAWeQvjG-26D1PxlPcvQ9-lxgdP",
       title: "Book the kickoff call",
       detail: "One call, 45 minutes, once the first instalment has landed. We look inside your platform together, lock the homepage brief, and confirm who signs things off.",
       steps: [
