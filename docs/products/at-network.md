@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.10` |
+| Version | `2026-10-25.11` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 29 (2 client only, 0 hidden in the portal) |
@@ -356,9 +356,9 @@ Portal: note (required)
 |---|---|---|---|---|
 | `atn-t08` Set up the GHL contact person's access | Jesse Allan | Days 3-7 | normal |  |
 
-### `atn-scripts` Write first-draft scripts for your sales videos
+### `atn-scripts` Write first-draft scripts for your four sales videos
 
-> Your team writes a first draft for the sales video on each landing page. Rough is fine: you get one round of edits from us. Paste them in the box, or upload a document.
+> One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document.
 
 Portal: upload · note
 
