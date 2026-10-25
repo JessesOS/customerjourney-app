@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.1` |
+| Version | `2026-10-25.2` |
 | Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
 | Journey | 42 days to go-live |
 | Client steps | 26 (0 client only, 0 hidden in the portal) |
 | Team tasks | 38 (37 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
-| Draft wording | `atn-agreement`, `atn-pay-1`, `atn-scope-map`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-level-docs`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | `atn-agreement`, `atn-scope-map`, `atn-pay-1`, `atn-book-kickoff`, `atn-kickoff-summary`, `atn-starmap`, `atn-package-breakdown`, `atn-level-docs`, `atn-photos-rich`, `atn-academy`, `atn-workbook`, `atn-ghl-contact`, `atn-scripts`, `atn-videographer`, `atn-review-site`, `atn-pay-2`, `atn-review-site-2`, `atn-signoff-site`, `atn-review-landing`, `atn-review-ads`, `atn-review-funnel-2`, `atn-signoff-funnel`, `atn-review-final`, `atn-pay-final`, `atn-domain-access`, `atn-handover`: Claude drafted this wording; Jesse approves it before the product goes live |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -131,7 +131,7 @@ Each stage lists the client's steps in portal order, with the team tasks behind 
 
 ## 1. Sign and start · days 1–7
 
-_Accept the agreement, pay the first instalment, read your scope and map, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to._
+_Accept the agreement, pay the first instalment, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to._
 
 ### `atn-agreement` Read the agreement and accept it
 
@@ -149,22 +149,6 @@ The board's Agreement section lists each acceptance with its record link. Email 
 
 </details>
 
-### `atn-pay-1` Pay the first instalment
-
-> Your invoice is in your email. Work starts once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `atn-t02` Confirm payment 1 in admin and tick the step | Jesse Allan | Days 1-3 | normal | `atn-t01` |
-
-<details><summary>Guidance for the team (1 task)</summary>
-
-**`atn-t02` Confirm payment 1 in admin and tick the step**
-
-Jesse ticks it in admin.
-
-</details>
-
 ### `atn-scope-map` Read your scope and map
 
 > Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.
@@ -178,6 +162,22 @@ Jesse ticks it in admin.
 **`atn-t09` Edit the Scope and Map before the client reads it**
 
 products/at-network/scope-map.ts is Claude's draft. Check the In, Out and Phase 2 lists against the agreement.
+
+</details>
+
+### `atn-pay-1` Pay the first instalment
+
+> Your invoice is in your email. Work starts once it is paid. Pay by card or bank transfer from the invoice. Jesse ticks this once your payment shows. Nothing else is needed from you after you've paid.
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t02` Confirm payment 1 in admin and tick the step | Jesse Allan | Days 1-3 | normal | `atn-t01` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t02` Confirm payment 1 in admin and tick the step**
+
+Jesse ticks it in admin.
 
 </details>
 

@@ -6,7 +6,9 @@
 // EVERY WORD HERE IS A DRAFT (Claude): all steps are in draftCopy.
 // OPEN in the spec, so PLACEHOLDERS here: total days, each stage's day window,
 // every due date, the brand tagline, the kickoff booking link. No prices.
-// Step 1 is the signed acceptance of the agreement (./agreement.ts). Payments
+// Step 1 is the signed acceptance of the agreement (./agreement.ts). The Scope
+// and Map comes right after it, so it can be read before paying (Claude's call,
+// Jesse OK 2026-10-25). Payments
 // are Stripe invoices; the portal shows the step and Jesse marks it paid.
 // Reviews follow the agreement's rule: one consolidated list per round, two
 // rounds per piece. Each review step says which round it is.
@@ -23,7 +25,7 @@ export const atNetworkStages: Partial<Record<StageId, StagePatch>> = {
     name: "Sign and start",
     dayStart: 1,
     dayEnd: 7,
-    blurb: "Accept the agreement, pay the first instalment, read your scope and map, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to.",
+    blurb: "Accept the agreement, pay the first instalment, read your scope and map, pay the first instalment, then book the kickoff call. After it, you approve a short written summary. That's the brief we build to.",
     statusNotes: [],
   },
   build: {
@@ -71,21 +73,21 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
-      id: "atn-pay-1",
-      title: "Pay the first instalment",
-      detail: "Your invoice is in your email. Work starts once it is paid. " + PAY_NOTE,
-      doneLabel: "I've paid",
-    },
-  },
-  {
-    stage: "onboarding",
-    step: {
       // The Scope and Map (./scope-map.ts): the two tracks, the site map, what's
       // in, what's out, and the Phase 2 list. Stays readable after it's ticked.
       id: "atn-scope-map",
       title: "Read your scope and map",
       detail: "Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.",
       doneLabel: "I've read it",
+    },
+  },
+  {
+    stage: "onboarding",
+    step: {
+      id: "atn-pay-1",
+      title: "Pay the first instalment",
+      detail: "Your invoice is in your email. Work starts once it is paid. " + PAY_NOTE,
+      doneLabel: "I've paid",
     },
   },
   {

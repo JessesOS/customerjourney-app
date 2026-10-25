@@ -262,6 +262,8 @@ export type PortalJourney = {
   assistant?: true;
   /** Communications (step threads and the Messages panel) are on. Absent when off, so other products' journeys are unchanged. */
   comms?: true;
+  /** Steps whose completion note is a typed-name approval, recorded in the step's thread. Absent when none. */
+  approvalSteps?: string[];
   /** Home-screen app icon name (public/portal/icons/<name>-<size>.png). Absent when the product has none. */
   appIcon?: string;
   /** The customer journey map and the step it shows on. Absent when the product has none. */

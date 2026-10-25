@@ -1,5 +1,6 @@
 import { getPortalClientByToken, markMilestoneComplete } from "@/lib/portalClientStore";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
+import { recordStepApproval } from "@/lib/commsStore";
 
 const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
 
@@ -22,6 +23,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
     // 12,000 characters, so a spoken interview transcript (ob-0) is not cut short.
     const note = typeof body.note === "string" ? body.note.trim().slice(0, 12000) : undefined;
     await markMilestoneComplete(client.id, milestoneId, note);
+    // A sign-off step: the typed name becomes an Approval record on the step's thread (AT Network first).
+    if (note) await recordStepApproval(client, milestoneId, note);
 
     return Response.json({ ok: true });
   } catch (error) {

@@ -18,7 +18,7 @@ import { atNetworkTeamTasks } from "./team-tasks";
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-25.1",
+  version: "2026-10-25.2",
   status: "draft",
   clientType: "at-network",
   label: "AT Network",
@@ -36,7 +36,8 @@ export const atNetwork = defineCustomProduct({
     // "Ask Jesse" help panel: with no reviewed pack it only takes requests, which
     // become tasks on the board (Jesse, 2026-10-21).
     // Messages: step threads with the team (phase 1 of docs/at-network-communications-plan.md).
-    features: { assistant: true, comms: true },
+    // Sign-offs: completing these writes an Approval record (typed name) to the step's thread.
+    features: { assistant: true, comms: true, approvalSteps: ["atn-kickoff-summary", "atn-signoff-site", "atn-signoff-funnel", "atn-review-final"] },
     // Step 1: the agreement, accepted as a signed record (text OPEN: placeholder).
     agreement: atNetworkAgreement,
     // The Scope and Map on "Read your scope and map" (draft, 2026-10-25): two tracks, site map, Phase 2 list.
