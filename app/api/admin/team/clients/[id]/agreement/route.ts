@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import { getDb } from "@/db";
 import { portalClients } from "@/db/schema";
 import { agreementFor, listAcceptances, recordAcceptanceManually } from "@/lib/agreementStore";
+import { signPath } from "@/lib/signLink";
 import { requireTeam } from "@/lib/teamAuth";
 
 /** GET: the client's agreement acceptances, with links to their printable records. Empty without an agreement. */
@@ -18,6 +19,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     enabled: true,
     currentVersion: a.version,
     entity: a.entity,
+    signUrl: await (async () => { const path = await signPath(client.id); return path ? `${new URL(request.url).origin}${path}` : null; })(),
     acceptances: rows.map((r) => ({
       id: r.id, version: r.agreementVersion, entity: r.entity, signerName: r.signerName, signerEmail: r.signerEmail, ip: r.ip, acceptedAt: r.acceptedAt,
       recordUrl: `/api/portal/${client.portalToken}/agreement/${r.id}`,

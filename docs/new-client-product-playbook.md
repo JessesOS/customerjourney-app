@@ -34,3 +34,13 @@ Written 2026-10-21, from Fin's `bss-custom` build. Read this first when a new cl
 - **Gmail drafts** made through the connector get their links rewritten as Google redirects. Don't edit Jesse's drafts from this session: give him the text.
 - **Commits:** explicit file paths, never `git add -A`. Write the message to a file and use `git commit -F`. End with the co-author line the session gives you.
 - **Times:** Jesse's Mac clock looks an hour ahead of Brisbane (UTC+11). Say "your clock" or give UTC.
+
+## Signing the agreement (from 2026-10-27)
+
+The client signs on Launchpad's own signing page, not a separate site. On the client's board, Agreement section, copy the **signing link** (`/sign/<client id>/<code>`) and send it before the portal link. It shows the product's agreement (`portal.agreement`) with name, position, email and a tick; the entity is fixed. Pressing Accept records the signature (with the real IP and the exact text), ticks step 1, and emails the signer a copy with a print or save link (copied to `agreement.copyTo`, e.g. the client's accounts inbox) and alerts Jesse. Nothing to do in admin. "Record a signature made elsewhere" stays for a client who signed some other way.
+
+**Wording for B14 in the next client's agreement** (AT Network's signed Version 2 keeps its own wording):
+
+> You accept this agreement on behalf of your company on the signing page: tick the box, type your full name, position and email, and press Accept. That is your electronic signature. We record your name, position, email, the date and time, your IP address, this version and the exact text, and email you a copy straight away, which you can print or save as a PDF. A later version applies only once you accept it the same way.
+
+Test each new client's signing link on staging first, with a demo client and your own email.

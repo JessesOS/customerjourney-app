@@ -13,7 +13,24 @@ import type { AgreementContent } from "@/lib/journeyTypes";
 
 type Acceptance = { id: number; version: string; entity: string; signerName: string; acceptedAt: string };
 
-export function AgreementAccept({ portalToken, agreement, onAccepted }: { portalToken: string; agreement: AgreementContent; onAccepted?: (note: string) => void }) {
+export function AgreementAccept({
+  portalToken,
+  agreement,
+  onAccepted,
+  endpoint,
+  askPosition,
+  fullText,
+}: {
+  portalToken?: string;
+  agreement: AgreementContent;
+  onAccepted?: (note: string) => void;
+  /** The API to read and sign through. Default: the portal's. The signing page passes its own. */
+  endpoint?: string;
+  /** Also ask for the signer's position (the signing page). */
+  askPosition?: boolean;
+  /** Show the whole agreement on the page instead of a scroll box (the signing page). */
+  fullText?: boolean;
+}) {
   const [hash, setHash] = useState<string | null>(null);
   const [acceptances, setAcceptances] = useState<Acceptance[]>([]);
   const [agreed, setAgreed] = useState(false);
@@ -22,7 +39,8 @@ export function AgreementAccept({ portalToken, agreement, onAccepted }: { portal
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const base = `/api/portal/${portalToken}/agreement`;
+  const base = endpoint ?? `/api/portal/${portalToken}/agreement`;
+  const [position, setPosition] = useState("");
 
   const load = useCallback(async () => {
     try {
@@ -34,7 +52,7 @@ export function AgreementAccept({ portalToken, agreement, onAccepted }: { portal
   useEffect(() => { void load(); }, [load]);
 
   const current = [...acceptances].reverse().find((a) => a.version === agreement.version);
-  const ready = agreed && entity.trim() && name.trim().split(/\s+/).length >= 2 && /\S+@\S+\.\S+/.test(email.trim()) && hash;
+  const ready = agreed && entity.trim() && name.trim().split(/\s+/).length >= 2 && /\S+@\S+\.\S+/.test(email.trim()) && hash && (!askPosition || position.trim());
 
   async function accept() {
     if (!ready || busy) return;
@@ -44,7 +62,7 @@ export function AgreementAccept({ portalToken, agreement, onAccepted }: { portal
       const res = await fetch(base, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ version: agreement.version, hash, entity, signerName: name, signerEmail: email, agreed }),
+        body: JSON.stringify({ version: agreement.version, hash, entity, signerName: name, signerEmail: email, agreed, ...(askPosition ? { position } : {}) }),
       });
       const data = (await res.json()) as { ok: boolean; note?: string; error?: string };
       if (!data.ok) { setError(data.error ?? "Couldn't record that. Try again."); return; }
@@ -62,7 +80,7 @@ export function AgreementAccept({ portalToken, agreement, onAccepted }: { portal
 
   return (
     <div style={{ marginTop: 22 }}>
-      <div style={{ maxHeight: 420, overflowY: "auto", borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: "18px 20px" }} tabIndex={0} aria-label="The agreement">
+      <div style={{ maxHeight: fullText ? undefined : 420, overflowY: fullText ? undefined : "auto", borderRadius: "var(--pj-radius-sm)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: "18px 20px" }} tabIndex={0} aria-label="The agreement">
         <div style={{ fontWeight: 700, fontSize: 16 }}>{agreement.title}</div>
         <div style={{ fontSize: 12, color: "var(--pj-faint)", marginTop: 2 }}>Version {agreement.version}</div>
         {agreement.sections.map((s) => (
@@ -95,6 +113,12 @@ export function AgreementAccept({ portalToken, agreement, onAccepted }: { portal
           )}
           <label style={label} htmlFor="agr-name">Your full name</label>
           <input id="agr-name" style={field} value={name} maxLength={200} autoComplete="name" onChange={(e) => setName(e.target.value)} placeholder="First and last name" />
+          {askPosition && (
+            <>
+              <label style={label} htmlFor="agr-position">Your position</label>
+              <input id="agr-position" style={field} value={position} maxLength={200} autoComplete="organization-title" onChange={(e) => setPosition(e.target.value)} placeholder="e.g. Director" />
+            </>
+          )}
           <label style={label} htmlFor="agr-email">Your email</label>
           <input id="agr-email" type="email" style={field} value={email} maxLength={200} autoComplete="email" onChange={(e) => setEmail(e.target.value)} placeholder="name@example.com" />
           <label style={{ display: "flex", gap: 10, alignItems: "flex-start", marginTop: 16, fontSize: 14, cursor: "pointer" }}>
@@ -102,7 +126,7 @@ export function AgreementAccept({ portalToken, agreement, onAccepted }: { portal
             <span>I have read and accept the agreement on behalf of {entity.trim() || "[company or entity]"}.</span>
           </label>
           <div style={{ marginTop: 10, fontSize: 12, color: "var(--pj-faint)" }}>
-            Typing your name and accepting is your signature. We record your name, email, the date and time, the agreement version and your IP address. You can view and print your copy straight after.
+            Typing your name and accepting is your signature. We record your name, {askPosition ? "position, " : ""}email, the date and time, the agreement version and your IP address. You can view and print your copy straight after.
           </div>
           {error && <div style={{ marginTop: 10, fontSize: 13, color: "#c0392b" }}>{error}</div>}
           <button

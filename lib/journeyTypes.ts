@@ -202,6 +202,8 @@ export type AgreementContent = {
   /** The entity the signer accepts for. Absent = the signer types it. */
   entity?: string;
   sections: { heading: string; paragraphs: string[] }[];
+  /** Extra addresses copied on the signer's confirmation email (e.g. the client's accounts inbox). */
+  copyTo?: string[];
 };
 
 export type JourneyMapContent = {

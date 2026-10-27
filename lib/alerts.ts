@@ -75,20 +75,33 @@ export async function alertTeamOfSignoff(origin: string, client: Client, stepId:
   });
 }
 
-/** The agreement was accepted: the signer's copy, and the team's. */
-export async function alertAgreementAccepted(origin: string, client: Client, a: { id: number; version: string; entity: string; signerName: string; signerEmail: string; acceptedAt: string }): Promise<EmailResult[]> {
-  const record = `${origin}/api/portal/${client.portalToken}/agreement/${a.id}`;
+/**
+ * The agreement was accepted: the signer's copy (copied to the product's copyTo),
+ * and the team's. `recordUrl` is the printable copy; `portalLink` is omitted when
+ * they signed before getting their portal (the signing page).
+ */
+export async function alertAgreementAccepted(
+  origin: string,
+  client: Client,
+  a: { id: number; version: string; entity: string; signerName: string; signerEmail: string; acceptedAt: string; position?: string },
+  opts: { recordUrl?: string; portalLink?: boolean; via?: string } = {},
+): Promise<EmailResult[]> {
+  const record = opts.recordUrl ?? `${origin}/api/portal/${client.portalToken}/agreement/${a.id}`;
+  const copyTo = portalJourneyFor(client.clientType).agreement?.copyTo ?? [];
+  const sydney = new Date(a.acceptedAt).toLocaleString("en-AU", { timeZone: "Australia/Sydney", dateStyle: "long", timeStyle: "short" });
+  const portalLine = opts.portalLink === false ? "" : `\n\nYour portal: ${portalUrl(origin, client)}`;
   return sendEmails([
     {
       to: a.signerEmail,
+      cc: copyTo,
       subject: `Your signed agreement with ${brand(client)}`,
-      text: `Hi ${a.signerName.split(/\s+/)[0]},\n\nThank you. You accepted the agreement (version ${a.version}) on behalf of ${a.entity} at ${a.acceptedAt} UTC.\n\nYour copy, with the full text and the acceptance details, is here. You can print it or save it as a PDF:\n${record}\n\nYour portal: ${portalUrl(origin, client)}`,
+      text: `Hi ${a.signerName.split(/\s+/)[0]},\n\nThank you. You accepted the agreement (${a.version}) on behalf of ${a.entity} on ${sydney} (Sydney time).\n\nYour copy, with the full text and the acceptance details, is here. You can print it or save it as a PDF:\n${record}${portalLine}`,
       replyTo: teamEmail(),
     },
     {
       to: teamEmail(),
       subject: `${client.name}: agreement accepted by ${a.signerName} (${a.version})`,
-      text: `${a.signerName} (${a.signerEmail}) accepted version ${a.version} for ${a.entity} at ${a.acceptedAt} UTC.\n\nRecord: ${record}\nBoard: ${boardUrl(origin, client)}`,
+      text: `${a.signerName}${a.position ? `, ${a.position},` : ""} (${a.signerEmail}) accepted ${a.version} for ${a.entity} on ${sydney} (Sydney time)${opts.via ? `, ${opts.via}` : ""}. Step 1 of their portal is ticked.\n\nRecord: ${record}\nBoard: ${boardUrl(origin, client)}`,
     },
   ]);
 }

@@ -47,7 +47,7 @@ export async function getAcceptance(clientId: string, id: number) {
   return row && row.clientId === clientId ? row : null;
 }
 
-export type AcceptInput = { version: string; hash: string; entity: string; signerName: string; signerEmail: string; agreed: boolean; ip: string; userAgent: string };
+export type AcceptInput = { version: string; hash: string; entity: string; signerName: string; signerEmail: string; agreed: boolean; ip: string; userAgent: string; position?: string };
 
 /** Records an acceptance of the current version and ticks the step. Refuses a stale version or text. */
 export async function acceptAgreement(client: { id: string; clientType: string }, input: AcceptInput) {
@@ -66,6 +66,9 @@ export async function acceptAgreement(client: { id: string; clientType: string }
   if (name.split(/\s+/).length < 2) return { ok: false as const, status: 400, error: "Type your full name, first and last." };
   if (!EMAIL.test(email)) return { ok: false as const, status: 400, error: "Add a valid email address." };
   if ([entity, name, email].some((v) => v.length > MAX_FIELD)) return { ok: false as const, status: 400, error: "One of the fields is too long." };
+  const position = (input.position ?? "").trim();
+  if (input.position !== undefined && !position) return { ok: false as const, status: 400, error: "Add your position, for example Director." };
+  if (position.length > MAX_FIELD) return { ok: false as const, status: 400, error: "One of the fields is too long." };
 
   const acceptedAt = new Date().toISOString();
   const [row] = await getDb()
@@ -80,7 +83,8 @@ export async function acceptAgreement(client: { id: string; clientType: string }
       signerName: name,
       signerEmail: email,
       ip: input.ip.slice(0, 64),
-      userAgent: input.userAgent.slice(0, 300),
+      // Signed on the signing page: the position travels here (no new column; portal_* tables are never altered).
+      userAgent: (position ? `signing page · position: ${position} · ${input.userAgent}` : input.userAgent).slice(0, 300),
       acceptedAt,
     })
     .returning();
@@ -138,6 +142,7 @@ button{padding:9px 16px;border-radius:8px;border:1px solid #999;background:#fff;
 <dt>Agreement version</dt><dd>${esc(row.agreementVersion)}</dd>
 <dt>IP address</dt><dd>${esc(row.ip || "not available")}</dd>
 ${row.userAgent.startsWith("recorded by team") ? `<dt>How it was recorded</dt><dd>${esc(row.userAgent)}</dd>` : ""}
+${row.userAgent.startsWith("signing page") ? `<dt>Position</dt><dd>${esc(row.userAgent.split(" · ")[1]?.replace("position: ", "") ?? "")}</dd><dt>Signed on</dt><dd>The signing page</dd>` : ""}
 <dt>Statement</dt><dd>I have read and accept the agreement on behalf of ${esc(row.entity)}.</dd>
 <dt>SHA-256 of the text below</dt><dd class="hash">${esc(row.agreementHash)}</dd>
 </dl></div>

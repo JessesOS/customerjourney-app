@@ -13,7 +13,7 @@ import { setting } from "@/lib/settings";
  */
 
 export type EmailResult = "sent" | "failed" | "unconfigured" | "skipped";
-export type Email = { to: string; subject: string; text: string; html?: string; replyTo?: string };
+export type Email = { to: string; subject: string; text: string; html?: string; replyTo?: string; cc?: string[] };
 
 const DEFAULT_FROM = "Launchpad <portal@allconvos.ai>";
 const DEFAULT_TEAM = "jesse@allconvos.ai";
@@ -57,6 +57,7 @@ export async function sendEmail(email: Email): Promise<EmailResult> {
         text: email.text,
         html: email.html ?? textToHtml(email.text),
         ...(email.replyTo ? { reply_to: email.replyTo } : {}),
+        ...(email.cc?.filter((c) => EMAIL_RE.test(c)).length ? { cc: email.cc.filter((c) => EMAIL_RE.test(c)) } : {}),
       }),
     });
     if (!res.ok) {
