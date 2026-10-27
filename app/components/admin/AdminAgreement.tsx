@@ -8,7 +8,7 @@ import { teamFetch, timeAgo } from "@/app/components/admin/teamClient";
 // without an agreement.
 
 type Row = { id: number; version: string; entity: string; signerName: string; signerEmail: string; ip: string; acceptedAt: string; recordUrl: string };
-type View = { enabled: boolean; currentVersion?: string; acceptances: Row[] };
+type View = { enabled: boolean; currentVersion?: string; entity?: string; acceptances: Row[] };
 
 export function AdminAgreement({ clientId }: { clientId: string }) {
   const [view, setView] = useState<View | null>(null);
@@ -27,7 +27,8 @@ export function AdminAgreement({ clientId }: { clientId: string }) {
   async function record() {
     if (!form) return;
     setError(null);
-    const { data } = await teamFetch(url, { method: "POST", json: form });
+    // datetime-local has no zone: read it as this browser's local time, send UTC.
+    const { data } = await teamFetch(url, { method: "POST", json: { ...form, acceptedAt: new Date(form.acceptedAt).toISOString() } });
     if (!data.ok) { setError(data.error ?? "Could not record it."); return; }
     setForm(null);
     await load();
@@ -40,13 +41,13 @@ export function AdminAgreement({ clientId }: { clientId: string }) {
         Current version {view.currentVersion}: {signed ? "accepted" : "not accepted yet"}. Email and PDF copies come later.
       </div>
       {!signed && !form ? (
-        <button type="button" className="tb-btn" style={{ marginBottom: 8 }} onClick={() => setForm({ entity: "", signerName: "", signerEmail: "", acceptedAt: new Date().toISOString().slice(0, 16), source: "Signed agreement page" })}>
+        <button type="button" className="tb-btn" style={{ marginBottom: 8 }} onClick={() => setForm({ entity: "", signerName: "", signerEmail: "", acceptedAt: new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 16), source: "Signed agreement page" })}>
           Record a signed acceptance
         </button>
       ) : null}
       {form ? (
         <div style={{ display: "grid", gap: 6, marginBottom: 10 }}>
-          <input placeholder="Entity (legal name)" value={form.entity} onChange={(e) => setForm({ ...form, entity: e.target.value })} />
+          {view.entity ? <div className="tb-faint" style={{ fontSize: 12 }}>Entity: {view.entity}</div> : <input placeholder="Entity (legal name)" value={form.entity} onChange={(e) => setForm({ ...form, entity: e.target.value })} />}
           <input placeholder="Signer's full name" value={form.signerName} onChange={(e) => setForm({ ...form, signerName: e.target.value })} />
           <input placeholder="Signer's email" type="email" value={form.signerEmail} onChange={(e) => setForm({ ...form, signerEmail: e.target.value })} />
           <input type="datetime-local" value={form.acceptedAt} onChange={(e) => setForm({ ...form, acceptedAt: e.target.value })} aria-label="When they accepted" />

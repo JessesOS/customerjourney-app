@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-10-25.17` |
+| Version | `2026-10-27.1` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 30 (2 client only, 0 hidden in the portal) |
-| Team tasks | 40 (39 behind a client step, 1 team-only) |
+| Team tasks | 41 (40 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | yes | 30 | 40 |
+| AT Network | `at-network` | none | yes | 30 | 41 |
 
 ### Portal tweaks by variant
 
@@ -53,14 +53,14 @@ Phase 1 is two tracks that share one page. The website build is your new site. T
 
 The First Light site, built page by page. You see it on a review link as it grows. Where they come from: Ads (half of all ad traffic), LinkedIn and search, The podcast, Referrals and the Tribe.
 
-1. **Home** (us). In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. The impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.
+1. **Home** (us). In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. A two-minute cut of your impact video sits here, with the full version in Stories, and the best testimonial videos. One homepage, built to be tested against the landing pages.
    - **The Ascension pathway:** The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
    - **Who it's for:** The three cold ads can sit here too, one per audience.
 2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
    - **Foundations:** Its own page, linked from the top menu, inside the Academy level.
    - **Growth and Legacy:** A page each, built from the outlines you supply, so the pathway is complete.
 3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free trial is, how levels work and what happens next.
-4. **Podcast section, with a journal** (us). A home for the podcast, with the intro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
+4. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
 5. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
    - _To confirm:_ The StarMap questions and report details ("Send the StarMap questions and report details")
 6. **Under the hood** (us). A simple content editor so you can change words and images, the SEO basics on every page, checked on phones and desktop before launch. At handover you get the full site files.
@@ -89,17 +89,17 @@ Ends with: Assets and a plan your team can run, with the tags in place to see wh
 Parked here so nothing is lost. We quote them once the site is live. Add your own in the notes. Where they come from: Your voice notes and messages, The kickoff call, Anything that comes up during the build.
 
 1. **Platform rebrand**. Changing the platform's branding to match the new site.
-2. **Impact video edits**. A shorter edit, or running the 6.5-minute video through a model to blend in the branding.
+2. **More from the impact video**. Recolouring or recreating the film, or running it through a model to blend in the branding. The two-minute cut for the homepage is in Phase 1.
 3. **Avatar videos and a new sales video**. Longer avatar videos come from your videographer. We place them on the site when you have them.
 4. **Branding the workbook**. We use the workbook as it is in Phase 1.
-5. **Posting system for articles, podcast outro, podcast page**. The journal in the podcast section covers Phase 1.
+5. **Posting system for articles, podcast page**. The journal in the podcast section covers Phase 1.
 6. **The Benevolent Executive film**. We'll talk it through separately. It isn't in this portal's scope.
 
 Ends with: One quote, when you're ready, for the ones you want.
 
 ### Also running
 
-- **The podcast intro:** One intro, one round of changes.
+- **The podcast intro and outro:** A matching pair in the same look. We agree the look first, then one round of changes on both.
 - **Sales video scripts:** Your team drafts one per landing page. We give one round of edits.
 - **Your team owns:** GoHighLevel, checkout, tracking, ad accounts, filming, posting and DNS.
 
@@ -122,7 +122,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 40 |
+| Jesse Allan | 41 |
 
 ## Stages
 
@@ -330,19 +330,19 @@ Portal: upload · note
 
 ### `atn-stinger-ref` Send a reference for your podcast stingers
 
-> The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. Phase 1 makes the intro; the outro is on the Phase 2 list.
+> The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. We make a matching intro and outro from them.
 
 Portal: upload · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t18` Review the stinger references and brief the intro ident | Jesse Allan | Days 3-10 | normal |  |
+| `atn-t18` Review the stinger references and agree the intro and outro look | Jesse Allan | Days 3-10 | normal |  |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t18` Review the stinger references and brief the intro ident**
+**`atn-t18` Review the stinger references and agree the intro and outro look**
 
-Intro only in Phase 1 (one round). The outro is Phase 2.
+Agreement v2 A2: a short set of title-sequence references, agreed before the build. Keep the real, human feel.
 
 </details>
 
@@ -403,9 +403,10 @@ Portal: work to review · note (required)
 | `atn-t22` Build the StarMap page | Jesse Allan | Days 12-24 | normal | `atn-t03` |
 | `atn-t23` Build the eBook landing page, the free guide PDF and the podcast section with its journal | Jesse Allan | Days 12-24 | normal |  |
 | `atn-t24` Set up the content editor and the SEO basics | Jesse Allan | Days 16-26 | normal |  |
+| `atn-t45` Cut the two-minute impact video for the homepage; keep the full version in Stories | Jesse Allan | Days 8-24 | normal |  |
 | `atn-t25` Open the site review link and send it; payment 2 is now due | Jesse Allan | Day 26 | normal | `atn-t29`, `atn-t21`, `atn-t23` |
 
-<details><summary>Guidance for the team (3 tasks)</summary>
+<details><summary>Guidance for the team (4 tasks)</summary>
 
 **`atn-t21` Build the five offer pages, the Foundations page and the Growth and Legacy pages**
 
@@ -414,6 +415,10 @@ Growth and Legacy from Rich's outlines (agreement A2).
 **`atn-t22` Build the StarMap page**
 
 Confirm once the questions are seen.
+
+**`atn-t45` Cut the two-minute impact video for the homepage; keep the full version in Stories**
+
+Agreement v2 A2 item 13 (launch gift, accepted 27 Oct). From existing footage; weave in a couple of new testimonial clips if they send them. Look at a vertical version once the shots are seen (not promised). No recolouring or recreating.
 
 **`atn-t25` Open the site review link and send it; payment 2 is now due**
 
@@ -499,7 +504,7 @@ Portal: work to review · note (required)
 | `atn-t31` Make three cold video ads (up to 15 s, vertical, captions burned in) | Jesse Allan | Days 20-30 | normal |  |
 | `atn-t32` Make two statics and the LinkedIn banner | Jesse Allan | Days 20-30 | normal |  |
 | `atn-t33` Write the retargeting ladder as a plan | Jesse Allan | Days 24-30 | normal |  |
-| `atn-t34` Produce the podcast intro stinger (one round) | Jesse Allan | Days 24-30 | normal | `atn-t18` |
+| `atn-t34` Produce the podcast intro and matching outro (one round on both) | Jesse Allan | Days 24-30 | normal | `atn-t18` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 

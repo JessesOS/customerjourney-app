@@ -17,6 +17,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     ok: true,
     enabled: true,
     currentVersion: a.version,
+    entity: a.entity,
     acceptances: rows.map((r) => ({
       id: r.id, version: r.agreementVersion, entity: r.entity, signerName: r.signerName, signerEmail: r.signerEmail, ip: r.ip, acceptedAt: r.acceptedAt,
       recordUrl: `/api/portal/${client.portalToken}/agreement/${r.id}`,

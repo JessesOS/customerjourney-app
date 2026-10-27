@@ -98,7 +98,8 @@ export async function acceptAgreement(client: { id: string; clientType: string }
 export async function recordAcceptanceManually(client: { id: string; clientType: string }, input: { entity: string; signerName: string; signerEmail: string; acceptedAt: string; source: string }) {
   const a = agreementFor(client.clientType);
   if (!a) return { ok: false as const, status: 404, error: "This product has no agreement." };
-  const entity = input.entity.trim(), name = input.signerName.trim(), email = input.signerEmail.trim();
+  // A product with a fixed entity always records that entity, whatever was typed.
+  const entity = (a.entity ?? input.entity).trim(), name = input.signerName.trim(), email = input.signerEmail.trim();
   const when = new Date(input.acceptedAt);
   if (!entity || name.split(/\s+/).length < 2) return { ok: false as const, status: 400, error: "Entity and the signer's full name are required." };
   if (!EMAIL.test(email)) return { ok: false as const, status: 400, error: "A valid signer email is required." };

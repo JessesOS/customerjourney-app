@@ -242,10 +242,11 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "build",
     step: {
       // Stinger references (Jesse, 2026-10-25): the intro and outro idents for
-      // the podcast, which doubles as the YouTube channel. Phase 1 makes the intro.
+      // the podcast, which doubles as the YouTube channel. Phase 1 makes both
+      // (agreement Version 2, A2).
       id: "atn-stinger-ref",
       title: "Send a reference for your podcast stingers",
-      detail: "The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. Phase 1 makes the intro; the outro is on the Phase 2 list.",
+      detail: "The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. We make a matching intro and outro from them.",
       hasUpload: true,
       uploadOptions: { accept: ".mp4,.mov,.mp3,.wav,.png,.jpg,.jpeg,.pdf,.zip", title: "Upload a reference", hint: "Short clips or stills, if you have them. Links go in the box below.", ...FILES },
       notePrompt: "Links to the examples, and the feel you want",

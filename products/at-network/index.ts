@@ -18,7 +18,7 @@ import { atNetworkTeamTasks } from "./team-tasks";
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-25.17",
+  version: "2026-10-27.1",
   // Live (Jesse, 2026-10-25): he approved the wording in the walkthrough of 25 Oct.
   status: "live",
   clientType: "at-network",

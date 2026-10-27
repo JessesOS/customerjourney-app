@@ -2,20 +2,19 @@
 // (Jesse, 2026-10-21; spec "Acceptance"). Acceptances keep the exact text they
 // accepted, so CHANGE THE VERSION WITH ANY CHANGE TO THE WORDING.
 //
-// Version 1, 25 October 2026, as updated on the page the same day (late content
-// no longer pauses the timeline; handover template and guide). The text of
-// https://agreements.allconvos.ai/at-network (Jesse, 2026-10-25), word for word, generated from the page by the build
-// session. The page's own acceptance form is not part of the text. B14 describes
-// signing on that page; a client who signs there is recorded in admin
-// ("Record a signed acceptance") and this step arrives done.
+// Version 2, 26 October 2026: the text Rich Latimer signed on
+// https://agreements.allconvos.ai/at-network on 27 October 2026 (his PDF in
+// Jesse's Downloads; page fingerprint 6cfd4c4e…). Word for word, generated from
+// the page by the build session. Adds the matching podcast outro and the
+// two-minute impact-video cut-down (launch gift) to A2, and drops the outro
+// from A3. The page's own acceptance form is not part of the text.
 
 import type { AgreementContent } from "../../lib/journeyTypes";
 
 export const atNetworkAgreement: AgreementContent = {
   step: "atn-agreement",
-  // Changed from "v1-2026-10-25" when the page text changed (no acceptances existed yet).
-  version: "v1.1-2026-10-25",
-  title: "Agreement · AT Network Phase 1 · Version 1 · 25 October 2026",
+  version: "v2-2026-10-26",
+  title: "Agreement · AT Network Phase 1 · Version 2 · 26 October 2026",
   // The client's legal entity (Jesse, 2026-10-25). Fixed, so the signer can't mistype it.
   entity: "AT Network Pty Ltd (ABN 69 684 621 887)",
   sections: [
@@ -23,7 +22,7 @@ export const atNetworkAgreement: AgreementContent = {
       "heading": "Agreement · AT Network Phase 1",
       "paragraphs": [
         "AT Network, Phase 1. The Statement of Work and the standard terms, in one place. Read it, then accept it at the bottom.",
-        "Version 1 · 25 October 2026",
+        "Version 2 · 26 October 2026",
         "Provider: AWE2M8 AI Pty Ltd trading as All Convos AI. ABN 31 687 348 134 · ACN 687 348 134. 50A Habitat Way, Lennox Head NSW 2478, acting through its director, Jesse Allan (\"I\", \"me\").",
         "Client: AT Network Pty Ltd. ABN 69 684 621 887, acting through the person who accepts below (\"you\").",
         "This agreement has two parts. Part A is the work for Phase 1, the Statement of Work. Part B is the standard terms, which also apply to any later work you order. It replaces the Terms in the proposal of 19 October 2026."
@@ -55,7 +54,8 @@ export const atNetworkAgreement: AgreementContent = {
         "Three cold video ads, one per audience, up to 15 seconds each, vertical 9:16, captions burned in.",
         "Two static ads (one sized for Facebook and Instagram, one for LinkedIn) and a LinkedIn banner.",
         "The retargeting ladder, as a written plan.",
-        "The podcast intro. Before the build we agree the look together from a short set of title-sequence references, keeping the real, human feel of your podcast. It is then finished with one round of changes on details and music.",
+        "The podcast intro and a matching outro in the same look. Before the build we agree the look together from a short set of title-sequence references, keeping the real, human feel of your podcast. Both are then finished with one round of changes on details and music.",
+        "A two-minute cut-down of your existing impact video, for the homepage, with the full version kept in Stories. It is cut from your existing footage, with a couple of new testimonial clips woven in if you send them. I will look at a vertical version once I have seen how the shots frame; it is not promised. Recolouring or recreating the film is not included. This cut is a launch gift, included if this agreement is accepted by 5 pm AEDT on Wednesday 28 October 2026; after that it can be quoted as a change request (B4).",
         "A journal inside the podcast section: a listing and one article template, for you to fill with your own articles. After handover, new articles are added in the site files, by you, a developer or an AI tool. A posting system isn't included."
       ]
     },
@@ -63,7 +63,6 @@ export const atNetworkAgreement: AgreementContent = {
       "heading": "A3 Not included",
       "paragraphs": [
         "These are not part of Phase 1. Each can be quoted as a change request (B4):",
-        "the podcast outro, unless it is a simple version of the intro (a short closing cut using the same look and music), in which case I include it. We decide which once you have seen the intro;",
         "a posting system for new articles, or an automatic podcast-to-article feed (a menu link to the podcast section and the journal in A2 are included);",
         "the Benevolent Executive film;",
         "extra ad versions, new hooks and short cut-downs;",

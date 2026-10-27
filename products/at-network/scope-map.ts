@@ -27,7 +27,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
         {
           title: "Home",
           detail:
-            "In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. The impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.",
+            "In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. A two-minute cut of your impact video sits here, with the full version in Stories, and the best testimonial videos. One homepage, built to be tested against the landing pages.",
           who: "us",
           branches: [
             { label: "The Ascension pathway", detail: "The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.", tone: "good" },
@@ -50,7 +50,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
         },
         {
           title: "Podcast section, with a journal",
-          detail: "A home for the podcast, with the intro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.",
+          detail: "A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.",
           who: "us",
         },
         {
@@ -119,17 +119,17 @@ export const atNetworkScopeMap: JourneyMapContent = {
       entries: ["Your voice notes and messages", "The kickoff call", "Anything that comes up during the build"],
       steps: [
         { title: "Platform rebrand", detail: "Changing the platform's branding to match the new site." },
-        { title: "Impact video edits", detail: "A shorter edit, or running the 6.5-minute video through a model to blend in the branding." },
+        { title: "More from the impact video", detail: "Recolouring or recreating the film, or running it through a model to blend in the branding. The two-minute cut for the homepage is in Phase 1." },
         { title: "Avatar videos and a new sales video", detail: "Longer avatar videos come from your videographer. We place them on the site when you have them." },
         { title: "Branding the workbook", detail: "We use the workbook as it is in Phase 1." },
-        { title: "Posting system for articles, podcast outro, podcast page", detail: "The journal in the podcast section covers Phase 1." },
+        { title: "Posting system for articles, podcast page", detail: "The journal in the podcast section covers Phase 1." },
         { title: "The Benevolent Executive film", detail: "We'll talk it through separately. It isn't in this portal's scope." },
       ],
       outcome: "One quote, when you're ready, for the ones you want.",
     },
   ],
   alsoRunning: [
-    { title: "The podcast intro", detail: "One intro, one round of changes." },
+    { title: "The podcast intro and outro", detail: "A matching pair in the same look. We agree the look first, then one round of changes on both." },
     { title: "Sales video scripts", detail: "Your team drafts one per landing page. We give one round of edits." },
     { title: "Your team owns", detail: "GoHighLevel, checkout, tracking, ad accounts, filming, posting and DNS." },
   ],
