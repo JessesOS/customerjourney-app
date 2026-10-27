@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-10-27.1` |
+| Version | `2026-10-28.1` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
-| Client steps | 30 (2 client only, 0 hidden in the portal) |
-| Team tasks | 41 (40 behind a client step, 1 team-only) |
+| Client steps | 34 (2 client only, 0 hidden in the portal) |
+| Team tasks | 46 (45 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | yes | 30 | 41 |
+| AT Network | `at-network` | none | yes | 34 | 46 |
 
 ### Portal tweaks by variant
 
@@ -60,10 +60,12 @@ The First Light site, built page by page. You see it on a review link as it grow
    - **Foundations:** Its own page, linked from the top menu, inside the Academy level.
    - **Growth and Legacy:** A page each, built from the outlines you supply, so the pathway is complete.
 3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free trial is, how levels work and what happens next.
-4. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
-5. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
+4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, with one round of changes. It goes on the Foundations page and landing pages A and B. Offered as your launch gift in place of the two-minute impact-video cut; we confirm that together at the kickoff.
+   - _To confirm:_ The original files of Martyn's overview, and footage of your networking calls ("Send the original files of Martyn's Foundations overview" and "Send footage of your networking calls")
+5. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
+6. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
    - _To confirm:_ The StarMap questions and report details ("Send the StarMap questions and report details")
-6. **Under the hood** (us). A simple content editor so you can change words and images, the SEO basics on every page, checked on phones and desktop before launch. At handover you get the full site files.
+7. **Under the hood** (us). A simple content editor so you can change words and images, the SEO basics on every page, checked on phones and desktop before launch. At handover you get the full site files.
 
 Ends with: A site you own, deployable on your hosting and editable by any developer, handed over on the final instalment.
 
@@ -90,10 +92,11 @@ Parked here so nothing is lost. We quote them once the site is live. Add your ow
 
 1. **Platform rebrand**. Changing the platform's branding to match the new site.
 2. **More from the impact video**. Recolouring or recreating the film, or running it through a model to blend in the branding. The two-minute cut for the homepage is in Phase 1.
-3. **Avatar videos and a new sales video**. Longer avatar videos come from your videographer. We place them on the site when you have them.
-4. **Branding the workbook**. We use the workbook as it is in Phase 1.
-5. **Posting system for articles, podcast page**. The journal in the podcast section covers Phase 1.
-6. **The Benevolent Executive film**. We'll talk it through separately. It isn't in this portal's scope.
+3. **More VSLs, 30-second cuts and portrait clips**. Further VSLs, 30-second cuts and portrait social clips or reels beyond the Foundations VSL.
+4. **Avatar videos and a new sales video**. Longer avatar videos come from your videographer. We place them on the site when you have them.
+5. **Branding the workbook**. We use the workbook as it is in Phase 1.
+6. **Posting system for articles, podcast page**. The journal in the podcast section covers Phase 1.
+7. **The Benevolent Executive film**. We'll talk it through separately. It isn't in this portal's scope.
 
 Ends with: One quote, when you're ready, for the ones you want.
 
@@ -122,7 +125,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 41 |
+| Jesse Allan | 46 |
 
 ## Stages
 
@@ -233,6 +236,24 @@ One "locked on" message: every decision from the call, the open answers, the app
 
 </details>
 
+### `atn-vsl-confirm` Confirm your Foundations VSL
+
+> At the kickoff call we'll talk through making Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look, as your launch gift in place of the two-minute impact-video cut. You get a widescreen version for desktop and a phone version, used on the Foundations page and landing pages A and B, with one round of changes. If that's what you'd like, type your full name to confirm.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t46` Record the Foundations VSL swap: confirm in writing at kickoff and file the client's typed-name confirmation | Jesse Allan | Days 3-7 | normal | `atn-t10` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t46` Record the Foundations VSL swap: confirm in writing at kickoff and file the client's typed-name confirmation**
+
+Launch gift in place of the 2-minute impact cut (agreement v2 A2 is unchanged). Source: AT note 2026-10-28. Rich's 28 Oct voice note: paste its transcript into notes/.
+
+</details>
+
 ### Team-only work in Sign and start
 
 | Team task | Role | Due | Priority | After |
@@ -327,6 +348,42 @@ Portal: upload · note
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | `atn-t14` File the workbook as received (no branding in Phase 1) | Jesse Allan | Days 3-10 | normal |  |
+
+### `atn-vsl-originals` Send the original files of Martyn's Foundations overview
+
+> For the Foundations VSL we need the best quality of Martyn's course overview: ideally the 4K master or the camera files, with no title or logo burned in. Pete may have them: Ben, could you ask him? If they don't exist, tell us and we'll work from the 1080p export we have. Paste a link if the files are big.
+
+Portal: upload · note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t47` Get Martyn's original overview files (4K master or camera files, no burned-in title); ask Pete via Ben | Jesse Allan | Days 3-10 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t47` Get Martyn's original overview files (4K master or camera files, no burned-in title); ask Pete via Ben**
+
+Fallback: the 1080p export we have, upscaled.
+
+</details>
+
+### `atn-vsl-networking` Send footage of your networking calls
+
+> Martyn's overview doesn't mention the live networking calls and breakout rooms, which Rich calls as valuable as the course. We'd like to cut in a few seconds of the real thing. Send any recordings you already have (with everyone's OK to use them), or tell us when your videographer can film one.
+
+Portal: upload · note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t48` Collect networking-call footage, or book their videographer for a call | Jesse Allan | Days 3-12 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t48` Collect networking-call footage, or book their videographer for a call**
+
+For the cut-in at the 'space between modules' line. Needs everyone's OK to use.
+
+</details>
 
 ### `atn-stinger-ref` Send a reference for your podcast stingers
 
@@ -524,9 +581,28 @@ Portal: work to review · note (required)
 |---|---|---|---|---|
 | `atn-t36` Make the round 1 changes to the funnel and reopen the link | Jesse Allan | Days 31-33 | normal | `atn-t35` |
 
+### `atn-review-vsl` Review your Foundations VSL: one round
+
+> Watch both versions, widescreen and phone. Send one list with everything you, Martyn and Ben would change. That counts as one round. This piece has one round of changes. Or approve it as it is.
+
+Portal: work to review · note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t49` Cut the Foundations VSL: full overview in the First Light look, widescreen and phone version | Jesse Allan | Days 20-30 | normal | `atn-t47` |
+| `atn-t50` Open the Foundations VSL review link and send it | Jesse Allan | Day 30 | normal | `atn-t49` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t49` Cut the Foundations VSL: full overview in the First Light look, widescreen and phone version**
+
+About 3:40. Sparse motion, one figure at a time on a word Martyn says, never over his face; tighter pauses, small speed-up. One round of changes. Used on the Foundations page and landing pages A and B. Extra VSLs, 30-second cuts, portrait clips and reels are NOT included (change list, B4).
+
+</details>
+
 ### `atn-signoff-funnel` Sign off the funnel
 
-> Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.
+> Type your full name to sign off the landing pages, ads, statics, banner and the Foundations VSL. Your team runs the ads; the tags on every page show what converts.
 
 Portal: work to review · note (required)
 

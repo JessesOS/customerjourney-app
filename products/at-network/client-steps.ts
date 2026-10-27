@@ -157,6 +157,22 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     },
   },
 
+  {
+    stage: "onboarding",
+    step: {
+      // The Foundations VSL (Jesse, 2026-10-28): offered as the launch gift in
+      // place of the two-minute impact cut. The signed agreement is unchanged;
+      // this records the swap in writing, with the name and the time.
+      id: "atn-vsl-confirm",
+      title: "Confirm your Foundations VSL",
+      detail: "At the kickoff call we'll talk through making Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look, as your launch gift in place of the two-minute impact-video cut. You get a widescreen version for desktop and a phone version, used on the Foundations page and landing pages A and B, with one round of changes. If that's what you'd like, type your full name to confirm.",
+      notePrompt: "Type your full name to confirm",
+      notePlaceholder: "Your full name",
+      noteRequired: true,
+      doneLabel: "Confirm",
+    },
+  },
+
   // ── What we need from you ──
   {
     stage: "build",
@@ -235,6 +251,36 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       uploadOptions: { accept: ".pdf,.doc,.docx,.zip", title: "Upload the workbook", hint: "A PDF or document, or paste a link below.", ...FILES },
       notePrompt: "Or paste a link",
       notePlaceholder: "https://...",
+      doneLabel: "I've sent it",
+    },
+  },
+  {
+    stage: "build",
+    step: {
+      // Foundations VSL input 1 (Jesse, 2026-10-28). Ask Pete via Ben for the masters.
+      id: "atn-vsl-originals",
+      title: "Send the original files of Martyn's Foundations overview",
+      detail: "For the Foundations VSL we need the best quality of Martyn's course overview: ideally the 4K master or the camera files, with no title or logo burned in. Pete may have them: Ben, could you ask him? If they don't exist, tell us and we'll work from the 1080p export we have. Paste a link if the files are big.",
+      hasUpload: true,
+      uploadOptions: { accept: ".mp4,.mov,.zip", title: "Upload the files", hint: "Big files: paste a Drive or Dropbox link in the box below instead.", ...FILES },
+      notePrompt: "A link to the files, or where they are",
+      notePlaceholder: "https://drive.google.com/...  or: Pete has them.",
+      noteRequired: true,
+      doneLabel: "I've sent them",
+    },
+  },
+  {
+    stage: "build",
+    step: {
+      // Foundations VSL input 2 (Jesse, 2026-10-28): networking footage for the cut-in.
+      id: "atn-vsl-networking",
+      title: "Send footage of your networking calls",
+      detail: "Martyn's overview doesn't mention the live networking calls and breakout rooms, which Rich calls as valuable as the course. We'd like to cut in a few seconds of the real thing. Send any recordings you already have (with everyone's OK to use them), or tell us when your videographer can film one.",
+      hasUpload: true,
+      uploadOptions: { accept: ".mp4,.mov,.zip", title: "Upload footage", hint: "Big files: paste a link in the box below instead.", ...FILES },
+      notePrompt: "A link to the footage, or when a call can be filmed",
+      notePlaceholder: "https://...  or: Thursday's call, our videographer is free.",
+      noteRequired: true,
       doneLabel: "I've sent it",
     },
   },
@@ -406,11 +452,25 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "go-live",
     step: {
+      id: "atn-review-vsl",
+      hasEditableContent: true,
+      pendingContentText: "Your Foundations VSL appears here when it's ready, in widescreen and phone. We'll email you.",
+      title: "Review your Foundations VSL: one round",
+      detail: "Watch both versions, widescreen and phone. " + ONE_LIST + " This piece has one round of changes. Or approve it as it is.",
+      notePrompt: "Your consolidated list, or \"Approved\"",
+      notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
+      noteRequired: true,
+      doneLabel: "Send my answer",
+    },
+  },
+  {
+    stage: "go-live",
+    step: {
       id: "atn-signoff-funnel",
       hasEditableContent: true,
       pendingContentText: "What you're signing off appears here: the final list and the link to the final versions.",
       title: "Sign off the funnel",
-      detail: "Type your full name to sign off the landing pages, ads, statics and banner. Your team runs the ads; the tags on every page show what converts.",
+      detail: "Type your full name to sign off the landing pages, ads, statics, banner and the Foundations VSL. Your team runs the ads; the tags on every page show what converts.",
       notePrompt: "Type your full name to sign off the items above",
       notePlaceholder: "Your full name",
       noteRequired: true,

@@ -49,6 +49,12 @@ export const atNetworkScopeMap: JourneyMapContent = {
           who: "us",
         },
         {
+          title: "The Foundations VSL",
+          detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, with one round of changes. It goes on the Foundations page and landing pages A and B. Offered as your launch gift in place of the two-minute impact-video cut; we confirm that together at the kickoff.",
+          who: "us",
+          pending: { question: "The original files of Martyn's overview, and footage of your networking calls", where: "\"Send the original files of Martyn's Foundations overview\" and \"Send footage of your networking calls\"" },
+        },
+        {
           title: "Podcast section, with a journal",
           detail: "A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.",
           who: "us",
@@ -120,6 +126,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
       steps: [
         { title: "Platform rebrand", detail: "Changing the platform's branding to match the new site." },
         { title: "More from the impact video", detail: "Recolouring or recreating the film, or running it through a model to blend in the branding. The two-minute cut for the homepage is in Phase 1." },
+        { title: "More VSLs, 30-second cuts and portrait clips", detail: "Further VSLs, 30-second cuts and portrait social clips or reels beyond the Foundations VSL." },
         { title: "Avatar videos and a new sales video", detail: "Longer avatar videos come from your videographer. We place them on the site when you have them." },
         { title: "Branding the workbook", detail: "We use the workbook as it is in Phase 1." },
         { title: "Posting system for articles, podcast page", detail: "The journal in the podcast section covers Phase 1." },
