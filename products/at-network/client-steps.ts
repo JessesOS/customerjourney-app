@@ -164,12 +164,10 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       // place of the two-minute impact cut. The signed agreement is unchanged;
       // this records the swap in writing, with the name and the time.
       id: "atn-vsl-confirm",
-      title: "Confirm your Foundations VSL",
-      detail: "At the kickoff call we'll talk through making Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look, as your launch gift in place of the two-minute impact-video cut. You get a widescreen version for desktop and a phone version, used on the Foundations page and landing pages A and B, with one round of changes. If that's what you'd like, type your full name to confirm.",
-      notePrompt: "Type your full name to confirm",
-      notePlaceholder: "Your full name",
-      noteRequired: true,
-      doneLabel: "Confirm",
+      title: "Your Foundations VSL",
+      detail: "As your launch gift, in place of the two-minute impact-video cut, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.",
+      notePrompt: "Anything you'd like to add? (optional)",
+      doneLabel: "I'm happy with that",
     },
   },
 
@@ -282,6 +280,22 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       notePlaceholder: "https://...  or: Thursday's call, our videographer is free.",
       noteRequired: true,
       doneLabel: "I've sent it",
+    },
+  },
+  {
+    stage: "build",
+    step: {
+      // How the edit works (AT note, 2026-10-28): their editor assembles and locks
+      // the edit; Jesse does the finishing. The one round covers the finishing only.
+      id: "atn-vsl-edit",
+      title: "Send your locked edit of the Foundations VSL",
+      detail: "Your editor puts together the full edit of Martyn's overview, about three minutes: who is on screen, the order, any extra footage. Once you're happy with it, send it to us as your locked edit. I then do the finishing: tightening, framing and tracking, the subtle motion, the light on the eyes, the grade, sharpening, music and the phone version. Your one round of changes covers the finishing. Changes to the locked edit itself are a change request, so please lock it only when you're sure.",
+      hasUpload: true,
+      uploadOptions: { accept: ".mp4,.mov,.zip", title: "Upload your locked edit", hint: "Big files: paste a link in the box below instead.", ...FILES },
+      notePrompt: "A link to the locked edit, and anything we should know",
+      notePlaceholder: "https://...  Locked: yes.",
+      noteRequired: true,
+      doneLabel: "It's locked, here it is",
     },
   },
   {
@@ -456,7 +470,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       hasEditableContent: true,
       pendingContentText: "Your Foundations VSL appears here when it's ready, in widescreen and phone. We'll email you.",
       title: "Review your Foundations VSL: one round",
-      detail: "Watch both versions, widescreen and phone. " + ONE_LIST + " This piece has one round of changes. Or approve it as it is.",
+      detail: "Watch both versions, widescreen and phone. " + ONE_LIST + " This piece has one round of changes, and it covers the finishing (motion, framing, grade, sound, phone version). Changes to your locked edit are a change request. Or approve it as it is.",
       notePrompt: "Your consolidated list, or \"Approved\"",
       notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
       noteRequired: true,

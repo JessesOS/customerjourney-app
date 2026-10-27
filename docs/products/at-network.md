@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.1` |
+| Version | `2026-10-28.2` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
-| Client steps | 34 (2 client only, 0 hidden in the portal) |
-| Team tasks | 46 (45 behind a client step, 1 team-only) |
+| Client steps | 35 (2 client only, 0 hidden in the portal) |
+| Team tasks | 47 (46 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | yes | 34 | 46 |
+| AT Network | `at-network` | none | yes | 35 | 47 |
 
 ### Portal tweaks by variant
 
@@ -60,8 +60,8 @@ The First Light site, built page by page. You see it on a review link as it grow
    - **Foundations:** Its own page, linked from the top menu, inside the Academy level.
    - **Growth and Legacy:** A page each, built from the outlines you supply, so the pathway is complete.
 3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free trial is, how levels work and what happens next.
-4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, with one round of changes. It goes on the Foundations page and landing pages A and B. Offered as your launch gift in place of the two-minute impact-video cut; we confirm that together at the kickoff.
-   - _To confirm:_ The original files of Martyn's overview, and footage of your networking calls ("Send the original files of Martyn's Foundations overview" and "Send footage of your networking calls")
+4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's your launch gift in place of the two-minute impact-video cut, as we talked through on 27 October.
+   - _To confirm:_ The original files, the networking footage and your locked edit (The three Foundations VSL steps in "What we need from you")
 5. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
 6. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
    - _To confirm:_ The StarMap questions and report details ("Send the StarMap questions and report details")
@@ -125,7 +125,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 46 |
+| Jesse Allan | 47 |
 
 ## Stages
 
@@ -236,21 +236,21 @@ One "locked on" message: every decision from the call, the open answers, the app
 
 </details>
 
-### `atn-vsl-confirm` Confirm your Foundations VSL
+### `atn-vsl-confirm` Your Foundations VSL
 
-> At the kickoff call we'll talk through making Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look, as your launch gift in place of the two-minute impact-video cut. You get a widescreen version for desktop and a phone version, used on the Foundations page and landing pages A and B, with one round of changes. If that's what you'd like, type your full name to confirm.
+> As your launch gift, in place of the two-minute impact-video cut, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.
 
-Portal: note (required)
+Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t46` Record the Foundations VSL swap: confirm in writing at kickoff and file the client's typed-name confirmation | Jesse Allan | Days 3-7 | normal | `atn-t10` |
+| `atn-t46` Talk through the Foundations VSL at kickoff; their tick is the confirmation | Jesse Allan | Days 3-7 | normal | `atn-t10` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t46` Record the Foundations VSL swap: confirm in writing at kickoff and file the client's typed-name confirmation**
+**`atn-t46` Talk through the Foundations VSL at kickoff; their tick is the confirmation**
 
-Launch gift in place of the 2-minute impact cut (agreement v2 A2 is unchanged). Source: AT note 2026-10-28. Rich's 28 Oct voice note: paste its transcript into notes/.
+Launch gift in place of the 2-minute impact cut. The agreement (v2) is not changed (Jesse, 28 Oct): the swap is on record in the WhatsApp group (offer 27 Oct, 10:33 pm; Rich's 28 Oct voice note, still to be transcribed into notes/). The portal tick is the only confirmation needed.
 
 </details>
 
@@ -382,6 +382,24 @@ Portal: upload · note (required)
 **`atn-t48` Collect networking-call footage, or book their videographer for a call**
 
 For the cut-in at the 'space between modules' line. Needs everyone's OK to use.
+
+</details>
+
+### `atn-vsl-edit` Send your locked edit of the Foundations VSL
+
+> Your editor puts together the full edit of Martyn's overview, about three minutes: who is on screen, the order, any extra footage. Once you're happy with it, send it to us as your locked edit. I then do the finishing: tightening, framing and tracking, the subtle motion, the light on the eyes, the grade, sharpening, music and the phone version. Your one round of changes covers the finishing. Changes to the locked edit itself are a change request, so please lock it only when you're sure.
+
+Portal: upload · note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t51` Receive their locked edit of the Foundations VSL (their editor assembles it; changes to it after locking are a change request) | Jesse Allan | Days 8-20 | normal | `atn-t47` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t51` Receive their locked edit of the Foundations VSL (their editor assembles it; changes to it after locking are a change request)**
+
+Their editor decides who is on screen, the order and any extra footage. We start finishing only from a locked edit.
 
 </details>
 
@@ -583,20 +601,20 @@ Portal: work to review · note (required)
 
 ### `atn-review-vsl` Review your Foundations VSL: one round
 
-> Watch both versions, widescreen and phone. Send one list with everything you, Martyn and Ben would change. That counts as one round. This piece has one round of changes. Or approve it as it is.
+> Watch both versions, widescreen and phone. Send one list with everything you, Martyn and Ben would change. That counts as one round. This piece has one round of changes, and it covers the finishing (motion, framing, grade, sound, phone version). Changes to your locked edit are a change request. Or approve it as it is.
 
 Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t49` Cut the Foundations VSL: full overview in the First Light look, widescreen and phone version | Jesse Allan | Days 20-30 | normal | `atn-t47` |
+| `atn-t49` Finish the Foundations VSL from their locked edit: tightening, framing and tracking, motion, eye and face lift, grade, sharpening, music, widescreen and phone version | Jesse Allan | Days 20-30 | normal | `atn-t51` |
 | `atn-t50` Open the Foundations VSL review link and send it | Jesse Allan | Day 30 | normal | `atn-t49` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t49` Cut the Foundations VSL: full overview in the First Light look, widescreen and phone version**
+**`atn-t49` Finish the Foundations VSL from their locked edit: tightening, framing and tracking, motion, eye and face lift, grade, sharpening, music, widescreen and phone version**
 
-About 3:40. Sparse motion, one figure at a time on a word Martyn says, never over his face; tighter pauses, small speed-up. One round of changes. Used on the Foundations page and landing pages A and B. Extra VSLs, 30-second cuts, portrait clips and reels are NOT included (change list, B4).
+About 3:40 (their edit is about three minutes). Sparse motion, one figure at a time on a word Martyn says, never over his face; tighter pauses, small speed-up. One round of changes, covering the finishing only; changes to the locked edit are a change request. Used on the Foundations page and landing pages A and B. Extra VSLs, 30-second cuts, portrait clips and reels are NOT included (change list, B4).
 
 </details>
 

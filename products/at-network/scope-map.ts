@@ -50,9 +50,9 @@ export const atNetworkScopeMap: JourneyMapContent = {
         },
         {
           title: "The Foundations VSL",
-          detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, with one round of changes. It goes on the Foundations page and landing pages A and B. Offered as your launch gift in place of the two-minute impact-video cut; we confirm that together at the kickoff.",
+          detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's your launch gift in place of the two-minute impact-video cut, as we talked through on 27 October.",
           who: "us",
-          pending: { question: "The original files of Martyn's overview, and footage of your networking calls", where: "\"Send the original files of Martyn's Foundations overview\" and \"Send footage of your networking calls\"" },
+          pending: { question: "The original files, the networking footage and your locked edit", where: "The three Foundations VSL steps in \"What we need from you\"" },
         },
         {
           title: "Podcast section, with a journal",
