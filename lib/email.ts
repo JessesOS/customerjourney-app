@@ -13,7 +13,8 @@ import { setting } from "@/lib/settings";
  */
 
 export type EmailResult = "sent" | "failed" | "unconfigured" | "skipped";
-export type Email = { to: string; subject: string; text: string; html?: string; replyTo?: string; cc?: string[] };
+export type Attachment = { filename: string; contentBase64: string };
+export type Email = { to: string; subject: string; text: string; html?: string; replyTo?: string; cc?: string[]; bcc?: string[]; attachments?: Attachment[]; extraTo?: string[] };
 
 const DEFAULT_FROM = "Launchpad <portal@allconvos.ai>";
 const DEFAULT_TEAM = "jesse@allconvos.ai";
@@ -52,12 +53,14 @@ export async function sendEmail(email: Email): Promise<EmailResult> {
       headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         from: setting("EMAIL_FROM") ?? DEFAULT_FROM,
-        to: [email.to],
+        to: [email.to, ...(email.extraTo ?? []).filter((t) => EMAIL_RE.test(t))],
         subject: email.subject,
         text: email.text,
         html: email.html ?? textToHtml(email.text),
         ...(email.replyTo ? { reply_to: email.replyTo } : {}),
         ...(email.cc?.filter((c) => EMAIL_RE.test(c)).length ? { cc: email.cc.filter((c) => EMAIL_RE.test(c)) } : {}),
+        ...(email.bcc?.filter((c) => EMAIL_RE.test(c)).length ? { bcc: email.bcc.filter((c) => EMAIL_RE.test(c)) } : {}),
+        ...(email.attachments?.length ? { attachments: email.attachments.map((a) => ({ filename: a.filename, content: a.contentBase64 })) } : {}),
       }),
     });
     if (!res.ok) {
