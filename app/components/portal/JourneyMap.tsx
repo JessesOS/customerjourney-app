@@ -266,9 +266,9 @@ function Journey({ journey, n, notes, whoLabels }: { journey: JourneyMapJourney;
               ) : null}
               {s.pending ? (
                 <div className="jm-pending">
-                  <span className="jm-pending-tag">To confirm</span>
+                  <span className="jm-pending-tag">{s.pending.label ?? "To confirm"}</span>
                   <span>{s.pending.question}</span>
-                  <em>Answered in: {s.pending.where}</em>
+                  <em>{s.pending.whereLabel ?? "Answered in"}: {s.pending.where}</em>
                 </div>
               ) : null}
             </div>

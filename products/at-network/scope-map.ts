@@ -40,8 +40,8 @@ export const atNetworkScopeMap: JourneyMapContent = {
           detail: "One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.",
           who: "us",
           branches: [
-            { label: "Foundations", detail: "Its own page, linked from the top menu, inside the Academy level.", tone: "good" },
-            { label: "Growth and Legacy", detail: "A page each, built from the outlines you supply, so the pathway is complete.", tone: "neutral" },
+            { label: "Foundations", detail: "Its own page, linked from the top menu. It is a course inside Level 2 Academy.", tone: "good" },
+            { label: "Growth and Legacy", detail: "A page each, built from the outlines you supply. They are Academy courses too, alongside Foundations, so the pathway is complete.", tone: "neutral" },
           ],
         },
         {
@@ -53,7 +53,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
           title: "The Foundations VSL",
           detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's a launch gift from us.",
           who: "us",
-          pending: { question: "The original files, the networking footage and your locked edit", where: "The three Foundations VSL steps in \"What we need from you\"" },
+          pending: { label: "What we'll ask you for", question: "The original files of Martyn's overview (ideally the 4K master or the camera files), footage of your networking calls (great to have), and your locked edit of the VSL.", whereLabel: "You'll send these", where: "later in this portal, in the stage called \"What we need from you\": one step for each." },
         },
         {
           title: "Podcast section, with a journal",
@@ -64,7 +64,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
           title: "Lead magnets: the eBook page and the StarMap page",
           detail: "An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.",
           who: "us",
-          pending: { question: "The StarMap questions and report details", where: "\"Send the StarMap questions and report details\"" },
+          pending: { question: "That your StarMap questions and report are final.", whereLabel: "You'll confirm this", where: "later in this portal, in the stage called \"What we need from you\": the step \"Confirm your StarMap questions and report\"." },
         },
         {
           title: "Under the hood",

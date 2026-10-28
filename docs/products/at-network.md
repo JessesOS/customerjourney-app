@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.12` |
+| Version | `2026-10-28.13` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -56,14 +56,14 @@ The First Light site, built page by page. You see it on a review link as it grow
 1. **Homepage** (us). A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.
    - **The Ascension pathway:** The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
 2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
-   - **Foundations:** Its own page, linked from the top menu, inside the Academy level.
-   - **Growth and Legacy:** A page each, built from the outlines you supply, so the pathway is complete.
+   - **Foundations:** Its own page, linked from the top menu. It is a course inside Level 2 Academy.
+   - **Growth and Legacy:** A page each, built from the outlines you supply. They are Academy courses too, alongside Foundations, so the pathway is complete.
 3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free month is, how levels work and what happens next.
 4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's a launch gift from us.
-   - _To confirm:_ The original files, the networking footage and your locked edit (The three Foundations VSL steps in "What we need from you")
+   - _To confirm:_ The original files of Martyn's overview (ideally the 4K master or the camera files), footage of your networking calls (great to have), and your locked edit of the VSL. (later in this portal, in the stage called "What we need from you": one step for each.)
 5. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
 6. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
-   - _To confirm:_ The StarMap questions and report details ("Send the StarMap questions and report details")
+   - _To confirm:_ That your StarMap questions and report are final. (later in this portal, in the stage called "What we need from you": the step "Confirm your StarMap questions and report".)
 7. **Under the hood** (us). A simple content editor so you can change words and images, the SEO basics on every page, checked on phones and desktop before launch. At handover you get the full site files.
 
 Ends with: A site you own, deployable on your hosting and editable by any developer, handed over on the final instalment.

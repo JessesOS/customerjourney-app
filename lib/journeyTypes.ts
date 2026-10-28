@@ -178,7 +178,7 @@ export type JourneyMapStep = {
   /** Paths that split here (e.g. good fit / not a fit). */
   branches?: { label: string; detail: string; tone?: "good" | "neutral" }[];
   /** An open question this step waits on, and where the client answers it. */
-  pending?: { question: string; where: string };
+  pending?: { question: string; where: string; /** Own heading for the orange tag. Absent = "To confirm". */ label?: string; /** Own words before where. Absent = "Answered in". */ whereLabel?: string };
 };
 export type JourneyMapJourney = {
   /** Also the notes field id in notesFormId. */
