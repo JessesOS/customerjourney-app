@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.13` |
+| Version | `2026-10-28.14` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -64,7 +64,6 @@ The First Light site, built page by page. You see it on a review link as it grow
 5. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
 6. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
    - _To confirm:_ That your StarMap questions and report are final. (later in this portal, in the stage called "What we need from you": the step "Confirm your StarMap questions and report".)
-7. **Under the hood** (us). A simple content editor so you can change words and images, the SEO basics on every page, checked on phones and desktop before launch. At handover you get the full site files.
 
 Ends with: A site you own, deployable on your hosting and editable by any developer, handed over on the final instalment.
 

@@ -66,11 +66,6 @@ export const atNetworkScopeMap: JourneyMapContent = {
           who: "us",
           pending: { question: "That your StarMap questions and report are final.", whereLabel: "You'll confirm this", where: "later in this portal, in the stage called \"What we need from you\": the step \"Confirm your StarMap questions and report\"." },
         },
-        {
-          title: "Under the hood",
-          detail: "A simple content editor so you can change words and images, the SEO basics on every page, checked on phones and desktop before launch. At handover you get the full site files.",
-          who: "us",
-        },
       ],
       outcome: "A site you own, deployable on your hosting and editable by any developer, handed over on the final instalment.",
     },
