@@ -2,6 +2,7 @@ import { formMissingRequired, onboardingFormById, sanitizeFormResponses } from "
 import { getFormResponses, getPortalClientByToken, markMilestoneComplete, saveFormResponses } from "@/lib/portalClientStore";
 import { formStepFor } from "@/lib/productRegistry";
 import { recordActivity } from "@/lib/activityStore";
+import { emailIfStageDone } from "@/lib/clientEmails";
 
 export async function GET(request: Request, { params }: { params: Promise<{ token: string; formId: string }> }) {
   const { token, formId } = await params;
@@ -55,6 +56,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
       if (milestoneId) {
         await markMilestoneComplete(client.id, milestoneId);
         await recordActivity(request, client, "tick", milestoneId);
+        await emailIfStageDone(new URL(request.url).origin, client, milestoneId);
       } else {
         await recordActivity(request, client, "form", formId);
       }

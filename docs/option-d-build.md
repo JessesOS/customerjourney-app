@@ -447,3 +447,12 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 - **Swapped the same day (staging e85602b5, version 2026-10-29.35):** the welcome video is the screen walkthrough, never Jesse on camera (videoprez handover `notes/2026-10-29-at-portal-welcome-video-handover.md`). File: `~/Master/Archive/videos/videoprez/2026-10-29-at-portal-welcome.mp4` (2:55, 1920x1044, AAC, faststart copy), served as `/api/media/at-portal-welcome-v2.mp4` (R2 `media/at-portal-welcome-v2.mp4`). New poster from its first second. The camera upload (`media/at-portal-welcome.mp4`) was deleted from staging. Fresh demo "Demo 16 - AT screen welcome" (token 9RkkRFR0bQNtFa18kTBEDm5d).
 - **Before prod:** upload that file to `scale-onboarding-portal-uploads/media/at-portal-welcome-v2.mp4`.
 - **Prod 2026-10-29: c9bd52f5** (previous edeb6737; D1 bookmark 000001c6-00000000-00005112-7dc45a8dfb66886e1446adf20eedffa0), with Jesse's OK. Video uploaded first to prod R2 `media/at-portal-welcome-v2.mp4` (23,027,002 bytes). Checked by curl: the video streams (206, video/mp4), the poster loads, Rich's portal points to both; Fin's portal 200, BSS Launchpad, no AT video.
+
+## 2026-10-29: automatic client emails (staging 397067a0)
+
+- New product feature `clientEmails` (server side only, `lib/clientEmails.ts`): `to` (everyone who shares the link) and `stageDone` (one email per stage, keyed by stage id; `{portal}` becomes the link). AT Network has it: four addresses, five stage emails (Claude's draft wording, Jesse to approve), Bcc the team, replies to the team.
+- **Stage done:** fires when a tick (client complete, form submit, or admin checklist) finishes a stage. Sent once: recorded in `portal_activity` as kind `email`, ref `stage-done:<stage>` (written before sending). No migration.
+- **Ready for review:** `alertClientOfContent` (team pastes into a step) now goes to the same people, not just the signer.
+- **Safety:** only clients who have signed the agreement get anything (demos never do); on staging (and localhost) every client email goes to the team address, subject `[staging]`, with a line naming who it would go to on prod.
+- Not built (Jesse's call later): per-upload thank-yous (four people per file is too much) and overdue nudges.
+- Tested on staging Demo 4: untick and re-tick of a "Sign and start" step recorded `stage-done:onboarding` once; re-ticking again sent nothing. Version 2026-10-29.36. Fixtures unchanged (nothing reaches the browser).

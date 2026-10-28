@@ -270,7 +270,13 @@ export function createRegistry(products: readonly Product[]) {
     return { ok: true, product, variant, tasks: teamTasksFor(product, variant) };
   }
 
+  /** A product's automatic client emails (server side only). */
+  function clientEmailsFor(clientType: string) {
+    return resolve(clientType).product.portal?.features?.clientEmails ?? null;
+  }
+
   return {
+    clientEmailsFor,
     resolve,
     allVariants,
     isClientType,
@@ -304,6 +310,7 @@ export type Registry = ReturnType<typeof createRegistry>;
 export const registry: Registry = createRegistry(productList);
 
 export const {
+  clientEmailsFor,
   resolve,
   allVariants,
   isClientType,

@@ -9,6 +9,8 @@ import { portalJourneyFor } from "@/lib/productRegistry";
 // record anything, and only names on that list. Append-only.
 
 export type ActivityKind = "tick" | "upload" | "form" | "form_upload";
+/** An automatic email that went out (lib/clientEmails.ts): ref says which, person is "system". Stops it going twice. */
+export const EMAIL_KIND = "email";
 export const PERSON_HEADER = "x-portal-person";
 
 /** The person on the request, if the client's product lists them. */

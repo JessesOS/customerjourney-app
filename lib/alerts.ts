@@ -2,6 +2,7 @@ import { latestSignerEmail } from "@/lib/agreementStore";
 import { commsSteps, STATUS_LABEL, type ChangeStatus, type CommKind } from "@/lib/commsStore";
 import { sendEmail, sendEmails, teamEmail, type EmailResult } from "@/lib/email";
 import { portalJourneyFor } from "@/lib/productRegistry";
+import { sendToClient } from "@/lib/clientEmails";
 
 // What each event emails, and to whom (AT Network first, 2026-10-25).
 //   Team (TEAM_EMAIL): every client message, approval and change request; every
@@ -53,17 +54,15 @@ export async function alertClientOfTeamComm(origin: string, client: Client, c: {
   });
 }
 
-/** The team pasted something into a step (a review link, a summary, a sign-off list): tell the client. */
+/** The team pasted something into a step (a review link, a summary, a sign-off list): tell the client's people. */
 export async function alertClientOfContent(origin: string, client: Client, stepId: string): Promise<EmailResult> {
-  const to = await latestSignerEmail(client.id);
-  if (!to) return "skipped";
   const step = stepTitle(client, stepId);
-  return sendEmail({
-    to,
-    subject: `${brand(client)}: something to look at on "${step}"`,
-    text: `There's something new for you on "${step}" in your portal.\n\nOpen it here: ${portalUrl(origin, client, stepId)}\n\nReply in the portal so it stays on the record.`,
-    replyTo: teamEmail(),
-  });
+  return sendToClient(
+    origin,
+    client,
+    `${brand(client)}: ready for you on "${step}"`,
+    `There's something new for you to look at on "${step}" in your portal.\n\nOpen it here: ${portalUrl(origin, client, stepId)}\n\nReply in the portal so it stays on the record.`,
+  );
 }
 
 /** A sign-off step was completed: tell the team. */

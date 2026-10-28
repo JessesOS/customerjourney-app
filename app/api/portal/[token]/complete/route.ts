@@ -4,6 +4,7 @@ import { recordStepApproval } from "@/lib/commsStore";
 import { alertTeamOfSignoff } from "@/lib/alerts";
 import { portalJourneyFor } from "@/lib/productRegistry";
 import { recordActivity } from "@/lib/activityStore";
+import { emailIfStageDone } from "@/lib/clientEmails";
 
 const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
 
@@ -34,6 +35,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
         await alertTeamOfSignoff(new URL(request.url).origin, client, milestoneId, note.split("\n")[0].slice(0, 80));
       }
     }
+    await emailIfStageDone(new URL(request.url).origin, client, milestoneId);
 
     return Response.json({ ok: true });
   } catch (error) {

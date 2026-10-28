@@ -130,6 +130,14 @@ export type ProductVariant<C extends string = string> = {
 export type VoiceGuide = { audioPrefix: string; scripts: Partial<Record<StageId, string>> };
 
 /** Step-specific portal features. Each one is code that already exists; a product only switches it on for its steps. */
+/** See ProductFeatures.clientEmails. In any text, {portal} becomes the client's portal link. */
+export type ClientEmails = {
+  /** Everyone who shares the link. */
+  to: string[];
+  /** Sent once, when every step in the stage is done: keyed by stage id. */
+  stageDone?: Record<string, { subject: string; text: string }>;
+};
+
 export type ProductFeatures = {
   /** Steps that show the live AI receptionist test. */
   playgroundSteps?: string[];
@@ -147,6 +155,8 @@ export type ProductFeatures = {
   approvalSteps?: string[];
   /** "Who's this?" (AT Network first, Jesse 2026-10-28): the people who share the client's link. Each device picks a name once, with one tap; every tick, upload and message is then stamped with it. Not a login. */
   people?: string[];
+  /** Automatic emails to the client's people (AT Network first, Jesse 2026-10-29). Server side only: never sent to the browser. Sent only to a client who has signed the agreement, so a demo never emails anyone; on staging they all go to the team instead. The team is Bcc'd. */
+  clientEmails?: ClientEmails;
   /** Home-screen app icon: public/portal/icons/<name>-180.png, -192.png and -512.png. Saved to a phone's home screen, the portal opens full screen with this icon. */
   appIcon?: string;
 };
