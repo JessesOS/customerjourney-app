@@ -1468,6 +1468,33 @@ export function ClientPortalExperience({
                   </a>
                 )}
 
+                {m.links && m.links.length > 0 && (
+                  <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 14 }}>
+                    {m.links.map((g) => (
+                      <div key={g.label} style={{ borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: "18px 22px" }}>
+                        <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 10 }}>
+                          {g.label}
+                        </div>
+                        <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column" }}>
+                          {g.items.map((l, i) => (
+                            <li key={l.url} style={{ borderTop: i ? "1px solid var(--pj-line)" : "none" }}>
+                              <a href={l.url} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "11px 0", color: "var(--pj-ink)", textDecoration: "none", fontSize: 14 }}>
+                                <span>
+                                  <span style={{ fontWeight: 600 }}>{l.label}</span>
+                                  {l.note && <span style={{ display: "block", fontSize: 12.5, color: "var(--pj-muted)", marginTop: 2 }}>{l.note}</span>}
+                                </span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, opacity: 0.6 }}>
+                                  <path d="M7 17 17 7M8 7h9v9" />
+                                </svg>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {m.inviteEmail && (
                   <div className="pj-invite">
                     <div>

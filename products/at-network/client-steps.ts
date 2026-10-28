@@ -165,13 +165,45 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       // this records the swap in writing, with the name and the time.
       id: "atn-vsl-confirm",
       title: "Your Foundations VSL",
-      detail: "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.",
+      detail: "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. We've agreed it's built from Martyn's overview, with a limited splice of a Rich video and networking footage if you have them. Tick this if you're happy with that.",
       notePrompt: "Anything you'd like to add? (optional)",
       doneLabel: "I'm happy with that",
     },
   },
 
   // ── What we need from you ──
+  {
+    stage: "build",
+    step: {
+      // Rich's Drive links, sent in WhatsApp on 28 Oct 2026, 8:58-9:09 pm (Jesse,
+      // 2026-10-29). A read-only list of what's already with us, not a drop box:
+      // each thing we still need has its own step.
+      id: "atn-resources",
+      title: "Your AT resources",
+      detail: "These are the files you've shared with us, all in one place, so we can find what we need. We have what we need for now: each thing still to come has its own step below. Sharing a file here doesn't add it to the work.",
+      links: [
+        {
+          label: "Foundations testimonials",
+          items: [
+            { label: "Travis", note: "Foundations course testimonial", url: "https://drive.google.com/file/d/1D9FiDgLf-mnLaty9goEdUj_WvY-hCneY/view" },
+            { label: "Diego", note: "Foundations course testimonial", url: "https://drive.google.com/file/d/1_ZgMjW1cb63hGr-ffuKCf4BsWZU0w018/view" },
+            { label: "Ben", note: "Foundations testimonial", url: "https://drive.google.com/file/d/1KsroOEe4GLX4FBpWNyGdgKV8EKkjm7Ma/view" },
+            { label: "Ben (second version)", note: "Foundations testimonial", url: "https://drive.google.com/file/d/1ZNB_w6RmmB7ROxmKN2p9aDE0dAv7NyBh/view" },
+          ],
+        },
+        {
+          label: "Your Drive folders",
+          items: [
+            { label: "Photos & Video", url: "https://drive.google.com/drive/folders/1sXswjQrrRiwVLiggl8x7nb-PhmVHYHJR" },
+            { label: "Foundations Course", url: "https://drive.google.com/drive/folders/1Z08BrC1tmaWCqIJsFvz17np26sc5JBIb" },
+            { label: "Video Scripts & Briefs", url: "https://drive.google.com/drive/folders/1pxDwyDSdc-UQHM7fB5E3GcNi8YJqMZfX" },
+            { label: "Graphics", url: "https://drive.google.com/drive/folders/15z4v30Lz6i93_z3l-t35pDOIF4-Z_L9j" },
+          ],
+        },
+      ],
+      doneLabel: "Looks right",
+    },
+  },
   {
     stage: "build",
     step: {

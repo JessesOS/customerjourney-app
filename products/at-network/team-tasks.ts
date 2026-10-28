@@ -26,6 +26,7 @@ export const atNetworkTeamTasks: TeamTask[] = [
   t("atn-t13", "Put the prices and free-month terms into the offer pages and landing pages A and B", "build", "Inputs", "atn-prices", "Days 3-10"),
   t("atn-t19", "Place the Benevolent Executive Program page copy", "build", "Inputs", "atn-exec-copy", "Days 3-10"),
   t("atn-t20", "Link the StarMap page from the homepage, as shown on the Scope and Map (no client step: Jesse, 28 Oct)", "build", "Inputs", undefined, "Days 3-10"),
+  t("atn-t51", "Keep the AT resources list current (add a link only when we ask for it)", "build", "Inputs", "atn-resources", "Days 3-10", "Rich's Drive links from WhatsApp, 28 Oct. Testimonials go to Stories. Still to find: the original Rich and Martyn Foundations intro (Martyn is looking)."),
   t("atn-t06", "Check the photos of Rich are usable; ask for more if not", "build", "Inputs", "atn-photos-rich", "Days 3-7"),
   t("atn-t07", "Read the Academy course details and the Foundations outline; log gaps", "build", "Inputs", "atn-academy", "Days 3-7"),
   t("atn-t14", "File the workbook as received (no branding in Phase 1)", "build", "Inputs", "atn-workbook", "Days 3-10"),

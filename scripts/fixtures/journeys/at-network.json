@@ -52,6 +52,11 @@
         "milestones": [
           {
             "awaitingTeam": false,
+            "id": "atn-resources",
+            "title": "Your AT resources"
+          },
+          {
+            "awaitingTeam": false,
             "id": "atn-starmap",
             "title": "Confirm your StarMap questions and report"
           },
@@ -272,6 +277,11 @@
           "title": "Your Foundations VSL"
         },
         {
+          "id": "atn-resources",
+          "stageName": "What we need from you",
+          "title": "Your AT resources"
+        },
+        {
           "id": "atn-starmap",
           "stageName": "What we need from you",
           "title": "Confirm your StarMap questions and report"
@@ -466,7 +476,7 @@
             "title": "Check the kickoff summary"
           },
           {
-            "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.",
+            "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. We've agreed it's built from Martyn's overview, with a limited splice of a Rich video and networking footage if you have them. Tick this if you're happy with that.",
             "doneLabel": "I'm happy with that",
             "id": "atn-vsl-confirm",
             "notePrompt": "Anything you'd like to add? (optional)",
@@ -482,6 +492,60 @@
         "dayStart": 3,
         "id": "build",
         "milestones": [
+          {
+            "detail": "These are the files you've shared with us, all in one place, so we can find what we need. We have what we need for now: each thing still to come has its own step below. Sharing a file here doesn't add it to the work.",
+            "doneLabel": "Looks right",
+            "id": "atn-resources",
+            "links": [
+              {
+                "items": [
+                  {
+                    "label": "Travis",
+                    "note": "Foundations course testimonial",
+                    "url": "https://drive.google.com/file/d/1D9FiDgLf-mnLaty9goEdUj_WvY-hCneY/view"
+                  },
+                  {
+                    "label": "Diego",
+                    "note": "Foundations course testimonial",
+                    "url": "https://drive.google.com/file/d/1_ZgMjW1cb63hGr-ffuKCf4BsWZU0w018/view"
+                  },
+                  {
+                    "label": "Ben",
+                    "note": "Foundations testimonial",
+                    "url": "https://drive.google.com/file/d/1KsroOEe4GLX4FBpWNyGdgKV8EKkjm7Ma/view"
+                  },
+                  {
+                    "label": "Ben (second version)",
+                    "note": "Foundations testimonial",
+                    "url": "https://drive.google.com/file/d/1ZNB_w6RmmB7ROxmKN2p9aDE0dAv7NyBh/view"
+                  }
+                ],
+                "label": "Foundations testimonials"
+              },
+              {
+                "items": [
+                  {
+                    "label": "Photos & Video",
+                    "url": "https://drive.google.com/drive/folders/1sXswjQrrRiwVLiggl8x7nb-PhmVHYHJR"
+                  },
+                  {
+                    "label": "Foundations Course",
+                    "url": "https://drive.google.com/drive/folders/1Z08BrC1tmaWCqIJsFvz17np26sc5JBIb"
+                  },
+                  {
+                    "label": "Video Scripts & Briefs",
+                    "url": "https://drive.google.com/drive/folders/1pxDwyDSdc-UQHM7fB5E3GcNi8YJqMZfX"
+                  },
+                  {
+                    "label": "Graphics",
+                    "url": "https://drive.google.com/drive/folders/15z4v30Lz6i93_z3l-t35pDOIF4-Z_L9j"
+                  }
+                ],
+                "label": "Your Drive folders"
+              }
+            ],
+            "title": "Your AT resources"
+          },
           {
             "detail": "Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.",
             "doneLabel": "Confirm",
@@ -914,7 +978,7 @@
               "title": "Check the kickoff summary"
             },
             {
-              "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.",
+              "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. We've agreed it's built from Martyn's overview, with a limited splice of a Rich video and networking footage if you have them. Tick this if you're happy with that.",
               "doneLabel": "I'm happy with that",
               "id": "atn-vsl-confirm",
               "notePrompt": "Anything you'd like to add? (optional)",
@@ -932,6 +996,61 @@
           "dayStart": 3,
           "id": "build",
           "milestones": [
+            {
+              "detail": "These are the files you've shared with us, all in one place, so we can find what we need. We have what we need for now: each thing still to come has its own step below. Sharing a file here doesn't add it to the work.",
+              "doneLabel": "Looks right",
+              "id": "atn-resources",
+              "links": [
+                {
+                  "items": [
+                    {
+                      "label": "Travis",
+                      "note": "Foundations course testimonial",
+                      "url": "https://drive.google.com/file/d/1D9FiDgLf-mnLaty9goEdUj_WvY-hCneY/view"
+                    },
+                    {
+                      "label": "Diego",
+                      "note": "Foundations course testimonial",
+                      "url": "https://drive.google.com/file/d/1_ZgMjW1cb63hGr-ffuKCf4BsWZU0w018/view"
+                    },
+                    {
+                      "label": "Ben",
+                      "note": "Foundations testimonial",
+                      "url": "https://drive.google.com/file/d/1KsroOEe4GLX4FBpWNyGdgKV8EKkjm7Ma/view"
+                    },
+                    {
+                      "label": "Ben (second version)",
+                      "note": "Foundations testimonial",
+                      "url": "https://drive.google.com/file/d/1ZNB_w6RmmB7ROxmKN2p9aDE0dAv7NyBh/view"
+                    }
+                  ],
+                  "label": "Foundations testimonials"
+                },
+                {
+                  "items": [
+                    {
+                      "label": "Photos & Video",
+                      "url": "https://drive.google.com/drive/folders/1sXswjQrrRiwVLiggl8x7nb-PhmVHYHJR"
+                    },
+                    {
+                      "label": "Foundations Course",
+                      "url": "https://drive.google.com/drive/folders/1Z08BrC1tmaWCqIJsFvz17np26sc5JBIb"
+                    },
+                    {
+                      "label": "Video Scripts & Briefs",
+                      "url": "https://drive.google.com/drive/folders/1pxDwyDSdc-UQHM7fB5E3GcNi8YJqMZfX"
+                    },
+                    {
+                      "label": "Graphics",
+                      "url": "https://drive.google.com/drive/folders/15z4v30Lz6i93_z3l-t35pDOIF4-Z_L9j"
+                    }
+                  ],
+                  "label": "Your Drive folders"
+                }
+              ],
+              "status": "done",
+              "title": "Your AT resources"
+            },
             {
               "detail": "Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.",
               "doneLabel": "Confirm",
@@ -1389,7 +1508,7 @@
               "title": "Check the kickoff summary"
             },
             {
-              "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.",
+              "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. We've agreed it's built from Martyn's overview, with a limited splice of a Rich video and networking footage if you have them. Tick this if you're happy with that.",
               "doneLabel": "I'm happy with that",
               "id": "atn-vsl-confirm",
               "notePrompt": "Anything you'd like to add? (optional)",
@@ -1407,6 +1526,61 @@
           "dayStart": 3,
           "id": "build",
           "milestones": [
+            {
+              "detail": "These are the files you've shared with us, all in one place, so we can find what we need. We have what we need for now: each thing still to come has its own step below. Sharing a file here doesn't add it to the work.",
+              "doneLabel": "Looks right",
+              "id": "atn-resources",
+              "links": [
+                {
+                  "items": [
+                    {
+                      "label": "Travis",
+                      "note": "Foundations course testimonial",
+                      "url": "https://drive.google.com/file/d/1D9FiDgLf-mnLaty9goEdUj_WvY-hCneY/view"
+                    },
+                    {
+                      "label": "Diego",
+                      "note": "Foundations course testimonial",
+                      "url": "https://drive.google.com/file/d/1_ZgMjW1cb63hGr-ffuKCf4BsWZU0w018/view"
+                    },
+                    {
+                      "label": "Ben",
+                      "note": "Foundations testimonial",
+                      "url": "https://drive.google.com/file/d/1KsroOEe4GLX4FBpWNyGdgKV8EKkjm7Ma/view"
+                    },
+                    {
+                      "label": "Ben (second version)",
+                      "note": "Foundations testimonial",
+                      "url": "https://drive.google.com/file/d/1ZNB_w6RmmB7ROxmKN2p9aDE0dAv7NyBh/view"
+                    }
+                  ],
+                  "label": "Foundations testimonials"
+                },
+                {
+                  "items": [
+                    {
+                      "label": "Photos & Video",
+                      "url": "https://drive.google.com/drive/folders/1sXswjQrrRiwVLiggl8x7nb-PhmVHYHJR"
+                    },
+                    {
+                      "label": "Foundations Course",
+                      "url": "https://drive.google.com/drive/folders/1Z08BrC1tmaWCqIJsFvz17np26sc5JBIb"
+                    },
+                    {
+                      "label": "Video Scripts & Briefs",
+                      "url": "https://drive.google.com/drive/folders/1pxDwyDSdc-UQHM7fB5E3GcNi8YJqMZfX"
+                    },
+                    {
+                      "label": "Graphics",
+                      "url": "https://drive.google.com/drive/folders/15z4v30Lz6i93_z3l-t35pDOIF4-Z_L9j"
+                    }
+                  ],
+                  "label": "Your Drive folders"
+                }
+              ],
+              "status": "upcoming",
+              "title": "Your AT resources"
+            },
             {
               "detail": "Martyn: this is what we'll build the StarMap page from. Open what you sent us and check the questions and the report are final. Anything to change goes in the box. Otherwise type Final.",
               "doneLabel": "Confirm",
@@ -1791,117 +1965,120 @@
       ]
     },
     "renders": {
-      "all@day1": "023903839aa65c705dbad5d52cd179375fde78d7ecc64673f04bd8595647117b",
-      "all@day12": "023903839aa65c705dbad5d52cd179375fde78d7ecc64673f04bd8595647117b",
-      "all@day30": "023903839aa65c705dbad5d52cd179375fde78d7ecc64673f04bd8595647117b",
-      "alternate@day1": "5e1e25ce3fe138b4cf12f20795d79cabf45a5526fdcae4a4ce2cb544ecd3cd2d",
-      "alternate@day12": "5e1e25ce3fe138b4cf12f20795d79cabf45a5526fdcae4a4ce2cb544ecd3cd2d",
-      "alternate@day30": "5e1e25ce3fe138b4cf12f20795d79cabf45a5526fdcae4a4ce2cb544ecd3cd2d",
-      "first-10@day1": "cf25838bf546c541af48134587df19911d0e99ea306db655939245bb62f0a0d0",
-      "first-10@day12": "cf25838bf546c541af48134587df19911d0e99ea306db655939245bb62f0a0d0",
-      "first-10@day30": "cf25838bf546c541af48134587df19911d0e99ea306db655939245bb62f0a0d0",
-      "first-11@day1": "28f5bdf000eadd960181a6374259e136ce26b01e24e907887e0bcba6bc763374",
-      "first-11@day12": "28f5bdf000eadd960181a6374259e136ce26b01e24e907887e0bcba6bc763374",
-      "first-11@day30": "28f5bdf000eadd960181a6374259e136ce26b01e24e907887e0bcba6bc763374",
-      "first-12@day1": "8173e3eceae2c04b4f65ce363025c3c3a60dbea0f356996a953380b65c6fa307",
-      "first-12@day12": "8173e3eceae2c04b4f65ce363025c3c3a60dbea0f356996a953380b65c6fa307",
-      "first-12@day30": "8173e3eceae2c04b4f65ce363025c3c3a60dbea0f356996a953380b65c6fa307",
-      "first-13@day1": "71ec6132430e9f3266dd9e16809b9242fce0c7a23b7346fb4521d92d2c48fd7d",
-      "first-13@day12": "71ec6132430e9f3266dd9e16809b9242fce0c7a23b7346fb4521d92d2c48fd7d",
-      "first-13@day30": "71ec6132430e9f3266dd9e16809b9242fce0c7a23b7346fb4521d92d2c48fd7d",
-      "first-14@day1": "3608d2358107c62adef91cad9208eef08c21f462fe4318480a6c9229000c0e5b",
-      "first-14@day12": "3608d2358107c62adef91cad9208eef08c21f462fe4318480a6c9229000c0e5b",
-      "first-14@day30": "3608d2358107c62adef91cad9208eef08c21f462fe4318480a6c9229000c0e5b",
-      "first-15@day1": "54fbe797bac72d603a6ef57366adb49456b63d932ec032e5252536d396d23659",
-      "first-15@day12": "54fbe797bac72d603a6ef57366adb49456b63d932ec032e5252536d396d23659",
-      "first-15@day30": "54fbe797bac72d603a6ef57366adb49456b63d932ec032e5252536d396d23659",
-      "first-16@day1": "09580d301565266c613fb4610f903799bbc439c4903821d26cac458d7904c049",
-      "first-16@day12": "09580d301565266c613fb4610f903799bbc439c4903821d26cac458d7904c049",
-      "first-16@day30": "09580d301565266c613fb4610f903799bbc439c4903821d26cac458d7904c049",
-      "first-17@day1": "b84f2c3f93bca97b9aa31ac891bdeb8e312199092ac72acc2fdb74f6ac39b9e2",
-      "first-17@day12": "b84f2c3f93bca97b9aa31ac891bdeb8e312199092ac72acc2fdb74f6ac39b9e2",
-      "first-17@day30": "b84f2c3f93bca97b9aa31ac891bdeb8e312199092ac72acc2fdb74f6ac39b9e2",
-      "first-18@day1": "e21d35db9e69a46eb42e895eb0bb586bf69898de92e8e0832482db411d15509e",
-      "first-18@day12": "e21d35db9e69a46eb42e895eb0bb586bf69898de92e8e0832482db411d15509e",
-      "first-18@day30": "e21d35db9e69a46eb42e895eb0bb586bf69898de92e8e0832482db411d15509e",
-      "first-19@day1": "b00af9846f4d790ff50b6bf7e12d190184efb9473ee5ff8453d06a5586be2331",
-      "first-19@day12": "b00af9846f4d790ff50b6bf7e12d190184efb9473ee5ff8453d06a5586be2331",
-      "first-19@day30": "b00af9846f4d790ff50b6bf7e12d190184efb9473ee5ff8453d06a5586be2331",
-      "first-1@day1": "d65e23c3742d535d502fb68ddc7efaa4730c22b91a1a38ce9a7f23216a4a0956",
-      "first-1@day12": "d65e23c3742d535d502fb68ddc7efaa4730c22b91a1a38ce9a7f23216a4a0956",
-      "first-1@day30": "d65e23c3742d535d502fb68ddc7efaa4730c22b91a1a38ce9a7f23216a4a0956",
-      "first-20@day1": "d0224b05fdc5e7da5bd699892c74df81326907f63294de3eeb950638e4d4b803",
-      "first-20@day12": "d0224b05fdc5e7da5bd699892c74df81326907f63294de3eeb950638e4d4b803",
-      "first-20@day30": "d0224b05fdc5e7da5bd699892c74df81326907f63294de3eeb950638e4d4b803",
-      "first-21@day1": "9451ca2d2ccd38f4416e4cffa7e99719999dc1a07122d8a1478a77d56a1c2d10",
-      "first-21@day12": "9451ca2d2ccd38f4416e4cffa7e99719999dc1a07122d8a1478a77d56a1c2d10",
-      "first-21@day30": "9451ca2d2ccd38f4416e4cffa7e99719999dc1a07122d8a1478a77d56a1c2d10",
-      "first-22@day1": "e2882839dfa949ce49f4a3468f8743a878efe68784d50ffd97ce17908ddb5bd3",
-      "first-22@day12": "e2882839dfa949ce49f4a3468f8743a878efe68784d50ffd97ce17908ddb5bd3",
-      "first-22@day30": "e2882839dfa949ce49f4a3468f8743a878efe68784d50ffd97ce17908ddb5bd3",
-      "first-23@day1": "f520a1b8da247ad39055435c218dfd8351dbd59ed8c085bd2fef4e6fb9b89fce",
-      "first-23@day12": "f520a1b8da247ad39055435c218dfd8351dbd59ed8c085bd2fef4e6fb9b89fce",
-      "first-23@day30": "f520a1b8da247ad39055435c218dfd8351dbd59ed8c085bd2fef4e6fb9b89fce",
-      "first-24@day1": "b4b537ba0e8a1b51697ff0a542a26e9e480bd0cd2b33976d0310de364d5dd9d2",
-      "first-24@day12": "b4b537ba0e8a1b51697ff0a542a26e9e480bd0cd2b33976d0310de364d5dd9d2",
-      "first-24@day30": "b4b537ba0e8a1b51697ff0a542a26e9e480bd0cd2b33976d0310de364d5dd9d2",
-      "first-25@day1": "8bc8c3efd34d0b8ee6b52d72338e9819336eda35a837d979f2b5440fe83406a9",
-      "first-25@day12": "8bc8c3efd34d0b8ee6b52d72338e9819336eda35a837d979f2b5440fe83406a9",
-      "first-25@day30": "8bc8c3efd34d0b8ee6b52d72338e9819336eda35a837d979f2b5440fe83406a9",
-      "first-26@day1": "5549269c3da4e43101c1632020c4611f27a02deaa3df99e553d654f9cd993aa8",
-      "first-26@day12": "5549269c3da4e43101c1632020c4611f27a02deaa3df99e553d654f9cd993aa8",
-      "first-26@day30": "5549269c3da4e43101c1632020c4611f27a02deaa3df99e553d654f9cd993aa8",
-      "first-27@day1": "ae6f4b83a793ca4e7d05315fdbd6fb516395e8b102507fb90d8cd56e56d9856e",
-      "first-27@day12": "ae6f4b83a793ca4e7d05315fdbd6fb516395e8b102507fb90d8cd56e56d9856e",
-      "first-27@day30": "ae6f4b83a793ca4e7d05315fdbd6fb516395e8b102507fb90d8cd56e56d9856e",
-      "first-28@day1": "0dc2cbfab535beab15c1e21dfbbf99839bdd611cb6e46437d4dd5e5ea65ff12e",
-      "first-28@day12": "0dc2cbfab535beab15c1e21dfbbf99839bdd611cb6e46437d4dd5e5ea65ff12e",
-      "first-28@day30": "0dc2cbfab535beab15c1e21dfbbf99839bdd611cb6e46437d4dd5e5ea65ff12e",
-      "first-29@day1": "c87084559b356d33ac83a2b2729e7e70768253c2902ea990209ab937e12ed4d7",
-      "first-29@day12": "c87084559b356d33ac83a2b2729e7e70768253c2902ea990209ab937e12ed4d7",
-      "first-29@day30": "c87084559b356d33ac83a2b2729e7e70768253c2902ea990209ab937e12ed4d7",
-      "first-2@day1": "57c7364428204751c994c76357902643801fa51b397427fbd0d8aab5844c710c",
-      "first-2@day12": "57c7364428204751c994c76357902643801fa51b397427fbd0d8aab5844c710c",
-      "first-2@day30": "57c7364428204751c994c76357902643801fa51b397427fbd0d8aab5844c710c",
-      "first-30@day1": "fe00088229b80fe62491a6995a80448a94acb31e6523a0833daf0f6b8869b2cb",
-      "first-30@day12": "fe00088229b80fe62491a6995a80448a94acb31e6523a0833daf0f6b8869b2cb",
-      "first-30@day30": "fe00088229b80fe62491a6995a80448a94acb31e6523a0833daf0f6b8869b2cb",
-      "first-31@day1": "8b4b91305664f6b5528ecc5ce69d72d37c149b82f87eba25ba244b7768011820",
-      "first-31@day12": "8b4b91305664f6b5528ecc5ce69d72d37c149b82f87eba25ba244b7768011820",
-      "first-31@day30": "8b4b91305664f6b5528ecc5ce69d72d37c149b82f87eba25ba244b7768011820",
-      "first-32@day1": "a7db522aa5255aef6b8d8082c2c81e1b97a07011942e84c232ea9939919c11ae",
-      "first-32@day12": "a7db522aa5255aef6b8d8082c2c81e1b97a07011942e84c232ea9939919c11ae",
-      "first-32@day30": "a7db522aa5255aef6b8d8082c2c81e1b97a07011942e84c232ea9939919c11ae",
-      "first-33@day1": "023903839aa65c705dbad5d52cd179375fde78d7ecc64673f04bd8595647117b",
-      "first-33@day12": "023903839aa65c705dbad5d52cd179375fde78d7ecc64673f04bd8595647117b",
-      "first-33@day30": "023903839aa65c705dbad5d52cd179375fde78d7ecc64673f04bd8595647117b",
-      "first-3@day1": "2d9a39e5f73b454bb512a0f8a3fa726184a0f63144433c9b4db243c9ea70672b",
-      "first-3@day12": "2d9a39e5f73b454bb512a0f8a3fa726184a0f63144433c9b4db243c9ea70672b",
-      "first-3@day30": "2d9a39e5f73b454bb512a0f8a3fa726184a0f63144433c9b4db243c9ea70672b",
-      "first-4@day1": "cfe56fe289a590c4c0948518bc70773214ca76f2521c20281029483c07108a01",
-      "first-4@day12": "cfe56fe289a590c4c0948518bc70773214ca76f2521c20281029483c07108a01",
-      "first-4@day30": "cfe56fe289a590c4c0948518bc70773214ca76f2521c20281029483c07108a01",
-      "first-5@day1": "8793599c82143e2009a5c6d31051b4c861f0f99b60289fbef3f55c6f09a05b1f",
-      "first-5@day12": "8793599c82143e2009a5c6d31051b4c861f0f99b60289fbef3f55c6f09a05b1f",
-      "first-5@day30": "8793599c82143e2009a5c6d31051b4c861f0f99b60289fbef3f55c6f09a05b1f",
-      "first-6@day1": "1ecc82fc139b0408b915ddc65fe97469115c2318f207b4ced2ceca2a5a7ad2e7",
-      "first-6@day12": "1ecc82fc139b0408b915ddc65fe97469115c2318f207b4ced2ceca2a5a7ad2e7",
-      "first-6@day30": "1ecc82fc139b0408b915ddc65fe97469115c2318f207b4ced2ceca2a5a7ad2e7",
-      "first-7@day1": "54c4b4a7b660a27a60548c21d4192fd722fab20aa830aea107c11695916b1b39",
-      "first-7@day12": "54c4b4a7b660a27a60548c21d4192fd722fab20aa830aea107c11695916b1b39",
-      "first-7@day30": "54c4b4a7b660a27a60548c21d4192fd722fab20aa830aea107c11695916b1b39",
-      "first-8@day1": "7eb4f74d2c8f610ad703fae8311477ab56cad36d3ac8d471d7d27ad98e0d1d51",
-      "first-8@day12": "7eb4f74d2c8f610ad703fae8311477ab56cad36d3ac8d471d7d27ad98e0d1d51",
-      "first-8@day30": "7eb4f74d2c8f610ad703fae8311477ab56cad36d3ac8d471d7d27ad98e0d1d51",
-      "first-9@day1": "d82c7abb2db7333555f170f874227741064050aeffac6f075477852c5bd8163f",
-      "first-9@day12": "d82c7abb2db7333555f170f874227741064050aeffac6f075477852c5bd8163f",
-      "first-9@day30": "d82c7abb2db7333555f170f874227741064050aeffac6f075477852c5bd8163f",
-      "last@day1": "5cc0737b2e329a376e291500ddd1e89915fb0cdfcb90c1de75eefa3f9c6e362e",
-      "last@day12": "5cc0737b2e329a376e291500ddd1e89915fb0cdfcb90c1de75eefa3f9c6e362e",
-      "last@day30": "5cc0737b2e329a376e291500ddd1e89915fb0cdfcb90c1de75eefa3f9c6e362e",
-      "none@day1": "785d9763de6902baea984f38c3234b1931a2328068bb016c8eb69d101ecbdb3e",
-      "none@day12": "785d9763de6902baea984f38c3234b1931a2328068bb016c8eb69d101ecbdb3e",
-      "none@day30": "785d9763de6902baea984f38c3234b1931a2328068bb016c8eb69d101ecbdb3e"
+      "all@day1": "9b90514d46f62e3b4acc69be98c236df3f0ca09fd14f3f88dd3d22866805ded7",
+      "all@day12": "9b90514d46f62e3b4acc69be98c236df3f0ca09fd14f3f88dd3d22866805ded7",
+      "all@day30": "9b90514d46f62e3b4acc69be98c236df3f0ca09fd14f3f88dd3d22866805ded7",
+      "alternate@day1": "e551052d77ad606018cad41f6cd3d4b9335ae8be169e8f4a05659410e07d3a4f",
+      "alternate@day12": "e551052d77ad606018cad41f6cd3d4b9335ae8be169e8f4a05659410e07d3a4f",
+      "alternate@day30": "e551052d77ad606018cad41f6cd3d4b9335ae8be169e8f4a05659410e07d3a4f",
+      "first-10@day1": "28c9c1998475c63c49c96bde7efeae34e384fea1854b8216edc3c11f300992f5",
+      "first-10@day12": "28c9c1998475c63c49c96bde7efeae34e384fea1854b8216edc3c11f300992f5",
+      "first-10@day30": "28c9c1998475c63c49c96bde7efeae34e384fea1854b8216edc3c11f300992f5",
+      "first-11@day1": "21a0df4be35a61919fe0cb248381d1fa4707f8f1ac7662d1ac8667e38f6def05",
+      "first-11@day12": "21a0df4be35a61919fe0cb248381d1fa4707f8f1ac7662d1ac8667e38f6def05",
+      "first-11@day30": "21a0df4be35a61919fe0cb248381d1fa4707f8f1ac7662d1ac8667e38f6def05",
+      "first-12@day1": "eb3b81a468a44af3313ffe35fa826d25edfeabac901c87e06bd49a509104b69e",
+      "first-12@day12": "eb3b81a468a44af3313ffe35fa826d25edfeabac901c87e06bd49a509104b69e",
+      "first-12@day30": "eb3b81a468a44af3313ffe35fa826d25edfeabac901c87e06bd49a509104b69e",
+      "first-13@day1": "80a4d5b9c2fb31987937a159d98f8c7c1e9f00dde408f125b0fb06baefb24f41",
+      "first-13@day12": "80a4d5b9c2fb31987937a159d98f8c7c1e9f00dde408f125b0fb06baefb24f41",
+      "first-13@day30": "80a4d5b9c2fb31987937a159d98f8c7c1e9f00dde408f125b0fb06baefb24f41",
+      "first-14@day1": "fdacdbf1075b4140373635149d094810f4ac2923864e3a1660b66d52165c51e5",
+      "first-14@day12": "fdacdbf1075b4140373635149d094810f4ac2923864e3a1660b66d52165c51e5",
+      "first-14@day30": "fdacdbf1075b4140373635149d094810f4ac2923864e3a1660b66d52165c51e5",
+      "first-15@day1": "3eca4e5df54aa237b3a974aef6b7ecf27e7ace879c9c78708249b66a00dcbaad",
+      "first-15@day12": "3eca4e5df54aa237b3a974aef6b7ecf27e7ace879c9c78708249b66a00dcbaad",
+      "first-15@day30": "3eca4e5df54aa237b3a974aef6b7ecf27e7ace879c9c78708249b66a00dcbaad",
+      "first-16@day1": "7d7277c1c24dd046a431764c793ae41150e31c2a4a63f9b6da6e22fe7da42837",
+      "first-16@day12": "7d7277c1c24dd046a431764c793ae41150e31c2a4a63f9b6da6e22fe7da42837",
+      "first-16@day30": "7d7277c1c24dd046a431764c793ae41150e31c2a4a63f9b6da6e22fe7da42837",
+      "first-17@day1": "870e4a50abf4f0819dd75438acb13f08c11f060dbfd57af5ec1ba7f7471ba9ca",
+      "first-17@day12": "870e4a50abf4f0819dd75438acb13f08c11f060dbfd57af5ec1ba7f7471ba9ca",
+      "first-17@day30": "870e4a50abf4f0819dd75438acb13f08c11f060dbfd57af5ec1ba7f7471ba9ca",
+      "first-18@day1": "b9880c222b5655f900c2547d531d46b9c6437ecff51d7fb3ddba28193b40105f",
+      "first-18@day12": "b9880c222b5655f900c2547d531d46b9c6437ecff51d7fb3ddba28193b40105f",
+      "first-18@day30": "b9880c222b5655f900c2547d531d46b9c6437ecff51d7fb3ddba28193b40105f",
+      "first-19@day1": "b5aa61c5de8ecf8fe774d61d35e767c71c946fb5286d9eef46a6aaf1264fdd79",
+      "first-19@day12": "b5aa61c5de8ecf8fe774d61d35e767c71c946fb5286d9eef46a6aaf1264fdd79",
+      "first-19@day30": "b5aa61c5de8ecf8fe774d61d35e767c71c946fb5286d9eef46a6aaf1264fdd79",
+      "first-1@day1": "1fffaf9eb782dba1fa33201a81f1d58fc0f8bbf8be31949e05d8030d24fcb2b7",
+      "first-1@day12": "1fffaf9eb782dba1fa33201a81f1d58fc0f8bbf8be31949e05d8030d24fcb2b7",
+      "first-1@day30": "1fffaf9eb782dba1fa33201a81f1d58fc0f8bbf8be31949e05d8030d24fcb2b7",
+      "first-20@day1": "aede5941091b8c1bdc91dba284fbb150404b680dbebab5ff3f40a451a2c9e87d",
+      "first-20@day12": "aede5941091b8c1bdc91dba284fbb150404b680dbebab5ff3f40a451a2c9e87d",
+      "first-20@day30": "aede5941091b8c1bdc91dba284fbb150404b680dbebab5ff3f40a451a2c9e87d",
+      "first-21@day1": "369c06e2d8949d53241d8137dadd20dc05408acd457764305318afbb3843a090",
+      "first-21@day12": "369c06e2d8949d53241d8137dadd20dc05408acd457764305318afbb3843a090",
+      "first-21@day30": "369c06e2d8949d53241d8137dadd20dc05408acd457764305318afbb3843a090",
+      "first-22@day1": "bd9e1fd855db3a612b71bd3cb7b4af5c52faf3aff0609e17bb5c847dc94476e2",
+      "first-22@day12": "bd9e1fd855db3a612b71bd3cb7b4af5c52faf3aff0609e17bb5c847dc94476e2",
+      "first-22@day30": "bd9e1fd855db3a612b71bd3cb7b4af5c52faf3aff0609e17bb5c847dc94476e2",
+      "first-23@day1": "9e2332b530ed876855c3c245d3e189b4e3af916aedbc887cc8f0fafd0e5051d6",
+      "first-23@day12": "9e2332b530ed876855c3c245d3e189b4e3af916aedbc887cc8f0fafd0e5051d6",
+      "first-23@day30": "9e2332b530ed876855c3c245d3e189b4e3af916aedbc887cc8f0fafd0e5051d6",
+      "first-24@day1": "57f75fd47f0477d34ed11f5a62038ff87ee375eedc3908117c304f2b4ad1928a",
+      "first-24@day12": "57f75fd47f0477d34ed11f5a62038ff87ee375eedc3908117c304f2b4ad1928a",
+      "first-24@day30": "57f75fd47f0477d34ed11f5a62038ff87ee375eedc3908117c304f2b4ad1928a",
+      "first-25@day1": "17deaccf717a1101f205ac51c08777465d0472512dd608e8888ec93edf69d8c7",
+      "first-25@day12": "17deaccf717a1101f205ac51c08777465d0472512dd608e8888ec93edf69d8c7",
+      "first-25@day30": "17deaccf717a1101f205ac51c08777465d0472512dd608e8888ec93edf69d8c7",
+      "first-26@day1": "24e53177a0ca150c8bdcd53b3f370eaccb9d2510b3dc50db976b515b8f14c970",
+      "first-26@day12": "24e53177a0ca150c8bdcd53b3f370eaccb9d2510b3dc50db976b515b8f14c970",
+      "first-26@day30": "24e53177a0ca150c8bdcd53b3f370eaccb9d2510b3dc50db976b515b8f14c970",
+      "first-27@day1": "6d73d855d6917a32fda5f3b2271187fa3ac951fba0ab1d5dbe98a618a422675e",
+      "first-27@day12": "6d73d855d6917a32fda5f3b2271187fa3ac951fba0ab1d5dbe98a618a422675e",
+      "first-27@day30": "6d73d855d6917a32fda5f3b2271187fa3ac951fba0ab1d5dbe98a618a422675e",
+      "first-28@day1": "1a9a81d0197efd7073fc8af940dc8d11c6643b03f89cbf2865e312e16bcc6350",
+      "first-28@day12": "1a9a81d0197efd7073fc8af940dc8d11c6643b03f89cbf2865e312e16bcc6350",
+      "first-28@day30": "1a9a81d0197efd7073fc8af940dc8d11c6643b03f89cbf2865e312e16bcc6350",
+      "first-29@day1": "ca82b0300b2d31e048459b7b7bd8bd9b79944cb01320d69bf846c8b594510ddc",
+      "first-29@day12": "ca82b0300b2d31e048459b7b7bd8bd9b79944cb01320d69bf846c8b594510ddc",
+      "first-29@day30": "ca82b0300b2d31e048459b7b7bd8bd9b79944cb01320d69bf846c8b594510ddc",
+      "first-2@day1": "f19d4be91d0f5080d90ef23d66bb12d3b98d38c95c0d0cd56ccfe1dffc84e593",
+      "first-2@day12": "f19d4be91d0f5080d90ef23d66bb12d3b98d38c95c0d0cd56ccfe1dffc84e593",
+      "first-2@day30": "f19d4be91d0f5080d90ef23d66bb12d3b98d38c95c0d0cd56ccfe1dffc84e593",
+      "first-30@day1": "efad2f171b7cf144efc4ef88f83599e3a19efe9144803dce767ceb4e6c5e4706",
+      "first-30@day12": "efad2f171b7cf144efc4ef88f83599e3a19efe9144803dce767ceb4e6c5e4706",
+      "first-30@day30": "efad2f171b7cf144efc4ef88f83599e3a19efe9144803dce767ceb4e6c5e4706",
+      "first-31@day1": "919282d2149e660920c982587f8e0ebdcbb5e0defbdbe7b714ef2900bfb7f933",
+      "first-31@day12": "919282d2149e660920c982587f8e0ebdcbb5e0defbdbe7b714ef2900bfb7f933",
+      "first-31@day30": "919282d2149e660920c982587f8e0ebdcbb5e0defbdbe7b714ef2900bfb7f933",
+      "first-32@day1": "e063251e59eab3133ba91cd0a81656171478653a62979e0d707cec55d7f59250",
+      "first-32@day12": "e063251e59eab3133ba91cd0a81656171478653a62979e0d707cec55d7f59250",
+      "first-32@day30": "e063251e59eab3133ba91cd0a81656171478653a62979e0d707cec55d7f59250",
+      "first-33@day1": "d345dc9f2964895769137cd8ce62a4da7df85fb79ca0a3e7f558f8d1e84f71af",
+      "first-33@day12": "d345dc9f2964895769137cd8ce62a4da7df85fb79ca0a3e7f558f8d1e84f71af",
+      "first-33@day30": "d345dc9f2964895769137cd8ce62a4da7df85fb79ca0a3e7f558f8d1e84f71af",
+      "first-34@day1": "9b90514d46f62e3b4acc69be98c236df3f0ca09fd14f3f88dd3d22866805ded7",
+      "first-34@day12": "9b90514d46f62e3b4acc69be98c236df3f0ca09fd14f3f88dd3d22866805ded7",
+      "first-34@day30": "9b90514d46f62e3b4acc69be98c236df3f0ca09fd14f3f88dd3d22866805ded7",
+      "first-3@day1": "8d77b31fcda7cf28141e9f6aaee39f70e6fa95a2900fd07390517654435fcd18",
+      "first-3@day12": "8d77b31fcda7cf28141e9f6aaee39f70e6fa95a2900fd07390517654435fcd18",
+      "first-3@day30": "8d77b31fcda7cf28141e9f6aaee39f70e6fa95a2900fd07390517654435fcd18",
+      "first-4@day1": "3e67cc9ed1b3993483dd5745cb74cb579815c8d2028c247c7cd082a1a7397d8a",
+      "first-4@day12": "3e67cc9ed1b3993483dd5745cb74cb579815c8d2028c247c7cd082a1a7397d8a",
+      "first-4@day30": "3e67cc9ed1b3993483dd5745cb74cb579815c8d2028c247c7cd082a1a7397d8a",
+      "first-5@day1": "2aeeb9a2058516950272cb4b965c2e6c2d35e65f59a5687780e298ac948bb44b",
+      "first-5@day12": "2aeeb9a2058516950272cb4b965c2e6c2d35e65f59a5687780e298ac948bb44b",
+      "first-5@day30": "2aeeb9a2058516950272cb4b965c2e6c2d35e65f59a5687780e298ac948bb44b",
+      "first-6@day1": "fde275d472833c4cae711af2be32cc9d6f801f2f37bccb78bb114b7bb50bcde9",
+      "first-6@day12": "fde275d472833c4cae711af2be32cc9d6f801f2f37bccb78bb114b7bb50bcde9",
+      "first-6@day30": "fde275d472833c4cae711af2be32cc9d6f801f2f37bccb78bb114b7bb50bcde9",
+      "first-7@day1": "0b6af50e7a3299cbb60d9682ad638ed1d9b2017ef2d72c3e720729f483ed6095",
+      "first-7@day12": "0b6af50e7a3299cbb60d9682ad638ed1d9b2017ef2d72c3e720729f483ed6095",
+      "first-7@day30": "0b6af50e7a3299cbb60d9682ad638ed1d9b2017ef2d72c3e720729f483ed6095",
+      "first-8@day1": "1ad4d69bf8b97d30068e77707535a6f49d9cd8351656a994cd948c95b9c9e96e",
+      "first-8@day12": "1ad4d69bf8b97d30068e77707535a6f49d9cd8351656a994cd948c95b9c9e96e",
+      "first-8@day30": "1ad4d69bf8b97d30068e77707535a6f49d9cd8351656a994cd948c95b9c9e96e",
+      "first-9@day1": "d13d7c9b05cb8359aa041f8cd3a5dcb2d6a08e13e8ac188cbe7f66f17f1c5cde",
+      "first-9@day12": "d13d7c9b05cb8359aa041f8cd3a5dcb2d6a08e13e8ac188cbe7f66f17f1c5cde",
+      "first-9@day30": "d13d7c9b05cb8359aa041f8cd3a5dcb2d6a08e13e8ac188cbe7f66f17f1c5cde",
+      "last@day1": "67b3d1a3d2d36f82e57863a4f69186b44b0724d39b4216814a8d280ef4349c73",
+      "last@day12": "67b3d1a3d2d36f82e57863a4f69186b44b0724d39b4216814a8d280ef4349c73",
+      "last@day30": "67b3d1a3d2d36f82e57863a4f69186b44b0724d39b4216814a8d280ef4349c73",
+      "none@day1": "4021259f2c99894c575042ffbe792734461ead7e9f394bd7132270ae099644dd",
+      "none@day12": "4021259f2c99894c575042ffbe792734461ead7e9f394bd7132270ae099644dd",
+      "none@day30": "4021259f2c99894c575042ffbe792734461ead7e9f394bd7132270ae099644dd"
     },
     "stageCompletedBy": {
       "half": {
@@ -1920,6 +2097,7 @@
         "atn-pay-final": null,
         "atn-photos-rich": null,
         "atn-prices": null,
+        "atn-resources": null,
         "atn-review-ads": null,
         "atn-review-final": null,
         "atn-review-funnel-2": null,
@@ -1955,6 +2133,7 @@
         "atn-pay-final": null,
         "atn-photos-rich": null,
         "atn-prices": null,
+        "atn-resources": null,
         "atn-review-ads": null,
         "atn-review-final": null,
         "atn-review-funnel-2": null,
@@ -2133,6 +2312,16 @@
         "showsPlayground": false,
         "showsVideo": false
       },
+      "atn-resources": {
+        "detail": "These are the files you've shared with us, all in one place, so we can find what we need. We have what we need for now: each thing still to come has its own step below. Sharing a file here doesn't add it to the work.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
       "atn-review-ads": {
         "detail": "The three video ads (one for each audience), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
         "interviewAudioBase": null,
@@ -2274,7 +2463,7 @@
         "showsVideo": false
       },
       "atn-vsl-confirm": {
-        "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.",
+        "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. We've agreed it's built from Martyn's overview, with a limited splice of a Rich video and networking footage if you have them. Tick this if you're happy with that.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -2318,7 +2507,7 @@
     "tabTitle": "AT Network",
     "tagline": "Your website and funnel, built in the open.",
     "totalDays": 42,
-    "totalMilestoneCount": 33,
+    "totalMilestoneCount": 34,
     "visibleIds": [
       "atn-agreement",
       "atn-bookmark",
@@ -2328,6 +2517,7 @@
       "atn-book-kickoff",
       "atn-kickoff-summary",
       "atn-vsl-confirm",
+      "atn-resources",
       "atn-starmap",
       "atn-package-breakdown",
       "atn-prices",
@@ -2357,58 +2547,58 @@
     "wordmark": "AT Network"
   },
   "ssr": {
-    "aurora|all|day1": "17d990bacd793316bc37bd3d3f63737beebb2457f273d5bcd6a993bc7d62c2ab",
-    "aurora|all|day30": "8de29ecb7800b54c901d119f0d03c9319fed5ee9f8cb8f66cc9f9f7896066d9d",
-    "aurora|half|day1": "222546ad898e03c0ba8d756021996f67bec056b78bb6837f5108e54867aedc85",
-    "aurora|half|day30": "91f2721748c9bde626ab191f3274a6a249dcf73dcd6c9be004f834105ac3f00c",
-    "aurora|none|day1": "9ee125ae2c8843487a86ef4b90e923952ed5ad7c20505b149d031ce1f7683bb5",
-    "aurora|none|day30": "fad1ae6495c737a63b1e89590d582ab92b15d6007bb1e3ad626612a7e03d160f",
-    "calm|all|day1": "8663fd4798d16bb61cb90afbd4265d7f0acd5e9a6c9a6dd089e3c55cd868af2e",
-    "calm|all|day30": "0be755502c5e24409c6ad692b5279dc9ac6b7cd5aa833011cb0df2bd20be271c",
-    "calm|half|day1": "18e42701a38090122bc443b32e72bcc5fda992d4a8eb881517248b4d9c3ba06b",
-    "calm|half|day30": "2ad53bda6ab595db80f0749890c77d728b361e86e991b30410b50290945b2f51",
-    "calm|none|day1": "ab4cf78cacbb15e941ef3cab526770a40d22375d620374afa052c8370da84e91",
-    "calm|none|day30": "0059058d59b5f4cacbf58a9d00c15c34ec20dd5a108f3a54f9616e89e71465e1",
-    "cobalt|all|day1": "2b4c7939d43e051c1f0e0259ffa04eadba3e3f62c525b6e6ed0c56016d035b4b",
-    "cobalt|all|day30": "201c9b727439a17ebfb5036a9c21e9b6921e9e4bdeaadc652ecc2fd4f6145083",
-    "cobalt|half|day1": "138a0dfc9690c0f359610cdf329863094cf13b50e5f7f4d7bce23bb5788dd9f1",
-    "cobalt|half|day30": "423065f948420ca983941239b8bc2a40424685102e8635812a508a321cbbb37a",
-    "cobalt|none|day1": "171a4cb5ca4aadc872704184cb2530f6824ad1bf0484b8d9a4f2393e989a6e96",
-    "cobalt|none|day30": "6da4d75d672f7de70d4f8513883a024ae3138f64773ace0825f7366dd0529804",
-    "cool|all|day1": "869946bc9a519673993909d66d17c26faee07ed882ba79fbbf5a3ebbbb682972",
-    "cool|all|day30": "0231bf7a678f336eda9f47a0b69345c6effba6a4604e2b86a19d4fa5ab986503",
-    "cool|half|day1": "0c37f248c8b8553cd8555ca34cd0f8481fd085ecb0602081a4d403dfc364dde7",
-    "cool|half|day30": "260540b5213c6daeab34e2b665e560181b174ab465e214bb36e40c4eaec76f22",
+    "aurora|all|day1": "f1ff34e8b8af400d5aba4dc506ffda0fe4e12600f03964826c457dabe0493753",
+    "aurora|all|day30": "a71159516d8edeae02c36b80bbbf1e6ba65ffd2a1bdb877671f3529c8f874601",
+    "aurora|half|day1": "8e6764a87bd90162e6b424352af9c42c2f46c98a6a5dacf184dd7f7751009151",
+    "aurora|half|day30": "e30a41519474f61b8f55fd0fb701fc823f271e635c63439f404c09e42789eb74",
+    "aurora|none|day1": "e45718e64954ed0271426d7062e0a64f95a77ae03545ddfd1d5c6273828e87db",
+    "aurora|none|day30": "f53e0cae3f5e3b253db2d6a67c4ccbb800f9d31d6ff0da2cd9f6a6471ac22025",
+    "calm|all|day1": "0001ccc48b73ea952b4f77a484ce8c92c20f957216d45ec667f9c6e51c021645",
+    "calm|all|day30": "bfd75febea6d5aeed4b1cb8c90448d0cba45d7095a3bc1e4528828640e6d5b10",
+    "calm|half|day1": "5abea7a339246f11779ae2a136827795911f01392d4aea1c9f223d9ece64f107",
+    "calm|half|day30": "aab5f2ef18f9f3412a53c067fe44053de9faa6b603c970dcb01e7fa9ac1520e2",
+    "calm|none|day1": "9810695e1e42907d265307029eca466af2b79cde28b94ba3a51539b797d37223",
+    "calm|none|day30": "dd31b5f0fd96587d034818ed51306760e9cabe47ea6e91ae46d8e6b278df3a6f",
+    "cobalt|all|day1": "3c040655e0290a28f975c2955b0902dd121a4d088e9066cbeff56fee35fccbb2",
+    "cobalt|all|day30": "05bab28da16c36fbb7961a3ea59ad0310210d5fb9465a2e1f6f6b469066cee8e",
+    "cobalt|half|day1": "a8f764c118cf3f283a9bb0a4523886ab0a4f1e4b107ba45f6699b3a75cff65cd",
+    "cobalt|half|day30": "eaa5e37aa63997590999d050153c14279081856f9664ed2cc4accad02b9e8706",
+    "cobalt|none|day1": "d135fa0b0b530d3bdab3423994807b9b2efd66b2f987cf56551abae63810ec06",
+    "cobalt|none|day30": "f20ba3ee662013964596e34453729f5a3eefa49ec4b06bcddff5643f8cfd6345",
+    "cool|all|day1": "0ec03b95bf4aa09ee698cd392c50a1ab4b1bf5a28f7033f4b164cabbb82f63ba",
+    "cool|all|day30": "73dc84ce6e714e4e0a0072185faf2997273b5d17752abd22a850fb3b5018ac28",
+    "cool|half|day1": "10750e373712b71a783f55690a70d5d61ad5d9a71c569ae3c3be054b3b2e9230",
+    "cool|half|day30": "36131e15f35273744f51488ab2349c3b5f6e7132583e600f27ff175bf18abd8a",
     "cool|none|day1": "056cbe2557bf3505158bfebc8c53ad8adabc298353428ae24aa71c25b566d09f",
     "cool|none|day30": "d404d0ade2299735b901e8bf0d5f9e36dcd3766d3b44e527878de40bddb90370",
-    "groveaurora|all|day1": "e0269646b6cf94ee23872e04e9e05f70c0a0f7d342759fcae84e7f0fc6faddb7",
-    "groveaurora|all|day30": "5905aecb31f832c9a16f4eea73999ab5d6bac93a42db54eea0231a3727678e56",
-    "groveaurora|half|day1": "e9fdb667540c25ba2be5660d052311ba54c05ba27dca9f65e12814e8a3343b41",
-    "groveaurora|half|day30": "73af6eaaa608ea803a40a3cf58785e1394836a57758ef6322d29cfc5fd135129",
-    "groveaurora|none|day1": "3ba99f43f49ba7c830a191f0bfaec1ea4ee4c5246d6fcf6076444452e64d4e8f",
-    "groveaurora|none|day30": "63ba3182952e29a1a209f6462a2b9670dfb2e7c171b68d3824e9c26a64d63c81",
-    "grove|all|day1": "ec292d5b968ceff598283b4d8627ed8230157d7c41caf50761c60c9eab038b1f",
-    "grove|all|day30": "ccc2d203018b8c2e0da6b9ba4c2d18b12bac136562bd6311fab94a56a4a4b44d",
-    "grove|half|day1": "4502a4d08053a174de225a1472963089df35c8e75b8cfe3cb92ce7bb2206a7d0",
-    "grove|half|day30": "9dd7ebe7d8c527df579ec8201353afa7e58253328fa6b5ef7c235006847f7e35",
-    "grove|none|day1": "91b14d0ce749204de3ef32ee7a0010a75de0c8ebfdb4d19e2b7f7ea8fff038c8",
-    "grove|none|day30": "8bd1039fcf12e458c240d5e291297aa0ed8dc1b19f832c91c1285fe1a88e4f16",
-    "handoff|all|day1": "2490ee12c8cb1a2abef11fb4e804544f4e112fb417499713a27fbdc9d45ca145",
-    "handoff|all|day30": "95926fdd84f6ab4b9a701dd1170b58a6ca02b1c0c1f23cced0e6c8abc04e59d7",
-    "handoff|half|day1": "50c05daaa298b3ebab12d9fa0de9811ddc087dffa3cb6df12192d4dc82c6f404",
-    "handoff|half|day30": "d77e3db241852a4791611cdb14acc92622385e2e6da33899398b9556315f3b8c",
-    "handoff|none|day1": "77b53cb9aa903c6f8ebd41830b8b62050b7c32b67d1236e579c5b596770e4ce8",
-    "handoff|none|day30": "e7ba339ca94052ed6c8f8aa8df61d1f24feaf28b1c92352d633f8ba8bab9ea0a",
-    "neutral|all|day1": "4a487e30d5eea395e0f7fb8ee3865d11c4f48a5c7aa661821a216181b640f7c9",
-    "neutral|all|day30": "3b83f5501ed0d1b15cee9f41d126d8f7de44d50e3a954c07037d3d7639cadc7a",
-    "neutral|half|day1": "7816545a5ff9f8a7f79dd572deb8ee406a909d8fea66e32cd3e556525de7b15b",
-    "neutral|half|day30": "b773a7657a9e343b90338d77548e0f6ddc2240be792c3ea4ab08b2d939902212",
+    "groveaurora|all|day1": "e18a2ecb133756e3e450d9aaf474a5a718cf67651a92b557f66199184ea4e5ac",
+    "groveaurora|all|day30": "9c23b09c64e723237246dbe2581509a9176bec0b4854daee1d41e40df4764a80",
+    "groveaurora|half|day1": "2f643084594789e3dc348965ee62fe73ef1c107ccea213de3d4a11e6af9ae478",
+    "groveaurora|half|day30": "ccb07ede079365109af6af89498a899aec894bcccd33185c4533403863121926",
+    "groveaurora|none|day1": "92d1524233821d6167f8b016cf743b6b42545fd64f56488fe1913acd5bcae7c1",
+    "groveaurora|none|day30": "4267848ac607686cb2f9166d5540e6ac49f162034e92f472474a1cefcf712837",
+    "grove|all|day1": "53df0e9425fc8d60c9b2af9eec7feb5f7e3b93894994da53cb2d9fa74bf936e6",
+    "grove|all|day30": "18e0034028931bed1908b4b9d2f234dd32274113401edae689a82203f70a79a7",
+    "grove|half|day1": "cac0dc147d71e1e2e2f96d780754211dfe6d281f657149deb294913683f81f55",
+    "grove|half|day30": "0fe712575c8c7906d157b5da38e34d9f55d8c725e71a83173d2589a0f6debaa9",
+    "grove|none|day1": "a96df4730b0950c33c33993479d77d4f646145541fd5e6b6d077448aac6734e1",
+    "grove|none|day30": "693a7dbb037ba3f499b6811e0632e04b3182fef76c0b04e3ec2456b7dc339dbe",
+    "handoff|all|day1": "0aa30e31d0765dc46581c7c067178aeffd10e496415b334aca69997dcc5ff2ce",
+    "handoff|all|day30": "1ac3106b66a87ab7ce31a55b0193a368c1e2a81ea6661a1aae2f863c2b2738c0",
+    "handoff|half|day1": "a0053872966d233e621d7f9b6f1f00992ecc8a2512ec224a2cf7fb162cb28735",
+    "handoff|half|day30": "32495a50f34d75a72924124a8b023e506617255cf46ea27222b6ebdce6bb0977",
+    "handoff|none|day1": "2b53a3ee8b41a3767e04bab0db535183c965b85076227fc4d9c20f39b2712d94",
+    "handoff|none|day30": "799530b3174f6db44ef01683b8dd0a7edafbeae7684beba9780dbba91efb7a11",
+    "neutral|all|day1": "d6f90df6a000fc0e769cb5fd2829e17b74146fff9498592be2b95a4c772a4e67",
+    "neutral|all|day30": "4fd93702823983d0584ba6b426cbcbf9912275371821135510c7625f3f3bf695",
+    "neutral|half|day1": "cfb8a0985df40a99d41ac31d662139187d94d6b505b7ca6c469d22e7d7fae07d",
+    "neutral|half|day30": "19d0bcf8533a74a88edb3308b9d5e39486fe8baa68ded0e8ba1343205d61e234",
     "neutral|none|day1": "1448d7e9a1ba97bfe4856b08d4ee84ad320a25c8ac88b27953745da3ed532277",
     "neutral|none|day30": "e043744c13199e39664c402567dbec0a7e5e708d99725e4a6753ba2832c265eb",
-    "warm|all|day1": "b04dcb32f82cab2e7ffe9a813bbde7a2a6158254d369056f5f4051084ddfd78f",
-    "warm|all|day30": "fbbc9b394a603fddffe36270b6f284af1e183bba08099d109ac2ea5c37dcfcf2",
-    "warm|half|day1": "f775e590e05c1a3799987d49bd265d7fefa71321c7a8246b91e923719b42d1fc",
-    "warm|half|day30": "212b59154aeb4a0158c3917769647e34c1bd968b334ff157de273ca11a178f8b",
+    "warm|all|day1": "1b8a2c6bb5a2e4e9925247e7ab768fd58ee1e2ff6c5e733fad267c326109ec72",
+    "warm|all|day30": "f7c25af63cb7a0adbd0a4bafaa7036ddec56d67b6a2cd16d5dee092bde6e6fb3",
+    "warm|half|day1": "589065938c93f7715ecde24e45cfc9b6661f4532b725c5e615115a5a431f700b",
+    "warm|half|day30": "d489a53d74f3a4dd9874d8a8fabcf4fc7bb3531d0f36a36ad7ceb50606de7676",
     "warm|none|day1": "2939869a3bc5b3ab76c77d27d2acf5ddadf8e1f0afd350ba998ef6e1efa4a5d2",
     "warm|none|day30": "172c63d9d8a717ff4b01ec761960c472cb70b0d5aaa94714191716e0167833bc"
   },

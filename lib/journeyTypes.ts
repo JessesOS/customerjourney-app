@@ -52,6 +52,8 @@ export type JourneyMilestone = {
   /** Hosted voice agent that runs the interview as a live call; the
       `interview` questions remain as the typed fallback. */
   interviewAgentId?: string;
+  /** Read-only link lists, in labelled groups (AT Network's resources, 2026-10-29). */
+  links?: LinkGroup[];
 };
 
 export type JourneyStage = {
@@ -100,6 +102,7 @@ export type MilestoneTemplate = {
   interviewAgentId?: string;
   inviteEmail?: string;
   doneLabel?: string;
+  links?: LinkGroup[];
   /** Hidden from the client flow entirely (not rendered, not counted). Flip to
       re-enable a task without deleting it. */
   hidden?: boolean;
@@ -156,6 +159,9 @@ export type UploadOptions = {
   chooseMore: string;
   stayOpen?: boolean;
 };
+
+/** A labelled group of links shown on a step, each opening in a new tab. */
+export type LinkGroup = { label: string; items: { label: string; url: string; note?: string }[] };
 
 export type AskItem = { q: string; a: string };
 

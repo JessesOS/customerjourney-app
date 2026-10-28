@@ -429,3 +429,10 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 **2026-10-28 (night): Who's this? on staging (version 90327b77).** AT Network asks once per device which person it is (Rich, Ben, Martyn, Fiona) and stamps ticks, uploads and form submits with the name (`portal_activity`, migration 0019 applied to staging). "Done by" on the step; name and time in the admin checklist. Version 2026-10-28.31. Verified: local tick by Rich and staging tick by Fiona both saved and shown after reload; an unlisted name is ignored. Not on prod: needs migration 0019 on prod first, then the deploy, with Jesse's OK.
 
 **2026-10-28 (night): Who's this? on prod (version 05a1b6cf), from 6f365bd.** Migration 0019 (`portal_activity`, additive) applied to prod first, then the deploy. AT Network asks once per device which person it is (Rich, Ben, Martyn, Fiona); ticks, uploads and form submits carry the name. Version 2026-10-28.31. Previous live f034e017; D1 bookmark `000001c2-00000000-00005112-d1f566ff2e19c0a90845fe95f429c576`. Verified by curl and read-only D1: Rich's portal lists the four people with no ticks yet, still unopened, v2 signature intact; Fin's portal 200, BSS Launchpad, none of the new markup, last opened 22 Oct.
+
+## 2026-10-29: AT Network resources step and VSL note (staging 1d3ef95f)
+
+- New step `atn-resources` ("Your AT resources"), first in "What we need from you": a read-only list of Rich's eight Drive links from WhatsApp (28 Oct), four Foundations testimonials and four shared folders. No upload box: each thing still needed has its own step. New step field `links` (labelled groups), rendered under the step detail.
+- `atn-vsl-confirm` now says the VSL is built from Martyn's overview, with a limited splice of a Rich video and networking footage if they have them.
+- Team task `atn-t51`. Version 2026-10-29.32. Fixtures re-saved: at-network, and `_global` (one new step id only). All checks pass; Fin's fixtures unchanged.
+- Shown on staging Demo 4 (its "Sign and start" steps marked done for the demo).

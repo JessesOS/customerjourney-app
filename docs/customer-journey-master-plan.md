@@ -797,3 +797,5 @@ Stated plainly so nothing here reads as more certain than it is:
 
 Per the session-root protocol, **start a session rooted at the repo the work is in.** Do not
 try to do both halves from one session.
+
+- 2026-10-29 (at-network): added `atn-resources` (Rich's shared Drive links, read-only) and the limited-splice line on `atn-vsl-confirm`. Jesse asked for both.

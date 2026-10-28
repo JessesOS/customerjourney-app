@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.31` |
+| Version | `2026-10-29.32` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
-| Client steps | 33 (2 client only, 0 hidden in the portal) |
-| Team tasks | 45 (43 behind a client step, 2 team-only) |
+| Client steps | 34 (2 client only, 0 hidden in the portal) |
+| Team tasks | 46 (44 behind a client step, 2 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | yes | 33 | 45 |
+| AT Network | `at-network` | none | yes | 34 | 46 |
 
 ### Portal tweaks by variant
 
@@ -122,7 +122,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 45 |
+| Jesse Allan | 46 |
 
 ## Stages
 
@@ -235,7 +235,7 @@ One "locked on" message: every decision from the call, the open answers, the app
 
 ### `atn-vsl-confirm` Your Foundations VSL
 
-> As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.
+> As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. We've agreed it's built from Martyn's overview, with a limited splice of a Rich video and networking footage if you have them. Tick this if you're happy with that.
 
 Portal: note
 
@@ -269,6 +269,22 @@ Chase Ben as well as Rich. Nothing starts before payment 1.
 ## 2. What we need from you · days 3–10
 
 _The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. We build with what we have by each due date and mark anything still to come, so nothing here holds up your launch._
+
+### `atn-resources` Your AT resources
+
+> These are the files you've shared with us, all in one place, so we can find what we need. We have what we need for now: each thing still to come has its own step below. Sharing a file here doesn't add it to the work.
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t51` Keep the AT resources list current (add a link only when we ask for it) | Jesse Allan | Days 3-10 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t51` Keep the AT resources list current (add a link only when we ask for it)**
+
+Rich's Drive links from WhatsApp, 28 Oct. Testimonials go to Stories. Still to find: the original Rich and Martyn Foundations intro (Martyn is looking).
+
+</details>
 
 ### `atn-starmap` Confirm your StarMap questions and report
 
