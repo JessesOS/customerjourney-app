@@ -71,7 +71,7 @@ Every item Fin has asked for is broken down to single tasks. Nothing is merged t
 | What | Where |
 |---|---|
 | Website draft 1 review hub (Fin's review page, shared answers) | https://bss-website-draft.vercel.app/review.html (Vercel `bss-website-draft`, noindex). Files: `site-build/`. |
-| Original pitch site | https://bss-motion-pitch.vercel.app (Vercel `bss-motion-pitch`). Files: `~/Master/Side_Projects/Jack Roberts Skills/Design/Claude Motion Design/Bitcoin Success School/site/`. |
+| Original pitch site | https://bss-motion-pitch.vercel.app (Vercel `bss-motion-pitch`). Files: `~/Master/Side_Projects/Jack Roberts Skills/Design/2. Claude Motion Design/Bitcoin Success School/site/`. |
 | Pitch video sent to Fin | https://bitcoinsuccess.jesse-b4e.workers.dev/v/bitcoin-success-school-28caa831b6 |
 | Website build spec, page by page | `notes/BUILD-SPEC-website-draft-1.md` |
 | Fin's requirements cross-reference (W1 to W19, C1 to C8) | `notes/CROSS-REFERENCE-fin-requirements.md` |
