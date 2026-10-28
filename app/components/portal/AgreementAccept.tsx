@@ -125,6 +125,11 @@ export function AgreementAccept({
             <input type="checkbox" checked={agreed} onChange={(e) => setAgreed(e.target.checked)} style={{ marginTop: 3, width: 17, height: 17 }} />
             <span>I have read and accept the agreement on behalf of {entity.trim() || "[company or entity]"}.</span>
           </label>
+          {!ready && (
+            <div style={{ marginTop: 12, fontSize: 13, color: "var(--pj-muted)" }}>
+              To accept, add your first and last name{askPosition ? ", your position" : ""} and your email, and tick the box. The button turns on when they're all there.
+            </div>
+          )}
           <div style={{ marginTop: 10, fontSize: 12, color: "var(--pj-faint)" }}>
             Typing your name and accepting is your signature. We record your name, {askPosition ? "position, " : ""}email, the date and time, the agreement version and your IP address. You can view and print your copy straight after.
           </div>
