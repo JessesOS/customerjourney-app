@@ -34,6 +34,10 @@ export const atNetworkScopeMap: JourneyMapContent = {
           branches: [
             { label: "The Ascension pathway", detail: "The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.", tone: "good" },
           ],
+          pills: {
+            label: "Links found on this page",
+            items: ["Offerings", "The Journey", "Stories", "FAQs", "Podcast", "Foundations", "Level 0 Initiations", "Level 1 Tribe", "Level 2 Academy", "Level 3 Mentor7", "Benevolent Executive", "Growth", "Legacy", "The free guide", "The StarMap assessment", "Start your free month"],
+          },
         },
         {
           title: "Offerings: five offer pages",

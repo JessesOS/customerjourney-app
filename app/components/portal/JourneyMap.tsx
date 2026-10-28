@@ -264,6 +264,12 @@ function Journey({ journey, n, notes, whoLabels }: { journey: JourneyMapJourney;
                   ))}
                 </div>
               ) : null}
+              {s.pills?.items.length ? (
+                <div className="jm-entries">
+                  <span className="jm-label">{s.pills.label}</span>
+                  <div className="jm-chips">{s.pills.items.map((p) => <span key={p} className="jm-chip">{p}</span>)}</div>
+                </div>
+              ) : null}
               {s.pending ? (
                 <div className="jm-pending">
                   <span className="jm-pending-tag">{s.pending.label ?? "To confirm"}</span>
