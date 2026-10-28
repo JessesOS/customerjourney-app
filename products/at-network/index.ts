@@ -18,7 +18,7 @@ import { atNetworkTeamTasks } from "./team-tasks";
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-29.33",
+  version: "2026-10-29.34",
   // Live (Jesse, 2026-10-25): he approved the wording in the walkthrough of 25 Oct.
   status: "live",
   clientType: "at-network",
@@ -36,6 +36,13 @@ export const atNetwork = defineCustomProduct({
     // Draft tagline (Claude, Jesse's OK to choose, 2026-10-25). Shown under the name on the welcome screen.
     tagline: "Your website and funnel, built in the open.",
     lockedLook: "groveaurora", // an existing look; a look of its own would need code
+    // Jesse's welcome walkthrough (recorded 29 Oct in videoprez, take 1, 2:56). Plays after
+    // "Get started", before "Who's this?". The mp4 lives in R2 (media/), never in git.
+    introVideo: {
+      src: "/api/media/at-portal-welcome.mp4",
+      poster: "/portal/media/at-portal-welcome-poster.jpg",
+      title: "Welcome to your AT Network portal",
+    },
     // Ask Jesse is off for AT Network (Jesse, 2026-10-28): Messages covers requests, with email
     // alerts, step threads and records. It can come back once there is a reviewed pack to answer from.
     // Messages: step threads with the team (phase 1 of docs/at-network-communications-plan.md).

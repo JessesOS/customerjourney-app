@@ -438,3 +438,9 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 - Shown on staging Demo 4 (its "Sign and start" steps marked done for the demo).
 - Later the same day (staging 3f6492d4, version 2026-10-29.33), at Jesse's ask: tag "Received from Rich · 28 October", play and folder icons, "Opens in Google Drive" under each name, new wording ("Here's what you've sent us so far…"), and an optional "Anything else to share? Paste a Drive link" box with a quiet hint (new step fields `linksSource`, `noteHint`, link `kind`). No upload. Fresh staging demo "Demo 13 - AT fresh" (token sgy1LPeXM8U0yitKaQDg_0M9).
 - **Prod 2026-10-29: edeb6737** (previous 05a1b6cf; D1 bookmark 000001c5-00000000-00005112-38e23923306b87ae8f1ac751748cc5ee), with Jesse's OK. No migration. Checked by curl: Rich's portal has the resources step, the tag, the links, the optional box and the VSL splice line; Fin's portal 200, BSS Launchpad, none of the new markup.
+
+## 2026-10-29: AT Network welcome video (staging cde54502)
+
+- Jesse's welcome walkthrough (videoprez take 1, 2:56, 1080p, faststart copy) set as AT's `introVideo`: `/api/media/at-portal-welcome.mp4` (R2 `media/at-portal-welcome.mp4`, staging bucket only so far) with poster `public/portal/media/at-portal-welcome-poster.jpg`. Plays after "Get started"; "Who's this?" comes after it. Version 2026-10-29.34. Fixtures re-saved: at-network, `_global` (the new media entry only). Source file: `~/Master/Side_Projects/videoprez/public/media/at-portal-welcome-take-1.mp4`.
+- **Before prod:** upload the same mp4 to `scale-onboarding-portal-uploads/media/at-portal-welcome.mp4`.
+- Fresh demo "Demo 15 - AT welcome video" (token RXfBmpukEFaCbcixhH9pLJDm).

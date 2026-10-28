@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-29.33` |
+| Version | `2026-10-29.34` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 34 (2 client only, 0 hidden in the portal) |
@@ -32,6 +32,7 @@ No base: every step and task below is this product's own.
 **AT Network** (`at-network`)
 
 - named **AT Network** · tagline "Your website and funnel, built in the open." · look fixed to `groveaurora` · no $200 "move fast" popup
+- Intro video after "Get started": "Welcome to your AT Network portal" (`/api/media/at-portal-welcome.mp4`)
 
 ## Portal settings
 

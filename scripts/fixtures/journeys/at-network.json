@@ -231,7 +231,11 @@
       "grove": "AT Network",
       "handoff": "AT Network"
     },
-    "introVideo": null,
+    "introVideo": {
+      "poster": "/portal/media/at-portal-welcome-poster.jpg",
+      "src": "/api/media/at-portal-welcome.mp4",
+      "title": "Welcome to your AT Network portal"
+    },
     "journeyStatus": {
       "formStepId": null,
       "nonBlocking": [],

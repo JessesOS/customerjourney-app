@@ -827,6 +827,10 @@
     }
   },
   "media": {
+    "at-portal-welcome.mp4": {
+      "key": "media/at-portal-welcome.mp4",
+      "type": "video/mp4"
+    },
     "bss-launch-walkthrough.mp4": {
       "key": "media/bss-launch-walkthrough.mp4",
       "type": "video/mp4"
