@@ -13,7 +13,7 @@ import type { JourneyMapContent } from "../../lib/journeyTypes";
 export const atNetworkScopeMap: JourneyMapContent = {
   title: "Your scope and map",
   intro:
-    "Phase 1 is two tracks that share one page. The website build is your new site. The funnel test sends ads to landing pages, and half of that traffic to the homepage, so the homepage is part of the test too. Everything in Phase 1 is below. Anything else goes on the Phase 2 list.",
+    "Phase 1 is two tracks that share one page. The website build is your new site. The funnel test sends ads to landing pages, and half of that traffic to the homepage, so the homepage is part of the test too. Everything in Phase 1 is below.",
   draftNote: "Our draft, built from the agreement, your voice notes and messages. Anything marked \"To confirm\" is waiting on an answer from you. We'll walk through it on the kickoff call.",
   notesFormId: "at-network-scope-notes-v1",
   journeys: [

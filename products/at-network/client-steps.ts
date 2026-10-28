@@ -113,7 +113,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       // in, what's out, and the Phase 2 list. Stays readable after it's ticked.
       id: "atn-scope-map",
       title: "Read your scope and map",
-      detail: "Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.",
+      detail: "Everything Phase 1 covers, on one page: the website build, the funnel test and the site map. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.",
       doneLabel: "I've read it",
     },
   },

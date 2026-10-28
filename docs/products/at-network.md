@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.5` |
+| Version | `2026-10-28.8` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -47,7 +47,7 @@ No base: every step and task below is this product's own.
 
 _Our draft, built from the agreement, your voice notes and messages. Anything marked "To confirm" is waiting on an answer from you. We'll walk through it on the kickoff call._
 
-Phase 1 is two tracks that share one page. The website build is your new site. The funnel test sends ads to landing pages, and half of that traffic to the homepage, so the homepage is part of the test too. Everything in Phase 1 is below. Anything else goes on the Phase 2 list.
+Phase 1 is two tracks that share one page. The website build is your new site. The funnel test sends ads to landing pages, and half of that traffic to the homepage, so the homepage is part of the test too. Everything in Phase 1 is below.
 
 ### 1. Track 1: the website build
 
@@ -169,7 +169,7 @@ No team task behind this step.
 
 ### `atn-scope-map` Read your scope and map
 
-> Everything Phase 1 covers, on one page: the website build, the funnel test, the site map, and the Phase 2 list for anything parked. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.
+> Everything Phase 1 covers, on one page: the website build, the funnel test and the site map. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
