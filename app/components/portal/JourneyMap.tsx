@@ -198,7 +198,12 @@ function Journey({ journey, n, notes }: { journey: JourneyMapJourney; n: number;
   // button; the rest appears on tap. Journeys without the flag render exactly as before.
   const [open, setOpen] = useState(!journey.collapsed);
   return (
-    <section id={`jm-${journey.id}`} className={`jm-journey is-${journey.accent}`}>
+    <section
+      id={`jm-${journey.id}`}
+      className={`jm-journey is-${journey.accent}`}
+      // A folded parking-lot journey (AT Network's Phase 2) sits in its own tinted block, so it reads as separate and not part of the plan above.
+      style={journey.collapsed ? { background: "var(--pj-well, rgba(0,0,0,0.045))", border: "1px solid var(--pj-line)", borderRadius: 18, padding: "22px 24px", marginTop: 34 } : undefined}
+    >
       <header className="jm-j-head jm-reveal">
         <span className="jm-j-num">{n}</span>
         <div>
