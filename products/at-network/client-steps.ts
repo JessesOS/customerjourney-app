@@ -232,7 +232,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-academy",
       title: "Send the Academy course details",
-      detail: "Rich: what the Academy course includes, so we describe it correctly on your site. Martyn's Foundations document is already with us. Your outlines for the Growth and Legacy courses go here too: we build their pages from them. Due 3 business days after payment 1.",
+      detail: "Ben's levels document and Martyn's Foundations document are already with us. We still need, from Rich: what the Academy includes in more detail, and your outlines for the Growth and Legacy courses (we build their pages from them). Due 3 business days after payment 1.",
       notePrompt: "Academy course details",
       notePlaceholder: "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
       noteRequired: true,

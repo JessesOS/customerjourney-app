@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.25` |
+| Version | `2026-10-28.26` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -328,7 +328,7 @@ Portal: upload
 
 ### `atn-academy` Send the Academy course details
 
-> Rich: what the Academy course includes, so we describe it correctly on your site. Martyn's Foundations document is already with us. Your outlines for the Growth and Legacy courses go here too: we build their pages from them. Due 3 business days after payment 1.
+> Ben's levels document and Martyn's Foundations document are already with us. We still need, from Rich: what the Academy includes in more detail, and your outlines for the Growth and Legacy courses (we build their pages from them). Due 3 business days after payment 1.
 
 Portal: note (required)
 
