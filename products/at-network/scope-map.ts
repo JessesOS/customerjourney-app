@@ -29,11 +29,10 @@ export const atNetworkScopeMap: JourneyMapContent = {
         {
           title: "Home",
           detail:
-            "In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.",
+            "In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.",
           who: "us",
           branches: [
             { label: "The Ascension pathway", detail: "The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.", tone: "good" },
-            { label: "Who it's for", detail: "The three cold ads can sit here too, one per audience.", tone: "neutral" },
           ],
         },
         {
@@ -47,7 +46,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
         },
         {
           title: "The Journey, Stories and FAQs",
-          detail: "The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free trial is, how levels work and what happens next.",
+          detail: "The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free month is, how levels work and what happens next.",
           who: "us",
         },
         {
@@ -150,7 +149,6 @@ export const atNetworkScopeMap: JourneyMapContent = {
     "One person signs off. We build once that person has approved in writing.",
   ],
   toConfirm: [
-    { question: "Is the trial one free month or three?", where: "The kickoff call, then the kickoff summary" },
     { question: "Who signs things off: Rich alone?", where: "The kickoff call, then the kickoff summary" },
     { question: "Phase 1 has three cold ads. The Executive audience isn't one of them. OK?", where: "The kickoff call" },
     { question: "The homepage is tested against the landing pages. It's one homepage, not two versions.", where: "The kickoff call" },

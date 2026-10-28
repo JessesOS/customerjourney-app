@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.10` |
+| Version | `2026-10-28.11` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -53,13 +53,12 @@ Phase 1 is two tracks that share one page. The website build is your new site. T
 
 The First Light site, built page by page. You see it on a review link as it grows. Where they come from: Ads (half of all ad traffic), LinkedIn and search, The podcast, Referrals and the Tribe.
 
-1. **Home** (us). In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.
+1. **Home** (us). In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.
    - **The Ascension pathway:** The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
-   - **Who it's for:** The three cold ads can sit here too, one per audience.
 2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
    - **Foundations:** Its own page, linked from the top menu, inside the Academy level.
    - **Growth and Legacy:** A page each, built from the outlines you supply, so the pathway is complete.
-3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free trial is, how levels work and what happens next.
+3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free month is, how levels work and what happens next.
 4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's a launch gift from us.
    - _To confirm:_ The original files, the networking footage and your locked edit (The three Foundations VSL steps in "What we need from you")
 5. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
@@ -116,7 +115,6 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 ### Still to confirm
 
-- Is the trial one free month or three? (The kickoff call, then the kickoff summary)
 - Who signs things off: Rich alone? (The kickoff call, then the kickoff summary)
 - Phase 1 has three cold ads. The Executive audience isn't one of them. OK? (The kickoff call)
 - The homepage is tested against the landing pages. It's one homepage, not two versions. (The kickoff call)
@@ -214,7 +212,7 @@ Portal: booking calendar · note · 2 numbered steps
 
 **`atn-t10` Book the kickoff call and send the agenda**
 
-Agenda: look inside the platform, lock the homepage brief, confirm who signs off, the trial length, three ads not four, one homepage.
+Agenda: look inside the platform, lock the homepage brief, confirm who signs off, three ads not four, one homepage.
 
 </details>
 
