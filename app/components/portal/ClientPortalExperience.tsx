@@ -73,6 +73,13 @@ function CheckIcon({ color = "var(--pj-ink)", size = 13 }: { color?: string; siz
   );
 }
 
+/** A "How to do it" line. A leading **Name** shows in bold (AT Network's sales video levels, 2026-10-28); other lines render as before. */
+function StepLine({ line }: { line: string }) {
+  const bold = /^\*\*(.+?)\*\*([\s\S]*)$/.exec(line);
+  if (!bold) return <LinkifiedLine line={line} />;
+  return <><strong style={{ fontWeight: 700 }}>{bold[1]}</strong><LinkifiedLine line={bold[2]} /></>;
+}
+
 function LinkifiedLine({ line }: { line: string }) {
   const parts = line.split(/(https?:\/\/[^\s]+)/g);
   return (
@@ -1455,7 +1462,7 @@ export function ClientPortalExperience({
                           <span style={{ flexShrink: 0, width: 22, height: 22, borderRadius: 99, background: "var(--pj-act-fill)", color: "var(--pj-act)", fontSize: 12, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 1 }}>
                             {i + 1}
                           </span>
-                          <span style={{ fontSize: 14, color: "var(--pj-ink)", lineHeight: 1.55 }}><LinkifiedLine line={s} /></span>
+                          <span style={{ fontSize: 14, color: "var(--pj-ink)", lineHeight: 1.55 }}><StepLine line={s} /></span>
                         </li>
                       ))}
                     </ol>

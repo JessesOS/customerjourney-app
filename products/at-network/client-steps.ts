@@ -329,7 +329,13 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "atn-scripts",
       title: "Write first-draft scripts for your four sales videos",
-      detail: "One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
+      detail: "Four short sales videos, one for each level's page on your site (not the Benevolent Executive page, and not the landing pages). Each one is 60 seconds at most, about 150 words: who it's for, what they get, and one next step. Your team writes a basic first draft of each from what you already have: Ben's levels document, and Martyn's Foundations material for Level 2. Rough is fine. We give one round of direction and changes on each, and we iterate from there. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
+      steps: [
+        "**Level 0 · Initiations** (free): who it's for, and what they get: the e-book and manifesto, stories and the podcast, free information sessions. The next step: start here, it's free.",
+        "**Level 1 · Tribe**: the community. Finding your people, the Collective Wisdom gatherings, the Opportunities Exchange. The next step: join, with your first month free.",
+        "**Level 2 · Academy**: everything in Tribe, plus the 9-month Foundations Course, the fortnightly Q&A and the Wisdom Library. Lead with Foundations: it's the main door. The next step: join, with your first month free.",
+        "**Level 3 · Mentor7**: everything in Academy, plus a small Clan who meet every fortnight for two hours, and special events. Who it's for, and the next step: join, with your first month free.",
+      ],
       hasUpload: true,
       uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.zip", title: "Upload your script drafts", hint: "One document per video, or one for all four.", ...FILES },
       notePrompt: "Or paste your drafts here",

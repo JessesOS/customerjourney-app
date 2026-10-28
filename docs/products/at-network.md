@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.28` |
+| Version | `2026-10-28.29` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 33 (2 client only, 0 hidden in the portal) |
@@ -422,9 +422,9 @@ Portal: note (required)
 
 ### `atn-scripts` Write first-draft scripts for your four sales videos
 
-> One sales video for each offer page, Levels 0 to 3 (not the Benevolent Executive page, and not the landing pages). Your team writes the first draft of each script from your product package breakdown. Rough is fine: you get one round of direction and changes from us on each. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.
+> Four short sales videos, one for each level's page on your site (not the Benevolent Executive page, and not the landing pages). Each one is 60 seconds at most, about 150 words: who it's for, what they get, and one next step. Your team writes a basic first draft of each from what you already have: Ben's levels document, and Martyn's Foundations material for Level 2. Rough is fine. We give one round of direction and changes on each, and we iterate from there. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.
 
-Portal: upload · note
+Portal: upload · note · 4 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
