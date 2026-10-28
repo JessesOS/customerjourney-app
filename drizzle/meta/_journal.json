@@ -134,6 +134,13 @@
       "when": 1792555256413,
       "tag": "0018_portal_acceptances",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "6",
+      "when": 1793168484950,
+      "tag": "0019_portal_activity",
+      "breakpoints": true
     }
   ]
 }

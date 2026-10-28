@@ -3,6 +3,7 @@ import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { recordStepApproval } from "@/lib/commsStore";
 import { alertTeamOfSignoff } from "@/lib/alerts";
 import { portalJourneyFor } from "@/lib/productRegistry";
+import { recordActivity } from "@/lib/activityStore";
 
 const validMilestoneIds = new Set(allMilestoneTemplates.map((m) => m.id));
 
@@ -25,6 +26,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
     // 12,000 characters, so a spoken interview transcript (ob-0) is not cut short.
     const note = typeof body.note === "string" ? body.note.trim().slice(0, 12000) : undefined;
     await markMilestoneComplete(client.id, milestoneId, note);
+    await recordActivity(request, client, "tick", milestoneId);
     // A sign-off step: the typed name becomes an Approval record on the step's thread (AT Network first).
     if (note) {
       await recordStepApproval(client, milestoneId, note);

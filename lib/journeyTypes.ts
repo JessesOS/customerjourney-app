@@ -280,6 +280,8 @@ export type PortalJourney = {
   comms?: true;
   /** Steps whose completion note is a typed-name approval, recorded in the step's thread. Absent when none. */
   approvalSteps?: string[];
+  /** The people who share the link: each device picks one ("Who's this?"), and their actions carry that name. Absent when off. */
+  people?: string[];
   /** Home-screen app icon name (public/portal/icons/<name>-<size>.png). Absent when the product has none. */
   appIcon?: string;
   /** The customer journey map and the step it shows on. Absent when the product has none. */

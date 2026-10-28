@@ -342,3 +342,22 @@ export const portalMessages = sqliteTable(
   },
   (table) => [index("portal_messages_client_idx").on(table.clientId, table.createdAt), index("portal_messages_request_idx").on(table.requestTaskId)],
 );
+
+/**
+ * Who did what (AT Network first, Jesse 2026-10-28). Several people share one
+ * link; each device picks a name once ("Who's this?") and the portal sends it
+ * with every tick and upload. Append-only. A name, not a login.
+ */
+export const portalActivity = sqliteTable(
+  "portal_activity",
+  {
+    id: integer("id").primaryKey(),
+    clientId: text("client_id").notNull(),
+    kind: text("kind").notNull(), // tick | upload | form | form_upload
+    /** The step, form or field it was on. */
+    ref: text("ref").notNull(),
+    person: text("person").notNull(),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [index("portal_activity_client_idx").on(table.clientId, table.createdAt)],
+);

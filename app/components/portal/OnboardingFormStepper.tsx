@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { PortalFormDefinition, PortalFormField, PortalFormResponses } from "@/lib/onboardingForm";
 import { decodePortalFileValue, emptyFormResponses } from "@/lib/onboardingForm";
 import { MicButton } from "./MicButton";
+import { personHeaders } from "@/lib/portalPerson";
 
 /** One screen of the stepper: usually a single field, but grouped sections
     (like the address block) put all their fields on one step so browser
@@ -79,7 +80,7 @@ export function OnboardingFormStepper({
     if (!portalToken) return Promise.resolve(true);
     return fetch(`/api/portal/${portalToken}/form/${form.id}`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...personHeaders(portalToken) },
       body: JSON.stringify({ responses: nextResponses, submit }),
     })
       .then((res) => res.json())
@@ -258,7 +259,7 @@ function FileUploadField({
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const response = await fetch(`/api/portal/${portalToken}/form-upload/${field.id}`, { method: "POST", body: formData });
+      const response = await fetch(`/api/portal/${portalToken}/form-upload/${field.id}`, { method: "POST", headers: personHeaders(portalToken), body: formData });
       const data = (await response.json()) as { ok: boolean; value?: string; error?: string };
       if (!data.ok || !data.value) {
         setError(data.error ?? "Upload failed — try again, or paste a link instead.");

@@ -145,6 +145,8 @@ export type ProductFeatures = {
   comms?: boolean;
   /** Steps whose completion note is a typed-name approval: completing one also writes an Approval record to the step's thread (needs comms). */
   approvalSteps?: string[];
+  /** "Who's this?" (AT Network first, Jesse 2026-10-28): the people who share the client's link. Each device picks a name once, with one tap; every tick, upload and message is then stamped with it. Not a login. */
+  people?: string[];
   /** Home-screen app icon: public/portal/icons/<name>-180.png, -192.png and -512.png. Saved to a phone's home screen, the portal opens full screen with this icon. */
   appIcon?: string;
 };

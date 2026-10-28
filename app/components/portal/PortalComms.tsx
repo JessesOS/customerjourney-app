@@ -32,7 +32,7 @@ function when(iso: string) {
   }
 }
 
-export function PortalComms({ portalToken, steps }: { portalToken: string; steps: Step[] }) {
+export function PortalComms({ portalToken, steps, people }: { portalToken: string; steps: Step[]; people?: string[] }) {
   const [open, setOpen] = useState(false);
   const [comms, setComms] = useState<Comm[]>([]);
   const [unread, setUnread] = useState(0);
@@ -78,6 +78,17 @@ export function PortalComms({ portalToken, steps }: { portalToken: string; steps
     };
     window.addEventListener("pjc:open", onOpen);
     return () => window.removeEventListener("pjc:open", onOpen);
+  }, []);
+
+  // Who's this? picked a name (products with people): messages go as that person.
+  useEffect(() => {
+    const onPerson = (e: Event) => {
+      const n = (e as CustomEvent<string>).detail ?? "";
+      setName(n);
+      setSavedName(n);
+    };
+    window.addEventListener("pjc:person", onPerson);
+    return () => window.removeEventListener("pjc:person", onPerson);
   }, []);
 
   // Opening the panel marks the team's replies as seen.
@@ -220,7 +231,7 @@ export function PortalComms({ portalToken, steps }: { portalToken: string; steps
                 <button type="button" className="pjc-link" onClick={() => setChange(true)}>Asking for something that&apos;s not in the agreement?</button>
               ) : <span />}
               {!editingName && (
-                <span className="pja-fine">Sending as {savedName} · <button type="button" className="pjc-link" onClick={() => setSavedName("")}>Change</button></span>
+                <span className="pja-fine">Sending as {savedName} · <button type="button" className="pjc-link" onClick={() => (people ? window.dispatchEvent(new CustomEvent("pjc:who")) : setSavedName(""))}>Change</button></span>
               )}
             </div>
           </div>

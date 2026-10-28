@@ -42,6 +42,7 @@ export function GroveHub({
   brand,
   clientLabel,
   name,
+  person,
   currentDay,
   totalDays,
   stages,
@@ -68,6 +69,8 @@ export function GroveHub({
   brand: string;
   clientLabel: string;
   name: string;
+  /** Who's this? (products with people): the name picked on this device. The initial becomes theirs and asks again on tap. */
+  person?: string;
   currentDay: number;
   totalDays: number;
   stages: JourneyStage[];
@@ -148,9 +151,21 @@ export function GroveHub({
           <span className="gv-mono gv-daycount" style={{ whiteSpace: "nowrap", flexShrink: 0 }}>
             Day {currentDay} / {totalDays} · <span style={{ color: "var(--pj-act)" }}>on track</span>
           </span>
-          <span style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--pj-ink)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 600, fontSize: 13, flexShrink: 0 }}>
-            {name.charAt(0)}
-          </span>
+          {person ? (
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent("pjc:who"))}
+              aria-label={`You're ${person}. Not you? Change`}
+              title={`You're ${person} · tap if not you`}
+              style={{ width: 32, height: 32, borderRadius: "50%", border: 0, padding: 0, cursor: "pointer", background: "var(--pj-ink)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 600, fontSize: 13, flexShrink: 0 }}
+            >
+              {person.charAt(0)}
+            </button>
+          ) : (
+            <span style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--pj-ink)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 600, fontSize: 13, flexShrink: 0 }}>
+              {name.charAt(0)}
+            </span>
+          )}
         </div>
       </header>
 

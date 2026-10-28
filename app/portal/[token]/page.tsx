@@ -11,6 +11,7 @@ import {
   isPortalThemeVariant,
 } from "@/lib/portalClientStore";
 import { tabTitle } from "@/lib/journeyBuild";
+import { lastTicks } from "@/lib/activityStore";
 import { portalJourneyFor } from "@/lib/productRegistry";
 
 // The browser tab: a custom product shows its own name (BSS: "BSS Launchpad").
@@ -54,12 +55,13 @@ export default async function PortalPage({
     return <PortalPausedNotice firstName={client.name.trim().split(/\s+/)[0] ?? ""} brand={tabTitle(journey)} portalToken={token} />;
   }
 
-  const [completedIds, currentDay, milestoneNotes, milestoneContent, milestoneUploads] = await Promise.all([
+  const [completedIds, currentDay, milestoneNotes, milestoneContent, milestoneUploads, stepTicks] = await Promise.all([
     getCompletedMilestoneIds(client.id),
     Promise.resolve(computeCurrentDay(client.startDate, journey.totalDays)),
     getMilestoneNotes(client.id),
     getAllMilestoneContent(client.id),
     getAllMilestoneUploadsMeta(client.id),
+    journey.people ? lastTicks(client.id) : Promise.resolve(undefined),
   ]);
 
   // Anti-flash veil: the welcome-or-not decision lives in localStorage, which
@@ -83,6 +85,7 @@ export default async function PortalPage({
         initialMilestoneNotes={milestoneNotes}
         milestoneContent={milestoneContent}
         milestoneUploads={milestoneUploads}
+        stepTicks={stepTicks}
         portalToken={token}
         themeVariant={journey.lockedLook ?? (isPortalThemeVariant(client.themeVariant) ? client.themeVariant : "handoff")}
       />

@@ -13,6 +13,7 @@ import type { ChecklistStage } from "@/lib/journeyTypes";
 export function AdminTaskChecklist({ clientId, adminToken, onChanged }: { clientId: string; adminToken?: string; onChanged?: () => void }) {
   const [done, setDone] = useState<Set<string> | null>(null);
   const [stages, setStages] = useState<ChecklistStage[]>([]);
+  const [ticks, setTicks] = useState<Record<string, { person: string; at: string }>>({});
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState("");
   const headers: HeadersInit = { "Content-Type": "application/json", ...(adminToken ? { "x-admin-token": adminToken } : {}) };
@@ -20,10 +21,11 @@ export function AdminTaskChecklist({ clientId, adminToken, onChanged }: { client
   const load = useCallback(async () => {
     try {
       const res = await fetch(`/api/admin/portal-clients/${clientId}/milestones`, { headers: adminToken ? { "x-admin-token": adminToken } : {}, cache: "no-store" });
-      const payload = (await res.json()) as { ok: boolean; completed?: string[]; stages?: ChecklistStage[]; error?: string };
+      const payload = (await res.json()) as { ok: boolean; completed?: string[]; stages?: ChecklistStage[]; ticks?: Record<string, { person: string; at: string }>; error?: string };
       if (!payload.ok) throw new Error(payload.error ?? "Could not load tasks.");
       setStages(payload.stages ?? []);
       setDone(new Set(payload.completed ?? []));
+      setTicks(payload.ticks ?? {});
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not load tasks.");
     }
@@ -73,6 +75,12 @@ export function AdminTaskChecklist({ clientId, adminToken, onChanged }: { client
                     <input type="checkbox" checked={isDone} disabled={busy === m.id} onChange={(e) => void toggle(m.id, e.target.checked)} />
                     <span style={{ fontFamily: "monospace", fontSize: 11, color: "rgba(252,250,246,0.4)", minWidth: 56 }}>{m.id}</span>
                     <span style={{ textDecoration: isDone ? "line-through" : "none" }}>{m.title}</span>
+                    {/* Who ticked it (products with Who's this?). */}
+                    {isDone && ticks[m.id] ? (
+                      <span title={new Date(ticks[m.id].at).toLocaleString()} style={{ fontSize: 11, color: "#9fe0bf", whiteSpace: "nowrap" }}>
+                        {ticks[m.id].person} · {new Date(ticks[m.id].at).toLocaleString(undefined, { day: "numeric", month: "short", hour: "numeric", minute: "2-digit" })}
+                      </span>
+                    ) : null}
                     <span style={{ marginLeft: "auto", fontSize: 11, color: m.awaitingTeam ? "#b9a3ff" : "rgba(252,250,246,0.45)", whiteSpace: "nowrap" }}>{m.awaitingTeam ? "Team" : "Client"}</span>
                   </label>
                 );

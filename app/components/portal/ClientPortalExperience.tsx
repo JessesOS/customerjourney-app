@@ -24,6 +24,8 @@ import { IntroVideo, type IntroVideoHandle } from "@/app/components/portal/Intro
 import { VoiceInterview } from "@/app/components/portal/VoiceInterview";
 import { PortalAssistant } from "@/app/components/portal/PortalAssistant";
 import { PortalComms } from "@/app/components/portal/PortalComms";
+import { PortalWho } from "@/app/components/portal/PortalWho";
+import { personHeaders, readPerson, stampTime } from "@/lib/portalPerson";
 import { AgreementAccept } from "@/app/components/portal/AgreementAccept";
 import { JourneyMap } from "@/app/components/portal/JourneyMap";
 import { ReceptionistPlayground } from "@/app/components/portal/ReceptionistPlayground";
@@ -60,6 +62,8 @@ export type ClientPortalExperienceProps = {
   initialMilestoneNotes?: Record<string, string>;
   milestoneContent?: Record<string, string>;
   milestoneUploads?: Record<string, UploadMeta[]>;
+  /** Who last ticked each step, and when (products with journey.people only). */
+  stepTicks?: Record<string, { person: string; at: string }>;
   portalToken?: string;
   // "cobalt" is the motion-redesign look. It is a review option only: nothing stores it yet.
   themeVariant?: "warm" | "cool" | "neutral" | "handoff" | "cobalt" | "aurora" | "calm" | "grove" | "groveaurora";
@@ -154,6 +158,7 @@ export function ClientPortalExperience({
   initialMilestoneNotes = {},
   milestoneContent = {},
   milestoneUploads = {},
+  stepTicks: initialStepTicks = {},
   portalToken,
   themeVariant = "warm",
 }: ClientPortalExperienceProps) {
@@ -165,6 +170,16 @@ export function ClientPortalExperience({
   // A step with both a form and a voice interview lets the client choose: type or talk.
   const [answerModes, setAnswerModes] = useState<Record<string, "type" | "talk">>({});
   const [uploads, setUploads] = useState<Record<string, UploadMeta[]>>(milestoneUploads);
+  const [stepTicks, setStepTicks] = useState(initialStepTicks);
+  // Who's this? (products with people): the name picked on this device, shown as the header's initial.
+  const [person, setPerson] = useState("");
+  useEffect(() => {
+    if (!journey.people) return;
+    setPerson(readPerson(portalToken));
+    const onPerson = (e: Event) => setPerson((e as CustomEvent<string>).detail ?? "");
+    window.addEventListener("pjc:person", onPerson);
+    return () => window.removeEventListener("pjc:person", onPerson);
+  }, [journey.people, portalToken]);
   // Team content can land minutes AFTER the client first opens the portal (the
   // AI pack generates during checkout). Start from the server-rendered snapshot
   // and poll for fresh content while any of it is still empty, so "your team is
@@ -421,10 +436,12 @@ export function ClientPortalExperience({
     if (note !== undefined) {
       setNotes((prev) => ({ ...prev, [milestoneId]: note }));
     }
+    const person = journey.people ? readPerson(portalToken) : "";
+    if (person && journey.people?.includes(person)) setStepTicks((prev) => ({ ...prev, [milestoneId]: { person, at: new Date().toISOString() } }));
     if (portalToken) {
       fetch(`/api/portal/${portalToken}/complete`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...personHeaders(portalToken) },
         body: JSON.stringify({ milestoneId, note }),
       }).catch(() => {});
     }
@@ -480,10 +497,10 @@ export function ClientPortalExperience({
         let payload: { ok: boolean; error?: string; file?: UploadMeta };
         try {
           const res = options
-            ? await fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, { method: "POST", body: (() => { const form = new FormData(); form.append("file", file); return form; })() })
+            ? await fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, { method: "POST", headers: personHeaders(portalToken), body: (() => { const form = new FormData(); form.append("file", file); return form; })() })
             : await fetch(`/api/portal/${portalToken}/upload/${milestoneId}`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json", ...personHeaders(portalToken) },
                 body: JSON.stringify({ fileName: file.name, content }),
               });
           payload = (await res.json()) as typeof payload;
@@ -665,8 +682,10 @@ export function ClientPortalExperience({
       )}
       {/* Messages: step threads with the team, only for products that switch it on (AT Network first). */}
       {journey.comms && portalToken && !showWelcome && !introPlaying && (
-        <PortalComms portalToken={portalToken} steps={journey.stages.flatMap((s) => s.milestones.map((m) => ({ id: m.id, title: m.title })))} />
+        <PortalComms portalToken={portalToken} people={journey.people} steps={journey.stages.flatMap((s) => s.milestones.map((m) => ({ id: m.id, title: m.title })))} />
       )}
+      {/* Who's this? Several people share one link: each device picks a name once (AT Network first). */}
+      {journey.people && portalToken && !showWelcome && !introPlaying && <PortalWho portalToken={portalToken} people={journey.people} />}
       {/* Presentation switch: one small dot, bottom right, demo route only. */}
       {isDemo && (
         <button
@@ -806,9 +825,22 @@ export function ClientPortalExperience({
               ))}
             </span>
             )}
-            <div style={{ width: 30, height: 30, borderRadius: 99, background: "var(--pj-act)", color: "var(--pj-act-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13 }}>
-              {name.charAt(0)}
-            </div>
+            {journey.people && person ? (
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent("pjc:who"))}
+                aria-label={`You're ${person}. Not you? Change`}
+                title={`You're ${person} · tap if not you`}
+                style={{ display: "flex", alignItems: "center", gap: 8, border: 0, background: "none", padding: 0, cursor: "pointer", color: "var(--pj-muted)", font: "600 12.5px var(--font-body), sans-serif" }}
+              >
+                <span className="pj-who-name">{person}</span>
+                <span style={{ width: 30, height: 30, borderRadius: 99, background: "var(--pj-act)", color: "var(--pj-act-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13 }}>{person.charAt(0)}</span>
+              </button>
+            ) : (
+              <div style={{ width: 30, height: 30, borderRadius: 99, background: "var(--pj-act)", color: "var(--pj-act-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, fontSize: 13 }}>
+                {name.charAt(0)}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -1078,6 +1110,7 @@ export function ClientPortalExperience({
           brand={hubBrand(journey, "grove")}
           clientLabel={`Client Portal${name ? ` \u00b7 ${name}` : ""}`}
           name={name}
+          person={journey.people ? person : undefined}
           currentDay={currentDay}
           totalDays={journey.totalDays}
           stages={journeyStages}
@@ -1384,6 +1417,12 @@ export function ClientPortalExperience({
                 </div>
                 <h3 style={{ fontFamily: "var(--font-heading), sans-serif", fontSize: 32, fontWeight: 800, letterSpacing: "-0.025em", margin: "0 0 10px" }}>{m.title}</h3>
                 <p style={{ fontSize: 14.5, color: "var(--pj-muted)", margin: 0, maxWidth: "54ch", lineHeight: 1.55 }}>{m.detail}</p>
+                {/* Who ticked it, when the product tracks people. */}
+                {journey.people && m.status === "done" && stepTicks[m.id] && (
+                  <div className="pj-done-by" style={{ marginTop: 10, fontSize: 12.5, fontWeight: 600, color: "var(--pj-act)" }}>
+                    Done by {stepTicks[m.id].person} · {stampTime(stepTicks[m.id].at)}
+                  </div>
+                )}
                 {/* Messages on this step (products with comms only): opens the panel on this step's thread. */}
                 {journey.comms && (
                   <button

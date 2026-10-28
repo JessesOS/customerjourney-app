@@ -79,3 +79,13 @@ Not built. Jesse wants a personal customer-service agent: the client calls or te
 4. **Files in threads:** not in v1 (the step uploads cover it). OK?
 5. **Closed steps:** keep a step's thread open for comments after the step is ticked?
 6. **Ask Jesse vs threads:** keep both (quick questions vs step threads), or fold requests into threads?
+
+## Who's this? (built 28 Oct 2026, staging)
+
+Jesse's call (28 Oct): several people share AT's one link, so the portal now asks once per device, with one tap, who this is: Rich, Ben, Martyn or Fiona (`features.people` in `products/at-network/index.ts`). No passwords. The header's round initial becomes theirs; tapping it asks again.
+
+- Every tick, step upload, form submit and form upload sends the name (`x-portal-person`). The server keeps it in `portal_activity` (migration 0019, additive) only if the name is on the product's list.
+- The step shows "Done by Rich · 29 Oct, 2:14 pm". The admin task checklist shows the name and time beside each tick.
+- Messages go as the picked name; "Change" opens the picker.
+- It's a name, not a login: good for who did what among four people, not proof. Approvals still take a typed full name.
+- Other products have no `people`, so nothing changes for them (Fin's fixtures unchanged).

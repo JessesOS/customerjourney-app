@@ -1,5 +1,6 @@
 import { encodePortalFileValue, formFields, respondOnboardingForm, scaleOnboardingForm } from "@/lib/onboardingForm";
 import { getFormUpload, getPortalClientByToken, saveFormUpload } from "@/lib/portalClientStore";
+import { recordActivity } from "@/lib/activityStore";
 
 const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10MB — plenty for a bill PDF or a logo zip
 
@@ -52,6 +53,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ tok
       return Response.json({ ok: false, error: saved.error }, { status: 503 });
     }
 
+    await recordActivity(request, client, "form_upload", fieldId);
     return Response.json({ ok: true, value: encodePortalFileValue(fieldId, fileName), fileName });
   } catch (error) {
     return Response.json(

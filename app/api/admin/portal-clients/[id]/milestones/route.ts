@@ -2,6 +2,7 @@ import { requestCanAdminAsync } from "@/lib/teamAuth";
 import { allMilestoneTemplates } from "@/lib/allJourneys";
 import { getCompletedMilestoneIds, getPortalClientById, setMilestoneDone } from "@/lib/portalClientStore";
 import { checklistStagesFor, DEFAULT_CLIENT_TYPE } from "@/lib/productRegistry";
+import { lastTicks } from "@/lib/activityStore";
 
 // The team's task checklist for one client: the steps of their journey by
 // stage (from their product file), which are done, and ticking them off.
@@ -15,8 +16,8 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
   }
   const { id } = await params;
   try {
-    const [done, client] = await Promise.all([getCompletedMilestoneIds(id), getPortalClientById(id)]);
-    return Response.json({ ok: true, completed: [...done], stages: checklistStagesFor(client?.clientType ?? DEFAULT_CLIENT_TYPE) });
+    const [done, client, ticks] = await Promise.all([getCompletedMilestoneIds(id), getPortalClientById(id), lastTicks(id)]);
+    return Response.json({ ok: true, completed: [...done], stages: checklistStagesFor(client?.clientType ?? DEFAULT_CLIENT_TYPE), ticks });
   } catch (error) {
     return Response.json({ ok: false, error: error instanceof Error ? error.message : "Could not load tasks." }, { status: 500 });
   }

@@ -1,6 +1,7 @@
 import { uploadMilestoneIds, uploadStayOpenIds } from "@/lib/allJourneys";
 import { addMilestoneUpload, deleteMilestoneUpload, getAllMilestoneUploadsMeta, getCompletedMilestoneIds, getPortalClientByToken } from "@/lib/portalClientStore";
 import { getUploadsBucket } from "@/lib/uploadsBucket";
+import { recordActivity } from "@/lib/activityStore";
 
 // A task takes several files (a lead list can come in parts). Files go to R2
 // when it's bound, so they can be bigger; without it they sit in D1.
@@ -51,6 +52,7 @@ export async function POST(request: Request, { params }: Params) {
       const have = (await getAllMilestoneUploadsMeta(client.id))[milestoneId] ?? [];
       if (have.length >= MAX_FILES_ANY) return Response.json({ ok: false, error: `That's the limit of ${MAX_FILES_ANY} files for this step.` }, { status: 400 });
       const saved = await addMilestoneUpload(client.id, milestoneId, name, await file.arrayBuffer(), type);
+      if (saved) await recordActivity(request, client, "upload", milestoneId);
       return Response.json({ ok: true, file: saved });
     }
 
@@ -71,6 +73,7 @@ export async function POST(request: Request, { params }: Params) {
     }
 
     const file = await addMilestoneUpload(client.id, milestoneId, fileName, content);
+    await recordActivity(request, client, "upload", milestoneId);
     return Response.json({ ok: true, file });
   } catch (error) {
     return Response.json(
