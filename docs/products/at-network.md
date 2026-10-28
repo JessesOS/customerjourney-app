@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.17` |
+| Version | `2026-10-28.18` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -75,7 +75,7 @@ Three cold ads, landing pages A and B, and the homepage as landing page C, with 
    - **People in Transition:** Going through a big personal or professional change, looking for clarity and their next chapter.
    - **Conscious Entrepreneurs and Business Leaders:** Want to bring more consciousness, purpose and meaning into their work.
    - **Struggling and Overwhelmed Business Owners:** Everyday business owners feeling the pressure: burnout, money, isolation.
-2. **The split**. The ads send people to the landing pages, and half of all the traffic goes to the homepage, so the homepage works as a landing page too. Every link carries a tag, so we see which page converts for which audience.
+2. **Where the ads send people**. Your team sets each ad's destination when the campaigns are built. Landing pages A and B, and the homepage as C, are all ready to receive them. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Sending half the traffic to the homepage is a campaign setting, and it's yours to choose.
    - **Landing pages A and B:** A has the card up front, B doesn't. The first screen changes for each audience.
    - **Landing page C: the homepage:** The same homepage from Track 1, working alongside A and B.
 3. **Two statics and the LinkedIn banner** (us). Two still ads and a banner for the company page.
@@ -556,7 +556,7 @@ Portal: work to review · note (required)
 
 **`atn-t30` Build landing pages A, B and C with the tags**
 
-A (card up front) and B (no card), first screen per audience; C is the homepage. Half the traffic goes to the homepage. UTM on every link.
+A (card up front) and B (no card), first screen per audience; C is the homepage. UTM tag on every link. Where each ad sends people (and any homepage split) is set by their team in the ad accounts, not by the site (agreement A3).
 
 </details>
 

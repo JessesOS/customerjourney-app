@@ -49,7 +49,7 @@ export const atNetworkTeamTasks: TeamTask[] = [
   t("atn-t27", "Make the round 1 changes to the site and reopen the link", "testing", "Review", "atn-review-site-2", "Days 27-30", "", ["atn-t25"]),
   t("atn-t28", "Make the round 2 changes and ask for sign-off", "testing", "Review", "atn-signoff-site", "Days 30-33", "After sign-off, site changes are change requests.", ["atn-t27"]),
   // ── Funnel and ads ──
-  t("atn-t30", "Build landing pages A, B and C with the tags", "go-live", "Funnel", "atn-review-landing", "Days 20-30", "A (card up front) and B (no card), first screen per audience; C is the homepage. Half the traffic goes to the homepage. UTM on every link.", ["atn-t16"]),
+  t("atn-t30", "Build landing pages A, B and C with the tags", "go-live", "Funnel", "atn-review-landing", "Days 20-30", "A (card up front) and B (no card), first screen per audience; C is the homepage. UTM tag on every link. Where each ad sends people (and any homepage split) is set by their team in the ad accounts, not by the site (agreement A3).", ["atn-t16"]),
   t("atn-t31", "Make three cold video ads (up to 15 s, vertical, captions burned in)", "go-live", "Ads", "atn-review-ads", "Days 20-30", "One per audience (Rich's 16 Oct brief): People in Transition; Conscious Entrepreneurs and Business Leaders; Struggling and Overwhelmed Business Owners. The Executive avatar is not in Phase 1."),
   t("atn-t32", "Make two statics and the LinkedIn banner", "go-live", "Ads", "atn-review-ads", "Days 20-30"),
   t("atn-t33", "Write the retargeting ladder as a plan", "go-live", "Ads", "atn-review-ads", "Days 24-30"),
