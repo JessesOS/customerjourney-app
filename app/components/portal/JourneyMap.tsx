@@ -155,7 +155,7 @@ export function JourneyMap({
       ) : null}
 
       {content.journeys.map((j, i) => (
-        <Journey key={j.id} journey={j} n={i + 1} notes={notesBox(j.id, "Anything to change in this journey?")} />
+        <Journey key={j.id} journey={j} n={i + 1} whoLabels={content.whoLabels} notes={notesBox(j.id, "Anything to change in this journey?")} />
       ))}
 
       <div className="jm-block jm-reveal">
@@ -193,7 +193,7 @@ export function JourneyMap({
   );
 }
 
-function Journey({ journey, n, notes }: { journey: JourneyMapJourney; n: number; notes: ReactNode }) {
+function Journey({ journey, n, notes, whoLabels }: { journey: JourneyMapJourney; n: number; notes: ReactNode; whoLabels?: Partial<Record<NonNullable<JourneyMapStep["who"]>, string>> }) {
   // A collapsed journey (AT Network's Phase 2 list, 2026-10-25) shows its header and one
   // button; the rest appears on tap. Journeys without the flag render exactly as before.
   const [open, setOpen] = useState(!journey.collapsed);
@@ -243,7 +243,7 @@ function Journey({ journey, n, notes }: { journey: JourneyMapJourney; n: number;
             <div className="jm-step-body">
               <div className="jm-step-title">
                 {s.title}
-                {s.who ? <span className="jm-who">{WHO[s.who]}</span> : null}
+                {s.who ? <span className="jm-who">{whoLabels?.[s.who] ?? WHO[s.who]}</span> : null}
               </div>
               <p className="jm-step-detail">{s.detail}</p>
               {s.messages?.length ? (

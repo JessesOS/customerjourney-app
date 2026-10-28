@@ -223,6 +223,8 @@ export type JourneyMapContent = {
   toConfirm: { question: string; where: string }[];
   /** The hidden form (lib/onboardingForm.ts) that keeps the client's notes. */
   notesFormId: string;
+  /** Own wording for the who tags ("us", "you", "them"). Absent = the stock Us / You / Your lead. */
+  whoLabels?: Partial<Record<"you" | "them" | "us", string>>;
 };
 
 /**

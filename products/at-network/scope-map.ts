@@ -16,6 +16,8 @@ export const atNetworkScopeMap: JourneyMapContent = {
     "Phase 1 is two tracks that share one page. The website build is your new site. The funnel test sends ads to landing pages, and half of that traffic to the homepage, so the homepage is part of the test too. Everything in Phase 1 is below.",
   draftNote: "Our draft, built from the agreement, your voice notes and messages. Anything marked \"To confirm\" is waiting on an answer from you. We'll walk through it on the kickoff call.",
   notesFormId: "at-network-scope-notes-v1",
+  // "Us" read as a team to this client (Jesse, 2026-10-28): say what it means.
+  whoLabels: { us: "We build" },
   journeys: [
     {
       id: "website",
