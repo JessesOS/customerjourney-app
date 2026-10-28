@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.4` |
+| Version | `2026-10-28.5` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -161,7 +161,7 @@ No team task behind this step.
 
 ### `atn-save-portal` Save your portal to your phone _(client only)_
 
-> So you can get back here in one tap. Saved to your phone's home screen, it opens like an app.
+> Optional, but handy: it puts the portal one tap away on your phone, and it opens like an app. Skip it if you'd rather not.
 
 Portal: 3 numbered steps
 

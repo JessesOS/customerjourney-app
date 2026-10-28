@@ -18,6 +18,8 @@ export type JourneyMilestone = {
   noteRequired?: boolean;
   hasEditableContent?: boolean;
   pendingContentText?: string;
+  /** The client may skip this step ("Skip for now" beside the done button). Skipping ticks it with the note "Skipped". */
+  optional?: boolean;
   videoUrl?: string;
   hasUpload?: boolean;
   awaitingTeam?: boolean;
@@ -75,6 +77,8 @@ export type MilestoneTemplate = {
   hasEditableContent?: boolean;
   /** What an editable-content step says while the team hasn't pasted anything yet. Absent = the stock line. */
   pendingContentText?: string;
+  /** The client may skip this step ("Skip for now" beside the done button). Skipping ticks it with the note "Skipped". */
+  optional?: boolean;
   videoUrl?: string;
   hasUpload?: boolean;
   awaitingTeam?: boolean;

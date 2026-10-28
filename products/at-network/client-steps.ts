@@ -93,8 +93,10 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "onboarding",
     step: {
       id: "atn-save-portal",
+      // Optional (Jesse, 2026-10-28): nobody is forced to put it on their phone.
+      optional: true,
       title: "Save your portal to your phone",
-      detail: "So you can get back here in one tap. Saved to your phone's home screen, it opens like an app.",
+      detail: "Optional, but handy: it puts the portal one tap away on your phone, and it opens like an app. Skip it if you'd rather not.",
       steps: [
         "On an iPhone, open your portal link in Safari (even if you usually use Chrome). Tap the Share button: the square with an arrow pointing up, at the bottom of the screen. Scroll down, tap \"Add to Home Screen\", then tap \"Add\".",
         "On Android, open the link in Chrome, tap the three dots at the top right, then \"Add to Home screen\".",

@@ -1719,6 +1719,29 @@ export function ClientPortalExperience({
                       (() => {
                         const noteMissing = Boolean(m.noteRequired) && !noteValue.trim();
                         return (
+                      <>
+                      {/* An optional step (AT Network's save-to-phone, 2026-10-28): a quiet way past it. */}
+                      {m.optional && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const completedStageId = stageCompletedBy(m.id);
+                            approveMilestone(m.id, "Skipped");
+                            if (completedStageId) {
+                              setJustCompletedStageId(completedStageId);
+                              setView("complete");
+                              window.scrollTo(0, 0);
+                            } else if (nextN) {
+                              setMilestone(nextN);
+                            } else {
+                              backToJourney();
+                            }
+                          }}
+                          style={{ marginLeft: isFirst ? "auto" : 0, background: "transparent", border: "none", color: "var(--pj-muted)", fontFamily: "var(--font-body), sans-serif", fontWeight: 550, fontSize: 14, padding: "12px 6px", cursor: "pointer", textDecoration: "underline" }}
+                        >
+                          Skip for now
+                        </button>
+                      )}
                       <button
                         disabled={noteMissing}
                         onClick={() => {
@@ -1735,10 +1758,11 @@ export function ClientPortalExperience({
                             backToJourney();
                           }
                         }}
-                        style={{ marginLeft: isFirst ? "auto" : 0, background: noteMissing ? "var(--pj-act-fill)" : "var(--pj-btn-grad)", color: noteMissing ? "var(--pj-act)" : "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: noteMissing ? "default" : "pointer", boxShadow: noteMissing ? "none" : "var(--pj-shadow-btn)" }}
+                        style={{ marginLeft: m.optional ? 0 : isFirst ? "auto" : 0, background: noteMissing ? "var(--pj-act-fill)" : "var(--pj-btn-grad)", color: noteMissing ? "var(--pj-act)" : "var(--pj-act-ink)", fontFamily: "var(--font-body), sans-serif", fontWeight: 650, fontSize: 15, border: "none", borderRadius: "var(--pj-radius-pill)", padding: "12px 24px", display: "flex", alignItems: "center", gap: 9, cursor: noteMissing ? "default" : "pointer", boxShadow: noteMissing ? "none" : "var(--pj-shadow-btn)" }}
                       >
                         {m.interview ? "Finish interview" : m.doneLabel ? m.doneLabel : isLast ? "Approve & finish" : "Approve & continue"} <span style={{ fontSize: 17 }}>→</span>
                       </button>
+                      </>
                         );
                       })()
                     ) : (
