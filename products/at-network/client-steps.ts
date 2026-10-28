@@ -146,16 +146,14 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "onboarding",
     step: {
       // After the call: Jesse pastes the "locked on" summary here (editable
-      // content), the approver types their name, and that's the brief.
+      // content) and they confirm it's right. A confirmation, not an approval
+      // (Jesse, 2026-10-28: approvals only on work submitted for approval).
       id: "atn-kickoff-summary",
-      title: "Approve the kickoff summary",
-      detail: "After the call we write up what we decided, in plain words, below. Read it. If it's right, type your full name and approve it. That summary is the brief we build to. Anything not in it is a change request.",
+      title: "Check the kickoff summary",
+      detail: "After the call we write up what we decided, in plain words, below. Read it. If it's right, press the button. That summary is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
       hasEditableContent: true,
       pendingContentText: "Your summary appears here after the call.",
-      notePrompt: "Type your full name to approve",
-      notePlaceholder: "Your full name",
-      noteRequired: true,
-      doneLabel: "Approved",
+      doneLabel: "That's right",
     },
   },
 

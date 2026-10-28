@@ -181,11 +181,12 @@ export function PortalComms({ portalToken, steps }: { portalToken: string; steps
           <div className="pja-head">
             <div>
               <div className="pja-title">Messages</div>
-              <div className="pja-sub">Feedback, approvals and change requests, kept on each step. We reply within one business day.{openRequests ? ` ${openRequests} change request${openRequests === 1 ? "" : "s"} open.` : ""}</div>
+              <div className="pja-sub">Questions, feedback and change requests, kept on each step. We reply within one business day.{openRequests ? ` ${openRequests} change request${openRequests === 1 ? "" : "s"} open.` : ""}</div>
             </div>
             <button type="button" className="pja-close" onClick={() => setOpen(false)} aria-label="Close">×</button>
           </div>
 
+          {visible.length > 0 && (
           <div className="pjc-tools">
             <select className="pjc-select" aria-label="Show messages for" value={filter} onChange={(e) => { setFilter(e.target.value); if (e.target.value !== ALL) setStepId(e.target.value); }}>
               <option value={ALL}>All messages ({visible.length})</option>
@@ -195,11 +196,9 @@ export function PortalComms({ portalToken, steps }: { portalToken: string; steps
               ))}
             </select>
           </div>
+          )}
 
           <div ref={scrollRef} className="pja-body">
-            {shown.length === 0 && (
-              <div className="pja-empty">{filter === ALL ? "No messages yet. Pick a step below and write to us." : "No messages on this one yet."}</div>
-            )}
             {shown.map((c) => (
               <div key={c.id} className={`pja-msg pjc-msg ${c.authorSide === "client" ? "is-client" : "is-team"}${c.kind === "approval" ? " is-approval" : c.kind === "change_request" ? " is-change" : ""}`}>
                 {filter === ALL && <div className="pjc-step">{label(c.stepId)}</div>}
@@ -215,9 +214,9 @@ export function PortalComms({ portalToken, steps }: { portalToken: string; steps
 
           <div className="pja-foot">
             <div className="pjc-kinds" role="tablist" aria-label="What are you sending?">
-              {(["message", "approval", "change_request"] as const).map((k) => (
+              {(["message", "change_request"] as const).map((k) => (
                 <button key={k} type="button" role="tab" aria-selected={kind === k} className={kind === k ? "is-on" : ""} onClick={() => setKind(k)}>
-                  {k === "message" ? "Message" : k === "approval" ? "Approval" : "Change request"}
+                  {k === "message" ? "Message" : "Change request"}
                 </button>
               ))}
             </div>

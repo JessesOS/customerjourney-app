@@ -19,7 +19,7 @@ export const atNetworkTeamTasks: TeamTask[] = [
   t("atn-t09", "Edit the Scope and Map before the client reads it", "onboarding", "Kickoff", "atn-scope-map", "Days 1-3", "products/at-network/scope-map.ts is Claude's draft. Check the In, Out and Phase 2 lists against the agreement."),
   t("atn-t10", "Book the kickoff call and send the agenda", "onboarding", "Kickoff", "atn-book-kickoff", "Days 2-5", "Agenda: look inside the platform, lock the homepage brief, confirm who signs off, three ads not four, one homepage.", ["atn-t02"]),
   t("atn-t11", "Run the kickoff call", "onboarding", "Kickoff", "atn-book-kickoff", "Days 3-7", "", ["atn-t10"]),
-  t("atn-t12", "Write the kickoff summary and paste it into the step", "onboarding", "Kickoff", "atn-kickoff-summary", "Days 3-7", "One \"locked on\" message: every decision from the call, the open answers, the approver. Paste into the step's content in admin. The approver types their name to approve: that's the brief.", ["atn-t11"]),
+  t("atn-t12", "Write the kickoff summary and paste it into the step", "onboarding", "Kickoff", "atn-kickoff-summary", "Days 3-7", "One \"locked on\" message: every decision from the call, the open answers, the approver. Paste into the step's content in admin. They press "That's right" to confirm: that's the brief.", ["atn-t11"]),
   // ── What we need from you ──
   t("atn-t03", "Add Martyn's StarMap link to the step; build the page once he confirms Final", "build", "Inputs", "atn-starmap", "Days 3-7", "The artifact link goes in guideUrl. Build only after his Final."),
   t("atn-t04", "Read Ben's package breakdown (received 24 Oct); log gaps", "build", "Inputs", "atn-package-breakdown", "Days 3-7", "Tick the client's confirmation step in admin if they don't."),

@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.23` |
+| Version | `2026-10-28.24` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -215,11 +215,11 @@ Agenda: look inside the platform, lock the homepage brief, confirm who signs off
 
 </details>
 
-### `atn-kickoff-summary` Approve the kickoff summary
+### `atn-kickoff-summary` Check the kickoff summary
 
-> After the call we write up what we decided, in plain words, below. Read it. If it's right, type your full name and approve it. That summary is the brief we build to. Anything not in it is a change request.
+> After the call we write up what we decided, in plain words, below. Read it. If it's right, press the button. That summary is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.
 
-Portal: work to review · note (required)
+Portal: work to review
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
