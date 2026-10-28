@@ -196,7 +196,9 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       // Received (agreement A4): Ben's copy for the four levels, 24 October.
       id: "atn-package-breakdown",
       title: "Confirm your product package breakdown",
-      detail: "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+      detail: "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. The picture below is how we read your levels. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+      imageUrl: "/portal/at-network/levels.svg",
+      imageAlt: "Your levels: Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy with the Foundations course (the main door) and Growth and Legacy to come, Level 3 Mentor7. Benevolent Executive is separate. One free month on any paid level.",
       hasUpload: true,
       uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.zip", title: "Newer version?", hint: "Only if the copy has changed since 24 October.", ...FILES },
       notePrompt: "Anything changed, or a link to the latest version (optional)",

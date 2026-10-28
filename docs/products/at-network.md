@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.29` |
+| Version | `2026-10-28.30` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 33 (2 client only, 0 hidden in the portal) |
@@ -290,7 +290,7 @@ The artifact link goes in guideUrl. Build only after his Final.
 
 ### `atn-package-breakdown` Confirm your product package breakdown
 
-> Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.
+> Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. The picture below is how we read your levels. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.
 
 Portal: upload · note
 
