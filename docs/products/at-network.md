@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.26` |
+| Version | `2026-10-28.28` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
-| Client steps | 35 (2 client only, 0 hidden in the portal) |
-| Team tasks | 46 (45 behind a client step, 1 team-only) |
+| Client steps | 33 (2 client only, 0 hidden in the portal) |
+| Team tasks | 45 (43 behind a client step, 2 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | yes | 35 | 46 |
+| AT Network | `at-network` | none | yes | 33 | 45 |
 
 ### Portal tweaks by variant
 
@@ -59,8 +59,8 @@ The First Light site, built page by page. You see it on a review link as it grow
    - **Foundations:** Its own page, linked from the top menu. It is a course inside Level 2 Academy.
    - **Growth and Legacy:** A page each, built from the outlines you supply. They are Academy courses too, alongside Foundations, so the pathway is complete.
 3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free month is, how levels work and what happens next.
-4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's a launch gift from us.
-   - _To confirm:_ The original files of Martyn's overview (ideally the 4K master or the camera files), footage of your networking calls (great to have), and your locked edit of the VSL. (later in this portal, in the stage called "What we need from you": one step for each.)
+4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. We do the edit and the finishing (motion, framing, grade, sound, phone version). Want other footage in, say of Rich and Ben? Send it and we'll splice it in. One round of changes. It's a launch gift from us.
+   - _To confirm:_ The original files of Martyn's overview (ideally the 4K master or the camera files), and footage of your networking calls (great to have). (later in this portal, in the stage called "What we need from you": one step for each.)
 5. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
 6. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
    - _To confirm:_ That your StarMap questions and report are final. (later in this portal, in the stage called "What we need from you": the step "Confirm your StarMap questions and report".)
@@ -122,7 +122,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 46 |
+| Jesse Allan | 45 |
 
 ## Stages
 
@@ -348,7 +348,7 @@ Portal: upload · note
 
 ### `atn-vsl-originals` Send the original files of Martyn's Foundations overview
 
-> For the Foundations VSL we need the best quality of Martyn's course overview: ideally the 4K master or the camera files, with no title or logo burned in. Pete may have them: Ben, could you ask him? If they don't exist, tell us and we'll work from the 1080p export we have. Paste a link if the files are big.
+> For the Foundations VSL we need the best quality of Martyn's course overview: ideally the 4K master or the camera files, with no title or logo burned in. Pete may have them: Ben, could you ask him? If they don't exist, tell us and we'll work from the 1080p export we have. Want other footage in too, say of Rich and Ben? Send it here as well and we'll splice it in. Paste a link if the files are big.
 
 Portal: upload · note (required)
 
@@ -382,24 +382,6 @@ For the cut-in at the 'space between modules' line. Needs everyone's OK to use.
 
 </details>
 
-### `atn-vsl-edit` Send your locked edit of the Foundations VSL
-
-> Your editor puts together the full edit of Martyn's overview, about three minutes: who is on screen, the order, any extra footage. Once you're happy with it, send it to us as your locked edit. I then do the finishing: tightening, framing and tracking, the subtle motion, the light on the eyes, the grade, sharpening, music and the phone version. Your one round of changes covers the finishing. Changes to the locked edit itself are a change request, so please lock it only when you're sure.
-
-Portal: upload · note (required)
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `atn-t51` Receive their locked edit of the Foundations VSL (their editor assembles it; changes to it after locking are a change request) | Jesse Allan | Days 8-20 | normal | `atn-t47` |
-
-<details><summary>Guidance for the team (1 task)</summary>
-
-**`atn-t51` Receive their locked edit of the Foundations VSL (their editor assembles it; changes to it after locking are a change request)**
-
-Their editor decides who is on screen, the order and any extra footage. We start finishing only from a locked edit.
-
-</details>
-
 ### `atn-stinger-ref` Send a reference for your podcast stingers
 
 > The stingers are the short idents that open and close each podcast episode and YouTube video. Send us one or two examples you like, from any show, and a line on the feel you want. Links are best. We make a matching intro and outro from them.
@@ -428,16 +410,6 @@ Portal: upload · note
 |---|---|---|---|---|
 | `atn-t19` Place the Benevolent Executive Program page copy | Jesse Allan | Days 3-10 | normal |  |
 
-### `atn-starmap-link` Tell us where the StarMap page links from
-
-> Rich: where on your site should people find the StarMap assessment? For example the top menu, the homepage, the Initiations page, or all three. Due 3 business days after payment 1.
-
-Portal: note (required)
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `atn-t20` Link the StarMap page from where Rich says | Jesse Allan | Days 3-10 | normal |  |
-
 ### `atn-ghl-contact` Name your GHL contact person
 
 > Who should we work with on your GoHighLevel account? One person is best. Due 3 business days after payment 1.
@@ -457,6 +429,13 @@ Portal: upload · note
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | `atn-t16` Give one round of edits on the client's script drafts | Jesse Allan | Days 10-20 | normal |  |
+
+### Team-only work in What we need from you
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| **Inputs** | | | | |
+| `atn-t20` Link the StarMap page from the homepage, as shown on the Scope and Map (no client step: Jesse, 28 Oct) | Jesse Allan | Days 3-10 | normal |  |
 
 ## 3. Website build · days 8–26
 
@@ -593,20 +572,20 @@ Portal: work to review · note (required)
 
 ### `atn-review-vsl` Review your Foundations VSL: one round
 
-> Watch both versions, widescreen and phone. Send one list with everything you, Martyn and Ben would change. That counts as one round. This piece has one round of changes, and it covers the finishing (motion, framing, grade, sound, phone version). Changes to your locked edit are a change request. Or approve it as it is.
+> Watch both versions, widescreen and phone. Send one list with everything you, Martyn and Ben would change. That counts as one round. This piece has one round of changes, and it covers the finishing (motion, framing, grade, sound, phone version). A new cut, or new footage after this round, is a change request. Or approve it as it is.
 
 Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t49` Finish the Foundations VSL from their locked edit: tightening, framing and tracking, motion, eye and face lift, grade, sharpening, music, widescreen and phone version | Jesse Allan | Days 20-30 | normal | `atn-t51` |
+| `atn-t49` Edit and finish the Foundations VSL (splice in any extra footage they send, e.g. Rich and Ben): tightening, framing and tracking, motion, eye and face lift, grade, sharpening, music, widescreen and phone version | Jesse Allan | Days 20-30 | normal | `atn-t47` |
 | `atn-t50` Open the Foundations VSL review link and send it | Jesse Allan | Day 30 | normal | `atn-t49` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t49` Finish the Foundations VSL from their locked edit: tightening, framing and tracking, motion, eye and face lift, grade, sharpening, music, widescreen and phone version**
+**`atn-t49` Edit and finish the Foundations VSL (splice in any extra footage they send, e.g. Rich and Ben): tightening, framing and tracking, motion, eye and face lift, grade, sharpening, music, widescreen and phone version**
 
-About 3:40 (their edit is about three minutes). Sparse motion, one figure at a time on a word Martyn says, never over his face; tighter pauses, small speed-up. One round of changes, covering the finishing only; changes to the locked edit are a change request. Used on the Foundations page and landing pages A and B. Extra VSLs, 30-second cuts, portrait clips and reels are NOT included (change list, B4).
+About 3:40. Sparse motion, one figure at a time on a word Martyn says, never over his face; tighter pauses, small speed-up. One round of changes. Easy splices of footage they send are included (Jesse told Rich, 28 Oct); a new cut or new footage after the round is a change request. Used on the Foundations page and landing pages A and B. Extra VSLs, 30-second cuts, portrait clips and reels are NOT included (change list, B4).
 
 </details>
 

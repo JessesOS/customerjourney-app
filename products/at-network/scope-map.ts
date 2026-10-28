@@ -59,9 +59,9 @@ export const atNetworkScopeMap: JourneyMapContent = {
         },
         {
           title: "The Foundations VSL",
-          detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's a launch gift from us.",
+          detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. We do the edit and the finishing (motion, framing, grade, sound, phone version). Want other footage in, say of Rich and Ben? Send it and we'll splice it in. One round of changes. It's a launch gift from us.",
           who: "us",
-          pending: { label: "What we'll ask you for", question: "The original files of Martyn's overview (ideally the 4K master or the camera files), footage of your networking calls (great to have), and your locked edit of the VSL.", whereLabel: "You'll send these", where: "later in this portal, in the stage called \"What we need from you\": one step for each." },
+          pending: { label: "What we'll ask you for", question: "The original files of Martyn's overview (ideally the 4K master or the camera files), and footage of your networking calls (great to have).", whereLabel: "You'll send these", where: "later in this portal, in the stage called \"What we need from you\": one step for each." },
         },
         {
           title: "Podcast section, with a journal",

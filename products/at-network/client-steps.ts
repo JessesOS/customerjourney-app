@@ -258,7 +258,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       // Foundations VSL input 1 (Jesse, 2026-10-28). Ask Pete via Ben for the masters.
       id: "atn-vsl-originals",
       title: "Send the original files of Martyn's Foundations overview",
-      detail: "For the Foundations VSL we need the best quality of Martyn's course overview: ideally the 4K master or the camera files, with no title or logo burned in. Pete may have them: Ben, could you ask him? If they don't exist, tell us and we'll work from the 1080p export we have. Paste a link if the files are big.",
+      detail: "For the Foundations VSL we need the best quality of Martyn's course overview: ideally the 4K master or the camera files, with no title or logo burned in. Pete may have them: Ben, could you ask him? If they don't exist, tell us and we'll work from the 1080p export we have. Want other footage in too, say of Rich and Ben? Send it here as well and we'll splice it in. Paste a link if the files are big.",
       hasUpload: true,
       uploadOptions: { accept: ".mp4,.mov,.zip", title: "Upload the files", hint: "Big files: paste a Drive or Dropbox link in the box below instead.", ...FILES },
       notePrompt: "A link to the files, or where they are",
@@ -280,22 +280,6 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       notePlaceholder: "https://...  or: Thursday's call, our videographer is free.",
       noteRequired: true,
       doneLabel: "I've sent it",
-    },
-  },
-  {
-    stage: "build",
-    step: {
-      // How the edit works (AT note, 2026-10-28): their editor assembles and locks
-      // the edit; Jesse does the finishing. The one round covers the finishing only.
-      id: "atn-vsl-edit",
-      title: "Send your locked edit of the Foundations VSL",
-      detail: "Your editor puts together the full edit of Martyn's overview, about three minutes: who is on screen, the order, any extra footage. Once you're happy with it, send it to us as your locked edit. I then do the finishing: tightening, framing and tracking, the subtle motion, the light on the eyes, the grade, sharpening, music and the phone version. Your one round of changes covers the finishing. Changes to the locked edit itself are a change request, so please lock it only when you're sure.",
-      hasUpload: true,
-      uploadOptions: { accept: ".mp4,.mov,.zip", title: "Upload your locked edit", hint: "Big files: paste a link in the box below instead.", ...FILES },
-      notePrompt: "A link to the locked edit, and anything we should know",
-      notePlaceholder: "https://...  Locked: yes.",
-      noteRequired: true,
-      doneLabel: "It's locked, here it is",
     },
   },
   {
@@ -326,19 +310,6 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf", title: "Upload the copy", hint: "Or paste it, or a link, in the box below.", ...FILES },
       notePrompt: "The copy, or a link to it",
       doneLabel: "I've sent it",
-    },
-  },
-  {
-    stage: "build",
-    step: {
-      // Agreement A4: where the StarMap page links from, Rich, 3 business days after payment 1.
-      id: "atn-starmap-link",
-      title: "Tell us where the StarMap page links from",
-      detail: "Rich: where on your site should people find the StarMap assessment? For example the top menu, the homepage, the Initiations page, or all three. Due 3 business days after payment 1.",
-      notePrompt: "Where the StarMap page links from",
-      notePlaceholder: "e.g. Top menu and the Initiations page",
-      noteRequired: true,
-      doneLabel: "I've told you",
     },
   },
   {
@@ -470,7 +441,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       hasEditableContent: true,
       pendingContentText: "Your Foundations VSL appears here when it's ready, in widescreen and phone. We'll email you.",
       title: "Review your Foundations VSL: one round",
-      detail: "Watch both versions, widescreen and phone. " + ONE_LIST + " This piece has one round of changes, and it covers the finishing (motion, framing, grade, sound, phone version). Changes to your locked edit are a change request. Or approve it as it is.",
+      detail: "Watch both versions, widescreen and phone. " + ONE_LIST + " This piece has one round of changes, and it covers the finishing (motion, framing, grade, sound, phone version). A new cut, or new footage after this round, is a change request. Or approve it as it is.",
       notePrompt: "Your consolidated list, or \"Approved\"",
       notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
       noteRequired: true,
