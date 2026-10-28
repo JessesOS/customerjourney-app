@@ -69,6 +69,8 @@ export function buildStages(
       ...(m.pendingContentText ? { pendingContentText: m.pendingContentText } : {}),
       ...(m.optional ? { optional: true } : {}),
       ...(m.links?.length ? { links: m.links } : {}),
+      ...(m.linksSource ? { linksSource: m.linksSource } : {}),
+      ...(m.noteHint ? { noteHint: m.noteHint } : {}),
       status: completedIds.has(m.id) ? "done" : isCurrent && i === firstOpenIndex ? "current" : "upcoming",
     }));
 

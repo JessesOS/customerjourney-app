@@ -54,6 +54,10 @@ export type JourneyMilestone = {
   interviewAgentId?: string;
   /** Read-only link lists, in labelled groups (AT Network's resources, 2026-10-29). */
   links?: LinkGroup[];
+  /** A small tag above the links: where they came from (e.g. "Received from Rich · 28 October"). */
+  linksSource?: string;
+  /** A quiet line under the note box's label. */
+  noteHint?: string;
 };
 
 export type JourneyStage = {
@@ -103,6 +107,8 @@ export type MilestoneTemplate = {
   inviteEmail?: string;
   doneLabel?: string;
   links?: LinkGroup[];
+  linksSource?: string;
+  noteHint?: string;
   /** Hidden from the client flow entirely (not rendered, not counted). Flip to
       re-enable a task without deleting it. */
   hidden?: boolean;
@@ -161,7 +167,7 @@ export type UploadOptions = {
 };
 
 /** A labelled group of links shown on a step, each opening in a new tab. */
-export type LinkGroup = { label: string; items: { label: string; url: string; note?: string }[] };
+export type LinkGroup = { label: string; items: { label: string; url: string; note?: string; /** The row's icon. Absent = a plain link. */ kind?: "video" | "folder" }[] };
 
 export type AskItem = { q: string; a: string };
 

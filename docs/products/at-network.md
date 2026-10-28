@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-29.32` |
+| Version | `2026-10-29.33` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 34 (2 client only, 0 hidden in the portal) |
@@ -272,7 +272,9 @@ _The content and details only you can give us, as listed in the agreement. Most 
 
 ### `atn-resources` Your AT resources
 
-> These are the files you've shared with us, all in one place, so we can find what we need. We have what we need for now: each thing still to come has its own step below. Sharing a file here doesn't add it to the work.
+> Here's what you've sent us so far: Rich's files and Drive links from 28 October. We'll use these to build. Anything we still need has its own step below. Sharing a file here doesn't add it to the work.
+
+Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|

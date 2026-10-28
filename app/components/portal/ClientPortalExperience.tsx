@@ -1377,6 +1377,7 @@ export function ClientPortalExperience({
                         <label style={{ fontSize: 10.5, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
                           {m.notePrompt}
                         </label>
+                        {m.noteHint && <div style={{ fontSize: 12.5, color: "var(--pj-muted)", marginTop: 4 }}>{m.noteHint}</div>}
                         <textarea
                           value={noteValue}
                           onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [m.id]: e.target.value }))}
@@ -1470,6 +1471,12 @@ export function ClientPortalExperience({
 
                 {m.links && m.links.length > 0 && (
                   <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 14 }}>
+                    {m.linksSource && (
+                      <span style={{ alignSelf: "flex-start", display: "inline-flex", alignItems: "center", gap: 7, borderRadius: "var(--pj-radius-pill)", background: "var(--pj-act-fill)", color: "var(--pj-act)", padding: "5px 12px", fontSize: 12, fontWeight: 600 }}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                        {m.linksSource}
+                      </span>
+                    )}
                     {m.links.map((g) => (
                       <div key={g.label} style={{ borderRadius: "var(--pj-radius-card)", border: "1px solid var(--pj-line)", background: "var(--pj-card)", padding: "18px 22px" }}>
                         <div style={{ fontSize: 10.5, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)", marginBottom: 10 }}>
@@ -1478,10 +1485,22 @@ export function ClientPortalExperience({
                         <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column" }}>
                           {g.items.map((l, i) => (
                             <li key={l.url} style={{ borderTop: i ? "1px solid var(--pj-line)" : "none" }}>
-                              <a href={l.url} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, padding: "11px 0", color: "var(--pj-ink)", textDecoration: "none", fontSize: 14 }}>
-                                <span>
+                              <a href={l.url} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", gap: 13, padding: "11px 0", color: "var(--pj-ink)", textDecoration: "none", fontSize: 14 }}>
+                                {l.kind && (
+                                  <span aria-hidden style={{ flexShrink: 0, width: 36, height: 36, borderRadius: 10, display: "grid", placeItems: "center", background: l.kind === "video" ? "var(--pj-act-fill)" : "#fbf0dc", color: l.kind === "video" ? "var(--pj-act)" : "#b77a12" }}>
+                                    {l.kind === "video" ? (
+                                      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg>
+                                    ) : (
+                                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
+                                    )}
+                                  </span>
+                                )}
+                                <span style={{ flex: 1, minWidth: 0 }}>
                                   <span style={{ fontWeight: 600 }}>{l.label}</span>
-                                  {l.note && <span style={{ display: "block", fontSize: 12.5, color: "var(--pj-muted)", marginTop: 2 }}>{l.note}</span>}
+                                  {(() => {
+                                    const sub = [l.note, l.url.includes("drive.google.com") ? "Opens in Google Drive" : ""].filter(Boolean).join(" · ");
+                                    return sub && <span style={{ display: "block", fontSize: 12.5, color: "var(--pj-muted)", marginTop: 2 }}>{sub}</span>;
+                                  })()}
                                 </span>
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, opacity: 0.6 }}>
                                   <path d="M7 17 17 7M8 7h9v9" />
@@ -1758,6 +1777,7 @@ export function ClientPortalExperience({
                         <label style={{ fontSize: 10.5, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 650, color: "var(--pj-faint)" }}>
                           {m.notePrompt}
                         </label>
+                        {m.noteHint && <div style={{ fontSize: 12.5, color: "var(--pj-muted)", marginTop: 4 }}>{m.noteHint}</div>}
                         <textarea
                           value={noteValue}
                           onChange={(e) => setNoteDrafts((prev) => ({ ...prev, [m.id]: e.target.value }))}

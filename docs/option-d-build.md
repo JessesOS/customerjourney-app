@@ -436,3 +436,4 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 - `atn-vsl-confirm` now says the VSL is built from Martyn's overview, with a limited splice of a Rich video and networking footage if they have them.
 - Team task `atn-t51`. Version 2026-10-29.32. Fixtures re-saved: at-network, and `_global` (one new step id only). All checks pass; Fin's fixtures unchanged.
 - Shown on staging Demo 4 (its "Sign and start" steps marked done for the demo).
+- Later the same day (staging 3f6492d4, version 2026-10-29.33), at Jesse's ask: tag "Received from Rich · 28 October", play and folder icons, "Opens in Google Drive" under each name, new wording ("Here's what you've sent us so far…"), and an optional "Anything else to share? Paste a Drive link" box with a quiet hint (new step fields `linksSource`, `noteHint`, link `kind`). No upload. Fresh staging demo "Demo 13 - AT fresh" (token sgy1LPeXM8U0yitKaQDg_0M9).
