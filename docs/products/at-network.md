@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.2` |
+| Version | `2026-10-28.3` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
-| Team tasks | 47 (46 behind a client step, 1 team-only) |
+| Team tasks | 46 (45 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | yes | 35 | 47 |
+| AT Network | `at-network` | none | yes | 35 | 46 |
 
 ### Portal tweaks by variant
 
@@ -53,14 +53,14 @@ Phase 1 is two tracks that share one page. The website build is your new site. T
 
 The First Light site, built page by page. You see it on a review link as it grows. Where they come from: Ads (half of all ad traffic), LinkedIn and search, The podcast, Referrals and the Tribe.
 
-1. **Home** (us). In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. A two-minute cut of your impact video sits here, with the full version in Stories, and the best testimonial videos. One homepage, built to be tested against the landing pages.
+1. **Home** (us). In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.
    - **The Ascension pathway:** The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
    - **Who it's for:** The three cold ads can sit here too, one per audience.
 2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
    - **Foundations:** Its own page, linked from the top menu, inside the Academy level.
    - **Growth and Legacy:** A page each, built from the outlines you supply, so the pathway is complete.
 3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free trial is, how levels work and what happens next.
-4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's your launch gift in place of the two-minute impact-video cut, as we talked through on 27 October.
+4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's a launch gift from us.
    - _To confirm:_ The original files, the networking footage and your locked edit (The three Foundations VSL steps in "What we need from you")
 5. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
 6. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
@@ -91,7 +91,7 @@ Ends with: Assets and a plan your team can run, with the tags in place to see wh
 Parked here so nothing is lost. We quote them once the site is live. Add your own in the notes. Where they come from: Your voice notes and messages, The kickoff call, Anything that comes up during the build.
 
 1. **Platform rebrand**. Changing the platform's branding to match the new site.
-2. **More from the impact video**. Recolouring or recreating the film, or running it through a model to blend in the branding. The two-minute cut for the homepage is in Phase 1.
+2. **More from the impact video**. Recolouring or recreating the film, or running it through a model to blend in the branding.
 3. **More VSLs, 30-second cuts and portrait clips**. Further VSLs, 30-second cuts and portrait social clips or reels beyond the Foundations VSL.
 4. **Avatar videos and a new sales video**. Longer avatar videos come from your videographer. We place them on the site when you have them.
 5. **Branding the workbook**. We use the workbook as it is in Phase 1.
@@ -125,7 +125,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 47 |
+| Jesse Allan | 46 |
 
 ## Stages
 
@@ -238,7 +238,7 @@ One "locked on" message: every decision from the call, the open answers, the app
 
 ### `atn-vsl-confirm` Your Foundations VSL
 
-> As your launch gift, in place of the two-minute impact-video cut, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.
+> As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.
 
 Portal: note
 
@@ -250,7 +250,7 @@ Portal: note
 
 **`atn-t46` Talk through the Foundations VSL at kickoff; their tick is the confirmation**
 
-Launch gift in place of the 2-minute impact cut. The agreement (v2) is not changed (Jesse, 28 Oct): the swap is on record in the WhatsApp group (offer 27 Oct, 10:33 pm; Rich's 28 Oct voice note, still to be transcribed into notes/). The portal tick is the only confirmation needed.
+Launch gift (replaces the 2-minute impact cut in agreement v2 A2; keep that out of anything the client sees). The agreement (v2) is not changed (Jesse, 28 Oct): the swap is on record in the WhatsApp group (offer 27 Oct, 10:33 pm; Rich's 28 Oct voice note, still to be transcribed into notes/). The portal tick is the only confirmation needed.
 
 </details>
 
@@ -478,10 +478,9 @@ Portal: work to review · note (required)
 | `atn-t22` Build the StarMap page | Jesse Allan | Days 12-24 | normal | `atn-t03` |
 | `atn-t23` Build the eBook landing page, the free guide PDF and the podcast section with its journal | Jesse Allan | Days 12-24 | normal |  |
 | `atn-t24` Set up the content editor and the SEO basics | Jesse Allan | Days 16-26 | normal |  |
-| `atn-t45` Cut the two-minute impact video for the homepage; keep the full version in Stories | Jesse Allan | Days 8-24 | normal |  |
 | `atn-t25` Open the site review link and send it; payment 2 is now due | Jesse Allan | Day 26 | normal | `atn-t29`, `atn-t21`, `atn-t23` |
 
-<details><summary>Guidance for the team (4 tasks)</summary>
+<details><summary>Guidance for the team (3 tasks)</summary>
 
 **`atn-t21` Build the five offer pages, the Foundations page and the Growth and Legacy pages**
 
@@ -490,10 +489,6 @@ Growth and Legacy from Rich's outlines (agreement A2).
 **`atn-t22` Build the StarMap page**
 
 Confirm once the questions are seen.
-
-**`atn-t45` Cut the two-minute impact video for the homepage; keep the full version in Stories**
-
-Agreement v2 A2 item 13 (launch gift, accepted 27 Oct). From existing footage; weave in a couple of new testimonial clips if they send them. Look at a vertical version once the shots are seen (not promised). No recolouring or recreating.
 
 **`atn-t25` Open the site review link and send it; payment 2 is now due**
 

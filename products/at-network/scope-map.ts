@@ -27,7 +27,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
         {
           title: "Home",
           detail:
-            "In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. A two-minute cut of your impact video sits here, with the full version in Stories, and the best testimonial videos. One homepage, built to be tested against the landing pages.",
+            "In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door. The free month is the sweetener, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.",
           who: "us",
           branches: [
             { label: "The Ascension pathway", detail: "The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.", tone: "good" },
@@ -50,7 +50,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
         },
         {
           title: "The Foundations VSL",
-          detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's your launch gift in place of the two-minute impact-video cut, as we talked through on 27 October.",
+          detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. Your editor assembles and locks the edit; we do the finishing (motion, framing, grade, sound, phone version). One round of changes covers the finishing. It's a launch gift from us.",
           who: "us",
           pending: { question: "The original files, the networking footage and your locked edit", where: "The three Foundations VSL steps in \"What we need from you\"" },
         },
@@ -125,7 +125,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
       entries: ["Your voice notes and messages", "The kickoff call", "Anything that comes up during the build"],
       steps: [
         { title: "Platform rebrand", detail: "Changing the platform's branding to match the new site." },
-        { title: "More from the impact video", detail: "Recolouring or recreating the film, or running it through a model to blend in the branding. The two-minute cut for the homepage is in Phase 1." },
+        { title: "More from the impact video", detail: "Recolouring or recreating the film, or running it through a model to blend in the branding." },
         { title: "More VSLs, 30-second cuts and portrait clips", detail: "Further VSLs, 30-second cuts and portrait social clips or reels beyond the Foundations VSL." },
         { title: "Avatar videos and a new sales video", detail: "Longer avatar videos come from your videographer. We place them on the site when you have them." },
         { title: "Branding the workbook", detail: "We use the workbook as it is in Phase 1." },

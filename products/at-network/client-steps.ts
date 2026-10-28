@@ -161,11 +161,11 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "onboarding",
     step: {
       // The Foundations VSL (Jesse, 2026-10-28): offered as the launch gift in
-      // place of the two-minute impact cut. The signed agreement is unchanged;
+      // place of the earlier impact cut. The signed agreement is unchanged;
       // this records the swap in writing, with the name and the time.
       id: "atn-vsl-confirm",
       title: "Your Foundations VSL",
-      detail: "As your launch gift, in place of the two-minute impact-video cut, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.",
+      detail: "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. Tick this if you're happy with that.",
       notePrompt: "Anything you'd like to add? (optional)",
       doneLabel: "I'm happy with that",
     },
