@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.22` |
+| Version | `2026-10-28.23` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -40,7 +40,7 @@ No base: every step and task below is this product's own.
 | Name the client sees | **AT Network**, unless a variant sets its own name |
 | Voice guide | off |
 | Ask-AI | off |
-| Step features | "Ask Jesse" help panel (answers from the client's reviewed pack; requests become board tasks) |
+| Step features | none |
 | Customer journey map | on `atn-scope-map`: 3 journeys, notes saved in form `at-network-scope-notes-v1` (below) |
 
 ## Customer journey map (on `atn-scope-map`)

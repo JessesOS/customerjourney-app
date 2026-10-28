@@ -18,7 +18,7 @@ import { atNetworkTeamTasks } from "./team-tasks";
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-28.22",
+  version: "2026-10-28.23",
   // Live (Jesse, 2026-10-25): he approved the wording in the walkthrough of 25 Oct.
   status: "live",
   clientType: "at-network",
@@ -36,11 +36,11 @@ export const atNetwork = defineCustomProduct({
     // Draft tagline (Claude, Jesse's OK to choose, 2026-10-25). Shown under the name on the welcome screen.
     tagline: "Your website and funnel, built in the open.",
     lockedLook: "groveaurora", // an existing look; a look of its own would need code
-    // "Ask Jesse" help panel: with no reviewed pack it only takes requests, which
-    // become tasks on the board (Jesse, 2026-10-21).
+    // Ask Jesse is off for AT Network (Jesse, 2026-10-28): Messages covers requests, with email
+    // alerts, step threads and records. It can come back once there is a reviewed pack to answer from.
     // Messages: step threads with the team (phase 1 of docs/at-network-communications-plan.md).
     // Sign-offs: completing these writes an Approval record (typed name) to the step's thread.
-    features: { assistant: true, comms: true, approvalSteps: ["atn-kickoff-summary", "atn-signoff-site", "atn-signoff-funnel", "atn-review-final"] },
+    features: { comms: true, approvalSteps: ["atn-kickoff-summary", "atn-signoff-site", "atn-signoff-funnel", "atn-review-final"] },
     // Step 1: the agreement, accepted as a signed record (text OPEN: placeholder).
     agreement: atNetworkAgreement,
     // The Scope and Map on "Read your scope and map" (draft, 2026-10-25): two tracks, site map, Phase 2 list.
