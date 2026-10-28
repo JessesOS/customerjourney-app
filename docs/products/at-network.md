@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.24` |
+| Version | `2026-10-28.25` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -229,7 +229,7 @@ Portal: work to review
 
 **`atn-t12` Write the kickoff summary and paste it into the step**
 
-One "locked on" message: every decision from the call, the open answers, the approver. Paste into the step's content in admin. The approver types their name to approve: that's the brief.
+One "locked on" message: every decision from the call, the open answers, the approver. Paste into the step's content in admin. They press 'That's right' to confirm: that's the brief.
 
 </details>
 
