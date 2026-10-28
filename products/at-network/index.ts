@@ -18,7 +18,7 @@ import { atNetworkTeamTasks } from "./team-tasks";
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-10-29.34",
+  version: "2026-10-29.35",
   // Live (Jesse, 2026-10-25): he approved the wording in the walkthrough of 25 Oct.
   status: "live",
   clientType: "at-network",
@@ -36,10 +36,10 @@ export const atNetwork = defineCustomProduct({
     // Draft tagline (Claude, Jesse's OK to choose, 2026-10-25). Shown under the name on the welcome screen.
     tagline: "Your website and funnel, built in the open.",
     lockedLook: "groveaurora", // an existing look; a look of its own would need code
-    // Jesse's welcome walkthrough (recorded 29 Oct in videoprez, take 1, 2:56). Plays after
+    // Jesse's welcome walkthrough (videoprez, 29 Oct: the portal screen with Jesse's voice, 2:55; never the camera take. Handover: videoprez/notes/2026-10-29-at-portal-welcome-video-handover.md). Plays after
     // "Get started", before "Who's this?". The mp4 lives in R2 (media/), never in git.
     introVideo: {
-      src: "/api/media/at-portal-welcome.mp4",
+      src: "/api/media/at-portal-welcome-v2.mp4",
       poster: "/portal/media/at-portal-welcome-poster.jpg",
       title: "Welcome to your AT Network portal",
     },
