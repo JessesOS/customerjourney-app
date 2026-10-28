@@ -214,6 +214,7 @@ export type JourneyMapContent = {
   title: string;
   intro: string;
   /** Shown as a small banner: whose draft this is. */
+  /** The grey banner under the intro. Empty = no banner. */
   draftNote: string;
   journeys: JourneyMapJourney[];
   /** Smaller flows that run alongside, and the rules every message follows. */

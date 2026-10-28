@@ -127,7 +127,7 @@ export function JourneyMap({
 
   return (
     <section ref={rootRef} className="jm" aria-label={content.title}>
-      <div className="jm-draft">{content.draftNote}</div>
+      {content.draftNote ? <div className="jm-draft">{content.draftNote}</div> : null}
       <h4 className="jm-title">{content.title}</h4>
       <p className="jm-intro">{content.intro}</p>
 

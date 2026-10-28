@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.18` |
+| Version | `2026-10-28.19` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -45,7 +45,7 @@ No base: every step and task below is this product's own.
 
 ## Customer journey map (on `atn-scope-map`)
 
-_Our draft, built from the agreement, your voice notes and messages. Anything marked "To confirm" is waiting on an answer from you. We'll walk through it on the kickoff call._
+__
 
 Phase 1 is two tracks that share one page. The website build is your new site. The funnel sends your ads to landing pages, and half of that traffic to the homepage, so we can see which page works best. Everything in Phase 1 is below.
 
