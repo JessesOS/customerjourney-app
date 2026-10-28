@@ -36,7 +36,11 @@ export const atNetworkScopeMap: JourneyMapContent = {
           ],
           pills: {
             label: "Links found on this page",
-            items: ["Offerings", "The Journey", "Stories", "FAQs", "Podcast", "Foundations", "Level 0 Initiations", "Level 1 Tribe", "Level 2 Academy", "Level 3 Mentor7", "Benevolent Executive", "Growth", "Legacy", "The free guide", "The StarMap assessment", "Start your free month"],
+            groups: [
+              { label: "Top menu", items: ["Offerings", "The Journey", "Stories", "FAQs", "Podcast", "Foundations"] },
+              { label: "The offer pages", items: ["Level 0 Initiations", "Level 1 Tribe", "Level 2 Academy", "Level 3 Mentor7", "Benevolent Executive", "Growth", "Legacy"] },
+              { label: "Other links", items: ["The free guide", "The StarMap assessment", "Start your free month"] },
+            ],
           },
         },
         {

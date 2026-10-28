@@ -178,7 +178,7 @@ export type JourneyMapStep = {
   /** Paths that split here (e.g. good fit / not a fit). */
   branches?: { label: string; detail: string; tone?: "good" | "neutral" }[];
   /** A row of small rounded labels under the step (for example the links found on a page). */
-  pills?: { label: string; items: string[] };
+  pills?: { label: string; items?: string[]; /** Grouped rows, each with its own small heading. */ groups?: { label: string; items: string[] }[] };
   /** An open question this step waits on, and where the client answers it. */
   pending?: { question: string; where: string; /** Own heading for the orange tag. Absent = "To confirm". */ label?: string; /** Own words before where. Absent = "Answered in". */ whereLabel?: string };
 };

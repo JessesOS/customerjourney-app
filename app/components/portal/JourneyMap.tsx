@@ -264,10 +264,15 @@ function Journey({ journey, n, notes, whoLabels }: { journey: JourneyMapJourney;
                   ))}
                 </div>
               ) : null}
-              {s.pills?.items.length ? (
+              {s.pills ? (
                 <div className="jm-entries">
                   <span className="jm-label">{s.pills.label}</span>
-                  <div className="jm-chips">{s.pills.items.map((p) => <span key={p} className="jm-chip">{p}</span>)}</div>
+                  {(s.pills.groups ?? [{ label: "", items: s.pills.items ?? [] }]).map((g) => (
+                    <div key={g.label || "all"} style={{ marginTop: 10 }}>
+                      {g.label ? <div style={{ fontSize: 12.5, fontWeight: 650, color: "var(--pj-muted)" }}>{g.label}</div> : null}
+                      <div className="jm-chips">{g.items.map((p) => <span key={p} className="jm-chip">{p}</span>)}</div>
+                    </div>
+                  ))}
                 </div>
               ) : null}
               {s.pending ? (
