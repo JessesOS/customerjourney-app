@@ -3,7 +3,7 @@
 // 2026-10-25 from the agreement scope (AT session CLAUDE.md), Rich's 24 Oct
 // voice note and Jesse's draft reply to his nine points. DRAFT: Jesse to edit.
 //
-// Three "journeys": the website build, the funnel test, and the Phase 2 list
+// Three "journeys": the website build, the funnel, and the Phase 2 list
 // (the parking lot: parked ideas go there, with a notes box, so a "no" has a
 // home). Journey ids are the notes fields of lib/onboardingForm.ts
 // at-network-scope-notes-v1. No prices anywhere.
@@ -13,7 +13,7 @@ import type { JourneyMapContent } from "../../lib/journeyTypes";
 export const atNetworkScopeMap: JourneyMapContent = {
   title: "Your scope and map",
   intro:
-    "Phase 1 is two tracks that share one page. The website build is your new site. The funnel test sends ads to landing pages, and half of that traffic to the homepage, so the homepage is part of the test too. Everything in Phase 1 is below.",
+    "Phase 1 is two tracks that share one page. The website build is your new site. The funnel sends your ads to landing pages, and half of that traffic to the homepage, so we can see which page works best. Everything in Phase 1 is below.",
   draftNote: "Our draft, built from the agreement, your voice notes and messages. Anything marked \"To confirm\" is waiting on an answer from you. We'll walk through it on the kickoff call.",
   notesFormId: "at-network-scope-notes-v1",
   // "Us" read as a team to this client (Jesse, 2026-10-28): say what it means.
@@ -29,7 +29,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
         {
           title: "Homepage",
           detail:
-            "A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.",
+            "A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, which is also landing page C.",
           who: "us",
           branches: [
             { label: "The Ascension pathway", detail: "The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.", tone: "good" },
@@ -71,8 +71,8 @@ export const atNetworkScopeMap: JourneyMapContent = {
     },
     {
       id: "funnel",
-      title: "Track 2: the funnel test",
-      tagline: "Three cold ads, three landing pages, and the homepage in the mix, so the numbers tell us what converts.",
+      title: "Track 2: the funnel",
+      tagline: "Three cold ads, landing pages A and B, and the homepage as landing page C, with a tag on every link so we can see what converts.",
       accent: "orange",
       entries: ["Meta ads", "LinkedIn ads", "Retargeting"],
       steps: [
@@ -88,10 +88,10 @@ export const atNetworkScopeMap: JourneyMapContent = {
         },
         {
           title: "The split",
-          detail: "The ads send people to the landing pages, and half of all the traffic goes to the homepage, so it's tested too. Every link carries a tag, so we see which page converts for which audience.",
+          detail: "The ads send people to the landing pages, and half of all the traffic goes to the homepage, so the homepage works as a landing page too. Every link carries a tag, so we see which page converts for which audience.",
           branches: [
             { label: "Landing pages A and B", detail: "A has the card up front, B doesn't. The first screen changes for each audience.", tone: "good" },
-            { label: "Landing page C: the homepage", detail: "The same homepage from Track 1, so it's tested against A and B.", tone: "neutral" },
+            { label: "Landing page C: the homepage", detail: "The same homepage from Track 1, working alongside A and B.", tone: "neutral" },
           ],
         },
         {
@@ -146,6 +146,6 @@ export const atNetworkScopeMap: JourneyMapContent = {
   toConfirm: [
     { question: "Who signs things off: Rich alone?", where: "The kickoff call, then the kickoff summary" },
     { question: "Phase 1 has three cold ads. The Executive audience isn't one of them. OK?", where: "The kickoff call" },
-    { question: "The homepage is tested against the landing pages. It's one homepage, not two versions.", where: "The kickoff call" },
+    { question: "The homepage is also landing page C. It's one homepage, not two versions.", where: "The kickoff call" },
   ],
 };

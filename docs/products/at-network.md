@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.16` |
+| Version | `2026-10-28.17` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -47,13 +47,13 @@ No base: every step and task below is this product's own.
 
 _Our draft, built from the agreement, your voice notes and messages. Anything marked "To confirm" is waiting on an answer from you. We'll walk through it on the kickoff call._
 
-Phase 1 is two tracks that share one page. The website build is your new site. The funnel test sends ads to landing pages, and half of that traffic to the homepage, so the homepage is part of the test too. Everything in Phase 1 is below.
+Phase 1 is two tracks that share one page. The website build is your new site. The funnel sends your ads to landing pages, and half of that traffic to the homepage, so we can see which page works best. Everything in Phase 1 is below.
 
 ### 1. Track 1: the website build
 
 The First Light site, built page by page. You see it on a review link as it grows. Where they come from: Ads (half of all ad traffic), LinkedIn and search, The podcast, Referrals and the Tribe.
 
-1. **Homepage** (us). A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.
+1. **Homepage** (us). A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, which is also landing page C.
    - **The Ascension pathway:** The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
 2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
    - **Foundations:** Its own page, linked from the top menu. It is a course inside Level 2 Academy.
@@ -67,17 +67,17 @@ The First Light site, built page by page. You see it on a review link as it grow
 
 Ends with: A site you own, deployable on your hosting and editable by any developer, handed over on the final instalment.
 
-### 2. Track 2: the funnel test
+### 2. Track 2: the funnel
 
-Three cold ads, three landing pages, and the homepage in the mix, so the numbers tell us what converts. Where they come from: Meta ads, LinkedIn ads, Retargeting.
+Three cold ads, landing pages A and B, and the homepage as landing page C, with a tag on every link so we can see what converts. Where they come from: Meta ads, LinkedIn ads, Retargeting.
 
 1. **Three cold video ads** (us). Up to 15 seconds each, vertical, captions burned in. One per audience.
    - **People in Transition:** Going through a big personal or professional change, looking for clarity and their next chapter.
    - **Conscious Entrepreneurs and Business Leaders:** Want to bring more consciousness, purpose and meaning into their work.
    - **Struggling and Overwhelmed Business Owners:** Everyday business owners feeling the pressure: burnout, money, isolation.
-2. **The split**. The ads send people to the landing pages, and half of all the traffic goes to the homepage, so it's tested too. Every link carries a tag, so we see which page converts for which audience.
+2. **The split**. The ads send people to the landing pages, and half of all the traffic goes to the homepage, so the homepage works as a landing page too. Every link carries a tag, so we see which page converts for which audience.
    - **Landing pages A and B:** A has the card up front, B doesn't. The first screen changes for each audience.
-   - **Landing page C: the homepage:** The same homepage from Track 1, so it's tested against A and B.
+   - **Landing page C: the homepage:** The same homepage from Track 1, working alongside A and B.
 3. **Two statics and the LinkedIn banner** (us). Two still ads and a banner for the company page.
 4. **The retargeting ladder** (us). Written as a plan: who sees what after they've visited, and in what order. Your team sets it up in the ad accounts.
 5. **Running the ads** (you). Your team runs the ad accounts, the checkout, the tracking and the posting. We hand over the assets and the plan.
@@ -116,7 +116,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 - Who signs things off: Rich alone? (The kickoff call, then the kickoff summary)
 - Phase 1 has three cold ads. The Executive audience isn't one of them. OK? (The kickoff call)
-- The homepage is tested against the landing pages. It's one homepage, not two versions. (The kickoff call)
+- The homepage is also landing page C. It's one homepage, not two versions. (The kickoff call)
 
 ## Roles
 
@@ -166,7 +166,7 @@ No team task behind this step.
 
 ### `atn-scope-map` Read your scope and map
 
-> Everything Phase 1 covers, on one page: the website build, the funnel test and the site map. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.
+> Everything Phase 1 covers, on one page: the website build, the funnel and the site map. Read it before the kickoff call and add a note wherever you have a question. We'll walk through it together on the call.
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
