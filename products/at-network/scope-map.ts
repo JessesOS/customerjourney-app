@@ -81,17 +81,17 @@ export const atNetworkScopeMap: JourneyMapContent = {
           detail: "Up to 15 seconds each, vertical, captions burned in. One per audience.",
           who: "us",
           branches: [
-            { label: "Foundations", detail: "The main door.", tone: "good" },
-            { label: "Tribe", detail: "The community.", tone: "neutral" },
-            { label: "Mentor7", detail: "The inner circle.", tone: "neutral" },
+            { label: "People in Transition", detail: "Going through a big personal or professional change, looking for clarity and their next chapter.", tone: "good" },
+            { label: "Conscious Entrepreneurs and Business Leaders", detail: "Want to bring more consciousness, purpose and meaning into their work.", tone: "neutral" },
+            { label: "Struggling and Overwhelmed Business Owners", detail: "Everyday business owners feeling the pressure: burnout, money, isolation.", tone: "neutral" },
           ],
         },
         {
           title: "The split",
-          detail: "Each ad sends half its traffic to its own landing page and half to the homepage. Every link carries a tag, so we see which page converts for which audience.",
+          detail: "The ads send people to the landing pages, and half of all the traffic goes to the homepage, so it's tested too. Every link carries a tag, so we see which page converts for which audience.",
           branches: [
-            { label: "Landing pages A, B and C", detail: "One per ad, each with a sales video from your team's script (one round of edits from us).", tone: "good" },
-            { label: "The homepage", detail: "The same homepage from Track 1, so it's tested against the landing pages.", tone: "neutral" },
+            { label: "Landing pages A and B", detail: "A has the card up front, B doesn't. The first screen changes for each audience.", tone: "good" },
+            { label: "Landing page C: the homepage", detail: "The same homepage from Track 1, so it's tested against A and B.", tone: "neutral" },
           ],
         },
         {
@@ -133,7 +133,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
   ],
   alsoRunning: [
     { title: "The podcast intro and outro", detail: "A matching pair in the same look. We agree the look first, then one round of changes on both." },
-    { title: "Sales video scripts", detail: "Your team drafts one per landing page. We give one round of edits." },
+    { title: "Sales video scripts", detail: "Your team drafts one for each offer page (Levels 0 to 3). We give one round of edits." },
     { title: "Your team owns", detail: "GoHighLevel, checkout, tracking, ad accounts, filming, posting and DNS." },
   ],
   rules: [

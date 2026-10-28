@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.14` |
+| Version | `2026-10-28.16` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -72,12 +72,12 @@ Ends with: A site you own, deployable on your hosting and editable by any develo
 Three cold ads, three landing pages, and the homepage in the mix, so the numbers tell us what converts. Where they come from: Meta ads, LinkedIn ads, Retargeting.
 
 1. **Three cold video ads** (us). Up to 15 seconds each, vertical, captions burned in. One per audience.
-   - **Foundations:** The main door.
-   - **Tribe:** The community.
-   - **Mentor7:** The inner circle.
-2. **The split**. Each ad sends half its traffic to its own landing page and half to the homepage. Every link carries a tag, so we see which page converts for which audience.
-   - **Landing pages A, B and C:** One per ad, each with a sales video from your team's script (one round of edits from us).
-   - **The homepage:** The same homepage from Track 1, so it's tested against the landing pages.
+   - **People in Transition:** Going through a big personal or professional change, looking for clarity and their next chapter.
+   - **Conscious Entrepreneurs and Business Leaders:** Want to bring more consciousness, purpose and meaning into their work.
+   - **Struggling and Overwhelmed Business Owners:** Everyday business owners feeling the pressure: burnout, money, isolation.
+2. **The split**. The ads send people to the landing pages, and half of all the traffic goes to the homepage, so it's tested too. Every link carries a tag, so we see which page converts for which audience.
+   - **Landing pages A and B:** A has the card up front, B doesn't. The first screen changes for each audience.
+   - **Landing page C: the homepage:** The same homepage from Track 1, so it's tested against A and B.
 3. **Two statics and the LinkedIn banner** (us). Two still ads and a banner for the company page.
 4. **The retargeting ladder** (us). Written as a plan: who sees what after they've visited, and in what order. Your team sets it up in the ad accounts.
 5. **Running the ads** (you). Your team runs the ad accounts, the checkout, the tracking and the posting. We hand over the assets and the plan.
@@ -101,7 +101,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 ### Also running
 
 - **The podcast intro and outro:** A matching pair in the same look. We agree the look first, then one round of changes on both.
-- **Sales video scripts:** Your team drafts one per landing page. We give one round of edits.
+- **Sales video scripts:** Your team drafts one for each offer page (Levels 0 to 3). We give one round of edits.
 - **Your team owns:** GoHighLevel, checkout, tracking, ad accounts, filming, posting and DNS.
 
 ### Rules every message follows
@@ -543,7 +543,7 @@ _Your landing pages, the three video ads, two statics and the LinkedIn banner. T
 
 ### `atn-review-landing` Review landing pages A, B and C: round 1 of 2
 
-> One landing page per ad, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
+> Landing pages A and B (the first screen changes for each audience) and C, the homepage, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
 
 Portal: work to review · note (required)
 
@@ -556,13 +556,13 @@ Portal: work to review · note (required)
 
 **`atn-t30` Build landing pages A, B and C with the tags**
 
-One per ad. Half the traffic to the homepage. UTM on every link.
+A (card up front) and B (no card), first screen per audience; C is the homepage. Half the traffic goes to the homepage. UTM on every link.
 
 </details>
 
 ### `atn-review-ads` Review your ads and LinkedIn banner: round 1 of 2
 
-> The three video ads (Foundations, Tribe, Mentor7), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
+> The three video ads (one for each audience), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
 
 Portal: work to review · note (required)
 
@@ -577,7 +577,7 @@ Portal: work to review · note (required)
 
 **`atn-t31` Make three cold video ads (up to 15 s, vertical, captions burned in)**
 
-Foundations, Tribe, Mentor7.
+One per audience (Rich's 16 Oct brief): People in Transition; Conscious Entrepreneurs and Business Leaders; Struggling and Overwhelmed Business Owners. The Executive avatar is not in Phase 1.
 
 </details>
 
