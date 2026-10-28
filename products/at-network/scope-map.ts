@@ -90,7 +90,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
           title: "Where the ads send people",
           detail: "Your team sets each ad's destination when the campaigns are built. Landing pages A and B, and the homepage as C, are all ready to receive them. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Sending half the traffic to the homepage is a campaign setting, and it's yours to choose.",
           branches: [
-            { label: "Landing pages A and B", detail: "A has the card up front, B doesn't. The first screen changes for each audience.", tone: "good" },
+            { label: "Landing pages A and B", detail: "A has the credit card up front, B doesn't. The headline and opening screen change for each audience, using the tag on the ad's link. We agree the three headlines with you at the kickoff.", tone: "good" },
             { label: "Landing page C: the homepage", detail: "The same homepage from Track 1, working alongside A and B.", tone: "neutral" },
           ],
         },

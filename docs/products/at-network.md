@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.19` |
+| Version | `2026-10-28.20` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -76,7 +76,7 @@ Three cold ads, landing pages A and B, and the homepage as landing page C, with 
    - **Conscious Entrepreneurs and Business Leaders:** Want to bring more consciousness, purpose and meaning into their work.
    - **Struggling and Overwhelmed Business Owners:** Everyday business owners feeling the pressure: burnout, money, isolation.
 2. **Where the ads send people**. Your team sets each ad's destination when the campaigns are built. Landing pages A and B, and the homepage as C, are all ready to receive them. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Sending half the traffic to the homepage is a campaign setting, and it's yours to choose.
-   - **Landing pages A and B:** A has the card up front, B doesn't. The first screen changes for each audience.
+   - **Landing pages A and B:** A has the credit card up front, B doesn't. The headline and opening screen change for each audience, using the tag on the ad's link. We agree the three headlines with you at the kickoff.
    - **Landing page C: the homepage:** The same homepage from Track 1, working alongside A and B.
 3. **Two statics and the LinkedIn banner** (us). Two still ads and a banner for the company page.
 4. **The retargeting ladder** (us). Written as a plan: who sees what after they've visited, and in what order. Your team sets it up in the ad accounts.
