@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-10-28.11` |
+| Version | `2026-10-28.12` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -53,7 +53,7 @@ Phase 1 is two tracks that share one page. The website build is your new site. T
 
 The First Light site, built page by page. You see it on a review link as it grows. Where they come from: Ads (half of all ad traffic), LinkedIn and search, The podcast, Referrals and the Tribe.
 
-1. **Home** (us). In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.
+1. **Homepage** (us). A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.
    - **The Ascension pathway:** The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
 2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
    - **Foundations:** Its own page, linked from the top menu, inside the Academy level.

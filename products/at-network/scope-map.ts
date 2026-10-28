@@ -27,9 +27,9 @@ export const atNetworkScopeMap: JourneyMapContent = {
       entries: ["Ads (half of all ad traffic)", "LinkedIn and search", "The podcast", "Referrals and the Tribe"],
       steps: [
         {
-          title: "Home",
+          title: "Homepage",
           detail:
-            "In 30 seconds: who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.",
+            "A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, built to be tested against the landing pages.",
           who: "us",
           branches: [
             { label: "The Ascension pathway", detail: "The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.", tone: "good" },
