@@ -16,7 +16,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
   const client = (await getDb().select().from(portalClients).where(eq(portalClients.id, (await params).id)).limit(1))[0];
   if (!client) return Response.json({ ok: false, error: "Unknown client." }, { status: 404 });
   const b = (await request.json().catch(() => ({}))) as {
-    to?: unknown; bcc?: unknown; subject?: unknown; text?: unknown; html?: unknown;
+    to?: unknown; bcc?: unknown; from?: unknown; subject?: unknown; text?: unknown; html?: unknown;
     attachments?: { filename?: unknown; contentBase64?: unknown }[];
   };
   const list = (v: unknown) => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : []);
@@ -28,7 +28,10 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     .filter((a) => typeof a.filename === "string" && typeof a.contentBase64 === "string")
     .map((a) => ({ filename: a.filename as string, contentBase64: a.contentBase64 as string }));
   if (attachments.some((a) => a.contentBase64.length * 0.75 > MAX_ATTACH_BYTES)) return Response.json({ ok: false, error: "Attachment too large." }, { status: 400 });
+  // Optional sender, only on our own domain (e.g. "Jesse <jesse@allconvos.ai>").
+  const from = typeof b.from === "string" && /<[^<>@\s]+@allconvos\.ai>$|^[^<>@\s]+@allconvos\.ai$/.test(b.from.trim()) ? b.from.trim() : undefined;
   const result = await sendEmail({
+    from,
     to: to[0],
     extraTo: to.slice(1),
     bcc: list(b.bcc),

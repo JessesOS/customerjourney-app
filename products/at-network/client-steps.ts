@@ -180,8 +180,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       // each thing we still need has its own step.
       id: "atn-resources",
       title: "Your AT resources",
-      detail: "Here's what you've sent us so far: Rich's files and Drive links from 28 October. We'll use these to build. Anything we still need has its own step below. Sharing a file here doesn't add it to the work.",
-      linksSource: "Received from Rich · 28 October",
+      detail: "Here's what you've sent us so far: Rich's files and Drive links from 28 and 30 October. We'll use these to build. Anything we still need has its own step below. Sharing a file here doesn't add it to the work.",
+      linksSource: "Received from Rich · 28 and 30 October",
       links: [
         {
           label: "Foundations testimonials",
@@ -190,6 +190,12 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
             { label: "Diego", note: "Foundations course testimonial", kind: "video", url: "https://drive.google.com/file/d/1_ZgMjW1cb63hGr-ffuKCf4BsWZU0w018/view" },
             { label: "Ben", note: "Foundations testimonial", kind: "video", url: "https://drive.google.com/file/d/1KsroOEe4GLX4FBpWNyGdgKV8EKkjm7Ma/view" },
             { label: "Ben (second version)", note: "Foundations testimonial", kind: "video", url: "https://drive.google.com/file/d/1ZNB_w6RmmB7ROxmKN2p9aDE0dAv7NyBh/view" },
+          ],
+        },
+        {
+          label: "Overviews",
+          items: [
+            { label: "The Tribe evaluation", note: "AI-made overview of the three levels · 30 October · 6 min", kind: "video", url: "https://drive.google.com/file/d/1WIQ6HcDlx0eJsmwhMEHaqSteSxrjwQHP/view" },
           ],
         },
         {
