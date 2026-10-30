@@ -167,7 +167,7 @@ export type UploadOptions = {
 };
 
 /** A labelled group of links shown on a step, each opening in a new tab. */
-export type LinkGroup = { label: string; items: { label: string; url: string; note?: string; /** The row's icon. Absent = a plain link. */ kind?: "video" | "folder" }[] };
+export type LinkGroup = { label: string; items: { label: string; url: string; note?: string; /** The row's icon. Absent = a plain link. */ kind?: "video" | "folder" | "doc" }[] };
 
 export type AskItem = { q: string; a: string };
 

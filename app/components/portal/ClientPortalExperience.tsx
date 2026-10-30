@@ -1490,6 +1490,8 @@ export function ClientPortalExperience({
                                   <span aria-hidden style={{ flexShrink: 0, width: 36, height: 36, borderRadius: 10, display: "grid", placeItems: "center", background: l.kind === "video" ? "var(--pj-act-fill)" : "#fbf0dc", color: l.kind === "video" ? "var(--pj-act)" : "#b77a12" }}>
                                     {l.kind === "video" ? (
                                       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z" /></svg>
+                                    ) : l.kind === "doc" ? (
+                                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8zM14 3v5h5M9 13h6M9 17h6" /></svg>
                                     ) : (
                                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
                                     )}
@@ -1498,7 +1500,7 @@ export function ClientPortalExperience({
                                 <span style={{ flex: 1, minWidth: 0 }}>
                                   <span style={{ fontWeight: 600 }}>{l.label}</span>
                                   {(() => {
-                                    const sub = [l.note, l.url.includes("drive.google.com") ? "Opens in Google Drive" : ""].filter(Boolean).join(" · ");
+                                    const sub = [l.note, l.url.includes("drive.google.com") || l.url.includes("docs.google.com") ? "Opens in Google Drive" : ""].filter(Boolean).join(" · ");
                                     return sub && <span style={{ display: "block", fontSize: 12.5, color: "var(--pj-muted)", marginTop: 2 }}>{sub}</span>;
                                   })()}
                                 </span>

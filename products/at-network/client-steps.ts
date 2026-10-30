@@ -180,8 +180,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       // each thing we still need has its own step.
       id: "atn-resources",
       title: "Your AT resources",
-      detail: "Here's what you've sent us so far: Rich's files and Drive links from 28 and 30 October. We'll use these to build. Anything we still need has its own step below. Sharing a file here doesn't add it to the work.",
-      linksSource: "Received from Rich · 28 and 30 October",
+      detail: "Here's what you've sent us so far: Rich's files and Drive links from 28 to 30 October. We'll use these to build. Anything we still need has its own step below. Sharing a file here doesn't add it to the work.",
+      linksSource: "Received from Rich · 28 to 30 October",
       links: [
         {
           label: "Foundations testimonials",
@@ -193,9 +193,10 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
           ],
         },
         {
-          label: "Overviews",
+          label: "Overviews and briefs",
           items: [
             { label: "The Tribe evaluation", note: "AI-made overview of the three levels · 30 October · 6 min", kind: "video", url: "https://drive.google.com/file/d/1WIQ6HcDlx0eJsmwhMEHaqSteSxrjwQHP/view" },
+            { label: "Competitor positioning and website brief", note: "Bx, BNI, EO and Business Blueprint · 29 October", kind: "doc", url: "https://docs.google.com/document/d/1QKuZxDm2CbUvX3X5NHyF2WyTI6Gxco8jXBHL0IJ1VZ8/edit" },
           ],
         },
         {
