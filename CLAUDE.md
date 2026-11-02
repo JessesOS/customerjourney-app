@@ -12,9 +12,9 @@ Project rules for every session rooted here. The layer above is `~/Master/CLAUDE
 
 This one session owns the portal and the back office. GHL automation belongs to the brain session (`~/Master/Labs/stanley-henry-ai-brain`).
 
-## A real client is live: protect him
+## Live clients: protect them
 
-- **Fin Creighton** (Bitcoin Success School) has used the live portal since 2026-10-16. **Since 2026-10-18 his product is `bss-custom`** (`products/bss-custom/`, "BSS Launchpad"): 23 client steps over 30 days, with the 337 team tasks behind them. His start date is 2026-10-19, so launch (day 23) is 10 Nov and day 30 is 17 Nov. Before that he was on `bss-meta`, which only the test client JAT still uses.
+- **Fin Creighton** (Bitcoin Success School, `bss-custom`) stopped being a client on 2026-10-29. His fixtures and `check:fin` keep running until Jesse decides to retire them. Leave him out of reports and deploy packages.
 - **AT Network** (Rich Latimer, Martyn Hume Cobbe) is live since 2026-10-25 on `at-network` (`products/at-network/`): the second custom product, separate from Fin's. Its fixture is frozen too. Changing it needs Jesse's OK, a version bump and a deploy package, like `bss-custom`. Messages, the signed agreement and email alerts (Resend) are its features; they are off for every other product. See `docs/at-network-communications-plan.md`.
 - **The holding page stays in the code** (`app/components/portal/PortalPausedNotice.tsx`): a client whose `journey_state` is `paused` sees "A new version is on its way" instead of their portal. Fin saw it from 2026-10-17 23:25Z to 2026-10-18 04:27Z.
 - **"Jesse test fin"** (prod) is a live copy of Fin's portal: `bss-custom`, same start date. It's Jesse's, so open it freely.
@@ -22,7 +22,7 @@ This one session owns the portal and the back office. GHL automation belongs to 
 - **`npm run check:fin` and `npm run check:journeys` must pass before every commit and deploy.** check:journeys freezes every client type, Fin's `bss-custom` included (`scripts/fixtures/journeys/bss-custom.json`). check:fin still guards the old `bss-meta` baseline. Only re-save a baseline (`-- --write`) for a change Jesse approved.
 - **`--yes-fin` guards Fin's types** (`FIN_TYPES` in `scripts/journeys/run.ts`): `bss-custom`, his live journey, and `bss-meta`, his rollback. Re-saving either fixture needs it. So does re-saving `_global.json` when that would change their form questions, upload steps, editable steps, intro video or acceptance, which only `_global` freezes. `products:check` proves every refusal.
 - **Not frozen by check:journeys:** the journey map's wording and the app icon (only the version lock covers them, so a change needs a version bump), and the journey map notes form (`bss-journey-map-notes-v1` in `lib/onboardingForm.ts`), which nothing freezes. Changing any of them changes Fin's live portal: Jesse's OK first.
-- **Never open Fin's link in a normal browser.** It records a visit as his. Use `curl`, or a browser where admin is unlocked.
+- **Never open a client's link in a normal browser.** It records a visit as theirs. Use `curl`, or a browser where admin is unlocked.
 - **Never put Cloudflare Access on `scale-onboarding-portal.jesse-b4e.workers.dev`.** That address is every client's link. Access goes on team hostnames only.
 
 ## Environments

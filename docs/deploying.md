@@ -3,7 +3,7 @@
 Current as of 2026-10-16. This replaces the old Codex Sites publish flow
 (`publishing-to-codex-sites.md`, now superseded).
 
-> **A real client is live (Fin Creighton, since 2026-10-16).**
+> **Real clients are live (AT Network, since 2026-10-25).**
 > - Every prod deploy needs Jesse's explicit OK. Run `npm run check:fin` first.
 > - Never put Cloudflare Access on the prod workers.dev address. It is every client's link.
 > - Test on **staging** first (see "Staging" below).
