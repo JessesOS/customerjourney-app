@@ -23,6 +23,7 @@ export const atNetworkTeamTasks: TeamTask[] = [
   // ── What we need from you ──
   t("atn-t03", "Add Martyn's StarMap link to the step; build the page once he confirms Final", "build", "Inputs", "atn-starmap", "Days 3-7", "The artifact link goes in guideUrl. Build only after his Final."),
   t("atn-t04", "Read Ben's package breakdown (received 24 Oct); log gaps", "build", "Inputs", "atn-package-breakdown", "Days 3-7", "Tick the client's confirmation step in admin if they don't."),
+  t("atn-t52", "Chase and file the answers to the open questions; fold them into page copy and the delivery-status wording", "build", "Inputs", "atn-open-questions", "Days 3-10", "Five questions from Rich's 31 Oct brief. Executive terms and the testimonials are not in the list yet (Jesse to confirm). Prices sit in atn-prices."),
   t("atn-t13", "Put the prices and free-month terms into the offer pages and landing pages A and B", "build", "Inputs", "atn-prices", "Days 3-10"),
   t("atn-t19", "Place the Benevolent Executive Program page copy", "build", "Inputs", "atn-exec-copy", "Days 3-10"),
   t("atn-t20", "Link the StarMap page from the homepage, as shown on the Scope and Map (no client step: Jesse, 28 Oct)", "build", "Inputs", undefined, "Days 3-10"),

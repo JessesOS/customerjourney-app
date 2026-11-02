@@ -175,6 +175,31 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "build",
     step: {
+      // One place for the open questions from Rich's 31 Oct brief (handover from
+      // the AT session, 2 Nov 2026; Jesse OK to build). Prices and free-month
+      // terms already have atn-prices. Executive terms and the testimonials are
+      // left out until Jesse confirms them (testimonials are in atn-resources).
+      id: "atn-open-questions",
+      title: "Answer our open questions",
+      detail: "These are the gaps left after Rich's brief. Answer what you can in the box, by number, and say who is answering. Short is fine: we turn it into page copy. Anything you can't answer yet, say so and we'll mark it as coming. Prices and free-month terms are in their own step below.",
+      steps: [
+        "**What is live today, and what is only planned.** Member search filters, the workbook, resource packs. Our pages should promise only what exists. (Rich)",
+        "**When Growth and Legacy open.** Dates, or a rough month. We label them as future releases. (Rich)",
+        "**The networking call rhythm.** How often, which days, and the regional time slots. (Rich)",
+        "**How Give-to-Receive and member matching work.** A short bullet breakdown. (Ben)",
+        "**Screens of the product.** The workbook, the Eight Pillars assessments and the resource templates. Upload them here. (Ben or Martyn)",
+      ],
+      hasUpload: true,
+      uploadOptions: { accept: ".png,.jpg,.jpeg,.webp,.pdf,.zip", title: "Upload screens", hint: "For question 5. A zip is fine.", ...FILES },
+      notePrompt: "Your answers, by number",
+      notePlaceholder: "1. ...\n2. ...\n3. ...\n4. ...\n5. (uploaded)",
+      noteRequired: true,
+      doneLabel: "That's everything we have",
+    },
+  },
+  {
+    stage: "build",
+    step: {
       // Rich's Drive links, sent in WhatsApp on 28 Oct 2026, 8:58-9:09 pm (Jesse,
       // 2026-10-29). A read-only list of what's already with us, not a drop box:
       // each thing we still need has its own step.

@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-10-30.38` |
+| Version | `2026-11-02.39` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
-| Client steps | 34 (2 client only, 0 hidden in the portal) |
-| Team tasks | 46 (44 behind a client step, 2 team-only) |
+| Client steps | 35 (2 client only, 0 hidden in the portal) |
+| Team tasks | 47 (45 behind a client step, 2 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | yes | 34 | 46 |
+| AT Network | `at-network` | none | yes | 35 | 47 |
 
 ### Portal tweaks by variant
 
@@ -123,7 +123,7 @@ Ends with: One quote, when you're ready, for the ones you want.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 46 |
+| Jesse Allan | 47 |
 
 ## Stages
 
@@ -270,6 +270,24 @@ Chase Ben as well as Rich. Nothing starts before payment 1.
 ## 2. What we need from you · days 3–10
 
 _The content and details only you can give us, as listed in the agreement. Most are due 3 business days after payment 1. We build with what we have by each due date and mark anything still to come, so nothing here holds up your launch._
+
+### `atn-open-questions` Answer our open questions
+
+> These are the gaps left after Rich's brief. Answer what you can in the box, by number, and say who is answering. Short is fine: we turn it into page copy. Anything you can't answer yet, say so and we'll mark it as coming. Prices and free-month terms are in their own step below.
+
+Portal: upload · note (required) · 5 numbered steps
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `atn-t52` Chase and file the answers to the open questions; fold them into page copy and the delivery-status wording | Jesse Allan | Days 3-10 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t52` Chase and file the answers to the open questions; fold them into page copy and the delivery-status wording**
+
+Five questions from Rich's 31 Oct brief. Executive terms and the testimonials are not in the list yet (Jesse to confirm). Prices sit in atn-prices.
+
+</details>
 
 ### `atn-resources` Your AT resources
 

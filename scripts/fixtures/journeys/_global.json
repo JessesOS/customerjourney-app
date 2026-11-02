@@ -163,6 +163,7 @@
     "atn-book-kickoff",
     "atn-kickoff-summary",
     "atn-vsl-confirm",
+    "atn-open-questions",
     "atn-resources",
     "atn-starmap",
     "atn-package-breakdown",
@@ -853,6 +854,7 @@
   ],
   "uploadStepIds": [
     "atn-exec-copy",
+    "atn-open-questions",
     "atn-package-breakdown",
     "atn-photos-rich",
     "atn-scripts",

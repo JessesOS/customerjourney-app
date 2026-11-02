@@ -462,3 +462,10 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 - "Your AT resources" gained an "Overviews and briefs" group: Rich's Tribe Evaluation video (Drive, 30 Oct, 6 min, AI-made) and his competitor positioning brief (Google Doc, 29 Oct). New link kind `doc` (document icon); `docs.google.com` links also read "Opens in Google Drive". Source tag: "Received from Rich · 28 to 30 October". Version 2026-10-30.38. Notes filed in the AT folder: `2026-10-30-tribe-evaluation-video-transcript.md`, `2026-10-30-competitor-positioning-brief-summary.md`.
 - `send-email` route accepts an optional `from` on @allconvos.ai only (used to send the fly-through email as Jesse). Staging only until the next prod deploy; it rode along in this one.
 - Staging: 488191ee. **Prod 2026-10-30: 1e36dad2** (previous 01fd6e4a; D1 bookmark 000001db-00000000-00005114-8164763cfa43a4d51a3d94415a745cd6; rollback `npx wrangler rollback 01fd6e4a-22b5-425d-b482-86248fbc3a6a --name scale-onboarding-portal`), with Jesse's OK. No migration. Checks: check:journeys, products:check, check:fin, check:team-auth, tsc all pass. Prod checked by root and demo 200; Rich's link not opened (it records a visit).
+
+## 2026-11-02: AT "Answer our open questions" step (staging 2ed96d44, not on prod)
+
+- New first step in "What we need from you": `atn-open-questions`, five numbered questions from Rich's 31 Oct brief (what is live vs planned, Growth and Legacy dates, networking call rhythm, Give-to-Receive and matching, product screens), one required answer box answered by number, optional screens upload, existing messages for follow-ups. Team task `atn-t52` behind it. Version 2026-11-02.39.
+- Left out on purpose: prices and free-month terms (already `atn-prices`), Executive terms (Jesse to confirm; overlaps `atn-exec-copy`), testimonials (in `atn-resources`).
+- Fixtures re-saved: `at-network`, and `_global` (two lines, the new step id only; Fin's forms, uploads and video unchanged, no `--yes-fin`). check:journeys, check:fin, products:check, check:team-auth and tsc pass.
+- Prod: not deployed. Needs Jesse's OK and a package. Prod is still 1e36dad2.
