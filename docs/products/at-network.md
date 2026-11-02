@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-11-02.39` |
+| Version | `2026-11-03.40` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -48,19 +48,19 @@ No base: every step and task below is this product's own.
 
 __
 
-Phase 1 is two tracks that share one page. The website build is your new site. The funnel sends your ads to landing pages, and half of that traffic to the homepage, so we can see which page works best. Everything in Phase 1 is below.
+Phase 1 is two tracks. The website build is your new site. The funnel sends your three ads to one main landing page first, so we get a clean read on which ad and audience works, then we learn and iterate. Everything in Phase 1 is below. Updated 3 November from Rich's 31 October brief and Jesse's 2 November reply.
 
 ### 1. Track 1: the website build
 
-The First Light site, built page by page. You see it on a review link as it grows. Where they come from: Ads (half of all ad traffic), LinkedIn and search, The podcast, Referrals and the Tribe.
+The First Light site, built page by page. You see it on a review link as it grows. Where they come from: Later ad tests, LinkedIn and search, The podcast, Referrals and the Tribe.
 
-1. **Homepage** (us). A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, which is also landing page C.
-   - **The Ascension pathway:** The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
-2. **Offerings: five offer pages** (us). One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.
-   - **Foundations:** Its own page, linked from the top menu. It is a course inside Level 2 Academy.
-   - **Growth and Legacy:** A page each, built from the outlines you supply. They are Academy courses too, alongside Foundations, so the pathway is complete.
-3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free month is, how levels work and what happens next.
-4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. We do the edit and the finishing (motion, framing, grade, sound, phone version). Want other footage in, say of Rich and Ben? Send it and we'll splice it in. One round of changes. It's a launch gift from us.
+1. **Homepage** (us). A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. The Academy is the main door, with Foundations as its first course. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. The mock-ups include your long version and your simple version, each with a Learn More to every offer page.
+   - **The Ascension pathway:** The free Initiation and the four tiers drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
+2. **Offerings: the overview and five offer pages** (us). One Offerings page with everything in a nutshell: a Learn More to each offer's own page, and a free month button for Tribe and Academy. Then one page each, written from your brief, your copy and Ben's Google Docs: the free Initiation, Tribe, Academy, Mentor7 Clan and the Benevolent Executive. Each membership answers your five questions: who it's for, the pain, what you get, what changes, why upgrade.
+   - **Foundations:** The first course inside the Academy, and the one open today. People join the Academy and start here.
+   - **Growth and Legacy:** A page each, built from the outlines you supply and labelled as future releases: Growth at the end of 2027, Legacy at the end of 2028.
+3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free month is, how the tiers work and what happens next.
+4. **The Foundations VSL** (us). Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Academy page and the landing pages. We do the edit and the finishing (motion, framing, grade, sound, phone version). Want other footage in, say of Rich and Ben? Send it and we'll splice it in. One round of changes. It's a launch gift from us.
    - _To confirm:_ The original files of Martyn's overview (ideally the 4K master or the camera files), and footage of your networking calls (great to have). (later in this portal, in the stage called "What we need from you": one step for each.)
 5. **Podcast section, with a journal** (us). A home for the podcast, with the intro and matching outro we make (one round), and a journal inside it for articles. A separate posting system for articles is Phase 2.
 6. **Lead magnets: the eBook page and the StarMap page** (us). An eBook landing page with the free guide PDF, and the StarMap assessment restyled and embedded on its own page.
@@ -70,15 +70,15 @@ Ends with: A site you own, deployable on your hosting and editable by any develo
 
 ### 2. Track 2: the funnel
 
-Three cold ads, landing pages A and B, and the homepage as landing page C, with a tag on every link so we can see what converts. Where they come from: Meta ads, LinkedIn ads, Retargeting.
+Three cold ads, one main landing page first, and a second page ready for the next test, with a tag on every link so we can see what converts. Where they come from: Meta ads, LinkedIn ads, Retargeting.
 
 1. **Three cold video ads** (us). Up to 15 seconds each, vertical, captions burned in. One per audience.
    - **People in Transition:** Going through a big personal or professional change, looking for clarity and their next chapter.
    - **Conscious Entrepreneurs and Business Leaders:** Want to bring more consciousness, purpose and meaning into their work.
    - **Struggling and Overwhelmed Business Owners:** Everyday business owners feeling the pressure: burnout, money, isolation.
-2. **Where the ads send people**. Your team sets each ad's destination when the campaigns are built. Landing pages A and B, and the homepage as C, are all ready to receive them. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Sending half the traffic to the homepage is a campaign setting, and it's yours to choose.
-   - **Landing pages A and B:** A has the credit card up front, B doesn't. The headline and opening screen change for each audience, using the tag on the ad's link. We agree the three headlines with you at the kickoff.
-   - **Landing page C: the homepage:** The same homepage from Track 1, working alongside A and B.
+2. **Where the ads send people**. To start, all three ads go to one main landing page: C. One page gives us a clean read on which ad and audience works. Then we learn and iterate, including testing the homepage against it. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Your ads team can weigh in.
+   - **Landing page C: the main page:** The simple version of your site, where the three ads go first.
+   - **Landing page B: no credit card:** Built and ready for the next test. It takes the place of landing page A, the credit-card-first page named in the agreement.
 3. **Two statics and the LinkedIn banner** (us). Two still ads and a banner for the company page.
 4. **The retargeting ladder** (us). Written as a plan: who sees what after they've visited, and in what order. Your team sets it up in the ad accounts.
 5. **Running the ads** (you). Your team runs the ad accounts, the checkout, the tracking and the posting. We hand over the assets and the plan.
@@ -95,29 +95,31 @@ Parked here so nothing is lost. We quote them once the site is live. Add your ow
 4. **Avatar videos and a new sales video**. Longer avatar videos come from your videographer. We place them on the site when you have them.
 5. **Branding the workbook**. We use the workbook as it is in Phase 1.
 6. **Posting system for articles, podcast page**. The journal in the podcast section covers Phase 1.
-7. **The Benevolent Executive film**. We'll talk it through separately. It isn't in this portal's scope.
+7. **More static ads**. Static ads for each landing page, beyond the two in Phase 1.
+8. **New openings for the video ads**. New front ends on the video ads.
+9. **Targeting analysis**. This sits with your ads team.
+10. **The Benevolent Executive film**. We'll talk it through separately. It isn't in this portal's scope.
 
 Ends with: One quote, when you're ready, for the ones you want.
 
 ### Also running
 
 - **The podcast intro and outro:** A matching pair in the same look. We agree the look first, then one round of changes on both.
-- **Sales video scripts:** Your team drafts one for each offer page (Levels 0 to 3). We give one round of edits.
+- **Sales video scripts:** We draft them from your brief, starting with the Academy. You send one combined list of changes: one round on each script. Filming is yours.
 - **Your team owns:** GoHighLevel, checkout, tracking, ad accounts, filming, posting and DNS.
 
 ### Rules every message follows
 
 - The list is the list. If it's in Phase 1, it's above. If it isn't, it's a change request: written here, quoted, approved before we start.
-- One consolidated list per round, from Rich, Martyn and Ben together. Two rounds on each piece. Round 2 is the last.
+- One consolidated list per round, from Rich, Martyn and Ben together. Two rounds on each piece, four on the homepage. The last round is the last.
 - Feedback, files and approvals go through this portal. WhatsApp is for logistics. We reply within one business day.
 - Nothing starts before the first instalment. We build with the content we have by each due date; only late go-live access holds the launch.
 - One person signs off. We build once that person has approved in writing.
 
 ### Still to confirm
 
-- Who signs things off: Rich alone? (The kickoff call, then the kickoff summary)
-- Phase 1 has three cold ads. The Executive audience isn't one of them. OK? (The kickoff call)
-- The homepage is also landing page C. It's one homepage, not two versions. (The kickoff call)
+- Who signs things off? It's Rich, unless you tell us otherwise. (Tell us in Messages)
+- Phase 1 has three cold ads. The Executive audience isn't one of them. OK? (Tell us in Messages)
 
 ## Roles
 
@@ -216,9 +218,9 @@ Agenda: look inside the platform, lock the homepage brief, confirm who signs off
 
 </details>
 
-### `atn-kickoff-summary` Check the kickoff summary
+### `atn-kickoff-summary` Check the brief we build to
 
-> After the call we write up what we decided, in plain words, below. Read it. If it's right, press the button. That summary is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.
+> What we decided, in plain words, below. Read it. If it's right, press the button. This is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.
 
 Portal: work to review
 
@@ -275,7 +277,7 @@ _The content and details only you can give us, as listed in the agreement. Most 
 
 > These are the gaps left after Rich's brief. Answer what you can in the box, by number, and say who is answering. Short is fine: we turn it into page copy. Anything you can't answer yet, say so and we'll mark it as coming. Prices and free-month terms are in their own step below.
 
-Portal: upload · note (required) · 5 numbered steps
+Portal: upload · note (required) · 4 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
@@ -285,7 +287,7 @@ Portal: upload · note (required) · 5 numbered steps
 
 **`atn-t52` Chase and file the answers to the open questions; fold them into page copy and the delivery-status wording**
 
-Five questions from Rich's 31 Oct brief. Executive terms and the testimonials are not in the list yet (Jesse to confirm). Prices sit in atn-prices.
+Four questions from Rich's 31 Oct brief. Prices sit in atn-prices, Executive terms in atn-exec-copy, testimonials in atn-resources. Growth end of 2027 and Legacy end of 2028 came from Rich on WhatsApp, 2 Nov.
 
 </details>
 
@@ -327,7 +329,7 @@ The artifact link goes in guideUrl. Build only after his Final.
 
 ### `atn-package-breakdown` Confirm your product package breakdown
 
-> Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. The picture below is how we read your levels. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.
+> Received: Ben's website copy on 24 October and Rich's Membership Value and Landing Page Brief on 31 October. We build the offer pages from them. The picture below is how we read your tiers now. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.
 
 Portal: upload · note
 
@@ -343,15 +345,15 @@ Tick the client's confirmation step in admin if they don't.
 
 </details>
 
-### `atn-prices` Send the price and free-month terms for each level
+### `atn-prices` Send the price and free-month terms for each tier
 
-> Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.
+> Rich: for each tier the price, the billing period and the sign-up link. Tribe and Academy start with a free month: tell us exactly how it works. We need these for the offer pages and the landing pages. Due 3 business days after payment 1.
 
 Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t13` Put the prices and free-month terms into the offer pages and landing pages A and B | Jesse Allan | Days 3-10 | normal |  |
+| `atn-t13` Put the prices and free-month terms into the offer pages and the landing pages | Jesse Allan | Days 3-10 | normal |  |
 
 ### `atn-photos-rich` Send photos of Rich
 
@@ -363,9 +365,9 @@ Portal: upload
 |---|---|---|---|---|
 | `atn-t06` Check the photos of Rich are usable; ask for more if not | Jesse Allan | Days 3-7 | normal |  |
 
-### `atn-academy` Send the Academy course details
+### `atn-academy` Send the Growth and Legacy outlines
 
-> Ben's levels document and Martyn's Foundations document are already with us. We still need, from Rich: what the Academy includes in more detail, and your outlines for the Growth and Legacy courses (we build their pages from them). Due 3 business days after payment 1.
+> Ben's product document, Martyn's Foundations document and Rich's 31 October brief are already with us. We still need, from Rich: your outlines for the Growth and Legacy courses. We build their pages from them and label them as future releases: Growth at the end of 2027, Legacy at the end of 2028. Due 3 business days after payment 1.
 
 Portal: note (required)
 
@@ -439,7 +441,7 @@ Agreement v2 A2: a short set of title-sequence references, agreed before the bui
 
 ### `atn-exec-copy` Send the Benevolent Executive Program page copy
 
-> Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.
+> Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. Please cover how often the one-on-ones run, what the retreats include, travel and accommodation, and how someone qualifies. We place it in the First Light look. Due 3 business days after payment 1.
 
 Portal: upload · note
 
@@ -457,15 +459,23 @@ Portal: note (required)
 |---|---|---|---|---|
 | `atn-t08` Set up the GHL contact person's access | Jesse Allan | Days 3-7 | normal |  |
 
-### `atn-scripts` Write first-draft scripts for your four sales videos
+### `atn-scripts` Check your sales video scripts
 
-> Four short sales videos, one for each level's page on your site (not the Benevolent Executive page, and not the landing pages). Each one is 60 seconds at most, about 150 words: who it's for, what they get, and one next step. Your team writes a basic first draft of each from what you already have: Ben's levels document, and Martyn's Foundations material for Level 2. Rough is fine. We give one round of direction and changes on each, and we iterate from there. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.
+> We're drafting these from your brief while we write the page words, starting with the Academy, so the message is the same everywhere. Send one combined list of changes: that's the one round on each script. Filming and editing are yours.
 
-Portal: upload · note · 4 numbered steps
+Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t16` Give one round of edits on the client's script drafts | Jesse Allan | Days 10-20 | normal |  |
+| `atn-t16` Draft the sales video scripts with the page words, Academy first; post them to the step, then apply their one combined list | Jesse Allan | Days 10-20 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`atn-t16` Draft the sales video scripts with the page words, Academy first; post them to the step, then apply their one combined list**
+
+Jesse took the first drafts on 2 Nov. Drafts: AT notes/2026-11-02-sales-video-scripts-draft.md.
+
+</details>
 
 ### Team-only work in What we need from you
 
@@ -527,7 +537,7 @@ Jesse ticks it in admin.
 
 ### `atn-review-site-2` Review your site: round 2 of 2
 
-> Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.
+> Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request, apart from the two extra rounds on the homepage.
 
 Portal: work to review · note (required)
 
@@ -557,22 +567,22 @@ After sign-off, site changes are change requests.
 
 _Your landing pages, the three video ads, two statics and the LinkedIn banner. Two rounds, then sign-off._
 
-### `atn-review-landing` Review landing pages A, B and C: round 1 of 2
+### `atn-review-landing` Review landing pages C and B: round 1 of 2
 
-> Landing pages A and B (the first screen changes for each audience) and C, the homepage, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
+> Landing page C, the simple version of your site and the main page the three ads go to, and landing page B, with no credit card, for the next test. Both on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
 
 Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t30` Build landing pages A, B and C with the tags | Jesse Allan | Days 20-30 | normal | `atn-t16` |
+| `atn-t30` Build landing pages C and B with the tags | Jesse Allan | Days 20-30 | normal | `atn-t16` |
 | `atn-t35` Open the funnel review link and send it | Jesse Allan | Day 30 | normal | `atn-t30`, `atn-t31`, `atn-t32` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t30` Build landing pages A, B and C with the tags**
+**`atn-t30` Build landing pages C and B with the tags**
 
-A (card up front) and B (no card), first screen per audience; C is the homepage. UTM tag on every link. Where each ad sends people (and any homepage split) is set by their team in the ad accounts, not by the site (agreement A3).
+C is the simple version of the site and the main page the three ads go to. B has no credit card, for the next test. Page A is off (Jesse, 2 Nov); A2 still names it, so the swap is written up in the brief step. UTM tag on every link. Where each ad sends people is set by their team in the ad accounts, not by the site (agreement A3).
 
 </details>
 

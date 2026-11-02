@@ -23,8 +23,8 @@ export const atNetworkTeamTasks: TeamTask[] = [
   // ── What we need from you ──
   t("atn-t03", "Add Martyn's StarMap link to the step; build the page once he confirms Final", "build", "Inputs", "atn-starmap", "Days 3-7", "The artifact link goes in guideUrl. Build only after his Final."),
   t("atn-t04", "Read Ben's package breakdown (received 24 Oct); log gaps", "build", "Inputs", "atn-package-breakdown", "Days 3-7", "Tick the client's confirmation step in admin if they don't."),
-  t("atn-t52", "Chase and file the answers to the open questions; fold them into page copy and the delivery-status wording", "build", "Inputs", "atn-open-questions", "Days 3-10", "Five questions from Rich's 31 Oct brief. Executive terms and the testimonials are not in the list yet (Jesse to confirm). Prices sit in atn-prices."),
-  t("atn-t13", "Put the prices and free-month terms into the offer pages and landing pages A and B", "build", "Inputs", "atn-prices", "Days 3-10"),
+  t("atn-t52", "Chase and file the answers to the open questions; fold them into page copy and the delivery-status wording", "build", "Inputs", "atn-open-questions", "Days 3-10", "Four questions from Rich's 31 Oct brief. Prices sit in atn-prices, Executive terms in atn-exec-copy, testimonials in atn-resources. Growth end of 2027 and Legacy end of 2028 came from Rich on WhatsApp, 2 Nov."),
+  t("atn-t13", "Put the prices and free-month terms into the offer pages and the landing pages", "build", "Inputs", "atn-prices", "Days 3-10"),
   t("atn-t19", "Place the Benevolent Executive Program page copy", "build", "Inputs", "atn-exec-copy", "Days 3-10"),
   t("atn-t20", "Link the StarMap page from the homepage, as shown on the Scope and Map (no client step: Jesse, 28 Oct)", "build", "Inputs", undefined, "Days 3-10"),
   t("atn-t51", "Keep the AT resources list current (add a link only when we ask for it)", "build", "Inputs", "atn-resources", "Days 3-10", "Rich's Drive links from WhatsApp, 28 Oct. Testimonials go to Stories. Still to find: the original Rich and Martyn Foundations intro (Martyn is looking)."),
@@ -38,7 +38,7 @@ export const atNetworkTeamTasks: TeamTask[] = [
   t("atn-t50", "Open the Foundations VSL review link and send it", "go-live", "Review", "atn-review-vsl", "Day 30", "", ["atn-t49"]),
   t("atn-t18", "Review the stinger references and agree the intro and outro look", "build", "Inputs", "atn-stinger-ref", "Days 3-10", "Agreement v2 A2: a short set of title-sequence references, agreed before the build. Keep the real, human feel."),
   t("atn-t08", "Set up the GHL contact person's access", "build", "Admin", "atn-ghl-contact", "Days 3-7"),
-  t("atn-t16", "Give one round of edits on the client's script drafts", "build", "Video", "atn-scripts", "Days 10-20"),
+  t("atn-t16", "Draft the sales video scripts with the page words, Academy first; post them to the step, then apply their one combined list", "build", "Video", "atn-scripts", "Days 10-20", "Jesse took the first drafts on 2 Nov. Drafts: AT notes/2026-11-02-sales-video-scripts-draft.md."),
   // ── Website build ──
   t("atn-t29", "Build the First Light site: homepage, Offerings, The Journey, Stories, FAQs", "testing", "Site", "atn-review-site", "Days 8-24", "", ["atn-t12"]),
   t("atn-t21", "Build the five offer pages, the Foundations page and the Growth and Legacy pages", "testing", "Site", "atn-review-site", "Days 12-24", "Growth and Legacy from Rich's outlines (agreement A2).", ["atn-t13"]),
@@ -50,7 +50,7 @@ export const atNetworkTeamTasks: TeamTask[] = [
   t("atn-t27", "Make the round 1 changes to the site and reopen the link", "testing", "Review", "atn-review-site-2", "Days 27-30", "", ["atn-t25"]),
   t("atn-t28", "Make the round 2 changes and ask for sign-off", "testing", "Review", "atn-signoff-site", "Days 30-33", "After sign-off, site changes are change requests.", ["atn-t27"]),
   // ── Funnel and ads ──
-  t("atn-t30", "Build landing pages A, B and C with the tags", "go-live", "Funnel", "atn-review-landing", "Days 20-30", "A (card up front) and B (no card), first screen per audience; C is the homepage. UTM tag on every link. Where each ad sends people (and any homepage split) is set by their team in the ad accounts, not by the site (agreement A3).", ["atn-t16"]),
+  t("atn-t30", "Build landing pages C and B with the tags", "go-live", "Funnel", "atn-review-landing", "Days 20-30", "C is the simple version of the site and the main page the three ads go to. B has no credit card, for the next test. Page A is off (Jesse, 2 Nov); A2 still names it, so the swap is written up in the brief step. UTM tag on every link. Where each ad sends people is set by their team in the ad accounts, not by the site (agreement A3).", ["atn-t16"]),
   t("atn-t31", "Make three cold video ads (up to 15 s, vertical, captions burned in)", "go-live", "Ads", "atn-review-ads", "Days 20-30", "One per audience (Rich's 16 Oct brief): People in Transition; Conscious Entrepreneurs and Business Leaders; Struggling and Overwhelmed Business Owners. The Executive avatar is not in Phase 1."),
   t("atn-t32", "Make two statics and the LinkedIn banner", "go-live", "Ads", "atn-review-ads", "Days 20-30"),
   t("atn-t33", "Write the retargeting ladder as a plan", "go-live", "Ads", "atn-review-ads", "Days 24-30"),

@@ -13,7 +13,7 @@ import type { JourneyMapContent } from "../../lib/journeyTypes";
 export const atNetworkScopeMap: JourneyMapContent = {
   title: "Your scope and map",
   intro:
-    "Phase 1 is two tracks that share one page. The website build is your new site. The funnel sends your ads to landing pages, and half of that traffic to the homepage, so we can see which page works best. Everything in Phase 1 is below.",
+    "Phase 1 is two tracks. The website build is your new site. The funnel sends your three ads to one main landing page first, so we get a clean read on which ad and audience works, then we learn and iterate. Everything in Phase 1 is below. Updated 3 November from Rich's 31 October brief and Jesse's 2 November reply.",
   draftNote: "", // no banner (Jesse, 2026-10-28)
   notesFormId: "at-network-scope-notes-v1",
   // "Us" read as a team to this client (Jesse, 2026-10-28): say what it means.
@@ -24,42 +24,42 @@ export const atNetworkScopeMap: JourneyMapContent = {
       title: "Track 1: the website build",
       tagline: "The First Light site, built page by page. You see it on a review link as it grows.",
       accent: "purple",
-      entries: ["Ads (half of all ad traffic)", "LinkedIn and search", "The podcast", "Referrals and the Tribe"],
+      entries: ["Later ad tests", "LinkedIn and search", "The podcast", "Referrals and the Tribe"],
       steps: [
         {
           title: "Homepage",
           detail:
-            "A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. Foundations is the main door and the hook. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. One homepage, which is also landing page C.",
+            "A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. The Academy is the main door, with Foundations as its first course. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. The mock-ups include your long version and your simple version, each with a Learn More to every offer page.",
           who: "us",
           branches: [
-            { label: "The Ascension pathway", detail: "The four levels drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.", tone: "good" },
+            { label: "The Ascension pathway", detail: "The free Initiation and the four tiers drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.", tone: "good" },
           ],
           pills: {
             label: "Links found on this page",
             groups: [
-              { label: "Top menu", items: ["Offerings", "The Journey", "Stories", "FAQs", "Podcast", "Foundations"] },
-              { label: "The offer pages", items: ["Level 0 Initiations", "Level 1 Tribe", "Level 2 Academy", "Level 3 Mentor7", "Benevolent Executive", "Growth", "Legacy"] },
+              { label: "Top menu", items: ["Offerings", "The Journey", "Stories", "FAQs", "Podcast", "Academy"] },
+              { label: "The offer pages", items: ["Free Initiation", "Tier 1 Tribe", "Tier 2 Academy", "Tier 3 Mentor7 Clan", "Tier 4 Benevolent Executive", "Growth", "Legacy"] },
               { label: "Other links", items: ["The free guide", "The StarMap assessment", "Start your free month"] },
             ],
           },
         },
         {
-          title: "Offerings: five offer pages",
-          detail: "One page per level, written from your copy and Ben's Google Docs. Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy, Level 3 Mentor7, and the Benevolent Executive.",
+          title: "Offerings: the overview and five offer pages",
+          detail: "One Offerings page with everything in a nutshell: a Learn More to each offer's own page, and a free month button for Tribe and Academy. Then one page each, written from your brief, your copy and Ben's Google Docs: the free Initiation, Tribe, Academy, Mentor7 Clan and the Benevolent Executive. Each membership answers your five questions: who it's for, the pain, what you get, what changes, why upgrade.",
           who: "us",
           branches: [
-            { label: "Foundations", detail: "Its own page, linked from the top menu. It is a course inside Level 2 Academy.", tone: "good" },
-            { label: "Growth and Legacy", detail: "A page each, built from the outlines you supply. They are Academy courses too, alongside Foundations, so the pathway is complete.", tone: "neutral" },
+            { label: "Foundations", detail: "The first course inside the Academy, and the one open today. People join the Academy and start here.", tone: "good" },
+            { label: "Growth and Legacy", detail: "A page each, built from the outlines you supply and labelled as future releases: Growth at the end of 2027, Legacy at the end of 2028.", tone: "neutral" },
           ],
         },
         {
           title: "The Journey, Stories and FAQs",
-          detail: "The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free month is, how levels work and what happens next.",
+          detail: "The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free month is, how the tiers work and what happens next.",
           who: "us",
         },
         {
           title: "The Foundations VSL",
-          detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Foundations page and landing pages A and B. We do the edit and the finishing (motion, framing, grade, sound, phone version). Want other footage in, say of Rich and Ben? Send it and we'll splice it in. One round of changes. It's a launch gift from us.",
+          detail: "Martyn's full Foundations overview (about 3 minutes 40), re-edited in the First Light look: widescreen for desktop and a phone version, for the Academy page and the landing pages. We do the edit and the finishing (motion, framing, grade, sound, phone version). Want other footage in, say of Rich and Ben? Send it and we'll splice it in. One round of changes. It's a launch gift from us.",
           who: "us",
           pending: { label: "What we'll ask you for", question: "The original files of Martyn's overview (ideally the 4K master or the camera files), and footage of your networking calls (great to have).", whereLabel: "You'll send these", where: "later in this portal, in the stage called \"What we need from you\": one step for each." },
         },
@@ -80,7 +80,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
     {
       id: "funnel",
       title: "Track 2: the funnel",
-      tagline: "Three cold ads, landing pages A and B, and the homepage as landing page C, with a tag on every link so we can see what converts.",
+      tagline: "Three cold ads, one main landing page first, and a second page ready for the next test, with a tag on every link so we can see what converts.",
       accent: "orange",
       entries: ["Meta ads", "LinkedIn ads", "Retargeting"],
       steps: [
@@ -96,10 +96,10 @@ export const atNetworkScopeMap: JourneyMapContent = {
         },
         {
           title: "Where the ads send people",
-          detail: "Your team sets each ad's destination when the campaigns are built. Landing pages A and B, and the homepage as C, are all ready to receive them. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Sending half the traffic to the homepage is a campaign setting, and it's yours to choose.",
+          detail: "To start, all three ads go to one main landing page: C. One page gives us a clean read on which ad and audience works. Then we learn and iterate, including testing the homepage against it. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Your ads team can weigh in.",
           branches: [
-            { label: "Landing pages A and B", detail: "A has the credit card up front, B doesn't. The headline and opening screen change for each audience, using the tag on the ad's link. We agree the three headlines with you at the kickoff.", tone: "good" },
-            { label: "Landing page C: the homepage", detail: "The same homepage from Track 1, working alongside A and B.", tone: "neutral" },
+            { label: "Landing page C: the main page", detail: "The simple version of your site, where the three ads go first.", tone: "good" },
+            { label: "Landing page B: no credit card", detail: "Built and ready for the next test. It takes the place of landing page A, the credit-card-first page named in the agreement.", tone: "neutral" },
           ],
         },
         {
@@ -134,6 +134,9 @@ export const atNetworkScopeMap: JourneyMapContent = {
         { title: "Avatar videos and a new sales video", detail: "Longer avatar videos come from your videographer. We place them on the site when you have them." },
         { title: "Branding the workbook", detail: "We use the workbook as it is in Phase 1." },
         { title: "Posting system for articles, podcast page", detail: "The journal in the podcast section covers Phase 1." },
+        { title: "More static ads", detail: "Static ads for each landing page, beyond the two in Phase 1." },
+        { title: "New openings for the video ads", detail: "New front ends on the video ads." },
+        { title: "Targeting analysis", detail: "This sits with your ads team." },
         { title: "The Benevolent Executive film", detail: "We'll talk it through separately. It isn't in this portal's scope." },
       ],
       outcome: "One quote, when you're ready, for the ones you want.",
@@ -141,19 +144,18 @@ export const atNetworkScopeMap: JourneyMapContent = {
   ],
   alsoRunning: [
     { title: "The podcast intro and outro", detail: "A matching pair in the same look. We agree the look first, then one round of changes on both." },
-    { title: "Sales video scripts", detail: "Your team drafts one for each offer page (Levels 0 to 3). We give one round of edits." },
+    { title: "Sales video scripts", detail: "We draft them from your brief, starting with the Academy. You send one combined list of changes: one round on each script. Filming is yours." },
     { title: "Your team owns", detail: "GoHighLevel, checkout, tracking, ad accounts, filming, posting and DNS." },
   ],
   rules: [
     "The list is the list. If it's in Phase 1, it's above. If it isn't, it's a change request: written here, quoted, approved before we start.",
-    "One consolidated list per round, from Rich, Martyn and Ben together. Two rounds on each piece. Round 2 is the last.",
+    "One consolidated list per round, from Rich, Martyn and Ben together. Two rounds on each piece, four on the homepage. The last round is the last.",
     "Feedback, files and approvals go through this portal. WhatsApp is for logistics. We reply within one business day.",
     "Nothing starts before the first instalment. We build with the content we have by each due date; only late go-live access holds the launch.",
     "One person signs off. We build once that person has approved in writing.",
   ],
   toConfirm: [
-    { question: "Who signs things off: Rich alone?", where: "The kickoff call, then the kickoff summary" },
-    { question: "Phase 1 has three cold ads. The Executive audience isn't one of them. OK?", where: "The kickoff call" },
-    { question: "The homepage is also landing page C. It's one homepage, not two versions.", where: "The kickoff call" },
+    { question: "Who signs things off? It's Rich, unless you tell us otherwise.", where: "Tell us in Messages" },
+    { question: "Phase 1 has three cold ads. The Executive audience isn't one of them. OK?", where: "Tell us in Messages" },
   ],
 };

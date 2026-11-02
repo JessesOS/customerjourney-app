@@ -470,3 +470,12 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 - Fixtures re-saved: `at-network`, and `_global` (two lines, the new step id only; Fin's forms, uploads and video unchanged, no `--yes-fin`). check:journeys, check:fin, products:check, check:team-auth and tsc pass.
 - Prod: not deployed. Needs Jesse's OK and a package. Prod is still 1e36dad2.
 - **Deployed to prod 2026-11-02 (Jesse's OK): 24173012.** Previous 1e36dad2. D1 bookmark before: `000001dd-00000000-00005117-22580dcfa2257e674e8b7537414d4b0a` (no migration). Rollback: `npx wrangler rollback 1e36dad2-58d9-4076-871a-a282e814c958 --name scale-onboarding-portal`.
+
+## 2026-11-03: AT portal brought up to date with the 2 Nov brief (prod 9104e886, Jesse's OK)
+
+- Jesse: they aren't in the portal and he can't force them, so keep it as the true record ("just make any changes"). Version 2026-11-03.40.
+- Changed: tiers replace levels everywhere (picture `levels.svg`, scope map, prices step), free month on Tribe and Academy only, Academy as main door, Growth end of 2027 and Legacy end of 2028 (question removed from `atn-open-questions`, now four), `atn-academy` now asks only for the Growth and Legacy outlines, `atn-scripts` now says Jesse drafts and they send one list, Executive terms added to `atn-exec-copy`, landing pages C and B replace A, B and C, homepage four rounds, outside-Phase-1 items added to the Phase 2 list, kickoff step renamed "Check the brief we build to".
+- Left alone on purpose: the signed agreement, and `atn-vsl-confirm` (the wording Rich ticked, still says landing pages A and B). No ticks changed. Timeline day windows unchanged (site review day 26 = 20 Nov): Jesse to decide.
+- The brief record: the 2 Nov message went into `atn-kickoff-summary` by a direct D1 insert, because the admin content route emails all four people on AT (`alertClientOfContent`). To update it silently use the same insert or update, or draft then `resolveDraft: publish`; the plain save emails them. The Plan link is not in the portal yet (Jesse, 3 Nov).
+- Fixtures re-saved: `at-network`, `_global` (one id moved: `atn-scripts` is now editable). All checks pass. Staging 1d728785 first.
+- Prod: 9104e886, previous 24173012. D1 bookmark before: `000001e2-00000000-00005117-156d3b50364023c8f62ccc20c27374dd`. Rollback: `npx wrangler rollback 24173012-f0f6-4e72-bfe8-bdfd1043d45f --name scale-onboarding-portal`.

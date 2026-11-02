@@ -37,7 +37,7 @@
           {
             "awaitingTeam": false,
             "id": "atn-kickoff-summary",
-            "title": "Check the kickoff summary"
+            "title": "Check the brief we build to"
           },
           {
             "awaitingTeam": false,
@@ -73,7 +73,7 @@
           {
             "awaitingTeam": false,
             "id": "atn-prices",
-            "title": "Send the price and free-month terms for each level"
+            "title": "Send the price and free-month terms for each tier"
           },
           {
             "awaitingTeam": false,
@@ -83,7 +83,7 @@
           {
             "awaitingTeam": false,
             "id": "atn-academy",
-            "title": "Send the Academy course details"
+            "title": "Send the Growth and Legacy outlines"
           },
           {
             "awaitingTeam": false,
@@ -118,7 +118,7 @@
           {
             "awaitingTeam": false,
             "id": "atn-scripts",
-            "title": "Write first-draft scripts for your four sales videos"
+            "title": "Check your sales video scripts"
           }
         ],
         "name": "What we need from you"
@@ -155,7 +155,7 @@
           {
             "awaitingTeam": false,
             "id": "atn-review-landing",
-            "title": "Review landing pages A, B and C: round 1 of 2"
+            "title": "Review landing pages C and B: round 1 of 2"
           },
           {
             "awaitingTeam": false,
@@ -278,7 +278,7 @@
         {
           "id": "atn-kickoff-summary",
           "stageName": "Sign and start",
-          "title": "Check the kickoff summary"
+          "title": "Check the brief we build to"
         },
         {
           "id": "atn-vsl-confirm",
@@ -308,7 +308,7 @@
         {
           "id": "atn-prices",
           "stageName": "What we need from you",
-          "title": "Send the price and free-month terms for each level"
+          "title": "Send the price and free-month terms for each tier"
         },
         {
           "id": "atn-photos-rich",
@@ -318,7 +318,7 @@
         {
           "id": "atn-academy",
           "stageName": "What we need from you",
-          "title": "Send the Academy course details"
+          "title": "Send the Growth and Legacy outlines"
         },
         {
           "id": "atn-workbook",
@@ -353,7 +353,7 @@
         {
           "id": "atn-scripts",
           "stageName": "What we need from you",
-          "title": "Write first-draft scripts for your four sales videos"
+          "title": "Check your sales video scripts"
         },
         {
           "id": "atn-review-site",
@@ -378,7 +378,7 @@
         {
           "id": "atn-review-landing",
           "stageName": "Funnel and ads",
-          "title": "Review landing pages A, B and C: round 1 of 2"
+          "title": "Review landing pages C and B: round 1 of 2"
         },
         {
           "id": "atn-review-ads",
@@ -482,12 +482,12 @@
             "title": "Book the kickoff call"
           },
           {
-            "detail": "After the call we write up what we decided, in plain words, below. Read it. If it's right, press the button. That summary is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
+            "detail": "What we decided, in plain words, below. Read it. If it's right, press the button. This is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
             "doneLabel": "That's right",
             "hasEditableContent": true,
             "id": "atn-kickoff-summary",
-            "pendingContentText": "Your summary appears here after the call.",
-            "title": "Check the kickoff summary"
+            "pendingContentText": "Your brief appears here.",
+            "title": "Check the brief we build to"
           },
           {
             "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. We've agreed it's built from Martyn's overview, with a limited splice of a Rich video and networking footage if you have them. Tick this if you're happy with that.",
@@ -511,12 +511,11 @@
             "doneLabel": "That's everything we have",
             "hasUpload": true,
             "id": "atn-open-questions",
-            "notePlaceholder": "1. ...\n2. ...\n3. ...\n4. ...\n5. (uploaded)",
+            "notePlaceholder": "1. ...\n2. ...\n3. ...\n4. (uploaded)",
             "notePrompt": "Your answers, by number",
             "noteRequired": true,
             "steps": [
               "**What is live today, and what is only planned.** Member search filters, the workbook, resource packs. Our pages should promise only what exists. (Rich)",
-              "**When Growth and Legacy open.** Dates, or a rough month. We label them as future releases. (Rich)",
               "**The networking call rhythm.** How often, which days, and the regional time slots. (Rich)",
               "**How Give-to-Receive and member matching work.** A short bullet breakdown. (Ben)",
               "**Screens of the product.** The workbook, the Eight Pillars assessments and the resource templates. Upload them here. (Ben or Martyn)"
@@ -526,7 +525,7 @@
               "accept": ".png,.jpg,.jpeg,.webp,.pdf,.zip",
               "choose": "Click to choose your files",
               "chooseMore": "+ Add more files",
-              "hint": "For question 5. A zip is fine.",
+              "hint": "For question 4. A zip is fine.",
               "stayOpen": true,
               "title": "Upload screens"
             }
@@ -634,11 +633,11 @@
             }
           },
           {
-            "detail": "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. The picture below is how we read your levels. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+            "detail": "Received: Ben's website copy on 24 October and Rich's Membership Value and Landing Page Brief on 31 October. We build the offer pages from them. The picture below is how we read your tiers now. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
             "doneLabel": "Confirmed, nothing changed",
             "hasUpload": true,
             "id": "atn-package-breakdown",
-            "imageAlt": "Your levels: Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy with the Foundations course (the main door) and Growth and Legacy to come, Level 3 Mentor7. Benevolent Executive is separate. One free month on any paid level.",
+            "imageAlt": "Your tiers: free Initiation and the e-book in front, then Tier 1 Tribe, Tier 2 Academy (the main door) with Foundations as its first course, Growth at the end of 2027 and Legacy at the end of 2028, Tier 3 Mentor7 Clan and Tier 4 Benevolent Executive. Tribe and Academy start with a free month. Mentor7 Clan and Executive are an application and a discovery call.",
             "imageUrl": "/portal/at-network/levels.svg",
             "notePrompt": "Anything changed, or a link to the latest version (optional)",
             "title": "Confirm your product package breakdown",
@@ -646,19 +645,19 @@
               "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
               "choose": "Click to choose your files",
               "chooseMore": "+ Add more files",
-              "hint": "Only if the copy has changed since 24 October.",
+              "hint": "Only if the copy has changed since you sent it.",
               "stayOpen": true,
               "title": "Newer version?"
             }
           },
           {
-            "detail": "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.",
+            "detail": "Rich: for each tier the price, the billing period and the sign-up link. Tribe and Academy start with a free month: tell us exactly how it works. We need these for the offer pages and the landing pages. Due 3 business days after payment 1.",
             "doneLabel": "I've sent them",
             "id": "atn-prices",
-            "notePlaceholder": "Tribe: ... per month. Academy: ... Mentor7: ... Free month: ...",
-            "notePrompt": "Price and free-month terms, per level",
+            "notePlaceholder": "Tribe: ... per month. Academy: ... Mentor7 Clan: ... Executive: ... Free month: ... Sign-up links: ...",
+            "notePrompt": "Price and free-month terms, per tier",
             "noteRequired": true,
-            "title": "Send the price and free-month terms for each level"
+            "title": "Send the price and free-month terms for each tier"
           },
           {
             "detail": "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.",
@@ -676,13 +675,13 @@
             }
           },
           {
-            "detail": "Ben's levels document and Martyn's Foundations document are already with us. We still need, from Rich: what the Academy includes in more detail, and your outlines for the Growth and Legacy courses (we build their pages from them). Due 3 business days after payment 1.",
+            "detail": "Ben's product document, Martyn's Foundations document and Rich's 31 October brief are already with us. We still need, from Rich: your outlines for the Growth and Legacy courses. We build their pages from them and label them as future releases: Growth at the end of 2027, Legacy at the end of 2028. Due 3 business days after payment 1.",
             "doneLabel": "I've sent the details",
             "id": "atn-academy",
-            "notePlaceholder": "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
-            "notePrompt": "Academy course details",
+            "notePlaceholder": "What each course covers, who it's for, how it runs. A link to a document is fine.",
+            "notePrompt": "Growth and Legacy outlines",
             "noteRequired": true,
-            "title": "Send the Academy course details"
+            "title": "Send the Growth and Legacy outlines"
           },
           {
             "detail": "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list. Due 3 business days after payment 1.",
@@ -756,7 +755,7 @@
             }
           },
           {
-            "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+            "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. Please cover how often the one-on-ones run, what the retreats include, travel and accommodation, and how someone qualifies. We place it in the First Light look. Due 3 business days after payment 1.",
             "doneLabel": "I've sent it",
             "hasUpload": true,
             "id": "atn-exec-copy",
@@ -781,27 +780,15 @@
             "title": "Name your GHL contact person"
           },
           {
-            "detail": "Four short sales videos, one for each level's page on your site (not the Benevolent Executive page, and not the landing pages). Each one is 60 seconds at most, about 150 words: who it's for, what they get, and one next step. Your team writes a basic first draft of each from what you already have: Ben's levels document, and Martyn's Foundations material for Level 2. Rough is fine. We give one round of direction and changes on each, and we iterate from there. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
-            "doneLabel": "I've sent the drafts",
-            "hasUpload": true,
+            "detail": "We're drafting these from your brief while we write the page words, starting with the Academy, so the message is the same everywhere. Send one combined list of changes: that's the one round on each script. Filming and editing are yours.",
+            "doneLabel": "Send my list",
+            "hasEditableContent": true,
             "id": "atn-scripts",
-            "notePlaceholder": "Level 0, Level 1, Level 2, Level 3: one script each.",
-            "notePrompt": "Or paste your drafts here",
-            "steps": [
-              "**Level 0 · Initiations** (free): who it's for, and what they get: the e-book and manifesto, stories and the podcast, free information sessions. The next step: start here, it's free.",
-              "**Level 1 · Tribe**: the community. Finding your people, the Collective Wisdom gatherings, the Opportunities Exchange. The next step: join, with your first month free.",
-              "**Level 2 · Academy**: everything in Tribe, plus the 9-month Foundations Course, the fortnightly Q&A and the Wisdom Library. Lead with Foundations: it's the main door. The next step: join, with your first month free.",
-              "**Level 3 · Mentor7**: everything in Academy, plus a small Clan who meet every fortnight for two hours, and special events. Who it's for, and the next step: join, with your first month free."
-            ],
-            "title": "Write first-draft scripts for your four sales videos",
-            "uploadOptions": {
-              "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
-              "choose": "Click to choose your files",
-              "chooseMore": "+ Add more files",
-              "hint": "One document per video, or one for all four.",
-              "stayOpen": true,
-              "title": "Upload your script drafts"
-            }
+            "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+            "notePrompt": "Your one combined list of changes, or \"Approved\"",
+            "noteRequired": true,
+            "pendingContentText": "Your script drafts appear here when they're ready. We'll email you.",
+            "title": "Check your sales video scripts"
           }
         ],
         "name": "What we need from you",
@@ -831,7 +818,7 @@
             "title": "Pay the second instalment"
           },
           {
-            "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.",
+            "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request, apart from the two extra rounds on the homepage.",
             "doneLabel": "Send round 2",
             "hasEditableContent": true,
             "id": "atn-review-site-2",
@@ -863,7 +850,7 @@
         "id": "go-live",
         "milestones": [
           {
-            "detail": "Landing pages A and B (the first screen changes for each audience) and C, the homepage, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+            "detail": "Landing page C, the simple version of your site and the main page the three ads go to, and landing page B, with no credit card, for the next test. Both on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
             "doneLabel": "Send round 1",
             "hasEditableContent": true,
             "id": "atn-review-landing",
@@ -871,7 +858,7 @@
             "notePrompt": "Your consolidated list for round 1, or \"Approved\"",
             "noteRequired": true,
             "pendingContentText": "Your review link appears here when it's ready. We'll email you.",
-            "title": "Review landing pages A, B and C: round 1 of 2"
+            "title": "Review landing pages C and B: round 1 of 2"
           },
           {
             "detail": "The three video ads (one for each audience), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
@@ -1037,13 +1024,13 @@
               "title": "Book the kickoff call"
             },
             {
-              "detail": "After the call we write up what we decided, in plain words, below. Read it. If it's right, press the button. That summary is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
+              "detail": "What we decided, in plain words, below. Read it. If it's right, press the button. This is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
               "doneLabel": "That's right",
               "hasEditableContent": true,
               "id": "atn-kickoff-summary",
-              "pendingContentText": "Your summary appears here after the call.",
+              "pendingContentText": "Your brief appears here.",
               "status": "done",
-              "title": "Check the kickoff summary"
+              "title": "Check the brief we build to"
             },
             {
               "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. We've agreed it's built from Martyn's overview, with a limited splice of a Rich video and networking footage if you have them. Tick this if you're happy with that.",
@@ -1069,13 +1056,12 @@
               "doneLabel": "That's everything we have",
               "hasUpload": true,
               "id": "atn-open-questions",
-              "notePlaceholder": "1. ...\n2. ...\n3. ...\n4. ...\n5. (uploaded)",
+              "notePlaceholder": "1. ...\n2. ...\n3. ...\n4. (uploaded)",
               "notePrompt": "Your answers, by number",
               "noteRequired": true,
               "status": "done",
               "steps": [
                 "**What is live today, and what is only planned.** Member search filters, the workbook, resource packs. Our pages should promise only what exists. (Rich)",
-                "**When Growth and Legacy open.** Dates, or a rough month. We label them as future releases. (Rich)",
                 "**The networking call rhythm.** How often, which days, and the regional time slots. (Rich)",
                 "**How Give-to-Receive and member matching work.** A short bullet breakdown. (Ben)",
                 "**Screens of the product.** The workbook, the Eight Pillars assessments and the resource templates. Upload them here. (Ben or Martyn)"
@@ -1085,7 +1071,7 @@
                 "accept": ".png,.jpg,.jpeg,.webp,.pdf,.zip",
                 "choose": "Click to choose your files",
                 "chooseMore": "+ Add more files",
-                "hint": "For question 5. A zip is fine.",
+                "hint": "For question 4. A zip is fine.",
                 "stayOpen": true,
                 "title": "Upload screens"
               }
@@ -1195,11 +1181,11 @@
               }
             },
             {
-              "detail": "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. The picture below is how we read your levels. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+              "detail": "Received: Ben's website copy on 24 October and Rich's Membership Value and Landing Page Brief on 31 October. We build the offer pages from them. The picture below is how we read your tiers now. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
               "doneLabel": "Confirmed, nothing changed",
               "hasUpload": true,
               "id": "atn-package-breakdown",
-              "imageAlt": "Your levels: Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy with the Foundations course (the main door) and Growth and Legacy to come, Level 3 Mentor7. Benevolent Executive is separate. One free month on any paid level.",
+              "imageAlt": "Your tiers: free Initiation and the e-book in front, then Tier 1 Tribe, Tier 2 Academy (the main door) with Foundations as its first course, Growth at the end of 2027 and Legacy at the end of 2028, Tier 3 Mentor7 Clan and Tier 4 Benevolent Executive. Tribe and Academy start with a free month. Mentor7 Clan and Executive are an application and a discovery call.",
               "imageUrl": "/portal/at-network/levels.svg",
               "notePrompt": "Anything changed, or a link to the latest version (optional)",
               "status": "done",
@@ -1208,20 +1194,20 @@
                 "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
                 "choose": "Click to choose your files",
                 "chooseMore": "+ Add more files",
-                "hint": "Only if the copy has changed since 24 October.",
+                "hint": "Only if the copy has changed since you sent it.",
                 "stayOpen": true,
                 "title": "Newer version?"
               }
             },
             {
-              "detail": "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.",
+              "detail": "Rich: for each tier the price, the billing period and the sign-up link. Tribe and Academy start with a free month: tell us exactly how it works. We need these for the offer pages and the landing pages. Due 3 business days after payment 1.",
               "doneLabel": "I've sent them",
               "id": "atn-prices",
-              "notePlaceholder": "Tribe: ... per month. Academy: ... Mentor7: ... Free month: ...",
-              "notePrompt": "Price and free-month terms, per level",
+              "notePlaceholder": "Tribe: ... per month. Academy: ... Mentor7 Clan: ... Executive: ... Free month: ... Sign-up links: ...",
+              "notePrompt": "Price and free-month terms, per tier",
               "noteRequired": true,
               "status": "done",
-              "title": "Send the price and free-month terms for each level"
+              "title": "Send the price and free-month terms for each tier"
             },
             {
               "detail": "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.",
@@ -1240,14 +1226,14 @@
               }
             },
             {
-              "detail": "Ben's levels document and Martyn's Foundations document are already with us. We still need, from Rich: what the Academy includes in more detail, and your outlines for the Growth and Legacy courses (we build their pages from them). Due 3 business days after payment 1.",
+              "detail": "Ben's product document, Martyn's Foundations document and Rich's 31 October brief are already with us. We still need, from Rich: your outlines for the Growth and Legacy courses. We build their pages from them and label them as future releases: Growth at the end of 2027, Legacy at the end of 2028. Due 3 business days after payment 1.",
               "doneLabel": "I've sent the details",
               "id": "atn-academy",
-              "notePlaceholder": "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
-              "notePrompt": "Academy course details",
+              "notePlaceholder": "What each course covers, who it's for, how it runs. A link to a document is fine.",
+              "notePrompt": "Growth and Legacy outlines",
               "noteRequired": true,
               "status": "done",
-              "title": "Send the Academy course details"
+              "title": "Send the Growth and Legacy outlines"
             },
             {
               "detail": "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list. Due 3 business days after payment 1.",
@@ -1325,7 +1311,7 @@
               }
             },
             {
-              "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+              "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. Please cover how often the one-on-ones run, what the retreats include, travel and accommodation, and how someone qualifies. We place it in the First Light look. Due 3 business days after payment 1.",
               "doneLabel": "I've sent it",
               "hasUpload": true,
               "id": "atn-exec-copy",
@@ -1352,28 +1338,16 @@
               "title": "Name your GHL contact person"
             },
             {
-              "detail": "Four short sales videos, one for each level's page on your site (not the Benevolent Executive page, and not the landing pages). Each one is 60 seconds at most, about 150 words: who it's for, what they get, and one next step. Your team writes a basic first draft of each from what you already have: Ben's levels document, and Martyn's Foundations material for Level 2. Rough is fine. We give one round of direction and changes on each, and we iterate from there. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
-              "doneLabel": "I've sent the drafts",
-              "hasUpload": true,
+              "detail": "We're drafting these from your brief while we write the page words, starting with the Academy, so the message is the same everywhere. Send one combined list of changes: that's the one round on each script. Filming and editing are yours.",
+              "doneLabel": "Send my list",
+              "hasEditableContent": true,
               "id": "atn-scripts",
-              "notePlaceholder": "Level 0, Level 1, Level 2, Level 3: one script each.",
-              "notePrompt": "Or paste your drafts here",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your one combined list of changes, or \"Approved\"",
+              "noteRequired": true,
+              "pendingContentText": "Your script drafts appear here when they're ready. We'll email you.",
               "status": "done",
-              "steps": [
-                "**Level 0 · Initiations** (free): who it's for, and what they get: the e-book and manifesto, stories and the podcast, free information sessions. The next step: start here, it's free.",
-                "**Level 1 · Tribe**: the community. Finding your people, the Collective Wisdom gatherings, the Opportunities Exchange. The next step: join, with your first month free.",
-                "**Level 2 · Academy**: everything in Tribe, plus the 9-month Foundations Course, the fortnightly Q&A and the Wisdom Library. Lead with Foundations: it's the main door. The next step: join, with your first month free.",
-                "**Level 3 · Mentor7**: everything in Academy, plus a small Clan who meet every fortnight for two hours, and special events. Who it's for, and the next step: join, with your first month free."
-              ],
-              "title": "Write first-draft scripts for your four sales videos",
-              "uploadOptions": {
-                "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
-                "choose": "Click to choose your files",
-                "chooseMore": "+ Add more files",
-                "hint": "One document per video, or one for all four.",
-                "stayOpen": true,
-                "title": "Upload your script drafts"
-              }
+              "title": "Check your sales video scripts"
             }
           ],
           "name": "What we need from you",
@@ -1406,7 +1380,7 @@
               "title": "Pay the second instalment"
             },
             {
-              "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.",
+              "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request, apart from the two extra rounds on the homepage.",
               "doneLabel": "Send round 2",
               "hasEditableContent": true,
               "id": "atn-review-site-2",
@@ -1441,7 +1415,7 @@
           "id": "go-live",
           "milestones": [
             {
-              "detail": "Landing pages A and B (the first screen changes for each audience) and C, the homepage, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+              "detail": "Landing page C, the simple version of your site and the main page the three ads go to, and landing page B, with no credit card, for the next test. Both on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
               "doneLabel": "Send round 1",
               "hasEditableContent": true,
               "id": "atn-review-landing",
@@ -1450,7 +1424,7 @@
               "noteRequired": true,
               "pendingContentText": "Your review link appears here when it's ready. We'll email you.",
               "status": "done",
-              "title": "Review landing pages A, B and C: round 1 of 2"
+              "title": "Review landing pages C and B: round 1 of 2"
             },
             {
               "detail": "The three video ads (one for each audience), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
@@ -1622,13 +1596,13 @@
               "title": "Book the kickoff call"
             },
             {
-              "detail": "After the call we write up what we decided, in plain words, below. Read it. If it's right, press the button. That summary is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
+              "detail": "What we decided, in plain words, below. Read it. If it's right, press the button. This is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
               "doneLabel": "That's right",
               "hasEditableContent": true,
               "id": "atn-kickoff-summary",
-              "pendingContentText": "Your summary appears here after the call.",
+              "pendingContentText": "Your brief appears here.",
               "status": "upcoming",
-              "title": "Check the kickoff summary"
+              "title": "Check the brief we build to"
             },
             {
               "detail": "As your launch gift, I'll make Martyn's full Foundations overview (about 3 minutes 40) into your Foundations VSL, re-edited in the First Light look. You get a widescreen version for desktop and a phone version, for the Foundations page and landing pages A and B, with one round of changes. We talked it through on 27 October. We've agreed it's built from Martyn's overview, with a limited splice of a Rich video and networking footage if you have them. Tick this if you're happy with that.",
@@ -1654,13 +1628,12 @@
               "doneLabel": "That's everything we have",
               "hasUpload": true,
               "id": "atn-open-questions",
-              "notePlaceholder": "1. ...\n2. ...\n3. ...\n4. ...\n5. (uploaded)",
+              "notePlaceholder": "1. ...\n2. ...\n3. ...\n4. (uploaded)",
               "notePrompt": "Your answers, by number",
               "noteRequired": true,
               "status": "upcoming",
               "steps": [
                 "**What is live today, and what is only planned.** Member search filters, the workbook, resource packs. Our pages should promise only what exists. (Rich)",
-                "**When Growth and Legacy open.** Dates, or a rough month. We label them as future releases. (Rich)",
                 "**The networking call rhythm.** How often, which days, and the regional time slots. (Rich)",
                 "**How Give-to-Receive and member matching work.** A short bullet breakdown. (Ben)",
                 "**Screens of the product.** The workbook, the Eight Pillars assessments and the resource templates. Upload them here. (Ben or Martyn)"
@@ -1670,7 +1643,7 @@
                 "accept": ".png,.jpg,.jpeg,.webp,.pdf,.zip",
                 "choose": "Click to choose your files",
                 "chooseMore": "+ Add more files",
-                "hint": "For question 5. A zip is fine.",
+                "hint": "For question 4. A zip is fine.",
                 "stayOpen": true,
                 "title": "Upload screens"
               }
@@ -1780,11 +1753,11 @@
               }
             },
             {
-              "detail": "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. The picture below is how we read your levels. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+              "detail": "Received: Ben's website copy on 24 October and Rich's Membership Value and Landing Page Brief on 31 October. We build the offer pages from them. The picture below is how we read your tiers now. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
               "doneLabel": "Confirmed, nothing changed",
               "hasUpload": true,
               "id": "atn-package-breakdown",
-              "imageAlt": "Your levels: Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy with the Foundations course (the main door) and Growth and Legacy to come, Level 3 Mentor7. Benevolent Executive is separate. One free month on any paid level.",
+              "imageAlt": "Your tiers: free Initiation and the e-book in front, then Tier 1 Tribe, Tier 2 Academy (the main door) with Foundations as its first course, Growth at the end of 2027 and Legacy at the end of 2028, Tier 3 Mentor7 Clan and Tier 4 Benevolent Executive. Tribe and Academy start with a free month. Mentor7 Clan and Executive are an application and a discovery call.",
               "imageUrl": "/portal/at-network/levels.svg",
               "notePrompt": "Anything changed, or a link to the latest version (optional)",
               "status": "upcoming",
@@ -1793,20 +1766,20 @@
                 "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
                 "choose": "Click to choose your files",
                 "chooseMore": "+ Add more files",
-                "hint": "Only if the copy has changed since 24 October.",
+                "hint": "Only if the copy has changed since you sent it.",
                 "stayOpen": true,
                 "title": "Newer version?"
               }
             },
             {
-              "detail": "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.",
+              "detail": "Rich: for each tier the price, the billing period and the sign-up link. Tribe and Academy start with a free month: tell us exactly how it works. We need these for the offer pages and the landing pages. Due 3 business days after payment 1.",
               "doneLabel": "I've sent them",
               "id": "atn-prices",
-              "notePlaceholder": "Tribe: ... per month. Academy: ... Mentor7: ... Free month: ...",
-              "notePrompt": "Price and free-month terms, per level",
+              "notePlaceholder": "Tribe: ... per month. Academy: ... Mentor7 Clan: ... Executive: ... Free month: ... Sign-up links: ...",
+              "notePrompt": "Price and free-month terms, per tier",
               "noteRequired": true,
               "status": "upcoming",
-              "title": "Send the price and free-month terms for each level"
+              "title": "Send the price and free-month terms for each tier"
             },
             {
               "detail": "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.",
@@ -1825,14 +1798,14 @@
               }
             },
             {
-              "detail": "Ben's levels document and Martyn's Foundations document are already with us. We still need, from Rich: what the Academy includes in more detail, and your outlines for the Growth and Legacy courses (we build their pages from them). Due 3 business days after payment 1.",
+              "detail": "Ben's product document, Martyn's Foundations document and Rich's 31 October brief are already with us. We still need, from Rich: your outlines for the Growth and Legacy courses. We build their pages from them and label them as future releases: Growth at the end of 2027, Legacy at the end of 2028. Due 3 business days after payment 1.",
               "doneLabel": "I've sent the details",
               "id": "atn-academy",
-              "notePlaceholder": "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
-              "notePrompt": "Academy course details",
+              "notePlaceholder": "What each course covers, who it's for, how it runs. A link to a document is fine.",
+              "notePrompt": "Growth and Legacy outlines",
               "noteRequired": true,
               "status": "upcoming",
-              "title": "Send the Academy course details"
+              "title": "Send the Growth and Legacy outlines"
             },
             {
               "detail": "Rich: upload the workbook, or paste a link to it. We use it as it is. Branding it is on the Phase 2 list. Due 3 business days after payment 1.",
@@ -1910,7 +1883,7 @@
               }
             },
             {
-              "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+              "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. Please cover how often the one-on-ones run, what the retreats include, travel and accommodation, and how someone qualifies. We place it in the First Light look. Due 3 business days after payment 1.",
               "doneLabel": "I've sent it",
               "hasUpload": true,
               "id": "atn-exec-copy",
@@ -1937,28 +1910,16 @@
               "title": "Name your GHL contact person"
             },
             {
-              "detail": "Four short sales videos, one for each level's page on your site (not the Benevolent Executive page, and not the landing pages). Each one is 60 seconds at most, about 150 words: who it's for, what they get, and one next step. Your team writes a basic first draft of each from what you already have: Ben's levels document, and Martyn's Foundations material for Level 2. Rough is fine. We give one round of direction and changes on each, and we iterate from there. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
-              "doneLabel": "I've sent the drafts",
-              "hasUpload": true,
+              "detail": "We're drafting these from your brief while we write the page words, starting with the Academy, so the message is the same everywhere. Send one combined list of changes: that's the one round on each script. Filming and editing are yours.",
+              "doneLabel": "Send my list",
+              "hasEditableContent": true,
               "id": "atn-scripts",
-              "notePlaceholder": "Level 0, Level 1, Level 2, Level 3: one script each.",
-              "notePrompt": "Or paste your drafts here",
+              "notePlaceholder": "Everything you'd change, in one list. Or type Approved.",
+              "notePrompt": "Your one combined list of changes, or \"Approved\"",
+              "noteRequired": true,
+              "pendingContentText": "Your script drafts appear here when they're ready. We'll email you.",
               "status": "upcoming",
-              "steps": [
-                "**Level 0 · Initiations** (free): who it's for, and what they get: the e-book and manifesto, stories and the podcast, free information sessions. The next step: start here, it's free.",
-                "**Level 1 · Tribe**: the community. Finding your people, the Collective Wisdom gatherings, the Opportunities Exchange. The next step: join, with your first month free.",
-                "**Level 2 · Academy**: everything in Tribe, plus the 9-month Foundations Course, the fortnightly Q&A and the Wisdom Library. Lead with Foundations: it's the main door. The next step: join, with your first month free.",
-                "**Level 3 · Mentor7**: everything in Academy, plus a small Clan who meet every fortnight for two hours, and special events. Who it's for, and the next step: join, with your first month free."
-              ],
-              "title": "Write first-draft scripts for your four sales videos",
-              "uploadOptions": {
-                "accept": ".pdf,.doc,.docx,.txt,.rtf,.zip",
-                "choose": "Click to choose your files",
-                "chooseMore": "+ Add more files",
-                "hint": "One document per video, or one for all four.",
-                "stayOpen": true,
-                "title": "Upload your script drafts"
-              }
+              "title": "Check your sales video scripts"
             }
           ],
           "name": "What we need from you",
@@ -1991,7 +1952,7 @@
               "title": "Pay the second instalment"
             },
             {
-              "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.",
+              "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request, apart from the two extra rounds on the homepage.",
               "doneLabel": "Send round 2",
               "hasEditableContent": true,
               "id": "atn-review-site-2",
@@ -2026,7 +1987,7 @@
           "id": "go-live",
           "milestones": [
             {
-              "detail": "Landing pages A and B (the first screen changes for each audience) and C, the homepage, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+              "detail": "Landing page C, the simple version of your site and the main page the three ads go to, and landing page B, with no credit card, for the next test. Both on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
               "doneLabel": "Send round 1",
               "hasEditableContent": true,
               "id": "atn-review-landing",
@@ -2035,7 +1996,7 @@
               "noteRequired": true,
               "pendingContentText": "Your review link appears here when it's ready. We'll email you.",
               "status": "upcoming",
-              "title": "Review landing pages A, B and C: round 1 of 2"
+              "title": "Review landing pages C and B: round 1 of 2"
             },
             {
               "detail": "The three video ads (one for each audience), the two statics and the LinkedIn banner, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
@@ -2143,123 +2104,123 @@
       ]
     },
     "renders": {
-      "all@day1": "871703ccae83ba8fb9c092905e7ff4e7121249edd208f16886d95c13f9970715",
-      "all@day12": "871703ccae83ba8fb9c092905e7ff4e7121249edd208f16886d95c13f9970715",
-      "all@day30": "871703ccae83ba8fb9c092905e7ff4e7121249edd208f16886d95c13f9970715",
-      "alternate@day1": "f8d140457ed36311741008824fc227a55fb572c0cfb3ec48f5c2dbfb95ea50e4",
-      "alternate@day12": "f8d140457ed36311741008824fc227a55fb572c0cfb3ec48f5c2dbfb95ea50e4",
-      "alternate@day30": "f8d140457ed36311741008824fc227a55fb572c0cfb3ec48f5c2dbfb95ea50e4",
-      "first-10@day1": "c9aa1f3a2fbe3fe60cb65e45868ea044ac5eefa85d284f552b34d304c5b34d5d",
-      "first-10@day12": "c9aa1f3a2fbe3fe60cb65e45868ea044ac5eefa85d284f552b34d304c5b34d5d",
-      "first-10@day30": "c9aa1f3a2fbe3fe60cb65e45868ea044ac5eefa85d284f552b34d304c5b34d5d",
-      "first-11@day1": "788024f57b3bd257b95f86ec2d5ce5aeda7b6ff7978e82ef434c8e611a6d2107",
-      "first-11@day12": "788024f57b3bd257b95f86ec2d5ce5aeda7b6ff7978e82ef434c8e611a6d2107",
-      "first-11@day30": "788024f57b3bd257b95f86ec2d5ce5aeda7b6ff7978e82ef434c8e611a6d2107",
-      "first-12@day1": "b86e9f5916b37cafe3ce160f2860ae1a18320229558a011d7221858dad1dfc26",
-      "first-12@day12": "b86e9f5916b37cafe3ce160f2860ae1a18320229558a011d7221858dad1dfc26",
-      "first-12@day30": "b86e9f5916b37cafe3ce160f2860ae1a18320229558a011d7221858dad1dfc26",
-      "first-13@day1": "866c96643f3865431dff177fbeef957e666956cfcc0d8ed4e7830188150cc804",
-      "first-13@day12": "866c96643f3865431dff177fbeef957e666956cfcc0d8ed4e7830188150cc804",
-      "first-13@day30": "866c96643f3865431dff177fbeef957e666956cfcc0d8ed4e7830188150cc804",
-      "first-14@day1": "b065b56531b919c12f5b13bba42ea2ae13599f1753eb5cd0e3227a8a8b0b41a7",
-      "first-14@day12": "b065b56531b919c12f5b13bba42ea2ae13599f1753eb5cd0e3227a8a8b0b41a7",
-      "first-14@day30": "b065b56531b919c12f5b13bba42ea2ae13599f1753eb5cd0e3227a8a8b0b41a7",
-      "first-15@day1": "dcc41f237b930cd1998a9c7e2e72d02e9a4c9cb28d696211e39ef5820aa3643a",
-      "first-15@day12": "dcc41f237b930cd1998a9c7e2e72d02e9a4c9cb28d696211e39ef5820aa3643a",
-      "first-15@day30": "dcc41f237b930cd1998a9c7e2e72d02e9a4c9cb28d696211e39ef5820aa3643a",
-      "first-16@day1": "4d3894aa2645eb0e310a03a3de5ed1d6e645a94952fe3b63c75fb534d7250e38",
-      "first-16@day12": "4d3894aa2645eb0e310a03a3de5ed1d6e645a94952fe3b63c75fb534d7250e38",
-      "first-16@day30": "4d3894aa2645eb0e310a03a3de5ed1d6e645a94952fe3b63c75fb534d7250e38",
-      "first-17@day1": "5dfd230cd50bf7f8d38f967c49a82742963346ca182cd4abce36a434ce92265e",
-      "first-17@day12": "5dfd230cd50bf7f8d38f967c49a82742963346ca182cd4abce36a434ce92265e",
-      "first-17@day30": "5dfd230cd50bf7f8d38f967c49a82742963346ca182cd4abce36a434ce92265e",
-      "first-18@day1": "06e0a22a2e314b872872dc3e3b1d08f0d6248d404301fd749d22726519ca061f",
-      "first-18@day12": "06e0a22a2e314b872872dc3e3b1d08f0d6248d404301fd749d22726519ca061f",
-      "first-18@day30": "06e0a22a2e314b872872dc3e3b1d08f0d6248d404301fd749d22726519ca061f",
-      "first-19@day1": "94d763a965d49007d0403aedc4326cb0c9885a6d5bb721c4efe3ac6852771757",
-      "first-19@day12": "94d763a965d49007d0403aedc4326cb0c9885a6d5bb721c4efe3ac6852771757",
-      "first-19@day30": "94d763a965d49007d0403aedc4326cb0c9885a6d5bb721c4efe3ac6852771757",
-      "first-1@day1": "b77e522922449ca4a324ebdbbf2def2f83d4f95f54eb1d47423c73d470d80c46",
-      "first-1@day12": "b77e522922449ca4a324ebdbbf2def2f83d4f95f54eb1d47423c73d470d80c46",
-      "first-1@day30": "b77e522922449ca4a324ebdbbf2def2f83d4f95f54eb1d47423c73d470d80c46",
-      "first-20@day1": "50174d3ffd6bbd53d46db56ecd09f9c8c486d719424180995ec8645bd9210f8f",
-      "first-20@day12": "50174d3ffd6bbd53d46db56ecd09f9c8c486d719424180995ec8645bd9210f8f",
-      "first-20@day30": "50174d3ffd6bbd53d46db56ecd09f9c8c486d719424180995ec8645bd9210f8f",
-      "first-21@day1": "6ee5ec627cf9781adf6fe5eacb65ea09e22a51d30da3633f99e63615b0a2fa9f",
-      "first-21@day12": "6ee5ec627cf9781adf6fe5eacb65ea09e22a51d30da3633f99e63615b0a2fa9f",
-      "first-21@day30": "6ee5ec627cf9781adf6fe5eacb65ea09e22a51d30da3633f99e63615b0a2fa9f",
-      "first-22@day1": "154c80b182385fe6541769bac8a2d711e08be9624369cd68b3a5558985afc735",
-      "first-22@day12": "154c80b182385fe6541769bac8a2d711e08be9624369cd68b3a5558985afc735",
-      "first-22@day30": "154c80b182385fe6541769bac8a2d711e08be9624369cd68b3a5558985afc735",
-      "first-23@day1": "a5f342ec2665834a1fc2ec70835ef2d8c90e0a0dab5bef210b49db814388f1e7",
-      "first-23@day12": "a5f342ec2665834a1fc2ec70835ef2d8c90e0a0dab5bef210b49db814388f1e7",
-      "first-23@day30": "a5f342ec2665834a1fc2ec70835ef2d8c90e0a0dab5bef210b49db814388f1e7",
-      "first-24@day1": "3f515aa4af5061587603689fb20acafd7c86363c06bc66b1e1760c047637fc74",
-      "first-24@day12": "3f515aa4af5061587603689fb20acafd7c86363c06bc66b1e1760c047637fc74",
-      "first-24@day30": "3f515aa4af5061587603689fb20acafd7c86363c06bc66b1e1760c047637fc74",
-      "first-25@day1": "0b46f34dfd7f642afe8012c2aec95371af8c9f9525deca5f776f4521d76a6e3c",
-      "first-25@day12": "0b46f34dfd7f642afe8012c2aec95371af8c9f9525deca5f776f4521d76a6e3c",
-      "first-25@day30": "0b46f34dfd7f642afe8012c2aec95371af8c9f9525deca5f776f4521d76a6e3c",
-      "first-26@day1": "f21bf2f924d2bb7ca00363c12f3d06b467f49563536ff542511d16f871bdb79c",
-      "first-26@day12": "f21bf2f924d2bb7ca00363c12f3d06b467f49563536ff542511d16f871bdb79c",
-      "first-26@day30": "f21bf2f924d2bb7ca00363c12f3d06b467f49563536ff542511d16f871bdb79c",
-      "first-27@day1": "cd54361bae4022dec04f8510ddff5861e569c032c48291d0790570269574fb5a",
-      "first-27@day12": "cd54361bae4022dec04f8510ddff5861e569c032c48291d0790570269574fb5a",
-      "first-27@day30": "cd54361bae4022dec04f8510ddff5861e569c032c48291d0790570269574fb5a",
-      "first-28@day1": "79cbc985a07b122950540f8cddb4d08d2d0b85792b53af705826733ecfb8b445",
-      "first-28@day12": "79cbc985a07b122950540f8cddb4d08d2d0b85792b53af705826733ecfb8b445",
-      "first-28@day30": "79cbc985a07b122950540f8cddb4d08d2d0b85792b53af705826733ecfb8b445",
-      "first-29@day1": "28a3e001d2a57eda63eab91cafb2099b7f7b7184bc55cae1b1833c9e7d86d7a0",
-      "first-29@day12": "28a3e001d2a57eda63eab91cafb2099b7f7b7184bc55cae1b1833c9e7d86d7a0",
-      "first-29@day30": "28a3e001d2a57eda63eab91cafb2099b7f7b7184bc55cae1b1833c9e7d86d7a0",
-      "first-2@day1": "ffd539e9bd169e3dc8415187988ad54ccdd817f742281c0d4a17d63601fcd528",
-      "first-2@day12": "ffd539e9bd169e3dc8415187988ad54ccdd817f742281c0d4a17d63601fcd528",
-      "first-2@day30": "ffd539e9bd169e3dc8415187988ad54ccdd817f742281c0d4a17d63601fcd528",
-      "first-30@day1": "fa7ce2728e7a8657876eb311604241764d6e7d4e5224265806252f0c4877b323",
-      "first-30@day12": "fa7ce2728e7a8657876eb311604241764d6e7d4e5224265806252f0c4877b323",
-      "first-30@day30": "fa7ce2728e7a8657876eb311604241764d6e7d4e5224265806252f0c4877b323",
-      "first-31@day1": "537f8568d4e632f72cc182dde6770b770839030fc7b6ed5fc03c0881dfb089d9",
-      "first-31@day12": "537f8568d4e632f72cc182dde6770b770839030fc7b6ed5fc03c0881dfb089d9",
-      "first-31@day30": "537f8568d4e632f72cc182dde6770b770839030fc7b6ed5fc03c0881dfb089d9",
-      "first-32@day1": "eb960d425d11550c4b74eff4a4a381577b54200b5b6d58007ce2bf7035ede196",
-      "first-32@day12": "eb960d425d11550c4b74eff4a4a381577b54200b5b6d58007ce2bf7035ede196",
-      "first-32@day30": "eb960d425d11550c4b74eff4a4a381577b54200b5b6d58007ce2bf7035ede196",
-      "first-33@day1": "332a0b4faa9659f929fec1c25ef0268f1024a8378007b161fcb7109917f747df",
-      "first-33@day12": "332a0b4faa9659f929fec1c25ef0268f1024a8378007b161fcb7109917f747df",
-      "first-33@day30": "332a0b4faa9659f929fec1c25ef0268f1024a8378007b161fcb7109917f747df",
-      "first-34@day1": "79a29fa28977a4a44466707c058463ceac9dc839d21af7af58f54cfe40edf9e4",
-      "first-34@day12": "79a29fa28977a4a44466707c058463ceac9dc839d21af7af58f54cfe40edf9e4",
-      "first-34@day30": "79a29fa28977a4a44466707c058463ceac9dc839d21af7af58f54cfe40edf9e4",
-      "first-35@day1": "871703ccae83ba8fb9c092905e7ff4e7121249edd208f16886d95c13f9970715",
-      "first-35@day12": "871703ccae83ba8fb9c092905e7ff4e7121249edd208f16886d95c13f9970715",
-      "first-35@day30": "871703ccae83ba8fb9c092905e7ff4e7121249edd208f16886d95c13f9970715",
-      "first-3@day1": "f13cb1682d46f6643f86461e9471163479cf02fe32523cb920fc580bef5f69ad",
-      "first-3@day12": "f13cb1682d46f6643f86461e9471163479cf02fe32523cb920fc580bef5f69ad",
-      "first-3@day30": "f13cb1682d46f6643f86461e9471163479cf02fe32523cb920fc580bef5f69ad",
-      "first-4@day1": "fec383f6f413315e287c18f2c89d54b6cb6272f15cbc2cdbc4282dfa03b3ea80",
-      "first-4@day12": "fec383f6f413315e287c18f2c89d54b6cb6272f15cbc2cdbc4282dfa03b3ea80",
-      "first-4@day30": "fec383f6f413315e287c18f2c89d54b6cb6272f15cbc2cdbc4282dfa03b3ea80",
-      "first-5@day1": "adacab4f245595b64e8ee6876dc8b2b29b3b3be7dea193f64832373f6f75f514",
-      "first-5@day12": "adacab4f245595b64e8ee6876dc8b2b29b3b3be7dea193f64832373f6f75f514",
-      "first-5@day30": "adacab4f245595b64e8ee6876dc8b2b29b3b3be7dea193f64832373f6f75f514",
-      "first-6@day1": "90338c2248e2cb6f0c52746af47792b727dcfc6b93565b00cd4e283cfc6e54b8",
-      "first-6@day12": "90338c2248e2cb6f0c52746af47792b727dcfc6b93565b00cd4e283cfc6e54b8",
-      "first-6@day30": "90338c2248e2cb6f0c52746af47792b727dcfc6b93565b00cd4e283cfc6e54b8",
-      "first-7@day1": "c87d750719742331d546881c14878a77cc9a260d68081512d00e97770be75b8e",
-      "first-7@day12": "c87d750719742331d546881c14878a77cc9a260d68081512d00e97770be75b8e",
-      "first-7@day30": "c87d750719742331d546881c14878a77cc9a260d68081512d00e97770be75b8e",
-      "first-8@day1": "5da71e74b6c6bc3760395f49a80c598d86ea3ee351eaced3bb984bc419be3165",
-      "first-8@day12": "5da71e74b6c6bc3760395f49a80c598d86ea3ee351eaced3bb984bc419be3165",
-      "first-8@day30": "5da71e74b6c6bc3760395f49a80c598d86ea3ee351eaced3bb984bc419be3165",
-      "first-9@day1": "858146b234e35169ffa39d5a390daaa69579531daf0f5dea126b6b73a87faed9",
-      "first-9@day12": "858146b234e35169ffa39d5a390daaa69579531daf0f5dea126b6b73a87faed9",
-      "first-9@day30": "858146b234e35169ffa39d5a390daaa69579531daf0f5dea126b6b73a87faed9",
-      "last@day1": "cb511c46e4a802e50888d0735716e24145b1160415aed2bec473bfa2dfa6c768",
-      "last@day12": "cb511c46e4a802e50888d0735716e24145b1160415aed2bec473bfa2dfa6c768",
-      "last@day30": "cb511c46e4a802e50888d0735716e24145b1160415aed2bec473bfa2dfa6c768",
-      "none@day1": "0e7a5618d2ca46edf220048ce53b17db205334ef2f57dc5be26140b20e5ccfc5",
-      "none@day12": "0e7a5618d2ca46edf220048ce53b17db205334ef2f57dc5be26140b20e5ccfc5",
-      "none@day30": "0e7a5618d2ca46edf220048ce53b17db205334ef2f57dc5be26140b20e5ccfc5"
+      "all@day1": "1a9eea5b03a8dd204870204bf1971f0c83c7129b862e50ae6f5b6175593038a7",
+      "all@day12": "1a9eea5b03a8dd204870204bf1971f0c83c7129b862e50ae6f5b6175593038a7",
+      "all@day30": "1a9eea5b03a8dd204870204bf1971f0c83c7129b862e50ae6f5b6175593038a7",
+      "alternate@day1": "d1abb264bf27cade5df4adad103fc62125fd378a8f726f9989d20fd58822065f",
+      "alternate@day12": "d1abb264bf27cade5df4adad103fc62125fd378a8f726f9989d20fd58822065f",
+      "alternate@day30": "d1abb264bf27cade5df4adad103fc62125fd378a8f726f9989d20fd58822065f",
+      "first-10@day1": "b90284f4bd9514c06590d1093cd45170443d7f53f344ba760951eb1b3bbd4954",
+      "first-10@day12": "b90284f4bd9514c06590d1093cd45170443d7f53f344ba760951eb1b3bbd4954",
+      "first-10@day30": "b90284f4bd9514c06590d1093cd45170443d7f53f344ba760951eb1b3bbd4954",
+      "first-11@day1": "0a1bcc8474deed84042fc774cd7cf03e217cfa83ef3957d10f900a40217ab16d",
+      "first-11@day12": "0a1bcc8474deed84042fc774cd7cf03e217cfa83ef3957d10f900a40217ab16d",
+      "first-11@day30": "0a1bcc8474deed84042fc774cd7cf03e217cfa83ef3957d10f900a40217ab16d",
+      "first-12@day1": "5d0f28c1901ea3150f6a2f10ddbbbb6592e7a9cacbbf45600a483931b957cfc4",
+      "first-12@day12": "5d0f28c1901ea3150f6a2f10ddbbbb6592e7a9cacbbf45600a483931b957cfc4",
+      "first-12@day30": "5d0f28c1901ea3150f6a2f10ddbbbb6592e7a9cacbbf45600a483931b957cfc4",
+      "first-13@day1": "3889efc4f92a72786a611178b4cc5dd99b58321a1ccec1df68aa6816a7d8016d",
+      "first-13@day12": "3889efc4f92a72786a611178b4cc5dd99b58321a1ccec1df68aa6816a7d8016d",
+      "first-13@day30": "3889efc4f92a72786a611178b4cc5dd99b58321a1ccec1df68aa6816a7d8016d",
+      "first-14@day1": "ccbbfec6ae09dd90d1556ac1e8a56ddd2f850ad2bb1af919da2d08889ed14fe7",
+      "first-14@day12": "ccbbfec6ae09dd90d1556ac1e8a56ddd2f850ad2bb1af919da2d08889ed14fe7",
+      "first-14@day30": "ccbbfec6ae09dd90d1556ac1e8a56ddd2f850ad2bb1af919da2d08889ed14fe7",
+      "first-15@day1": "4f61d0ff4325a6934d8971b86b5b062f8d1cc11803b901ea245995cd9c669095",
+      "first-15@day12": "4f61d0ff4325a6934d8971b86b5b062f8d1cc11803b901ea245995cd9c669095",
+      "first-15@day30": "4f61d0ff4325a6934d8971b86b5b062f8d1cc11803b901ea245995cd9c669095",
+      "first-16@day1": "2a026fae37fdc827f8a7ad1d4a6f68cbef68a3526cc492c06bdeeb33f7470005",
+      "first-16@day12": "2a026fae37fdc827f8a7ad1d4a6f68cbef68a3526cc492c06bdeeb33f7470005",
+      "first-16@day30": "2a026fae37fdc827f8a7ad1d4a6f68cbef68a3526cc492c06bdeeb33f7470005",
+      "first-17@day1": "6435256d35a5505097942ab70100719f039b1f95b01fff158a8fbf75d04537bb",
+      "first-17@day12": "6435256d35a5505097942ab70100719f039b1f95b01fff158a8fbf75d04537bb",
+      "first-17@day30": "6435256d35a5505097942ab70100719f039b1f95b01fff158a8fbf75d04537bb",
+      "first-18@day1": "f461f229892dacbf52a88a127b9fb562ac0bbb9a0ad16f193b44fcc1c71b1320",
+      "first-18@day12": "f461f229892dacbf52a88a127b9fb562ac0bbb9a0ad16f193b44fcc1c71b1320",
+      "first-18@day30": "f461f229892dacbf52a88a127b9fb562ac0bbb9a0ad16f193b44fcc1c71b1320",
+      "first-19@day1": "a1c59e299694cccf54519a6f952347e8d9df91e271e043410e044d273e63f2d6",
+      "first-19@day12": "a1c59e299694cccf54519a6f952347e8d9df91e271e043410e044d273e63f2d6",
+      "first-19@day30": "a1c59e299694cccf54519a6f952347e8d9df91e271e043410e044d273e63f2d6",
+      "first-1@day1": "a4f32d3996bf5560b53ab61fb50b9e16261e31c0fe54e53492a3c43be9fa4343",
+      "first-1@day12": "a4f32d3996bf5560b53ab61fb50b9e16261e31c0fe54e53492a3c43be9fa4343",
+      "first-1@day30": "a4f32d3996bf5560b53ab61fb50b9e16261e31c0fe54e53492a3c43be9fa4343",
+      "first-20@day1": "ecb03835102757fee08a0164d87d531647983a3b545bc3d9dd100cf846268c7d",
+      "first-20@day12": "ecb03835102757fee08a0164d87d531647983a3b545bc3d9dd100cf846268c7d",
+      "first-20@day30": "ecb03835102757fee08a0164d87d531647983a3b545bc3d9dd100cf846268c7d",
+      "first-21@day1": "1cfd9d8b961e5e841b57093e6a53c451e3ae1b658cc896bd5ee25a19f171a293",
+      "first-21@day12": "1cfd9d8b961e5e841b57093e6a53c451e3ae1b658cc896bd5ee25a19f171a293",
+      "first-21@day30": "1cfd9d8b961e5e841b57093e6a53c451e3ae1b658cc896bd5ee25a19f171a293",
+      "first-22@day1": "cead7f6755eb675b4e7366860fb52d8473253fa561d4b974007e3b9abe45c34c",
+      "first-22@day12": "cead7f6755eb675b4e7366860fb52d8473253fa561d4b974007e3b9abe45c34c",
+      "first-22@day30": "cead7f6755eb675b4e7366860fb52d8473253fa561d4b974007e3b9abe45c34c",
+      "first-23@day1": "480efff5f7e05de043820eab29389503c5d74741bed5aba795a0aa54eb967e88",
+      "first-23@day12": "480efff5f7e05de043820eab29389503c5d74741bed5aba795a0aa54eb967e88",
+      "first-23@day30": "480efff5f7e05de043820eab29389503c5d74741bed5aba795a0aa54eb967e88",
+      "first-24@day1": "b767a3b9cdfc2ba36f8f161900db54007abd3f0404640ba4c7633b4ee2265a8d",
+      "first-24@day12": "b767a3b9cdfc2ba36f8f161900db54007abd3f0404640ba4c7633b4ee2265a8d",
+      "first-24@day30": "b767a3b9cdfc2ba36f8f161900db54007abd3f0404640ba4c7633b4ee2265a8d",
+      "first-25@day1": "ddf29cc34829453ac9cf99c43347f02166267ddd110ba5ce4cb19c5fede37f6a",
+      "first-25@day12": "ddf29cc34829453ac9cf99c43347f02166267ddd110ba5ce4cb19c5fede37f6a",
+      "first-25@day30": "ddf29cc34829453ac9cf99c43347f02166267ddd110ba5ce4cb19c5fede37f6a",
+      "first-26@day1": "83e0dc091782fa40d3b1724e6d1f067575e5139e087d9271d4e8f40f11512cd4",
+      "first-26@day12": "83e0dc091782fa40d3b1724e6d1f067575e5139e087d9271d4e8f40f11512cd4",
+      "first-26@day30": "83e0dc091782fa40d3b1724e6d1f067575e5139e087d9271d4e8f40f11512cd4",
+      "first-27@day1": "c7914d0dd1c5b3a51616fa4951bc726f50f61a14932694aff792e54d28d30259",
+      "first-27@day12": "c7914d0dd1c5b3a51616fa4951bc726f50f61a14932694aff792e54d28d30259",
+      "first-27@day30": "c7914d0dd1c5b3a51616fa4951bc726f50f61a14932694aff792e54d28d30259",
+      "first-28@day1": "3f28e13e3cf0c56a3987055b35fb4efac0cb94ea9214efd570532e7b2a24e76c",
+      "first-28@day12": "3f28e13e3cf0c56a3987055b35fb4efac0cb94ea9214efd570532e7b2a24e76c",
+      "first-28@day30": "3f28e13e3cf0c56a3987055b35fb4efac0cb94ea9214efd570532e7b2a24e76c",
+      "first-29@day1": "1e9b56a981e04e0268128123eb0054173d25d49e7baafed9d7417f7f3ae1197b",
+      "first-29@day12": "1e9b56a981e04e0268128123eb0054173d25d49e7baafed9d7417f7f3ae1197b",
+      "first-29@day30": "1e9b56a981e04e0268128123eb0054173d25d49e7baafed9d7417f7f3ae1197b",
+      "first-2@day1": "4add77e451563cc1f4b9879cf07991d444d0ee963df6f5fa3b408f4407dad48c",
+      "first-2@day12": "4add77e451563cc1f4b9879cf07991d444d0ee963df6f5fa3b408f4407dad48c",
+      "first-2@day30": "4add77e451563cc1f4b9879cf07991d444d0ee963df6f5fa3b408f4407dad48c",
+      "first-30@day1": "b98b2fd831156a193254b297dd2bfbfc36930f2b5cd6ec561414bf88cbb363e1",
+      "first-30@day12": "b98b2fd831156a193254b297dd2bfbfc36930f2b5cd6ec561414bf88cbb363e1",
+      "first-30@day30": "b98b2fd831156a193254b297dd2bfbfc36930f2b5cd6ec561414bf88cbb363e1",
+      "first-31@day1": "f179b669cc91da778ef71d4313cca5590efa3fe059322b21c0e471025703b505",
+      "first-31@day12": "f179b669cc91da778ef71d4313cca5590efa3fe059322b21c0e471025703b505",
+      "first-31@day30": "f179b669cc91da778ef71d4313cca5590efa3fe059322b21c0e471025703b505",
+      "first-32@day1": "3048e17363cdbe85a10edba8d5f76e9ed646c852c5f04558b9555f1a99f72a79",
+      "first-32@day12": "3048e17363cdbe85a10edba8d5f76e9ed646c852c5f04558b9555f1a99f72a79",
+      "first-32@day30": "3048e17363cdbe85a10edba8d5f76e9ed646c852c5f04558b9555f1a99f72a79",
+      "first-33@day1": "c56946f3179dd29db195b90bb942e89c31ab7d7f6b8395960a7c2b8f514123fb",
+      "first-33@day12": "c56946f3179dd29db195b90bb942e89c31ab7d7f6b8395960a7c2b8f514123fb",
+      "first-33@day30": "c56946f3179dd29db195b90bb942e89c31ab7d7f6b8395960a7c2b8f514123fb",
+      "first-34@day1": "751cf0c7a8a00965f5142ed1e79e7381c510d56dc473e92c4265b41b022e51a4",
+      "first-34@day12": "751cf0c7a8a00965f5142ed1e79e7381c510d56dc473e92c4265b41b022e51a4",
+      "first-34@day30": "751cf0c7a8a00965f5142ed1e79e7381c510d56dc473e92c4265b41b022e51a4",
+      "first-35@day1": "1a9eea5b03a8dd204870204bf1971f0c83c7129b862e50ae6f5b6175593038a7",
+      "first-35@day12": "1a9eea5b03a8dd204870204bf1971f0c83c7129b862e50ae6f5b6175593038a7",
+      "first-35@day30": "1a9eea5b03a8dd204870204bf1971f0c83c7129b862e50ae6f5b6175593038a7",
+      "first-3@day1": "778bdb3253e457ae93a7e08f34513f30a3e831c9feeb15b89fd121f006bc6389",
+      "first-3@day12": "778bdb3253e457ae93a7e08f34513f30a3e831c9feeb15b89fd121f006bc6389",
+      "first-3@day30": "778bdb3253e457ae93a7e08f34513f30a3e831c9feeb15b89fd121f006bc6389",
+      "first-4@day1": "c431f5d75515f309d601a9a834f8063e7cf2f7ad2b4f729dfda8f679ecd0bd95",
+      "first-4@day12": "c431f5d75515f309d601a9a834f8063e7cf2f7ad2b4f729dfda8f679ecd0bd95",
+      "first-4@day30": "c431f5d75515f309d601a9a834f8063e7cf2f7ad2b4f729dfda8f679ecd0bd95",
+      "first-5@day1": "6867cc6725b572f8e996325e9eeeb76f02ca60980f5dd78542e9920422a7e257",
+      "first-5@day12": "6867cc6725b572f8e996325e9eeeb76f02ca60980f5dd78542e9920422a7e257",
+      "first-5@day30": "6867cc6725b572f8e996325e9eeeb76f02ca60980f5dd78542e9920422a7e257",
+      "first-6@day1": "342e0c965ac2664d164d37e10ef00b63b059bdb1276fa52d0b0353168ae25946",
+      "first-6@day12": "342e0c965ac2664d164d37e10ef00b63b059bdb1276fa52d0b0353168ae25946",
+      "first-6@day30": "342e0c965ac2664d164d37e10ef00b63b059bdb1276fa52d0b0353168ae25946",
+      "first-7@day1": "25eaf289e8d4b69df1b2f53e7245e4da092df0103f91bfe99466b0fd40fb8b31",
+      "first-7@day12": "25eaf289e8d4b69df1b2f53e7245e4da092df0103f91bfe99466b0fd40fb8b31",
+      "first-7@day30": "25eaf289e8d4b69df1b2f53e7245e4da092df0103f91bfe99466b0fd40fb8b31",
+      "first-8@day1": "6a63c330770b4d154e682dbdf75b8e97ba38cfaf07d29206fe118ff9f98851eb",
+      "first-8@day12": "6a63c330770b4d154e682dbdf75b8e97ba38cfaf07d29206fe118ff9f98851eb",
+      "first-8@day30": "6a63c330770b4d154e682dbdf75b8e97ba38cfaf07d29206fe118ff9f98851eb",
+      "first-9@day1": "eeac7158feb9aea6feba2c4045c885fe52b6811ac4de3cb704442cda08518eaa",
+      "first-9@day12": "eeac7158feb9aea6feba2c4045c885fe52b6811ac4de3cb704442cda08518eaa",
+      "first-9@day30": "eeac7158feb9aea6feba2c4045c885fe52b6811ac4de3cb704442cda08518eaa",
+      "last@day1": "990e232f524c169fd947555e19b80ab9de58f123f28b0aca18d7ac789741da41",
+      "last@day12": "990e232f524c169fd947555e19b80ab9de58f123f28b0aca18d7ac789741da41",
+      "last@day30": "990e232f524c169fd947555e19b80ab9de58f123f28b0aca18d7ac789741da41",
+      "none@day1": "61e46f6d484d3bffafb968d1a8d33c06f7679cdba62dc959f2b99bf303d351e5",
+      "none@day12": "61e46f6d484d3bffafb968d1a8d33c06f7679cdba62dc959f2b99bf303d351e5",
+      "none@day30": "61e46f6d484d3bffafb968d1a8d33c06f7679cdba62dc959f2b99bf303d351e5"
     },
     "stageCompletedBy": {
       "half": {
@@ -2346,7 +2307,7 @@
     },
     "steps": {
       "atn-academy": {
-        "detail": "Ben's levels document and Martyn's Foundations document are already with us. We still need, from Rich: what the Academy includes in more detail, and your outlines for the Growth and Legacy courses (we build their pages from them). Due 3 business days after payment 1.",
+        "detail": "Ben's product document, Martyn's Foundations document and Rich's 31 October brief are already with us. We still need, from Rich: your outlines for the Growth and Legacy courses. We build their pages from them and label them as future releases: Growth at the end of 2027, Legacy at the end of 2028. Due 3 business days after payment 1.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -2396,7 +2357,7 @@
         "showsVideo": false
       },
       "atn-exec-copy": {
-        "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+        "detail": "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. Please cover how often the one-on-ones run, what the retreats include, travel and accommodation, and how someone qualifies. We place it in the First Light look. Due 3 business days after payment 1.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -2426,7 +2387,7 @@
         "showsVideo": false
       },
       "atn-kickoff-summary": {
-        "detail": "After the call we write up what we decided, in plain words, below. Read it. If it's right, press the button. That summary is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
+        "detail": "What we decided, in plain words, below. Read it. If it's right, press the button. This is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -2446,7 +2407,7 @@
         "showsVideo": false
       },
       "atn-package-breakdown": {
-        "detail": "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. The picture below is how we read your levels. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+        "detail": "Received: Ben's website copy on 24 October and Rich's Membership Value and Landing Page Brief on 31 October. We build the offer pages from them. The picture below is how we read your tiers now. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -2496,7 +2457,7 @@
         "showsVideo": false
       },
       "atn-prices": {
-        "detail": "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B. Due 3 business days after payment 1.",
+        "detail": "Rich: for each tier the price, the billing period and the sign-up link. Tribe and Academy start with a free month: tell us exactly how it works. We need these for the offer pages and the landing pages. Due 3 business days after payment 1.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -2546,7 +2507,7 @@
         "showsVideo": false
       },
       "atn-review-landing": {
-        "detail": "Landing pages A and B (the first screen changes for each audience) and C, the homepage, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
+        "detail": "Landing page C, the simple version of your site and the main page the three ads go to, and landing page B, with no credit card, for the next test. Both on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -2566,7 +2527,7 @@
         "showsVideo": false
       },
       "atn-review-site-2": {
-        "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request.",
+        "detail": "Your round 1 changes are in. This is the last round on the site. Send one list with everything you, Martyn and Ben would change. That counts as one round. Anything after this round is a change request, apart from the two extra rounds on the homepage.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -2606,7 +2567,7 @@
         "showsVideo": false
       },
       "atn-scripts": {
-        "detail": "Four short sales videos, one for each level's page on your site (not the Benevolent Executive page, and not the landing pages). Each one is 60 seconds at most, about 150 words: who it's for, what they get, and one next step. Your team writes a basic first draft of each from what you already have: Ben's levels document, and Martyn's Foundations material for Level 2. Rough is fine. We give one round of direction and changes on each, and we iterate from there. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
+        "detail": "We're drafting these from your brief while we write the page words, starting with the Academy, so the message is the same everywhere. Send one combined list of changes: that's the one round on each script. Filming and editing are yours.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,

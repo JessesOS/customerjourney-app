@@ -145,14 +145,15 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "onboarding",
     step: {
-      // After the call: Jesse pastes the "locked on" summary here (editable
-      // content) and they confirm it's right. A confirmation, not an approval
-      // (Jesse, 2026-10-28: approvals only on work submitted for approval).
+      // Jesse pastes the "locked on" summary here (editable content) and they
+      // confirm it's right. A confirmation, not an approval (Jesse, 2026-10-28:
+      // approvals only on work submitted for approval). From 3 Nov this holds the
+      // brief closed on WhatsApp (there was no separate kickoff call).
       id: "atn-kickoff-summary",
-      title: "Check the kickoff summary",
-      detail: "After the call we write up what we decided, in plain words, below. Read it. If it's right, press the button. That summary is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
+      title: "Check the brief we build to",
+      detail: "What we decided, in plain words, below. Read it. If it's right, press the button. This is the brief we build to. If something's wrong, tell us in Messages and we'll fix it.",
       hasEditableContent: true,
-      pendingContentText: "Your summary appears here after the call.",
+      pendingContentText: "Your brief appears here.",
       doneLabel: "That's right",
     },
   },
@@ -177,22 +178,21 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       // One place for the open questions from Rich's 31 Oct brief (handover from
       // the AT session, 2 Nov 2026; Jesse OK to build). Prices and free-month
-      // terms already have atn-prices. Executive terms and the testimonials are
-      // left out until Jesse confirms them (testimonials are in atn-resources).
+      // terms have atn-prices; Executive terms sit in atn-exec-copy. Growth and
+      // Legacy dates came out on 3 Nov: Rich answered on WhatsApp, 2 Nov 1 pm.
       id: "atn-open-questions",
       title: "Answer our open questions",
       detail: "These are the gaps left after Rich's brief. Answer what you can in the box, by number, and say who is answering. Short is fine: we turn it into page copy. Anything you can't answer yet, say so and we'll mark it as coming. Prices and free-month terms are in their own step below.",
       steps: [
         "**What is live today, and what is only planned.** Member search filters, the workbook, resource packs. Our pages should promise only what exists. (Rich)",
-        "**When Growth and Legacy open.** Dates, or a rough month. We label them as future releases. (Rich)",
         "**The networking call rhythm.** How often, which days, and the regional time slots. (Rich)",
         "**How Give-to-Receive and member matching work.** A short bullet breakdown. (Ben)",
         "**Screens of the product.** The workbook, the Eight Pillars assessments and the resource templates. Upload them here. (Ben or Martyn)",
       ],
       hasUpload: true,
-      uploadOptions: { accept: ".png,.jpg,.jpeg,.webp,.pdf,.zip", title: "Upload screens", hint: "For question 5. A zip is fine.", ...FILES },
+      uploadOptions: { accept: ".png,.jpg,.jpeg,.webp,.pdf,.zip", title: "Upload screens", hint: "For question 4. A zip is fine.", ...FILES },
       notePrompt: "Your answers, by number",
-      notePlaceholder: "1. ...\n2. ...\n3. ...\n4. ...\n5. (uploaded)",
+      notePlaceholder: "1. ...\n2. ...\n3. ...\n4. (uploaded)",
       noteRequired: true,
       doneLabel: "That's everything we have",
     },
@@ -261,14 +261,14 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "build",
     step: {
-      // Received (agreement A4): Ben's copy for the four levels, 24 October.
+      // Received (agreement A4): Ben's copy, 24 October; tiers from Rich's brief, 31 October.
       id: "atn-package-breakdown",
       title: "Confirm your product package breakdown",
-      detail: "Received from Ben on 24 October: the website copy for Levels 0 to 3. We build the offer pages from it. The picture below is how we read your levels. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
+      detail: "Received: Ben's website copy on 24 October and Rich's Membership Value and Landing Page Brief on 31 October. We build the offer pages from them. The picture below is how we read your tiers now. If anything in it is wrong, tell us here. Nothing to send unless something has changed. If it has, paste the link or upload the new version below.",
       imageUrl: "/portal/at-network/levels.svg",
-      imageAlt: "Your levels: Level 0 Initiations (free), Level 1 Tribe, Level 2 Academy with the Foundations course (the main door) and Growth and Legacy to come, Level 3 Mentor7. Benevolent Executive is separate. One free month on any paid level.",
+      imageAlt: "Your tiers: free Initiation and the e-book in front, then Tier 1 Tribe, Tier 2 Academy (the main door) with Foundations as its first course, Growth at the end of 2027 and Legacy at the end of 2028, Tier 3 Mentor7 Clan and Tier 4 Benevolent Executive. Tribe and Academy start with a free month. Mentor7 Clan and Executive are an application and a discovery call.",
       hasUpload: true,
-      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.zip", title: "Newer version?", hint: "Only if the copy has changed since 24 October.", ...FILES },
+      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.zip", title: "Newer version?", hint: "Only if the copy has changed since you sent it.", ...FILES },
       notePrompt: "Anything changed, or a link to the latest version (optional)",
       doneLabel: "Confirmed, nothing changed",
     },
@@ -278,10 +278,10 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       // Agreement A4: prices and free-month terms, Rich, 3 business days after payment 1.
       id: "atn-prices",
-      title: "Send the price and free-month terms for each level",
-      detail: "Rich: for each level (Tribe, Academy, Mentor7) the price, the billing period, and what the free month is and who gets it. We need these for the offer pages and for landing pages A and B." + " Due 3 business days after payment 1.",
-      notePrompt: "Price and free-month terms, per level",
-      notePlaceholder: "Tribe: ... per month. Academy: ... Mentor7: ... Free month: ...",
+      title: "Send the price and free-month terms for each tier",
+      detail: "Rich: for each tier the price, the billing period and the sign-up link. Tribe and Academy start with a free month: tell us exactly how it works. We need these for the offer pages and the landing pages." + " Due 3 business days after payment 1.",
+      notePrompt: "Price and free-month terms, per tier",
+      notePlaceholder: "Tribe: ... per month. Academy: ... Mentor7 Clan: ... Executive: ... Free month: ... Sign-up links: ...",
       noteRequired: true,
       doneLabel: "I've sent them",
     },
@@ -301,10 +301,10 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "build",
     step: {
       id: "atn-academy",
-      title: "Send the Academy course details",
-      detail: "Ben's levels document and Martyn's Foundations document are already with us. We still need, from Rich: what the Academy includes in more detail, and your outlines for the Growth and Legacy courses (we build their pages from them). Due 3 business days after payment 1.",
-      notePrompt: "Academy course details",
-      notePlaceholder: "Name, what it covers, who it's for, how it runs. A link to a document is fine.",
+      title: "Send the Growth and Legacy outlines",
+      detail: "Ben's product document, Martyn's Foundations document and Rich's 31 October brief are already with us. We still need, from Rich: your outlines for the Growth and Legacy courses. We build their pages from them and label them as future releases: Growth at the end of 2027, Legacy at the end of 2028. Due 3 business days after payment 1.",
+      notePrompt: "Growth and Legacy outlines",
+      notePlaceholder: "What each course covers, who it's for, how it runs. A link to a document is fine.",
       noteRequired: true,
       doneLabel: "I've sent the details",
     },
@@ -375,7 +375,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       // Agreement A4: Executive Program page copy, Rich, 3 business days after payment 1.
       id: "atn-exec-copy",
       title: "Send the Benevolent Executive Program page copy",
-      detail: "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. We place it in the First Light look. Due 3 business days after payment 1.",
+      detail: "Rich: the copy for the Benevolent Executive Program page, as you'd like it to read. Please cover how often the one-on-ones run, what the retreats include, travel and accommodation, and how someone qualifies. We place it in the First Light look. Due 3 business days after payment 1.",
       hasUpload: true,
       uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf", title: "Upload the copy", hint: "Or paste it, or a link, in the box below.", ...FILES },
       notePrompt: "The copy, or a link to it",
@@ -397,20 +397,18 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "build",
     step: {
+      // Jesse took the first drafts on 2 Nov (WhatsApp 12:21 pm): he drafts them
+      // while writing the page words, starting with the Academy. Their side is
+      // one combined list of changes. Filming stays theirs.
       id: "atn-scripts",
-      title: "Write first-draft scripts for your four sales videos",
-      detail: "Four short sales videos, one for each level's page on your site (not the Benevolent Executive page, and not the landing pages). Each one is 60 seconds at most, about 150 words: who it's for, what they get, and one next step. Your team writes a basic first draft of each from what you already have: Ben's levels document, and Martyn's Foundations material for Level 2. Rough is fine. We give one round of direction and changes on each, and we iterate from there. Filming and editing are yours. Paste the drafts in the box, or upload a document. Due 7 days after payment 1.",
-      steps: [
-        "**Level 0 · Initiations** (free): who it's for, and what they get: the e-book and manifesto, stories and the podcast, free information sessions. The next step: start here, it's free.",
-        "**Level 1 · Tribe**: the community. Finding your people, the Collective Wisdom gatherings, the Opportunities Exchange. The next step: join, with your first month free.",
-        "**Level 2 · Academy**: everything in Tribe, plus the 9-month Foundations Course, the fortnightly Q&A and the Wisdom Library. Lead with Foundations: it's the main door. The next step: join, with your first month free.",
-        "**Level 3 · Mentor7**: everything in Academy, plus a small Clan who meet every fortnight for two hours, and special events. Who it's for, and the next step: join, with your first month free.",
-      ],
-      hasUpload: true,
-      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.rtf,.zip", title: "Upload your script drafts", hint: "One document per video, or one for all four.", ...FILES },
-      notePrompt: "Or paste your drafts here",
-      notePlaceholder: "Level 0, Level 1, Level 2, Level 3: one script each.",
-      doneLabel: "I've sent the drafts",
+      hasEditableContent: true,
+      pendingContentText: "Your script drafts appear here when they're ready. We'll email you.",
+      title: "Check your sales video scripts",
+      detail: "We're drafting these from your brief while we write the page words, starting with the Academy, so the message is the same everywhere. Send one combined list of changes: that's the one round on each script. Filming and editing are yours.",
+      notePrompt: "Your one combined list of changes, or \"Approved\"",
+      notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
+      noteRequired: true,
+      doneLabel: "Send my list",
     },
   },
 
@@ -445,7 +443,7 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       hasEditableContent: true,
       pendingContentText: "Your review link appears here when it's ready. We'll email you.",
       title: "Review your site: round 2 of 2",
-      detail: "Your round 1 changes are in. This is the last round on the site. " + ONE_LIST + " Anything after this round is a change request.",
+      detail: "Your round 1 changes are in. This is the last round on the site. " + ONE_LIST + " Anything after this round is a change request, apart from the two extra rounds on the homepage.",
       notePrompt: "Your consolidated list for round 2, or \"Approved\"",
       notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
       noteRequired: true,
@@ -474,8 +472,8 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
       id: "atn-review-landing",
       hasEditableContent: true,
       pendingContentText: "Your review link appears here when it's ready. We'll email you.",
-      title: "Review landing pages A, B and C: round 1 of 2",
-      detail: "Landing pages A and B (the first screen changes for each audience) and C, the homepage, on the review link. " + ONE_LIST + " Or approve them as they are.",
+      title: "Review landing pages C and B: round 1 of 2",
+      detail: "Landing page C, the simple version of your site and the main page the three ads go to, and landing page B, with no credit card, for the next test. Both on the review link. " + ONE_LIST + " Or approve them as they are.",
       notePrompt: "Your consolidated list for round 1, or \"Approved\"",
       notePlaceholder: "Everything you'd change, in one list. Or type Approved.",
       noteRequired: true,
