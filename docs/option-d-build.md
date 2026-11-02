@@ -469,3 +469,4 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 - Left out on purpose: prices and free-month terms (already `atn-prices`), Executive terms (Jesse to confirm; overlaps `atn-exec-copy`), testimonials (in `atn-resources`).
 - Fixtures re-saved: `at-network`, and `_global` (two lines, the new step id only; Fin's forms, uploads and video unchanged, no `--yes-fin`). check:journeys, check:fin, products:check, check:team-auth and tsc pass.
 - Prod: not deployed. Needs Jesse's OK and a package. Prod is still 1e36dad2.
+- **Deployed to prod 2026-11-02 (Jesse's OK): 24173012.** Previous 1e36dad2. D1 bookmark before: `000001dd-00000000-00005117-22580dcfa2257e674e8b7537414d4b0a` (no migration). Rollback: `npx wrangler rollback 1e36dad2-58d9-4076-871a-a282e814c958 --name scale-onboarding-portal`.
