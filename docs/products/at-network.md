@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-11-03.40` |
+| Version | `2026-11-03.41` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
 | Client steps | 35 (2 client only, 0 hidden in the portal) |
@@ -48,7 +48,7 @@ No base: every step and task below is this product's own.
 
 __
 
-Phase 1 is two tracks. The website build is your new site. The funnel sends your three ads to one main landing page first, so we get a clean read on which ad and audience works, then we learn and iterate. Everything in Phase 1 is below. Updated 3 November from Rich's 31 October brief and Jesse's 2 November reply.
+Phase 1 is two tracks. The website build is your new site. The funnel is three cold ads and the ad landing pages they go to, so we can see what converts. Everything in Phase 1 is below. Updated 3 November from Rich's 31 October brief and the group's messages to 3 November.
 
 ### 1. Track 1: the website build
 
@@ -56,7 +56,7 @@ The First Light site, built page by page. You see it on a review link as it grow
 
 1. **Homepage** (us). A visitor sees straight away who you are, the mission, who it's for, what you get, and the doorway in. The Academy is the main door, with Foundations as its first course. The free month is the sweetener, a welcome bonus, not the hook. Your impact video and the best testimonial videos sit here. The mock-ups include your long version and your simple version, each with a Learn More to every offer page.
    - **The Ascension pathway:** The free Initiation and the four tiers drawn as a path. Each tier clicks through to its own page, so the site matches what members see inside the platform.
-2. **Offerings: the overview and five offer pages** (us). One Offerings page with everything in a nutshell: a Learn More to each offer's own page, and a free month button for Tribe and Academy. Then one page each, written from your brief, your copy and Ben's Google Docs: the free Initiation, Tribe, Academy, Mentor7 Clan and the Benevolent Executive. Each membership answers your five questions: who it's for, the pain, what you get, what changes, why upgrade.
+2. **Offerings: the overview and five offer pages** (us). One Offerings page with everything in a nutshell: a Learn More to each offer's own page, and a free month button for Tribe and Academy. Then one page each, written from your brief, your copy and Ben's Google Docs: the free Initiation, Tribe, Academy, Mentor7 Clan and the Benevolent Executive. Each membership answers your five questions: who it's for, the pain, what you get, what changes, why upgrade. Each is built to convert on its own, since tier-only ads can go straight to it.
    - **Foundations:** The first course inside the Academy, and the one open today. People join the Academy and start here.
    - **Growth and Legacy:** A page each, built from the outlines you supply and labelled as future releases: Growth at the end of 2027, Legacy at the end of 2028.
 3. **The Journey, Stories and FAQs** (us). The Journey uses the Academy naming. Stories carries the testimonials. FAQs answers what the free month is, how the tiers work and what happens next.
@@ -70,15 +70,15 @@ Ends with: A site you own, deployable on your hosting and editable by any develo
 
 ### 2. Track 2: the funnel
 
-Three cold ads, one main landing page first, and a second page ready for the next test, with a tag on every link so we can see what converts. Where they come from: Meta ads, LinkedIn ads, Retargeting.
+Three cold ads and three ad landing pages, A, B and C, with a tag on every link so we can see what converts. Where they come from: Meta ads, LinkedIn ads, Retargeting.
 
 1. **Three cold video ads** (us). Up to 15 seconds each, vertical, captions burned in. One per audience.
    - **People in Transition:** Going through a big personal or professional change, looking for clarity and their next chapter.
    - **Conscious Entrepreneurs and Business Leaders:** Want to bring more consciousness, purpose and meaning into their work.
    - **Struggling and Overwhelmed Business Owners:** Everyday business owners feeling the pressure: burnout, money, isolation.
-2. **Where the ads send people**. To start, all three ads go to one main landing page: C. One page gives us a clean read on which ad and audience works. Then we learn and iterate, including testing the homepage against it. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Your ads team can weigh in.
-   - **Landing page C: the main page:** The simple version of your site, where the three ads go first.
-   - **Landing page B: no credit card:** Built and ready for the next test. It takes the place of landing page A, the credit-card-first page named in the agreement.
+2. **Where the ads send people**. The ad landing pages are in scope as the agreement says, and we settle which ad goes to which page before the ads run. Tier-only ads can also go straight to that tier's page. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Your ads team can weigh in.
+   - **Landing pages A and B:** Card up front on A, no card on B. Whether and how we test the two is still to be settled.
+   - **Landing page C:** The simple version of your site.
 3. **Two statics and the LinkedIn banner** (us). Two still ads and a banner for the company page.
 4. **The retargeting ladder** (us). Written as a plan: who sees what after they've visited, and in what order. Your team sets it up in the ad accounts.
 5. **Running the ads** (you). Your team runs the ad accounts, the checkout, the tracking and the posting. We hand over the assets and the plan.
@@ -567,22 +567,22 @@ After sign-off, site changes are change requests.
 
 _Your landing pages, the three video ads, two statics and the LinkedIn banner. Two rounds, then sign-off._
 
-### `atn-review-landing` Review landing pages C and B: round 1 of 2
+### `atn-review-landing` Review your ad landing pages: round 1 of 2
 
-> Landing page C, the simple version of your site and the main page the three ads go to, and landing page B, with no credit card, for the next test. Both on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
+> Your ad landing pages, on the review link. Send one list with everything you, Martyn and Ben would change. That counts as one round. Or approve them as they are.
 
 Portal: work to review · note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `atn-t30` Build landing pages C and B with the tags | Jesse Allan | Days 20-30 | normal | `atn-t16` |
+| `atn-t30` Build the ad landing pages A, B and C with the tags | Jesse Allan | Days 20-30 | normal | `atn-t16` |
 | `atn-t35` Open the funnel review link and send it | Jesse Allan | Day 30 | normal | `atn-t30`, `atn-t31`, `atn-t32` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`atn-t30` Build landing pages C and B with the tags**
+**`atn-t30` Build the ad landing pages A, B and C with the tags**
 
-C is the simple version of the site and the main page the three ads go to. B has no credit card, for the next test. Page A is off (Jesse, 2 Nov); A2 still names it, so the swap is written up in the brief step. UTM tag on every link. Where each ad sends people is set by their team in the ad accounts, not by the site (agreement A3).
+A2 names A (card), B (no card) and C. Jesse told the group on 3 Nov that three are allowed for. Card versus no card and which ad goes where are not settled. UTM tag on every link. Where each ad sends people is set by their team in the ad accounts, not by the site (agreement A3).
 
 </details>
 

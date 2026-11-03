@@ -13,7 +13,7 @@ import type { JourneyMapContent } from "../../lib/journeyTypes";
 export const atNetworkScopeMap: JourneyMapContent = {
   title: "Your scope and map",
   intro:
-    "Phase 1 is two tracks. The website build is your new site. The funnel sends your three ads to one main landing page first, so we get a clean read on which ad and audience works, then we learn and iterate. Everything in Phase 1 is below. Updated 3 November from Rich's 31 October brief and Jesse's 2 November reply.",
+    "Phase 1 is two tracks. The website build is your new site. The funnel is three cold ads and the ad landing pages they go to, so we can see what converts. Everything in Phase 1 is below. Updated 3 November from Rich's 31 October brief and the group's messages to 3 November.",
   draftNote: "", // no banner (Jesse, 2026-10-28)
   notesFormId: "at-network-scope-notes-v1",
   // "Us" read as a team to this client (Jesse, 2026-10-28): say what it means.
@@ -45,7 +45,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
         },
         {
           title: "Offerings: the overview and five offer pages",
-          detail: "One Offerings page with everything in a nutshell: a Learn More to each offer's own page, and a free month button for Tribe and Academy. Then one page each, written from your brief, your copy and Ben's Google Docs: the free Initiation, Tribe, Academy, Mentor7 Clan and the Benevolent Executive. Each membership answers your five questions: who it's for, the pain, what you get, what changes, why upgrade.",
+          detail: "One Offerings page with everything in a nutshell: a Learn More to each offer's own page, and a free month button for Tribe and Academy. Then one page each, written from your brief, your copy and Ben's Google Docs: the free Initiation, Tribe, Academy, Mentor7 Clan and the Benevolent Executive. Each membership answers your five questions: who it's for, the pain, what you get, what changes, why upgrade. Each is built to convert on its own, since tier-only ads can go straight to it.",
           who: "us",
           branches: [
             { label: "Foundations", detail: "The first course inside the Academy, and the one open today. People join the Academy and start here.", tone: "good" },
@@ -80,7 +80,7 @@ export const atNetworkScopeMap: JourneyMapContent = {
     {
       id: "funnel",
       title: "Track 2: the funnel",
-      tagline: "Three cold ads, one main landing page first, and a second page ready for the next test, with a tag on every link so we can see what converts.",
+      tagline: "Three cold ads and three ad landing pages, A, B and C, with a tag on every link so we can see what converts.",
       accent: "orange",
       entries: ["Meta ads", "LinkedIn ads", "Retargeting"],
       steps: [
@@ -96,10 +96,10 @@ export const atNetworkScopeMap: JourneyMapContent = {
         },
         {
           title: "Where the ads send people",
-          detail: "To start, all three ads go to one main landing page: C. One page gives us a clean read on which ad and audience works. Then we learn and iterate, including testing the homepage against it. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Your ads team can weigh in.",
+          detail: "The ad landing pages are in scope as the agreement says, and we settle which ad goes to which page before the ads run. Tier-only ads can also go straight to that tier's page. We put a tag on every link, so you can see which ad, audience and page brought each person in, and which converted. Your ads team can weigh in.",
           branches: [
-            { label: "Landing page C: the main page", detail: "The simple version of your site, where the three ads go first.", tone: "good" },
-            { label: "Landing page B: no credit card", detail: "Built and ready for the next test. It takes the place of landing page A, the credit-card-first page named in the agreement.", tone: "neutral" },
+            { label: "Landing pages A and B", detail: "Card up front on A, no card on B. Whether and how we test the two is still to be settled.", tone: "good" },
+            { label: "Landing page C", detail: "The simple version of your site.", tone: "neutral" },
           ],
         },
         {

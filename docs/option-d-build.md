@@ -479,3 +479,7 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 - The brief record: the 2 Nov message went into `atn-kickoff-summary` by a direct D1 insert, because the admin content route emails all four people on AT (`alertClientOfContent`). To update it silently use the same insert or update, or draft then `resolveDraft: publish`; the plain save emails them. The Plan link is not in the portal yet (Jesse, 3 Nov).
 - Fixtures re-saved: `at-network`, `_global` (one id moved: `atn-scripts` is now editable). All checks pass. Staging 1d728785 first.
 - Prod: 9104e886, previous 24173012. D1 bookmark before: `000001e2-00000000-00005117-156d3b50364023c8f62ccc20c27374dd`. Rollback: `npx wrangler rollback 24173012-f0f6-4e72-bfe8-bdfd1043d45f --name scale-onboarding-portal`.
+
+## 2026-11-03 (later): AT landing page wording corrected (prod da07bfaa)
+
+- The first pass said pages C and B replace A. By 10:48 am Jesse had told the group three ad landing pages are allowed for, and card versus no card isn't settled. Scope map, `atn-review-landing` and `atn-t30` now say that; tier pages are noted as converting on their own. Brief record updated by direct D1 update, no email. Version 2026-11-03.41. Previous 9104e886, D1 bookmark before: `000001e3-00000000-00005118-e17484891f35716fef82a6d1bd343b39`. Rollback: `npx wrangler rollback 9104e886-300e-4fba-a14d-843f332a3e48 --name scale-onboarding-portal`.
