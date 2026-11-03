@@ -28,7 +28,7 @@ export const atNetworkTeamTasks: TeamTask[] = [
   t("atn-t19", "Place the Benevolent Executive Program page copy", "build", "Inputs", "atn-exec-copy", "Days 3-10"),
   t("atn-t20", "Link the StarMap page from the homepage, as shown on the Scope and Map (no client step: Jesse, 28 Oct)", "build", "Inputs", undefined, "Days 3-10"),
   t("atn-t51", "Keep the AT resources list current (add a link only when we ask for it)", "build", "Inputs", "atn-resources", "Days 3-10", "Rich's Drive links from WhatsApp, 28 Oct. Testimonials go to Stories. Still to find: the original Rich and Martyn Foundations intro (Martyn is looking)."),
-  t("atn-t06", "Check the photos of Rich are usable; ask for more if not", "build", "Inputs", "atn-photos-rich", "Days 3-7"),
+  t("atn-t06", "Pick photos of Rich from his Photos & Video Drive folder; ask for more if needed", "build", "Inputs", "atn-resources", "Days 3-7", "The portal step asking for photos came out on 3 Nov (Jesse). A4 of the agreement still lists them."),
   t("atn-t07", "Read the Academy course details and the Foundations outline; log gaps", "build", "Inputs", "atn-academy", "Days 3-7"),
   t("atn-t14", "File the workbook as received (no branding in Phase 1)", "build", "Inputs", "atn-workbook", "Days 3-10"),
   t("atn-t46", "Talk through the Foundations VSL at kickoff; their tick is the confirmation", "onboarding", "Kickoff", "atn-vsl-confirm", "Days 3-7", "Launch gift (replaces the 2-minute impact cut in agreement v2 A2; keep that out of anything the client sees). The agreement (v2) is not changed (Jesse, 28 Oct): the swap is on record in the WhatsApp group (offer 27 Oct, 10:33 pm; Rich's 28 Oct voice note, still to be transcribed into notes/). The portal tick is the only confirmation needed.", ["atn-t10"]),

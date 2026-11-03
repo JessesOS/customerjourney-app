@@ -483,3 +483,8 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 ## 2026-11-03 (later): AT landing page wording corrected (prod da07bfaa)
 
 - The first pass said pages C and B replace A. By 10:48 am Jesse had told the group three ad landing pages are allowed for, and card versus no card isn't settled. Scope map, `atn-review-landing` and `atn-t30` now say that; tier pages are noted as converting on their own. Brief record updated by direct D1 update, no email. Version 2026-11-03.41. Previous 9104e886, D1 bookmark before: `000001e3-00000000-00005118-e17484891f35716fef82a6d1bd343b39`. Rollback: `npx wrangler rollback 9104e886-300e-4fba-a14d-843f332a3e48 --name scale-onboarding-portal`.
+
+## 2026-11-03: AT "Send photos of Rich" step removed (prod 583e303a, Jesse's OK)
+
+- Jesse's call. The stage is now 13 steps. Team task `atn-t06` now points at `atn-resources`: pick photos from Rich's Drive folder. The signed agreement (A4) still lists new photos of Rich and stays unchanged. Version 2026-11-03.42. Fixtures `at-network` and `_global` re-saved (only that step id left `_global`). All checks pass.
+- Previous da07bfaa, D1 bookmark before: `000001e4-00000000-00005118-b38f260195af38fe8859e10a03a37f7d`. Rollback: `npx wrangler rollback da07bfaa-73f4-45d2-ba09-e0d913a97714 --name scale-onboarding-portal`.

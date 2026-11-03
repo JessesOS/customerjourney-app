@@ -289,17 +289,6 @@ export const atNetworkSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "build",
     step: {
-      id: "atn-photos-rich",
-      title: "Send photos of Rich",
-      detail: "Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.",
-      hasUpload: true,
-      uploadOptions: { accept: ".png,.jpg,.jpeg,.webp,.heic,.zip", title: "Upload photos of Rich", hint: "Add as many as you like, one at a time or several at once. A zip is fine.", ...FILES },
-      doneLabel: "Next",
-    },
-  },
-  {
-    stage: "build",
-    step: {
       id: "atn-academy",
       title: "Send the Growth and Legacy outlines",
       detail: "Ben's product document, Martyn's Foundations document and Rich's 31 October brief are already with us. We still need, from Rich: your outlines for the Growth and Legacy courses. We build their pages from them and label them as future releases: Growth at the end of 2027, Legacy at the end of 2028. Due 3 business days after payment 1.",

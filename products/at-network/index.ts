@@ -48,7 +48,7 @@ const atNetworkEmails: ClientEmails = {
 export const atNetwork = defineCustomProduct({
   id: "at-network",
   name: "AT Network (Rich and Martyn)",
-  version: "2026-11-03.41",
+  version: "2026-11-03.42",
   // Live (Jesse, 2026-10-25): he approved the wording in the walkthrough of 25 Oct.
   status: "live",
   clientType: "at-network",

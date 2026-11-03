@@ -6,10 +6,10 @@
 
 | | |
 |---|---|
-| Version | `2026-11-03.41` |
+| Version | `2026-11-03.42` |
 | Status | live: new clients start on it |
 | Journey | 42 days to go-live |
-| Client steps | 35 (2 client only, 0 hidden in the portal) |
+| Client steps | 34 (2 client only, 0 hidden in the portal) |
 | Team tasks | 47 (45 behind a client step, 2 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/at-network/spec.md](../../products/at-network/spec.md) |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| AT Network | `at-network` | none | yes | 35 | 47 |
+| AT Network | `at-network` | none | yes | 34 | 47 |
 
 ### Portal tweaks by variant
 
@@ -300,12 +300,17 @@ Portal: note
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | `atn-t51` Keep the AT resources list current (add a link only when we ask for it) | Jesse Allan | Days 3-10 | normal |  |
+| `atn-t06` Pick photos of Rich from his Photos & Video Drive folder; ask for more if needed | Jesse Allan | Days 3-7 | normal |  |
 
-<details><summary>Guidance for the team (1 task)</summary>
+<details><summary>Guidance for the team (2 tasks)</summary>
 
 **`atn-t51` Keep the AT resources list current (add a link only when we ask for it)**
 
 Rich's Drive links from WhatsApp, 28 Oct. Testimonials go to Stories. Still to find: the original Rich and Martyn Foundations intro (Martyn is looking).
+
+**`atn-t06` Pick photos of Rich from his Photos & Video Drive folder; ask for more if needed**
+
+The portal step asking for photos came out on 3 Nov (Jesse). A4 of the agreement still lists them.
 
 </details>
 
@@ -354,16 +359,6 @@ Portal: note (required)
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
 | `atn-t13` Put the prices and free-month terms into the offer pages and the landing pages | Jesse Allan | Days 3-10 | normal |  |
-
-### `atn-photos-rich` Send photos of Rich
-
-> Rich: upload the photos we should use. Clear, high-quality shots are best. Photos of Martyn and your final eBook are already with us. Due 3 business days after payment 1.
-
-Portal: upload
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `atn-t06` Check the photos of Rich are usable; ask for more if not | Jesse Allan | Days 3-7 | normal |  |
 
 ### `atn-academy` Send the Growth and Legacy outlines
 
