@@ -488,3 +488,7 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 
 - Jesse's call. The stage is now 13 steps. Team task `atn-t06` now points at `atn-resources`: pick photos from Rich's Drive folder. The signed agreement (A4) still lists new photos of Rich and stays unchanged. Version 2026-11-03.42. Fixtures `at-network` and `_global` re-saved (only that step id left `_global`). All checks pass.
 - Previous da07bfaa, D1 bookmark before: `000001e4-00000000-00005118-b38f260195af38fe8859e10a03a37f7d`. Rollback: `npx wrangler rollback da07bfaa-73f4-45d2-ba09-e0d913a97714 --name scale-onboarding-portal`.
+
+## 2026-11-05: AT brief marked locked (data only, no deploy, no email)
+
+- Jesse's OK. The `atn-kickoff-summary` content row on prod now says "Status: locked" and has a "LOCKED ON 3 NOV" section quoting Rich's 2:18 pm "structurally you're on the Mark" and Jesse's first pass by Mon 9 Nov. Written by direct D1 update (`wrangler d1 execute --command`; `--file` failed with a Cloudflare auth error and changed nothing). The text before is kept outside the repo; to undo, restore the old status line, which said corrections were due by Wed 4 Nov.
