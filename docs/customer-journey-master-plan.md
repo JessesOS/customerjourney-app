@@ -801,3 +801,4 @@ try to do both halves from one session.
 - 2026-10-29 (at-network): added `atn-resources` (Rich's shared Drive links, read-only) and the limited-splice line on `atn-vsl-confirm`. Jesse asked for both.
 
 - **2026-11-03, AT Network (`at-network` 2026-11-03.40):** portal wording brought into line with Jesse's 2 Nov brief: tiers not levels, scripts drafted by Jesse, landing pages C and B. Record: `docs/option-d-build.md`.
+- 2026-11-08 (tiny-ror): new custom product for Luisa (Tiny ROR), draft, staging only. 23 steps from her checklist; all wording is Claude's draft. See `docs/option-d-build.md`.

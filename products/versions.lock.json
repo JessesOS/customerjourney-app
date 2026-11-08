@@ -22,5 +22,9 @@
   "bss-custom": {
     "version": "2026-10-18.17",
     "sha256": "db572e4ac750705069a45a2d5e40a22151b0bbcf955b5487796fdefce4869741"
+  },
+  "tiny-ror": {
+    "version": "2026-11-08.1",
+    "sha256": "708e97280db7697da6a88ac6362200928d93e1e3ab8930478c36f7a7e9833db1"
   }
 }

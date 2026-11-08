@@ -492,3 +492,11 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 ## 2026-11-05: AT brief marked locked (data only, no deploy, no email)
 
 - Jesse's OK. The `atn-kickoff-summary` content row on prod now says "Status: locked" and has a "LOCKED ON 3 NOV" section quoting Rich's 2:18 pm "structurally you're on the Mark" and Jesse's first pass by Mon 9 Nov. Written by direct D1 update (`wrangler d1 execute --command`; `--file` failed with a Cloudflare auth error and changed nothing). The text before is kept outside the repo; to undo, restore the old status line, which said corrections were due by Wed 4 Nov.
+
+## 2026-11-08: Tiny ROR, the third custom product (staging fe075692)
+- New product `products/tiny-ror/` for Luisa (ROR The Journey), client type `tiny-ror`, id prefix `tror-`, blank base, **draft**. Jesse OK'd the step list on 2026-11-08 ("Yes, build it"). Spec: `products/tiny-ror/spec.md` (the Tiny ROR session's brief and Luisa's checklist, word for word).
+- 23 client steps over 30 days (9 Nov to about 8 Dec) in five stages: This week, Must-haves before we launch, The offer, Accounts to set up, Photos. Step 1 books a time with Jesse; step 2 is the interview upload (the 25 questions on the step). The child safe policy and consent form are editable-content steps: Jesse pastes his draft, Luisa presses "Looks right". Stripe, Meta and Google steps say never to send a password or key. 24 team tasks; the bookmark step is client-only. Every step is in `draftCopy`.
+- Placeholders before prod: step 1 uses Jesse's AT kickoff booking page (45 min) until he makes a one-hour Tiny ROR page; the look is `warm` (a red and cream look needs CSS). Messages and email alerts are off (Luisa is on WhatsApp).
+- `tiny-ror` added to `CLIENT_TYPES`; fixtures saved: `tiny-ror` (new) and `_global` (only tror- ids added, checked with `--dump`). at-network and bss-custom unchanged. Checks: products:check, check:journeys, check:fin, check:team-auth, tsc all pass.
+- Staging demo "Demo — Tiny ROR" (start 9 Nov, token N_VH5e3188p1hGEUU9ZDZHvK): 200, 23 steps, Tiny ROR name, warm look.
+- **Not on prod.** Going live needs Jesse's OK: status live, empty draftCopy, real booking link, version bump, re-save `tiny-ror _global`, deploy package.

@@ -1,0 +1,1683 @@
+{
+  "data": {
+    "adminChecklist": [
+      {
+        "id": "onboarding",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "tror-book",
+            "title": "Book a time with me this week"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-interview",
+            "title": "Record your interview"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-bookmark",
+            "title": "Bookmark your portal"
+          }
+        ],
+        "name": "This week"
+      },
+      {
+        "id": "build",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "tror-venue",
+            "title": "Your venue"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-class-time",
+            "title": "Class day, time and length"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-wwcc",
+            "title": "Your Working With Children Check"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-insurance",
+            "title": "Public liability insurance"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-abn",
+            "title": "Your ABN and business name"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-child-safe",
+            "title": "Check your child safe policy"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-consent",
+            "title": "Check the photo and video consent form"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-taster-dates",
+            "title": "Taster dates in the January holidays"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-policies",
+            "title": "Refunds, missed classes and sick days"
+          }
+        ],
+        "name": "Must-haves before we launch"
+      },
+      {
+        "id": "testing",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "tror-parents-stay",
+            "title": "Do parents stay or drop off?"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-tools",
+            "title": "Your tool names"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-prices",
+            "title": "Happy with these prices?"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-parent-chats",
+            "title": "Local parents I can talk to"
+          }
+        ],
+        "name": "The offer"
+      },
+      {
+        "id": "go-live",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "tror-domain",
+            "title": "Your domain name"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-socials",
+            "title": "Instagram and Facebook pages"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-stripe",
+            "title": "Your own Stripe account"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-meta",
+            "title": "Meta Business account"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-google",
+            "title": "A Google account for Tiny ROR"
+          }
+        ],
+        "name": "Accounts to set up"
+      },
+      {
+        "id": "post-launch",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "tror-shoot-families",
+            "title": "Families for the photo shoot"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-photos-luisa",
+            "title": "Photos of you"
+          }
+        ],
+        "name": "Photos"
+      }
+    ],
+    "adminDayTotal": 30,
+    "adminLabel": "Tiny ROR (draft)",
+    "askItems": {
+      "build": [],
+      "go-live": [],
+      "onboarding": [],
+      "post-launch": [],
+      "testing": []
+    },
+    "brandName": "Tiny ROR",
+    "clientType": "tiny-ror",
+    "currentDayCap": 30,
+    "formSteps": {},
+    "headerName": {
+      "aurora": "Tiny ROR",
+      "calm": "Tiny ROR",
+      "cobalt": "Tiny ROR",
+      "current": "Tiny ROR",
+      "grove": "Tiny ROR",
+      "groveaurora": "Tiny ROR",
+      "handoff": "Tiny ROR"
+    },
+    "hidesIncentive": true,
+    "hubBrand": {
+      "aurora": "Tiny ROR",
+      "cobalt": "Tiny ROR",
+      "grove": "Tiny ROR",
+      "handoff": "Tiny ROR"
+    },
+    "introVideo": null,
+    "journeyStatus": {
+      "formStepId": null,
+      "nonBlocking": [],
+      "visible": [
+        {
+          "id": "tror-book",
+          "stageName": "This week",
+          "title": "Book a time with me this week"
+        },
+        {
+          "id": "tror-interview",
+          "stageName": "This week",
+          "title": "Record your interview"
+        },
+        {
+          "id": "tror-bookmark",
+          "stageName": "This week",
+          "title": "Bookmark your portal"
+        },
+        {
+          "id": "tror-venue",
+          "stageName": "Must-haves before we launch",
+          "title": "Your venue"
+        },
+        {
+          "id": "tror-class-time",
+          "stageName": "Must-haves before we launch",
+          "title": "Class day, time and length"
+        },
+        {
+          "id": "tror-wwcc",
+          "stageName": "Must-haves before we launch",
+          "title": "Your Working With Children Check"
+        },
+        {
+          "id": "tror-insurance",
+          "stageName": "Must-haves before we launch",
+          "title": "Public liability insurance"
+        },
+        {
+          "id": "tror-abn",
+          "stageName": "Must-haves before we launch",
+          "title": "Your ABN and business name"
+        },
+        {
+          "id": "tror-child-safe",
+          "stageName": "Must-haves before we launch",
+          "title": "Check your child safe policy"
+        },
+        {
+          "id": "tror-consent",
+          "stageName": "Must-haves before we launch",
+          "title": "Check the photo and video consent form"
+        },
+        {
+          "id": "tror-taster-dates",
+          "stageName": "Must-haves before we launch",
+          "title": "Taster dates in the January holidays"
+        },
+        {
+          "id": "tror-policies",
+          "stageName": "Must-haves before we launch",
+          "title": "Refunds, missed classes and sick days"
+        },
+        {
+          "id": "tror-parents-stay",
+          "stageName": "The offer",
+          "title": "Do parents stay or drop off?"
+        },
+        {
+          "id": "tror-tools",
+          "stageName": "The offer",
+          "title": "Your tool names"
+        },
+        {
+          "id": "tror-prices",
+          "stageName": "The offer",
+          "title": "Happy with these prices?"
+        },
+        {
+          "id": "tror-parent-chats",
+          "stageName": "The offer",
+          "title": "Local parents I can talk to"
+        },
+        {
+          "id": "tror-domain",
+          "stageName": "Accounts to set up",
+          "title": "Your domain name"
+        },
+        {
+          "id": "tror-socials",
+          "stageName": "Accounts to set up",
+          "title": "Instagram and Facebook pages"
+        },
+        {
+          "id": "tror-stripe",
+          "stageName": "Accounts to set up",
+          "title": "Your own Stripe account"
+        },
+        {
+          "id": "tror-meta",
+          "stageName": "Accounts to set up",
+          "title": "Meta Business account"
+        },
+        {
+          "id": "tror-google",
+          "stageName": "Accounts to set up",
+          "title": "A Google account for Tiny ROR"
+        },
+        {
+          "id": "tror-shoot-families",
+          "stageName": "Photos",
+          "title": "Families for the photo shoot"
+        },
+        {
+          "id": "tror-photos-luisa",
+          "stageName": "Photos",
+          "title": "Photos of you"
+        }
+      ]
+    },
+    "journeyTemplate": [
+      {
+        "blurb": "Meet me this week and record your interview. Those two get everything else moving.",
+        "dayEnd": 7,
+        "dayStart": 1,
+        "id": "onboarding",
+        "milestones": [
+          {
+            "bookingUrl": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zFdYaXgf5lDqGZ8rLV9KPdB1nNec8ZbfcHcmXT7Bj51LstiAWeQvjG-26D1PxlPcvQ9-lxgdP",
+            "detail": "About an hour, to go through this whole list together. Pick any time this week that suits you.",
+            "doneLabel": "I've booked it",
+            "id": "tror-book",
+            "notePrompt": "Anything you want to cover when we meet? (optional)",
+            "steps": [
+              "Pick a time on the booking page below. You get a calendar invite straight away.",
+              "Bring anything you already have: your ABN, your Working With Children Check, your insurance."
+            ],
+            "title": "Book a time with me this week"
+          },
+          {
+            "detail": "About 45 minutes. A voice memo is fine, a video is even better. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. Your words become the website, the ads and the posts.",
+            "doneLabel": "I've sent it",
+            "hasUpload": true,
+            "id": "tror-interview",
+            "notePlaceholder": "https://drive.google.com/...",
+            "notePrompt": "Or paste a link to your recording",
+            "steps": [
+              "YOU AND WHY. 1. What happened in your own life that led you to counselling? 2. When did you first think, \"kids this little need this\"? Tell me about that moment. 3. What does ROR (Raw, Open, Ready) mean to you? 4. What do you wish you'd known when your boys were 4 to 6?",
+              "THE PARENTS YOU'RE FOR. 5. Describe the parent who walks in your door. What's their week like? 6. What do parents say to you when they're at the end of their rope? Their actual words. 7. What have they usually tried already that hasn't worked? 8. What are parents scared of, or embarrassed about, when it comes to their child's big feelings? 9. What do they want to feel by the end of a term?",
+              "THE KIDS. 10. Tell me about a \"spicy\" child, a \"sparkly\" child, an \"energy bunny\" and a quiet one. How does each one show big feelings? 11. What does a shy child need on their first day? 12. What's a moment with a child you'll never forget? (No names.)",
+              "THE TOOLS AND THE CLASS. 13. Walk me through a class, from the moment they arrive to the moment they leave. 14. Pick 3 tools. For each one: what's it called, what's it for, and how would you explain it to a 4-year-old? 15. Why play, clay and paint, and not sitting down and talking? 16. Why two weeks per tool? Why a term at a time? 17. What goes in the take-home guide? What should a parent do with it?",
+              "TRUST AND THE HARD QUESTIONS. 18. How is this different from therapy? When would you send a family somewhere else? 19. What would you say to a parent who thinks their child is \"too much\" for a group? 20. What can a parent honestly expect after one term? What won't change? 21. How do you keep kids safe and the room calm with 10 little ones?",
+              "QUICK-FIRE. 22. Finish this: \"Tiny ROR is for the parent who…\" 23. Finish this: \"Let them ror means…\" 24. One thing a parent could try tonight with a big feeling. How would you teach it in 30 seconds? 25. Anything I haven't asked that parents should know?"
+            ],
+            "title": "Record your interview",
+            "uploadOptions": {
+              "accept": ".m4a,.mp3,.wav,.aac,.mp4,.mov,.zip",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.",
+              "stayOpen": true,
+              "title": "Upload your recording"
+            }
+          },
+          {
+            "detail": "This portal is where your Tiny ROR to-do list lives. Bookmark it so you can always get back here.",
+            "doneLabel": "I've bookmarked it",
+            "id": "tror-bookmark",
+            "showPortalLink": true,
+            "steps": [
+              "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+              "On your phone, copy your portal link above and save it somewhere handy."
+            ],
+            "title": "Bookmark your portal"
+          }
+        ],
+        "name": "This week",
+        "statusNotes": []
+      },
+      {
+        "blurb": "The details nothing can launch without: your venue, your checks and insurance, and the policies parents will ask about. I draft the child safe policy and the consent form. You check them.",
+        "dayEnd": 14,
+        "dayStart": 1,
+        "id": "build",
+        "milestones": [
+          {
+            "detail": "Where the Ballina classes and the tasters will run. Parents will want to know before they book.",
+            "doneLabel": "Done",
+            "id": "tror-venue",
+            "notePlaceholder": "Name, street address, where parents park, where the toilets are",
+            "notePrompt": "Venue name, address, parking and toilets",
+            "noteRequired": true,
+            "title": "Your venue"
+          },
+          {
+            "detail": "Which day and time the term classes run, and how long one class lasts.",
+            "doneLabel": "Done",
+            "id": "tror-class-time",
+            "notePlaceholder": "e.g. Tuesdays, 3.30 pm, 60 minutes",
+            "notePrompt": "Day, time and how long a class runs",
+            "noteRequired": true,
+            "title": "Class day, time and length"
+          },
+          {
+            "detail": "Your WWCC number goes on the website. Parents look for it.",
+            "doneLabel": "Done",
+            "id": "tror-wwcc",
+            "notePrompt": "Your WWCC number",
+            "noteRequired": true,
+            "title": "Your Working With Children Check"
+          },
+          {
+            "detail": "Insurance that covers group classes for children. Upload the certificate, or tell me where it's up to if it's still on its way.",
+            "doneLabel": "Done",
+            "hasUpload": true,
+            "id": "tror-insurance",
+            "notePrompt": "Insurer, or where it's up to (optional)",
+            "title": "Public liability insurance",
+            "uploadOptions": {
+              "accept": ".pdf,.png,.jpg,.jpeg,.heic",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "A PDF or a photo of it.",
+              "stayOpen": true,
+              "title": "Upload your certificate"
+            }
+          },
+          {
+            "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
+            "doneLabel": "Done",
+            "id": "tror-abn",
+            "notePrompt": "Your ABN and the business name",
+            "noteRequired": true,
+            "title": "Your ABN and business name"
+          },
+          {
+            "detail": "I'll draft it and put it below. Read it. If it's right, press the button. If something needs to change, write it in the box.",
+            "doneLabel": "Looks right",
+            "hasEditableContent": true,
+            "id": "tror-child-safe",
+            "notePrompt": "Anything to change? (optional)",
+            "pendingContentText": "Your child safe policy appears here once I've drafted it.",
+            "title": "Check your child safe policy"
+          },
+          {
+            "detail": "The form every parent signs before their child is in a photo or a video. I'll draft it and put it below. Read it, and tell me anything to change.",
+            "doneLabel": "Looks right",
+            "hasEditableContent": true,
+            "id": "tror-consent",
+            "notePrompt": "Anything to change? (optional)",
+            "pendingContentText": "Your consent form appears here once I've drafted it.",
+            "title": "Check the photo and video consent form"
+          },
+          {
+            "detail": "About 5 dates for the $20 taster classes, in the January school holidays.",
+            "doneLabel": "Done",
+            "id": "tror-taster-dates",
+            "notePrompt": "Your taster dates and times",
+            "noteRequired": true,
+            "title": "Taster dates in the January holidays"
+          },
+          {
+            "detail": "Your rules, in your words. I'll turn them into a short policy for the website and the booking page.",
+            "doneLabel": "Done",
+            "id": "tror-policies",
+            "notePrompt": "What happens with refunds, missed classes and sick days",
+            "noteRequired": true,
+            "title": "Refunds, missed classes and sick days"
+          }
+        ],
+        "name": "Must-haves before we launch",
+        "statusNotes": []
+      },
+      {
+        "blurb": "How your classes work, what your tools are called, the prices, and a few local parents I can talk to.",
+        "dayEnd": 14,
+        "dayStart": 3,
+        "id": "testing",
+        "milestones": [
+          {
+            "detail": "Do parents stay in the room during class, or drop off and come back?",
+            "doneLabel": "Done",
+            "id": "tror-parents-stay",
+            "notePrompt": "Stay, drop off, or a bit of both",
+            "noteRequired": true,
+            "title": "Do parents stay or drop off?"
+          },
+          {
+            "detail": "The real names of your tools: at least the first 4, ideally all 16 for the year. A one-line note on what each is for helps too.",
+            "doneLabel": "Done",
+            "hasUpload": true,
+            "id": "tror-tools",
+            "notePrompt": "Your tool names",
+            "title": "Your tool names",
+            "uploadOptions": {
+              "accept": ".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.heic",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "A document, or photos of your notes.",
+              "stayOpen": true,
+              "title": "Or upload your Tool Library"
+            }
+          },
+          {
+            "detail": "$40 for a single class. $280 for a term, or 4 payments of $70. A $20 taster that comes off the term.",
+            "doneLabel": "I'm happy with these",
+            "id": "tror-prices",
+            "notePrompt": "Anything you'd change? (optional)",
+            "title": "Happy with these prices?"
+          },
+          {
+            "detail": "Names of 5 to 8 local parents with kids aged 4 to 6 who'd have a 15-minute chat with me. Ask them first. What they say shapes the website and the ads.",
+            "doneLabel": "Done",
+            "id": "tror-parent-chats",
+            "notePrompt": "Their names, and a mobile or email for each",
+            "noteRequired": true,
+            "title": "Local parents I can talk to"
+          }
+        ],
+        "name": "The offer",
+        "statusNotes": []
+      },
+      {
+        "blurb": "Your domain, your pages and the accounts for payments and ads. You own every one of them. Never send me a password.",
+        "dayEnd": 21,
+        "dayStart": 7,
+        "id": "go-live",
+        "milestones": [
+          {
+            "detail": "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
+            "doneLabel": "We've bought it",
+            "id": "tror-domain",
+            "notePrompt": "Another name you'd prefer? (optional)",
+            "title": "Your domain name"
+          },
+          {
+            "detail": "Pages for Tiny ROR. If you have them, paste the links. If not, we set them up when we meet.",
+            "doneLabel": "Done",
+            "id": "tror-socials",
+            "notePlaceholder": "https://instagram.com/...",
+            "notePrompt": "Your Instagram and Facebook links",
+            "title": "Instagram and Facebook pages"
+          },
+          {
+            "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name.",
+            "doneLabel": "I've set it up",
+            "id": "tror-stripe",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "title": "Your own Stripe account"
+          },
+          {
+            "detail": "The account your Facebook and Instagram ads run from. Set it up at business.facebook.com, then add me as a partner, so I can run the ads without your login.",
+            "doneLabel": "I've added you",
+            "id": "tror-meta",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePrompt": "Your Business ID, once you have it (optional)",
+            "title": "Meta Business account"
+          },
+          {
+            "detail": "For Google ads and your Google business listing. Make a new Google account just for Tiny ROR.",
+            "doneLabel": "I've set it up",
+            "id": "tror-google",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePrompt": "The account's email address",
+            "title": "A Google account for Tiny ROR"
+          }
+        ],
+        "name": "Accounts to set up",
+        "statusNotes": []
+      },
+      {
+        "blurb": "Real families and real you, for the website and the ads. Every family signs the consent form first.",
+        "dayEnd": 30,
+        "dayStart": 14,
+        "id": "post-launch",
+        "milestones": [
+          {
+            "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
+            "doneLabel": "Done",
+            "id": "tror-shoot-families",
+            "notePrompt": "The families' names, and a mobile for each",
+            "noteRequired": true,
+            "title": "Families for the photo shoot"
+          },
+          {
+            "detail": "A few good photos of you, ideally laughing. For the About section of the website.",
+            "doneLabel": "Done",
+            "hasUpload": true,
+            "id": "tror-photos-luisa",
+            "title": "Photos of you",
+            "uploadOptions": {
+              "accept": ".png,.jpg,.jpeg,.webp,.heic,.zip",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "As many as you like. A zip is fine.",
+              "stayOpen": true,
+              "title": "Upload your photos"
+            }
+          }
+        ],
+        "name": "Photos",
+        "statusNotes": []
+      }
+    ],
+    "label": "Tiny ROR",
+    "lockedLook": "warm",
+    "receptionistScriptStep": null,
+    "renderSamples": {
+      "all@day30": [
+        {
+          "blurb": "Meet me this week and record your interview. Those two get everything else moving.",
+          "dayEnd": 7,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "bookingUrl": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zFdYaXgf5lDqGZ8rLV9KPdB1nNec8ZbfcHcmXT7Bj51LstiAWeQvjG-26D1PxlPcvQ9-lxgdP",
+              "detail": "About an hour, to go through this whole list together. Pick any time this week that suits you.",
+              "doneLabel": "I've booked it",
+              "id": "tror-book",
+              "notePrompt": "Anything you want to cover when we meet? (optional)",
+              "status": "done",
+              "steps": [
+                "Pick a time on the booking page below. You get a calendar invite straight away.",
+                "Bring anything you already have: your ABN, your Working With Children Check, your insurance."
+              ],
+              "title": "Book a time with me this week"
+            },
+            {
+              "detail": "About 45 minutes. A voice memo is fine, a video is even better. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. Your words become the website, the ads and the posts.",
+              "doneLabel": "I've sent it",
+              "hasUpload": true,
+              "id": "tror-interview",
+              "notePlaceholder": "https://drive.google.com/...",
+              "notePrompt": "Or paste a link to your recording",
+              "status": "done",
+              "steps": [
+                "YOU AND WHY. 1. What happened in your own life that led you to counselling? 2. When did you first think, \"kids this little need this\"? Tell me about that moment. 3. What does ROR (Raw, Open, Ready) mean to you? 4. What do you wish you'd known when your boys were 4 to 6?",
+                "THE PARENTS YOU'RE FOR. 5. Describe the parent who walks in your door. What's their week like? 6. What do parents say to you when they're at the end of their rope? Their actual words. 7. What have they usually tried already that hasn't worked? 8. What are parents scared of, or embarrassed about, when it comes to their child's big feelings? 9. What do they want to feel by the end of a term?",
+                "THE KIDS. 10. Tell me about a \"spicy\" child, a \"sparkly\" child, an \"energy bunny\" and a quiet one. How does each one show big feelings? 11. What does a shy child need on their first day? 12. What's a moment with a child you'll never forget? (No names.)",
+                "THE TOOLS AND THE CLASS. 13. Walk me through a class, from the moment they arrive to the moment they leave. 14. Pick 3 tools. For each one: what's it called, what's it for, and how would you explain it to a 4-year-old? 15. Why play, clay and paint, and not sitting down and talking? 16. Why two weeks per tool? Why a term at a time? 17. What goes in the take-home guide? What should a parent do with it?",
+                "TRUST AND THE HARD QUESTIONS. 18. How is this different from therapy? When would you send a family somewhere else? 19. What would you say to a parent who thinks their child is \"too much\" for a group? 20. What can a parent honestly expect after one term? What won't change? 21. How do you keep kids safe and the room calm with 10 little ones?",
+                "QUICK-FIRE. 22. Finish this: \"Tiny ROR is for the parent who…\" 23. Finish this: \"Let them ror means…\" 24. One thing a parent could try tonight with a big feeling. How would you teach it in 30 seconds? 25. Anything I haven't asked that parents should know?"
+              ],
+              "title": "Record your interview",
+              "uploadOptions": {
+                "accept": ".m4a,.mp3,.wav,.aac,.mp4,.mov,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.",
+                "stayOpen": true,
+                "title": "Upload your recording"
+              }
+            },
+            {
+              "detail": "This portal is where your Tiny ROR to-do list lives. Bookmark it so you can always get back here.",
+              "doneLabel": "I've bookmarked it",
+              "id": "tror-bookmark",
+              "showPortalLink": true,
+              "status": "done",
+              "steps": [
+                "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+                "On your phone, copy your portal link above and save it somewhere handy."
+              ],
+              "title": "Bookmark your portal"
+            }
+          ],
+          "name": "This week",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "The details nothing can launch without: your venue, your checks and insurance, and the policies parents will ask about. I draft the child safe policy and the consent form. You check them.",
+          "dayEnd": 14,
+          "dayStart": 1,
+          "id": "build",
+          "milestones": [
+            {
+              "detail": "Where the Ballina classes and the tasters will run. Parents will want to know before they book.",
+              "doneLabel": "Done",
+              "id": "tror-venue",
+              "notePlaceholder": "Name, street address, where parents park, where the toilets are",
+              "notePrompt": "Venue name, address, parking and toilets",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Your venue"
+            },
+            {
+              "detail": "Which day and time the term classes run, and how long one class lasts.",
+              "doneLabel": "Done",
+              "id": "tror-class-time",
+              "notePlaceholder": "e.g. Tuesdays, 3.30 pm, 60 minutes",
+              "notePrompt": "Day, time and how long a class runs",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Class day, time and length"
+            },
+            {
+              "detail": "Your WWCC number goes on the website. Parents look for it.",
+              "doneLabel": "Done",
+              "id": "tror-wwcc",
+              "notePrompt": "Your WWCC number",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Your Working With Children Check"
+            },
+            {
+              "detail": "Insurance that covers group classes for children. Upload the certificate, or tell me where it's up to if it's still on its way.",
+              "doneLabel": "Done",
+              "hasUpload": true,
+              "id": "tror-insurance",
+              "notePrompt": "Insurer, or where it's up to (optional)",
+              "status": "done",
+              "title": "Public liability insurance",
+              "uploadOptions": {
+                "accept": ".pdf,.png,.jpg,.jpeg,.heic",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "A PDF or a photo of it.",
+                "stayOpen": true,
+                "title": "Upload your certificate"
+              }
+            },
+            {
+              "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
+              "doneLabel": "Done",
+              "id": "tror-abn",
+              "notePrompt": "Your ABN and the business name",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Your ABN and business name"
+            },
+            {
+              "detail": "I'll draft it and put it below. Read it. If it's right, press the button. If something needs to change, write it in the box.",
+              "doneLabel": "Looks right",
+              "hasEditableContent": true,
+              "id": "tror-child-safe",
+              "notePrompt": "Anything to change? (optional)",
+              "pendingContentText": "Your child safe policy appears here once I've drafted it.",
+              "status": "done",
+              "title": "Check your child safe policy"
+            },
+            {
+              "detail": "The form every parent signs before their child is in a photo or a video. I'll draft it and put it below. Read it, and tell me anything to change.",
+              "doneLabel": "Looks right",
+              "hasEditableContent": true,
+              "id": "tror-consent",
+              "notePrompt": "Anything to change? (optional)",
+              "pendingContentText": "Your consent form appears here once I've drafted it.",
+              "status": "done",
+              "title": "Check the photo and video consent form"
+            },
+            {
+              "detail": "About 5 dates for the $20 taster classes, in the January school holidays.",
+              "doneLabel": "Done",
+              "id": "tror-taster-dates",
+              "notePrompt": "Your taster dates and times",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Taster dates in the January holidays"
+            },
+            {
+              "detail": "Your rules, in your words. I'll turn them into a short policy for the website and the booking page.",
+              "doneLabel": "Done",
+              "id": "tror-policies",
+              "notePrompt": "What happens with refunds, missed classes and sick days",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Refunds, missed classes and sick days"
+            }
+          ],
+          "name": "Must-haves before we launch",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "How your classes work, what your tools are called, the prices, and a few local parents I can talk to.",
+          "dayEnd": 14,
+          "dayStart": 3,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "Do parents stay in the room during class, or drop off and come back?",
+              "doneLabel": "Done",
+              "id": "tror-parents-stay",
+              "notePrompt": "Stay, drop off, or a bit of both",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Do parents stay or drop off?"
+            },
+            {
+              "detail": "The real names of your tools: at least the first 4, ideally all 16 for the year. A one-line note on what each is for helps too.",
+              "doneLabel": "Done",
+              "hasUpload": true,
+              "id": "tror-tools",
+              "notePrompt": "Your tool names",
+              "status": "done",
+              "title": "Your tool names",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.heic",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "A document, or photos of your notes.",
+                "stayOpen": true,
+                "title": "Or upload your Tool Library"
+              }
+            },
+            {
+              "detail": "$40 for a single class. $280 for a term, or 4 payments of $70. A $20 taster that comes off the term.",
+              "doneLabel": "I'm happy with these",
+              "id": "tror-prices",
+              "notePrompt": "Anything you'd change? (optional)",
+              "status": "done",
+              "title": "Happy with these prices?"
+            },
+            {
+              "detail": "Names of 5 to 8 local parents with kids aged 4 to 6 who'd have a 15-minute chat with me. Ask them first. What they say shapes the website and the ads.",
+              "doneLabel": "Done",
+              "id": "tror-parent-chats",
+              "notePrompt": "Their names, and a mobile or email for each",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Local parents I can talk to"
+            }
+          ],
+          "name": "The offer",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your domain, your pages and the accounts for payments and ads. You own every one of them. Never send me a password.",
+          "dayEnd": 21,
+          "dayStart": 7,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
+              "doneLabel": "We've bought it",
+              "id": "tror-domain",
+              "notePrompt": "Another name you'd prefer? (optional)",
+              "status": "done",
+              "title": "Your domain name"
+            },
+            {
+              "detail": "Pages for Tiny ROR. If you have them, paste the links. If not, we set them up when we meet.",
+              "doneLabel": "Done",
+              "id": "tror-socials",
+              "notePlaceholder": "https://instagram.com/...",
+              "notePrompt": "Your Instagram and Facebook links",
+              "status": "done",
+              "title": "Instagram and Facebook pages"
+            },
+            {
+              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name.",
+              "doneLabel": "I've set it up",
+              "id": "tror-stripe",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "done",
+              "title": "Your own Stripe account"
+            },
+            {
+              "detail": "The account your Facebook and Instagram ads run from. Set it up at business.facebook.com, then add me as a partner, so I can run the ads without your login.",
+              "doneLabel": "I've added you",
+              "id": "tror-meta",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Your Business ID, once you have it (optional)",
+              "status": "done",
+              "title": "Meta Business account"
+            },
+            {
+              "detail": "For Google ads and your Google business listing. Make a new Google account just for Tiny ROR.",
+              "doneLabel": "I've set it up",
+              "id": "tror-google",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "The account's email address",
+              "status": "done",
+              "title": "A Google account for Tiny ROR"
+            }
+          ],
+          "name": "Accounts to set up",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Real families and real you, for the website and the ads. Every family signs the consent form first.",
+          "dayEnd": 30,
+          "dayStart": 14,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
+              "doneLabel": "Done",
+              "id": "tror-shoot-families",
+              "notePrompt": "The families' names, and a mobile for each",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Families for the photo shoot"
+            },
+            {
+              "detail": "A few good photos of you, ideally laughing. For the About section of the website.",
+              "doneLabel": "Done",
+              "hasUpload": true,
+              "id": "tror-photos-luisa",
+              "status": "done",
+              "title": "Photos of you",
+              "uploadOptions": {
+                "accept": ".png,.jpg,.jpeg,.webp,.heic,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "As many as you like. A zip is fine.",
+                "stayOpen": true,
+                "title": "Upload your photos"
+              }
+            }
+          ],
+          "name": "Photos",
+          "status": "done",
+          "statusNotes": []
+        }
+      ],
+      "none@day1": [
+        {
+          "blurb": "Meet me this week and record your interview. Those two get everything else moving.",
+          "dayEnd": 7,
+          "dayStart": 1,
+          "id": "onboarding",
+          "milestones": [
+            {
+              "bookingUrl": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zFdYaXgf5lDqGZ8rLV9KPdB1nNec8ZbfcHcmXT7Bj51LstiAWeQvjG-26D1PxlPcvQ9-lxgdP",
+              "detail": "About an hour, to go through this whole list together. Pick any time this week that suits you.",
+              "doneLabel": "I've booked it",
+              "id": "tror-book",
+              "notePrompt": "Anything you want to cover when we meet? (optional)",
+              "status": "current",
+              "steps": [
+                "Pick a time on the booking page below. You get a calendar invite straight away.",
+                "Bring anything you already have: your ABN, your Working With Children Check, your insurance."
+              ],
+              "title": "Book a time with me this week"
+            },
+            {
+              "detail": "About 45 minutes. A voice memo is fine, a video is even better. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. Your words become the website, the ads and the posts.",
+              "doneLabel": "I've sent it",
+              "hasUpload": true,
+              "id": "tror-interview",
+              "notePlaceholder": "https://drive.google.com/...",
+              "notePrompt": "Or paste a link to your recording",
+              "status": "upcoming",
+              "steps": [
+                "YOU AND WHY. 1. What happened in your own life that led you to counselling? 2. When did you first think, \"kids this little need this\"? Tell me about that moment. 3. What does ROR (Raw, Open, Ready) mean to you? 4. What do you wish you'd known when your boys were 4 to 6?",
+                "THE PARENTS YOU'RE FOR. 5. Describe the parent who walks in your door. What's their week like? 6. What do parents say to you when they're at the end of their rope? Their actual words. 7. What have they usually tried already that hasn't worked? 8. What are parents scared of, or embarrassed about, when it comes to their child's big feelings? 9. What do they want to feel by the end of a term?",
+                "THE KIDS. 10. Tell me about a \"spicy\" child, a \"sparkly\" child, an \"energy bunny\" and a quiet one. How does each one show big feelings? 11. What does a shy child need on their first day? 12. What's a moment with a child you'll never forget? (No names.)",
+                "THE TOOLS AND THE CLASS. 13. Walk me through a class, from the moment they arrive to the moment they leave. 14. Pick 3 tools. For each one: what's it called, what's it for, and how would you explain it to a 4-year-old? 15. Why play, clay and paint, and not sitting down and talking? 16. Why two weeks per tool? Why a term at a time? 17. What goes in the take-home guide? What should a parent do with it?",
+                "TRUST AND THE HARD QUESTIONS. 18. How is this different from therapy? When would you send a family somewhere else? 19. What would you say to a parent who thinks their child is \"too much\" for a group? 20. What can a parent honestly expect after one term? What won't change? 21. How do you keep kids safe and the room calm with 10 little ones?",
+                "QUICK-FIRE. 22. Finish this: \"Tiny ROR is for the parent who…\" 23. Finish this: \"Let them ror means…\" 24. One thing a parent could try tonight with a big feeling. How would you teach it in 30 seconds? 25. Anything I haven't asked that parents should know?"
+              ],
+              "title": "Record your interview",
+              "uploadOptions": {
+                "accept": ".m4a,.mp3,.wav,.aac,.mp4,.mov,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.",
+                "stayOpen": true,
+                "title": "Upload your recording"
+              }
+            },
+            {
+              "detail": "This portal is where your Tiny ROR to-do list lives. Bookmark it so you can always get back here.",
+              "doneLabel": "I've bookmarked it",
+              "id": "tror-bookmark",
+              "showPortalLink": true,
+              "status": "upcoming",
+              "steps": [
+                "Press Cmd + D on a Mac (Ctrl + D on Windows) while you're on this page.",
+                "On your phone, copy your portal link above and save it somewhere handy."
+              ],
+              "title": "Bookmark your portal"
+            }
+          ],
+          "name": "This week",
+          "status": "current",
+          "statusNotes": []
+        },
+        {
+          "blurb": "The details nothing can launch without: your venue, your checks and insurance, and the policies parents will ask about. I draft the child safe policy and the consent form. You check them.",
+          "dayEnd": 14,
+          "dayStart": 1,
+          "id": "build",
+          "milestones": [
+            {
+              "detail": "Where the Ballina classes and the tasters will run. Parents will want to know before they book.",
+              "doneLabel": "Done",
+              "id": "tror-venue",
+              "notePlaceholder": "Name, street address, where parents park, where the toilets are",
+              "notePrompt": "Venue name, address, parking and toilets",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Your venue"
+            },
+            {
+              "detail": "Which day and time the term classes run, and how long one class lasts.",
+              "doneLabel": "Done",
+              "id": "tror-class-time",
+              "notePlaceholder": "e.g. Tuesdays, 3.30 pm, 60 minutes",
+              "notePrompt": "Day, time and how long a class runs",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Class day, time and length"
+            },
+            {
+              "detail": "Your WWCC number goes on the website. Parents look for it.",
+              "doneLabel": "Done",
+              "id": "tror-wwcc",
+              "notePrompt": "Your WWCC number",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Your Working With Children Check"
+            },
+            {
+              "detail": "Insurance that covers group classes for children. Upload the certificate, or tell me where it's up to if it's still on its way.",
+              "doneLabel": "Done",
+              "hasUpload": true,
+              "id": "tror-insurance",
+              "notePrompt": "Insurer, or where it's up to (optional)",
+              "status": "upcoming",
+              "title": "Public liability insurance",
+              "uploadOptions": {
+                "accept": ".pdf,.png,.jpg,.jpeg,.heic",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "A PDF or a photo of it.",
+                "stayOpen": true,
+                "title": "Upload your certificate"
+              }
+            },
+            {
+              "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
+              "doneLabel": "Done",
+              "id": "tror-abn",
+              "notePrompt": "Your ABN and the business name",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Your ABN and business name"
+            },
+            {
+              "detail": "I'll draft it and put it below. Read it. If it's right, press the button. If something needs to change, write it in the box.",
+              "doneLabel": "Looks right",
+              "hasEditableContent": true,
+              "id": "tror-child-safe",
+              "notePrompt": "Anything to change? (optional)",
+              "pendingContentText": "Your child safe policy appears here once I've drafted it.",
+              "status": "upcoming",
+              "title": "Check your child safe policy"
+            },
+            {
+              "detail": "The form every parent signs before their child is in a photo or a video. I'll draft it and put it below. Read it, and tell me anything to change.",
+              "doneLabel": "Looks right",
+              "hasEditableContent": true,
+              "id": "tror-consent",
+              "notePrompt": "Anything to change? (optional)",
+              "pendingContentText": "Your consent form appears here once I've drafted it.",
+              "status": "upcoming",
+              "title": "Check the photo and video consent form"
+            },
+            {
+              "detail": "About 5 dates for the $20 taster classes, in the January school holidays.",
+              "doneLabel": "Done",
+              "id": "tror-taster-dates",
+              "notePrompt": "Your taster dates and times",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Taster dates in the January holidays"
+            },
+            {
+              "detail": "Your rules, in your words. I'll turn them into a short policy for the website and the booking page.",
+              "doneLabel": "Done",
+              "id": "tror-policies",
+              "notePrompt": "What happens with refunds, missed classes and sick days",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Refunds, missed classes and sick days"
+            }
+          ],
+          "name": "Must-haves before we launch",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "How your classes work, what your tools are called, the prices, and a few local parents I can talk to.",
+          "dayEnd": 14,
+          "dayStart": 3,
+          "id": "testing",
+          "milestones": [
+            {
+              "detail": "Do parents stay in the room during class, or drop off and come back?",
+              "doneLabel": "Done",
+              "id": "tror-parents-stay",
+              "notePrompt": "Stay, drop off, or a bit of both",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Do parents stay or drop off?"
+            },
+            {
+              "detail": "The real names of your tools: at least the first 4, ideally all 16 for the year. A one-line note on what each is for helps too.",
+              "doneLabel": "Done",
+              "hasUpload": true,
+              "id": "tror-tools",
+              "notePrompt": "Your tool names",
+              "status": "upcoming",
+              "title": "Your tool names",
+              "uploadOptions": {
+                "accept": ".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.heic",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "A document, or photos of your notes.",
+                "stayOpen": true,
+                "title": "Or upload your Tool Library"
+              }
+            },
+            {
+              "detail": "$40 for a single class. $280 for a term, or 4 payments of $70. A $20 taster that comes off the term.",
+              "doneLabel": "I'm happy with these",
+              "id": "tror-prices",
+              "notePrompt": "Anything you'd change? (optional)",
+              "status": "upcoming",
+              "title": "Happy with these prices?"
+            },
+            {
+              "detail": "Names of 5 to 8 local parents with kids aged 4 to 6 who'd have a 15-minute chat with me. Ask them first. What they say shapes the website and the ads.",
+              "doneLabel": "Done",
+              "id": "tror-parent-chats",
+              "notePrompt": "Their names, and a mobile or email for each",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Local parents I can talk to"
+            }
+          ],
+          "name": "The offer",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Your domain, your pages and the accounts for payments and ads. You own every one of them. Never send me a password.",
+          "dayEnd": 21,
+          "dayStart": 7,
+          "id": "go-live",
+          "milestones": [
+            {
+              "detail": "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
+              "doneLabel": "We've bought it",
+              "id": "tror-domain",
+              "notePrompt": "Another name you'd prefer? (optional)",
+              "status": "upcoming",
+              "title": "Your domain name"
+            },
+            {
+              "detail": "Pages for Tiny ROR. If you have them, paste the links. If not, we set them up when we meet.",
+              "doneLabel": "Done",
+              "id": "tror-socials",
+              "notePlaceholder": "https://instagram.com/...",
+              "notePrompt": "Your Instagram and Facebook links",
+              "status": "upcoming",
+              "title": "Instagram and Facebook pages"
+            },
+            {
+              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name.",
+              "doneLabel": "I've set it up",
+              "id": "tror-stripe",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "upcoming",
+              "title": "Your own Stripe account"
+            },
+            {
+              "detail": "The account your Facebook and Instagram ads run from. Set it up at business.facebook.com, then add me as a partner, so I can run the ads without your login.",
+              "doneLabel": "I've added you",
+              "id": "tror-meta",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Your Business ID, once you have it (optional)",
+              "status": "upcoming",
+              "title": "Meta Business account"
+            },
+            {
+              "detail": "For Google ads and your Google business listing. Make a new Google account just for Tiny ROR.",
+              "doneLabel": "I've set it up",
+              "id": "tror-google",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "The account's email address",
+              "status": "upcoming",
+              "title": "A Google account for Tiny ROR"
+            }
+          ],
+          "name": "Accounts to set up",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "Real families and real you, for the website and the ads. Every family signs the consent form first.",
+          "dayEnd": 30,
+          "dayStart": 14,
+          "id": "post-launch",
+          "milestones": [
+            {
+              "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
+              "doneLabel": "Done",
+              "id": "tror-shoot-families",
+              "notePrompt": "The families' names, and a mobile for each",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Families for the photo shoot"
+            },
+            {
+              "detail": "A few good photos of you, ideally laughing. For the About section of the website.",
+              "doneLabel": "Done",
+              "hasUpload": true,
+              "id": "tror-photos-luisa",
+              "status": "upcoming",
+              "title": "Photos of you",
+              "uploadOptions": {
+                "accept": ".png,.jpg,.jpeg,.webp,.heic,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "As many as you like. A zip is fine.",
+                "stayOpen": true,
+                "title": "Upload your photos"
+              }
+            }
+          ],
+          "name": "Photos",
+          "status": "locked",
+          "statusNotes": []
+        }
+      ]
+    },
+    "renders": {
+      "all@day1": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
+      "all@day12": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
+      "all@day30": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
+      "alternate@day1": "836f1c55825be6bc95204f968143ff5a82a1be422e74dbcffb02cdfdcdaef07f",
+      "alternate@day12": "836f1c55825be6bc95204f968143ff5a82a1be422e74dbcffb02cdfdcdaef07f",
+      "alternate@day30": "836f1c55825be6bc95204f968143ff5a82a1be422e74dbcffb02cdfdcdaef07f",
+      "first-10@day1": "bae5fa558e3d2d3218abc5877f8ed7f31144f471ef44ff5b52670cca216944b4",
+      "first-10@day12": "bae5fa558e3d2d3218abc5877f8ed7f31144f471ef44ff5b52670cca216944b4",
+      "first-10@day30": "bae5fa558e3d2d3218abc5877f8ed7f31144f471ef44ff5b52670cca216944b4",
+      "first-11@day1": "afc28641c57aab998bdac6be93638851f5dc60c4d2507462f84f87cf3e2ce4a4",
+      "first-11@day12": "afc28641c57aab998bdac6be93638851f5dc60c4d2507462f84f87cf3e2ce4a4",
+      "first-11@day30": "afc28641c57aab998bdac6be93638851f5dc60c4d2507462f84f87cf3e2ce4a4",
+      "first-12@day1": "c4254883ba9c578cf36b3c043a04ab5812a5db16b3940956619be3150f1008fc",
+      "first-12@day12": "c4254883ba9c578cf36b3c043a04ab5812a5db16b3940956619be3150f1008fc",
+      "first-12@day30": "c4254883ba9c578cf36b3c043a04ab5812a5db16b3940956619be3150f1008fc",
+      "first-13@day1": "f75d92d69c6fba1e398000a6adb3a5f6fef845e4c4b2804f9bea79459050a4ec",
+      "first-13@day12": "f75d92d69c6fba1e398000a6adb3a5f6fef845e4c4b2804f9bea79459050a4ec",
+      "first-13@day30": "f75d92d69c6fba1e398000a6adb3a5f6fef845e4c4b2804f9bea79459050a4ec",
+      "first-14@day1": "d50fe5c92ffff104daa8ecea6abb1e4cfca435a759d3ec1ed6d46a394a1f6241",
+      "first-14@day12": "d50fe5c92ffff104daa8ecea6abb1e4cfca435a759d3ec1ed6d46a394a1f6241",
+      "first-14@day30": "d50fe5c92ffff104daa8ecea6abb1e4cfca435a759d3ec1ed6d46a394a1f6241",
+      "first-15@day1": "1723d907cdfe961c6a0521f3d78d3b189790e71a5f21511abf31e473352d438a",
+      "first-15@day12": "1723d907cdfe961c6a0521f3d78d3b189790e71a5f21511abf31e473352d438a",
+      "first-15@day30": "1723d907cdfe961c6a0521f3d78d3b189790e71a5f21511abf31e473352d438a",
+      "first-16@day1": "c5a5684dc7495b70cc7456155f3a858b27abcc293670d2e666778996d25319bf",
+      "first-16@day12": "c5a5684dc7495b70cc7456155f3a858b27abcc293670d2e666778996d25319bf",
+      "first-16@day30": "c5a5684dc7495b70cc7456155f3a858b27abcc293670d2e666778996d25319bf",
+      "first-17@day1": "92c7e8b3bce7b9e045aa54d5f4f3a57f597bfebad01a31cb2565545d5fca558b",
+      "first-17@day12": "92c7e8b3bce7b9e045aa54d5f4f3a57f597bfebad01a31cb2565545d5fca558b",
+      "first-17@day30": "92c7e8b3bce7b9e045aa54d5f4f3a57f597bfebad01a31cb2565545d5fca558b",
+      "first-18@day1": "7611f5201dc05d656a46ed65bccb4d7b1c8c4b4c8b700ae472b5ca29b0fef87e",
+      "first-18@day12": "7611f5201dc05d656a46ed65bccb4d7b1c8c4b4c8b700ae472b5ca29b0fef87e",
+      "first-18@day30": "7611f5201dc05d656a46ed65bccb4d7b1c8c4b4c8b700ae472b5ca29b0fef87e",
+      "first-19@day1": "3a6d76afd67a14588a4875566c1c157b63a2948daee4d9074ba057d7fe71ebe2",
+      "first-19@day12": "3a6d76afd67a14588a4875566c1c157b63a2948daee4d9074ba057d7fe71ebe2",
+      "first-19@day30": "3a6d76afd67a14588a4875566c1c157b63a2948daee4d9074ba057d7fe71ebe2",
+      "first-1@day1": "459b8c7b5d3cf5bb7860c78be50a5f95e67eabb8fdfc0e2634f91fe25145e767",
+      "first-1@day12": "459b8c7b5d3cf5bb7860c78be50a5f95e67eabb8fdfc0e2634f91fe25145e767",
+      "first-1@day30": "459b8c7b5d3cf5bb7860c78be50a5f95e67eabb8fdfc0e2634f91fe25145e767",
+      "first-20@day1": "0c38efdc345446bde56d0a68bdd1d077daca09314d6f1f39fa8905f92b4ef887",
+      "first-20@day12": "0c38efdc345446bde56d0a68bdd1d077daca09314d6f1f39fa8905f92b4ef887",
+      "first-20@day30": "0c38efdc345446bde56d0a68bdd1d077daca09314d6f1f39fa8905f92b4ef887",
+      "first-21@day1": "2fefd2ffbf9bd63ef8e71c9a3707abff54d4182f4e939d0ea529c133a8e4d867",
+      "first-21@day12": "2fefd2ffbf9bd63ef8e71c9a3707abff54d4182f4e939d0ea529c133a8e4d867",
+      "first-21@day30": "2fefd2ffbf9bd63ef8e71c9a3707abff54d4182f4e939d0ea529c133a8e4d867",
+      "first-22@day1": "0ed5707413d4fefb252df4bf18617a526785d97af44544dbd27db48e33472d9c",
+      "first-22@day12": "0ed5707413d4fefb252df4bf18617a526785d97af44544dbd27db48e33472d9c",
+      "first-22@day30": "0ed5707413d4fefb252df4bf18617a526785d97af44544dbd27db48e33472d9c",
+      "first-23@day1": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
+      "first-23@day12": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
+      "first-23@day30": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
+      "first-2@day1": "30fe66a897b7959ec2bd18585d7e770137206ca4896cd2014fca9db63ea89169",
+      "first-2@day12": "30fe66a897b7959ec2bd18585d7e770137206ca4896cd2014fca9db63ea89169",
+      "first-2@day30": "30fe66a897b7959ec2bd18585d7e770137206ca4896cd2014fca9db63ea89169",
+      "first-3@day1": "dc94a8e25e7dddf09dd86907851a7feb5ccd43e596a3925be20f2138e86a5d41",
+      "first-3@day12": "dc94a8e25e7dddf09dd86907851a7feb5ccd43e596a3925be20f2138e86a5d41",
+      "first-3@day30": "dc94a8e25e7dddf09dd86907851a7feb5ccd43e596a3925be20f2138e86a5d41",
+      "first-4@day1": "473c6c862a5fa18d7f370914d7c9e2dbb4ebbd1117640afc0aa8cdbb3a41e73a",
+      "first-4@day12": "473c6c862a5fa18d7f370914d7c9e2dbb4ebbd1117640afc0aa8cdbb3a41e73a",
+      "first-4@day30": "473c6c862a5fa18d7f370914d7c9e2dbb4ebbd1117640afc0aa8cdbb3a41e73a",
+      "first-5@day1": "28572b051fc2185870ac80fca3c4643cf4d741017dd79aeb8cb932e4cda2bc18",
+      "first-5@day12": "28572b051fc2185870ac80fca3c4643cf4d741017dd79aeb8cb932e4cda2bc18",
+      "first-5@day30": "28572b051fc2185870ac80fca3c4643cf4d741017dd79aeb8cb932e4cda2bc18",
+      "first-6@day1": "f818172b2d326eda09b79a254ad89051a9cdac3a659eb83df4aecdebc591e38b",
+      "first-6@day12": "f818172b2d326eda09b79a254ad89051a9cdac3a659eb83df4aecdebc591e38b",
+      "first-6@day30": "f818172b2d326eda09b79a254ad89051a9cdac3a659eb83df4aecdebc591e38b",
+      "first-7@day1": "2224f80c9c032c9fd7e226dfe0eb62c3b01d875a59b91bd8796869b4081c8b57",
+      "first-7@day12": "2224f80c9c032c9fd7e226dfe0eb62c3b01d875a59b91bd8796869b4081c8b57",
+      "first-7@day30": "2224f80c9c032c9fd7e226dfe0eb62c3b01d875a59b91bd8796869b4081c8b57",
+      "first-8@day1": "d30201023d6db30a234c6e82de6564cafba42cc6ed9e3923c03a9b613772c7a6",
+      "first-8@day12": "d30201023d6db30a234c6e82de6564cafba42cc6ed9e3923c03a9b613772c7a6",
+      "first-8@day30": "d30201023d6db30a234c6e82de6564cafba42cc6ed9e3923c03a9b613772c7a6",
+      "first-9@day1": "632b62963d3627dc7720c5cf7d0bd3f8abd46360059eeb106149ec4d52e94667",
+      "first-9@day12": "632b62963d3627dc7720c5cf7d0bd3f8abd46360059eeb106149ec4d52e94667",
+      "first-9@day30": "632b62963d3627dc7720c5cf7d0bd3f8abd46360059eeb106149ec4d52e94667",
+      "last@day1": "47ba4ba7b522f4d395a5b070f6dd2d2f402d3185fc9f0ff464b9feed26809019",
+      "last@day12": "47ba4ba7b522f4d395a5b070f6dd2d2f402d3185fc9f0ff464b9feed26809019",
+      "last@day30": "47ba4ba7b522f4d395a5b070f6dd2d2f402d3185fc9f0ff464b9feed26809019",
+      "none@day1": "15d62ed32cde1ac15d0eb71c448822ef3ca59eb258b1f44e2736ec602ccf12b0",
+      "none@day12": "15d62ed32cde1ac15d0eb71c448822ef3ca59eb258b1f44e2736ec602ccf12b0",
+      "none@day30": "15d62ed32cde1ac15d0eb71c448822ef3ca59eb258b1f44e2736ec602ccf12b0"
+    },
+    "stageCompletedBy": {
+      "half": {
+        "tror-abn": "build",
+        "tror-book": "onboarding",
+        "tror-bookmark": "onboarding",
+        "tror-child-safe": "build",
+        "tror-class-time": "build",
+        "tror-consent": "build",
+        "tror-domain": null,
+        "tror-google": null,
+        "tror-insurance": "build",
+        "tror-interview": "onboarding",
+        "tror-meta": null,
+        "tror-parent-chats": null,
+        "tror-parents-stay": null,
+        "tror-photos-luisa": null,
+        "tror-policies": "build",
+        "tror-prices": null,
+        "tror-shoot-families": null,
+        "tror-socials": null,
+        "tror-stripe": null,
+        "tror-taster-dates": "build",
+        "tror-tools": null,
+        "tror-venue": "build",
+        "tror-wwcc": "build"
+      },
+      "none": {
+        "tror-abn": null,
+        "tror-book": null,
+        "tror-bookmark": null,
+        "tror-child-safe": null,
+        "tror-class-time": null,
+        "tror-consent": null,
+        "tror-domain": null,
+        "tror-google": null,
+        "tror-insurance": null,
+        "tror-interview": null,
+        "tror-meta": null,
+        "tror-parent-chats": null,
+        "tror-parents-stay": null,
+        "tror-photos-luisa": null,
+        "tror-policies": null,
+        "tror-prices": null,
+        "tror-shoot-families": null,
+        "tror-socials": null,
+        "tror-stripe": null,
+        "tror-taster-dates": null,
+        "tror-tools": null,
+        "tror-venue": null,
+        "tror-wwcc": null
+      }
+    },
+    "stageGuides": {
+      "build": null,
+      "go-live": null,
+      "onboarding": null,
+      "post-launch": null,
+      "testing": null
+    },
+    "steps": {
+      "tror-abn": {
+        "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-book": {
+        "detail": "About an hour, to go through this whole list together. Pick any time this week that suits you.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": true,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-bookmark": {
+        "detail": "This portal is where your Tiny ROR to-do list lives. Bookmark it so you can always get back here.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-child-safe": {
+        "detail": "I'll draft it and put it below. Read it. If it's right, press the button. If something needs to change, write it in the box.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-class-time": {
+        "detail": "Which day and time the term classes run, and how long one class lasts.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-consent": {
+        "detail": "The form every parent signs before their child is in a photo or a video. I'll draft it and put it below. Read it, and tell me anything to change.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-domain": {
+        "detail": "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-google": {
+        "detail": "For Google ads and your Google business listing. Make a new Google account just for Tiny ROR.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-insurance": {
+        "detail": "Insurance that covers group classes for children. Upload the certificate, or tell me where it's up to if it's still on its way.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-interview": {
+        "detail": "About 45 minutes. A voice memo is fine, a video is even better. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. Your words become the website, the ads and the posts.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-meta": {
+        "detail": "The account your Facebook and Instagram ads run from. Set it up at business.facebook.com, then add me as a partner, so I can run the ads without your login.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-parent-chats": {
+        "detail": "Names of 5 to 8 local parents with kids aged 4 to 6 who'd have a 15-minute chat with me. Ask them first. What they say shapes the website and the ads.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-parents-stay": {
+        "detail": "Do parents stay in the room during class, or drop off and come back?",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-photos-luisa": {
+        "detail": "A few good photos of you, ideally laughing. For the About section of the website.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-policies": {
+        "detail": "Your rules, in your words. I'll turn them into a short policy for the website and the booking page.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-prices": {
+        "detail": "$40 for a single class. $280 for a term, or 4 payments of $70. A $20 taster that comes off the term.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-shoot-families": {
+        "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-socials": {
+        "detail": "Pages for Tiny ROR. If you have them, paste the links. If not, we set them up when we meet.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-stripe": {
+        "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-taster-dates": {
+        "detail": "About 5 dates for the $20 taster classes, in the January school holidays.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-tools": {
+        "detail": "The real names of your tools: at least the first 4, ideally all 16 for the year. A one-line note on what each is for helps too.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-venue": {
+        "detail": "Where the Ballina classes and the tasters will run. Parents will want to know before they book.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-wwcc": {
+        "detail": "Your WWCC number goes on the website. Parents look for it.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      }
+    },
+    "stringPlan": null,
+    "tabTitle": "Tiny ROR",
+    "tagline": "Building tiny hearts.",
+    "totalDays": 30,
+    "totalMilestoneCount": 23,
+    "visibleIds": [
+      "tror-book",
+      "tror-interview",
+      "tror-bookmark",
+      "tror-venue",
+      "tror-class-time",
+      "tror-wwcc",
+      "tror-insurance",
+      "tror-abn",
+      "tror-child-safe",
+      "tror-consent",
+      "tror-taster-dates",
+      "tror-policies",
+      "tror-parents-stay",
+      "tror-tools",
+      "tror-prices",
+      "tror-parent-chats",
+      "tror-domain",
+      "tror-socials",
+      "tror-stripe",
+      "tror-meta",
+      "tror-google",
+      "tror-shoot-families",
+      "tror-photos-luisa"
+    ],
+    "wordmark": "Tiny ROR"
+  },
+  "ssr": {
+    "aurora|all|day1": "a47c73b454de6f01db9c4e0cbaf5f2958bd8cd72898b77d982521d790c97e49c",
+    "aurora|all|day30": "1c5ccd85b3dba15710864288a1388b08a305917b4d87fcec61977a6acab7c9d7",
+    "aurora|half|day1": "57f0f959169a357ca8631d4e9d30b7b46f82d256be5d3ab10160b5b73ccf37d0",
+    "aurora|half|day30": "3ccd31d85944c1c4f848e03377de72a527ed1fd9f3820f862b2fdd933934dd77",
+    "aurora|none|day1": "79fe949415a29a827ec52667b4bbca2ab0c9f88b1b5641475dd145b2b431fc58",
+    "aurora|none|day30": "a95314369202fea6b1ee662a3ee8efea8a6b9b47ac71a6f6da4dc8a8589d62b7",
+    "calm|all|day1": "86cd7882a4ceeb1c38235ea2fedfa2c57e96406a4f6d74568d785e0c7cebb867",
+    "calm|all|day30": "d4616a6f1c4ac9c36b314ba680fc1bfcabd5158713418eeba0843b0016cdafd8",
+    "calm|half|day1": "7d12844bf9849458313f19a5e62eff6923ddd52dd181326ed92755bf97022a58",
+    "calm|half|day30": "a28f684347e0ebd69b924de82d6b802cf3b42e2012b383cbb2af609e6f373c2b",
+    "calm|none|day1": "0d7d184ce44e9329fefc7b2c9eca7d8189807a0cc90ab9e22d94c6724daface9",
+    "calm|none|day30": "327950bbcae0742fa73d5d6bc70ebc2842f5566ce14307b3b111cbbec16b69c2",
+    "cobalt|all|day1": "705a02a3f4883d2122dcad5904c3dfc972e3312aa5847cbc31eda6b9102f42ba",
+    "cobalt|all|day30": "0f334703e36723494a3dab3bd71269ccc6d48525c50c9ff34ff6c6e6a8016ff1",
+    "cobalt|half|day1": "3fb25d2832f9c580695404f583303f67e4cf9d4d6114ae59496bc9b23c342e66",
+    "cobalt|half|day30": "d0c7325b138940e042660158b704087aa45800bf0f62dcffccdaf8da0ff88b39",
+    "cobalt|none|day1": "a032e7bf442676c7e31795609e4173fffb392e73e83edaf7d9a280b09efd1231",
+    "cobalt|none|day30": "599d55c007343ce9cce0b6e5ad5700d05f04a7616e202de57aeeaf766e96a17e",
+    "cool|all|day1": "112b301cd40f3354e4d3c2a5789e01706c81916ac7b2a5973b4e3d1059870f4a",
+    "cool|all|day30": "3562c22e66ae118082f3c265cce0c8e7129b1dbd069868a30ed07c3792fe4698",
+    "cool|half|day1": "436cd20809fdf87bdab2b0b05315c709bf3033c507f2a0ee04c58fed0a4eea51",
+    "cool|half|day30": "68ea3046901e32d15ae229f9f8a892b6269d67974a7f7039aa78f9c21d560b12",
+    "cool|none|day1": "fc647cdf7a8dd3ba0eb5bb7032bdf37d466066a44972f70ce2e0d9fff06aa277",
+    "cool|none|day30": "ed923de8c2ca98f21ff4498de56b50de53601ecaba1f2c8bb8f74ade2cf900fd",
+    "groveaurora|all|day1": "4c61e432ddd827500f30575f752888c2c2d0b6a52e5f42b9a5730419f6e4986c",
+    "groveaurora|all|day30": "f15e31291dd7325592e898cd9c73aaa034f713537df1ca7b2992914bd7c2981c",
+    "groveaurora|half|day1": "a4acbc2906506134cab117dd8ea55a517b130c66cab33d61d4c96b3c82818558",
+    "groveaurora|half|day30": "120b0ffbb8312ad59440fe86f6d175caa85b32c65daf4ffb8852f49d363ecb8e",
+    "groveaurora|none|day1": "64f0ea67e1fca95eb73dae0bfd2e3dfdaabfcb9e525d2814ce53dae6eb4d128b",
+    "groveaurora|none|day30": "9b0baa5b2bed80416cfdc376efc595376647a946e1f71e7dc5af935f2ac0ccc1",
+    "grove|all|day1": "adb5f11c2621bcf3ae0efd62c2e835d4ecd659c4b346e820aa4ae7a824f86f7a",
+    "grove|all|day30": "7fc73917fec264b253dd6c8b4baf52559e304654e0bed12191c8412926ec30e4",
+    "grove|half|day1": "1ec9f1d989e3af42a102fa06b827cb6d0e51f9afdc5429592e26a1649f04f99d",
+    "grove|half|day30": "bee4d5a98568b0d9b8c5fbd4a59ee75181842b670c9d061b683f76d46d8a703f",
+    "grove|none|day1": "9ce40a8b195d9bb052dbd648b64b439772610946293e428b18f6400554ad8846",
+    "grove|none|day30": "a6862d4d70dae265cacc3d9b0042771632d83b705a362f720a6b54578d958928",
+    "handoff|all|day1": "c49a86954870451abcedac964a89c9ad757225a28642a2cb0dbc6f4504a354c3",
+    "handoff|all|day30": "bdc9d54d163e6bcddc9c235c2ff5b8fea9e9c907cf9b779fe77660b40ce4fa3e",
+    "handoff|half|day1": "67cad1a9932690d7b0168c32ea43b767005dbd54409e23effcc7f1ef1559223d",
+    "handoff|half|day30": "b1f329a39352d4980bcea153a9c57ac6011b1b946fdaa3b4b1cc117b8ff144e6",
+    "handoff|none|day1": "e54aa2c0983ded5ca7e9b4848466cf83cbb89938a79c674a469635073ac6d42a",
+    "handoff|none|day30": "eaacce0ab4bdd9913e5bf8b8979b1b0448ff8859aa4f6a1b49df557555b0d6ea",
+    "neutral|all|day1": "bb724491fa824e0fcd2774b3adc030924a4f7b5bd1bb72401529238e99f68580",
+    "neutral|all|day30": "22b53ef4bde2cb946bd09ba0d37d464138d3045ef4d73cb38456f7a3e2c07ea3",
+    "neutral|half|day1": "5e7aee781375da9828f8c0d1ec7237c330d368be8e391231a6f3137f93244ca1",
+    "neutral|half|day30": "e0b97abfe9a39e52249fee8ac48b9570bd5fea265ee8286fe0192829a7e8caaf",
+    "neutral|none|day1": "8b28975daa5a1c63f0d96e76eaf8afcb3d5d640064a427c4d30d0dea8880ce53",
+    "neutral|none|day30": "fce9c477eb70aae33d8c6d0e96a04d5cb99df6a9ee5b20757da467e300918736",
+    "warm|all|day1": "6a70b2190dccbad6f5e0f8cf8515a07e698f1cfa92201daeabfa9ee06458031e",
+    "warm|all|day30": "461d5894b1eac6ca7feedd724b16fd086cb64a7b27af2e9e29048075db6d284b",
+    "warm|half|day1": "328f6bb0ff81480623eab55988a2a6cfc18dbd0d6d97496c941a25b7a3c6aca1",
+    "warm|half|day30": "e755fc17aa7c6d08a171fbba0b24e323a037ec10156a17e76283b2f9e9711a3a",
+    "warm|none|day1": "d632827667200ace61180efe673cd76402550093eaec256e8acb827024b6cbc6",
+    "warm|none|day30": "ea7022ab94f3755db914ad9dbba7bcb171bb38d9e6571a6ccf59e7a7a975622a"
+  },
+  "welcome": {
+    "aurora": "9d9440382a420f81057a23b6539a0bbdfcf3525e5a9f65b36b633b183363c97f",
+    "funnel": "16c754a1e6296746d120f83d35afb542de33d12f8baf10bc79db3c0421c51b39",
+    "funnel-grove": "7a94394befcef0129d66f795e40bc210fbaf7e01a1550b621c98114a3054cd1d",
+    "marquee": "a75dca7987eb6fb8734e4cf70ea01d8abf0b0e09dfe33da8d9086be8725d9ac1",
+    "mosaic": "e51e5cbd8ead8631ed5e883b2bfda5c4ff0c38b0cd2d34cb0a30fa1992a162d6"
+  }
+}

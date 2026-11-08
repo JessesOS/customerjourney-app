@@ -6,13 +6,14 @@ import { bss } from "./bss";
 import { bssCustom } from "./bss-custom";
 import { respond } from "./respond";
 import { scale } from "./scale";
+import { tinyRor } from "./tiny-ror";
 import { website } from "./website";
 import type { ClientTypeOf, Product } from "./types";
 
-export { atNetwork, bss, bssCustom, respond, scale, website };
+export { atNetwork, bss, bssCustom, respond, scale, tinyRor, website };
 
 /** Every product, in sheet order. */
-export const productList = [scale, respond, bss, website, atNetwork, bssCustom] as const satisfies readonly Product[];
+export const productList = [scale, respond, bss, website, atNetwork, bssCustom, tinyRor] as const satisfies readonly Product[];
 
 /** Every client type a product file defines (live, paused or draft). */
 export type ClientType = ClientTypeOf<(typeof productList)[number]>;

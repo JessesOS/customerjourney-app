@@ -33,7 +33,9 @@
       "bssc-crm-plan",
       "bssc-messages",
       "bssc-onboarding-map",
-      "bssc-reactivation"
+      "bssc-reactivation",
+      "tror-child-safe",
+      "tror-consent"
     ],
     "formIds": [
       "scale-onboarding-intake-v1",
@@ -212,7 +214,30 @@
     "bssc-webinar",
     "bssc-onboarding-map",
     "bssc-reactivation",
-    "bssc-check-ins"
+    "bssc-check-ins",
+    "tror-book",
+    "tror-interview",
+    "tror-bookmark",
+    "tror-venue",
+    "tror-class-time",
+    "tror-wwcc",
+    "tror-insurance",
+    "tror-abn",
+    "tror-child-safe",
+    "tror-consent",
+    "tror-taster-dates",
+    "tror-policies",
+    "tror-parents-stay",
+    "tror-tools",
+    "tror-prices",
+    "tror-parent-chats",
+    "tror-domain",
+    "tror-socials",
+    "tror-stripe",
+    "tror-meta",
+    "tror-google",
+    "tror-shoot-families",
+    "tror-photos-luisa"
   ],
   "defaultClientType": "meta-google",
   "forms": {
@@ -864,6 +889,10 @@
     "bssc-assets",
     "bssc-contact-lists",
     "ob-7",
-    "rsp-017"
+    "rsp-017",
+    "tror-insurance",
+    "tror-interview",
+    "tror-photos-luisa",
+    "tror-tools"
   ]
 }
