@@ -148,7 +148,7 @@
       }
     ],
     "adminDayTotal": 30,
-    "adminLabel": "Tiny ROR (draft)",
+    "adminLabel": "Tiny ROR",
     "askItems": {
       "build": [],
       "go-live": [],
@@ -583,7 +583,7 @@
       }
     ],
     "label": "Tiny ROR",
-    "lockedLook": "warm",
+    "lockedLook": "groveaurora",
     "receptionistScriptStep": null,
     "renderSamples": {
       "all@day30": [

@@ -6,14 +6,14 @@
 
 | | |
 |---|---|
-| Version | `2026-11-08.1` |
-| Status | draft: offered and put on boards only where PRODUCT_DRAFTS=1 |
+| Version | `2026-11-09.3` |
+| Status | live: new clients start on it |
 | Journey | 30 days to go-live |
 | Client steps | 23 (1 client only, 0 hidden in the portal) |
 | Team tasks | 24 (24 behind a client step, 0 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/tiny-ror/spec.md](../../products/tiny-ror/spec.md) |
-| Draft wording | `tror-book`, `tror-interview`, `tror-bookmark`, `tror-venue`, `tror-class-time`, `tror-wwcc`, `tror-insurance`, `tror-abn`, `tror-child-safe`, `tror-consent`, `tror-taster-dates`, `tror-policies`, `tror-parents-stay`, `tror-tools`, `tror-prices`, `tror-parent-chats`, `tror-domain`, `tror-socials`, `tror-stripe`, `tror-meta`, `tror-google`, `tror-shoot-families`, `tror-photos-luisa`: Claude drafted this wording; Jesse approves it before the product goes live |
+| Draft wording | none: every client-facing word is approved |
 
 The portal reads this file. `npm run check:journeys` freezes what each client type sees.
 
@@ -25,13 +25,13 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| Tiny ROR | `tiny-ror` | none | where PRODUCT_DRAFTS=1 | 23 | 24 |
+| Tiny ROR | `tiny-ror` | none | yes | 23 | 24 |
 
 ### Portal tweaks by variant
 
 **Tiny ROR** (`tiny-ror`)
 
-- named **Tiny ROR** · tagline "Building tiny hearts." · look fixed to `warm` · no $200 "move fast" popup
+- named **Tiny ROR** · tagline "Building tiny hearts." · look fixed to `groveaurora` · no $200 "move fast" popup
 
 ## Portal settings
 

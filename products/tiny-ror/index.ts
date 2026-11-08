@@ -1,13 +1,13 @@
 // Tiny ROR (Luisa, ROR The Journey): the third custom product, separate from
-// Fin's and AT Network's. DRAFT: staging only until Jesse OKs prod.
+// Fin's and AT Network's. LIVE from 2026-11-09 (Jesse: "Prep the prod package").
 //
 // Written from the Tiny ROR session's handover, products/tiny-ror/spec.md
 // (2026-11-08), on a blank base. Jesse OK'd the 23-step list on 2026-11-08.
 //   - the client's side: 23 steps in five stages (./client-steps.ts);
 //   - the team's side: the work behind them (./team-tasks.ts).
 // PLACEHOLDERS: the booking link on step 1 (Jesse's AT kickoff page until he
-// makes a one-hour Tiny ROR page) and the look ("warm": a red and cream Tiny
-// ROR look would need CSS, Jesse's OK). Messages and email alerts are off:
+// makes a one-hour Tiny ROR page). The look is AT Network's (Jesse, 2026-11-09); a red and cream Tiny
+// ROR look would need CSS and Jesse's OK. Messages and email alerts are off:
 // Luisa is on WhatsApp.
 
 import { defineCustomProduct } from "../custom";
@@ -17,8 +17,8 @@ import { tinyRorTeamTasks } from "./team-tasks";
 export const tinyRor = defineCustomProduct({
   id: "tiny-ror",
   name: "Tiny ROR (Luisa)",
-  version: "2026-11-08.1",
-  status: "draft",
+  version: "2026-11-09.3",
+  status: "live",
   clientType: "tiny-ror",
   label: "Tiny ROR",
   spec: "products/tiny-ror/spec.md",
@@ -32,7 +32,7 @@ export const tinyRor = defineCustomProduct({
   portal: {
     brandName: "Tiny ROR",
     tagline: "Building tiny hearts.", // the brand's own line (site/README.md)
-    lockedLook: "warm",
+    lockedLook: "groveaurora", // AT Network's look (Jesse, 2026-11-09)
   },
-  draftCopy: tinyRorSteps.map(({ step }) => step.id),
+  draftCopy: [],
 });

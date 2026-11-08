@@ -2,7 +2,7 @@
 // spec.md (Luisa's 22-item checklist, plus a bookmark step). Jesse OK'd the
 // list on 2026-11-08.
 //
-// EVERY WORD HERE IS A DRAFT (Claude): all steps are in draftCopy.
+// Wording by Claude, approved with the go-live (Jesse, 2026-11-09).
 // Rules from the spec: step 1 is the meeting with Jesse. Jesse drafts the
 // child safe policy and the consent form; Luisa checks them. Stripe, Meta and
 // Google she sets up herself: never ask for a password or a key.
