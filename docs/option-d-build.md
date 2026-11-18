@@ -518,3 +518,12 @@ AT Network (Rich Latimer, Martyn Hume Cobbe) went live on prod on 2026-10-25 wit
 - **Prod data, Jesse's instruction:** Luisa's `start_date` moved from 2026-11-09 to 2026-11-23 (one row, `portal_clients`, bookmark before: 00000203-00000000-00005127-03a4982840f0ac285fb33efe96df1abd). Her portal reads day 1 of 30.
 - Fixtures re-saved: `tiny-ror`, `_global` (tror- ids only). All checks pass.
 - **Prod 2026-11-19: 0e432a50** (previous 38452923; D1 bookmark 00000204-00000000-00005127-9da267214ceb6c46506ae4ebdef27bbb; rollback `npx wrangler rollback 38452923-557f-4604-8748-2ff9c9169c4d --name scale-onboarding-portal`), with Jesse's OK ("Yes, deploy it"). Tiny ROR 2026-11-19.7, staging 47aaef62. No migration. The first upload failed with a Cloudflare authentication error (code 10000); the retry went through. Checked by the admin API: root 200; Luisa Allan 0 of 28, day 1, never opened; Rich and Ben still 34 steps. No client link opened.
+
+## 2026-11-19: Tiny ROR: steps reordered by lead time (staging 6b9ac605, DRAFT, not on prod)
+- Brief relayed from the Launchpad session (Jesse: run the be-ambitious prompt here). Version 2026-11-19.8, 33 steps (was 28), 34 team tasks. **Claude's draft: staging only. Prod still runs 2026-11-19.7 (0e432a50). On `claude/intelligent-cartwright-339d23` only, not `at-network`.**
+- The schedule, with sources: `~/Master/Side_Projects/Clients/rorthejourney/tiny-ror/notes/2026-11-19-launch-access-schedule.md`. It works back from the first ad (9 Dec, day 17 from her 23 Nov start); go or no-go check 2 Dec. NSW Term 1 2027 starts Wed 3 Feb (the plan page says about 29 Jan).
+- Stages reordered: Start here; Accounts and access (now second, days 1-7); Must-haves; The offer and your approvals; Photos, and later. She can open any step in any order: nothing in the portal locks a step.
+- New steps: `tror-fb-2step`, `tror-meta-account`, `tror-meta-card` (Meta split into one action each), `tror-quiz-approve`, `tror-ads-approve` (editable content, her yes). `tror-domain-move` is last and marked "later": it is not on the launch path and Wix disconnects the site when the address leaves.
+- Every access task's notes now say how Jesse can tell it is done from his own side.
+- Phone check at 375px on staging: all 33 steps load with nothing off-screen. Not done: Meta's own flows on a phone (no test account), the test booking and test quiz (the Tiny ROR workspace does not exist yet).
+- Fixtures re-saved: `tiny-ror`, `_global` (tror- ids only). All checks pass.

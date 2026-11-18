@@ -3,7 +3,7 @@
 //
 // Written from the Tiny ROR session's handover, products/tiny-ror/spec.md
 // (2026-11-08), on a blank base. Jesse OK'd the 23-step list on 2026-11-08.
-//   - the client's side: 28 steps in five stages (./client-steps.ts);
+//   - the client's side: 33 steps in five stages (./client-steps.ts);
 //   - the team's side: the work behind them (./team-tasks.ts).
 // PLACEHOLDERS: the booking link on step 1 (Jesse's AT kickoff page until he
 // makes a one-hour Tiny ROR page). The look is AT Network's (Jesse, 2026-11-09); a red and cream Tiny
@@ -17,7 +17,7 @@ import { tinyRorTeamTasks } from "./team-tasks";
 export const tinyRor = defineCustomProduct({
   id: "tiny-ror",
   name: "Tiny ROR (Luisa)",
-  version: "2026-11-19.7",
+  version: "2026-11-19.8",
   status: "live",
   clientType: "tiny-ror",
   label: "Tiny ROR",
@@ -35,5 +35,8 @@ export const tinyRor = defineCustomProduct({
     lockedLook: "groveaurora", // AT Network's look (Jesse, 2026-11-09)
   },
   // Access steps and plan-board wording (Claude's draft, 2026-11-19): Jesse approved ("Yes, prep prod").
+  // Version 2026-11-19.8 (reorder, Meta split, two approval steps) is Claude's draft: staging only
+  // until Jesse approves. A live product can't list drafts, so they are named here, not in draftCopy.
+  // Prod runs 2026-11-19.7.
   draftCopy: [],
 });

@@ -20,10 +20,76 @@
             "title": "Bookmark your portal"
           }
         ],
-        "name": "This week"
+        "name": "Start here"
       },
       {
         "id": "build",
+        "milestones": [
+          {
+            "awaitingTeam": false,
+            "id": "tror-abn",
+            "title": "Your ABN and business name"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-fb-2step",
+            "title": "Turn on two-step login on Facebook"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-meta-account",
+            "title": "Open your Meta business account"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-meta",
+            "title": "Add me as a partner on Meta"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-meta-card",
+            "title": "Add your card for the ads"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-socials",
+            "title": "Your Tiny ROR Instagram and Facebook page"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-porkbun-account",
+            "title": "Open your own Porkbun account"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-domain",
+            "title": "Buy your new Tiny ROR web address"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-stripe",
+            "title": "Your own Stripe account"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-google-listing",
+            "title": "Add me to your Google listing"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-wix",
+            "title": "Add me to your Wix site"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-contact",
+            "title": "The phone and email parents will see"
+          }
+        ],
+        "name": "Accounts and access"
+      },
+      {
+        "id": "testing",
         "milestones": [
           {
             "awaitingTeam": false,
@@ -44,11 +110,6 @@
             "awaitingTeam": false,
             "id": "tror-insurance",
             "title": "Public liability insurance"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-abn",
-            "title": "Your ABN and business name"
           },
           {
             "awaitingTeam": false,
@@ -74,7 +135,7 @@
         "name": "Must-haves before we launch"
       },
       {
-        "id": "testing",
+        "id": "go-live",
         "milestones": [
           {
             "awaitingTeam": false,
@@ -95,69 +156,23 @@
             "awaitingTeam": false,
             "id": "tror-parent-chats",
             "title": "Local parents I can talk to"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-quiz-approve",
+            "title": "Approve the quiz and the messages"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-ads-approve",
+            "title": "Approve the ads"
           }
         ],
-        "name": "The offer"
-      },
-      {
-        "id": "go-live",
-        "milestones": [
-          {
-            "awaitingTeam": false,
-            "id": "tror-wix",
-            "title": "Add me to your Wix site"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-porkbun-account",
-            "title": "Open your own Porkbun account"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-domain-move",
-            "title": "Move your web address from Wix to Porkbun"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-domain",
-            "title": "Buy your new Tiny ROR web address"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-socials",
-            "title": "Instagram and Facebook pages"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-meta",
-            "title": "Add me as a partner on Meta"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-google-listing",
-            "title": "Add me to your Google listing"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-stripe",
-            "title": "Your own Stripe account"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-contact",
-            "title": "The phone and email parents will see"
-          }
-        ],
-        "name": "Accounts and access"
+        "name": "The offer and your approvals"
       },
       {
         "id": "post-launch",
         "milestones": [
-          {
-            "awaitingTeam": false,
-            "id": "tror-shoot-families",
-            "title": "Families for the photo shoot"
-          },
           {
             "awaitingTeam": false,
             "id": "tror-photos-luisa",
@@ -165,11 +180,21 @@
           },
           {
             "awaitingTeam": false,
+            "id": "tror-shoot-families",
+            "title": "Families for the photo shoot"
+          },
+          {
+            "awaitingTeam": false,
             "id": "tror-brand-files",
             "title": "Your logo and brand files"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-domain-move",
+            "title": "Later: move your old web address from Wix to Porkbun"
           }
         ],
-        "name": "Photos"
+        "name": "Photos, and later"
       }
     ],
     "adminDayTotal": 30,
@@ -208,18 +233,78 @@
       "visible": [
         {
           "id": "tror-book",
-          "stageName": "This week",
+          "stageName": "Start here",
           "title": "Book a time with me this week"
         },
         {
           "id": "tror-interview",
-          "stageName": "This week",
+          "stageName": "Start here",
           "title": "Your interview with Claude"
         },
         {
           "id": "tror-bookmark",
-          "stageName": "This week",
+          "stageName": "Start here",
           "title": "Bookmark your portal"
+        },
+        {
+          "id": "tror-abn",
+          "stageName": "Accounts and access",
+          "title": "Your ABN and business name"
+        },
+        {
+          "id": "tror-fb-2step",
+          "stageName": "Accounts and access",
+          "title": "Turn on two-step login on Facebook"
+        },
+        {
+          "id": "tror-meta-account",
+          "stageName": "Accounts and access",
+          "title": "Open your Meta business account"
+        },
+        {
+          "id": "tror-meta",
+          "stageName": "Accounts and access",
+          "title": "Add me as a partner on Meta"
+        },
+        {
+          "id": "tror-meta-card",
+          "stageName": "Accounts and access",
+          "title": "Add your card for the ads"
+        },
+        {
+          "id": "tror-socials",
+          "stageName": "Accounts and access",
+          "title": "Your Tiny ROR Instagram and Facebook page"
+        },
+        {
+          "id": "tror-porkbun-account",
+          "stageName": "Accounts and access",
+          "title": "Open your own Porkbun account"
+        },
+        {
+          "id": "tror-domain",
+          "stageName": "Accounts and access",
+          "title": "Buy your new Tiny ROR web address"
+        },
+        {
+          "id": "tror-stripe",
+          "stageName": "Accounts and access",
+          "title": "Your own Stripe account"
+        },
+        {
+          "id": "tror-google-listing",
+          "stageName": "Accounts and access",
+          "title": "Add me to your Google listing"
+        },
+        {
+          "id": "tror-wix",
+          "stageName": "Accounts and access",
+          "title": "Add me to your Wix site"
+        },
+        {
+          "id": "tror-contact",
+          "stageName": "Accounts and access",
+          "title": "The phone and email parents will see"
         },
         {
           "id": "tror-venue",
@@ -240,11 +325,6 @@
           "id": "tror-insurance",
           "stageName": "Must-haves before we launch",
           "title": "Public liability insurance"
-        },
-        {
-          "id": "tror-abn",
-          "stageName": "Must-haves before we launch",
-          "title": "Your ABN and business name"
         },
         {
           "id": "tror-child-safe",
@@ -268,90 +348,60 @@
         },
         {
           "id": "tror-parents-stay",
-          "stageName": "The offer",
+          "stageName": "The offer and your approvals",
           "title": "Do parents stay or drop off?"
         },
         {
           "id": "tror-tools",
-          "stageName": "The offer",
+          "stageName": "The offer and your approvals",
           "title": "Are your tool names final?"
         },
         {
           "id": "tror-prices",
-          "stageName": "The offer",
+          "stageName": "The offer and your approvals",
           "title": "Happy with these prices?"
         },
         {
           "id": "tror-parent-chats",
-          "stageName": "The offer",
+          "stageName": "The offer and your approvals",
           "title": "Local parents I can talk to"
         },
         {
-          "id": "tror-wix",
-          "stageName": "Accounts and access",
-          "title": "Add me to your Wix site"
+          "id": "tror-quiz-approve",
+          "stageName": "The offer and your approvals",
+          "title": "Approve the quiz and the messages"
         },
         {
-          "id": "tror-porkbun-account",
-          "stageName": "Accounts and access",
-          "title": "Open your own Porkbun account"
-        },
-        {
-          "id": "tror-domain-move",
-          "stageName": "Accounts and access",
-          "title": "Move your web address from Wix to Porkbun"
-        },
-        {
-          "id": "tror-domain",
-          "stageName": "Accounts and access",
-          "title": "Buy your new Tiny ROR web address"
-        },
-        {
-          "id": "tror-socials",
-          "stageName": "Accounts and access",
-          "title": "Instagram and Facebook pages"
-        },
-        {
-          "id": "tror-meta",
-          "stageName": "Accounts and access",
-          "title": "Add me as a partner on Meta"
-        },
-        {
-          "id": "tror-google-listing",
-          "stageName": "Accounts and access",
-          "title": "Add me to your Google listing"
-        },
-        {
-          "id": "tror-stripe",
-          "stageName": "Accounts and access",
-          "title": "Your own Stripe account"
-        },
-        {
-          "id": "tror-contact",
-          "stageName": "Accounts and access",
-          "title": "The phone and email parents will see"
-        },
-        {
-          "id": "tror-shoot-families",
-          "stageName": "Photos",
-          "title": "Families for the photo shoot"
+          "id": "tror-ads-approve",
+          "stageName": "The offer and your approvals",
+          "title": "Approve the ads"
         },
         {
           "id": "tror-photos-luisa",
-          "stageName": "Photos",
+          "stageName": "Photos, and later",
           "title": "Photos of you"
         },
         {
+          "id": "tror-shoot-families",
+          "stageName": "Photos, and later",
+          "title": "Families for the photo shoot"
+        },
+        {
           "id": "tror-brand-files",
-          "stageName": "Photos",
+          "stageName": "Photos, and later",
           "title": "Your logo and brand files"
+        },
+        {
+          "id": "tror-domain-move",
+          "stageName": "Photos, and later",
+          "title": "Later: move your old web address from Wix to Porkbun"
         }
       ]
     },
     "journeyTemplate": [
       {
-        "blurb": "Meet me this week and record your interview. Those two get everything else moving.",
-        "dayEnd": 7,
+        "blurb": "Book a time with me and do your interview with Claude. Those two get everything else moving.",
+        "dayEnd": 3,
         "dayStart": 1,
         "id": "onboarding",
         "milestones": [
@@ -404,14 +454,157 @@
             "title": "Bookmark your portal"
           }
         ],
-        "name": "This week",
+        "name": "Start here",
+        "statusNotes": []
+      },
+      {
+        "blurb": "These come first because some of them have a wait built in. You own every account, in your name. You add me as a helper and I do the fiddly parts. Never send me a password.",
+        "dayEnd": 7,
+        "dayStart": 1,
+        "id": "build",
+        "milestones": [
+          {
+            "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
+            "doneLabel": "Done",
+            "id": "tror-abn",
+            "notePrompt": "Your ABN and the business name",
+            "noteRequired": true,
+            "title": "Your ABN and business name"
+          },
+          {
+            "detail": "Two-step login means Facebook asks for a code from your phone as well as your password. Meta needs it on before you can add me to anything. Two minutes, in the Facebook app.",
+            "doneLabel": "It's on",
+            "id": "tror-fb-2step",
+            "notePrompt": "Stuck, or can't find it on your phone? Tell me where (optional)",
+            "steps": [
+              "Open the Facebook app and tap the menu, then Settings & privacy, then Settings.",
+              "Tap Accounts Centre, then Password and security, then Two-factor authentication.",
+              "Choose your Facebook account, pick text message or an app, and follow the prompts."
+            ],
+            "title": "Turn on two-step login on Facebook"
+          },
+          {
+            "detail": "Meta is the company behind Facebook and Instagram. A business account is the folder your Facebook page, your Instagram and your ads sit in. It's free, and it's in your name. Open it this week: ads from a brand-new account start with a low daily limit that only lifts with time.",
+            "doneLabel": "I've opened it",
+            "id": "tror-meta-account",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePrompt": "Stuck, or can't find it on your phone? Tell me where (optional)",
+            "steps": [
+              "Go to business.facebook.com and log in with your own Facebook.",
+              "Press Create an account. Use the business name, your name and your email.",
+              "Confirm the email Meta sends you."
+            ],
+            "title": "Open your Meta business account"
+          },
+          {
+            "detail": "One partner request lets me post, and make and run your ads, from my own login. Everything stays in your account, in your name. I do the fiddly set-up after this: the ad account, linking your page and Instagram, and the tracking. You approve every ad.",
+            "doneLabel": "I've added you",
+            "id": "tror-meta",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePrompt": "Stuck, or can't find it on your phone? Tell me where and we'll do it on a call (optional)",
+            "steps": [
+              "In business.facebook.com, open Settings, then Users, then Partners.",
+              "Press Add, then \"Give a partner access to your assets\".",
+              "Type my Business ID. I'll message it to you.",
+              "Tick everything it offers (your page, your Instagram, your ad account), choose full control, then press Assign assets."
+            ],
+            "title": "Add me as a partner on Meta"
+          },
+          {
+            "detail": "The ads are paid for on your own card, so the spend is always yours to see and stop. I'll tell you when the ad account is ready. Meta may take a small test payment and give it back. Nothing is spent on ads until you say go, and I set a daily cap first.",
+            "doneLabel": "I've added it",
+            "id": "tror-meta-card",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePrompt": "Stuck, or can't find it on your phone? Tell me where (optional)",
+            "steps": [
+              "In business.facebook.com, open Billing and payments.",
+              "Choose the Tiny ROR ad account, then Add payment method.",
+              "Add your card. If it asks about tax, enter your ABN."
+            ],
+            "title": "Add your card for the ads"
+          },
+          {
+            "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. The Instagram needs to be a professional account, joined to the Facebook page, so ads can run on both. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
+            "doneLabel": "Done",
+            "id": "tror-socials",
+            "notePlaceholder": "https://instagram.com/...",
+            "notePrompt": "Your Instagram and Facebook links",
+            "steps": [
+              "In the Instagram app, open Settings, then Account type and tools, and switch to a professional account. Choose Business.",
+              "Still in Instagram, tap Edit profile, then Page, and connect your Tiny ROR Facebook page.",
+              "Paste both links in the box below."
+            ],
+            "title": "Your Tiny ROR Instagram and Facebook page"
+          },
+          {
+            "detail": "Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.",
+            "doneLabel": "I've opened it",
+            "id": "tror-porkbun-account",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "steps": [
+              "Go to porkbun.com and create an account.",
+              "Turn on two-step login when it offers it."
+            ],
+            "title": "Open your own Porkbun account"
+          },
+          {
+            "detail": "A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name. I do the technical set-up after that.",
+            "doneLabel": "We've bought it",
+            "id": "tror-domain",
+            "notePrompt": "Another name you'd prefer? (optional)",
+            "title": "Buy your new Tiny ROR web address"
+          },
+          {
+            "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Have your ABN, your licence or passport, a bill or statement with your home address, and your bank details ready. Stripe checks them, usually within a day. Later you connect it to the booking page yourself, with me on a call.",
+            "doneLabel": "I've set it up",
+            "id": "tror-stripe",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "title": "Your own Stripe account"
+          },
+          {
+            "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
+            "doneLabel": "I've added you",
+            "id": "tror-google-listing",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePrompt": "No listing yet, or not sure? Tell me here (optional)",
+            "steps": [
+              "Signed in to Google, search for your business name.",
+              "On your listing, press the three dots, then Business Profile settings.",
+              "Choose People and access, then Add.",
+              "Type jesse@allconvos.ai, choose Manager, and send the invite."
+            ],
+            "title": "Add me to your Google listing"
+          },
+          {
+            "detail": "Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.",
+            "doneLabel": "I've invited you",
+            "id": "tror-wix",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "steps": [
+              "Log in to Wix and open your site's dashboard.",
+              "Go to Settings, then Roles & Permissions.",
+              "Press Invite People, and type jesse@allconvos.ai.",
+              "Choose the Admin role, then send the invite."
+            ],
+            "title": "Add me to your Wix site"
+          },
+          {
+            "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
+            "doneLabel": "Done",
+            "id": "tror-contact",
+            "notePrompt": "The mobile number and the email address",
+            "noteRequired": true,
+            "title": "The phone and email parents will see"
+          }
+        ],
+        "name": "Accounts and access",
         "statusNotes": []
       },
       {
         "blurb": "The details nothing can launch without: your venue, your checks and insurance, and the policies parents will ask about. I draft the child safe policy and the consent form. You check them.",
-        "dayEnd": 14,
+        "dayEnd": 10,
         "dayStart": 1,
-        "id": "build",
+        "id": "testing",
         "milestones": [
           {
             "detail": "Where the Ballina classes and the tasters will run. Parents will want to know before they book.",
@@ -456,14 +649,6 @@
             }
           },
           {
-            "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
-            "doneLabel": "Done",
-            "id": "tror-abn",
-            "notePrompt": "Your ABN and the business name",
-            "noteRequired": true,
-            "title": "Your ABN and business name"
-          },
-          {
             "detail": "I'll draft it and put it below. Read it. If it's right, press the button. If something needs to change, write it in the box.",
             "doneLabel": "Looks right",
             "hasEditableContent": true,
@@ -502,10 +687,10 @@
         "statusNotes": []
       },
       {
-        "blurb": "How your classes work, what your tools are called, the prices, and a few local parents I can talk to.",
+        "blurb": "How your classes work, the prices, a few local parents I can talk to, and your yes on the quiz and the ads. Nothing goes out in your name without it.",
         "dayEnd": 14,
         "dayStart": 3,
-        "id": "testing",
+        "id": "go-live",
         "milestones": [
           {
             "detail": "Do parents stay in the room during class, or drop off and come back?",
@@ -551,135 +736,37 @@
             "notePrompt": "Their names, and a mobile or email for each",
             "noteRequired": true,
             "title": "Local parents I can talk to"
+          },
+          {
+            "detail": "The \"ror style\" quiz, its four results, and the emails and texts that follow. They go out in your name, so they need to sound like you. I'll put them below when they're ready. Read them, and tell me anything to change.",
+            "doneLabel": "They sound like me",
+            "hasEditableContent": true,
+            "id": "tror-quiz-approve",
+            "notePrompt": "Anything to change? (optional)",
+            "pendingContentText": "The quiz and the messages appear here when they're ready for you.",
+            "title": "Approve the quiz and the messages"
+          },
+          {
+            "detail": "The four ads, before anything is switched on. No ad runs without your yes. No child's face is in any of them. I'll put them below when they're ready.",
+            "doneLabel": "Yes, run them",
+            "hasEditableContent": true,
+            "id": "tror-ads-approve",
+            "notePrompt": "Anything to change? (optional)",
+            "pendingContentText": "Your ads appear here when they're ready for you.",
+            "title": "Approve the ads"
           }
         ],
-        "name": "The offer",
+        "name": "The offer and your approvals",
         "statusNotes": []
       },
       {
-        "blurb": "Your website, your web address, your pages and the accounts for payments and ads. You own every one of them. You add me as a helper. Never send me a password.",
-        "dayEnd": 21,
-        "dayStart": 7,
-        "id": "go-live",
-        "milestones": [
-          {
-            "detail": "Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.",
-            "doneLabel": "I've invited you",
-            "id": "tror-wix",
-            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-            "steps": [
-              "Log in to Wix and open your site's dashboard.",
-              "Go to Settings, then Roles & Permissions.",
-              "Press Invite People, and type jesse@allconvos.ai.",
-              "Choose the Admin role, then send the invite."
-            ],
-            "title": "Add me to your Wix site"
-          },
-          {
-            "detail": "Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.",
-            "doneLabel": "I've opened it",
-            "id": "tror-porkbun-account",
-            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-            "steps": [
-              "Go to porkbun.com and create an account.",
-              "Turn on two-step login when it offers it."
-            ],
-            "title": "Open your own Porkbun account"
-          },
-          {
-            "detail": "We do this together on a call, about 15 minutes. You log in to Wix and to Porkbun, and I tell you what to click. The move itself can take up to a week. Your website and your email keep working while it happens.",
-            "doneLabel": "It's moved",
-            "id": "tror-domain-move",
-            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-            "notePlaceholder": "e.g. rorthejourney.com.au",
-            "notePrompt": "Which web address is at Wix?",
-            "steps": [
-              "In Wix, we unlock the web address and get its transfer code.",
-              "In Porkbun, we start the transfer with that code. Porkbun may charge a small fee, on your card.",
-              "You approve the email Wix sends you. Then we wait for it to land."
-            ],
-            "title": "Move your web address from Wix to Porkbun"
-          },
-          {
-            "detail": "A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name.",
-            "doneLabel": "We've bought it",
-            "id": "tror-domain",
-            "notePrompt": "Another name you'd prefer? (optional)",
-            "title": "Buy your new Tiny ROR web address"
-          },
-          {
-            "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
-            "doneLabel": "Done",
-            "id": "tror-socials",
-            "notePlaceholder": "https://instagram.com/...",
-            "notePrompt": "Your Instagram and Facebook links",
-            "title": "Instagram and Facebook pages"
-          },
-          {
-            "detail": "Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.",
-            "doneLabel": "I've added you",
-            "id": "tror-meta",
-            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-            "notePrompt": "Your Business ID, once you have it (optional)",
-            "steps": [
-              "First, turn on two-step login for your own Facebook account (Settings, then Password and security).",
-              "Go to business.facebook.com. If you don't have a business account yet, create one in the business name.",
-              "Open Settings, then Partners. Press Add, then \"Give a partner access to your assets\".",
-              "Type my Business ID. I'll message it to you.",
-              "Tick your Facebook page, your Instagram account and your ad account, with full control, then save.",
-              "Add your own card to the ad account (Billing). Nothing is spent until you say go."
-            ],
-            "title": "Add me as a partner on Meta"
-          },
-          {
-            "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
-            "doneLabel": "I've added you",
-            "id": "tror-google-listing",
-            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-            "notePrompt": "No listing yet, or not sure? Tell me here (optional)",
-            "steps": [
-              "Signed in to Google, search for your business name.",
-              "On your listing, press the three dots, then Business Profile settings.",
-              "Choose People and access, then Add.",
-              "Type jesse@allconvos.ai, choose Manager, and send the invite."
-            ],
-            "title": "Add me to your Google listing"
-          },
-          {
-            "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.",
-            "doneLabel": "I've set it up",
-            "id": "tror-stripe",
-            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-            "title": "Your own Stripe account"
-          },
-          {
-            "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
-            "doneLabel": "Done",
-            "id": "tror-contact",
-            "notePrompt": "The mobile number and the email address",
-            "noteRequired": true,
-            "title": "The phone and email parents will see"
-          }
-        ],
-        "name": "Accounts and access",
-        "statusNotes": []
-      },
-      {
-        "blurb": "Real families and real you, for the website and the ads. Every family signs the consent form first.",
+        "blurb": "You first, then real families, each with a signed consent form. And one job that waits until after launch.",
         "dayEnd": 30,
-        "dayStart": 14,
+        "dayStart": 5,
         "id": "post-launch",
         "milestones": [
           {
-            "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
-            "doneLabel": "Done",
-            "id": "tror-shoot-families",
-            "notePrompt": "The families' names, and a mobile for each",
-            "noteRequired": true,
-            "title": "Families for the photo shoot"
-          },
-          {
-            "detail": "A few good photos of you, ideally laughing. For the About section of the website.",
+            "detail": "A few good photos of you, ideally laughing. For the About section of the website, and the first ads. Just you, please: no children in these.",
             "doneLabel": "Done",
             "hasUpload": true,
             "id": "tror-photos-luisa",
@@ -692,6 +779,14 @@
               "stayOpen": true,
               "title": "Upload your photos"
             }
+          },
+          {
+            "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
+            "doneLabel": "Done",
+            "id": "tror-shoot-families",
+            "notePrompt": "The families' names, and a mobile for each",
+            "noteRequired": true,
+            "title": "Families for the photo shoot"
           },
           {
             "detail": "The Tiny ROR logo files and anything else from your designer: fonts, colours, stickers. If you don't have them, skip this. I can lift them from your site.",
@@ -709,9 +804,23 @@
               "stayOpen": true,
               "title": "Upload your files"
             }
+          },
+          {
+            "detail": "This one can wait until after launch. Nothing in the launch depends on it. We do it together on a call, about 15 minutes: you log in to Wix and to Porkbun, and I tell you what to click. The move takes up to a week. I set up your email and your pages at Porkbun first, so nothing goes dark. Don't start it on your own.",
+            "doneLabel": "It's moved",
+            "id": "tror-domain-move",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePlaceholder": "e.g. rorthejourney.com.au",
+            "notePrompt": "Which web address is at Wix?",
+            "steps": [
+              "In Wix, we ask for the transfer code. Wix emails it to you.",
+              "In Porkbun, we start the transfer with that code. Porkbun may charge a small fee, on your card.",
+              "Then we wait for it to land. I check your website and email still work."
+            ],
+            "title": "Later: move your old web address from Wix to Porkbun"
           }
         ],
-        "name": "Photos",
+        "name": "Photos, and later",
         "statusNotes": []
       }
     ],
@@ -721,8 +830,8 @@
     "renderSamples": {
       "all@day30": [
         {
-          "blurb": "Meet me this week and record your interview. Those two get everything else moving.",
-          "dayEnd": 7,
+          "blurb": "Book a time with me and do your interview with Claude. Those two get everything else moving.",
+          "dayEnd": 3,
           "dayStart": 1,
           "id": "onboarding",
           "milestones": [
@@ -778,15 +887,171 @@
               "title": "Bookmark your portal"
             }
           ],
-          "name": "This week",
+          "name": "Start here",
+          "status": "done",
+          "statusNotes": []
+        },
+        {
+          "blurb": "These come first because some of them have a wait built in. You own every account, in your name. You add me as a helper and I do the fiddly parts. Never send me a password.",
+          "dayEnd": 7,
+          "dayStart": 1,
+          "id": "build",
+          "milestones": [
+            {
+              "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
+              "doneLabel": "Done",
+              "id": "tror-abn",
+              "notePrompt": "Your ABN and the business name",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Your ABN and business name"
+            },
+            {
+              "detail": "Two-step login means Facebook asks for a code from your phone as well as your password. Meta needs it on before you can add me to anything. Two minutes, in the Facebook app.",
+              "doneLabel": "It's on",
+              "id": "tror-fb-2step",
+              "notePrompt": "Stuck, or can't find it on your phone? Tell me where (optional)",
+              "status": "done",
+              "steps": [
+                "Open the Facebook app and tap the menu, then Settings & privacy, then Settings.",
+                "Tap Accounts Centre, then Password and security, then Two-factor authentication.",
+                "Choose your Facebook account, pick text message or an app, and follow the prompts."
+              ],
+              "title": "Turn on two-step login on Facebook"
+            },
+            {
+              "detail": "Meta is the company behind Facebook and Instagram. A business account is the folder your Facebook page, your Instagram and your ads sit in. It's free, and it's in your name. Open it this week: ads from a brand-new account start with a low daily limit that only lifts with time.",
+              "doneLabel": "I've opened it",
+              "id": "tror-meta-account",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Stuck, or can't find it on your phone? Tell me where (optional)",
+              "status": "done",
+              "steps": [
+                "Go to business.facebook.com and log in with your own Facebook.",
+                "Press Create an account. Use the business name, your name and your email.",
+                "Confirm the email Meta sends you."
+              ],
+              "title": "Open your Meta business account"
+            },
+            {
+              "detail": "One partner request lets me post, and make and run your ads, from my own login. Everything stays in your account, in your name. I do the fiddly set-up after this: the ad account, linking your page and Instagram, and the tracking. You approve every ad.",
+              "doneLabel": "I've added you",
+              "id": "tror-meta",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Stuck, or can't find it on your phone? Tell me where and we'll do it on a call (optional)",
+              "status": "done",
+              "steps": [
+                "In business.facebook.com, open Settings, then Users, then Partners.",
+                "Press Add, then \"Give a partner access to your assets\".",
+                "Type my Business ID. I'll message it to you.",
+                "Tick everything it offers (your page, your Instagram, your ad account), choose full control, then press Assign assets."
+              ],
+              "title": "Add me as a partner on Meta"
+            },
+            {
+              "detail": "The ads are paid for on your own card, so the spend is always yours to see and stop. I'll tell you when the ad account is ready. Meta may take a small test payment and give it back. Nothing is spent on ads until you say go, and I set a daily cap first.",
+              "doneLabel": "I've added it",
+              "id": "tror-meta-card",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Stuck, or can't find it on your phone? Tell me where (optional)",
+              "status": "done",
+              "steps": [
+                "In business.facebook.com, open Billing and payments.",
+                "Choose the Tiny ROR ad account, then Add payment method.",
+                "Add your card. If it asks about tax, enter your ABN."
+              ],
+              "title": "Add your card for the ads"
+            },
+            {
+              "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. The Instagram needs to be a professional account, joined to the Facebook page, so ads can run on both. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
+              "doneLabel": "Done",
+              "id": "tror-socials",
+              "notePlaceholder": "https://instagram.com/...",
+              "notePrompt": "Your Instagram and Facebook links",
+              "status": "done",
+              "steps": [
+                "In the Instagram app, open Settings, then Account type and tools, and switch to a professional account. Choose Business.",
+                "Still in Instagram, tap Edit profile, then Page, and connect your Tiny ROR Facebook page.",
+                "Paste both links in the box below."
+              ],
+              "title": "Your Tiny ROR Instagram and Facebook page"
+            },
+            {
+              "detail": "Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.",
+              "doneLabel": "I've opened it",
+              "id": "tror-porkbun-account",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "done",
+              "steps": [
+                "Go to porkbun.com and create an account.",
+                "Turn on two-step login when it offers it."
+              ],
+              "title": "Open your own Porkbun account"
+            },
+            {
+              "detail": "A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name. I do the technical set-up after that.",
+              "doneLabel": "We've bought it",
+              "id": "tror-domain",
+              "notePrompt": "Another name you'd prefer? (optional)",
+              "status": "done",
+              "title": "Buy your new Tiny ROR web address"
+            },
+            {
+              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Have your ABN, your licence or passport, a bill or statement with your home address, and your bank details ready. Stripe checks them, usually within a day. Later you connect it to the booking page yourself, with me on a call.",
+              "doneLabel": "I've set it up",
+              "id": "tror-stripe",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "done",
+              "title": "Your own Stripe account"
+            },
+            {
+              "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
+              "doneLabel": "I've added you",
+              "id": "tror-google-listing",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "No listing yet, or not sure? Tell me here (optional)",
+              "status": "done",
+              "steps": [
+                "Signed in to Google, search for your business name.",
+                "On your listing, press the three dots, then Business Profile settings.",
+                "Choose People and access, then Add.",
+                "Type jesse@allconvos.ai, choose Manager, and send the invite."
+              ],
+              "title": "Add me to your Google listing"
+            },
+            {
+              "detail": "Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.",
+              "doneLabel": "I've invited you",
+              "id": "tror-wix",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "done",
+              "steps": [
+                "Log in to Wix and open your site's dashboard.",
+                "Go to Settings, then Roles & Permissions.",
+                "Press Invite People, and type jesse@allconvos.ai.",
+                "Choose the Admin role, then send the invite."
+              ],
+              "title": "Add me to your Wix site"
+            },
+            {
+              "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
+              "doneLabel": "Done",
+              "id": "tror-contact",
+              "notePrompt": "The mobile number and the email address",
+              "noteRequired": true,
+              "status": "done",
+              "title": "The phone and email parents will see"
+            }
+          ],
+          "name": "Accounts and access",
           "status": "done",
           "statusNotes": []
         },
         {
           "blurb": "The details nothing can launch without: your venue, your checks and insurance, and the policies parents will ask about. I draft the child safe policy and the consent form. You check them.",
-          "dayEnd": 14,
+          "dayEnd": 10,
           "dayStart": 1,
-          "id": "build",
+          "id": "testing",
           "milestones": [
             {
               "detail": "Where the Ballina classes and the tasters will run. Parents will want to know before they book.",
@@ -835,15 +1100,6 @@
               }
             },
             {
-              "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
-              "doneLabel": "Done",
-              "id": "tror-abn",
-              "notePrompt": "Your ABN and the business name",
-              "noteRequired": true,
-              "status": "done",
-              "title": "Your ABN and business name"
-            },
-            {
               "detail": "I'll draft it and put it below. Read it. If it's right, press the button. If something needs to change, write it in the box.",
               "doneLabel": "Looks right",
               "hasEditableContent": true,
@@ -887,10 +1143,10 @@
           "statusNotes": []
         },
         {
-          "blurb": "How your classes work, what your tools are called, the prices, and a few local parents I can talk to.",
+          "blurb": "How your classes work, the prices, a few local parents I can talk to, and your yes on the quiz and the ads. Nothing goes out in your name without it.",
           "dayEnd": 14,
           "dayStart": 3,
-          "id": "testing",
+          "id": "go-live",
           "milestones": [
             {
               "detail": "Do parents stay in the room during class, or drop off and come back?",
@@ -940,147 +1196,40 @@
               "noteRequired": true,
               "status": "done",
               "title": "Local parents I can talk to"
+            },
+            {
+              "detail": "The \"ror style\" quiz, its four results, and the emails and texts that follow. They go out in your name, so they need to sound like you. I'll put them below when they're ready. Read them, and tell me anything to change.",
+              "doneLabel": "They sound like me",
+              "hasEditableContent": true,
+              "id": "tror-quiz-approve",
+              "notePrompt": "Anything to change? (optional)",
+              "pendingContentText": "The quiz and the messages appear here when they're ready for you.",
+              "status": "done",
+              "title": "Approve the quiz and the messages"
+            },
+            {
+              "detail": "The four ads, before anything is switched on. No ad runs without your yes. No child's face is in any of them. I'll put them below when they're ready.",
+              "doneLabel": "Yes, run them",
+              "hasEditableContent": true,
+              "id": "tror-ads-approve",
+              "notePrompt": "Anything to change? (optional)",
+              "pendingContentText": "Your ads appear here when they're ready for you.",
+              "status": "done",
+              "title": "Approve the ads"
             }
           ],
-          "name": "The offer",
+          "name": "The offer and your approvals",
           "status": "done",
           "statusNotes": []
         },
         {
-          "blurb": "Your website, your web address, your pages and the accounts for payments and ads. You own every one of them. You add me as a helper. Never send me a password.",
-          "dayEnd": 21,
-          "dayStart": 7,
-          "id": "go-live",
-          "milestones": [
-            {
-              "detail": "Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.",
-              "doneLabel": "I've invited you",
-              "id": "tror-wix",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "status": "done",
-              "steps": [
-                "Log in to Wix and open your site's dashboard.",
-                "Go to Settings, then Roles & Permissions.",
-                "Press Invite People, and type jesse@allconvos.ai.",
-                "Choose the Admin role, then send the invite."
-              ],
-              "title": "Add me to your Wix site"
-            },
-            {
-              "detail": "Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.",
-              "doneLabel": "I've opened it",
-              "id": "tror-porkbun-account",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "status": "done",
-              "steps": [
-                "Go to porkbun.com and create an account.",
-                "Turn on two-step login when it offers it."
-              ],
-              "title": "Open your own Porkbun account"
-            },
-            {
-              "detail": "We do this together on a call, about 15 minutes. You log in to Wix and to Porkbun, and I tell you what to click. The move itself can take up to a week. Your website and your email keep working while it happens.",
-              "doneLabel": "It's moved",
-              "id": "tror-domain-move",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePlaceholder": "e.g. rorthejourney.com.au",
-              "notePrompt": "Which web address is at Wix?",
-              "status": "done",
-              "steps": [
-                "In Wix, we unlock the web address and get its transfer code.",
-                "In Porkbun, we start the transfer with that code. Porkbun may charge a small fee, on your card.",
-                "You approve the email Wix sends you. Then we wait for it to land."
-              ],
-              "title": "Move your web address from Wix to Porkbun"
-            },
-            {
-              "detail": "A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name.",
-              "doneLabel": "We've bought it",
-              "id": "tror-domain",
-              "notePrompt": "Another name you'd prefer? (optional)",
-              "status": "done",
-              "title": "Buy your new Tiny ROR web address"
-            },
-            {
-              "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
-              "doneLabel": "Done",
-              "id": "tror-socials",
-              "notePlaceholder": "https://instagram.com/...",
-              "notePrompt": "Your Instagram and Facebook links",
-              "status": "done",
-              "title": "Instagram and Facebook pages"
-            },
-            {
-              "detail": "Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.",
-              "doneLabel": "I've added you",
-              "id": "tror-meta",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePrompt": "Your Business ID, once you have it (optional)",
-              "status": "done",
-              "steps": [
-                "First, turn on two-step login for your own Facebook account (Settings, then Password and security).",
-                "Go to business.facebook.com. If you don't have a business account yet, create one in the business name.",
-                "Open Settings, then Partners. Press Add, then \"Give a partner access to your assets\".",
-                "Type my Business ID. I'll message it to you.",
-                "Tick your Facebook page, your Instagram account and your ad account, with full control, then save.",
-                "Add your own card to the ad account (Billing). Nothing is spent until you say go."
-              ],
-              "title": "Add me as a partner on Meta"
-            },
-            {
-              "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
-              "doneLabel": "I've added you",
-              "id": "tror-google-listing",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePrompt": "No listing yet, or not sure? Tell me here (optional)",
-              "status": "done",
-              "steps": [
-                "Signed in to Google, search for your business name.",
-                "On your listing, press the three dots, then Business Profile settings.",
-                "Choose People and access, then Add.",
-                "Type jesse@allconvos.ai, choose Manager, and send the invite."
-              ],
-              "title": "Add me to your Google listing"
-            },
-            {
-              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.",
-              "doneLabel": "I've set it up",
-              "id": "tror-stripe",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "status": "done",
-              "title": "Your own Stripe account"
-            },
-            {
-              "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
-              "doneLabel": "Done",
-              "id": "tror-contact",
-              "notePrompt": "The mobile number and the email address",
-              "noteRequired": true,
-              "status": "done",
-              "title": "The phone and email parents will see"
-            }
-          ],
-          "name": "Accounts and access",
-          "status": "done",
-          "statusNotes": []
-        },
-        {
-          "blurb": "Real families and real you, for the website and the ads. Every family signs the consent form first.",
+          "blurb": "You first, then real families, each with a signed consent form. And one job that waits until after launch.",
           "dayEnd": 30,
-          "dayStart": 14,
+          "dayStart": 5,
           "id": "post-launch",
           "milestones": [
             {
-              "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
-              "doneLabel": "Done",
-              "id": "tror-shoot-families",
-              "notePrompt": "The families' names, and a mobile for each",
-              "noteRequired": true,
-              "status": "done",
-              "title": "Families for the photo shoot"
-            },
-            {
-              "detail": "A few good photos of you, ideally laughing. For the About section of the website.",
+              "detail": "A few good photos of you, ideally laughing. For the About section of the website, and the first ads. Just you, please: no children in these.",
               "doneLabel": "Done",
               "hasUpload": true,
               "id": "tror-photos-luisa",
@@ -1094,6 +1243,15 @@
                 "stayOpen": true,
                 "title": "Upload your photos"
               }
+            },
+            {
+              "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
+              "doneLabel": "Done",
+              "id": "tror-shoot-families",
+              "notePrompt": "The families' names, and a mobile for each",
+              "noteRequired": true,
+              "status": "done",
+              "title": "Families for the photo shoot"
             },
             {
               "detail": "The Tiny ROR logo files and anything else from your designer: fonts, colours, stickers. If you don't have them, skip this. I can lift them from your site.",
@@ -1112,17 +1270,32 @@
                 "stayOpen": true,
                 "title": "Upload your files"
               }
+            },
+            {
+              "detail": "This one can wait until after launch. Nothing in the launch depends on it. We do it together on a call, about 15 minutes: you log in to Wix and to Porkbun, and I tell you what to click. The move takes up to a week. I set up your email and your pages at Porkbun first, so nothing goes dark. Don't start it on your own.",
+              "doneLabel": "It's moved",
+              "id": "tror-domain-move",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePlaceholder": "e.g. rorthejourney.com.au",
+              "notePrompt": "Which web address is at Wix?",
+              "status": "done",
+              "steps": [
+                "In Wix, we ask for the transfer code. Wix emails it to you.",
+                "In Porkbun, we start the transfer with that code. Porkbun may charge a small fee, on your card.",
+                "Then we wait for it to land. I check your website and email still work."
+              ],
+              "title": "Later: move your old web address from Wix to Porkbun"
             }
           ],
-          "name": "Photos",
+          "name": "Photos, and later",
           "status": "done",
           "statusNotes": []
         }
       ],
       "none@day1": [
         {
-          "blurb": "Meet me this week and record your interview. Those two get everything else moving.",
-          "dayEnd": 7,
+          "blurb": "Book a time with me and do your interview with Claude. Those two get everything else moving.",
+          "dayEnd": 3,
           "dayStart": 1,
           "id": "onboarding",
           "milestones": [
@@ -1178,15 +1351,171 @@
               "title": "Bookmark your portal"
             }
           ],
-          "name": "This week",
+          "name": "Start here",
           "status": "current",
           "statusNotes": []
         },
         {
-          "blurb": "The details nothing can launch without: your venue, your checks and insurance, and the policies parents will ask about. I draft the child safe policy and the consent form. You check them.",
-          "dayEnd": 14,
+          "blurb": "These come first because some of them have a wait built in. You own every account, in your name. You add me as a helper and I do the fiddly parts. Never send me a password.",
+          "dayEnd": 7,
           "dayStart": 1,
           "id": "build",
+          "milestones": [
+            {
+              "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
+              "doneLabel": "Done",
+              "id": "tror-abn",
+              "notePrompt": "Your ABN and the business name",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Your ABN and business name"
+            },
+            {
+              "detail": "Two-step login means Facebook asks for a code from your phone as well as your password. Meta needs it on before you can add me to anything. Two minutes, in the Facebook app.",
+              "doneLabel": "It's on",
+              "id": "tror-fb-2step",
+              "notePrompt": "Stuck, or can't find it on your phone? Tell me where (optional)",
+              "status": "upcoming",
+              "steps": [
+                "Open the Facebook app and tap the menu, then Settings & privacy, then Settings.",
+                "Tap Accounts Centre, then Password and security, then Two-factor authentication.",
+                "Choose your Facebook account, pick text message or an app, and follow the prompts."
+              ],
+              "title": "Turn on two-step login on Facebook"
+            },
+            {
+              "detail": "Meta is the company behind Facebook and Instagram. A business account is the folder your Facebook page, your Instagram and your ads sit in. It's free, and it's in your name. Open it this week: ads from a brand-new account start with a low daily limit that only lifts with time.",
+              "doneLabel": "I've opened it",
+              "id": "tror-meta-account",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Stuck, or can't find it on your phone? Tell me where (optional)",
+              "status": "upcoming",
+              "steps": [
+                "Go to business.facebook.com and log in with your own Facebook.",
+                "Press Create an account. Use the business name, your name and your email.",
+                "Confirm the email Meta sends you."
+              ],
+              "title": "Open your Meta business account"
+            },
+            {
+              "detail": "One partner request lets me post, and make and run your ads, from my own login. Everything stays in your account, in your name. I do the fiddly set-up after this: the ad account, linking your page and Instagram, and the tracking. You approve every ad.",
+              "doneLabel": "I've added you",
+              "id": "tror-meta",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Stuck, or can't find it on your phone? Tell me where and we'll do it on a call (optional)",
+              "status": "upcoming",
+              "steps": [
+                "In business.facebook.com, open Settings, then Users, then Partners.",
+                "Press Add, then \"Give a partner access to your assets\".",
+                "Type my Business ID. I'll message it to you.",
+                "Tick everything it offers (your page, your Instagram, your ad account), choose full control, then press Assign assets."
+              ],
+              "title": "Add me as a partner on Meta"
+            },
+            {
+              "detail": "The ads are paid for on your own card, so the spend is always yours to see and stop. I'll tell you when the ad account is ready. Meta may take a small test payment and give it back. Nothing is spent on ads until you say go, and I set a daily cap first.",
+              "doneLabel": "I've added it",
+              "id": "tror-meta-card",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Stuck, or can't find it on your phone? Tell me where (optional)",
+              "status": "upcoming",
+              "steps": [
+                "In business.facebook.com, open Billing and payments.",
+                "Choose the Tiny ROR ad account, then Add payment method.",
+                "Add your card. If it asks about tax, enter your ABN."
+              ],
+              "title": "Add your card for the ads"
+            },
+            {
+              "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. The Instagram needs to be a professional account, joined to the Facebook page, so ads can run on both. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
+              "doneLabel": "Done",
+              "id": "tror-socials",
+              "notePlaceholder": "https://instagram.com/...",
+              "notePrompt": "Your Instagram and Facebook links",
+              "status": "upcoming",
+              "steps": [
+                "In the Instagram app, open Settings, then Account type and tools, and switch to a professional account. Choose Business.",
+                "Still in Instagram, tap Edit profile, then Page, and connect your Tiny ROR Facebook page.",
+                "Paste both links in the box below."
+              ],
+              "title": "Your Tiny ROR Instagram and Facebook page"
+            },
+            {
+              "detail": "Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.",
+              "doneLabel": "I've opened it",
+              "id": "tror-porkbun-account",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "upcoming",
+              "steps": [
+                "Go to porkbun.com and create an account.",
+                "Turn on two-step login when it offers it."
+              ],
+              "title": "Open your own Porkbun account"
+            },
+            {
+              "detail": "A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name. I do the technical set-up after that.",
+              "doneLabel": "We've bought it",
+              "id": "tror-domain",
+              "notePrompt": "Another name you'd prefer? (optional)",
+              "status": "upcoming",
+              "title": "Buy your new Tiny ROR web address"
+            },
+            {
+              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Have your ABN, your licence or passport, a bill or statement with your home address, and your bank details ready. Stripe checks them, usually within a day. Later you connect it to the booking page yourself, with me on a call.",
+              "doneLabel": "I've set it up",
+              "id": "tror-stripe",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "upcoming",
+              "title": "Your own Stripe account"
+            },
+            {
+              "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
+              "doneLabel": "I've added you",
+              "id": "tror-google-listing",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "No listing yet, or not sure? Tell me here (optional)",
+              "status": "upcoming",
+              "steps": [
+                "Signed in to Google, search for your business name.",
+                "On your listing, press the three dots, then Business Profile settings.",
+                "Choose People and access, then Add.",
+                "Type jesse@allconvos.ai, choose Manager, and send the invite."
+              ],
+              "title": "Add me to your Google listing"
+            },
+            {
+              "detail": "Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.",
+              "doneLabel": "I've invited you",
+              "id": "tror-wix",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "upcoming",
+              "steps": [
+                "Log in to Wix and open your site's dashboard.",
+                "Go to Settings, then Roles & Permissions.",
+                "Press Invite People, and type jesse@allconvos.ai.",
+                "Choose the Admin role, then send the invite."
+              ],
+              "title": "Add me to your Wix site"
+            },
+            {
+              "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
+              "doneLabel": "Done",
+              "id": "tror-contact",
+              "notePrompt": "The mobile number and the email address",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "The phone and email parents will see"
+            }
+          ],
+          "name": "Accounts and access",
+          "status": "locked",
+          "statusNotes": []
+        },
+        {
+          "blurb": "The details nothing can launch without: your venue, your checks and insurance, and the policies parents will ask about. I draft the child safe policy and the consent form. You check them.",
+          "dayEnd": 10,
+          "dayStart": 1,
+          "id": "testing",
           "milestones": [
             {
               "detail": "Where the Ballina classes and the tasters will run. Parents will want to know before they book.",
@@ -1235,15 +1564,6 @@
               }
             },
             {
-              "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
-              "doneLabel": "Done",
-              "id": "tror-abn",
-              "notePrompt": "Your ABN and the business name",
-              "noteRequired": true,
-              "status": "upcoming",
-              "title": "Your ABN and business name"
-            },
-            {
               "detail": "I'll draft it and put it below. Read it. If it's right, press the button. If something needs to change, write it in the box.",
               "doneLabel": "Looks right",
               "hasEditableContent": true,
@@ -1287,10 +1607,10 @@
           "statusNotes": []
         },
         {
-          "blurb": "How your classes work, what your tools are called, the prices, and a few local parents I can talk to.",
+          "blurb": "How your classes work, the prices, a few local parents I can talk to, and your yes on the quiz and the ads. Nothing goes out in your name without it.",
           "dayEnd": 14,
           "dayStart": 3,
-          "id": "testing",
+          "id": "go-live",
           "milestones": [
             {
               "detail": "Do parents stay in the room during class, or drop off and come back?",
@@ -1340,147 +1660,40 @@
               "noteRequired": true,
               "status": "upcoming",
               "title": "Local parents I can talk to"
+            },
+            {
+              "detail": "The \"ror style\" quiz, its four results, and the emails and texts that follow. They go out in your name, so they need to sound like you. I'll put them below when they're ready. Read them, and tell me anything to change.",
+              "doneLabel": "They sound like me",
+              "hasEditableContent": true,
+              "id": "tror-quiz-approve",
+              "notePrompt": "Anything to change? (optional)",
+              "pendingContentText": "The quiz and the messages appear here when they're ready for you.",
+              "status": "upcoming",
+              "title": "Approve the quiz and the messages"
+            },
+            {
+              "detail": "The four ads, before anything is switched on. No ad runs without your yes. No child's face is in any of them. I'll put them below when they're ready.",
+              "doneLabel": "Yes, run them",
+              "hasEditableContent": true,
+              "id": "tror-ads-approve",
+              "notePrompt": "Anything to change? (optional)",
+              "pendingContentText": "Your ads appear here when they're ready for you.",
+              "status": "upcoming",
+              "title": "Approve the ads"
             }
           ],
-          "name": "The offer",
+          "name": "The offer and your approvals",
           "status": "locked",
           "statusNotes": []
         },
         {
-          "blurb": "Your website, your web address, your pages and the accounts for payments and ads. You own every one of them. You add me as a helper. Never send me a password.",
-          "dayEnd": 21,
-          "dayStart": 7,
-          "id": "go-live",
-          "milestones": [
-            {
-              "detail": "Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.",
-              "doneLabel": "I've invited you",
-              "id": "tror-wix",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "status": "upcoming",
-              "steps": [
-                "Log in to Wix and open your site's dashboard.",
-                "Go to Settings, then Roles & Permissions.",
-                "Press Invite People, and type jesse@allconvos.ai.",
-                "Choose the Admin role, then send the invite."
-              ],
-              "title": "Add me to your Wix site"
-            },
-            {
-              "detail": "Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.",
-              "doneLabel": "I've opened it",
-              "id": "tror-porkbun-account",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "status": "upcoming",
-              "steps": [
-                "Go to porkbun.com and create an account.",
-                "Turn on two-step login when it offers it."
-              ],
-              "title": "Open your own Porkbun account"
-            },
-            {
-              "detail": "We do this together on a call, about 15 minutes. You log in to Wix and to Porkbun, and I tell you what to click. The move itself can take up to a week. Your website and your email keep working while it happens.",
-              "doneLabel": "It's moved",
-              "id": "tror-domain-move",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePlaceholder": "e.g. rorthejourney.com.au",
-              "notePrompt": "Which web address is at Wix?",
-              "status": "upcoming",
-              "steps": [
-                "In Wix, we unlock the web address and get its transfer code.",
-                "In Porkbun, we start the transfer with that code. Porkbun may charge a small fee, on your card.",
-                "You approve the email Wix sends you. Then we wait for it to land."
-              ],
-              "title": "Move your web address from Wix to Porkbun"
-            },
-            {
-              "detail": "A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name.",
-              "doneLabel": "We've bought it",
-              "id": "tror-domain",
-              "notePrompt": "Another name you'd prefer? (optional)",
-              "status": "upcoming",
-              "title": "Buy your new Tiny ROR web address"
-            },
-            {
-              "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
-              "doneLabel": "Done",
-              "id": "tror-socials",
-              "notePlaceholder": "https://instagram.com/...",
-              "notePrompt": "Your Instagram and Facebook links",
-              "status": "upcoming",
-              "title": "Instagram and Facebook pages"
-            },
-            {
-              "detail": "Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.",
-              "doneLabel": "I've added you",
-              "id": "tror-meta",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePrompt": "Your Business ID, once you have it (optional)",
-              "status": "upcoming",
-              "steps": [
-                "First, turn on two-step login for your own Facebook account (Settings, then Password and security).",
-                "Go to business.facebook.com. If you don't have a business account yet, create one in the business name.",
-                "Open Settings, then Partners. Press Add, then \"Give a partner access to your assets\".",
-                "Type my Business ID. I'll message it to you.",
-                "Tick your Facebook page, your Instagram account and your ad account, with full control, then save.",
-                "Add your own card to the ad account (Billing). Nothing is spent until you say go."
-              ],
-              "title": "Add me as a partner on Meta"
-            },
-            {
-              "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
-              "doneLabel": "I've added you",
-              "id": "tror-google-listing",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePrompt": "No listing yet, or not sure? Tell me here (optional)",
-              "status": "upcoming",
-              "steps": [
-                "Signed in to Google, search for your business name.",
-                "On your listing, press the three dots, then Business Profile settings.",
-                "Choose People and access, then Add.",
-                "Type jesse@allconvos.ai, choose Manager, and send the invite."
-              ],
-              "title": "Add me to your Google listing"
-            },
-            {
-              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.",
-              "doneLabel": "I've set it up",
-              "id": "tror-stripe",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "status": "upcoming",
-              "title": "Your own Stripe account"
-            },
-            {
-              "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
-              "doneLabel": "Done",
-              "id": "tror-contact",
-              "notePrompt": "The mobile number and the email address",
-              "noteRequired": true,
-              "status": "upcoming",
-              "title": "The phone and email parents will see"
-            }
-          ],
-          "name": "Accounts and access",
-          "status": "locked",
-          "statusNotes": []
-        },
-        {
-          "blurb": "Real families and real you, for the website and the ads. Every family signs the consent form first.",
+          "blurb": "You first, then real families, each with a signed consent form. And one job that waits until after launch.",
           "dayEnd": 30,
-          "dayStart": 14,
+          "dayStart": 5,
           "id": "post-launch",
           "milestones": [
             {
-              "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
-              "doneLabel": "Done",
-              "id": "tror-shoot-families",
-              "notePrompt": "The families' names, and a mobile for each",
-              "noteRequired": true,
-              "status": "upcoming",
-              "title": "Families for the photo shoot"
-            },
-            {
-              "detail": "A few good photos of you, ideally laughing. For the About section of the website.",
+              "detail": "A few good photos of you, ideally laughing. For the About section of the website, and the first ads. Just you, please: no children in these.",
               "doneLabel": "Done",
               "hasUpload": true,
               "id": "tror-photos-luisa",
@@ -1494,6 +1707,15 @@
                 "stayOpen": true,
                 "title": "Upload your photos"
               }
+            },
+            {
+              "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
+              "doneLabel": "Done",
+              "id": "tror-shoot-families",
+              "notePrompt": "The families' names, and a mobile for each",
+              "noteRequired": true,
+              "status": "upcoming",
+              "title": "Families for the photo shoot"
             },
             {
               "detail": "The Tiny ROR logo files and anything else from your designer: fonts, colours, stickers. If you don't have them, skip this. I can lift them from your site.",
@@ -1512,145 +1734,181 @@
                 "stayOpen": true,
                 "title": "Upload your files"
               }
+            },
+            {
+              "detail": "This one can wait until after launch. Nothing in the launch depends on it. We do it together on a call, about 15 minutes: you log in to Wix and to Porkbun, and I tell you what to click. The move takes up to a week. I set up your email and your pages at Porkbun first, so nothing goes dark. Don't start it on your own.",
+              "doneLabel": "It's moved",
+              "id": "tror-domain-move",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePlaceholder": "e.g. rorthejourney.com.au",
+              "notePrompt": "Which web address is at Wix?",
+              "status": "upcoming",
+              "steps": [
+                "In Wix, we ask for the transfer code. Wix emails it to you.",
+                "In Porkbun, we start the transfer with that code. Porkbun may charge a small fee, on your card.",
+                "Then we wait for it to land. I check your website and email still work."
+              ],
+              "title": "Later: move your old web address from Wix to Porkbun"
             }
           ],
-          "name": "Photos",
+          "name": "Photos, and later",
           "status": "locked",
           "statusNotes": []
         }
       ]
     },
     "renders": {
-      "all@day1": "a2291fbe976404aab3b1b83476662ba2de3a40d3b53e70939bdb53b6e4643431",
-      "all@day12": "a2291fbe976404aab3b1b83476662ba2de3a40d3b53e70939bdb53b6e4643431",
-      "all@day30": "a2291fbe976404aab3b1b83476662ba2de3a40d3b53e70939bdb53b6e4643431",
-      "alternate@day1": "0319e477ed5d9f4fcf5341c84e0c229eaa7af59d2b8f82c91e2d5c2f185e2e74",
-      "alternate@day12": "0319e477ed5d9f4fcf5341c84e0c229eaa7af59d2b8f82c91e2d5c2f185e2e74",
-      "alternate@day30": "0319e477ed5d9f4fcf5341c84e0c229eaa7af59d2b8f82c91e2d5c2f185e2e74",
-      "first-10@day1": "774c08777ecfed4676003aef8feccf97169412fc61d8e5f806b1b03b915b7856",
-      "first-10@day12": "774c08777ecfed4676003aef8feccf97169412fc61d8e5f806b1b03b915b7856",
-      "first-10@day30": "774c08777ecfed4676003aef8feccf97169412fc61d8e5f806b1b03b915b7856",
-      "first-11@day1": "e6f8b77b6d0c78aae3b907811b7f727cb9cb2ed3c316314ca6f1a0dd987dd256",
-      "first-11@day12": "e6f8b77b6d0c78aae3b907811b7f727cb9cb2ed3c316314ca6f1a0dd987dd256",
-      "first-11@day30": "e6f8b77b6d0c78aae3b907811b7f727cb9cb2ed3c316314ca6f1a0dd987dd256",
-      "first-12@day1": "494150ab6c4bce96791bb39cee7b4c3cdc02f69ba64d5c489bb16f7c21c84e50",
-      "first-12@day12": "494150ab6c4bce96791bb39cee7b4c3cdc02f69ba64d5c489bb16f7c21c84e50",
-      "first-12@day30": "494150ab6c4bce96791bb39cee7b4c3cdc02f69ba64d5c489bb16f7c21c84e50",
-      "first-13@day1": "0bb53dc2ef22ffcb57e1b52ba7bd2e18760ab53ab2ba1424ffa3e732a55e02ea",
-      "first-13@day12": "0bb53dc2ef22ffcb57e1b52ba7bd2e18760ab53ab2ba1424ffa3e732a55e02ea",
-      "first-13@day30": "0bb53dc2ef22ffcb57e1b52ba7bd2e18760ab53ab2ba1424ffa3e732a55e02ea",
-      "first-14@day1": "740e79cf2e63187f51aaf88afe5dec318d83e5e975d8ed42dbe8906c9b59729e",
-      "first-14@day12": "740e79cf2e63187f51aaf88afe5dec318d83e5e975d8ed42dbe8906c9b59729e",
-      "first-14@day30": "740e79cf2e63187f51aaf88afe5dec318d83e5e975d8ed42dbe8906c9b59729e",
-      "first-15@day1": "d330813d2e1bd50ef2092d9acdd631c0bc3f8fa127e873c179e4e351b77d8cd0",
-      "first-15@day12": "d330813d2e1bd50ef2092d9acdd631c0bc3f8fa127e873c179e4e351b77d8cd0",
-      "first-15@day30": "d330813d2e1bd50ef2092d9acdd631c0bc3f8fa127e873c179e4e351b77d8cd0",
-      "first-16@day1": "206b70c8129d8c2eaa85214e0c88d28fe2704e42e64b82145946c897fe79000c",
-      "first-16@day12": "206b70c8129d8c2eaa85214e0c88d28fe2704e42e64b82145946c897fe79000c",
-      "first-16@day30": "206b70c8129d8c2eaa85214e0c88d28fe2704e42e64b82145946c897fe79000c",
-      "first-17@day1": "0846024a573697f98c5ef3b90bff715b58470f8117267530f0d2f05167ae82d2",
-      "first-17@day12": "0846024a573697f98c5ef3b90bff715b58470f8117267530f0d2f05167ae82d2",
-      "first-17@day30": "0846024a573697f98c5ef3b90bff715b58470f8117267530f0d2f05167ae82d2",
-      "first-18@day1": "c1eea415fecdd720ddcfc1e65dda446974ea209afb29a76b75837ac703ab37e8",
-      "first-18@day12": "c1eea415fecdd720ddcfc1e65dda446974ea209afb29a76b75837ac703ab37e8",
-      "first-18@day30": "c1eea415fecdd720ddcfc1e65dda446974ea209afb29a76b75837ac703ab37e8",
-      "first-19@day1": "6df34500dcc467135a7c006de5f433fceb119d2eb7bf94c00101d7e11175fb5c",
-      "first-19@day12": "6df34500dcc467135a7c006de5f433fceb119d2eb7bf94c00101d7e11175fb5c",
-      "first-19@day30": "6df34500dcc467135a7c006de5f433fceb119d2eb7bf94c00101d7e11175fb5c",
-      "first-1@day1": "62e4c5728aa55b0043d6ddfc4f9de7f9396468f027c4ef34591496d098360bdf",
-      "first-1@day12": "62e4c5728aa55b0043d6ddfc4f9de7f9396468f027c4ef34591496d098360bdf",
-      "first-1@day30": "62e4c5728aa55b0043d6ddfc4f9de7f9396468f027c4ef34591496d098360bdf",
-      "first-20@day1": "3e7a3b67be082e48f5ab18758c8a403a81c87d48cf3c02f82e981cbe3de8f8a6",
-      "first-20@day12": "3e7a3b67be082e48f5ab18758c8a403a81c87d48cf3c02f82e981cbe3de8f8a6",
-      "first-20@day30": "3e7a3b67be082e48f5ab18758c8a403a81c87d48cf3c02f82e981cbe3de8f8a6",
-      "first-21@day1": "d286c03a2b0d23e621b4efc33e63df6cde42983656ae6d52c973566c58cf2772",
-      "first-21@day12": "d286c03a2b0d23e621b4efc33e63df6cde42983656ae6d52c973566c58cf2772",
-      "first-21@day30": "d286c03a2b0d23e621b4efc33e63df6cde42983656ae6d52c973566c58cf2772",
-      "first-22@day1": "553d54d880bd372b97b382ad2dc9163e44e69fee83084b071fe71888fe5c5abe",
-      "first-22@day12": "553d54d880bd372b97b382ad2dc9163e44e69fee83084b071fe71888fe5c5abe",
-      "first-22@day30": "553d54d880bd372b97b382ad2dc9163e44e69fee83084b071fe71888fe5c5abe",
-      "first-23@day1": "504b7267b27a7aba66c55b4366ac8176b658aae4941e477e90e62c675e427744",
-      "first-23@day12": "504b7267b27a7aba66c55b4366ac8176b658aae4941e477e90e62c675e427744",
-      "first-23@day30": "504b7267b27a7aba66c55b4366ac8176b658aae4941e477e90e62c675e427744",
-      "first-24@day1": "090e7dad2c606dc44d33a7bba41d66203d986c45f21fd36c2988efe3778de355",
-      "first-24@day12": "090e7dad2c606dc44d33a7bba41d66203d986c45f21fd36c2988efe3778de355",
-      "first-24@day30": "090e7dad2c606dc44d33a7bba41d66203d986c45f21fd36c2988efe3778de355",
-      "first-25@day1": "cf5e4265f82aed222dc64992a79705ff93cd4bbdbfc12b317418ac1e8cee4e97",
-      "first-25@day12": "cf5e4265f82aed222dc64992a79705ff93cd4bbdbfc12b317418ac1e8cee4e97",
-      "first-25@day30": "cf5e4265f82aed222dc64992a79705ff93cd4bbdbfc12b317418ac1e8cee4e97",
-      "first-26@day1": "0d5b002384cc4ac450f7b9f3fd9fc439d67018e3b69ad4a070bc5256561128c3",
-      "first-26@day12": "0d5b002384cc4ac450f7b9f3fd9fc439d67018e3b69ad4a070bc5256561128c3",
-      "first-26@day30": "0d5b002384cc4ac450f7b9f3fd9fc439d67018e3b69ad4a070bc5256561128c3",
-      "first-27@day1": "c66cade5a3b6d92902c7b9369288d3b348d00ef9944322cb565918aa49a68850",
-      "first-27@day12": "c66cade5a3b6d92902c7b9369288d3b348d00ef9944322cb565918aa49a68850",
-      "first-27@day30": "c66cade5a3b6d92902c7b9369288d3b348d00ef9944322cb565918aa49a68850",
-      "first-28@day1": "a2291fbe976404aab3b1b83476662ba2de3a40d3b53e70939bdb53b6e4643431",
-      "first-28@day12": "a2291fbe976404aab3b1b83476662ba2de3a40d3b53e70939bdb53b6e4643431",
-      "first-28@day30": "a2291fbe976404aab3b1b83476662ba2de3a40d3b53e70939bdb53b6e4643431",
-      "first-2@day1": "9c000ba1dc71c945c97e16e30ed8cce077bf3b0f6129186a01270a3da8cdbbee",
-      "first-2@day12": "9c000ba1dc71c945c97e16e30ed8cce077bf3b0f6129186a01270a3da8cdbbee",
-      "first-2@day30": "9c000ba1dc71c945c97e16e30ed8cce077bf3b0f6129186a01270a3da8cdbbee",
-      "first-3@day1": "c65cb35789458a483397f4c1a650d1f56c634e0cdc5055d4c80a681b257cb1b2",
-      "first-3@day12": "c65cb35789458a483397f4c1a650d1f56c634e0cdc5055d4c80a681b257cb1b2",
-      "first-3@day30": "c65cb35789458a483397f4c1a650d1f56c634e0cdc5055d4c80a681b257cb1b2",
-      "first-4@day1": "d337701a02c4c872ff7b149bba671e6a04c871973fd909a4ad4424c954d1c48e",
-      "first-4@day12": "d337701a02c4c872ff7b149bba671e6a04c871973fd909a4ad4424c954d1c48e",
-      "first-4@day30": "d337701a02c4c872ff7b149bba671e6a04c871973fd909a4ad4424c954d1c48e",
-      "first-5@day1": "1357f5e77ad6b08144663d337ae2bfa897a81a4db7cb357b498fadc7fd6856fa",
-      "first-5@day12": "1357f5e77ad6b08144663d337ae2bfa897a81a4db7cb357b498fadc7fd6856fa",
-      "first-5@day30": "1357f5e77ad6b08144663d337ae2bfa897a81a4db7cb357b498fadc7fd6856fa",
-      "first-6@day1": "99f8a5a9171136ffa4748eb3912bb444abe2db79e0c83b970c304da96f3e84ce",
-      "first-6@day12": "99f8a5a9171136ffa4748eb3912bb444abe2db79e0c83b970c304da96f3e84ce",
-      "first-6@day30": "99f8a5a9171136ffa4748eb3912bb444abe2db79e0c83b970c304da96f3e84ce",
-      "first-7@day1": "4749741662897e156a7c36b1fb836aa1620ae2c02305b3580111fe910bfadede",
-      "first-7@day12": "4749741662897e156a7c36b1fb836aa1620ae2c02305b3580111fe910bfadede",
-      "first-7@day30": "4749741662897e156a7c36b1fb836aa1620ae2c02305b3580111fe910bfadede",
-      "first-8@day1": "4ed886b610d4abe61d16e954b4ad4bf9c2dde13f3624ee74396361423c40edae",
-      "first-8@day12": "4ed886b610d4abe61d16e954b4ad4bf9c2dde13f3624ee74396361423c40edae",
-      "first-8@day30": "4ed886b610d4abe61d16e954b4ad4bf9c2dde13f3624ee74396361423c40edae",
-      "first-9@day1": "f56f9399a45e962d8d1d6927b42b28e6968de7f0199eaf0102a3a6d9510cf0b5",
-      "first-9@day12": "f56f9399a45e962d8d1d6927b42b28e6968de7f0199eaf0102a3a6d9510cf0b5",
-      "first-9@day30": "f56f9399a45e962d8d1d6927b42b28e6968de7f0199eaf0102a3a6d9510cf0b5",
-      "last@day1": "42ac2b972bf5f5f54fffdaea9c2be0acc57082659ed32ad73856f4868aa3e346",
-      "last@day12": "42ac2b972bf5f5f54fffdaea9c2be0acc57082659ed32ad73856f4868aa3e346",
-      "last@day30": "42ac2b972bf5f5f54fffdaea9c2be0acc57082659ed32ad73856f4868aa3e346",
-      "none@day1": "5b44bce16ba0f06d4dd12025474b3a3fe4eaaa2b09e9ce57180bd2ddc478bc9b",
-      "none@day12": "5b44bce16ba0f06d4dd12025474b3a3fe4eaaa2b09e9ce57180bd2ddc478bc9b",
-      "none@day30": "5b44bce16ba0f06d4dd12025474b3a3fe4eaaa2b09e9ce57180bd2ddc478bc9b"
+      "all@day1": "9f6bda9aca4d81daae60f3ae7b73f560b9b22d6de1e490030346fa2c8a2e4b42",
+      "all@day12": "9f6bda9aca4d81daae60f3ae7b73f560b9b22d6de1e490030346fa2c8a2e4b42",
+      "all@day30": "9f6bda9aca4d81daae60f3ae7b73f560b9b22d6de1e490030346fa2c8a2e4b42",
+      "alternate@day1": "a6affdfd8cd800de68748fb8dd0b3d088b1b0b1c6a1a038114b085175a547f43",
+      "alternate@day12": "a6affdfd8cd800de68748fb8dd0b3d088b1b0b1c6a1a038114b085175a547f43",
+      "alternate@day30": "a6affdfd8cd800de68748fb8dd0b3d088b1b0b1c6a1a038114b085175a547f43",
+      "first-10@day1": "52cbc8c58191bee48d1db6da0ac46c60e45c14c483e0f9ae8c914b41672accf6",
+      "first-10@day12": "52cbc8c58191bee48d1db6da0ac46c60e45c14c483e0f9ae8c914b41672accf6",
+      "first-10@day30": "52cbc8c58191bee48d1db6da0ac46c60e45c14c483e0f9ae8c914b41672accf6",
+      "first-11@day1": "2680c65b8d453e78cf2a6b60d0989e38996b2917fa126438b7617db8ab8257ca",
+      "first-11@day12": "2680c65b8d453e78cf2a6b60d0989e38996b2917fa126438b7617db8ab8257ca",
+      "first-11@day30": "2680c65b8d453e78cf2a6b60d0989e38996b2917fa126438b7617db8ab8257ca",
+      "first-12@day1": "6d43de5c0ccd0eae204adffbf187bedeb693dd23845830d32099b8406076301f",
+      "first-12@day12": "6d43de5c0ccd0eae204adffbf187bedeb693dd23845830d32099b8406076301f",
+      "first-12@day30": "6d43de5c0ccd0eae204adffbf187bedeb693dd23845830d32099b8406076301f",
+      "first-13@day1": "40a58d76564c831228843bb633af4cdbe14f188c51070d2cf2ca1d0da901c0a9",
+      "first-13@day12": "40a58d76564c831228843bb633af4cdbe14f188c51070d2cf2ca1d0da901c0a9",
+      "first-13@day30": "40a58d76564c831228843bb633af4cdbe14f188c51070d2cf2ca1d0da901c0a9",
+      "first-14@day1": "de0489f8c4031288d51a23b4dfe816f30a9bc9e04a6153c0fd2b396c2937bd6d",
+      "first-14@day12": "de0489f8c4031288d51a23b4dfe816f30a9bc9e04a6153c0fd2b396c2937bd6d",
+      "first-14@day30": "de0489f8c4031288d51a23b4dfe816f30a9bc9e04a6153c0fd2b396c2937bd6d",
+      "first-15@day1": "9d2519e008f79b737b925a93806973b0fc602b51d5174c5340e6ada758233b7d",
+      "first-15@day12": "9d2519e008f79b737b925a93806973b0fc602b51d5174c5340e6ada758233b7d",
+      "first-15@day30": "9d2519e008f79b737b925a93806973b0fc602b51d5174c5340e6ada758233b7d",
+      "first-16@day1": "85bd91cb677dc4d14e363f8b34d8a6dcdbf94e7aea3f86cb0dfd6dd589e791b0",
+      "first-16@day12": "85bd91cb677dc4d14e363f8b34d8a6dcdbf94e7aea3f86cb0dfd6dd589e791b0",
+      "first-16@day30": "85bd91cb677dc4d14e363f8b34d8a6dcdbf94e7aea3f86cb0dfd6dd589e791b0",
+      "first-17@day1": "66e94ec5fd0b0b44d9df420eb609cf8b7e5170df32725d6cb715958a0660a1a1",
+      "first-17@day12": "66e94ec5fd0b0b44d9df420eb609cf8b7e5170df32725d6cb715958a0660a1a1",
+      "first-17@day30": "66e94ec5fd0b0b44d9df420eb609cf8b7e5170df32725d6cb715958a0660a1a1",
+      "first-18@day1": "90edee910f518c9702862a713b76672f7786902236c0b2f74f90e77061fa03e3",
+      "first-18@day12": "90edee910f518c9702862a713b76672f7786902236c0b2f74f90e77061fa03e3",
+      "first-18@day30": "90edee910f518c9702862a713b76672f7786902236c0b2f74f90e77061fa03e3",
+      "first-19@day1": "939fd0d51d8056e7877c316224b7ba020d7155e94a4206eb46e32a31a9309010",
+      "first-19@day12": "939fd0d51d8056e7877c316224b7ba020d7155e94a4206eb46e32a31a9309010",
+      "first-19@day30": "939fd0d51d8056e7877c316224b7ba020d7155e94a4206eb46e32a31a9309010",
+      "first-1@day1": "1c65c0cd7c5ba47512a112660b1f0ab1a9487a026ca57426eb61f1701b984882",
+      "first-1@day12": "1c65c0cd7c5ba47512a112660b1f0ab1a9487a026ca57426eb61f1701b984882",
+      "first-1@day30": "1c65c0cd7c5ba47512a112660b1f0ab1a9487a026ca57426eb61f1701b984882",
+      "first-20@day1": "117c4a6eff83c2a3ffe41dbbeea2b064748e6bbd3bf25e7382376a06f246edd1",
+      "first-20@day12": "117c4a6eff83c2a3ffe41dbbeea2b064748e6bbd3bf25e7382376a06f246edd1",
+      "first-20@day30": "117c4a6eff83c2a3ffe41dbbeea2b064748e6bbd3bf25e7382376a06f246edd1",
+      "first-21@day1": "3441b07f24d71ebb695019f9f68762f7fbce999eb2d05217e5ac62ec01afb7e7",
+      "first-21@day12": "3441b07f24d71ebb695019f9f68762f7fbce999eb2d05217e5ac62ec01afb7e7",
+      "first-21@day30": "3441b07f24d71ebb695019f9f68762f7fbce999eb2d05217e5ac62ec01afb7e7",
+      "first-22@day1": "cf77fba6a0d14b8eb9c413722f538a36651cd4f60b735219ed61d81a7edef83f",
+      "first-22@day12": "cf77fba6a0d14b8eb9c413722f538a36651cd4f60b735219ed61d81a7edef83f",
+      "first-22@day30": "cf77fba6a0d14b8eb9c413722f538a36651cd4f60b735219ed61d81a7edef83f",
+      "first-23@day1": "3eca8c311a05a421d3e1d59ea607bbf737af87c1ab9b9677f879e5c50d154a4a",
+      "first-23@day12": "3eca8c311a05a421d3e1d59ea607bbf737af87c1ab9b9677f879e5c50d154a4a",
+      "first-23@day30": "3eca8c311a05a421d3e1d59ea607bbf737af87c1ab9b9677f879e5c50d154a4a",
+      "first-24@day1": "aea402612a7bffd795e24328931148c3f1ca9df4216649a36814424c5e45f5e4",
+      "first-24@day12": "aea402612a7bffd795e24328931148c3f1ca9df4216649a36814424c5e45f5e4",
+      "first-24@day30": "aea402612a7bffd795e24328931148c3f1ca9df4216649a36814424c5e45f5e4",
+      "first-25@day1": "21c10b3be45cee063ea73c7af149ea61e87a9124ea6dbb1231f6de6272bbe62b",
+      "first-25@day12": "21c10b3be45cee063ea73c7af149ea61e87a9124ea6dbb1231f6de6272bbe62b",
+      "first-25@day30": "21c10b3be45cee063ea73c7af149ea61e87a9124ea6dbb1231f6de6272bbe62b",
+      "first-26@day1": "29dc2f5060acf1f5fec8a1077ae105da1bf1b046ed63b231bdcf49eade9af742",
+      "first-26@day12": "29dc2f5060acf1f5fec8a1077ae105da1bf1b046ed63b231bdcf49eade9af742",
+      "first-26@day30": "29dc2f5060acf1f5fec8a1077ae105da1bf1b046ed63b231bdcf49eade9af742",
+      "first-27@day1": "34801949106e94198ebcc17c0f4325db6dd3a54474fed3bcdfb41a92c03092a3",
+      "first-27@day12": "34801949106e94198ebcc17c0f4325db6dd3a54474fed3bcdfb41a92c03092a3",
+      "first-27@day30": "34801949106e94198ebcc17c0f4325db6dd3a54474fed3bcdfb41a92c03092a3",
+      "first-28@day1": "39fbbb7fae786cc5a55ef68e045e1fe647c43414ec5cead2e9fbeab43fc08c46",
+      "first-28@day12": "39fbbb7fae786cc5a55ef68e045e1fe647c43414ec5cead2e9fbeab43fc08c46",
+      "first-28@day30": "39fbbb7fae786cc5a55ef68e045e1fe647c43414ec5cead2e9fbeab43fc08c46",
+      "first-29@day1": "5697cde141106c71639ce36d5adef7d2fdc4bed4215d78a6b7064f8b8d235504",
+      "first-29@day12": "5697cde141106c71639ce36d5adef7d2fdc4bed4215d78a6b7064f8b8d235504",
+      "first-29@day30": "5697cde141106c71639ce36d5adef7d2fdc4bed4215d78a6b7064f8b8d235504",
+      "first-2@day1": "cfdc57f89bed9fa8465e38bf4a21bfeb887c0b2c6ed1130d3a1b00e8646f55b4",
+      "first-2@day12": "cfdc57f89bed9fa8465e38bf4a21bfeb887c0b2c6ed1130d3a1b00e8646f55b4",
+      "first-2@day30": "cfdc57f89bed9fa8465e38bf4a21bfeb887c0b2c6ed1130d3a1b00e8646f55b4",
+      "first-30@day1": "f7728fa33bc1ec708bcbf5b80a51f7428f723782ad752f4b60b36fca75b83560",
+      "first-30@day12": "f7728fa33bc1ec708bcbf5b80a51f7428f723782ad752f4b60b36fca75b83560",
+      "first-30@day30": "f7728fa33bc1ec708bcbf5b80a51f7428f723782ad752f4b60b36fca75b83560",
+      "first-31@day1": "331f3834326731366a21d1411805713269bdf0f4361ab843e84be0c9391571ec",
+      "first-31@day12": "331f3834326731366a21d1411805713269bdf0f4361ab843e84be0c9391571ec",
+      "first-31@day30": "331f3834326731366a21d1411805713269bdf0f4361ab843e84be0c9391571ec",
+      "first-32@day1": "bd03905860704a85bf7e25b8ab79ca0779a970996e37eb422b122d3d91ea2e65",
+      "first-32@day12": "bd03905860704a85bf7e25b8ab79ca0779a970996e37eb422b122d3d91ea2e65",
+      "first-32@day30": "bd03905860704a85bf7e25b8ab79ca0779a970996e37eb422b122d3d91ea2e65",
+      "first-33@day1": "9f6bda9aca4d81daae60f3ae7b73f560b9b22d6de1e490030346fa2c8a2e4b42",
+      "first-33@day12": "9f6bda9aca4d81daae60f3ae7b73f560b9b22d6de1e490030346fa2c8a2e4b42",
+      "first-33@day30": "9f6bda9aca4d81daae60f3ae7b73f560b9b22d6de1e490030346fa2c8a2e4b42",
+      "first-3@day1": "b6f22ae1bb60d1c0bc58fc07a9112786bfc2e9c0b8a1e6bb6d64bc6000074c97",
+      "first-3@day12": "b6f22ae1bb60d1c0bc58fc07a9112786bfc2e9c0b8a1e6bb6d64bc6000074c97",
+      "first-3@day30": "b6f22ae1bb60d1c0bc58fc07a9112786bfc2e9c0b8a1e6bb6d64bc6000074c97",
+      "first-4@day1": "0d000616e595240733c0a693590371149c0e837207f579c91251918e8f83b072",
+      "first-4@day12": "0d000616e595240733c0a693590371149c0e837207f579c91251918e8f83b072",
+      "first-4@day30": "0d000616e595240733c0a693590371149c0e837207f579c91251918e8f83b072",
+      "first-5@day1": "2e36f9fe04fe39d918120eeda35ca08722cfff192f609e2934511b13fa1e1e02",
+      "first-5@day12": "2e36f9fe04fe39d918120eeda35ca08722cfff192f609e2934511b13fa1e1e02",
+      "first-5@day30": "2e36f9fe04fe39d918120eeda35ca08722cfff192f609e2934511b13fa1e1e02",
+      "first-6@day1": "a2cd89501ae25ac36b4c24b200a42444c01a7a1e3d74ecd617a58f1bb579519f",
+      "first-6@day12": "a2cd89501ae25ac36b4c24b200a42444c01a7a1e3d74ecd617a58f1bb579519f",
+      "first-6@day30": "a2cd89501ae25ac36b4c24b200a42444c01a7a1e3d74ecd617a58f1bb579519f",
+      "first-7@day1": "a83b5b0633473bb230f92953627b1d73d443433c2e1933b72fab1fb977b46ddf",
+      "first-7@day12": "a83b5b0633473bb230f92953627b1d73d443433c2e1933b72fab1fb977b46ddf",
+      "first-7@day30": "a83b5b0633473bb230f92953627b1d73d443433c2e1933b72fab1fb977b46ddf",
+      "first-8@day1": "a8ae977f5abe9040d0d45376405c23c4861ae19ff88b8383da7cba5acd777568",
+      "first-8@day12": "a8ae977f5abe9040d0d45376405c23c4861ae19ff88b8383da7cba5acd777568",
+      "first-8@day30": "a8ae977f5abe9040d0d45376405c23c4861ae19ff88b8383da7cba5acd777568",
+      "first-9@day1": "f5552a60b6de39868b3b6792bfb6b597087e0abeb3caa8d81a210ece2d10ad2b",
+      "first-9@day12": "f5552a60b6de39868b3b6792bfb6b597087e0abeb3caa8d81a210ece2d10ad2b",
+      "first-9@day30": "f5552a60b6de39868b3b6792bfb6b597087e0abeb3caa8d81a210ece2d10ad2b",
+      "last@day1": "6ef6d56389c41361b947d631c3d80b24614d9d74a3b696ecd708e22bc4769bf2",
+      "last@day12": "6ef6d56389c41361b947d631c3d80b24614d9d74a3b696ecd708e22bc4769bf2",
+      "last@day30": "6ef6d56389c41361b947d631c3d80b24614d9d74a3b696ecd708e22bc4769bf2",
+      "none@day1": "a4a0bb6b3ffc11369f591e6a1c0126e962decdf8f353ddfcebba6b22c6400c11",
+      "none@day12": "a4a0bb6b3ffc11369f591e6a1c0126e962decdf8f353ddfcebba6b22c6400c11",
+      "none@day30": "a4a0bb6b3ffc11369f591e6a1c0126e962decdf8f353ddfcebba6b22c6400c11"
     },
     "stageCompletedBy": {
       "half": {
         "tror-abn": "build",
+        "tror-ads-approve": null,
         "tror-book": "onboarding",
         "tror-bookmark": "onboarding",
         "tror-brand-files": null,
-        "tror-child-safe": "build",
-        "tror-class-time": "build",
-        "tror-consent": "build",
-        "tror-contact": null,
-        "tror-domain": null,
+        "tror-child-safe": null,
+        "tror-class-time": null,
+        "tror-consent": null,
+        "tror-contact": "build",
+        "tror-domain": "build",
         "tror-domain-move": null,
-        "tror-google-listing": null,
-        "tror-insurance": "build",
+        "tror-fb-2step": "build",
+        "tror-google-listing": "build",
+        "tror-insurance": null,
         "tror-interview": "onboarding",
-        "tror-meta": null,
+        "tror-meta": "build",
+        "tror-meta-account": "build",
+        "tror-meta-card": "build",
         "tror-parent-chats": null,
         "tror-parents-stay": null,
         "tror-photos-luisa": null,
-        "tror-policies": "build",
-        "tror-porkbun-account": null,
+        "tror-policies": null,
+        "tror-porkbun-account": "build",
         "tror-prices": null,
+        "tror-quiz-approve": null,
         "tror-shoot-families": null,
-        "tror-socials": null,
-        "tror-stripe": null,
-        "tror-taster-dates": "build",
+        "tror-socials": "build",
+        "tror-stripe": "build",
+        "tror-taster-dates": null,
         "tror-tools": null,
-        "tror-venue": "build",
-        "tror-wix": null,
-        "tror-wwcc": "build"
+        "tror-venue": null,
+        "tror-wix": "build",
+        "tror-wwcc": null
       },
       "none": {
         "tror-abn": null,
+        "tror-ads-approve": null,
         "tror-book": null,
         "tror-bookmark": null,
         "tror-brand-files": null,
@@ -1660,16 +1918,20 @@
         "tror-contact": null,
         "tror-domain": null,
         "tror-domain-move": null,
+        "tror-fb-2step": null,
         "tror-google-listing": null,
         "tror-insurance": null,
         "tror-interview": null,
         "tror-meta": null,
+        "tror-meta-account": null,
+        "tror-meta-card": null,
         "tror-parent-chats": null,
         "tror-parents-stay": null,
         "tror-photos-luisa": null,
         "tror-policies": null,
         "tror-porkbun-account": null,
         "tror-prices": null,
+        "tror-quiz-approve": null,
         "tror-shoot-families": null,
         "tror-socials": null,
         "tror-stripe": null,
@@ -1690,6 +1952,16 @@
     "steps": {
       "tror-abn": {
         "detail": "Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-ads-approve": {
+        "detail": "The four ads, before anything is switched on. No ad runs without your yes. No child's face is in any of them. I'll put them below when they're ready.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1769,7 +2041,7 @@
         "showsVideo": false
       },
       "tror-domain": {
-        "detail": "A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name.",
+        "detail": "A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name. I do the technical set-up after that.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1779,11 +2051,21 @@
         "showsVideo": false
       },
       "tror-domain-move": {
-        "detail": "We do this together on a call, about 15 minutes. You log in to Wix and to Porkbun, and I tell you what to click. The move itself can take up to a week. Your website and your email keep working while it happens.",
+        "detail": "This one can wait until after launch. Nothing in the launch depends on it. We do it together on a call, about 15 minutes: you log in to Wix and to Porkbun, and I tell you what to click. The move takes up to a week. I set up your email and your pages at Porkbun first, so nothing goes dark. Don't start it on your own.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
         "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-fb-2step": {
+        "detail": "Two-step login means Facebook asks for a code from your phone as well as your password. Meta needs it on before you can add me to anything. Two minutes, in the Facebook app.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
         "showsLandingPreview": false,
         "showsPlayground": false,
         "showsVideo": false
@@ -1819,7 +2101,27 @@
         "showsVideo": false
       },
       "tror-meta": {
-        "detail": "Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.",
+        "detail": "One partner request lets me post, and make and run your ads, from my own login. Everything stays in your account, in your name. I do the fiddly set-up after this: the ad account, linking your page and Instagram, and the tracking. You approve every ad.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-meta-account": {
+        "detail": "Meta is the company behind Facebook and Instagram. A business account is the folder your Facebook page, your Instagram and your ads sit in. It's free, and it's in your name. Open it this week: ads from a brand-new account start with a low daily limit that only lifts with time.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-meta-card": {
+        "detail": "The ads are paid for on your own card, so the spend is always yours to see and stop. I'll tell you when the ad account is ready. Meta may take a small test payment and give it back. Nothing is spent on ads until you say go, and I set a daily cap first.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1849,7 +2151,7 @@
         "showsVideo": false
       },
       "tror-photos-luisa": {
-        "detail": "A few good photos of you, ideally laughing. For the About section of the website.",
+        "detail": "A few good photos of you, ideally laughing. For the About section of the website, and the first ads. Just you, please: no children in these.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1888,6 +2190,16 @@
         "showsPlayground": false,
         "showsVideo": false
       },
+      "tror-quiz-approve": {
+        "detail": "The \"ror style\" quiz, its four results, and the emails and texts that follow. They go out in your name, so they need to sound like you. I'll put them below when they're ready. Read them, and tell me anything to change.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
       "tror-shoot-families": {
         "detail": "2 or 3 families with kids aged 4 to 6 for a fun 1-hour play photo shoot in early December. Each family signs the consent form first.",
         "interviewAudioBase": null,
@@ -1899,7 +2211,7 @@
         "showsVideo": false
       },
       "tror-socials": {
-        "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
+        "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. The Instagram needs to be a professional account, joined to the Facebook page, so ads can run on both. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1909,7 +2221,7 @@
         "showsVideo": false
       },
       "tror-stripe": {
-        "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.",
+        "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Have your ABN, your licence or passport, a bill or statement with your home address, and your bank details ready. Stripe checks them, usually within a day. Later you connect it to the booking page yourself, with me on a call.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1973,16 +2285,27 @@
     "tabTitle": "Tiny ROR",
     "tagline": "Building tiny hearts.",
     "totalDays": 30,
-    "totalMilestoneCount": 28,
+    "totalMilestoneCount": 33,
     "visibleIds": [
       "tror-book",
       "tror-interview",
       "tror-bookmark",
+      "tror-abn",
+      "tror-fb-2step",
+      "tror-meta-account",
+      "tror-meta",
+      "tror-meta-card",
+      "tror-socials",
+      "tror-porkbun-account",
+      "tror-domain",
+      "tror-stripe",
+      "tror-google-listing",
+      "tror-wix",
+      "tror-contact",
       "tror-venue",
       "tror-class-time",
       "tror-wwcc",
       "tror-insurance",
-      "tror-abn",
       "tror-child-safe",
       "tror-consent",
       "tror-taster-dates",
@@ -1991,79 +2314,73 @@
       "tror-tools",
       "tror-prices",
       "tror-parent-chats",
-      "tror-wix",
-      "tror-porkbun-account",
-      "tror-domain-move",
-      "tror-domain",
-      "tror-socials",
-      "tror-meta",
-      "tror-google-listing",
-      "tror-stripe",
-      "tror-contact",
-      "tror-shoot-families",
+      "tror-quiz-approve",
+      "tror-ads-approve",
       "tror-photos-luisa",
-      "tror-brand-files"
+      "tror-shoot-families",
+      "tror-brand-files",
+      "tror-domain-move"
     ],
     "wordmark": "Tiny ROR"
   },
   "ssr": {
-    "aurora|all|day1": "41020294f6f51afef8164acbcb66b3e2884243f5dcb4c7287c35d61dcd483068",
-    "aurora|all|day30": "9365ba666848c9400fe50c5740d709b80bd10d600b24f6a7c5a4f7db1cee8e2c",
-    "aurora|half|day1": "68784c56126923c652bb7597cda6f836062d9ce14870ec808a581c2e02c0e83e",
-    "aurora|half|day30": "2675ce66fae96e1f9cf84fc4c33ec5816d4e884f6c367968465c54400c6418f5",
-    "aurora|none|day1": "1050e3d4a1ca57972cec21ac5196e7f98c0b4831468e717254dc67dd5d3d89c5",
-    "aurora|none|day30": "929c35013a609ea949e21b979a3e94ea5d06d73f2f80fef691a8cef6c8aaced9",
-    "calm|all|day1": "f1d7f4d2b824a51c3f3ef038b679cd2e96fe5fde65955a9bab6e349c8fae1586",
-    "calm|all|day30": "3632ebe6ff6ab6f032588f83538ed9ce4c0ca01f79c0259e54cffbee2f6dc94e",
-    "calm|half|day1": "8efe7f6f8bfb6c5dbc9b1f62260a721997bf8302a00cb74509206715168cb879",
-    "calm|half|day30": "8e57d83f6da5e23544da30ece7e990ef04404f17424755a0768f6caacf7b9e4b",
-    "calm|none|day1": "1f142fa257d89466b0d29aa71114c581825b67032a91ef2bf4f2cc5ec43da7ed",
-    "calm|none|day30": "3e0a7566cfcd3724c64a5f165c145feb27a42bf6d3f89cac9dba933d8971adca",
-    "cobalt|all|day1": "7fb7f504c0346885b982a51a24f1483ed676e9222218b92bc2e75b3d527b8f5a",
-    "cobalt|all|day30": "55ed74bd17a4042240950cc1bf4ea86189df4fe6d422fe1a73a2b30c85749223",
-    "cobalt|half|day1": "86d41cf283e1023dba3093621c38d9f2b1273a62e4bd086c3611784024b9f293",
-    "cobalt|half|day30": "7590d28bbef063fbb4cbfb6f8f322448340d9b771ae0ef94956db4ea803853fc",
-    "cobalt|none|day1": "6d2bba865f50665083fa36f796b0f449166cef48a9049c43a02122124bc2a9df",
-    "cobalt|none|day30": "f65111bd8de3356f18ae078274296eba017273de9c3f21534dc1b2e1068269b6",
-    "cool|all|day1": "0512746bc1b0f320f189834c4c02b70f867bb5274090ddb1954d5b1f178da794",
-    "cool|all|day30": "069c707d6f30a659c0d5f43798172ba2cd93a8566a49014c6c69099e672c6935",
-    "cool|half|day1": "0b71f3c7bba37a8144a38b17412ae8c94ae4f0a3e786268dd5a9f5b9e0647a8e",
-    "cool|half|day30": "605a45b5682109de8906672696bc92e9a86759cec2ad174c695a60b112bbccba",
-    "cool|none|day1": "15ae14b38075c1f82822466f659ec5251f68665a04ac82064be3bbd1ee3b239c",
-    "cool|none|day30": "5f6776b6bd444acb6df48cc575efc53cf40ba96225ce0294336e981d04572fa4",
-    "groveaurora|all|day1": "cfc0b199ef36eff9905a1ed936e5a6eef23cee477fcb4b310843102b728af8b4",
-    "groveaurora|all|day30": "69818c5286ce26a7aeef335cd7e3771bbeffa41bae2abbadc2f039b18bda13e0",
-    "groveaurora|half|day1": "83e19b1d7fb2daeae183850b1403d8a9330278002aa55fde40aa238844d955a8",
-    "groveaurora|half|day30": "81db54f0c1c1fa8e92a3f28db2b655c4b673dbfd87c59bf2f0b9ece298a41d13",
-    "groveaurora|none|day1": "380b3c5118068a62f4e09ea0633ebf3545a1065d7328d9a1018107adb9a448c2",
-    "groveaurora|none|day30": "7d58472cb2ca81d56df3f7d577a6f3be4b6e89703179c54081a9e2818d849d33",
-    "grove|all|day1": "16e3d76c2c535977fb22bb870d47bf46794c8bea8ef813c5308bdeec8f651085",
-    "grove|all|day30": "748e8e4bbea68eb3676912e3e538ff9f39b8880e33137f28e04ba9665b8b28ce",
-    "grove|half|day1": "2c1e5eb40d76f808f483a7e2f851f2867da738c3c2835c6ed73e530dbb06e2f8",
-    "grove|half|day30": "233731293e404cd17ca1b1057433c76dd5c33caf2a85f979a4d5587b18d63a63",
-    "grove|none|day1": "6c804de687d69169cbb39aa340c0788e87f31088d0a9a0f6281c06353fc3b1f2",
-    "grove|none|day30": "02f93f55b7da8ced3b71d9475a91f6c70a1f23566d73812c78eb0531c1a52e68",
-    "handoff|all|day1": "ae464888850834f43aecca0f74772d16fb10762c479e01966a4a657febcf8aa1",
-    "handoff|all|day30": "43af5aa35f4dd37b3ad26ce60182c271a507b1bfa2019cb8cbb2493b4f3ee397",
-    "handoff|half|day1": "20d760166b9b74836fbec215863ef01511ff1e488ce108f0669ba1a11690cb23",
-    "handoff|half|day30": "504663b0643d5d4abb02cb91af15472d129ab955d5108696599039ca5ad56d73",
-    "handoff|none|day1": "fa5efe78eff2b8e79f3853d0870a2aa79925231044b0322d4feead6f660cde7e",
-    "handoff|none|day30": "5c6eae54689ce86a2a25148f0bfdb690028ebfa2be6ee157a69d485b080b7508",
-    "neutral|all|day1": "e0c3ac2f98399ac49994adba50ae227cc6c4591c6472fbf9231f6d92efc8deae",
-    "neutral|all|day30": "bab193cc0d5bbcb267180eff0c86058d6072feb3cc22df7e9fad084c517cab8d",
-    "neutral|half|day1": "bde96b389d23f9c422de95649f079e3cef84a2ac8b2b76ff52f91d37543cf82c",
-    "neutral|half|day30": "5e33890b9993c243fd493f1807a6351776ab2151be36519c400551bdf3d87b6e",
-    "neutral|none|day1": "057167960bb5795c6247140961b14a0243e888831814acde19dcdc48c66e993f",
-    "neutral|none|day30": "3b91eb18b0244890bd471fa2c699787753d1368cbbdfc09b0498ce4ee4416f7d",
-    "warm|all|day1": "251f74b37ff660dfa2fc78c4446831730a6fd83e41b3fe94e47449fd45df7dc1",
-    "warm|all|day30": "23e81235e7d174d0a45efc8e70106031a8cbf31586fcf8c41ea2bc7395d8b4b1",
-    "warm|half|day1": "172e36e862e5b7b6993fcb036694eb027e4abed28a735bdd8b994b4678815132",
-    "warm|half|day30": "b339f13390881d091fd5e47ce9c3c9046509bebda685805eb5c723b4fafc9a7e",
-    "warm|none|day1": "a5fa3f9d55a8ad09c1cf0e41b6094d28fc68b68712a5e6897681bcf6b84a4bbb",
-    "warm|none|day30": "d0d69efb32486947ef7e68ad3b1473b2cc2cea830990faa4dcff4e16fccc503d"
+    "aurora|all|day1": "16cd43807e650e58a471766405891b460d4b89720a0eac590944e153051df558",
+    "aurora|all|day30": "58441a2ff2d8a6b366643f7fe4fdf66ab08900ad687d75b9eda6f99e5d45791e",
+    "aurora|half|day1": "99638a9940a0a6339aaecdaf3b1d0ea67bb6567c1779eace5921402ffa60ed9d",
+    "aurora|half|day30": "6c9999732712992333d55e625e5bb7ea1e4123f4961ddddf6261369d531b5ae4",
+    "aurora|none|day1": "22f4c32822073a88c73a8e47a60ddb6d23e7835d7f60e326902d57522fd694d5",
+    "aurora|none|day30": "4bcec5f738f63c36bda4db973d3aed599f413f8ff3c2abffbc93291340377ce5",
+    "calm|all|day1": "e36cb0e636349e54d64d62f575449e654992a8412a84b681ba2c66adbf739479",
+    "calm|all|day30": "98f0aa316c458f4d1ffa88bc5b86d5ce0061338bcfaeaa26ac7116778dfe5a43",
+    "calm|half|day1": "73b196f17df3e61152112af50ae98c2cc1054bc3d63126c00921e830f5b2b1e4",
+    "calm|half|day30": "e5003dfe34af8946c93cba1dc241e958b099bfe065d82575064793381370945e",
+    "calm|none|day1": "5abe4f78818b3fd01bc536d993dc1439997574ac81e67176393031d59ee64d67",
+    "calm|none|day30": "96de244cb06c8b74822207bc8a71852e66adcffcd101cf672408e3cc4f8d52bf",
+    "cobalt|all|day1": "d84b5eeeabae76e22b710a52a18689c14b96d5930ea28b3efd3039d7e3e18c9f",
+    "cobalt|all|day30": "421f1917e24055ee3019b7c2c735360af64637da5c2b625aca8879a585b5ee49",
+    "cobalt|half|day1": "0b2b8a181b5a6663aee7bb87d0d84180b6cc1dc8c92f9951bf038868a3fe1d73",
+    "cobalt|half|day30": "764963026da7b663f78110fd00223587e7aaca51cbd64f8ef07b13b69e8a0e27",
+    "cobalt|none|day1": "890abbfff3c6a48544e7a8cc32b231735e328827a97d1fb5d72a2cba729e37cf",
+    "cobalt|none|day30": "a73bc95d7f694361a3742e3c8419ec51a59ab14ebe033cb62924b2b6a4500c39",
+    "cool|all|day1": "2f8b76253125c8281d2e0be58ff0d70e03e45a8aa5952d9c9cf43814207ffece",
+    "cool|all|day30": "29b5f22deb9f1eb733ba5943ee469462d6d8f0b13c0ebc9da476658f7293bae7",
+    "cool|half|day1": "00717029efd967a04ebe248faab2d8b7a2fea3fa2e490b4ae844ce1adfcea0d5",
+    "cool|half|day30": "270876c56e30ecde6f826b9c3a4ef11e2018393a1cb626cf765a2c5363ccda65",
+    "cool|none|day1": "9f5d51b62b94b9cc000d22b6b5a2e4695dde0950010bb89aeed98897f1935026",
+    "cool|none|day30": "cfdb38249ed116e8ab7204a6e65de19e05abbcd311f0c3596d7b0fd4136807be",
+    "groveaurora|all|day1": "2b1b63f7b2d87a810bdaec9e5c1f08cb848d735415370d97ddc39373472e2e44",
+    "groveaurora|all|day30": "cb915ecdff18637bf3cfe5810aec6b684c9a5b04a150667d4bd388644dd90e23",
+    "groveaurora|half|day1": "01993e4345ceba0a6f65cb07bea3ea966ad124290f781efe04c1fae44bf18e31",
+    "groveaurora|half|day30": "c5cfe25b5c6a16fa8f01f1005dbf6939f572ecc407f0d398cf39fb1d5942a27c",
+    "groveaurora|none|day1": "d92586aa01647e14fc300d9113a38f03db5a46161f2eb81807be57bad7528be3",
+    "groveaurora|none|day30": "b038c9b0a932118f4f8d29b230b36d4fe8da139609b105404d98b0971d352a0c",
+    "grove|all|day1": "666714ddec9c2c79a615a50c5062c973a8a49ca9879ae11506590de2f788bc76",
+    "grove|all|day30": "319b92f83ec1e61bd430f82c00e9c702d4af8178c5e7d79aff6bf1f64f379632",
+    "grove|half|day1": "1cc8bf3a6373d520efe0fab314f406111b1e67d5d6628f9bc7b87f71cb90facb",
+    "grove|half|day30": "264629e463288224399f24ca241ea29f973591ca1649868b2038e3b62864441f",
+    "grove|none|day1": "cbeda58f6b560c406a5533cde8a24128e5cc491b96afc53de5031aed071bb6b7",
+    "grove|none|day30": "71d5117b4dd90aa6548c47c9adea964ca9bb5b8457632efa8d76d8b0f91fc4cb",
+    "handoff|all|day1": "af9e067c1ff1a4f32e76dbaa07d0d2961d5c8817f1850fdb7a6cabd0e4e02e64",
+    "handoff|all|day30": "8ca6e9ec90cd085998e2c619a23dd89bb5403bf653993cbacd6c76e1ac3288f1",
+    "handoff|half|day1": "37ee417aeaf0d1e3fb9b54228d206c115cd6263a3bb43951a54860bd5d2421b4",
+    "handoff|half|day30": "d8d53cb882dc87b85a8bf64c02d3632adb68257c303fcb26cdc61c4a1a1f66fd",
+    "handoff|none|day1": "047343cdbe267172ff7a952ed84f3d06cdb51c75e0235c8090756d9bb05a8589",
+    "handoff|none|day30": "ed7ac3540e79584571af166262c1b1602a74ebaa6e3a6a1c288248c2243f8293",
+    "neutral|all|day1": "4a7e552c0bd9f6864ecd402de806a25174af3ee9cc504be7571f5f9aafa7e415",
+    "neutral|all|day30": "5dcc4d41e143621f6129bc51722a960f3e70bce2ab05ef098160bbeb318c6021",
+    "neutral|half|day1": "36029456110533e6fe90f3ff871d4fd85d02484d5cda70af91f308472f9c208d",
+    "neutral|half|day30": "84a1a363557096561ba74a63eb06396ec2b98bdbf2584b5d3feb0256f1ce0f80",
+    "neutral|none|day1": "910036dfbb7ed57985b500314878aeb3bd5b5b1f30cae18162d9ab49cd9e7d68",
+    "neutral|none|day30": "68428647a8dc99f9b9860beb3b5c5d13aa3749b5ab9021b39e809d20bdede145",
+    "warm|all|day1": "1cb631e57bcbaafd745b991fd7e0979da39ac43a4a3f5333a39b15adfbccf0d9",
+    "warm|all|day30": "e20a86ab279cd35c6c294187f04da02d4145028b57ccb7c8ba24eb6c018c78d8",
+    "warm|half|day1": "98fa390c9ba4174b3413b1c65b7e944a566bc67b198d59f8a327b55f3c8beaed",
+    "warm|half|day30": "1ba35f59d177d5917352a2e1ba39db34f8c241cd877d59d417a2d68eb2537301",
+    "warm|none|day1": "937e6dc84101be33588f7598b47137dbbb3e81ec305080cfabd48f44432f005d",
+    "warm|none|day30": "271b64bd1bc219f37d344d51142f26f2e08d26430c212322b22f37ca048df661"
   },
   "welcome": {
-    "aurora": "4a9b38c1f320b5e5f07fddadf6138b6ced4d67bbcdbec85f240b45a8969e0947",
+    "aurora": "d47e5c4b165eeb5de22f87146f4ec33823e7fa848da2f9b99cb7baa0e8f2c4b5",
     "funnel": "16c754a1e6296746d120f83d35afb542de33d12f8baf10bc79db3c0421c51b39",
     "funnel-grove": "7a94394befcef0129d66f795e40bc210fbaf7e01a1550b621c98114a3054cd1d",
     "marquee": "a75dca7987eb6fb8734e4cf70ea01d8abf0b0e09dfe33da8d9086be8725d9ac1",

@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-11-19.7` |
+| Version | `2026-11-19.8` |
 | Status | live: new clients start on it |
 | Journey | 30 days to go-live |
-| Client steps | 28 (1 client only, 0 hidden in the portal) |
-| Team tasks | 29 (29 behind a client step, 0 team-only) |
+| Client steps | 33 (1 client only, 0 hidden in the portal) |
+| Team tasks | 34 (34 behind a client step, 0 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/tiny-ror/spec.md](../../products/tiny-ror/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| Tiny ROR | `tiny-ror` | none | yes | 28 | 29 |
+| Tiny ROR | `tiny-ror` | none | yes | 33 | 34 |
 
 ### Portal tweaks by variant
 
@@ -46,15 +46,15 @@ No base: every step and task below is this product's own.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 29 |
+| Jesse Allan | 34 |
 
 ## Stages
 
 Each stage lists the client's steps in portal order, with the team tasks behind each step, then any team-only work. _Meta only_ / _Google only_ marks work for one ad channel. "After" lists the tasks to finish first.
 
-## 1. This week · days 1–7
+## 1. Start here · days 1–3
 
-_Meet me this week and record your interview. Those two get everything else moving._
+_Book a time with me and do your interview with Claude. Those two get everything else moving._
 
 ### `tror-book` Book a time with me this week
 
@@ -64,13 +64,13 @@ Portal: booking calendar · note · 2 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t01` Meet Luisa and go through the whole list | Jesse Allan | Days 1-7 | normal |  |
+| `tror-t01` Meet Luisa and go through the whole list | Jesse Allan | Days 1-3 | normal |  |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
 **`tror-t01` Meet Luisa and go through the whole list**
 
-About an hour. Buy the domain together if her ABN is ready. Set up Instagram and Facebook with her if she hasn't.
+About an hour. Do the Meta, Porkbun and new web address steps with her on the call if she hasn't.
 
 </details>
 
@@ -82,7 +82,7 @@ Portal: upload · note · 6 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t02` Send Luisa the Claude interview message; file what comes back | Jesse Allan | Days 3-10 | normal |  |
+| `tror-t02` Send Luisa the Claude interview message; file what comes back | Jesse Allan | Days 1-5 | normal |  |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
@@ -100,7 +100,219 @@ Portal: 2 numbered steps · portal link
 
 No team task behind this step.
 
-## 2. Must-haves before we launch · days 1–14
+## 2. Accounts and access · days 1–7
+
+_These come first because some of them have a wait built in. You own every account, in your name. You add me as a helper and I do the fiddly parts. Never send me a password._
+
+### `tror-abn` Your ABN and business name
+
+> Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t07` Record the ABN and business name; use it for the web address, Stripe and Meta's tax question | Jesse Allan | Days 1-2 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t07` Record the ABN and business name; use it for the web address, Stripe and Meta's tax question**
+
+Done when: the ABN shows as active on abr.business.gov.au under the name she gave.
+
+</details>
+
+### `tror-fb-2step` Turn on two-step login on Facebook
+
+> Two-step login means Facebook asks for a code from your phone as well as your password. Meta needs it on before you can add me to anything. Two minutes, in the Facebook app.
+
+Portal: note · 3 numbered steps
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t30` Check she has two-step login on before the partner step | Jesse Allan | Days 1-2 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t30` Check she has two-step login on before the partner step**
+
+Meta lists it as a prerequisite for partner access. Done when: the partner request in tror-meta goes through.
+
+</details>
+
+### `tror-meta-account` Open your Meta business account
+
+> Meta is the company behind Facebook and Instagram. A business account is the folder your Facebook page, your Instagram and your ads sit in. It's free, and it's in your name. Open it this week: ads from a brand-new account start with a low daily limit that only lifts with time.
+
+Portal: note · 3 numbered steps · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t31` Check her Meta business account exists and she has full control | Jesse Allan | Days 1-3 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t31` Check her Meta business account exists and she has full control**
+
+Open it early: a new business starts with one ad account and a low daily spend limit that rises with payment history (Meta publishes no figure). Done when: she can read you her Business ID.
+
+</details>
+
+### `tror-meta` Add me as a partner on Meta
+
+> One partner request lets me post, and make and run your ads, from my own login. Everything stays in your account, in your name. I do the fiddly set-up after this: the ad account, linking your page and Instagram, and the tracking. You approve every ad.
+
+Portal: note · 4 numbered steps · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t21` Send Luisa the Meta Business ID; then create the ad account, link the page and Instagram, and set up tracking in her account | Jesse Allan | Days 2-5 | normal | `tror-t30`, `tror-t31` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t21` Send Luisa the Meta Business ID; then create the ad account, link the page and Instagram, and set up tracking in her account**
+
+Done when: her page, Instagram and ad account show under Partners in your own Business Settings, with full control. Phone: not confirmed, so offer a call. The web address no longer has to be verified for conversion events (Meta), but verify it anyway by DNS once it exists.
+
+</details>
+
+### `tror-meta-card` Add your card for the ads
+
+> The ads are paid for on your own card, so the spend is always yours to see and stop. I'll tell you when the ad account is ready. Meta may take a small test payment and give it back. Nothing is spent on ads until you say go, and I set a daily cap first.
+
+Portal: note · 3 numbered steps · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t32` Tell Luisa the ad account is ready for her card; set a daily cap and an end date | Jesse Allan | Days 3-7 | normal | `tror-t21` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t32` Tell Luisa the ad account is ready for her card; set a daily cap and an end date**
+
+Done when: Payment settings on the ad account shows her card with no failed hold, and the daily spending limit is visible. If she is not GST-registered, Meta adds GST. Decide with Jesse whether to run a small approved post first so the spend limit has history before day 17.
+
+</details>
+
+### `tror-socials` Your Tiny ROR Instagram and Facebook page
+
+> A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. The Instagram needs to be a professional account, joined to the Facebook page, so ads can run on both. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.
+
+Portal: note · 3 numbered steps
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t19` Check the Instagram is a professional account, joined to the page, in her business; add the links to the site footer | Jesse Allan | Days 2-5 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t19` Check the Instagram is a professional account, joined to the page, in her business; add the links to the site footer**
+
+Done when: the Instagram account appears as an asset beside the page in the partner view.
+
+</details>
+
+### `tror-porkbun-account` Open your own Porkbun account
+
+> Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.
+
+Portal: 2 numbered steps · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t29` Check her Porkbun account is open, in her name, with two-step login | Jesse Allan | Days 1-3 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t29` Check her Porkbun account is open, in her name, with two-step login**
+
+Done when: she confirms on the call and can see an empty account.
+
+</details>
+
+### `tror-domain` Buy your new Tiny ROR web address
+
+> A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name. I do the technical set-up after that.
+
+Portal: note
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t18` Buy the new Tiny ROR web address with Luisa, in her Porkbun account; then set it up | Jesse Allan | Days 2-5 | normal | `tror-t07`, `tror-t29` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t18` Buy the new Tiny ROR web address with Luisa, in her Porkbun account; then set it up**
+
+tinyror.com.au needs her ABN, and the name must match her business or describe the service (auDA). Porkbun sells .com.au; approval there is not confirmed, so have a second registrar in mind. Ask her to point the name servers at Cloudflare once, so every later change is yours. Done when: a whois lookup shows the name registered and it resolves to the holding page.
+
+</details>
+
+### `tror-stripe` Your own Stripe account
+
+> Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Have your ABN, your licence or passport, a bill or statement with your home address, and your bank details ready. Stripe checks them, usually within a day. Later you connect it to the booking page yourself, with me on a call.
+
+Portal: "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t20` Check her Stripe account is active; later, connect it to the Tiny ROR workspace with her on a call | Jesse Allan | Days 2-7 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t20` Check her Stripe account is active; later, connect it to the Tiny ROR workspace with her on a call**
+
+Stripe Australia wants photo ID and proof of home address; reviews take up to 24 hours. First payout lands 7 to 14 days after the first live payment. No keys in files or messages. The Tiny ROR workspace isn't created yet: ask Jesse first. Done when: a real $20 test booking reaches her Stripe.
+
+</details>
+
+### `tror-google-listing` Add me to your Google listing
+
+> Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.
+
+Portal: note · 4 numbered steps · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t22` Accept the manager invite; check and refine her Google listing (free, no Google Ads) | Jesse Allan | Days 3-7 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t22` Accept the manager invite; check and refine her Google listing (free, no Google Ads)**
+
+Access is immediate once accepted. A brand-new listing needs Google's verification: up to 5 business days, or a postcard in about 14. Catch the other spelling of the name ("roar"). Done when: the listing shows under your own Google account.
+
+</details>
+
+### `tror-wix` Add me to your Wix site
+
+> Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.
+
+Portal: 4 numbered steps · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t25` Accept the Wix invite; copy her current site | Jesse Allan | Days 3-7 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t25` Accept the Wix invite; copy her current site**
+
+Done when: her site shows in your own Wix account.
+
+</details>
+
+### `tror-contact` The phone and email parents will see
+
+> The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.
+
+Portal: note (required)
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t27` Put her phone and email on the site, the messages and the concierge | Jesse Allan | Days 3-10 | normal |  |
+
+## 3. Must-haves before we launch · days 1–10
 
 _The details nothing can launch without: your venue, your checks and insurance, and the policies parents will ask about. I draft the child safe policy and the consent form. You check them._
 
@@ -112,7 +324,7 @@ Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t03` Put the venue details into the site and the booking page | Jesse Allan | Days 3-14 | normal |  |
+| `tror-t03` Put the venue details into the site and the booking page | Jesse Allan | Days 1-10 | normal |  |
 
 ### `tror-class-time` Class day, time and length
 
@@ -122,7 +334,7 @@ Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t04` Put the class day, time and length into the offer and the site | Jesse Allan | Days 3-14 | normal |  |
+| `tror-t04` Put the class day, time and length into the offer and the site | Jesse Allan | Days 1-10 | normal |  |
 
 ### `tror-wwcc` Your Working With Children Check
 
@@ -132,7 +344,15 @@ Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t05` Add the WWCC number to the site | Jesse Allan | Days 3-14 | normal |  |
+| `tror-t05` Add the WWCC number to the site | Jesse Allan | Days 1-10 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t05` Add the WWCC number to the site**
+
+Done when: the number checks out on the NSW Office of the Children's Guardian lookup.
+
+</details>
 
 ### `tror-insurance` Public liability insurance
 
@@ -142,17 +362,15 @@ Portal: upload · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t06` Check the insurance covers children's group classes; file the certificate | Jesse Allan | Days 3-14 | normal |  |
+| `tror-t06` Check the insurance covers children's group classes; file the certificate | Jesse Allan | Days 1-10 | normal |  |
 
-### `tror-abn` Your ABN and business name
+<details><summary>Guidance for the team (1 task)</summary>
 
-> Your ABN, and the name the business trades under. Is it ROR The Journey? You need the ABN for the domain name too.
+**`tror-t06` Check the insurance covers children's group classes; file the certificate**
 
-Portal: note (required)
+The slowest must-have if she has to buy it: chase on day 3.
 
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `tror-t07` Record the ABN and business name; use it for the domain | Jesse Allan | Days 3-10 | normal |  |
+</details>
 
 ### `tror-child-safe` Check your child safe policy
 
@@ -162,8 +380,8 @@ Portal: work to review · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t08` Draft the child safe policy (NSW Child Safe Standards, with an incident process) and paste it into the step | Jesse Allan | Days 1-7 | normal |  |
-| `tror-t09` Make Luisa's changes to the child safe policy and publish it | Jesse Allan | Days 7-14 | normal | `tror-t08` |
+| `tror-t08` Draft the child safe policy (NSW Child Safe Standards, with an incident process) and paste it into the step | Jesse Allan | Days 1-5 | normal |  |
+| `tror-t09` Make Luisa's changes to the child safe policy and publish it | Jesse Allan | Days 5-10 | normal | `tror-t08` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
@@ -181,8 +399,8 @@ Portal: work to review · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t10` Draft the photo and video consent form and paste it into the step | Jesse Allan | Days 1-7 | normal |  |
-| `tror-t11` Make Luisa's changes to the consent form and set it up for parents to sign | Jesse Allan | Days 7-14 | normal | `tror-t10` |
+| `tror-t10` Draft the photo and video consent form and paste it into the step | Jesse Allan | Days 1-5 | normal |  |
+| `tror-t11` Make Luisa's changes to the consent form and set it up for parents to sign | Jesse Allan | Days 5-10 | normal | `tror-t10` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
@@ -200,7 +418,15 @@ Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t12` Put the taster dates into the booking page | Jesse Allan | Days 7-21 | normal |  |
+| `tror-t12` Put the taster dates into the booking page | Jesse Allan | Days 3-10 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t12` Put the taster dates into the booking page**
+
+NSW summer holidays run 18 Dec 2026 to 27 Jan 2027; Term 1 starts Wed 3 Feb 2027.
+
+</details>
 
 ### `tror-policies` Refunds, missed classes and sick days
 
@@ -210,11 +436,11 @@ Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t13` Turn her refund, missed-class and sick-day rules into a short policy | Jesse Allan | Days 7-14 | normal |  |
+| `tror-t13` Turn her refund, missed-class and sick-day rules into a short policy | Jesse Allan | Days 5-10 | normal |  |
 
-## 3. The offer · days 3–14
+## 4. The offer and your approvals · days 3–14
 
-_How your classes work, what your tools are called, the prices, and a few local parents I can talk to._
+_How your classes work, the prices, a few local parents I can talk to, and your yes on the quiz and the ads. Nothing goes out in your name without it._
 
 ### `tror-parents-stay` Do parents stay or drop off?
 
@@ -224,7 +450,7 @@ Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t14` Update the site copy: parents stay or drop off | Jesse Allan | Days 7-14 | normal |  |
+| `tror-t14` Update the site copy: parents stay or drop off | Jesse Allan | Days 3-10 | normal |  |
 
 ### `tror-tools` Are your tool names final?
 
@@ -234,7 +460,7 @@ Portal: upload · note · 4 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t15` Put the real tool names into the offer and the site | Jesse Allan | Days 7-14 | normal |  |
+| `tror-t15` Put the real tool names into the offer and the site | Jesse Allan | Days 3-10 | normal |  |
 
 ### `tror-prices` Happy with these prices?
 
@@ -244,15 +470,7 @@ Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t16` Lock the prices in tiny-ror/offer.md | Jesse Allan | Days 7-12 | normal |  |
-
-<details><summary>Guidance for the team (1 task)</summary>
-
-**`tror-t16` Lock the prices in tiny-ror/offer.md**
-
-Brief section 10: offer locked by 20 Nov.
-
-</details>
+| `tror-t16` Lock the prices in tiny-ror/offer.md | Jesse Allan | Days 3-7 | normal |  |
 
 ### `tror-parent-chats` Local parents I can talk to
 
@@ -262,7 +480,7 @@ Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t17` Call the local parents (15 minutes each) and write up what they said | Jesse Allan | Days 7-14 | normal |  |
+| `tror-t17` Call the local parents (15 minutes each) and write up what they said | Jesse Allan | Days 3-10 | normal |  |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
@@ -272,143 +490,63 @@ Notes to tiny-ror/notes/, one file per call.
 
 </details>
 
-## 4. Accounts and access · days 7–21
+### `tror-quiz-approve` Approve the quiz and the messages
 
-_Your website, your web address, your pages and the accounts for payments and ads. You own every one of them. You add me as a helper. Never send me a password._
+> The "ror style" quiz, its four results, and the emails and texts that follow. They go out in your name, so they need to sound like you. I'll put them below when they're ready. Read them, and tell me anything to change.
 
-### `tror-wix` Add me to your Wix site
-
-> Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.
-
-Portal: 4 numbered steps · "Important" box
+Portal: work to review · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t25` Accept the Wix invite; copy her current site, ready to move to Porkbun | Jesse Allan | Days 7-14 | normal |  |
-
-### `tror-porkbun-account` Open your own Porkbun account
-
-> Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.
-
-Portal: 2 numbered steps · "Important" box
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `tror-t29` Check her Porkbun account is open, in her name, with two-step login | Jesse Allan | Days 7-14 | normal |  |
-
-### `tror-domain-move` Move your web address from Wix to Porkbun
-
-> We do this together on a call, about 15 minutes. You log in to Wix and to Porkbun, and I tell you what to click. The move itself can take up to a week. Your website and your email keep working while it happens.
-
-Portal: note · 3 numbered steps · "Important" box
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `tror-t26` Move her web address from Wix to Porkbun with Luisa, on a call; then move the site | Jesse Allan | Days 14-28 | normal | `tror-t29` |
+| `tror-t33` Paste the quiz, its four results and the follow-up messages into the step for her yes | Jesse Allan | Days 8-12 | normal |  |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`tror-t26` Move her web address from Wix to Porkbun with Luisa, on a call; then move the site**
+**`tror-t33` Paste the quiz, its four results and the follow-up messages into the step for her yes**
 
-She logs in to both; never take a login. Check the address is over 60 days old and unlocked. Note her email records before the move so email keeps working.
+Done when: a test quiz submission lands in the list and its result email arrives. Needs the Tiny ROR workspace.
 
 </details>
 
-### `tror-domain` Buy your new Tiny ROR web address
+### `tror-ads-approve` Approve the ads
 
-> A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name.
+> The four ads, before anything is switched on. No ad runs without your yes. No child's face is in any of them. I'll put them below when they're ready.
 
-Portal: note
+Portal: work to review · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t18` Buy the new Tiny ROR web address with Luisa, in her Porkbun account | Jesse Allan | Days 3-14 | normal | `tror-t07`, `tror-t29` |
+| `tror-t34` Paste the four ads into the step for her yes; submit them two days before they run | Jesse Allan | Days 10-14 | normal | `tror-t32` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`tror-t18` Buy the new Tiny ROR web address with Luisa, in her Porkbun account**
+**`tror-t34` Paste the four ads into the step for her yes; submit them two days before they run**
 
-tinyror.com.au needs her ABN. Check Porkbun sells .com.au first; if not, pick the registrar with Jesse.
+Meta reviews most ads within 24 hours; allow two days. No child's face in any ad. Done when: every ad shows as approved and paused in her ad account.
 
 </details>
 
-### `tror-socials` Instagram and Facebook pages
+## 5. Photos, and later · days 5–30
 
-> A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.
+_You first, then real families, each with a signed consent form. And one job that waits until after launch._
 
-Portal: note
+### `tror-photos-luisa` Photos of you
 
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `tror-t19` Add the Instagram and Facebook links to the site footer | Jesse Allan | Days 7-21 | normal |  |
+> A few good photos of you, ideally laughing. For the About section of the website, and the first ads. Just you, please: no children in these.
 
-### `tror-meta` Add me as a partner on Meta
-
-> Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.
-
-Portal: note · 6 numbered steps · "Important" box
+Portal: upload
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t21` Send Luisa the Meta Business ID; accept the partner request; check the page, Instagram and ad account | Jesse Allan | Days 7-21 | normal |  |
+| `tror-t24` Pick the photos of Luisa for the About section and the first ads | Jesse Allan | Days 5-12 | normal |  |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`tror-t21` Send Luisa the Meta Business ID; accept the partner request; check the page, Instagram and ad account**
+**`tror-t24` Pick the photos of Luisa for the About section and the first ads**
 
-She adds her own card. Set a daily cap and an end date before any ad runs.
-
-</details>
-
-### `tror-google-listing` Add me to your Google listing
-
-> Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.
-
-Portal: note · 4 numbered steps · "Important" box
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `tror-t22` Accept the manager invite; check and refine her Google listing (free, no Google Ads) | Jesse Allan | Days 7-21 | normal |  |
-
-<details><summary>Guidance for the team (1 task)</summary>
-
-**`tror-t22` Accept the manager invite; check and refine her Google listing (free, no Google Ads)**
-
-Catch the other spelling of the name ("roar").
+No children in these.
 
 </details>
-
-### `tror-stripe` Your own Stripe account
-
-> Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.
-
-Portal: "Important" box
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `tror-t20` Connect her Stripe account to the Tiny ROR workspace (she logs in herself) | Jesse Allan | Days 14-21 | normal |  |
-
-<details><summary>Guidance for the team (1 task)</summary>
-
-**`tror-t20` Connect her Stripe account to the Tiny ROR workspace (she logs in herself)**
-
-No keys in files or messages. The Tiny ROR workspace isn't created yet: ask Jesse first.
-
-</details>
-
-### `tror-contact` The phone and email parents will see
-
-> The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.
-
-Portal: note (required)
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `tror-t27` Put her phone and email on the site, the messages and the concierge | Jesse Allan | Days 14-21 | normal |  |
-
-## 5. Photos · days 14–30
-
-_Real families and real you, for the website and the ads. Every family signs the consent form first._
 
 ### `tror-shoot-families` Families for the photo shoot
 
@@ -418,7 +556,7 @@ Portal: note (required)
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t23` Book the photo shoot with the families and get their consent forms signed | Jesse Allan | Days 14-28 | normal | `tror-t11` |
+| `tror-t23` Book the photo shoot with the families and get their consent forms signed | Jesse Allan | Days 7-14 | normal | `tror-t11` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
@@ -428,16 +566,6 @@ About 6 Dec. Consent first, every family.
 
 </details>
 
-### `tror-photos-luisa` Photos of you
-
-> A few good photos of you, ideally laughing. For the About section of the website.
-
-Portal: upload
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `tror-t24` Pick the photos of Luisa for the About section | Jesse Allan | Days 14-28 | normal |  |
-
 ### `tror-brand-files` Your logo and brand files
 
 > The Tiny ROR logo files and anything else from your designer: fonts, colours, stickers. If you don't have them, skip this. I can lift them from your site.
@@ -446,4 +574,22 @@ Portal: upload · note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t28` File her logo and brand files, or lift them from the site | Jesse Allan | Days 14-28 | normal |  |
+| `tror-t28` File her logo and brand files, or lift them from the site | Jesse Allan | Days 5-14 | normal |  |
+
+### `tror-domain-move` Later: move your old web address from Wix to Porkbun
+
+> This one can wait until after launch. Nothing in the launch depends on it. We do it together on a call, about 15 minutes: you log in to Wix and to Porkbun, and I tell you what to click. The move takes up to a week. I set up your email and your pages at Porkbun first, so nothing goes dark. Don't start it on your own.
+
+Portal: note · 3 numbered steps · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t26` After launch: move her old web address from Wix to Porkbun with Luisa, on a call; then move the site | Jesse Allan | Days 20-30 | normal | `tror-t29` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t26` After launch: move her old web address from Wix to Porkbun with Luisa, on a call; then move the site**
+
+Not on the launch path. She logs in to both; never take a login. Wix: up to 7 days, a 60-day lock after registration or a contact change, the Wix site disconnects once the address leaves, and email records must be re-added. Build the DNS at Porkbun first. Whether the same rules hold for a .com.au name is not confirmed. Done when: whois shows Porkbun and her email still arrives.
+
+</details>
