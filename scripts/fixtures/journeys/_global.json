@@ -236,13 +236,17 @@
     "tror-tools",
     "tror-prices",
     "tror-parent-chats",
+    "tror-wix",
+    "tror-porkbun",
     "tror-domain",
     "tror-socials",
-    "tror-stripe",
     "tror-meta",
-    "tror-google",
+    "tror-google-listing",
+    "tror-stripe",
+    "tror-contact",
     "tror-shoot-families",
-    "tror-photos-luisa"
+    "tror-photos-luisa",
+    "tror-brand-files"
   ],
   "defaultClientType": "meta-google",
   "forms": {
@@ -895,6 +899,7 @@
     "bssc-contact-lists",
     "ob-7",
     "rsp-017",
+    "tror-brand-files",
     "tror-insurance",
     "tror-interview",
     "tror-photos-luisa",

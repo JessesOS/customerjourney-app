@@ -1,6 +1,8 @@
-// Tiny ROR (Luisa): the client's side. 23 steps in five stages, from
+// Tiny ROR (Luisa): the client's side. 27 steps in five stages, from
 // spec.md (Luisa's 22-item checklist, plus a bookmark step). Jesse OK'd the
-// list on 2026-11-08.
+// list on 2026-11-08. 2026-11-19 (Jesse): access steps added (Wix, Porkbun,
+// Google listing, contact details, brand files) and wording brought in line
+// with the plan board of 16 Nov. Those steps are drafts: see draftCopy.
 //
 // Wording by Claude, approved with the go-live (Jesse, 2026-11-09).
 // Rules from the spec: step 1 is the meeting with Jesse. Jesse drafts the
@@ -12,6 +14,8 @@ import type { StagePatch } from "../custom";
 import type { ClientStep, StageId } from "../types";
 
 const FILES = { choose: "Click to choose your files", chooseMore: "+ Add more files", stayOpen: true } as const;
+/** The address Luisa invites as a helper. Jesse to confirm. */
+const INVITE = "jesse@allconvos.ai";
 const NO_PASSWORDS = "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.";
 
 const INTERVIEW_QUESTIONS = [
@@ -46,10 +50,10 @@ export const tinyRorStages: Partial<Record<StageId, StagePatch>> = {
     statusNotes: [],
   },
   "go-live": {
-    name: "Accounts to set up",
+    name: "Accounts and access",
     dayStart: 7,
     dayEnd: 21,
-    blurb: "Your domain, your pages and the accounts for payments and ads. You own every one of them. Never send me a password.",
+    blurb: "Your website, your web address, your pages and the accounts for payments and ads. You own every one of them. You add me as a helper. Never send me a password.",
     statusNotes: [],
   },
   "post-launch": {
@@ -84,14 +88,15 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "onboarding",
     step: {
       id: "tror-interview",
-      title: "Record your interview",
-      detail: "About 45 minutes. A voice memo is fine, a video is even better. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. Your words become the website, the ads and the posts.",
+      // A chat together, as on the plan board (16 Nov). The upload stays for a recording she makes alone.
+      title: "Our recorded chat",
+      detail: "About 45 minutes. I ask, you talk, and I record it. Your story, your tools, what parents ask you. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. The questions are below, so you can think ahead. Your words become the website, the ads and the posts. I tick this once we've done it.",
       steps: INTERVIEW_QUESTIONS,
       hasUpload: true,
-      uploadOptions: { accept: ".m4a,.mp3,.wav,.aac,.mp4,.mov,.zip", title: "Upload your recording", hint: "Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.", ...FILES },
+      uploadOptions: { accept: ".m4a,.mp3,.wav,.aac,.mp4,.mov,.zip", title: "Rather record it on your own?", hint: "Upload it here. Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.", ...FILES },
       notePrompt: "Or paste a link to your recording",
       notePlaceholder: "https://drive.google.com/...",
-      doneLabel: "I've sent it",
+      doneLabel: "We've done it",
     },
   },
   {
@@ -232,12 +237,18 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "testing",
     step: {
       id: "tror-tools",
-      title: "Your tool names",
-      detail: "The real names of your tools: at least the first 4, ideally all 16 for the year. A one-line note on what each is for helps too.",
+      title: "Are your tool names final?",
+      detail: "These are the 16 tool names on your site. If they're right, press the button. If any have changed, write the new names in the box.",
+      steps: [
+        "Term 1, Know Me: Feelings Faces, Body Weather, Big and Small, My Words.",
+        "Term 2, Calm Me: Belly Balloon, Squish and Release, Calm Corner, Reset Button.",
+        "Term 3, Love Me: Uniquely Me, Kind Inner Voice, Celebrate Each Other, Try Again.",
+        "Term 4, Kind and Brave: Kind Hands, Fix It, Brave and True, Our Circle.",
+      ],
       hasUpload: true,
-      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.heic", title: "Or upload your Tool Library", hint: "A document, or photos of your notes.", ...FILES },
-      notePrompt: "Your tool names",
-      doneLabel: "Done",
+      uploadOptions: { accept: ".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.heic", title: "Your Tool Library (optional)", hint: "A document, or photos of your notes, if it helps.", ...FILES },
+      notePrompt: "Any names to change? (optional)",
+      doneLabel: "They're final",
     },
   },
   {
@@ -262,12 +273,43 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
     },
   },
 
-  // ── Accounts to set up ──
+  // ── Accounts and access ──
+  // Access is always an invite to INVITE (top of file), never a login. Wix and Porkbun
+  // steps added 2026-11-19 (Jesse). PLACEHOLDERS: Jesse's Meta business ID on
+  // tror-meta; what sits on Wix and at Porkbun is assumed (her current site and
+  // its web address): Jesse to confirm.
+  {
+    stage: "go-live",
+    step: {
+      id: "tror-wix",
+      title: "Add me to your Wix site",
+      detail: "So I can see your current website and move the best of it across. You invite me from inside Wix. I never need your login.",
+      steps: [
+        "Log in to Wix and open your site's dashboard.",
+        "Go to Settings, then Roles & Permissions.",
+        "Press Invite People, and type " + INVITE + ".",
+        "Choose the Admin role, then send the invite.",
+      ],
+      important: NO_PASSWORDS,
+      doneLabel: "I've invited you",
+    },
+  },
+  {
+    stage: "go-live",
+    step: {
+      id: "tror-porkbun",
+      title: "Your web address at Porkbun",
+      detail: "Your web address is looked after at Porkbun. A few settings there need to change so it points at the new site. We do it together on a call: you log in, I tell you what to click. It takes about ten minutes.",
+      important: NO_PASSWORDS,
+      notePrompt: "Which web addresses do you own? (optional)",
+      doneLabel: "We've done it",
+    },
+  },
   {
     stage: "go-live",
     step: {
       id: "tror-domain",
-      title: "Your domain name",
+      title: "Your Tiny ROR web address",
       detail: "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
       notePrompt: "Another name you'd prefer? (optional)",
       doneLabel: "We've bought it",
@@ -278,7 +320,7 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
     step: {
       id: "tror-socials",
       title: "Instagram and Facebook pages",
-      detail: "Pages for Tiny ROR. If you have them, paste the links. If not, we set them up when we meet.",
+      detail: "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
       notePrompt: "Your Instagram and Facebook links",
       notePlaceholder: "https://instagram.com/...",
       doneLabel: "Done",
@@ -287,19 +329,17 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "go-live",
     step: {
-      id: "tror-stripe",
-      title: "Your own Stripe account",
-      detail: "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name.",
-      important: NO_PASSWORDS,
-      doneLabel: "I've set it up",
-    },
-  },
-  {
-    stage: "go-live",
-    step: {
       id: "tror-meta",
-      title: "Meta Business account",
-      detail: "The account your Facebook and Instagram ads run from. Set it up at business.facebook.com, then add me as a partner, so I can run the ads without your login.",
+      title: "Add me as a partner on Meta",
+      detail: "Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.",
+      steps: [
+        "First, turn on two-step login for your own Facebook account (Settings, then Password and security).",
+        "Go to business.facebook.com. If you don't have a business account yet, create one in the business name.",
+        "Open Settings, then Partners. Press Add, then \"Give a partner access to your assets\".",
+        "Type my Business ID. I'll message it to you.",
+        "Tick your Facebook page, your Instagram account and your ad account, with full control, then save.",
+        "Add your own card to the ad account (Billing). Nothing is spent until you say go.",
+      ],
       important: NO_PASSWORDS,
       notePrompt: "Your Business ID, once you have it (optional)",
       doneLabel: "I've added you",
@@ -308,12 +348,40 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "go-live",
     step: {
-      id: "tror-google",
-      title: "A Google account for Tiny ROR",
-      detail: "For Google ads and your Google business listing. Make a new Google account just for Tiny ROR.",
+      // Replaces tror-google (a new Google account for ads): the plan is a free listing, no Google Ads (16 Nov).
+      id: "tror-google-listing",
+      title: "Add me to your Google listing",
+      detail: "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
+      steps: [
+        "Signed in to Google, search for your business name.",
+        "On your listing, press the three dots, then Business Profile settings.",
+        "Choose People and access, then Add.",
+        "Type " + INVITE + ", choose Manager, and send the invite.",
+      ],
       important: NO_PASSWORDS,
-      notePrompt: "The account's email address",
+      notePrompt: "No listing yet, or not sure? Tell me here (optional)",
+      doneLabel: "I've added you",
+    },
+  },
+  {
+    stage: "go-live",
+    step: {
+      id: "tror-stripe",
+      title: "Your own Stripe account",
+      detail: "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.",
+      important: NO_PASSWORDS,
       doneLabel: "I've set it up",
+    },
+  },
+  {
+    stage: "go-live",
+    step: {
+      id: "tror-contact",
+      title: "The phone and email parents will see",
+      detail: "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
+      notePrompt: "The mobile number and the email address",
+      noteRequired: true,
+      doneLabel: "Done",
     },
   },
 
@@ -337,6 +405,19 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
       detail: "A few good photos of you, ideally laughing. For the About section of the website.",
       hasUpload: true,
       uploadOptions: { accept: ".png,.jpg,.jpeg,.webp,.heic,.zip", title: "Upload your photos", hint: "As many as you like. A zip is fine.", ...FILES },
+      doneLabel: "Done",
+    },
+  },
+  {
+    stage: "post-launch",
+    step: {
+      id: "tror-brand-files",
+      optional: true,
+      title: "Your logo and brand files",
+      detail: "The Tiny ROR logo files and anything else from your designer: fonts, colours, stickers. If you don't have them, skip this. I can lift them from your site.",
+      hasUpload: true,
+      uploadOptions: { accept: ".png,.jpg,.jpeg,.svg,.pdf,.ai,.eps,.zip", title: "Upload your files", hint: "A zip is fine. Or paste a link below.", ...FILES },
+      notePrompt: "Or paste a link (optional)",
       doneLabel: "Done",
     },
   },

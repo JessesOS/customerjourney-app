@@ -12,7 +12,7 @@
           {
             "awaitingTeam": false,
             "id": "tror-interview",
-            "title": "Record your interview"
+            "title": "Our recorded chat"
           },
           {
             "awaitingTeam": false,
@@ -84,7 +84,7 @@
           {
             "awaitingTeam": false,
             "id": "tror-tools",
-            "title": "Your tool names"
+            "title": "Are your tool names final?"
           },
           {
             "awaitingTeam": false,
@@ -104,8 +104,18 @@
         "milestones": [
           {
             "awaitingTeam": false,
+            "id": "tror-wix",
+            "title": "Add me to your Wix site"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-porkbun",
+            "title": "Your web address at Porkbun"
+          },
+          {
+            "awaitingTeam": false,
             "id": "tror-domain",
-            "title": "Your domain name"
+            "title": "Your Tiny ROR web address"
           },
           {
             "awaitingTeam": false,
@@ -114,21 +124,26 @@
           },
           {
             "awaitingTeam": false,
+            "id": "tror-meta",
+            "title": "Add me as a partner on Meta"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-google-listing",
+            "title": "Add me to your Google listing"
+          },
+          {
+            "awaitingTeam": false,
             "id": "tror-stripe",
             "title": "Your own Stripe account"
           },
           {
             "awaitingTeam": false,
-            "id": "tror-meta",
-            "title": "Meta Business account"
-          },
-          {
-            "awaitingTeam": false,
-            "id": "tror-google",
-            "title": "A Google account for Tiny ROR"
+            "id": "tror-contact",
+            "title": "The phone and email parents will see"
           }
         ],
-        "name": "Accounts to set up"
+        "name": "Accounts and access"
       },
       {
         "id": "post-launch",
@@ -142,6 +157,11 @@
             "awaitingTeam": false,
             "id": "tror-photos-luisa",
             "title": "Photos of you"
+          },
+          {
+            "awaitingTeam": false,
+            "id": "tror-brand-files",
+            "title": "Your logo and brand files"
           }
         ],
         "name": "Photos"
@@ -189,7 +209,7 @@
         {
           "id": "tror-interview",
           "stageName": "This week",
-          "title": "Record your interview"
+          "title": "Our recorded chat"
         },
         {
           "id": "tror-bookmark",
@@ -249,7 +269,7 @@
         {
           "id": "tror-tools",
           "stageName": "The offer",
-          "title": "Your tool names"
+          "title": "Are your tool names final?"
         },
         {
           "id": "tror-prices",
@@ -262,29 +282,44 @@
           "title": "Local parents I can talk to"
         },
         {
+          "id": "tror-wix",
+          "stageName": "Accounts and access",
+          "title": "Add me to your Wix site"
+        },
+        {
+          "id": "tror-porkbun",
+          "stageName": "Accounts and access",
+          "title": "Your web address at Porkbun"
+        },
+        {
           "id": "tror-domain",
-          "stageName": "Accounts to set up",
-          "title": "Your domain name"
+          "stageName": "Accounts and access",
+          "title": "Your Tiny ROR web address"
         },
         {
           "id": "tror-socials",
-          "stageName": "Accounts to set up",
+          "stageName": "Accounts and access",
           "title": "Instagram and Facebook pages"
         },
         {
+          "id": "tror-meta",
+          "stageName": "Accounts and access",
+          "title": "Add me as a partner on Meta"
+        },
+        {
+          "id": "tror-google-listing",
+          "stageName": "Accounts and access",
+          "title": "Add me to your Google listing"
+        },
+        {
           "id": "tror-stripe",
-          "stageName": "Accounts to set up",
+          "stageName": "Accounts and access",
           "title": "Your own Stripe account"
         },
         {
-          "id": "tror-meta",
-          "stageName": "Accounts to set up",
-          "title": "Meta Business account"
-        },
-        {
-          "id": "tror-google",
-          "stageName": "Accounts to set up",
-          "title": "A Google account for Tiny ROR"
+          "id": "tror-contact",
+          "stageName": "Accounts and access",
+          "title": "The phone and email parents will see"
         },
         {
           "id": "tror-shoot-families",
@@ -295,6 +330,11 @@
           "id": "tror-photos-luisa",
           "stageName": "Photos",
           "title": "Photos of you"
+        },
+        {
+          "id": "tror-brand-files",
+          "stageName": "Photos",
+          "title": "Your logo and brand files"
         }
       ]
     },
@@ -318,8 +358,8 @@
             "title": "Book a time with me this week"
           },
           {
-            "detail": "About 45 minutes. A voice memo is fine, a video is even better. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. Your words become the website, the ads and the posts.",
-            "doneLabel": "I've sent it",
+            "detail": "About 45 minutes. I ask, you talk, and I record it. Your story, your tools, what parents ask you. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. The questions are below, so you can think ahead. Your words become the website, the ads and the posts. I tick this once we've done it.",
+            "doneLabel": "We've done it",
             "hasUpload": true,
             "id": "tror-interview",
             "notePlaceholder": "https://drive.google.com/...",
@@ -332,14 +372,14 @@
               "TRUST AND THE HARD QUESTIONS. 18. How is this different from therapy? When would you send a family somewhere else? 19. What would you say to a parent who thinks their child is \"too much\" for a group? 20. What can a parent honestly expect after one term? What won't change? 21. How do you keep kids safe and the room calm with 10 little ones?",
               "QUICK-FIRE. 22. Finish this: \"Tiny ROR is for the parent who…\" 23. Finish this: \"Let them ror means…\" 24. One thing a parent could try tonight with a big feeling. How would you teach it in 30 seconds? 25. Anything I haven't asked that parents should know?"
             ],
-            "title": "Record your interview",
+            "title": "Our recorded chat",
             "uploadOptions": {
               "accept": ".m4a,.mp3,.wav,.aac,.mp4,.mov,.zip",
               "choose": "Click to choose your files",
               "chooseMore": "+ Add more files",
-              "hint": "Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.",
+              "hint": "Upload it here. Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.",
               "stayOpen": true,
-              "title": "Upload your recording"
+              "title": "Rather record it on your own?"
             }
           },
           {
@@ -466,19 +506,25 @@
             "title": "Do parents stay or drop off?"
           },
           {
-            "detail": "The real names of your tools: at least the first 4, ideally all 16 for the year. A one-line note on what each is for helps too.",
-            "doneLabel": "Done",
+            "detail": "These are the 16 tool names on your site. If they're right, press the button. If any have changed, write the new names in the box.",
+            "doneLabel": "They're final",
             "hasUpload": true,
             "id": "tror-tools",
-            "notePrompt": "Your tool names",
-            "title": "Your tool names",
+            "notePrompt": "Any names to change? (optional)",
+            "steps": [
+              "Term 1, Know Me: Feelings Faces, Body Weather, Big and Small, My Words.",
+              "Term 2, Calm Me: Belly Balloon, Squish and Release, Calm Corner, Reset Button.",
+              "Term 3, Love Me: Uniquely Me, Kind Inner Voice, Celebrate Each Other, Try Again.",
+              "Term 4, Kind and Brave: Kind Hands, Fix It, Brave and True, Our Circle."
+            ],
+            "title": "Are your tool names final?",
             "uploadOptions": {
               "accept": ".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.heic",
               "choose": "Click to choose your files",
               "chooseMore": "+ Add more files",
-              "hint": "A document, or photos of your notes.",
+              "hint": "A document, or photos of your notes, if it helps.",
               "stayOpen": true,
-              "title": "Or upload your Tool Library"
+              "title": "Your Tool Library (optional)"
             }
           },
           {
@@ -501,20 +547,41 @@
         "statusNotes": []
       },
       {
-        "blurb": "Your domain, your pages and the accounts for payments and ads. You own every one of them. Never send me a password.",
+        "blurb": "Your website, your web address, your pages and the accounts for payments and ads. You own every one of them. You add me as a helper. Never send me a password.",
         "dayEnd": 21,
         "dayStart": 7,
         "id": "go-live",
         "milestones": [
           {
+            "detail": "So I can see your current website and move the best of it across. You invite me from inside Wix. I never need your login.",
+            "doneLabel": "I've invited you",
+            "id": "tror-wix",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "steps": [
+              "Log in to Wix and open your site's dashboard.",
+              "Go to Settings, then Roles & Permissions.",
+              "Press Invite People, and type jesse@allconvos.ai.",
+              "Choose the Admin role, then send the invite."
+            ],
+            "title": "Add me to your Wix site"
+          },
+          {
+            "detail": "Your web address is looked after at Porkbun. A few settings there need to change so it points at the new site. We do it together on a call: you log in, I tell you what to click. It takes about ten minutes.",
+            "doneLabel": "We've done it",
+            "id": "tror-porkbun",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePrompt": "Which web addresses do you own? (optional)",
+            "title": "Your web address at Porkbun"
+          },
+          {
             "detail": "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
             "doneLabel": "We've bought it",
             "id": "tror-domain",
             "notePrompt": "Another name you'd prefer? (optional)",
-            "title": "Your domain name"
+            "title": "Your Tiny ROR web address"
           },
           {
-            "detail": "Pages for Tiny ROR. If you have them, paste the links. If not, we set them up when we meet.",
+            "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
             "doneLabel": "Done",
             "id": "tror-socials",
             "notePlaceholder": "https://instagram.com/...",
@@ -522,30 +589,52 @@
             "title": "Instagram and Facebook pages"
           },
           {
-            "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name.",
+            "detail": "Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.",
+            "doneLabel": "I've added you",
+            "id": "tror-meta",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePrompt": "Your Business ID, once you have it (optional)",
+            "steps": [
+              "First, turn on two-step login for your own Facebook account (Settings, then Password and security).",
+              "Go to business.facebook.com. If you don't have a business account yet, create one in the business name.",
+              "Open Settings, then Partners. Press Add, then \"Give a partner access to your assets\".",
+              "Type my Business ID. I'll message it to you.",
+              "Tick your Facebook page, your Instagram account and your ad account, with full control, then save.",
+              "Add your own card to the ad account (Billing). Nothing is spent until you say go."
+            ],
+            "title": "Add me as a partner on Meta"
+          },
+          {
+            "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
+            "doneLabel": "I've added you",
+            "id": "tror-google-listing",
+            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+            "notePrompt": "No listing yet, or not sure? Tell me here (optional)",
+            "steps": [
+              "Signed in to Google, search for your business name.",
+              "On your listing, press the three dots, then Business Profile settings.",
+              "Choose People and access, then Add.",
+              "Type jesse@allconvos.ai, choose Manager, and send the invite."
+            ],
+            "title": "Add me to your Google listing"
+          },
+          {
+            "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.",
             "doneLabel": "I've set it up",
             "id": "tror-stripe",
             "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
             "title": "Your own Stripe account"
           },
           {
-            "detail": "The account your Facebook and Instagram ads run from. Set it up at business.facebook.com, then add me as a partner, so I can run the ads without your login.",
-            "doneLabel": "I've added you",
-            "id": "tror-meta",
-            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-            "notePrompt": "Your Business ID, once you have it (optional)",
-            "title": "Meta Business account"
-          },
-          {
-            "detail": "For Google ads and your Google business listing. Make a new Google account just for Tiny ROR.",
-            "doneLabel": "I've set it up",
-            "id": "tror-google",
-            "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-            "notePrompt": "The account's email address",
-            "title": "A Google account for Tiny ROR"
+            "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
+            "doneLabel": "Done",
+            "id": "tror-contact",
+            "notePrompt": "The mobile number and the email address",
+            "noteRequired": true,
+            "title": "The phone and email parents will see"
           }
         ],
-        "name": "Accounts to set up",
+        "name": "Accounts and access",
         "statusNotes": []
       },
       {
@@ -575,6 +664,23 @@
               "hint": "As many as you like. A zip is fine.",
               "stayOpen": true,
               "title": "Upload your photos"
+            }
+          },
+          {
+            "detail": "The Tiny ROR logo files and anything else from your designer: fonts, colours, stickers. If you don't have them, skip this. I can lift them from your site.",
+            "doneLabel": "Done",
+            "hasUpload": true,
+            "id": "tror-brand-files",
+            "notePrompt": "Or paste a link (optional)",
+            "optional": true,
+            "title": "Your logo and brand files",
+            "uploadOptions": {
+              "accept": ".png,.jpg,.jpeg,.svg,.pdf,.ai,.eps,.zip",
+              "choose": "Click to choose your files",
+              "chooseMore": "+ Add more files",
+              "hint": "A zip is fine. Or paste a link below.",
+              "stayOpen": true,
+              "title": "Upload your files"
             }
           }
         ],
@@ -607,8 +713,8 @@
               "title": "Book a time with me this week"
             },
             {
-              "detail": "About 45 minutes. A voice memo is fine, a video is even better. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. Your words become the website, the ads and the posts.",
-              "doneLabel": "I've sent it",
+              "detail": "About 45 minutes. I ask, you talk, and I record it. Your story, your tools, what parents ask you. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. The questions are below, so you can think ahead. Your words become the website, the ads and the posts. I tick this once we've done it.",
+              "doneLabel": "We've done it",
               "hasUpload": true,
               "id": "tror-interview",
               "notePlaceholder": "https://drive.google.com/...",
@@ -622,14 +728,14 @@
                 "TRUST AND THE HARD QUESTIONS. 18. How is this different from therapy? When would you send a family somewhere else? 19. What would you say to a parent who thinks their child is \"too much\" for a group? 20. What can a parent honestly expect after one term? What won't change? 21. How do you keep kids safe and the room calm with 10 little ones?",
                 "QUICK-FIRE. 22. Finish this: \"Tiny ROR is for the parent who…\" 23. Finish this: \"Let them ror means…\" 24. One thing a parent could try tonight with a big feeling. How would you teach it in 30 seconds? 25. Anything I haven't asked that parents should know?"
               ],
-              "title": "Record your interview",
+              "title": "Our recorded chat",
               "uploadOptions": {
                 "accept": ".m4a,.mp3,.wav,.aac,.mp4,.mov,.zip",
                 "choose": "Click to choose your files",
                 "chooseMore": "+ Add more files",
-                "hint": "Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.",
+                "hint": "Upload it here. Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.",
                 "stayOpen": true,
-                "title": "Upload your recording"
+                "title": "Rather record it on your own?"
               }
             },
             {
@@ -769,20 +875,26 @@
               "title": "Do parents stay or drop off?"
             },
             {
-              "detail": "The real names of your tools: at least the first 4, ideally all 16 for the year. A one-line note on what each is for helps too.",
-              "doneLabel": "Done",
+              "detail": "These are the 16 tool names on your site. If they're right, press the button. If any have changed, write the new names in the box.",
+              "doneLabel": "They're final",
               "hasUpload": true,
               "id": "tror-tools",
-              "notePrompt": "Your tool names",
+              "notePrompt": "Any names to change? (optional)",
               "status": "done",
-              "title": "Your tool names",
+              "steps": [
+                "Term 1, Know Me: Feelings Faces, Body Weather, Big and Small, My Words.",
+                "Term 2, Calm Me: Belly Balloon, Squish and Release, Calm Corner, Reset Button.",
+                "Term 3, Love Me: Uniquely Me, Kind Inner Voice, Celebrate Each Other, Try Again.",
+                "Term 4, Kind and Brave: Kind Hands, Fix It, Brave and True, Our Circle."
+              ],
+              "title": "Are your tool names final?",
               "uploadOptions": {
                 "accept": ".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.heic",
                 "choose": "Click to choose your files",
                 "chooseMore": "+ Add more files",
-                "hint": "A document, or photos of your notes.",
+                "hint": "A document, or photos of your notes, if it helps.",
                 "stayOpen": true,
-                "title": "Or upload your Tool Library"
+                "title": "Your Tool Library (optional)"
               }
             },
             {
@@ -808,21 +920,44 @@
           "statusNotes": []
         },
         {
-          "blurb": "Your domain, your pages and the accounts for payments and ads. You own every one of them. Never send me a password.",
+          "blurb": "Your website, your web address, your pages and the accounts for payments and ads. You own every one of them. You add me as a helper. Never send me a password.",
           "dayEnd": 21,
           "dayStart": 7,
           "id": "go-live",
           "milestones": [
+            {
+              "detail": "So I can see your current website and move the best of it across. You invite me from inside Wix. I never need your login.",
+              "doneLabel": "I've invited you",
+              "id": "tror-wix",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "done",
+              "steps": [
+                "Log in to Wix and open your site's dashboard.",
+                "Go to Settings, then Roles & Permissions.",
+                "Press Invite People, and type jesse@allconvos.ai.",
+                "Choose the Admin role, then send the invite."
+              ],
+              "title": "Add me to your Wix site"
+            },
+            {
+              "detail": "Your web address is looked after at Porkbun. A few settings there need to change so it points at the new site. We do it together on a call: you log in, I tell you what to click. It takes about ten minutes.",
+              "doneLabel": "We've done it",
+              "id": "tror-porkbun",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Which web addresses do you own? (optional)",
+              "status": "done",
+              "title": "Your web address at Porkbun"
+            },
             {
               "detail": "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
               "doneLabel": "We've bought it",
               "id": "tror-domain",
               "notePrompt": "Another name you'd prefer? (optional)",
               "status": "done",
-              "title": "Your domain name"
+              "title": "Your Tiny ROR web address"
             },
             {
-              "detail": "Pages for Tiny ROR. If you have them, paste the links. If not, we set them up when we meet.",
+              "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
               "doneLabel": "Done",
               "id": "tror-socials",
               "notePlaceholder": "https://instagram.com/...",
@@ -831,7 +966,39 @@
               "title": "Instagram and Facebook pages"
             },
             {
-              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name.",
+              "detail": "Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.",
+              "doneLabel": "I've added you",
+              "id": "tror-meta",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Your Business ID, once you have it (optional)",
+              "status": "done",
+              "steps": [
+                "First, turn on two-step login for your own Facebook account (Settings, then Password and security).",
+                "Go to business.facebook.com. If you don't have a business account yet, create one in the business name.",
+                "Open Settings, then Partners. Press Add, then \"Give a partner access to your assets\".",
+                "Type my Business ID. I'll message it to you.",
+                "Tick your Facebook page, your Instagram account and your ad account, with full control, then save.",
+                "Add your own card to the ad account (Billing). Nothing is spent until you say go."
+              ],
+              "title": "Add me as a partner on Meta"
+            },
+            {
+              "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
+              "doneLabel": "I've added you",
+              "id": "tror-google-listing",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "No listing yet, or not sure? Tell me here (optional)",
+              "status": "done",
+              "steps": [
+                "Signed in to Google, search for your business name.",
+                "On your listing, press the three dots, then Business Profile settings.",
+                "Choose People and access, then Add.",
+                "Type jesse@allconvos.ai, choose Manager, and send the invite."
+              ],
+              "title": "Add me to your Google listing"
+            },
+            {
+              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.",
               "doneLabel": "I've set it up",
               "id": "tror-stripe",
               "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
@@ -839,25 +1006,16 @@
               "title": "Your own Stripe account"
             },
             {
-              "detail": "The account your Facebook and Instagram ads run from. Set it up at business.facebook.com, then add me as a partner, so I can run the ads without your login.",
-              "doneLabel": "I've added you",
-              "id": "tror-meta",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePrompt": "Your Business ID, once you have it (optional)",
+              "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
+              "doneLabel": "Done",
+              "id": "tror-contact",
+              "notePrompt": "The mobile number and the email address",
+              "noteRequired": true,
               "status": "done",
-              "title": "Meta Business account"
-            },
-            {
-              "detail": "For Google ads and your Google business listing. Make a new Google account just for Tiny ROR.",
-              "doneLabel": "I've set it up",
-              "id": "tror-google",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePrompt": "The account's email address",
-              "status": "done",
-              "title": "A Google account for Tiny ROR"
+              "title": "The phone and email parents will see"
             }
           ],
-          "name": "Accounts to set up",
+          "name": "Accounts and access",
           "status": "done",
           "statusNotes": []
         },
@@ -891,6 +1049,24 @@
                 "stayOpen": true,
                 "title": "Upload your photos"
               }
+            },
+            {
+              "detail": "The Tiny ROR logo files and anything else from your designer: fonts, colours, stickers. If you don't have them, skip this. I can lift them from your site.",
+              "doneLabel": "Done",
+              "hasUpload": true,
+              "id": "tror-brand-files",
+              "notePrompt": "Or paste a link (optional)",
+              "optional": true,
+              "status": "done",
+              "title": "Your logo and brand files",
+              "uploadOptions": {
+                "accept": ".png,.jpg,.jpeg,.svg,.pdf,.ai,.eps,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "A zip is fine. Or paste a link below.",
+                "stayOpen": true,
+                "title": "Upload your files"
+              }
             }
           ],
           "name": "Photos",
@@ -919,8 +1095,8 @@
               "title": "Book a time with me this week"
             },
             {
-              "detail": "About 45 minutes. A voice memo is fine, a video is even better. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. Your words become the website, the ads and the posts.",
-              "doneLabel": "I've sent it",
+              "detail": "About 45 minutes. I ask, you talk, and I record it. Your story, your tools, what parents ask you. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. The questions are below, so you can think ahead. Your words become the website, the ads and the posts. I tick this once we've done it.",
+              "doneLabel": "We've done it",
               "hasUpload": true,
               "id": "tror-interview",
               "notePlaceholder": "https://drive.google.com/...",
@@ -934,14 +1110,14 @@
                 "TRUST AND THE HARD QUESTIONS. 18. How is this different from therapy? When would you send a family somewhere else? 19. What would you say to a parent who thinks their child is \"too much\" for a group? 20. What can a parent honestly expect after one term? What won't change? 21. How do you keep kids safe and the room calm with 10 little ones?",
                 "QUICK-FIRE. 22. Finish this: \"Tiny ROR is for the parent who…\" 23. Finish this: \"Let them ror means…\" 24. One thing a parent could try tonight with a big feeling. How would you teach it in 30 seconds? 25. Anything I haven't asked that parents should know?"
               ],
-              "title": "Record your interview",
+              "title": "Our recorded chat",
               "uploadOptions": {
                 "accept": ".m4a,.mp3,.wav,.aac,.mp4,.mov,.zip",
                 "choose": "Click to choose your files",
                 "chooseMore": "+ Add more files",
-                "hint": "Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.",
+                "hint": "Upload it here. Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.",
                 "stayOpen": true,
-                "title": "Upload your recording"
+                "title": "Rather record it on your own?"
               }
             },
             {
@@ -1081,20 +1257,26 @@
               "title": "Do parents stay or drop off?"
             },
             {
-              "detail": "The real names of your tools: at least the first 4, ideally all 16 for the year. A one-line note on what each is for helps too.",
-              "doneLabel": "Done",
+              "detail": "These are the 16 tool names on your site. If they're right, press the button. If any have changed, write the new names in the box.",
+              "doneLabel": "They're final",
               "hasUpload": true,
               "id": "tror-tools",
-              "notePrompt": "Your tool names",
+              "notePrompt": "Any names to change? (optional)",
               "status": "upcoming",
-              "title": "Your tool names",
+              "steps": [
+                "Term 1, Know Me: Feelings Faces, Body Weather, Big and Small, My Words.",
+                "Term 2, Calm Me: Belly Balloon, Squish and Release, Calm Corner, Reset Button.",
+                "Term 3, Love Me: Uniquely Me, Kind Inner Voice, Celebrate Each Other, Try Again.",
+                "Term 4, Kind and Brave: Kind Hands, Fix It, Brave and True, Our Circle."
+              ],
+              "title": "Are your tool names final?",
               "uploadOptions": {
                 "accept": ".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.heic",
                 "choose": "Click to choose your files",
                 "chooseMore": "+ Add more files",
-                "hint": "A document, or photos of your notes.",
+                "hint": "A document, or photos of your notes, if it helps.",
                 "stayOpen": true,
-                "title": "Or upload your Tool Library"
+                "title": "Your Tool Library (optional)"
               }
             },
             {
@@ -1120,21 +1302,44 @@
           "statusNotes": []
         },
         {
-          "blurb": "Your domain, your pages and the accounts for payments and ads. You own every one of them. Never send me a password.",
+          "blurb": "Your website, your web address, your pages and the accounts for payments and ads. You own every one of them. You add me as a helper. Never send me a password.",
           "dayEnd": 21,
           "dayStart": 7,
           "id": "go-live",
           "milestones": [
+            {
+              "detail": "So I can see your current website and move the best of it across. You invite me from inside Wix. I never need your login.",
+              "doneLabel": "I've invited you",
+              "id": "tror-wix",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "status": "upcoming",
+              "steps": [
+                "Log in to Wix and open your site's dashboard.",
+                "Go to Settings, then Roles & Permissions.",
+                "Press Invite People, and type jesse@allconvos.ai.",
+                "Choose the Admin role, then send the invite."
+              ],
+              "title": "Add me to your Wix site"
+            },
+            {
+              "detail": "Your web address is looked after at Porkbun. A few settings there need to change so it points at the new site. We do it together on a call: you log in, I tell you what to click. It takes about ten minutes.",
+              "doneLabel": "We've done it",
+              "id": "tror-porkbun",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Which web addresses do you own? (optional)",
+              "status": "upcoming",
+              "title": "Your web address at Porkbun"
+            },
             {
               "detail": "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
               "doneLabel": "We've bought it",
               "id": "tror-domain",
               "notePrompt": "Another name you'd prefer? (optional)",
               "status": "upcoming",
-              "title": "Your domain name"
+              "title": "Your Tiny ROR web address"
             },
             {
-              "detail": "Pages for Tiny ROR. If you have them, paste the links. If not, we set them up when we meet.",
+              "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
               "doneLabel": "Done",
               "id": "tror-socials",
               "notePlaceholder": "https://instagram.com/...",
@@ -1143,7 +1348,39 @@
               "title": "Instagram and Facebook pages"
             },
             {
-              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name.",
+              "detail": "Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.",
+              "doneLabel": "I've added you",
+              "id": "tror-meta",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "Your Business ID, once you have it (optional)",
+              "status": "upcoming",
+              "steps": [
+                "First, turn on two-step login for your own Facebook account (Settings, then Password and security).",
+                "Go to business.facebook.com. If you don't have a business account yet, create one in the business name.",
+                "Open Settings, then Partners. Press Add, then \"Give a partner access to your assets\".",
+                "Type my Business ID. I'll message it to you.",
+                "Tick your Facebook page, your Instagram account and your ad account, with full control, then save.",
+                "Add your own card to the ad account (Billing). Nothing is spent until you say go."
+              ],
+              "title": "Add me as a partner on Meta"
+            },
+            {
+              "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
+              "doneLabel": "I've added you",
+              "id": "tror-google-listing",
+              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
+              "notePrompt": "No listing yet, or not sure? Tell me here (optional)",
+              "status": "upcoming",
+              "steps": [
+                "Signed in to Google, search for your business name.",
+                "On your listing, press the three dots, then Business Profile settings.",
+                "Choose People and access, then Add.",
+                "Type jesse@allconvos.ai, choose Manager, and send the invite."
+              ],
+              "title": "Add me to your Google listing"
+            },
+            {
+              "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.",
               "doneLabel": "I've set it up",
               "id": "tror-stripe",
               "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
@@ -1151,25 +1388,16 @@
               "title": "Your own Stripe account"
             },
             {
-              "detail": "The account your Facebook and Instagram ads run from. Set it up at business.facebook.com, then add me as a partner, so I can run the ads without your login.",
-              "doneLabel": "I've added you",
-              "id": "tror-meta",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePrompt": "Your Business ID, once you have it (optional)",
+              "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
+              "doneLabel": "Done",
+              "id": "tror-contact",
+              "notePrompt": "The mobile number and the email address",
+              "noteRequired": true,
               "status": "upcoming",
-              "title": "Meta Business account"
-            },
-            {
-              "detail": "For Google ads and your Google business listing. Make a new Google account just for Tiny ROR.",
-              "doneLabel": "I've set it up",
-              "id": "tror-google",
-              "important": "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.",
-              "notePrompt": "The account's email address",
-              "status": "upcoming",
-              "title": "A Google account for Tiny ROR"
+              "title": "The phone and email parents will see"
             }
           ],
-          "name": "Accounts to set up",
+          "name": "Accounts and access",
           "status": "locked",
           "statusNotes": []
         },
@@ -1203,6 +1431,24 @@
                 "stayOpen": true,
                 "title": "Upload your photos"
               }
+            },
+            {
+              "detail": "The Tiny ROR logo files and anything else from your designer: fonts, colours, stickers. If you don't have them, skip this. I can lift them from your site.",
+              "doneLabel": "Done",
+              "hasUpload": true,
+              "id": "tror-brand-files",
+              "notePrompt": "Or paste a link (optional)",
+              "optional": true,
+              "status": "upcoming",
+              "title": "Your logo and brand files",
+              "uploadOptions": {
+                "accept": ".png,.jpg,.jpeg,.svg,.pdf,.ai,.eps,.zip",
+                "choose": "Click to choose your files",
+                "chooseMore": "+ Add more files",
+                "hint": "A zip is fine. Or paste a link below.",
+                "stayOpen": true,
+                "title": "Upload your files"
+              }
             }
           ],
           "name": "Photos",
@@ -1212,98 +1458,112 @@
       ]
     },
     "renders": {
-      "all@day1": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
-      "all@day12": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
-      "all@day30": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
-      "alternate@day1": "836f1c55825be6bc95204f968143ff5a82a1be422e74dbcffb02cdfdcdaef07f",
-      "alternate@day12": "836f1c55825be6bc95204f968143ff5a82a1be422e74dbcffb02cdfdcdaef07f",
-      "alternate@day30": "836f1c55825be6bc95204f968143ff5a82a1be422e74dbcffb02cdfdcdaef07f",
-      "first-10@day1": "bae5fa558e3d2d3218abc5877f8ed7f31144f471ef44ff5b52670cca216944b4",
-      "first-10@day12": "bae5fa558e3d2d3218abc5877f8ed7f31144f471ef44ff5b52670cca216944b4",
-      "first-10@day30": "bae5fa558e3d2d3218abc5877f8ed7f31144f471ef44ff5b52670cca216944b4",
-      "first-11@day1": "afc28641c57aab998bdac6be93638851f5dc60c4d2507462f84f87cf3e2ce4a4",
-      "first-11@day12": "afc28641c57aab998bdac6be93638851f5dc60c4d2507462f84f87cf3e2ce4a4",
-      "first-11@day30": "afc28641c57aab998bdac6be93638851f5dc60c4d2507462f84f87cf3e2ce4a4",
-      "first-12@day1": "c4254883ba9c578cf36b3c043a04ab5812a5db16b3940956619be3150f1008fc",
-      "first-12@day12": "c4254883ba9c578cf36b3c043a04ab5812a5db16b3940956619be3150f1008fc",
-      "first-12@day30": "c4254883ba9c578cf36b3c043a04ab5812a5db16b3940956619be3150f1008fc",
-      "first-13@day1": "f75d92d69c6fba1e398000a6adb3a5f6fef845e4c4b2804f9bea79459050a4ec",
-      "first-13@day12": "f75d92d69c6fba1e398000a6adb3a5f6fef845e4c4b2804f9bea79459050a4ec",
-      "first-13@day30": "f75d92d69c6fba1e398000a6adb3a5f6fef845e4c4b2804f9bea79459050a4ec",
-      "first-14@day1": "d50fe5c92ffff104daa8ecea6abb1e4cfca435a759d3ec1ed6d46a394a1f6241",
-      "first-14@day12": "d50fe5c92ffff104daa8ecea6abb1e4cfca435a759d3ec1ed6d46a394a1f6241",
-      "first-14@day30": "d50fe5c92ffff104daa8ecea6abb1e4cfca435a759d3ec1ed6d46a394a1f6241",
-      "first-15@day1": "1723d907cdfe961c6a0521f3d78d3b189790e71a5f21511abf31e473352d438a",
-      "first-15@day12": "1723d907cdfe961c6a0521f3d78d3b189790e71a5f21511abf31e473352d438a",
-      "first-15@day30": "1723d907cdfe961c6a0521f3d78d3b189790e71a5f21511abf31e473352d438a",
-      "first-16@day1": "c5a5684dc7495b70cc7456155f3a858b27abcc293670d2e666778996d25319bf",
-      "first-16@day12": "c5a5684dc7495b70cc7456155f3a858b27abcc293670d2e666778996d25319bf",
-      "first-16@day30": "c5a5684dc7495b70cc7456155f3a858b27abcc293670d2e666778996d25319bf",
-      "first-17@day1": "92c7e8b3bce7b9e045aa54d5f4f3a57f597bfebad01a31cb2565545d5fca558b",
-      "first-17@day12": "92c7e8b3bce7b9e045aa54d5f4f3a57f597bfebad01a31cb2565545d5fca558b",
-      "first-17@day30": "92c7e8b3bce7b9e045aa54d5f4f3a57f597bfebad01a31cb2565545d5fca558b",
-      "first-18@day1": "7611f5201dc05d656a46ed65bccb4d7b1c8c4b4c8b700ae472b5ca29b0fef87e",
-      "first-18@day12": "7611f5201dc05d656a46ed65bccb4d7b1c8c4b4c8b700ae472b5ca29b0fef87e",
-      "first-18@day30": "7611f5201dc05d656a46ed65bccb4d7b1c8c4b4c8b700ae472b5ca29b0fef87e",
-      "first-19@day1": "3a6d76afd67a14588a4875566c1c157b63a2948daee4d9074ba057d7fe71ebe2",
-      "first-19@day12": "3a6d76afd67a14588a4875566c1c157b63a2948daee4d9074ba057d7fe71ebe2",
-      "first-19@day30": "3a6d76afd67a14588a4875566c1c157b63a2948daee4d9074ba057d7fe71ebe2",
-      "first-1@day1": "459b8c7b5d3cf5bb7860c78be50a5f95e67eabb8fdfc0e2634f91fe25145e767",
-      "first-1@day12": "459b8c7b5d3cf5bb7860c78be50a5f95e67eabb8fdfc0e2634f91fe25145e767",
-      "first-1@day30": "459b8c7b5d3cf5bb7860c78be50a5f95e67eabb8fdfc0e2634f91fe25145e767",
-      "first-20@day1": "0c38efdc345446bde56d0a68bdd1d077daca09314d6f1f39fa8905f92b4ef887",
-      "first-20@day12": "0c38efdc345446bde56d0a68bdd1d077daca09314d6f1f39fa8905f92b4ef887",
-      "first-20@day30": "0c38efdc345446bde56d0a68bdd1d077daca09314d6f1f39fa8905f92b4ef887",
-      "first-21@day1": "2fefd2ffbf9bd63ef8e71c9a3707abff54d4182f4e939d0ea529c133a8e4d867",
-      "first-21@day12": "2fefd2ffbf9bd63ef8e71c9a3707abff54d4182f4e939d0ea529c133a8e4d867",
-      "first-21@day30": "2fefd2ffbf9bd63ef8e71c9a3707abff54d4182f4e939d0ea529c133a8e4d867",
-      "first-22@day1": "0ed5707413d4fefb252df4bf18617a526785d97af44544dbd27db48e33472d9c",
-      "first-22@day12": "0ed5707413d4fefb252df4bf18617a526785d97af44544dbd27db48e33472d9c",
-      "first-22@day30": "0ed5707413d4fefb252df4bf18617a526785d97af44544dbd27db48e33472d9c",
-      "first-23@day1": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
-      "first-23@day12": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
-      "first-23@day30": "8c8fecd573539fccae548b636c26a3e23560df8dc70d697adae28a1e5828593d",
-      "first-2@day1": "30fe66a897b7959ec2bd18585d7e770137206ca4896cd2014fca9db63ea89169",
-      "first-2@day12": "30fe66a897b7959ec2bd18585d7e770137206ca4896cd2014fca9db63ea89169",
-      "first-2@day30": "30fe66a897b7959ec2bd18585d7e770137206ca4896cd2014fca9db63ea89169",
-      "first-3@day1": "dc94a8e25e7dddf09dd86907851a7feb5ccd43e596a3925be20f2138e86a5d41",
-      "first-3@day12": "dc94a8e25e7dddf09dd86907851a7feb5ccd43e596a3925be20f2138e86a5d41",
-      "first-3@day30": "dc94a8e25e7dddf09dd86907851a7feb5ccd43e596a3925be20f2138e86a5d41",
-      "first-4@day1": "473c6c862a5fa18d7f370914d7c9e2dbb4ebbd1117640afc0aa8cdbb3a41e73a",
-      "first-4@day12": "473c6c862a5fa18d7f370914d7c9e2dbb4ebbd1117640afc0aa8cdbb3a41e73a",
-      "first-4@day30": "473c6c862a5fa18d7f370914d7c9e2dbb4ebbd1117640afc0aa8cdbb3a41e73a",
-      "first-5@day1": "28572b051fc2185870ac80fca3c4643cf4d741017dd79aeb8cb932e4cda2bc18",
-      "first-5@day12": "28572b051fc2185870ac80fca3c4643cf4d741017dd79aeb8cb932e4cda2bc18",
-      "first-5@day30": "28572b051fc2185870ac80fca3c4643cf4d741017dd79aeb8cb932e4cda2bc18",
-      "first-6@day1": "f818172b2d326eda09b79a254ad89051a9cdac3a659eb83df4aecdebc591e38b",
-      "first-6@day12": "f818172b2d326eda09b79a254ad89051a9cdac3a659eb83df4aecdebc591e38b",
-      "first-6@day30": "f818172b2d326eda09b79a254ad89051a9cdac3a659eb83df4aecdebc591e38b",
-      "first-7@day1": "2224f80c9c032c9fd7e226dfe0eb62c3b01d875a59b91bd8796869b4081c8b57",
-      "first-7@day12": "2224f80c9c032c9fd7e226dfe0eb62c3b01d875a59b91bd8796869b4081c8b57",
-      "first-7@day30": "2224f80c9c032c9fd7e226dfe0eb62c3b01d875a59b91bd8796869b4081c8b57",
-      "first-8@day1": "d30201023d6db30a234c6e82de6564cafba42cc6ed9e3923c03a9b613772c7a6",
-      "first-8@day12": "d30201023d6db30a234c6e82de6564cafba42cc6ed9e3923c03a9b613772c7a6",
-      "first-8@day30": "d30201023d6db30a234c6e82de6564cafba42cc6ed9e3923c03a9b613772c7a6",
-      "first-9@day1": "632b62963d3627dc7720c5cf7d0bd3f8abd46360059eeb106149ec4d52e94667",
-      "first-9@day12": "632b62963d3627dc7720c5cf7d0bd3f8abd46360059eeb106149ec4d52e94667",
-      "first-9@day30": "632b62963d3627dc7720c5cf7d0bd3f8abd46360059eeb106149ec4d52e94667",
-      "last@day1": "47ba4ba7b522f4d395a5b070f6dd2d2f402d3185fc9f0ff464b9feed26809019",
-      "last@day12": "47ba4ba7b522f4d395a5b070f6dd2d2f402d3185fc9f0ff464b9feed26809019",
-      "last@day30": "47ba4ba7b522f4d395a5b070f6dd2d2f402d3185fc9f0ff464b9feed26809019",
-      "none@day1": "15d62ed32cde1ac15d0eb71c448822ef3ca59eb258b1f44e2736ec602ccf12b0",
-      "none@day12": "15d62ed32cde1ac15d0eb71c448822ef3ca59eb258b1f44e2736ec602ccf12b0",
-      "none@day30": "15d62ed32cde1ac15d0eb71c448822ef3ca59eb258b1f44e2736ec602ccf12b0"
+      "all@day1": "3e40ea4f9995089e9aecd7fd57d425c0ddbabed67d7adba6ca6643833a77b82a",
+      "all@day12": "3e40ea4f9995089e9aecd7fd57d425c0ddbabed67d7adba6ca6643833a77b82a",
+      "all@day30": "3e40ea4f9995089e9aecd7fd57d425c0ddbabed67d7adba6ca6643833a77b82a",
+      "alternate@day1": "3cc7842ecb54a3f814c774a58e23aac44ae021308e773a46cfbc5f3cc7d4eaed",
+      "alternate@day12": "3cc7842ecb54a3f814c774a58e23aac44ae021308e773a46cfbc5f3cc7d4eaed",
+      "alternate@day30": "3cc7842ecb54a3f814c774a58e23aac44ae021308e773a46cfbc5f3cc7d4eaed",
+      "first-10@day1": "4dafa2316593952572c9c3fb23c09ecd4cbcf02aec478af41d3d7328f67dd45c",
+      "first-10@day12": "4dafa2316593952572c9c3fb23c09ecd4cbcf02aec478af41d3d7328f67dd45c",
+      "first-10@day30": "4dafa2316593952572c9c3fb23c09ecd4cbcf02aec478af41d3d7328f67dd45c",
+      "first-11@day1": "749a9f23d13cb13bce5d7e3392cff4e0077c7c0b2a47e40163bc530117aa5e49",
+      "first-11@day12": "749a9f23d13cb13bce5d7e3392cff4e0077c7c0b2a47e40163bc530117aa5e49",
+      "first-11@day30": "749a9f23d13cb13bce5d7e3392cff4e0077c7c0b2a47e40163bc530117aa5e49",
+      "first-12@day1": "e01c71900051f0285f5f2e47abb9dce4cc511823c273c86747af8f98db9c2cf4",
+      "first-12@day12": "e01c71900051f0285f5f2e47abb9dce4cc511823c273c86747af8f98db9c2cf4",
+      "first-12@day30": "e01c71900051f0285f5f2e47abb9dce4cc511823c273c86747af8f98db9c2cf4",
+      "first-13@day1": "4684303d19fd8920c64d3546cf94c563bc4048b459c84ed37ddda459a7198c7e",
+      "first-13@day12": "4684303d19fd8920c64d3546cf94c563bc4048b459c84ed37ddda459a7198c7e",
+      "first-13@day30": "4684303d19fd8920c64d3546cf94c563bc4048b459c84ed37ddda459a7198c7e",
+      "first-14@day1": "7b66fd3d2c77f659350fd5175a809e06cafe7a330905cd2bc3548f82d61ec35b",
+      "first-14@day12": "7b66fd3d2c77f659350fd5175a809e06cafe7a330905cd2bc3548f82d61ec35b",
+      "first-14@day30": "7b66fd3d2c77f659350fd5175a809e06cafe7a330905cd2bc3548f82d61ec35b",
+      "first-15@day1": "7ccea8a73974d1f58c7bc48cad9d1816e9e2b3b02c1d6f876915aaeab48a4ef8",
+      "first-15@day12": "7ccea8a73974d1f58c7bc48cad9d1816e9e2b3b02c1d6f876915aaeab48a4ef8",
+      "first-15@day30": "7ccea8a73974d1f58c7bc48cad9d1816e9e2b3b02c1d6f876915aaeab48a4ef8",
+      "first-16@day1": "3c526da27d36c29842c0458734b917b91c866ffa5906231d494689d722696711",
+      "first-16@day12": "3c526da27d36c29842c0458734b917b91c866ffa5906231d494689d722696711",
+      "first-16@day30": "3c526da27d36c29842c0458734b917b91c866ffa5906231d494689d722696711",
+      "first-17@day1": "72a990d4f2f9c022b3a73a78398ba69074aef01b3de8d4fa463ff3db08c816b1",
+      "first-17@day12": "72a990d4f2f9c022b3a73a78398ba69074aef01b3de8d4fa463ff3db08c816b1",
+      "first-17@day30": "72a990d4f2f9c022b3a73a78398ba69074aef01b3de8d4fa463ff3db08c816b1",
+      "first-18@day1": "eb9bc1e6b82d8e73a438252a4c7485d50b4f2c1428d34f4c1c8288fef1212b16",
+      "first-18@day12": "eb9bc1e6b82d8e73a438252a4c7485d50b4f2c1428d34f4c1c8288fef1212b16",
+      "first-18@day30": "eb9bc1e6b82d8e73a438252a4c7485d50b4f2c1428d34f4c1c8288fef1212b16",
+      "first-19@day1": "51b2a354162c1fc2268f6cf2f030f6a905dccd1c39348c24a44920514fc09302",
+      "first-19@day12": "51b2a354162c1fc2268f6cf2f030f6a905dccd1c39348c24a44920514fc09302",
+      "first-19@day30": "51b2a354162c1fc2268f6cf2f030f6a905dccd1c39348c24a44920514fc09302",
+      "first-1@day1": "c22c2178809a50f507fca0d5ea35d11638ce2baa33790a02e18140aa3bb8e72b",
+      "first-1@day12": "c22c2178809a50f507fca0d5ea35d11638ce2baa33790a02e18140aa3bb8e72b",
+      "first-1@day30": "c22c2178809a50f507fca0d5ea35d11638ce2baa33790a02e18140aa3bb8e72b",
+      "first-20@day1": "77f0ebc95497cb36d8376d503a007b706a6516d9579c310efd27528cd685505a",
+      "first-20@day12": "77f0ebc95497cb36d8376d503a007b706a6516d9579c310efd27528cd685505a",
+      "first-20@day30": "77f0ebc95497cb36d8376d503a007b706a6516d9579c310efd27528cd685505a",
+      "first-21@day1": "cf624f3a04f1ccc8eb79ece2b809cd8dc6231d2e1ca5fef6230ac79ce499dff7",
+      "first-21@day12": "cf624f3a04f1ccc8eb79ece2b809cd8dc6231d2e1ca5fef6230ac79ce499dff7",
+      "first-21@day30": "cf624f3a04f1ccc8eb79ece2b809cd8dc6231d2e1ca5fef6230ac79ce499dff7",
+      "first-22@day1": "dd0c129b4562664cd0fb9d43de56212b54ecddf1485150d66ffdef03d55af372",
+      "first-22@day12": "dd0c129b4562664cd0fb9d43de56212b54ecddf1485150d66ffdef03d55af372",
+      "first-22@day30": "dd0c129b4562664cd0fb9d43de56212b54ecddf1485150d66ffdef03d55af372",
+      "first-23@day1": "d930e9069ecb97572eb88ef74a631127539f8bff138e594a8de7de8a2ec87b2d",
+      "first-23@day12": "d930e9069ecb97572eb88ef74a631127539f8bff138e594a8de7de8a2ec87b2d",
+      "first-23@day30": "d930e9069ecb97572eb88ef74a631127539f8bff138e594a8de7de8a2ec87b2d",
+      "first-24@day1": "4a09f556197cc7e5ba8b523728344030cc512792badaf7e87f10f67a2a484491",
+      "first-24@day12": "4a09f556197cc7e5ba8b523728344030cc512792badaf7e87f10f67a2a484491",
+      "first-24@day30": "4a09f556197cc7e5ba8b523728344030cc512792badaf7e87f10f67a2a484491",
+      "first-25@day1": "5ac8a6da1b2b84ffd3245d5d4d8c66f7c8b8b4bf2f1a528e4bc5d3f57d27816f",
+      "first-25@day12": "5ac8a6da1b2b84ffd3245d5d4d8c66f7c8b8b4bf2f1a528e4bc5d3f57d27816f",
+      "first-25@day30": "5ac8a6da1b2b84ffd3245d5d4d8c66f7c8b8b4bf2f1a528e4bc5d3f57d27816f",
+      "first-26@day1": "be4c39b26d01dd49d25081c071bdaf6fe3e52e3669648c3948efbbe6e3fcc677",
+      "first-26@day12": "be4c39b26d01dd49d25081c071bdaf6fe3e52e3669648c3948efbbe6e3fcc677",
+      "first-26@day30": "be4c39b26d01dd49d25081c071bdaf6fe3e52e3669648c3948efbbe6e3fcc677",
+      "first-27@day1": "3e40ea4f9995089e9aecd7fd57d425c0ddbabed67d7adba6ca6643833a77b82a",
+      "first-27@day12": "3e40ea4f9995089e9aecd7fd57d425c0ddbabed67d7adba6ca6643833a77b82a",
+      "first-27@day30": "3e40ea4f9995089e9aecd7fd57d425c0ddbabed67d7adba6ca6643833a77b82a",
+      "first-2@day1": "bc5d6fbace1f18d80e01dd4bd8d539144a370d88269fc448424aefcacb5344ac",
+      "first-2@day12": "bc5d6fbace1f18d80e01dd4bd8d539144a370d88269fc448424aefcacb5344ac",
+      "first-2@day30": "bc5d6fbace1f18d80e01dd4bd8d539144a370d88269fc448424aefcacb5344ac",
+      "first-3@day1": "59d1681d3edf686e00ef9f9faa5850077be292d223dc5838e545b00f6140e8c9",
+      "first-3@day12": "59d1681d3edf686e00ef9f9faa5850077be292d223dc5838e545b00f6140e8c9",
+      "first-3@day30": "59d1681d3edf686e00ef9f9faa5850077be292d223dc5838e545b00f6140e8c9",
+      "first-4@day1": "56d1a2b36e674348a280b628d3e3e75a0e7bed2d57ddb185e67dbff25319c974",
+      "first-4@day12": "56d1a2b36e674348a280b628d3e3e75a0e7bed2d57ddb185e67dbff25319c974",
+      "first-4@day30": "56d1a2b36e674348a280b628d3e3e75a0e7bed2d57ddb185e67dbff25319c974",
+      "first-5@day1": "94ce010ff74e98063d2fed2eb0e8489d4b7f5ad0b52fe2a8ab638e472b736d8c",
+      "first-5@day12": "94ce010ff74e98063d2fed2eb0e8489d4b7f5ad0b52fe2a8ab638e472b736d8c",
+      "first-5@day30": "94ce010ff74e98063d2fed2eb0e8489d4b7f5ad0b52fe2a8ab638e472b736d8c",
+      "first-6@day1": "59008ac2e3c045548ac8d2c47deb4db52ace789297c7ef717df2e4a1e0e2b18a",
+      "first-6@day12": "59008ac2e3c045548ac8d2c47deb4db52ace789297c7ef717df2e4a1e0e2b18a",
+      "first-6@day30": "59008ac2e3c045548ac8d2c47deb4db52ace789297c7ef717df2e4a1e0e2b18a",
+      "first-7@day1": "14fcdd7920ed39cbbe796446fc4ef13473c87793062eb2ff98d1ce2c53a67d01",
+      "first-7@day12": "14fcdd7920ed39cbbe796446fc4ef13473c87793062eb2ff98d1ce2c53a67d01",
+      "first-7@day30": "14fcdd7920ed39cbbe796446fc4ef13473c87793062eb2ff98d1ce2c53a67d01",
+      "first-8@day1": "26d4e4c95860a45edb0ef342d1141ef806c86fc1e53714058d239e00f2a0fd69",
+      "first-8@day12": "26d4e4c95860a45edb0ef342d1141ef806c86fc1e53714058d239e00f2a0fd69",
+      "first-8@day30": "26d4e4c95860a45edb0ef342d1141ef806c86fc1e53714058d239e00f2a0fd69",
+      "first-9@day1": "c662df8576690eec43fbeb26c8843bf95033a3e1e034939a33053e9f760d7415",
+      "first-9@day12": "c662df8576690eec43fbeb26c8843bf95033a3e1e034939a33053e9f760d7415",
+      "first-9@day30": "c662df8576690eec43fbeb26c8843bf95033a3e1e034939a33053e9f760d7415",
+      "last@day1": "187527f3ffd9a61fe58d9b978d8e0689a66288a6a154762ed48b83cdcdbaa0f1",
+      "last@day12": "187527f3ffd9a61fe58d9b978d8e0689a66288a6a154762ed48b83cdcdbaa0f1",
+      "last@day30": "187527f3ffd9a61fe58d9b978d8e0689a66288a6a154762ed48b83cdcdbaa0f1",
+      "none@day1": "06b7473e3466bcd36480396196d5ac206e9f6aa54c4b25ed9ee125bee3f0a6fb",
+      "none@day12": "06b7473e3466bcd36480396196d5ac206e9f6aa54c4b25ed9ee125bee3f0a6fb",
+      "none@day30": "06b7473e3466bcd36480396196d5ac206e9f6aa54c4b25ed9ee125bee3f0a6fb"
     },
     "stageCompletedBy": {
       "half": {
         "tror-abn": "build",
         "tror-book": "onboarding",
         "tror-bookmark": "onboarding",
+        "tror-brand-files": null,
         "tror-child-safe": "build",
         "tror-class-time": "build",
         "tror-consent": "build",
+        "tror-contact": null,
         "tror-domain": null,
-        "tror-google": null,
+        "tror-google-listing": null,
         "tror-insurance": "build",
         "tror-interview": "onboarding",
         "tror-meta": null,
@@ -1311,6 +1571,7 @@
         "tror-parents-stay": null,
         "tror-photos-luisa": null,
         "tror-policies": "build",
+        "tror-porkbun": null,
         "tror-prices": null,
         "tror-shoot-families": null,
         "tror-socials": null,
@@ -1318,17 +1579,20 @@
         "tror-taster-dates": "build",
         "tror-tools": null,
         "tror-venue": "build",
+        "tror-wix": null,
         "tror-wwcc": "build"
       },
       "none": {
         "tror-abn": null,
         "tror-book": null,
         "tror-bookmark": null,
+        "tror-brand-files": null,
         "tror-child-safe": null,
         "tror-class-time": null,
         "tror-consent": null,
+        "tror-contact": null,
         "tror-domain": null,
-        "tror-google": null,
+        "tror-google-listing": null,
         "tror-insurance": null,
         "tror-interview": null,
         "tror-meta": null,
@@ -1336,6 +1600,7 @@
         "tror-parents-stay": null,
         "tror-photos-luisa": null,
         "tror-policies": null,
+        "tror-porkbun": null,
         "tror-prices": null,
         "tror-shoot-families": null,
         "tror-socials": null,
@@ -1343,6 +1608,7 @@
         "tror-taster-dates": null,
         "tror-tools": null,
         "tror-venue": null,
+        "tror-wix": null,
         "tror-wwcc": null
       }
     },
@@ -1384,6 +1650,16 @@
         "showsPlayground": false,
         "showsVideo": false
       },
+      "tror-brand-files": {
+        "detail": "The Tiny ROR logo files and anything else from your designer: fonts, colours, stickers. If you don't have them, skip this. I can lift them from your site.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
       "tror-child-safe": {
         "detail": "I'll draft it and put it below. Read it. If it's right, press the button. If something needs to change, write it in the box.",
         "interviewAudioBase": null,
@@ -1414,6 +1690,16 @@
         "showsPlayground": false,
         "showsVideo": false
       },
+      "tror-contact": {
+        "detail": "The mobile number parents can message on WhatsApp, and the email address that replies come back to. They go on the website and on every message sent in your name.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
       "tror-domain": {
         "detail": "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
         "interviewAudioBase": null,
@@ -1424,8 +1710,8 @@
         "showsPlayground": false,
         "showsVideo": false
       },
-      "tror-google": {
-        "detail": "For Google ads and your Google business listing. Make a new Google account just for Tiny ROR.",
+      "tror-google-listing": {
+        "detail": "Your Google Business Profile is how you show on the map in Ballina. It's free. Add me as a manager, so I can check it and fill it in. If you don't have a listing yet, tell me in the box and we'll make one together.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1445,7 +1731,7 @@
         "showsVideo": false
       },
       "tror-interview": {
-        "detail": "About 45 minutes. A voice memo is fine, a video is even better. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. Your words become the website, the ads and the posts.",
+        "detail": "About 45 minutes. I ask, you talk, and I record it. Your story, your tools, what parents ask you. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. The questions are below, so you can think ahead. Your words become the website, the ads and the posts. I tick this once we've done it.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1455,7 +1741,7 @@
         "showsVideo": false
       },
       "tror-meta": {
-        "detail": "The account your Facebook and Instagram ads run from. Set it up at business.facebook.com, then add me as a partner, so I can run the ads without your login.",
+        "detail": "Meta is the company behind Facebook and Instagram. One partner request lets me post, and make and run your ads, from my own login. It covers your Facebook page, your Instagram and your ad account. The ads run in your account, on your card, and you approve each one.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1504,6 +1790,16 @@
         "showsPlayground": false,
         "showsVideo": false
       },
+      "tror-porkbun": {
+        "detail": "Your web address is looked after at Porkbun. A few settings there need to change so it points at the new site. We do it together on a call: you log in, I tell you what to click. It takes about ten minutes.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
       "tror-prices": {
         "detail": "$40 for a single class. $280 for a term, or 4 payments of $70. A $20 taster that comes off the term.",
         "interviewAudioBase": null,
@@ -1525,7 +1821,7 @@
         "showsVideo": false
       },
       "tror-socials": {
-        "detail": "Pages for Tiny ROR. If you have them, paste the links. If not, we set them up when we meet.",
+        "detail": "A fresh Tiny ROR Instagram, just for families from Byron Bay to Ballina, and a Facebook page. We open them together, about ten minutes. Then paste the links here. If you're happy for me to reuse posts from your ROR The Journey pages, paste those links too.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1535,7 +1831,7 @@
         "showsVideo": false
       },
       "tror-stripe": {
-        "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name.",
+        "detail": "Stripe takes the parents' payments and pays them straight into your bank account. Set it up yourself at stripe.com, in the business name. Later you connect it to the booking page yourself, with me on a call.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1555,7 +1851,7 @@
         "showsVideo": false
       },
       "tror-tools": {
-        "detail": "The real names of your tools: at least the first 4, ideally all 16 for the year. A one-line note on what each is for helps too.",
+        "detail": "These are the 16 tool names on your site. If they're right, press the button. If any have changed, write the new names in the box.",
         "interviewAudioBase": null,
         "note": null,
         "showsBooking": false,
@@ -1570,6 +1866,16 @@
         "note": null,
         "showsBooking": false,
         "showsImportant": false,
+        "showsLandingPreview": false,
+        "showsPlayground": false,
+        "showsVideo": false
+      },
+      "tror-wix": {
+        "detail": "So I can see your current website and move the best of it across. You invite me from inside Wix. I never need your login.",
+        "interviewAudioBase": null,
+        "note": null,
+        "showsBooking": false,
+        "showsImportant": true,
         "showsLandingPreview": false,
         "showsPlayground": false,
         "showsVideo": false
@@ -1589,7 +1895,7 @@
     "tabTitle": "Tiny ROR",
     "tagline": "Building tiny hearts.",
     "totalDays": 30,
-    "totalMilestoneCount": 23,
+    "totalMilestoneCount": 27,
     "visibleIds": [
       "tror-book",
       "tror-interview",
@@ -1607,74 +1913,78 @@
       "tror-tools",
       "tror-prices",
       "tror-parent-chats",
+      "tror-wix",
+      "tror-porkbun",
       "tror-domain",
       "tror-socials",
-      "tror-stripe",
       "tror-meta",
-      "tror-google",
+      "tror-google-listing",
+      "tror-stripe",
+      "tror-contact",
       "tror-shoot-families",
-      "tror-photos-luisa"
+      "tror-photos-luisa",
+      "tror-brand-files"
     ],
     "wordmark": "Tiny ROR"
   },
   "ssr": {
-    "aurora|all|day1": "a47c73b454de6f01db9c4e0cbaf5f2958bd8cd72898b77d982521d790c97e49c",
-    "aurora|all|day30": "1c5ccd85b3dba15710864288a1388b08a305917b4d87fcec61977a6acab7c9d7",
-    "aurora|half|day1": "57f0f959169a357ca8631d4e9d30b7b46f82d256be5d3ab10160b5b73ccf37d0",
-    "aurora|half|day30": "3ccd31d85944c1c4f848e03377de72a527ed1fd9f3820f862b2fdd933934dd77",
-    "aurora|none|day1": "79fe949415a29a827ec52667b4bbca2ab0c9f88b1b5641475dd145b2b431fc58",
-    "aurora|none|day30": "a95314369202fea6b1ee662a3ee8efea8a6b9b47ac71a6f6da4dc8a8589d62b7",
-    "calm|all|day1": "86cd7882a4ceeb1c38235ea2fedfa2c57e96406a4f6d74568d785e0c7cebb867",
-    "calm|all|day30": "d4616a6f1c4ac9c36b314ba680fc1bfcabd5158713418eeba0843b0016cdafd8",
-    "calm|half|day1": "7d12844bf9849458313f19a5e62eff6923ddd52dd181326ed92755bf97022a58",
-    "calm|half|day30": "a28f684347e0ebd69b924de82d6b802cf3b42e2012b383cbb2af609e6f373c2b",
-    "calm|none|day1": "0d7d184ce44e9329fefc7b2c9eca7d8189807a0cc90ab9e22d94c6724daface9",
-    "calm|none|day30": "327950bbcae0742fa73d5d6bc70ebc2842f5566ce14307b3b111cbbec16b69c2",
-    "cobalt|all|day1": "705a02a3f4883d2122dcad5904c3dfc972e3312aa5847cbc31eda6b9102f42ba",
-    "cobalt|all|day30": "0f334703e36723494a3dab3bd71269ccc6d48525c50c9ff34ff6c6e6a8016ff1",
-    "cobalt|half|day1": "3fb25d2832f9c580695404f583303f67e4cf9d4d6114ae59496bc9b23c342e66",
-    "cobalt|half|day30": "d0c7325b138940e042660158b704087aa45800bf0f62dcffccdaf8da0ff88b39",
-    "cobalt|none|day1": "a032e7bf442676c7e31795609e4173fffb392e73e83edaf7d9a280b09efd1231",
-    "cobalt|none|day30": "599d55c007343ce9cce0b6e5ad5700d05f04a7616e202de57aeeaf766e96a17e",
-    "cool|all|day1": "112b301cd40f3354e4d3c2a5789e01706c81916ac7b2a5973b4e3d1059870f4a",
-    "cool|all|day30": "3562c22e66ae118082f3c265cce0c8e7129b1dbd069868a30ed07c3792fe4698",
-    "cool|half|day1": "436cd20809fdf87bdab2b0b05315c709bf3033c507f2a0ee04c58fed0a4eea51",
-    "cool|half|day30": "68ea3046901e32d15ae229f9f8a892b6269d67974a7f7039aa78f9c21d560b12",
-    "cool|none|day1": "fc647cdf7a8dd3ba0eb5bb7032bdf37d466066a44972f70ce2e0d9fff06aa277",
-    "cool|none|day30": "ed923de8c2ca98f21ff4498de56b50de53601ecaba1f2c8bb8f74ade2cf900fd",
-    "groveaurora|all|day1": "4c61e432ddd827500f30575f752888c2c2d0b6a52e5f42b9a5730419f6e4986c",
-    "groveaurora|all|day30": "f15e31291dd7325592e898cd9c73aaa034f713537df1ca7b2992914bd7c2981c",
-    "groveaurora|half|day1": "a4acbc2906506134cab117dd8ea55a517b130c66cab33d61d4c96b3c82818558",
-    "groveaurora|half|day30": "120b0ffbb8312ad59440fe86f6d175caa85b32c65daf4ffb8852f49d363ecb8e",
-    "groveaurora|none|day1": "64f0ea67e1fca95eb73dae0bfd2e3dfdaabfcb9e525d2814ce53dae6eb4d128b",
-    "groveaurora|none|day30": "9b0baa5b2bed80416cfdc376efc595376647a946e1f71e7dc5af935f2ac0ccc1",
-    "grove|all|day1": "adb5f11c2621bcf3ae0efd62c2e835d4ecd659c4b346e820aa4ae7a824f86f7a",
-    "grove|all|day30": "7fc73917fec264b253dd6c8b4baf52559e304654e0bed12191c8412926ec30e4",
-    "grove|half|day1": "1ec9f1d989e3af42a102fa06b827cb6d0e51f9afdc5429592e26a1649f04f99d",
-    "grove|half|day30": "bee4d5a98568b0d9b8c5fbd4a59ee75181842b670c9d061b683f76d46d8a703f",
-    "grove|none|day1": "9ce40a8b195d9bb052dbd648b64b439772610946293e428b18f6400554ad8846",
-    "grove|none|day30": "a6862d4d70dae265cacc3d9b0042771632d83b705a362f720a6b54578d958928",
-    "handoff|all|day1": "c49a86954870451abcedac964a89c9ad757225a28642a2cb0dbc6f4504a354c3",
-    "handoff|all|day30": "bdc9d54d163e6bcddc9c235c2ff5b8fea9e9c907cf9b779fe77660b40ce4fa3e",
-    "handoff|half|day1": "67cad1a9932690d7b0168c32ea43b767005dbd54409e23effcc7f1ef1559223d",
-    "handoff|half|day30": "b1f329a39352d4980bcea153a9c57ac6011b1b946fdaa3b4b1cc117b8ff144e6",
-    "handoff|none|day1": "e54aa2c0983ded5ca7e9b4848466cf83cbb89938a79c674a469635073ac6d42a",
-    "handoff|none|day30": "eaacce0ab4bdd9913e5bf8b8979b1b0448ff8859aa4f6a1b49df557555b0d6ea",
-    "neutral|all|day1": "bb724491fa824e0fcd2774b3adc030924a4f7b5bd1bb72401529238e99f68580",
-    "neutral|all|day30": "22b53ef4bde2cb946bd09ba0d37d464138d3045ef4d73cb38456f7a3e2c07ea3",
-    "neutral|half|day1": "5e7aee781375da9828f8c0d1ec7237c330d368be8e391231a6f3137f93244ca1",
-    "neutral|half|day30": "e0b97abfe9a39e52249fee8ac48b9570bd5fea265ee8286fe0192829a7e8caaf",
-    "neutral|none|day1": "8b28975daa5a1c63f0d96e76eaf8afcb3d5d640064a427c4d30d0dea8880ce53",
-    "neutral|none|day30": "fce9c477eb70aae33d8c6d0e96a04d5cb99df6a9ee5b20757da467e300918736",
-    "warm|all|day1": "6a70b2190dccbad6f5e0f8cf8515a07e698f1cfa92201daeabfa9ee06458031e",
-    "warm|all|day30": "461d5894b1eac6ca7feedd724b16fd086cb64a7b27af2e9e29048075db6d284b",
-    "warm|half|day1": "328f6bb0ff81480623eab55988a2a6cfc18dbd0d6d97496c941a25b7a3c6aca1",
-    "warm|half|day30": "e755fc17aa7c6d08a171fbba0b24e323a037ec10156a17e76283b2f9e9711a3a",
-    "warm|none|day1": "d632827667200ace61180efe673cd76402550093eaec256e8acb827024b6cbc6",
-    "warm|none|day30": "ea7022ab94f3755db914ad9dbba7bcb171bb38d9e6571a6ccf59e7a7a975622a"
+    "aurora|all|day1": "06189086d27e4199654e42450c67c34aafd06437120c9e0a7e88dabb49a63e61",
+    "aurora|all|day30": "f3ed1e6c142f9e4f73416eb6e9217ee372bf6f690ab4928d58dabdc948bc0073",
+    "aurora|half|day1": "0a8ea2dcf6a4030d47c34cae828778857ec1568186405a7be405e37b3bc12401",
+    "aurora|half|day30": "a7dd95e6f7a7abab780626d89cd687e4b40e3b57980488d9feffe77cf064d381",
+    "aurora|none|day1": "2464b2f9304bdafe3fc48d5f407f11dac4926678c81fd60ad8d0a1d679b8d72d",
+    "aurora|none|day30": "da152aa416967830757cf230d5cb80a961efb01e2ff122cbad4cdcc85f3ef80f",
+    "calm|all|day1": "923fc67caa3193bf17c0dd779e93d3a4d3a89bd890bc372711bb92ca819a4296",
+    "calm|all|day30": "bdb68536a0b5b33235bddc48e49e5c51c1d443de300b4f976f7349d63568f320",
+    "calm|half|day1": "c42b4f25892c1e1dbf2ed0c9c5f1d4e2b5533c32d52007091d0417f76093a41c",
+    "calm|half|day30": "f2c4509b3cfd7722db5b75b5685e4db9c5ba26a47868579c6ce3ad0343745c3a",
+    "calm|none|day1": "d1e731f5bb35e98d1eeaf14310c8ea3a7bb6f785ba85ede17df31fe1c91ad2dc",
+    "calm|none|day30": "9c1ebe8e2d29f04cb819dba182cd274c599620ce3c80c37bff8fc707087eb886",
+    "cobalt|all|day1": "9e2e59b236079d5c5890c3a02a7a37d93435216a0ed2ea39c27d994a612c8402",
+    "cobalt|all|day30": "78162f38297e0ce2daf64fa10d68373ae013415dc2a37a041a74fd48ff6c9cee",
+    "cobalt|half|day1": "69b06de11ff7cb8d8cc6db85e8dd6ce2bb1e0adf7761721a47ec6084b61d9913",
+    "cobalt|half|day30": "06c55ef40bba1f2ae69b8d582678ae3dee099efaa006e5fa5c47e884b9ff8480",
+    "cobalt|none|day1": "1bb58b6c02a31c6a50c8f7668724d62cd4c4773511dd1e8e5f89d5daddab316a",
+    "cobalt|none|day30": "2104da1c80414f68710a482c687501af3e674fbcd40fd2a871b642f3066bbe2f",
+    "cool|all|day1": "3ee2d7436f25f1f5e882f470ceb78a5887339d17d10e415c24944d58dd7bf8e5",
+    "cool|all|day30": "a9814c49ea2c0eca1eb3e72b7ad70311708972855fab74eb0c0938762967478d",
+    "cool|half|day1": "4a328fc0f8ba2af88c4ee2a0c4c8297305affa45f0b6679f15cbbac0fe111a67",
+    "cool|half|day30": "737ad3f75c212f43d2e2c7322dbe5d9781365c2c34e2524064437a4535e380ea",
+    "cool|none|day1": "15ae14b38075c1f82822466f659ec5251f68665a04ac82064be3bbd1ee3b239c",
+    "cool|none|day30": "5f6776b6bd444acb6df48cc575efc53cf40ba96225ce0294336e981d04572fa4",
+    "groveaurora|all|day1": "e85a73b0fd8ebe1967f9bed0c918568684d7597ac8f56355abb8ecfcf22ec427",
+    "groveaurora|all|day30": "07c9c34d4418bdee6131d465ca13086fcaf5938a19c498a214ffd241b5d0be4c",
+    "groveaurora|half|day1": "66a61cc771abdad04e3ec2574006de96b54e8a5f4dc2bc1301aaad69af595336",
+    "groveaurora|half|day30": "08e48f455fd6d779f50532660ccc4b5c7c13ec2254fa5c4cafc467ccd8021b41",
+    "groveaurora|none|day1": "e13b4e7aa87be8f15d85291298972268008f6bbba811181e834293c380b03395",
+    "groveaurora|none|day30": "5d7166c64e7c665790497f9fc561a8da096441c6ff7560841846bfe0c4a3abed",
+    "grove|all|day1": "2c4aa1687b99660e9afcf673ea93d74937af2c2fbac4da3bd152b867ea6ded9f",
+    "grove|all|day30": "5d13512024e1b12fa1116c639cbd400d9f4b11328b819b947aeaf7e3154a7ec4",
+    "grove|half|day1": "1c08f7d7f16b39bacdc3fc76f68324485bb87bf02dc35756e9db981ec2999018",
+    "grove|half|day30": "4defe8aa76afd413dd99e4cd12d0111ecfa484ab75a3e1ef00d5466a8f349db4",
+    "grove|none|day1": "c118c94f35e263f36cb9c25f9b8fe28cd84af34a2823741c9ee252dc916a3cd5",
+    "grove|none|day30": "760f93b54221e722d15d7a62508d2a5b43ea95a2132c2a0ef78807affbfb378b",
+    "handoff|all|day1": "04129a173bfec73c22b9e54f56b6c97b47443d33b2cb42269e4cf6dfbdb56e76",
+    "handoff|all|day30": "0d71abadd2290915c6573f04209108da70fd7bf1456d0166238e959dd66d5a67",
+    "handoff|half|day1": "534c98a88523d255efef4877425546710bfc0326cd167370562bf6cc42f56b64",
+    "handoff|half|day30": "8819951a5b47721f16c457bf65220eab807607abcf5b26a5482a425b1d0719cf",
+    "handoff|none|day1": "73529566abc2adc4841d5e32e20275cc8eca0f2c785513b8d789350ed0137816",
+    "handoff|none|day30": "e8012ff416d70050b20a5fabb1c28b9652270beb96c3ee88f276b4474555805d",
+    "neutral|all|day1": "80932ec6f7a64e7a2b4bc423b3c0db90554b321d7799975880f4d5e08c9d73e3",
+    "neutral|all|day30": "a8efb264d477c8adfef84d3184d11cb81b10bf29d9a906a1deac06861dac154d",
+    "neutral|half|day1": "1cf52ba04fdf49036bb9faa30b0fcf39db23c043732d0ee5dcbe0514199b32d3",
+    "neutral|half|day30": "83283b6ecc4dc2a17abe0f3ca067d5862afbdb980c7ea15ab3531e4a9ed02d75",
+    "neutral|none|day1": "057167960bb5795c6247140961b14a0243e888831814acde19dcdc48c66e993f",
+    "neutral|none|day30": "3b91eb18b0244890bd471fa2c699787753d1368cbbdfc09b0498ce4ee4416f7d",
+    "warm|all|day1": "038f6c3fe72870ee503513b7c952db39f42135895993a4bf13ed3e98d768374a",
+    "warm|all|day30": "a62338bc35c98b741adbd060cf8a7110c126abe908e0e35e23d754aa265812d2",
+    "warm|half|day1": "36d1a9b5d2887467e312ee26646385757123abc415844b291d2bd3917d6c885a",
+    "warm|half|day30": "f90fccfd0f379e87d8136eabc7817e471a0ce39ca75b3633bbb790b1d3e4b9c5",
+    "warm|none|day1": "a5fa3f9d55a8ad09c1cf0e41b6094d28fc68b68712a5e6897681bcf6b84a4bbb",
+    "warm|none|day30": "d0d69efb32486947ef7e68ad3b1473b2cc2cea830990faa4dcff4e16fccc503d"
   },
   "welcome": {
-    "aurora": "9d9440382a420f81057a23b6539a0bbdfcf3525e5a9f65b36b633b183363c97f",
+    "aurora": "4a9b38c1f320b5e5f07fddadf6138b6ced4d67bbcdbec85f240b45a8969e0947",
     "funnel": "16c754a1e6296746d120f83d35afb542de33d12f8baf10bc79db3c0421c51b39",
     "funnel-grove": "7a94394befcef0129d66f795e40bc210fbaf7e01a1550b621c98114a3054cd1d",
     "marquee": "a75dca7987eb6fb8734e4cf70ea01d8abf0b0e09dfe33da8d9086be8725d9ac1",
