@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-11-19.10` |
+| Version | `2026-11-19.11` |
 | Status | live: new clients start on it |
 | Journey | 30 days to go-live |
-| Client steps | 33 (1 client only, 0 hidden in the portal) |
-| Team tasks | 34 (34 behind a client step, 0 team-only) |
+| Client steps | 32 (1 client only, 0 hidden in the portal) |
+| Team tasks | 34 (33 behind a client step, 1 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/tiny-ror/spec.md](../../products/tiny-ror/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| Tiny ROR | `tiny-ror` | none | yes | 33 | 34 |
+| Tiny ROR | `tiny-ror` | none | yes | 32 | 34 |
 
 ### Portal tweaks by variant
 
@@ -54,25 +54,7 @@ Each stage lists the client's steps in portal order, with the team tasks behind 
 
 ## 1. Start here · days 1–3
 
-_Book a time with me and do your interview with Claude. Those two get everything else moving._
-
-### `tror-book` Book a time with me this week
-
-> About an hour, to go through this whole list together. Pick any time this week that suits you.
-
-Portal: booking calendar · note · 2 numbered steps
-
-| Team task | Role | Due | Priority | After |
-|---|---|---|---|---|
-| `tror-t01` Meet Luisa and go through the whole list | Jesse Allan | Days 1-3 | normal |  |
-
-<details><summary>Guidance for the team (1 task)</summary>
-
-**`tror-t01` Meet Luisa and go through the whole list**
-
-About an hour. Do the Meta, Porkbun and new web address steps with her on the call if she hasn't.
-
-</details>
+_Your interview with Claude comes first. You do it on your own, out loud, whenever suits you. It gets everything else moving._
 
 ### `tror-interview` Your interview with Claude
 
@@ -99,6 +81,21 @@ The message is tiny-ror/luisa-interview-prompt.md. File her interview in tiny-ro
 Portal: 2 numbered steps · portal link
 
 No team task behind this step.
+
+### Team-only work in Start here
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| **Kickoff** | | | | |
+| `tror-t01` Go through the list with Luisa when she needs it (no booking step: Jesse, 2026-11-19) | Jesse Allan | Days 1-7 | normal |  |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t01` Go through the list with Luisa when she needs it (no booking step: Jesse, 2026-11-19)**
+
+Do the Meta, Porkbun and new web address steps with her on a call if she gets stuck.
+
+</details>
 
 ## 2. Accounts and access · days 1–7
 

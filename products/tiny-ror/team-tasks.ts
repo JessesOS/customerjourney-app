@@ -16,7 +16,7 @@ const t = (
 
 export const tinyRorTeamTasks: TeamTask[] = [
   // ── Start here ──
-  t("tror-t01", "Meet Luisa and go through the whole list", "onboarding", "Kickoff", "tror-book", "Days 1-3", "About an hour. Do the Meta, Porkbun and new web address steps with her on the call if she hasn't."),
+  t("tror-t01", "Go through the list with Luisa when she needs it (no booking step: Jesse, 2026-11-19)", "onboarding", "Kickoff", undefined, "Days 1-7", "Do the Meta, Porkbun and new web address steps with her on a call if she gets stuck."),
   t("tror-t02", "Send Luisa the Claude interview message; file what comes back", "onboarding", "Interview", "tror-interview", "Days 1-5", "The message is tiny-ror/luisa-interview-prompt.md. File her interview in tiny-ror/notes/YYYY-MM-DD-luisa-interview.md. If she sends audio instead: Whisper, and the audio goes to ~/Master/Archive/videos/rorthejourney/, never git."),
   // ── Accounts and access ──
   t("tror-t07", "Record the ABN and business name; use it for the web address, Stripe and Meta's tax question", "build", "Accounts", "tror-abn", "Days 1-2", "Done when: the ABN shows as active on abr.business.gov.au under the name she gave."),

@@ -3,10 +3,9 @@
 //
 // Written from the Tiny ROR session's handover, products/tiny-ror/spec.md
 // (2026-11-08), on a blank base. Jesse OK'd the 23-step list on 2026-11-08.
-//   - the client's side: 33 steps in five stages (./client-steps.ts);
+//   - the client's side: 32 steps in five stages (./client-steps.ts);
 //   - the team's side: the work behind them (./team-tasks.ts).
-// PLACEHOLDERS: the booking link on step 1 (Jesse's AT kickoff page until he
-// makes a one-hour Tiny ROR page). The look is AT Network's (Jesse, 2026-11-09); a red and cream Tiny
+// No booking step (Jesse, 2026-11-19): step 1 is her interview with Claude. The look is AT Network's (Jesse, 2026-11-09); a red and cream Tiny
 // ROR look would need CSS and Jesse's OK. Messages and email alerts are off:
 // Luisa is on WhatsApp.
 
@@ -17,7 +16,7 @@ import { tinyRorTeamTasks } from "./team-tasks";
 export const tinyRor = defineCustomProduct({
   id: "tiny-ror",
   name: "Tiny ROR (Luisa)",
-  version: "2026-11-19.10",
+  version: "2026-11-19.11",
   status: "live",
   clientType: "tiny-ror",
   label: "Tiny ROR",

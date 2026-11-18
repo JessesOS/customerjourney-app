@@ -1,4 +1,4 @@
-// Tiny ROR (Luisa): the client's side. 33 steps in five stages, from
+// Tiny ROR (Luisa): the client's side. 32 steps in five stages, from
 // spec.md (Luisa's 22-item checklist, plus a bookmark step). Jesse OK'd the
 // list on 2026-11-08. 2026-11-19 (Jesse): access steps added (Wix, Porkbun,
 // Google listing, contact details, brand files) and wording brought in line
@@ -8,7 +8,7 @@
 // approval steps added (quiz, ads). She can open any step in any order.
 //
 // Wording by Claude, approved with the go-live (Jesse, 2026-11-09).
-// Rules from the spec: step 1 is the meeting with Jesse. Jesse drafts the
+// Step 1 is her interview with Claude, on her own (Jesse, 2026-11-19: no booking step). Jesse drafts the
 // child safe policy and the consent form; Luisa checks them. Stripe, Meta and
 // Google she sets up herself: never ask for a password or a key.
 // Brand: "ror", never "roar". No outcome promises.
@@ -43,7 +43,7 @@ export const tinyRorStages: Partial<Record<StageId, StagePatch>> = {
     name: "Start here",
     dayStart: 1,
     dayEnd: 3,
-    blurb: "Book a time with me and do your interview with Claude. Those two get everything else moving.",
+    blurb: "Your interview with Claude comes first. You do it on your own, out loud, whenever suits you. It gets everything else moving.",
     statusNotes: [],
   },
   build: {
@@ -78,23 +78,6 @@ export const tinyRorStages: Partial<Record<StageId, StagePatch>> = {
 
 export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
   // ── Start here ──
-  {
-    stage: "onboarding",
-    step: {
-      // PLACEHOLDER link: Jesse's AT kickoff booking page (45 min) until he makes a
-      // one-hour Tiny ROR page. Swap it before prod.
-      id: "tror-book",
-      bookingUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zFdYaXgf5lDqGZ8rLV9KPdB1nNec8ZbfcHcmXT7Bj51LstiAWeQvjG-26D1PxlPcvQ9-lxgdP",
-      title: "Book a time with me this week",
-      detail: "About an hour, to go through this whole list together. Pick any time this week that suits you.",
-      steps: [
-        "Pick a time on the booking page below. You get a calendar invite straight away.",
-        "Bring anything you already have: your ABN, your Working With Children Check, your insurance.",
-      ],
-      notePrompt: "Anything you want to cover when we meet? (optional)",
-      doneLabel: "I've booked it",
-    },
-  },
   {
     stage: "onboarding",
     step: {
