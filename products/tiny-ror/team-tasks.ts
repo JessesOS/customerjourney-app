@@ -14,7 +14,7 @@ const t = (
 export const tinyRorTeamTasks: TeamTask[] = [
   // ── This week ──
   t("tror-t01", "Meet Luisa and go through the whole list", "onboarding", "Kickoff", "tror-book", "Days 1-7", "About an hour. Buy the domain together if her ABN is ready. Set up Instagram and Facebook with her if she hasn't."),
-  t("tror-t02", "Record the 45-minute chat with Luisa, transcribe it and file it", "onboarding", "Interview", "tror-interview", "Days 3-10", "Whisper (see ~/Master/CLAUDE.md). Text to tiny-ror/notes/YYYY-MM-DD-luisa-interview.md; audio to ~/Master/Archive/videos/rorthejourney/, never git."),
+  t("tror-t02", "Send Luisa the Claude interview message; file what comes back", "onboarding", "Interview", "tror-interview", "Days 3-10", "The message is tiny-ror/luisa-interview-prompt.md. File her interview in tiny-ror/notes/YYYY-MM-DD-luisa-interview.md. If she sends audio instead: Whisper, and the audio goes to ~/Master/Archive/videos/rorthejourney/, never git."),
   // ── Must-haves before we launch ──
   t("tror-t03", "Put the venue details into the site and the booking page", "build", "Must-haves", "tror-venue", "Days 3-14"),
   t("tror-t04", "Put the class day, time and length into the offer and the site", "build", "Must-haves", "tror-class-time", "Days 3-14"),
@@ -33,13 +33,14 @@ export const tinyRorTeamTasks: TeamTask[] = [
   t("tror-t16", "Lock the prices in tiny-ror/offer.md", "testing", "Offer", "tror-prices", "Days 7-12", "Brief section 10: offer locked by 20 Nov."),
   t("tror-t17", "Call the local parents (15 minutes each) and write up what they said", "testing", "Offer", "tror-parent-chats", "Days 7-14", "Notes to tiny-ror/notes/, one file per call."),
   // ── Accounts to set up ──
-  t("tror-t18", "Buy the domain with Luisa, in her name", "go-live", "Accounts", "tror-domain", "Days 3-14", "", ["tror-t07"]),
+  t("tror-t18", "Buy the new Tiny ROR web address with Luisa, in her Porkbun account", "go-live", "Accounts", "tror-domain", "Days 3-14", "tinyror.com.au needs her ABN. Check Porkbun sells .com.au first; if not, pick the registrar with Jesse.", ["tror-t07", "tror-t29"]),
   t("tror-t19", "Add the Instagram and Facebook links to the site footer", "go-live", "Accounts", "tror-socials", "Days 7-21"),
   t("tror-t20", "Connect her Stripe account to the Tiny ROR workspace (she logs in herself)", "go-live", "Accounts", "tror-stripe", "Days 14-21", "No keys in files or messages. The Tiny ROR workspace isn't created yet: ask Jesse first."),
   t("tror-t21", "Send Luisa the Meta Business ID; accept the partner request; check the page, Instagram and ad account", "go-live", "Accounts", "tror-meta", "Days 7-21", "She adds her own card. Set a daily cap and an end date before any ad runs."),
   t("tror-t22", "Accept the manager invite; check and refine her Google listing (free, no Google Ads)", "go-live", "Accounts", "tror-google-listing", "Days 7-21", "Catch the other spelling of the name (\"roar\")."),
-  t("tror-t25", "Accept the Wix invite; save the best of her current site", "go-live", "Accounts", "tror-wix", "Days 7-14"),
-  t("tror-t26", "Change the web address settings at Porkbun with Luisa, on a call", "go-live", "Accounts", "tror-porkbun", "Days 14-28", "She logs in; never take the login. Confirm first which addresses sit at Porkbun."),
+  t("tror-t25", "Accept the Wix invite; copy her current site, ready to move to Porkbun", "go-live", "Accounts", "tror-wix", "Days 7-14"),
+  t("tror-t26", "Move her web address from Wix to Porkbun with Luisa, on a call; then move the site", "go-live", "Accounts", "tror-domain-move", "Days 14-28", "She logs in to both; never take a login. Check the address is over 60 days old and unlocked. Note her email records before the move so email keeps working.", ["tror-t29"]),
+  t("tror-t29", "Check her Porkbun account is open, in her name, with two-step login", "go-live", "Accounts", "tror-porkbun-account", "Days 7-14"),
   t("tror-t27", "Put her phone and email on the site, the messages and the concierge", "go-live", "Accounts", "tror-contact", "Days 14-21"),
   // ── Photos ──
   t("tror-t23", "Book the photo shoot with the families and get their consent forms signed", "post-launch", "Photos", "tror-shoot-families", "Days 14-28", "About 6 Dec. Consent first, every family.", ["tror-t11"]),

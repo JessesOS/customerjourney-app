@@ -1,4 +1,4 @@
-// Tiny ROR (Luisa): the client's side. 27 steps in five stages, from
+// Tiny ROR (Luisa): the client's side. 28 steps in five stages, from
 // spec.md (Luisa's 22-item checklist, plus a bookmark step). Jesse OK'd the
 // list on 2026-11-08. 2026-11-19 (Jesse): access steps added (Wix, Porkbun,
 // Google listing, contact details, brand files) and wording brought in line
@@ -14,7 +14,7 @@ import type { StagePatch } from "../custom";
 import type { ClientStep, StageId } from "../types";
 
 const FILES = { choose: "Click to choose your files", chooseMore: "+ Add more files", stayOpen: true } as const;
-/** The address Luisa invites as a helper. Jesse to confirm. */
+/** The address Luisa invites as a helper (Jesse, 2026-11-19). */
 const INVITE = "jesse@allconvos.ai";
 const NO_PASSWORDS = "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.";
 
@@ -88,15 +88,16 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
     stage: "onboarding",
     step: {
       id: "tror-interview",
-      // A chat together, as on the plan board (16 Nov). The upload stays for a recording she makes alone.
-      title: "Our recorded chat",
-      detail: "About 45 minutes. I ask, you talk, and I record it. Your story, your tools, what parents ask you. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. The questions are below, so you can think ahead. Your words become the website, the ads and the posts. I tick this once we've done it.",
+      // She does the interview with Claude, on her own (Jesse, 2026-11-19). The message she
+      // pastes in is tiny-ror/luisa-interview-prompt.md; Jesse sends it on WhatsApp.
+      title: "Your interview with Claude",
+      detail: "About an hour, whenever suits you. I've sent you a message on WhatsApp to paste into Claude. Claude asks you one question at a time and you just talk. Tap the microphone and speak. Stories are gold. Say \"skip\" for anything you don't want to answer. At the end, Claude writes the whole interview out. Send that to me here. The questions are below, so you can think ahead. Your words become the website, the ads and the posts.",
       steps: INTERVIEW_QUESTIONS,
       hasUpload: true,
-      uploadOptions: { accept: ".m4a,.mp3,.wav,.aac,.mp4,.mov,.zip", title: "Rather record it on your own?", hint: "Upload it here. Files up to 25MB. A longer recording: put it in Google Drive or Dropbox and paste the link below.", ...FILES },
-      notePrompt: "Or paste a link to your recording",
-      notePlaceholder: "https://drive.google.com/...",
-      doneLabel: "We've done it",
+      uploadOptions: { accept: ".txt,.md,.pdf,.doc,.docx,.m4a,.mp3,.wav,.mp4,.mov,.zip", title: "Upload the interview", hint: "A file with the interview Claude wrote out. Or paste the link in the box below.", ...FILES },
+      notePrompt: "Or paste the link Claude gives you when you tap Share",
+      notePlaceholder: "https://claude.ai/share/...",
+      doneLabel: "I've sent it",
     },
   },
   {
@@ -274,16 +275,16 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
   },
 
   // ── Accounts and access ──
-  // Access is always an invite to INVITE (top of file), never a login. Wix and Porkbun
-  // steps added 2026-11-19 (Jesse). PLACEHOLDERS: Jesse's Meta business ID on
-  // tror-meta; what sits on Wix and at Porkbun is assumed (her current site and
-  // its web address): Jesse to confirm.
+  // Access is always an invite to INVITE (top of file), never a login. Jesse,
+  // 2026-11-19: her current site and web address are at Wix and move to Porkbun;
+  // she also buys a new web address for Tiny ROR. PLACEHOLDER: Jesse's Meta
+  // business ID on tror-meta.
   {
     stage: "go-live",
     step: {
       id: "tror-wix",
       title: "Add me to your Wix site",
-      detail: "So I can see your current website and move the best of it across. You invite me from inside Wix. I never need your login.",
+      detail: "Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.",
       steps: [
         "Log in to Wix and open your site's dashboard.",
         "Go to Settings, then Roles & Permissions.",
@@ -297,20 +298,42 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
   {
     stage: "go-live",
     step: {
-      id: "tror-porkbun",
-      title: "Your web address at Porkbun",
-      detail: "Your web address is looked after at Porkbun. A few settings there need to change so it points at the new site. We do it together on a call: you log in, I tell you what to click. It takes about ten minutes.",
+      // Replaces tror-porkbun (settings changed on a call): she is moving her web
+      // address and hosting from Wix to Porkbun (Jesse, 2026-11-19).
+      id: "tror-porkbun-account",
+      title: "Open your own Porkbun account",
+      detail: "Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.",
+      steps: [
+        "Go to porkbun.com and create an account.",
+        "Turn on two-step login when it offers it.",
+      ],
       important: NO_PASSWORDS,
-      notePrompt: "Which web addresses do you own? (optional)",
-      doneLabel: "We've done it",
+      doneLabel: "I've opened it",
+    },
+  },
+  {
+    stage: "go-live",
+    step: {
+      id: "tror-domain-move",
+      title: "Move your web address from Wix to Porkbun",
+      detail: "We do this together on a call, about 15 minutes. You log in to Wix and to Porkbun, and I tell you what to click. The move itself can take up to a week. Your website and your email keep working while it happens.",
+      steps: [
+        "In Wix, we unlock the web address and get its transfer code.",
+        "In Porkbun, we start the transfer with that code. Porkbun may charge a small fee, on your card.",
+        "You approve the email Wix sends you. Then we wait for it to land.",
+      ],
+      important: NO_PASSWORDS,
+      notePrompt: "Which web address is at Wix?",
+      notePlaceholder: "e.g. rorthejourney.com.au",
+      doneLabel: "It's moved",
     },
   },
   {
     stage: "go-live",
     step: {
       id: "tror-domain",
-      title: "Your Tiny ROR web address",
-      detail: "I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.",
+      title: "Buy your new Tiny ROR web address",
+      detail: "A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name.",
       notePrompt: "Another name you'd prefer? (optional)",
       doneLabel: "We've bought it",
     },

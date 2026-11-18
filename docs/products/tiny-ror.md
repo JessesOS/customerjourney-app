@@ -6,11 +6,11 @@
 
 | | |
 |---|---|
-| Version | `2026-11-19.5` |
+| Version | `2026-11-19.7` |
 | Status | live: new clients start on it |
 | Journey | 30 days to go-live |
-| Client steps | 27 (1 client only, 0 hidden in the portal) |
-| Team tasks | 28 (28 behind a client step, 0 team-only) |
+| Client steps | 28 (1 client only, 0 hidden in the portal) |
+| Team tasks | 29 (29 behind a client step, 0 team-only) |
 | Based on | nothing: written from scratch |
 | Spec | [products/tiny-ror/spec.md](../../products/tiny-ror/spec.md) |
 | Draft wording | none: every client-facing word is approved |
@@ -25,7 +25,7 @@ No base: every step and task below is this product's own.
 
 | Variant | Client type | Channels | Offered | Client steps shown | Team tasks |
 |---|---|---|---|---|---|
-| Tiny ROR | `tiny-ror` | none | yes | 27 | 28 |
+| Tiny ROR | `tiny-ror` | none | yes | 28 | 29 |
 
 ### Portal tweaks by variant
 
@@ -46,7 +46,7 @@ No base: every step and task below is this product's own.
 
 | Role | Team tasks |
 |---|---|
-| Jesse Allan | 28 |
+| Jesse Allan | 29 |
 
 ## Stages
 
@@ -74,21 +74,21 @@ About an hour. Buy the domain together if her ABN is ready. Set up Instagram and
 
 </details>
 
-### `tror-interview` Our recorded chat
+### `tror-interview` Your interview with Claude
 
-> About 45 minutes. I ask, you talk, and I record it. Your story, your tools, what parents ask you. Talk the way you'd talk to a parent. Stories are gold. Skip any question you don't want to answer. The questions are below, so you can think ahead. Your words become the website, the ads and the posts. I tick this once we've done it.
+> About an hour, whenever suits you. I've sent you a message on WhatsApp to paste into Claude. Claude asks you one question at a time and you just talk. Tap the microphone and speak. Stories are gold. Say "skip" for anything you don't want to answer. At the end, Claude writes the whole interview out. Send that to me here. The questions are below, so you can think ahead. Your words become the website, the ads and the posts.
 
 Portal: upload · note · 6 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t02` Record the 45-minute chat with Luisa, transcribe it and file it | Jesse Allan | Days 3-10 | normal |  |
+| `tror-t02` Send Luisa the Claude interview message; file what comes back | Jesse Allan | Days 3-10 | normal |  |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`tror-t02` Record the 45-minute chat with Luisa, transcribe it and file it**
+**`tror-t02` Send Luisa the Claude interview message; file what comes back**
 
-Whisper (see ~/Master/CLAUDE.md). Text to tiny-ror/notes/YYYY-MM-DD-luisa-interview.md; audio to ~/Master/Archive/videos/rorthejourney/, never git.
+The message is tiny-ror/luisa-interview-prompt.md. File her interview in tiny-ror/notes/YYYY-MM-DD-luisa-interview.md. If she sends audio instead: Whisper, and the audio goes to ~/Master/Archive/videos/rorthejourney/, never git.
 
 </details>
 
@@ -278,41 +278,59 @@ _Your website, your web address, your pages and the accounts for payments and ad
 
 ### `tror-wix` Add me to your Wix site
 
-> So I can see your current website and move the best of it across. You invite me from inside Wix. I never need your login.
+> Your current website and its web address live at Wix. We're moving both to Porkbun. Invite me to your Wix site, so I can copy the site across. You invite me from inside Wix. I never need your login.
 
 Portal: 4 numbered steps · "Important" box
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t25` Accept the Wix invite; save the best of her current site | Jesse Allan | Days 7-14 | normal |  |
+| `tror-t25` Accept the Wix invite; copy her current site, ready to move to Porkbun | Jesse Allan | Days 7-14 | normal |  |
 
-### `tror-porkbun` Your web address at Porkbun
+### `tror-porkbun-account` Open your own Porkbun account
 
-> Your web address is looked after at Porkbun. A few settings there need to change so it points at the new site. We do it together on a call: you log in, I tell you what to click. It takes about ten minutes.
+> Porkbun is where your web addresses and your website will live from now on. Open an account at porkbun.com, in your name, with your own email and card. It's yours. I never log in to it.
 
-Portal: note · "Important" box
+Portal: 2 numbered steps · "Important" box
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t26` Change the web address settings at Porkbun with Luisa, on a call | Jesse Allan | Days 14-28 | normal |  |
+| `tror-t29` Check her Porkbun account is open, in her name, with two-step login | Jesse Allan | Days 7-14 | normal |  |
+
+### `tror-domain-move` Move your web address from Wix to Porkbun
+
+> We do this together on a call, about 15 minutes. You log in to Wix and to Porkbun, and I tell you what to click. The move itself can take up to a week. Your website and your email keep working while it happens.
+
+Portal: note · 3 numbered steps · "Important" box
+
+| Team task | Role | Due | Priority | After |
+|---|---|---|---|---|
+| `tror-t26` Move her web address from Wix to Porkbun with Luisa, on a call; then move the site | Jesse Allan | Days 14-28 | normal | `tror-t29` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`tror-t26` Change the web address settings at Porkbun with Luisa, on a call**
+**`tror-t26` Move her web address from Wix to Porkbun with Luisa, on a call; then move the site**
 
-She logs in; never take the login. Confirm first which addresses sit at Porkbun.
+She logs in to both; never take a login. Check the address is over 60 days old and unlocked. Note her email records before the move so email keeps working.
 
 </details>
 
-### `tror-domain` Your Tiny ROR web address
+### `tror-domain` Buy your new Tiny ROR web address
 
-> I suggest tinyror.com.au. A .com.au needs your ABN. We'll buy it together when we meet, in your name.
+> A new web address just for Tiny ROR. I suggest tinyror.com.au. A .com.au needs your ABN. We buy it together, in your Porkbun account, so it's in your name.
 
 Portal: note
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t18` Buy the domain with Luisa, in her name | Jesse Allan | Days 3-14 | normal | `tror-t07` |
+| `tror-t18` Buy the new Tiny ROR web address with Luisa, in her Porkbun account | Jesse Allan | Days 3-14 | normal | `tror-t07`, `tror-t29` |
+
+<details><summary>Guidance for the team (1 task)</summary>
+
+**`tror-t18` Buy the new Tiny ROR web address with Luisa, in her Porkbun account**
+
+tinyror.com.au needs her ABN. Check Porkbun sells .com.au first; if not, pick the registrar with Jesse.
+
+</details>
 
 ### `tror-socials` Instagram and Facebook pages
 
