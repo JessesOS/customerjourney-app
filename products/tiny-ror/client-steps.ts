@@ -3,7 +3,7 @@
 // list on 2026-11-08. 2026-11-19 (Jesse): access steps added (Wix, Porkbun,
 // Google listing, contact details, brand files) and wording brought in line
 // with the plan board of 16 Nov. Wording by Claude, approved by Jesse 2026-11-19.
-// 2026-11-19, later (draft, staging only until Jesse approves): reordered so the
+// 2026-11-19, later (approved by Jesse the same day): reordered so the
 // accounts with a wait come first, Meta split into phone-sized steps, and two
 // approval steps added (quiz, ads). She can open any step in any order.
 //

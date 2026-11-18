@@ -17,7 +17,7 @@ import { tinyRorTeamTasks } from "./team-tasks";
 export const tinyRor = defineCustomProduct({
   id: "tiny-ror",
   name: "Tiny ROR (Luisa)",
-  version: "2026-11-19.9",
+  version: "2026-11-19.10",
   status: "live",
   clientType: "tiny-ror",
   label: "Tiny ROR",
@@ -35,8 +35,7 @@ export const tinyRor = defineCustomProduct({
     lockedLook: "groveaurora", // AT Network's look (Jesse, 2026-11-09)
   },
   // Access steps and plan-board wording (Claude's draft, 2026-11-19): Jesse approved ("Yes, prep prod").
-  // Version 2026-11-19.8 (reorder, Meta split, two approval steps) is Claude's draft: staging only
-  // until Jesse approves. A live product can't list drafts, so they are named here, not in draftCopy.
-  // Prod runs 2026-11-19.7.
+  // The reorder by lead time, the Meta split, the two approval steps and the voice-mode interview
+  // (Claude's drafts, 2026-11-19): Jesse approved ("Yes, prep prod").
   draftCopy: [],
 });

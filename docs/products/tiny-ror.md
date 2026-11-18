@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-11-19.9` |
+| Version | `2026-11-19.10` |
 | Status | live: new clients start on it |
 | Journey | 30 days to go-live |
 | Client steps | 33 (1 client only, 0 hidden in the portal) |
