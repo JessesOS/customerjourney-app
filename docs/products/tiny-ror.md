@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-11-19.8` |
+| Version | `2026-11-19.9` |
 | Status | live: new clients start on it |
 | Journey | 30 days to go-live |
 | Client steps | 33 (1 client only, 0 hidden in the portal) |
@@ -76,9 +76,9 @@ About an hour. Do the Meta, Porkbun and new web address steps with her on the ca
 
 ### `tror-interview` Your interview with Claude
 
-> About an hour, whenever suits you. I've sent you a message on WhatsApp to paste into Claude. Claude asks you one question at a time and you just talk. Tap the microphone and speak. Stories are gold. Say "skip" for anything you don't want to answer. At the end, Claude writes the whole interview out. Send that to me here. The questions are below, so you can think ahead. Your words become the website, the ads and the posts.
+> About an hour, whenever suits you, out loud. It's a spoken chat with Claude, like a phone call: it asks one question at a time, and you just talk. Stories are gold. Say "skip" for anything you don't want to answer. How to start is below, then the questions, so you can think ahead. Your words become the website, the ads and the posts.
 
-Portal: upload · note · 6 numbered steps
+Portal: upload · note · 9 numbered steps
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|

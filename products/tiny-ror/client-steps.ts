@@ -21,7 +21,12 @@ const FILES = { choose: "Click to choose your files", chooseMore: "+ Add more fi
 const INVITE = "jesse@allconvos.ai";
 const NO_PASSWORDS = "Never send me a password, a key or a bank login. Not here, not on WhatsApp. You set this up yourself and keep the logins to yourself.";
 
+// Voice mode, not dictation (Jesse, 2026-11-19): the sound-wave button beside the microphone,
+// on the phone apps. Claude's help page says the words of a voice chat are saved in the chat.
 const INTERVIEW_QUESTIONS = [
+  "Open the Claude app on your phone and start a new chat. Paste in the message I sent you on WhatsApp, and send it.",
+  "Tap the voice button: the little sound-wave next to the microphone, in the box where you type. Say hello. Claude talks back and asks the first question.",
+  "At the end, Claude asks you to close voice mode and type: write it out. It then writes the whole interview down. Tap Share and paste the link below.",
   "YOU AND WHY. 1. What happened in your own life that led you to counselling? 2. When did you first think, \"kids this little need this\"? Tell me about that moment. 3. What does ROR (Raw, Open, Ready) mean to you? 4. What do you wish you'd known when your boys were 4 to 6?",
   "THE PARENTS YOU'RE FOR. 5. Describe the parent who walks in your door. What's their week like? 6. What do parents say to you when they're at the end of their rope? Their actual words. 7. What have they usually tried already that hasn't worked? 8. What are parents scared of, or embarrassed about, when it comes to their child's big feelings? 9. What do they want to feel by the end of a term?",
   "THE KIDS. 10. Tell me about a \"spicy\" child, a \"sparkly\" child, an \"energy bunny\" and a quiet one. How does each one show big feelings? 11. What does a shy child need on their first day? 12. What's a moment with a child you'll never forget? (No names.)",
@@ -97,10 +102,10 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
       // She does the interview with Claude, on her own (Jesse, 2026-11-19). The message she
       // pastes in is tiny-ror/luisa-interview-prompt.md; Jesse sends it on WhatsApp.
       title: "Your interview with Claude",
-      detail: "About an hour, whenever suits you. I've sent you a message on WhatsApp to paste into Claude. Claude asks you one question at a time and you just talk. Tap the microphone and speak. Stories are gold. Say \"skip\" for anything you don't want to answer. At the end, Claude writes the whole interview out. Send that to me here. The questions are below, so you can think ahead. Your words become the website, the ads and the posts.",
+      detail: "About an hour, whenever suits you, out loud. It's a spoken chat with Claude, like a phone call: it asks one question at a time, and you just talk. Stories are gold. Say \"skip\" for anything you don't want to answer. How to start is below, then the questions, so you can think ahead. Your words become the website, the ads and the posts.",
       steps: INTERVIEW_QUESTIONS,
       hasUpload: true,
-      uploadOptions: { accept: ".txt,.md,.pdf,.doc,.docx,.m4a,.mp3,.wav,.mp4,.mov,.zip", title: "Upload the interview", hint: "A file with the interview Claude wrote out. Or paste the link in the box below.", ...FILES },
+      uploadOptions: { accept: ".txt,.md,.pdf,.doc,.docx,.m4a,.mp3,.wav,.mp4,.mov,.zip", title: "Upload the interview", hint: "Only if you saved the interview as a file. The Share link below is easier.", ...FILES },
       notePrompt: "Or paste the link Claude gives you when you tap Share",
       notePlaceholder: "https://claude.ai/share/...",
       doneLabel: "I've sent it",
