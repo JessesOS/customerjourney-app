@@ -16,7 +16,7 @@ import { tinyRorTeamTasks } from "./team-tasks";
 export const tinyRor = defineCustomProduct({
   id: "tiny-ror",
   name: "Tiny ROR (Luisa)",
-  version: "2026-11-19.11",
+  version: "2026-11-19.12",
   status: "live",
   clientType: "tiny-ror",
   label: "Tiny ROR",
