@@ -2,7 +2,7 @@
 // spec.md (Luisa's 22-item checklist, plus a bookmark step). Jesse OK'd the
 // list on 2026-11-08. 2026-11-19 (Jesse): access steps added (Wix, Porkbun,
 // Google listing, contact details, brand files) and wording brought in line
-// with the plan board of 16 Nov. Those steps are drafts: see draftCopy.
+// with the plan board of 16 Nov. Wording by Claude, approved by Jesse 2026-11-19.
 //
 // Wording by Claude, approved with the go-live (Jesse, 2026-11-09).
 // Rules from the spec: step 1 is the meeting with Jesse. Jesse drafts the
