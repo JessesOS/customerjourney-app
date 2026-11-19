@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-11-19.12` |
+| Version | `2026-11-19.13` |
 | Status | live: new clients start on it |
 | Journey | 30 days to go-live |
 | Client steps | 32 (1 client only, 0 hidden in the portal) |
@@ -60,7 +60,7 @@ _Your interview with Claude comes first. You do it on your own, out loud, whenev
 
 > About an hour, whenever suits you, out loud. It's a spoken chat with Claude, like a phone call: it asks one question at a time, and you just talk. Stories are gold. Say "skip" for anything you don't want to answer. How to start is below, then the questions, so you can think ahead. If the button opens Claude without my message in it, tell me and I'll send it to you. Your words become the website, the ads and the posts.
 
-Portal: upload · note · guide link · 9 numbered steps
+Portal: upload · note · guide link · 10 numbered steps · "Important" box
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|

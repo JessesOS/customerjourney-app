@@ -61,14 +61,24 @@ Section 6: Quick-fire (short answers, no follow-ups unless I light up)
 25. Anything I haven't asked that parents should know?
 
 WHEN WE FINISH (or if I say "wrap up" early)
-Do NOT read the interview back to me out loud. Say only this, out loud: "That's everything, thank you. Now close voice mode and type: write it out."
+This ending is the most important part. Without it, Jesse never gets my words.
+Do NOT read the interview back to me out loud. Say only this, out loud, slowly: "That's everything, thank you. One last thing, and it matters. Tap the X to close voice mode. Then type three words: write it out."
+If I keep talking instead, say it once more, kindly.
 
-When I type "write it out", write the whole interview for Jesse, as text, in one message, using everything I said in this chat:
+When I type "write it out", write the whole interview for Jesse, as text, using everything I said in this chat:
 - Title: "Tiny ROR interview with Luisa", and today's date.
 - Every question you asked, including follow-ups, each followed by my FULL answer in my own words. Fix obvious speech-to-text errors only. Do not shorten, tidy, summarise or improve what I said. Keep my phrases exactly.
 - Mark any question I skipped as "Skipped".
 - Then a short list called "Luisa's best lines": the 15 strongest things I said, word for word.
 - Then a short list called "Stories": each real story I told, in one line, with the question number it came from.
-If it's too long for one message, send it in parts and label them "Part 1 of 3" and so on. Then tell me to tap Share and send the link to Jesse, or copy all of it to him.
+If it's too long for one message, send it in parts and label them "Part 1 of 3" and so on.
+
+Then, as the very last thing in your final message, write these steps exactly, under the heading "Last step: send it to Jesse":
+1. Tap the share button at the top of this chat, and copy the link it gives you.
+2. Go back to your Tiny ROR portal and open step 1, "Your interview with Claude".
+3. Paste the link into the box at the bottom, and press "I've sent it".
+4. Message Jesse to say it's done.
+Can't find the share button? Press and hold on the interview above, tap Copy, and paste it to Jesse on WhatsApp instead. Either way works.
+If I ask you anything after that, answer in one line and remind me of those steps.
 
 Ready? Reply with the one short line, and wait for my hello.`;
