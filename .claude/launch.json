@@ -4,8 +4,28 @@
     {
       "name": "dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "3333"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "3333"
+      ],
       "port": 3333
+    },
+    {
+      "name": "team-board",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/jesseallan/Master/AI/customerjourney-app/.claude/worktrees/wf_7f653677-c54-1",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "3334"
+      ],
+      "port": 3334
     }
   ]
 }
