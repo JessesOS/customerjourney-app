@@ -6,7 +6,7 @@
 
 | | |
 |---|---|
-| Version | `2026-11-19.13` |
+| Version | `2026-11-24.1` |
 | Status | live: new clients start on it |
 | Journey | 30 days to go-live |
 | Client steps | 32 (1 client only, 0 hidden in the portal) |
@@ -163,11 +163,11 @@ Portal: note · 4 numbered steps · "Important" box
 
 | Team task | Role | Due | Priority | After |
 |---|---|---|---|---|
-| `tror-t21` Send Luisa the Meta Business ID; then create the ad account, link the page and Instagram, and set up tracking in her account | Jesse Allan | Days 2-5 | normal | `tror-t30`, `tror-t31` |
+| `tror-t21` Check her partner request arrived (your Business ID 2082117895841905 is in her step); then create the ad account, link the page and Instagram, and set up tracking in her account | Jesse Allan | Days 2-5 | normal | `tror-t30`, `tror-t31` |
 
 <details><summary>Guidance for the team (1 task)</summary>
 
-**`tror-t21` Send Luisa the Meta Business ID; then create the ad account, link the page and Instagram, and set up tracking in her account**
+**`tror-t21` Check her partner request arrived (your Business ID 2082117895841905 is in her step); then create the ad account, link the page and Instagram, and set up tracking in her account**
 
 Done when: her page, Instagram and ad account show under Partners in your own Business Settings, with full control. Phone: not confirmed, so offer a call. The web address no longer has to be verified for conversion events (Meta), but verify it anyway by DNS once it exists.
 

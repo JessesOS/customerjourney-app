@@ -168,7 +168,7 @@ export const tinyRorSteps: { stage: StageId; step: ClientStep }[] = [
       steps: [
         "In business.facebook.com, open Settings, then Users, then Partners.",
         "Press Add, then \"Give a partner access to your assets\".",
-        "Type my Business ID. I'll message it to you.",
+        "Type my Business ID: 2082117895841905",
         "Tick everything it offers (your page, your Instagram, your ad account), choose full control, then press Assign assets.",
       ],
       important: NO_PASSWORDS,
